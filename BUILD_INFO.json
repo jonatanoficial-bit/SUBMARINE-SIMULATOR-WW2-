@@ -1,7 +1,7 @@
 {
   "app": "Submarine Commander WW2",
-  "build": "2026-04-20 19:55",
-  "version": "v0.3.2",
-  "phase": "Hotfix de assets e paths",
-  "progress": "57%"
+  "build": "2026-04-20 20:20",
+  "version": "v0.3.3",
+  "phase": "Saneamento completo de assets + integração",
+  "progress": "60%"
 }

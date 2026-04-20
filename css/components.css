@@ -343,19 +343,19 @@ input[type="range"] { width: 100%; accent-color: var(--gold-strong); }
 .instrument-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .instrument-card .panel-body { padding-top: 8px; }
 .instrument-wrap { display: grid; gap: 14px; }
-.gauge { position: relative; margin: 0 auto; width: min(100%, 200px); aspect-ratio: 1; }
+.gauge { position: relative; margin: 0 auto; width: min(100%, 220px); aspect-ratio: 1; overflow: visible; }
 .gauge-base { width: 100%; height: 100%; object-fit: contain; }
 .gauge-needle,
 .gauge-lever,
-.radar-scan { position: absolute; left: 50%; top: 50%; transform-origin: 50% 50%; }
-.gauge-needle { width: 54%; transform: translate(-50%, -50%) rotate(-120deg); }
-.gauge-lever { width: 30%; transform: translate(-50%, -50%) rotate(0deg); }
+.radar-scan { position: absolute; left: 50%; top: 50%; }
+.gauge-needle { width: auto; height: 72%; transform-origin: 50% 82%; transform: translate(-50%, -50%) rotate(-120deg); }
+.gauge-lever { width: auto; height: 58%; transform-origin: 50% 84%; transform: translate(-50%, -50%) rotate(0deg); }
 .chip-grid { display: grid; gap: 8px; }
 .speed-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .speed-grid .chip { width: 100%; }
 .radar-stage { position: relative; width: min(100%, 300px); aspect-ratio: 1; margin: 0 auto; }
 .radar-base { width: 100%; height: 100%; object-fit: contain; }
-.radar-scan { width: 78%; }
+.radar-scan { width: 82%; transform-origin: 50% 50%; transform: translate(-50%, -50%) rotate(0deg); }
 .radar-icon { position: absolute; width: 8.5%; transform: translate(-50%, -50%); }
 .radar-player { left: 50%; top: 50%; width: 10%; }
 .radar-wrap { display: grid; gap: 14px; }

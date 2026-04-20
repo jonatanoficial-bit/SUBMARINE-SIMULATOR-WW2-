@@ -8,8 +8,6 @@ const DEPTH_MIN = 0;
 const DEPTH_MAX = 300;
 const PERISCOPE_MAX_DEPTH = 20;
 
-import { ASSETS } from '../assets.js';
-
 export function renderGameplay(t, mission) {
   return `
     <section class="screen gameplay-screen">
@@ -35,8 +33,8 @@ export function renderGameplay(t, mission) {
           <div class="panel-header">${t('gameplay.depthGauge')}</div>
           <div class="panel-body instrument-wrap">
             <div class="gauge depth-gauge">
-              <img class="gauge-base" src="${ASSETS.gauges.depthBase}" alt="${t('gameplay.depthGauge')}">
-              <img id="depth-needle" class="gauge-needle" src="${ASSETS.gauges.depthNeedle}" alt="needle">
+              <img class="gauge-base" src="assets/gauges/depth_gauge_base.png" alt="${t('gameplay.depthGauge')}">
+              <img id="depth-needle" class="gauge-needle" src="assets/gauges/depth_gauge_needle.png" alt="needle">
             </div>
             <div class="instrument-controls">
               <button class="button secondary block" id="depth-up">${t('gameplay.surface')}</button>
@@ -49,8 +47,8 @@ export function renderGameplay(t, mission) {
           <div class="panel-header">${t('gameplay.engineTelegraph')}</div>
           <div class="panel-body instrument-wrap">
             <div class="gauge speed-gauge">
-              <img class="gauge-base" src="${ASSETS.gauges.speedBase}" alt="${t('gameplay.engineTelegraph')}">
-              <img id="speed-lever" class="gauge-lever" src="${ASSETS.gauges.speedLever}" alt="lever">
+              <img class="gauge-base" src="assets/gauges/speed_telegraph_base.png" alt="${t('gameplay.engineTelegraph')}">
+              <img id="speed-lever" class="gauge-lever" src="assets/gauges/speed_telegraph_lever.png" alt="lever">
             </div>
             <div class="chip-grid speed-grid">
               ${SPEEDS.map((speed) => `<button class="chip speed-chip" data-speed="${speed}">${t('speed.' + speed)}</button>`).join('')}
@@ -63,12 +61,12 @@ export function renderGameplay(t, mission) {
         <div class="panel-header">${t('gameplay.radar')}</div>
         <div class="panel-body radar-wrap">
           <div class="radar-stage" id="radar-stage">
-            <img class="radar-base" src="${ASSETS.radar.base}" alt="${t('gameplay.radar')}">
-            <img id="radar-scan" class="radar-scan" src="${ASSETS.radar.scan}" alt="scan">
-            <img id="radar-player" class="radar-icon radar-player" src="${ASSETS.radar.player}" alt="player">
-            <img id="radar-target" class="radar-icon radar-target" src="${ASSETS.radar.enemy}" alt="target">
-            <img id="radar-escort" class="radar-icon radar-escort" src="${ASSETS.radar.enemy}" alt="escort">
-            <img id="radar-ally" class="radar-icon radar-ally hidden" src="${ASSETS.radar.ally}" alt="ally">
+            <img class="radar-base" src="assets/radar/radar_base.png" alt="${t('gameplay.radar')}">
+            <img id="radar-scan" class="radar-scan" src="assets/radar/radar_scan.png" alt="scan">
+            <img id="radar-player" class="radar-icon radar-player" src="assets/radar/radar_player.png" alt="player">
+            <img id="radar-target" class="radar-icon radar-target" src="assets/radar/radar_enemy.png" alt="target">
+            <img id="radar-escort" class="radar-icon radar-escort" src="assets/radar/radar_enemy.png" alt="escort">
+            <img id="radar-ally" class="radar-icon radar-ally hidden" src="assets/radar/radar_ally.png" alt="ally">
           </div>
           <div class="radar-readout">
             <div class="row space-between"><span>${t('gameplay.target')}</span><strong id="target-range">--</strong></div>
@@ -93,16 +91,16 @@ export function renderGameplay(t, mission) {
         </div>
         <div class="periscope-shell" id="periscope-shell">
           <div class="periscope-window" id="periscope-window">
-            <img id="periscope-ocean" class="periscope-ocean" src="${ASSETS.periscope.oceanDay}" alt="ocean">
-            <img id="target-ship" class="periscope-entity target-ship" src="${ASSETS.ships.merchant}" alt="merchant">
-            <img id="escort-ship" class="periscope-entity escort-ship" src="${ASSETS.ships.destroyer}" alt="destroyer">
-            <img id="torpedo-shot" class="periscope-effect torpedo-shot hidden" src="${ASSETS.effects.torpedo}" alt="torpedo">
-            <img id="impact-explosion" class="periscope-effect impact-explosion hidden" src="${ASSETS.effects.explosion}" alt="explosion">
-            <img id="impact-splash" class="periscope-effect impact-splash hidden" src="${ASSETS.effects.splash}" alt="splash">
+            <img id="periscope-ocean" class="periscope-ocean" src="assets/periscope/ocean_panorama_day.png" alt="ocean">
+            <img id="target-ship" class="periscope-entity target-ship" src="assets/ships/merchant_ship_01.png" alt="merchant">
+            <img id="escort-ship" class="periscope-entity escort-ship" src="assets/ships/destroyer_01.png" alt="destroyer">
+            <img id="torpedo-shot" class="periscope-effect torpedo-shot hidden" src="assets/effects/torpedo_moving_01.png" alt="torpedo">
+            <img id="impact-explosion" class="periscope-effect impact-explosion hidden" src="assets/effects/ocean_explosion_01.png" alt="explosion">
+            <img id="impact-splash" class="periscope-effect impact-splash hidden" src="assets/effects/water_splash_01.png" alt="splash">
           </div>
-          <img class="periscope-layer periscope-crosshair" src="${ASSETS.periscope.crosshair}" alt="crosshair">
-          <img class="periscope-layer periscope-glass" src="${ASSETS.periscope.glass}" alt="glass">
-          <img class="periscope-layer periscope-overlay" src="${ASSETS.periscope.overlay}" alt="overlay">
+          <img class="periscope-layer periscope-crosshair" src="assets/periscope/periscope_crosshair.png" alt="crosshair">
+          <img class="periscope-layer periscope-glass" src="assets/periscope/periscope_glass.png" alt="glass">
+          <img class="periscope-layer periscope-overlay" src="assets/periscope/periscope_overlay.png" alt="overlay">
           <div id="periscope-lock" class="periscope-lock">${t('gameplay.lockSearching')}</div>
         </div>
         <div class="periscope-controls">

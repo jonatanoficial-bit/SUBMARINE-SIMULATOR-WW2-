@@ -1,12 +1,11 @@
 import { renderBuildBadge } from '../components/ui.js';
-import { ASSETS } from '../assets.js';
 
 export function renderSplash(t) {
   return `
     <section class="screen splash-screen">
       <div class="logo-stack">
-        <img class="main-logo" src="${ASSETS.logos.main}" alt="Submarine Commander WW2">
-        <img class="studio-mark" src="${ASSETS.logos.valeClean}" alt="Vale Games">
+        <img class="main-logo" src="assets/logos/submarine_commander_logo.png" alt="Submarine Commander WW2">
+        <img class="studio-mark" src="assets/logos/vale_games_logo_clean.png" alt="Vale Games">
       </div>
       <div class="panel hero-panel center">
         <div class="stack center">
