@@ -1,6 +1,7 @@
-import { renderBottomNav, renderCommanderSummary } from '../components/ui.js';
+import { renderBottomNav, renderCommanderSummary, renderProgressMini } from '../components/ui.js';
 
 export function renderLobby(t, save, nation, submarine, crewMembers) {
+  const nextLevelXp = save.progression.level * 300;
   return `
     <section class="screen screen-shell">
       <div class="screen-header">
@@ -12,6 +13,19 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
       </div>
 
       ${renderCommanderSummary(save, nation, t)}
+
+      <div class="panel">
+        <div class="panel-header">${t('lobby.careerProgress')}</div>
+        <div class="panel-body stack">
+          <div class="row space-between"><strong>XP</strong><span>${save.progression.xp}/${nextLevelXp}</span></div>
+          ${renderProgressMini(save.progression.xp, nextLevelXp)}
+          <div class="stat-strip">
+            <div class="stat-box"><div class="stat-label">${t('lobby.completedMissions')}</div><div class="stat-value">${save.progression.completedMissions.length}</div></div>
+            <div class="stat-box"><div class="stat-label">${t('lobby.totalSpent')}</div><div class="stat-value">${save.economy.totalSpent}</div></div>
+            <div class="stat-box"><div class="stat-label">${t('lobby.totalEarned')}</div><div class="stat-value">${save.economy.totalEarned}</div></div>
+          </div>
+        </div>
+      </div>
 
       <div class="panel">
         <div class="panel-header">${t('lobby.currentSub')}</div>

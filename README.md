@@ -1,37 +1,16 @@
-# Submarine Commander WW2 — Build v0.1.0
+# Submarine Commander WW2 — Build v0.3.0
 
-Build inicial da fundação jogável da Vale Games.
+Build focada em sistemas funcionais.
 
-## O que esta build entrega
-- Splash screen
-- Menu inicial
-- Novo jogo / continuar
-- Criação de comandante
-- Lobby principal
-- Campanha mockada
-- Arsenal com submarinos iniciais
-- Gestão básica de tripulação
-- Settings com 3 idiomas
-- Save local
-- Build visível com data e hora
-- Assets organizados por pasta e nome semântico
+## Inclui
+- fundação jogável da carreira
+- economia, progressão, campanha, arsenal e tripulação
+- profundidade funcional com ponteiro real
+- velocidade funcional com alavanca real
+- radar tático funcional com scan e contatos
+- periscópio funcional com panorama, mira, lente e disparo de torpedo
+- impacto com explosão e erro com respingo
+- PT-BR, English e Español
 
-## Como executar localmente
-Use um servidor estático simples:
-
-```bash
-python -m http.server 8000
-```
-
-Depois abra `http://localhost:8000`.
-
-## Idiomas
-- Português BR
-- English
-- Español
-
-## Progresso geral do projeto
-**22% concluído**
-
-## Observações
-Esta versão prioriza a fundação visual, dados, fluxo de interface e persistência. A jogabilidade tática completa entra nas próximas builds.
+## Estrutura
+Este ZIP contém apenas uma pasta principal da build atual, seguindo o padrão Vale Games.

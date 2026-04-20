@@ -52,6 +52,7 @@ export function renderCommanderSummary(save, nation, t) {
             <span class="tag gold">${t('common.rank')}: ${t(nation.rankKey)}</span>
             <span class="tag">${t('common.level')}: ${save.progression.level}</span>
             <span class="tag success">${t('common.credits')}: ${save.progression.credits}</span>
+            <span class="tag">XP: ${save.progression.xp}</span>
           </div>
         </div>
       </div>
@@ -60,5 +61,10 @@ export function renderCommanderSummary(save, nation, t) {
 }
 
 export function renderStatBar(value) {
-  return `<div class="progress-bar"><span style="width:${value}%"></span></div>`;
+  return `<div class="progress-bar"><span style="width:${Math.max(0, Math.min(100, value))}%"></span></div>`;
+}
+
+export function renderProgressMini(current, next) {
+  const pct = Math.max(0, Math.min(100, (current / next) * 100));
+  return `<div class="progress-bar compact"><span style="width:${pct}%"></span></div>`;
 }

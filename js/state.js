@@ -20,35 +20,11 @@ export const state = {
   toast: ''
 };
 
-export function setScreen(screen) {
-  state.currentScreen = screen;
-}
-
-export function setData(data) {
-  state.data = data;
-}
-
-export function setLanguage(language) {
-  state.language = language;
-  state.settings.language = language;
-}
-
-export function setSave(save) {
-  state.save = save;
-}
-
-export function setSettings(settings) {
-  state.settings = { ...state.settings, ...settings };
-}
-
-export function setDraft(partial) {
-  state.commanderDraft = { ...state.commanderDraft, ...partial };
-}
-
-export function setMission(id) {
-  state.selectedMissionId = id;
-}
-
-export function setToast(message) {
-  state.toast = message;
-}
+export function setScreen(screen) { state.currentScreen = screen; }
+export function setData(data) { state.data = data; }
+export function setLanguage(language) { state.language = language; state.settings.language = language; }
+export function setSave(save) { state.save = save; }
+export function setSettings(settings) { state.settings = { ...state.settings, ...settings }; }
+export function setDraft(partial) { state.commanderDraft = { ...state.commanderDraft, ...partial }; }
+export function setMission(id) { state.selectedMissionId = id; }
+export function setToast(message) { state.toast = message; }

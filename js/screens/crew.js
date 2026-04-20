@@ -1,6 +1,6 @@
 import { renderBottomNav } from '../components/ui.js';
 
-export function renderCrew(t, crewMembers, hiredIds, budgetAvailable, totalCost) {
+export function renderCrew(t, crewMembers, hiredIds, credits) {
   return `
     <section class="screen screen-shell">
       <div class="screen-header">
@@ -8,13 +8,7 @@ export function renderCrew(t, crewMembers, hiredIds, budgetAvailable, totalCost)
           <div class="screen-title">${t('crew.title')}</div>
           <div class="screen-subtitle">${t('crew.subtitle')}</div>
         </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-body compact row wrap space-between">
-          <span class="tag gold">${t('crew.budget')}: ${budgetAvailable}</span>
-          <span class="tag">${t('crew.total')}: ${totalCost}</span>
-        </div>
+        <span class="tag success">${t('common.credits')}: ${credits}</span>
       </div>
 
       <div class="stack">
@@ -27,15 +21,16 @@ export function renderCrew(t, crewMembers, hiredIds, budgetAvailable, totalCost)
                 <div class="row space-between align-start">
                   <div>
                     <h3>${crew.name}</h3>
-                    <p>${t(crew.roleKey)} • ${t(crew.bonusKey)}</p>
+                    <p>${t(crew.roleKey)} • ${t(crew.bonusKey)} • ${t(crew.bioKey)}</p>
                   </div>
-                  <span class="tag ${hired ? 'success' : ''}">${crew.cost}</span>
+                  <span class="tag ${hired ? 'success' : 'gold'}">${hired ? t('crew.hired') : crew.cost}</span>
                 </div>
-                <p class="muted">${t(crew.bioKey)}</p>
-                <div class="row space-between">
-                  <span>${t('crew.skill')}: <strong>${crew.skill}</strong></span>
-                  <button class="button ${hired ? 'warn' : 'secondary'}" data-action="toggle-crew" data-crew="${crew.id}">${hired ? t('crew.remove') : t('crew.hire')}</button>
+                <div class="row wrap space-between">
+                  <span>${t('crew.skill')}: ${crew.skill}%</span>
+                  <span>${t('common.level')}: ${crew.level}</span>
                 </div>
+                <div class="progress-bar"><span style="width:${crew.skill}%"></span></div>
+                ${hired ? '' : `<button class="button ghost" data-action="toggle-crew" data-crew="${crew.id}">${t('crew.hire')}</button>`}
               </div>
             </div>
           `;

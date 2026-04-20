@@ -333,3 +333,50 @@ input[type="range"] { width: 100%; accent-color: var(--gold-strong); }
   text-align: center;
   font-size: 14px;
 }
+
+
+.progress-bar.compact { height: 10px; }
+.bullet-list { margin-left: 18px; display: grid; gap: 6px; color: var(--text-soft); }
+.bullet-list li { list-style: disc; }
+
+.hidden { display: none !important; }
+.instrument-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.instrument-card .panel-body { padding-top: 8px; }
+.instrument-wrap { display: grid; gap: 14px; }
+.gauge { position: relative; margin: 0 auto; width: min(100%, 200px); aspect-ratio: 1; }
+.gauge-base { width: 100%; height: 100%; object-fit: contain; }
+.gauge-needle,
+.gauge-lever,
+.radar-scan { position: absolute; left: 50%; top: 50%; transform-origin: 50% 50%; }
+.gauge-needle { width: 54%; transform: translate(-50%, -50%) rotate(-120deg); }
+.gauge-lever { width: 30%; transform: translate(-50%, -50%) rotate(0deg); }
+.chip-grid { display: grid; gap: 8px; }
+.speed-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.speed-grid .chip { width: 100%; }
+.radar-stage { position: relative; width: min(100%, 300px); aspect-ratio: 1; margin: 0 auto; }
+.radar-base { width: 100%; height: 100%; object-fit: contain; }
+.radar-scan { width: 78%; }
+.radar-icon { position: absolute; width: 8.5%; transform: translate(-50%, -50%); }
+.radar-player { left: 50%; top: 50%; width: 10%; }
+.radar-wrap { display: grid; gap: 14px; }
+.radar-readout { display: grid; gap: 8px; font-size: 14px; }
+.gameplay-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.periscope-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); z-index: 60; display: grid; align-content: start; gap: 12px; padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); }
+.periscope-actions, .periscope-controls { display: flex; justify-content: space-between; gap: 10px; }
+.periscope-shell { position: relative; width: min(100%, 460px); aspect-ratio: 1; margin: 0 auto; }
+.periscope-window { position: absolute; inset: 13% 13%; border-radius: 50%; overflow: hidden; background: #09131c; }
+.periscope-ocean { position: absolute; left: -280px; top: 0; width: auto; height: 100%; max-width: none; }
+.periscope-entity { position: absolute; width: 56%; max-width: none; transition: left 120ms linear; }
+.target-ship { left: 60%; bottom: 32%; }
+.escort-ship { left: 76%; bottom: 28%; width: 62%; opacity: 0.88; }
+.periscope-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.periscope-crosshair, .periscope-glass { mix-blend-mode: screen; }
+.periscope-effect { position: absolute; inset: auto; left: 50%; top: 46%; transform: translate(-50%, -50%); width: 58%; max-width: none; }
+.impact-explosion { top: 48%; width: 64%; }
+.impact-splash { top: 56%; width: 60%; }
+.periscope-lock { text-align: center; color: #96ffae; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.periscope-lock.active { text-shadow: 0 0 12px rgba(150, 255, 174, 0.6); }
+.empty-state { padding: 12px 14px; border-radius: 14px; border: 1px dashed rgba(255,255,255,0.16); color: var(--text-soft); font-size: 13px; text-align: center; }
+.bullet-list { padding-left: 18px; list-style: disc; }
+.bullet-list li { list-style: disc; margin-left: 12px; color: var(--text-soft); }
+@media (max-width: 420px) { .instrument-grid, .gameplay-kpis { grid-template-columns: 1fr; } .speed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

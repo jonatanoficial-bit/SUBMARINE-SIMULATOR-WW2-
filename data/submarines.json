@@ -27,7 +27,8 @@
       "stealth": 76,
       "depth": 73,
       "torpedoes": 8
-    }
+    },
+    "unlockCost": 3200
   },
   {
     "id": "uk_t_class_starter",
@@ -57,7 +58,8 @@
       "stealth": 74,
       "depth": 70,
       "torpedoes": 7
-    }
+    },
+    "unlockCost": 3200
   },
   {
     "id": "us_gato_starter",
@@ -87,6 +89,7 @@
       "stealth": 72,
       "depth": 76,
       "torpedoes": 8
-    }
+    },
+    "unlockCost": 3200
   }
 ]

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "hull_steel_1",
+    "nameKey": "upgrade.hull_steel_1.name",
+    "descKey": "upgrade.hull_steel_1.desc",
+    "category": "hull",
+    "cost": 900,
+    "levelRequired": 1,
+    "effect": {
+      "depth": 6,
+      "stealth": 2
+    }
+  },
+  {
+    "id": "battery_silent_1",
+    "nameKey": "upgrade.battery_silent_1.name",
+    "descKey": "upgrade.battery_silent_1.desc",
+    "category": "battery",
+    "cost": 1100,
+    "levelRequired": 1,
+    "effect": {
+      "stealth": 5,
+      "range": 3
+    }
+  },
+  {
+    "id": "engine_tuned_1",
+    "nameKey": "upgrade.engine_tuned_1.name",
+    "descKey": "upgrade.engine_tuned_1.desc",
+    "category": "engine",
+    "cost": 1300,
+    "levelRequired": 2,
+    "effect": {
+      "speed": 7
+    }
+  },
+  {
+    "id": "sonar_array_1",
+    "nameKey": "upgrade.sonar_array_1.name",
+    "descKey": "upgrade.sonar_array_1.desc",
+    "category": "sonar",
+    "cost": 1500,
+    "levelRequired": 2,
+    "effect": {
+      "range": 6,
+      "stealth": 2
+    }
+  },
+  {
+    "id": "torpedo_rack_1",
+    "nameKey": "upgrade.torpedo_rack_1.name",
+    "descKey": "upgrade.torpedo_rack_1.desc",
+    "category": "torpedo",
+    "cost": 1800,
+    "levelRequired": 3,
+    "effect": {
+      "torpedoes": 2
+    }
+  }
+]
