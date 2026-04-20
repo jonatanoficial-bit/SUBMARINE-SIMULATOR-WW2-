@@ -1,0 +1,92 @@
+[
+  {
+    "id": "de_type_viia_starter",
+    "nation": "de",
+    "name": "Type VIIA Starter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": true,
+    "levelRequired": 1,
+    "stats": {
+      "speed": 62,
+      "range": 71,
+      "stealth": 68,
+      "depth": 64,
+      "torpedoes": 6
+    }
+  },
+  {
+    "id": "de_type_viic_hunter",
+    "nation": "de",
+    "name": "Type VIIC Hunter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 4,
+    "stats": {
+      "speed": 70,
+      "range": 74,
+      "stealth": 76,
+      "depth": 73,
+      "torpedoes": 8
+    }
+  },
+  {
+    "id": "uk_t_class_starter",
+    "nation": "uk",
+    "name": "T-Class Starter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": true,
+    "levelRequired": 1,
+    "stats": {
+      "speed": 58,
+      "range": 69,
+      "stealth": 66,
+      "depth": 62,
+      "torpedoes": 6
+    }
+  },
+  {
+    "id": "uk_u_class_hunter",
+    "nation": "uk",
+    "name": "U-Class Hunter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 4,
+    "stats": {
+      "speed": 65,
+      "range": 72,
+      "stealth": 74,
+      "depth": 70,
+      "torpedoes": 7
+    }
+  },
+  {
+    "id": "us_gato_starter",
+    "nation": "us",
+    "name": "Gato-Class Starter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": true,
+    "levelRequired": 1,
+    "stats": {
+      "speed": 64,
+      "range": 78,
+      "stealth": 65,
+      "depth": 60,
+      "torpedoes": 6
+    }
+  },
+  {
+    "id": "us_balao_striker",
+    "nation": "us",
+    "name": "Balao-Class Striker",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 4,
+    "stats": {
+      "speed": 72,
+      "range": 80,
+      "stealth": 72,
+      "depth": 76,
+      "torpedoes": 8
+    }
+  }
+]

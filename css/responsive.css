@@ -1,0 +1,10 @@
+@media (max-width: 380px) {
+  .screen-title { font-size: 24px; }
+  .commander-card { grid-template-columns: 92px 1fr; }
+  .bottom-nav { gap: 6px; }
+  .nav-button { min-height: 68px; font-size: 10px; }
+}
+
+@media (min-width: 460px) {
+  .avatar-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

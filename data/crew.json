@@ -1,0 +1,134 @@
+[
+  {
+    "id": "de_exec_otto",
+    "nation": "de",
+    "name": "Otto Weber",
+    "avatar": "assets/avatars/de/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.otto",
+    "cost": 1200,
+    "skill": 88,
+    "bonusKey": "crew.bonus.command"
+  },
+  {
+    "id": "de_sonar_emil",
+    "nation": "de",
+    "name": "Emil Kruger",
+    "avatar": "assets/avatars/de/sonar_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.emil",
+    "cost": 900,
+    "skill": 82,
+    "bonusKey": "crew.bonus.sonar"
+  },
+  {
+    "id": "de_mech_franz",
+    "nation": "de",
+    "name": "Franz Bauer",
+    "avatar": "assets/avatars/de/mechanic_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.franz",
+    "cost": 850,
+    "skill": 79,
+    "bonusKey": "crew.bonus.repair"
+  },
+  {
+    "id": "de_nav_karl",
+    "nation": "de",
+    "name": "Karl Meyer",
+    "avatar": "assets/avatars/de/officer_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.karl",
+    "cost": 700,
+    "skill": 76,
+    "bonusKey": "crew.bonus.navigation"
+  },
+  {
+    "id": "uk_exec_arthur",
+    "nation": "uk",
+    "name": "Arthur Haines",
+    "avatar": "assets/avatars/uk/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.arthur",
+    "cost": 1180,
+    "skill": 87,
+    "bonusKey": "crew.bonus.command"
+  },
+  {
+    "id": "uk_watch_thomas",
+    "nation": "uk",
+    "name": "Thomas Reed",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.lookout",
+    "bioKey": "crew.bio.thomas",
+    "cost": 760,
+    "skill": 75,
+    "bonusKey": "crew.bonus.lookout"
+  },
+  {
+    "id": "uk_mech_hugh",
+    "nation": "uk",
+    "name": "Hugh Dalton",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.hugh",
+    "cost": 840,
+    "skill": 78,
+    "bonusKey": "crew.bonus.repair"
+  },
+  {
+    "id": "uk_nav_edward",
+    "nation": "uk",
+    "name": "Edward Blake",
+    "avatar": "assets/avatars/uk/captain_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.edward",
+    "cost": 720,
+    "skill": 77,
+    "bonusKey": "crew.bonus.navigation"
+  },
+  {
+    "id": "us_exec_richard",
+    "nation": "us",
+    "name": "Richard Cole",
+    "avatar": "assets/avatars/us/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.richard",
+    "cost": 1200,
+    "skill": 86,
+    "bonusKey": "crew.bonus.command"
+  },
+  {
+    "id": "us_sonar_james",
+    "nation": "us",
+    "name": "James Walker",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 880,
+    "skill": 81,
+    "bonusKey": "crew.bonus.sonar"
+  },
+  {
+    "id": "us_mech_luke",
+    "nation": "us",
+    "name": "Luke Bennett",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.luke",
+    "cost": 860,
+    "skill": 80,
+    "bonusKey": "crew.bonus.repair"
+  },
+  {
+    "id": "us_nav_henry",
+    "nation": "us",
+    "name": "Henry Shaw",
+    "avatar": "assets/avatars/us/captain_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.henry",
+    "cost": 740,
+    "skill": 78,
+    "bonusKey": "crew.bonus.navigation"
+  }
+]

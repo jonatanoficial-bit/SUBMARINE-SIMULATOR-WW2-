@@ -1,0 +1,53 @@
+[
+  {
+    "id": "m1",
+    "titleKey": "mission.m1.title",
+    "summaryKey": "mission.m1.summary",
+    "theatreKey": "mission.theatre.atlantic",
+    "difficulty": "I",
+    "reward": 1400,
+    "xp": 120,
+    "status": "available"
+  },
+  {
+    "id": "m2",
+    "titleKey": "mission.m2.title",
+    "summaryKey": "mission.m2.summary",
+    "theatreKey": "mission.theatre.northsea",
+    "difficulty": "II",
+    "reward": 1850,
+    "xp": 170,
+    "status": "available"
+  },
+  {
+    "id": "m3",
+    "titleKey": "mission.m3.title",
+    "summaryKey": "mission.m3.summary",
+    "theatreKey": "mission.theatre.convoy",
+    "difficulty": "II",
+    "reward": 2200,
+    "xp": 210,
+    "status": "available"
+  },
+  {
+    "id": "m4",
+    "titleKey": "mission.m4.title",
+    "summaryKey": "mission.m4.summary",
+    "theatreKey": "mission.theatre.patrol",
+    "difficulty": "III",
+    "reward": 2600,
+    "xp": 260,
+    "status": "locked"
+  },
+  {
+    "id": "m5",
+    "titleKey": "mission.m5.title",
+    "summaryKey": "mission.m5.summary",
+    "theatreKey": "mission.theatre.sandbox",
+    "difficulty": "∞",
+    "reward": 999,
+    "xp": 90,
+    "status": "available",
+    "isSandbox": true
+  }
+]
