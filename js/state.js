@@ -6,7 +6,7 @@ export const state = {
   commanderDraft: {
     name: '',
     nationId: 'de',
-    avatar: 'assets/avatars/de/captain_01.png'
+    avatar: './assets/avatars/de/captain_01.png'
   },
   save: null,
   settings: {

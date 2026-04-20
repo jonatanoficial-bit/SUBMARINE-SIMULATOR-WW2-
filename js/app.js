@@ -1,4 +1,5 @@
 import { BUILD_INFO } from './build.js';
+import { ASSETS, backgroundPath } from './assets.js';
 import { state, setData, setDraft, setLanguage, setMission, setSave, setScreen, setSettings, setToast } from './state.js';
 import { loadGameData } from './dataLoader.js';
 import { createInitialSave, clearSave, loadSave, loadSettings, saveGame, saveSettings } from './save.js';
@@ -75,7 +76,7 @@ function showToast(message) {
 
 function setBackground(screen) {
   document.body.dataset.background = SCREEN_BACKGROUNDS[screen] || 'naval_base_lobby';
-  document.querySelector('.app-background').style.backgroundImage = `url(assets/backgrounds/${document.body.dataset.background}.png)`;
+  document.querySelector('.app-background').style.backgroundImage = `url(${backgroundPath(document.body.dataset.background)})`;
 }
 function updateFooter() { buildFooter.textContent = renderBuildFooter(t); }
 function syncPersistentSettings() { saveSettings(state.settings); }
@@ -206,7 +207,7 @@ function initEvents() {
       case 'continue': if (state.save) { cleanupGameplay(); setScreen('lobby'); render(); } break;
       case 'select-nation': {
         const nationId = target.dataset.nation;
-        const nationAvatarMap = { de: 'assets/avatars/de/captain_01.png', uk: 'assets/avatars/uk/captain_01.png', us: 'assets/avatars/us/captain_01.png' };
+        const nationAvatarMap = { de: ASSETS.avatars.de.captain, uk: ASSETS.avatars.uk.captain, us: ASSETS.avatars.us.captain };
         setDraft({ nationId, avatar: nationAvatarMap[nationId] || state.commanderDraft.avatar }); render(); break;
       }
       case 'select-avatar': setDraft({ avatar: target.dataset.avatar }); render(); break;
@@ -241,9 +242,9 @@ function render() {
   const nationId = getCurrentNationId();
   const nation = getCurrentNation();
   const avatarsByNation = {
-    de: ['assets/avatars/de/captain_01.png','assets/avatars/de/officer_01.png','assets/avatars/de/mechanic_01.png','assets/avatars/de/sonar_01.png'],
-    uk: ['assets/avatars/uk/captain_01.png','assets/avatars/uk/sailor_01.png'],
-    us: ['assets/avatars/us/captain_01.png','assets/avatars/us/sailor_01.png']
+    de: [ASSETS.avatars.de.captain, ASSETS.avatars.de.officer, ASSETS.avatars.de.mechanic, ASSETS.avatars.de.sonar],
+    uk: [ASSETS.avatars.uk.captain, ASSETS.avatars.uk.sailor],
+    us: [ASSETS.avatars.us.captain, ASSETS.avatars.us.sailor]
   };
   switch (state.currentScreen) {
     case 'splash': app.innerHTML = renderSplash(t); break;

@@ -1,4 +1,5 @@
 import { BUILD_INFO } from '../build.js';
+import { ASSETS } from '../assets.js';
 
 export function renderBuildBadge(t) {
   return `
@@ -18,11 +19,11 @@ export function renderBuildFooter(t) {
 
 export function renderBottomNav(active, t) {
   const items = [
-    { id: 'lobby', label: t('nav.lobby'), icon: 'assets/ui/icons/icon_submarine.png' },
-    { id: 'campaign', label: t('nav.campaign'), icon: 'assets/ui/icons/icon_navigation.png' },
-    { id: 'arsenal', label: t('nav.arsenal'), icon: 'assets/ui/icons/icon_submarine.png' },
-    { id: 'crew', label: t('nav.crew'), icon: 'assets/ui/icons/icon_crew.png' },
-    { id: 'settings', label: t('nav.settings'), icon: 'assets/ui/icons/icon_settings.png' }
+    { id: 'lobby', label: t('nav.lobby'), icon: ASSETS.icons.submarine },
+    { id: 'campaign', label: t('nav.campaign'), icon: ASSETS.icons.navigation },
+    { id: 'arsenal', label: t('nav.arsenal'), icon: ASSETS.icons.submarine },
+    { id: 'crew', label: t('nav.crew'), icon: ASSETS.icons.crew },
+    { id: 'settings', label: t('nav.settings'), icon: ASSETS.icons.settings }
   ];
 
   return `

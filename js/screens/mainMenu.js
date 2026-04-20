@@ -1,11 +1,12 @@
 import { BUILD_INFO } from '../build.js';
 import { renderBuildBadge } from '../components/ui.js';
+import { ASSETS } from '../assets.js';
 
 export function renderMainMenu(t, hasSave, settingsLanguage) {
   return `
     <section class="screen main-menu">
       <div class="logo-stack panel hero-panel">
-        <img class="main-logo" src="assets/logos/submarine_commander_logo.png" alt="Submarine Commander WW2">
+        <img class="main-logo" src="${ASSETS.logos.main}" alt="Submarine Commander WW2">
         <div class="stack" style="gap:8px; text-align:center; align-items:center;">
           <div class="screen-subtitle">${t('menu.choosePath')}</div>
           ${renderBuildBadge(t)}
