@@ -1,9 +1,9 @@
 {
   "app": "Submarine Commander WW2",
-  "build": "2026-04-22 18:40",
-  "version": "v0.4.0",
-  "phase": "Depth gauge rebuild and telegraph visual refinement",
-  "progress": 74,
+  "build": "2026-04-22 22:30",
+  "version": "v0.4.1",
+  "phase": "Destroyer AI, detection escalation and combat coherence",
+  "progress": 78,
   "date": "2026-04-22",
-  "time": "21:50"
+  "time": "22:30"
 }

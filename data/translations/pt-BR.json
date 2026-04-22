@@ -216,5 +216,9 @@
   "speed.full": "Força total",
   "speed.flank": "Flanco total",
   "gameplay.up": "Cima",
-  "gameplay.down": "Baixo"
+  "gameplay.down": "Baixo",
+  "gameplay.hintEscortAlert": "Escolta em alerta. Prepare o disparo e recue.",
+  "gameplay.hintEscortHunt": "Destroyer em caça ativa. Reduza velocidade e mergulhe.",
+  "gameplay.hintMissionFailed": "Casco comprometido. Missão perdida.",
+  "gameplay.escortHuntSuffix": "Escolta: CAÇA."
 }

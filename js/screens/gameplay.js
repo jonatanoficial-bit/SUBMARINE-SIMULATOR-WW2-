@@ -14,6 +14,10 @@ const VIEW_RANGE_Y = 70;
 const TARGET_LOCK_X = 84;
 const TARGET_LOCK_Y = 52;
 const ESCORT_THREAT_RANGE = 110;
+const DETECTION_DECAY = 0.25;
+const DETECTION_ALERT_THRESHOLD = 28;
+const DETECTION_HUNT_THRESHOLD = 56;
+const TORPEDO_ALERT_BOOST = 38;
 
 function speedLabelMarkup(t) {
   const labels = [
@@ -242,6 +246,11 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     playerDetected: false,
     targetDestroyed: false,
     escortAggro: false,
+    escortState: 'patrol',
+    detectionScore: 0,
+    torpedoRevealTicks: 0,
+    lastKnownX: 0,
+    lastKnownY: 0,
     hull: 100,
     missionFailed: false,
     periscopeOpen: false,
@@ -254,18 +263,50 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   function clamp(num, min, max) { return Math.max(min, Math.min(max, num)); }
   function depthToAngle(depth) { return -120 + (clamp(depth, DEPTH_MIN, DEPTH_MAX) / DEPTH_MAX) * 240; }
 
+  function setEscortState(nextState) {
+    const order = { patrol: 0, alert: 1, hunt: 2 };
+    if ((order[nextState] ?? 0) < (order[session.escortState] ?? 0)) return;
+    session.escortState = nextState;
+    session.escortAggro = nextState !== 'patrol';
+  }
+
+  function getEscortStateLabel() {
+    if (session.escortState === 'hunt') return t('gameplay.alertDetected');
+    if (session.escortState === 'alert') return t('gameplay.alertWarning');
+    return t('gameplay.alertSilent');
+  }
+
+  function updateEscortHint() {
+    if (session.missionFailed) {
+      els.missionHint.textContent = t('gameplay.hintMissionFailed');
+      return;
+    }
+    if (session.targetDestroyed) {
+      els.missionHint.textContent = session.escortState === 'hunt'
+        ? t('gameplay.hintSuccess') + ' ' + t('gameplay.escortHuntSuffix')
+        : t('gameplay.hintSuccess');
+      return;
+    }
+    if (session.escortState === 'hunt') {
+      els.missionHint.textContent = t('gameplay.hintEscortHunt');
+    } else if (session.escortState === 'alert') {
+      els.missionHint.textContent = t('gameplay.hintEscortAlert');
+    } else {
+      els.missionHint.textContent = t('gameplay.hint');
+    }
+  }
+
   function updateHUD() {
     els.hudDepth.textContent = `${Math.round(session.depth)} m`;
     els.hudSpeed.textContent = t('speed.' + session.speed).toUpperCase();
-    let alertKey = 'gameplay.alertSilent';
-    if (session.depth > 230) alertKey = 'gameplay.alertCritical';
-    else if (session.depth > 180) alertKey = 'gameplay.alertWarning';
-    else if (SPEED_NOISE[session.speed] >= 40) alertKey = 'gameplay.alertLoud';
-    if (session.playerDetected) alertKey = 'gameplay.alertDetected';
-    if (session.escortAggro) alertKey = 'gameplay.alertDetected';
-    if (session.targetDestroyed) alertKey = 'gameplay.alertSuccess';
-    if (session.missionFailed) alertKey = 'gameplay.alertCritical';
-    els.hudAlert.textContent = t(alertKey);
+    let alertText = getEscortStateLabel();
+    if (session.depth > 230) alertText = t('gameplay.alertCritical');
+    else if (session.depth > 180) alertText = t('gameplay.alertWarning');
+    else if (SPEED_NOISE[session.speed] >= 40 && session.escortState === 'patrol') alertText = t('gameplay.alertLoud');
+    if (session.targetDestroyed) alertText = t('gameplay.alertSuccess');
+    if (session.missionFailed) alertText = t('gameplay.alertCritical');
+    els.hudAlert.textContent = alertText;
+    updateEscortHint();
   }
 
   function updateInstruments() {
@@ -303,28 +344,51 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   function updateWorld() {
     session.worldTime += 1;
     const movement = SPEED_MOVE[session.speed];
-    if (!session.targetDestroyed) session.target.x -= movement * 0.7;
-    session.escort.x -= movement * 0.95;
-    session.playerDetected = SPEED_NOISE[session.speed] > 35 && session.depth < 40;
-    if ((session.playerDetected || session.targetDestroyed) && !session.missionFailed) session.escortAggro = true;
-    if (session.escortAggro) {
-      session.escort.x += (0 - session.escort.x) * 0.012;
-      session.escort.y += (0 - session.escort.y) * 0.02;
-      const escortRange = Math.hypot(session.escort.x, session.escort.y);
-      if (escortRange < ESCORT_THREAT_RANGE && session.worldTime % 25 === 0) {
-        session.hull = clamp(session.hull - 4, 0, 100);
-        if (!session.targetDestroyed) {
-          els.missionHint.textContent = 'Destroyer em ataque. Afunde o mercante e recue.';
-        } else {
-          els.missionHint.textContent = 'Escolta em alerta. Retire-se e conclua a missão.';
-        }
-        if (session.hull <= 0) {
-          session.missionFailed = true;
-          session.canComplete = false;
-          els.completeMission.classList.add('hidden');
-          els.missionHint.textContent = 'Casco comprometido. Missão perdida.';
-          closePeriscope();
-        }
+    const phase = session.worldTime / 18;
+
+    if (!session.targetDestroyed) {
+      session.target.x -= movement * 0.7;
+      session.target.y = 18 + Math.sin(phase * 0.35) * 6;
+    }
+
+    if (session.torpedoRevealTicks > 0) session.torpedoRevealTicks -= 1;
+
+    const noise = SPEED_NOISE[session.speed];
+    const depthRisk = Math.max(0, PERISCOPE_MAX_DEPTH - session.depth) * 0.45;
+    const exposure = (session.periscopeOpen ? 1.2 : 0.35) + (session.torpedoRevealTicks > 0 ? 2.4 : 0);
+    const detectionGain = (noise * 0.06) + depthRisk * exposure;
+    session.detectionScore = clamp(session.detectionScore + detectionGain - DETECTION_DECAY, 0, 100);
+
+    if (session.targetDestroyed) {
+      setEscortState('hunt');
+    } else if (session.detectionScore >= DETECTION_HUNT_THRESHOLD) {
+      setEscortState('hunt');
+    } else if (session.detectionScore >= DETECTION_ALERT_THRESHOLD) {
+      setEscortState('alert');
+    }
+
+    if (session.escortState === 'patrol') {
+      session.escort.x = 300 + Math.cos(phase * 0.45) * 42;
+      session.escort.y = 32 + Math.sin(phase * 0.55) * 18;
+    } else if (session.escortState === 'alert') {
+      session.lastKnownX += (0 - session.lastKnownX) * 0.05;
+      session.lastKnownY += (0 - session.lastKnownY) * 0.05;
+      session.escort.x += (session.lastKnownX - session.escort.x) * 0.035;
+      session.escort.y += (session.lastKnownY - session.escort.y) * 0.04;
+    } else {
+      session.escort.x += (0 - session.escort.x) * 0.05;
+      session.escort.y += (0 - session.escort.y) * 0.06;
+    }
+
+    const escortRange = Math.hypot(session.escort.x, session.escort.y);
+    session.playerDetected = session.escortState === 'hunt';
+    if (escortRange < ESCORT_THREAT_RANGE && session.worldTime % 25 === 0) {
+      session.hull = clamp(session.hull - (session.escortState === 'hunt' ? 6 : 3), 0, 100);
+      if (session.hull <= 0) {
+        session.missionFailed = true;
+        session.canComplete = false;
+        els.completeMission.classList.add('hidden');
+        closePeriscope();
       }
     }
     updatePeriscopeVisuals();
@@ -388,6 +452,11 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     if (session.torpedoActive || session.targetDestroyed || session.missionFailed) return;
     hideShotEffects();
     session.torpedoActive = true;
+    session.torpedoRevealTicks = 70;
+    session.detectionScore = clamp(session.detectionScore + TORPEDO_ALERT_BOOST, 0, 100);
+    session.lastKnownX = session.target.x * 0.35;
+    session.lastKnownY = session.target.y * 0.5;
+    setEscortState(session.detectionScore >= DETECTION_HUNT_THRESHOLD ? 'hunt' : 'alert');
     els.torpedoShot.classList.remove('hidden');
     const hit = updatePeriscopeVisuals();
     const timeout1 = setTimeout(() => {
@@ -395,14 +464,12 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
       if (hit) {
         session.targetDestroyed = true;
         session.canComplete = true;
-        session.escortAggro = true;
+        setEscortState('hunt');
         els.impactExplosion.classList.remove('hidden');
         els.completeMission.classList.remove('hidden');
-        els.missionHint.textContent = t('gameplay.hintSuccess');
       } else {
-        session.escortAggro = true;
+        setEscortState('alert');
         els.impactSplash.classList.remove('hidden');
-        els.missionHint.textContent = t('gameplay.hintMiss');
       }
       updatePeriscopeVisuals();
       updateRadar();

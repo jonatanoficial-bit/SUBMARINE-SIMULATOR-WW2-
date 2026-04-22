@@ -216,5 +216,9 @@
   "speed.full": "Full",
   "speed.flank": "Flank",
   "gameplay.up": "Up",
-  "gameplay.down": "Down"
+  "gameplay.down": "Down",
+  "gameplay.hintEscortAlert": "Escort alerted. Prepare the shot and pull back.",
+  "gameplay.hintEscortHunt": "Destroyer hunting. Slow down and dive deeper.",
+  "gameplay.hintMissionFailed": "Hull compromised. Mission lost.",
+  "gameplay.escortHuntSuffix": "Escort: HUNT."
 }
