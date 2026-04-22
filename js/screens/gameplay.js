@@ -32,9 +32,40 @@ export function renderGameplay(t, mission) {
         <div class="panel instrument-card">
           <div class="panel-header">${t('gameplay.depthGauge')}</div>
           <div class="panel-body instrument-wrap">
-            <div class="gauge depth-gauge">
-              <img class="gauge-base" src="assets/gauges/depth_gauge_base.png" alt="${t('gameplay.depthGauge')}">
-              <img id="depth-needle" class="gauge-needle" src="assets/gauges/depth_gauge_needle.png" alt="needle">
+            <div class="gauge depth-gauge clean-depth-gauge" aria-label="${t('gameplay.depthGauge')}">
+              <svg class="depth-face" viewBox="0 0 220 220" role="img" aria-hidden="true">
+                <defs>
+                  <radialGradient id="depthDialGlow" cx="50%" cy="42%" r="68%">
+                    <stop offset="0%" stop-color="#203b35" />
+                    <stop offset="55%" stop-color="#13251f" />
+                    <stop offset="100%" stop-color="#0a1412" />
+                  </radialGradient>
+                  <linearGradient id="depthNeedleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffe28f" />
+                    <stop offset="55%" stop-color="#ff8a3c" />
+                    <stop offset="100%" stop-color="#9f2316" />
+                  </linearGradient>
+                </defs>
+                <circle cx="110" cy="110" r="100" fill="#2b1d0e"/>
+                <circle cx="110" cy="110" r="92" fill="#8d6c24"/>
+                <circle cx="110" cy="110" r="82" fill="#463112"/>
+                <circle cx="110" cy="110" r="74" fill="url(#depthDialGlow)" stroke="#b99a58" stroke-width="1.5"/>
+                <text x="110" y="56" text-anchor="middle" class="depth-svg-number depth-top-number">0</text>
+                <text x="65" y="82" text-anchor="middle" class="depth-svg-number">40</text>
+                <text x="54" y="118" text-anchor="middle" class="depth-svg-number">100</text>
+                <text x="66" y="154" text-anchor="middle" class="depth-svg-number">150</text>
+                <text x="155" y="82" text-anchor="middle" class="depth-svg-number">150</text>
+                <text x="166" y="118" text-anchor="middle" class="depth-svg-number">250</text>
+                <text x="154" y="154" text-anchor="middle" class="depth-svg-number">300</text>
+                <text x="110" y="152" text-anchor="middle" class="depth-svg-label">DEPTH</text>
+                <g id="depth-needle-group" transform="rotate(-120 110 110)">
+                  <path d="M108 110 L45 121 L43 113 L108 106 Z" fill="url(#depthNeedleGrad)" stroke="#2a1107" stroke-width="1"/>
+                  <circle cx="110" cy="110" r="15" fill="#4a4337" opacity="0.9"/>
+                  <circle cx="110" cy="110" r="11" fill="#8d928a" opacity="0.65"/>
+                  <circle cx="110" cy="110" r="8.4" fill="#d45124" stroke="#f5d87f" stroke-width="2"/>
+                  <circle cx="110" cy="110" r="3" fill="#f7e9b0"/>
+                </g>
+              </svg>
             </div>
             <div class="instrument-controls">
               <button class="button secondary block" id="depth-up">${t('gameplay.surface')}</button>
@@ -98,9 +129,14 @@ export function renderGameplay(t, mission) {
             <img id="impact-explosion" class="periscope-effect impact-explosion hidden" src="assets/effects/ocean_explosion_01.png" alt="explosion">
             <img id="impact-splash" class="periscope-effect impact-splash hidden" src="assets/effects/water_splash_01.png" alt="splash">
           </div>
-          <img class="periscope-layer periscope-crosshair" src="assets/periscope/periscope_crosshair.png" alt="crosshair">
-          <img class="periscope-layer periscope-glass" src="assets/periscope/periscope_glass.png" alt="glass">
-          <img class="periscope-layer periscope-overlay" src="assets/periscope/periscope_overlay.png" alt="overlay">
+          <div class="periscope-crosshair-clean" aria-hidden="true">
+            <div class="crosshair-v"></div>
+            <div class="crosshair-h"></div>
+            <div class="crosshair-center"></div>
+            <div class="crosshair-bottom-arc"></div>
+          </div>
+          <div class="periscope-glass-clean" aria-hidden="true"></div>
+          <div class="periscope-ring-clean" aria-hidden="true"></div>
           <div id="periscope-lock" class="periscope-lock">${t('gameplay.lockSearching')}</div>
         </div>
         <div class="periscope-controls">
@@ -116,7 +152,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   cleanupGameplay();
 
   const els = {
-    depthNeedle: app.querySelector('#depth-needle'),
+    depthNeedle: app.querySelector('#depth-needle-group'),
     speedLever: app.querySelector('#speed-lever'),
     hudDepth: app.querySelector('#hud-depth'),
     hudSpeed: app.querySelector('#hud-speed'),
@@ -177,7 +213,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   }
 
   function updateInstruments() {
-    els.depthNeedle.style.transform = `translate(-50%, -50%) rotate(${depthToAngle(session.depth)}deg)`;
+    els.depthNeedle.setAttribute('transform', `rotate(${depthToAngle(session.depth)} 110 110)`);
     els.speedLever.style.transform = `translate(-50%, -50%) rotate(${SPEED_ANGLES[session.speed]}deg)`;
   }
 
@@ -222,9 +258,9 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     const targetLeft = getShipScreenLeft(session.target.x);
     const escortLeft = getShipScreenLeft(session.escort.x);
     els.targetShip.style.left = `${targetLeft}%`;
-    els.targetShip.style.bottom = `${26 + session.target.y * 0.2}%`;
+    els.targetShip.style.bottom = `${22 + session.target.y * 0.2}%`;
     els.escortShip.style.left = `${escortLeft}%`;
-    els.escortShip.style.bottom = `${25 + session.escort.y * 0.18}%`;
+    els.escortShip.style.bottom = `${20 + session.escort.y * 0.18}%`;
     const lock = Math.abs(targetLeft - 50) < 6 && session.depth <= PERISCOPE_MAX_DEPTH;
     els.lockLabel.textContent = session.targetDestroyed ? t('gameplay.lockDestroyed') : (lock ? t('gameplay.lockReady') : t('gameplay.lockSearching'));
     els.lockLabel.classList.toggle('active', lock);
@@ -259,39 +295,37 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
         els.missionHint.textContent = t('gameplay.hintMiss');
       }
       updateHUD();
-      session.torpedoActive = false;
-    }, 1000);
+    }, 850);
     const timeout2 = setTimeout(() => {
-      els.impactExplosion.classList.add('hidden');
-      els.impactSplash.classList.add('hidden');
-    }, 2400);
+      hideShotEffects();
+      session.torpedoActive = false;
+    }, 2100);
     cleanupFns.push(() => clearTimeout(timeout1), () => clearTimeout(timeout2));
   }
 
   function openPeriscope() {
     if (session.depth > PERISCOPE_MAX_DEPTH) {
-      els.missionHint.textContent = t('gameplay.hintTooDeep');
-      updateHUD();
-      return;
+      showInlineHint(t('gameplay.lockTooDeep')); return;
     }
     session.periscopeOpen = true;
     els.periscopeModal.classList.remove('hidden');
+    els.periscopeModal.setAttribute('aria-hidden', 'false');
     updatePeriscopeVisuals();
   }
 
   function closePeriscope() {
     session.periscopeOpen = false;
     els.periscopeModal.classList.add('hidden');
+    els.periscopeModal.setAttribute('aria-hidden', 'true');
   }
 
-  function tick() {
-    updateWorld();
-    updateRadar();
-    updateHUD();
-  }
+  function showInlineHint(text) { els.missionHint.textContent = text; }
 
-  const interval = setInterval(tick, 80);
-  cleanupFns.push(() => clearInterval(interval));
+  function bind(node, event, handler) {
+    if (!node) return;
+    node.addEventListener(event, handler);
+    cleanupFns.push(() => node.removeEventListener(event, handler));
+  }
 
   app.querySelectorAll('.speed-chip').forEach((button) => {
     const handler = () => { session.speed = button.dataset.speed; updateInstruments(); updateHUD(); };
@@ -299,21 +333,23 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     cleanupFns.push(() => button.removeEventListener('click', handler));
   });
 
-  const bind = (el, event, handler) => {
-    if (!el) return;
-    el.addEventListener(event, handler);
-    cleanupFns.push(() => el.removeEventListener(event, handler));
-  };
-
   bind(app.querySelector('#depth-up'), 'click', () => { session.depth = clamp(session.depth - 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); });
   bind(app.querySelector('#depth-down'), 'click', () => { session.depth = clamp(session.depth + 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); });
   bind(els.openPeriscope, 'click', openPeriscope);
   bind(els.closePeriscope, 'click', closePeriscope);
   bind(els.fireTorpedo, 'click', fire);
-  bind(els.completeMission, 'click', () => onMissionComplete(session.missionId));
-  bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + 70, -420, 420); updatePeriscopeVisuals(); });
-  bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - 70, -420, 420); updatePeriscopeVisuals(); });
+  bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + 44, -260, 90); updatePeriscopeVisuals(); });
+  bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - 44, -260, 90); updatePeriscopeVisuals(); });
+  bind(els.completeMission, 'click', () => { if (session.canComplete) onMissionComplete?.(missionId); });
 
+  const interval = setInterval(() => {
+    updateRadar();
+    updateWorld();
+    updateHUD();
+  }, 120);
+  cleanupFns.push(() => clearInterval(interval));
+
+  hideShotEffects();
   updateInstruments();
   updateRadar();
   updateHUD();
@@ -321,8 +357,6 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
 }
 
 export function cleanupGameplay() {
-  while (cleanupFns.length) {
-    const fn = cleanupFns.pop();
-    try { fn(); } catch {}
-  }
+  cleanupFns.forEach((fn) => fn());
+  cleanupFns = [];
 }

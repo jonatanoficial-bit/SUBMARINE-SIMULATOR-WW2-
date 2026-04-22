@@ -1,4 +1,4 @@
-const CACHE_NAME = 'submarine-commander-v0-3-3';
+const CACHE_NAME = 'submarine-commander-v0-3-4';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -21,6 +21,8 @@ const CORE_ASSETS = [
   './js/screens/commander.js',
   './js/screens/lobby.js',
   './js/screens/campaign.js',
+  './js/screens/briefing.js',
+  './js/screens/gameplay.js',
   './js/screens/arsenal.js',
   './js/screens/crew.js',
   './js/screens/settings.js',
@@ -43,26 +45,7 @@ const CORE_ASSETS = [
   './assets/ui/icons/icon_economy.png',
   './assets/ui/icons/icon_settings.png',
   './assets/meta/icons/icon-192.png',
-  './assets/meta/icons/icon-512.png',
-  './assets/gauges/depth_gauge_base.png',
-  './assets/gauges/depth_gauge_needle.png',
-  './assets/gauges/speed_telegraph_base.png',
-  './assets/gauges/speed_telegraph_lever.png',
-  './assets/radar/radar_base.png',
-  './assets/radar/radar_scan.png',
-  './assets/radar/radar_player.png',
-  './assets/radar/radar_enemy.png',
-  './assets/radar/radar_ally.png',
-  './assets/periscope/ocean_panorama_day.png',
-  './assets/periscope/periscope_crosshair.png',
-  './assets/periscope/periscope_glass.png',
-  './assets/periscope/periscope_overlay.png',
-  './assets/ships/merchant_ship_01.png',
-  './assets/ships/destroyer_01.png',
-  './assets/effects/torpedo_moving_01.png',
-  './assets/effects/ocean_explosion_01.png',
-  './assets/effects/water_splash_01.png',
-  './js/screens/gameplay.js',
+  './assets/meta/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
