@@ -214,5 +214,7 @@
   "speed.slow": "Lento",
   "speed.half": "Media",
   "speed.full": "Toda",
-  "speed.flank": "Flanco"
+  "speed.flank": "Flanco",
+  "gameplay.up": "Arriba",
+  "gameplay.down": "Abajo"
 }

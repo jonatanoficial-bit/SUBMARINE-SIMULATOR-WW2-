@@ -214,5 +214,7 @@
   "speed.slow": "Slow",
   "speed.half": "Half",
   "speed.full": "Full",
-  "speed.flank": "Flank"
+  "speed.flank": "Flank",
+  "gameplay.up": "Up",
+  "gameplay.down": "Down"
 }

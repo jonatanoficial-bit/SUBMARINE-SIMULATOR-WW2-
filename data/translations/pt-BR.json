@@ -214,5 +214,7 @@
   "speed.slow": "Lento",
   "speed.half": "Meia força",
   "speed.full": "Força total",
-  "speed.flank": "Flanco total"
+  "speed.flank": "Flanco total",
+  "gameplay.up": "Cima",
+  "gameplay.down": "Baixo"
 }
