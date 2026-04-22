@@ -11,8 +11,8 @@ const VIEW_STEP_X = 28;
 const VIEW_STEP_Y = 14;
 const VIEW_RANGE_X = 240;
 const VIEW_RANGE_Y = 70;
-const TARGET_LOCK_X = 7;
-const TARGET_LOCK_Y = 6;
+const TARGET_LOCK_X = 84;
+const TARGET_LOCK_Y = 52;
 
 function speedLabelMarkup(t) {
   const labels = [
@@ -216,6 +216,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     fireTorpedo: app.querySelector('#fire-torpedo'),
     missionHint: app.querySelector('#mission-hint'),
     completeMission: app.querySelector('#complete-mission-btn'),
+    periscopeWindow: app.querySelector('#periscope-window'),
     periscopeOcean: app.querySelector('#periscope-ocean'),
     targetShip: app.querySelector('#target-ship'),
     escortShip: app.querySelector('#escort-ship'),
@@ -305,6 +306,19 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     return 22 + ((baseY + session.viewY) / 180) * 18;
   }
 
+  function computeTargetLock() {
+    if (!els.periscopeWindow || !els.targetShip || session.depth > PERISCOPE_MAX_DEPTH || session.targetDestroyed) return false;
+    const windowRect = els.periscopeWindow.getBoundingClientRect();
+    const targetRect = els.targetShip.getBoundingClientRect();
+    const crosshairX = windowRect.left + windowRect.width * 0.5;
+    const crosshairY = windowRect.top + windowRect.height * 0.5;
+    const targetAimX = targetRect.left + targetRect.width * 0.5;
+    const targetAimY = targetRect.top + targetRect.height * 0.58;
+    const dx = Math.abs(targetAimX - crosshairX);
+    const dy = Math.abs(targetAimY - crosshairY);
+    return dx <= TARGET_LOCK_X && dy <= TARGET_LOCK_Y;
+  }
+
   function updatePeriscopeVisuals() {
     els.periscopeOcean.style.transform = `translate(${session.viewX}px, ${session.viewY}px)`;
     const targetLeft = getShipScreenLeft(session.target.x);
@@ -315,9 +329,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     els.targetShip.style.bottom = `${targetBottom}%`;
     els.escortShip.style.left = `${escortLeft}%`;
     els.escortShip.style.bottom = `${escortBottom}%`;
-    const lockX = Math.abs(targetLeft - 50) < TARGET_LOCK_X;
-    const lockY = Math.abs(targetBottom - 28) < TARGET_LOCK_Y;
-    const lock = lockX && lockY && session.depth <= PERISCOPE_MAX_DEPTH;
+    const lock = computeTargetLock();
     els.lockLabel.textContent = session.targetDestroyed ? t('gameplay.lockDestroyed') : (lock ? t('gameplay.lockReady') : t('gameplay.lockSearching'));
     els.lockLabel.classList.toggle('active', lock);
     return lock;
