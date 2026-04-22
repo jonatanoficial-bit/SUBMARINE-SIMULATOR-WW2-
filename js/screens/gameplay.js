@@ -16,13 +16,14 @@ const TARGET_LOCK_Y = 6;
 
 function speedLabelMarkup(t) {
   const labels = [
-    { key: 'flank', left: '17%', top: '38%' },
-    { key: 'full', left: '32%', top: '25%' },
-    { key: 'half', left: '50%', top: '20%' },
-    { key: 'slow', left: '68%', top: '25%' },
-    { key: 'stop', left: '83%', top: '38%' }
+    { key: 'flank', left: '14%', top: '40%' },
+    { key: 'full', left: '30%', top: '24%' },
+    { key: 'half', left: '50%', top: '16%' },
+    { key: 'slow', left: '70%', top: '24%' },
+    { key: 'stop', left: '86%', top: '40%' }
   ];
-  return labels.map((item) => `<span class="telegraph-label telegraph-label-${item.key}" style="left:${item.left};top:${item.top}">${t('speed.' + item.key)}</span>`).join('');
+  const labelHtml = (value) => String(value).trim().split(/\s+/).join('<br>');
+  return labels.map((item) => `<span class="telegraph-label telegraph-label-${item.key}" style="left:${item.left};top:${item.top}">${labelHtml(t('speed.' + item.key))}</span>`).join('');
 }
 
 function radarGridMarkup() {
@@ -59,9 +60,50 @@ export function renderGameplay(t, mission) {
         <div class="panel instrument-card">
           <div class="panel-header">${t('gameplay.depthGauge')}</div>
           <div class="panel-body instrument-wrap">
-            <div class="gauge depth-gauge">
-              <img class="gauge-base" src="assets/gauges/depth_gauge_base.png" alt="${t('gameplay.depthGauge')}">
-              <img id="depth-needle" class="gauge-needle" src="assets/gauges/depth_gauge_needle.png" alt="needle">
+            <div class="depth-gauge-css" aria-label="${t('gameplay.depthGauge')}">
+              <svg class="depth-gauge-svg" viewBox="0 0 220 220" aria-hidden="true">
+                <defs>
+                  <radialGradient id="depthFace" cx="50%" cy="38%" r="70%">
+                    <stop offset="0%" stop-color="#1a443b"/>
+                    <stop offset="55%" stop-color="#12312b"/>
+                    <stop offset="100%" stop-color="#091914"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="110" cy="110" r="102" fill="#6f4a16"/>
+                <circle cx="110" cy="110" r="93" fill="#241609" stroke="#c99a42" stroke-width="10"/>
+                <circle cx="110" cy="110" r="76" fill="url(#depthFace)" stroke="#d6ba74" stroke-width="3"/>
+                <path d="M44 147 A76 76 0 0 0 176 147" fill="none" stroke="rgba(90,255,160,.22)" stroke-width="9" stroke-linecap="round"/>
+                <path d="M147 44 A76 76 0 0 1 176 73" fill="none" stroke="rgba(255,190,90,.28)" stroke-width="9" stroke-linecap="round"/>
+                <path d="M176 73 A76 76 0 0 1 176 147" fill="none" stroke="rgba(255,92,92,.26)" stroke-width="9" stroke-linecap="round"/>
+                <g stroke="#dcc98e" stroke-width="2">
+                  <line x1="44.2" y1="147.5" x2="33.8" y2="153.5"/>
+                  <line x1="46.8" y1="69.0" x2="37.6" y2="61.1"/>
+                  <line x1="110.0" y1="34.0" x2="110.0" y2="22.0"/>
+                  <line x1="173.2" y1="69.0" x2="182.4" y2="61.1"/>
+                  <line x1="175.8" y1="147.5" x2="186.2" y2="153.5"/>
+                  <line x1="141.1" y1="40.7" x2="145.9" y2="29.7" stroke-width="1.5"/>
+                  <line x1="74.4" y1="47.4" x2="67.4" y2="37.7" stroke-width="1.5"/>
+                  <line x1="34.5" y1="106.0" x2="22.6" y2="104.9" stroke-width="1.5"/>
+                  <line x1="185.5" y1="106.0" x2="197.4" y2="104.9" stroke-width="1.5"/>
+                  <line x1="159.8" y1="164.4" x2="168.9" y2="172.2" stroke-width="1.5"/>
+                </g>
+                <g fill="#f1e3b0" font-size="16" font-weight="700" text-anchor="middle">
+                  <text x="33" y="160">0</text>
+                  <text x="46" y="63">50</text>
+                  <text x="110" y="20">150</text>
+                  <text x="174" y="63">250</text>
+                  <text x="188" y="160">300</text>
+                </g>
+                <text x="110" y="144" fill="#f7e7ae" font-size="26" font-weight="800" text-anchor="middle" letter-spacing="2">DEPTH</text>
+                <text x="110" y="164" fill="#f7e7ae" font-size="12" font-weight="700" text-anchor="middle">m</text>
+                <g id="depth-needle" class="depth-needle-svg">
+                  <line x1="110" y1="110" x2="110" y2="54" stroke="#f0d79b" stroke-width="5" stroke-linecap="round"/>
+                  <polygon points="110,40 104,57 116,57" fill="#ff8b4f"/>
+                  <line x1="110" y1="110" x2="110" y2="132" stroke="#f0d79b" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                <circle cx="110" cy="110" r="11" fill="#a73422" stroke="#ffd990" stroke-width="4"/>
+                <circle cx="110" cy="110" r="4" fill="#fff4d1"/>
+              </svg>
             </div>
             <div class="instrument-controls">
               <button class="button secondary block" id="depth-up">${t('gameplay.surface')}</button>
@@ -220,7 +262,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   }
 
   function updateInstruments() {
-    els.depthNeedle.style.transform = `translate(-50%, -50%) rotate(${depthToAngle(session.depth)}deg)`;
+    els.depthNeedle.style.transform = `rotate(${depthToAngle(session.depth)}deg)`;
     els.speedLever.style.transform = `translate(-50%, -88%) rotate(${SPEED_ANGLES[session.speed]}deg)`;
   }
 
