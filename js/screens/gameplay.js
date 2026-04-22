@@ -7,6 +7,72 @@ const SPEED_MOVE = { stop: 0, slow: 0.35, half: 0.7, full: 1.2, flank: 1.7 };
 const DEPTH_MIN = 0;
 const DEPTH_MAX = 300;
 const PERISCOPE_MAX_DEPTH = 20;
+const DEPTH_SWEEP = 270;
+const DEPTH_START = -135;
+
+function polar(cx, cy, radius, angleDeg) {
+  const radians = ((angleDeg - 90) * Math.PI) / 180;
+  return {
+    x: cx + radius * Math.cos(radians),
+    y: cy + radius * Math.sin(radians)
+  };
+}
+
+function buildDepthTicks() {
+  const majorValues = [0, 50, 100, 150, 200, 250, 300];
+  const lines = [];
+  for (let value = 0; value <= DEPTH_MAX; value += 10) {
+    const angle = DEPTH_START + (value / DEPTH_MAX) * DEPTH_SWEEP;
+    const outer = polar(110, 110, 80, angle);
+    const inner = polar(110, 110, value % 50 === 0 ? 64 : 70, angle);
+    lines.push(`<line x1="${outer.x.toFixed(2)}" y1="${outer.y.toFixed(2)}" x2="${inner.x.toFixed(2)}" y2="${inner.y.toFixed(2)}" class="depth-tick ${value % 50 === 0 ? 'major' : 'minor'}" />`);
+  }
+  const labels = majorValues.map((value) => {
+    const angle = DEPTH_START + (value / DEPTH_MAX) * DEPTH_SWEEP;
+    const point = polar(110, 110, 51, angle);
+    return `<text x="${point.x.toFixed(2)}" y="${point.y.toFixed(2)}" text-anchor="middle" dominant-baseline="middle" class="depth-svg-number">${value}</text>`;
+  });
+  return { lines: lines.join(''), labels: labels.join('') };
+}
+
+function buildDepthGaugeMarkup() {
+  const ticks = buildDepthTicks();
+  return `
+    <div class="gauge depth-gauge clean-depth-gauge" aria-label="Depth gauge">
+      <svg class="depth-face" viewBox="0 0 220 220" role="img" aria-hidden="true">
+        <defs>
+          <radialGradient id="depthDialGlow" cx="50%" cy="42%" r="68%">
+            <stop offset="0%" stop-color="#203b35" />
+            <stop offset="55%" stop-color="#142821" />
+            <stop offset="100%" stop-color="#0b1411" />
+          </radialGradient>
+          <linearGradient id="depthNeedleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffe59b" />
+            <stop offset="55%" stop-color="#ff9844" />
+            <stop offset="100%" stop-color="#a11b13" />
+          </linearGradient>
+        </defs>
+        <circle cx="110" cy="110" r="100" fill="#221609"/>
+        <circle cx="110" cy="110" r="92" fill="#8b6828"/>
+        <circle cx="110" cy="110" r="84" fill="#3c2910"/>
+        <circle cx="110" cy="110" r="76" fill="url(#depthDialGlow)" stroke="#ccb06b" stroke-width="1.4"/>
+        <path d="M 53.43 166.57 A 80 80 0 0 1 166.57 166.57" class="depth-zone safe" />
+        <path d="M 30.00 110.00 A 80 80 0 0 1 53.43 53.43" class="depth-zone warn" />
+        <path d="M 166.57 53.43 A 80 80 0 0 1 190.00 110.00" class="depth-zone danger" />
+        ${ticks.lines}
+        ${ticks.labels}
+        <text x="110" y="141" text-anchor="middle" class="depth-svg-label">DEPTH</text>
+        <text x="110" y="158" text-anchor="middle" class="depth-svg-sub">m</text>
+        <g id="depth-needle-group" transform="rotate(${DEPTH_START} 110 110)">
+          <polygon points="110,30 105,56 110,118 115,56" fill="url(#depthNeedleGrad)" stroke="#311408" stroke-width="1" />
+          <polygon points="110,118 106,149 114,149" fill="#ffad62" stroke="#311408" stroke-width="0.8" opacity="0.9" />
+          <circle cx="110" cy="110" r="14" fill="#57442f" opacity="0.92"/>
+          <circle cx="110" cy="110" r="9.8" fill="#d24d23" stroke="#f6d88a" stroke-width="2.2"/>
+          <circle cx="110" cy="110" r="3.2" fill="#fff0bf"/>
+        </g>
+      </svg>
+    </div>`;
+}
 
 export function renderGameplay(t, mission) {
   return `
@@ -32,41 +98,7 @@ export function renderGameplay(t, mission) {
         <div class="panel instrument-card">
           <div class="panel-header">${t('gameplay.depthGauge')}</div>
           <div class="panel-body instrument-wrap">
-            <div class="gauge depth-gauge clean-depth-gauge" aria-label="${t('gameplay.depthGauge')}">
-              <svg class="depth-face" viewBox="0 0 220 220" role="img" aria-hidden="true">
-                <defs>
-                  <radialGradient id="depthDialGlow" cx="50%" cy="42%" r="68%">
-                    <stop offset="0%" stop-color="#203b35" />
-                    <stop offset="55%" stop-color="#13251f" />
-                    <stop offset="100%" stop-color="#0a1412" />
-                  </radialGradient>
-                  <linearGradient id="depthNeedleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#ffe28f" />
-                    <stop offset="55%" stop-color="#ff8a3c" />
-                    <stop offset="100%" stop-color="#9f2316" />
-                  </linearGradient>
-                </defs>
-                <circle cx="110" cy="110" r="100" fill="#2b1d0e"/>
-                <circle cx="110" cy="110" r="92" fill="#8d6c24"/>
-                <circle cx="110" cy="110" r="82" fill="#463112"/>
-                <circle cx="110" cy="110" r="74" fill="url(#depthDialGlow)" stroke="#b99a58" stroke-width="1.5"/>
-                <text x="110" y="56" text-anchor="middle" class="depth-svg-number depth-top-number">0</text>
-                <text x="65" y="82" text-anchor="middle" class="depth-svg-number">40</text>
-                <text x="54" y="118" text-anchor="middle" class="depth-svg-number">100</text>
-                <text x="66" y="154" text-anchor="middle" class="depth-svg-number">150</text>
-                <text x="155" y="82" text-anchor="middle" class="depth-svg-number">150</text>
-                <text x="166" y="118" text-anchor="middle" class="depth-svg-number">250</text>
-                <text x="154" y="154" text-anchor="middle" class="depth-svg-number">300</text>
-                <text x="110" y="152" text-anchor="middle" class="depth-svg-label">DEPTH</text>
-                <g id="depth-needle-group" transform="rotate(-120 110 110)">
-                  <path d="M108 110 L45 121 L43 113 L108 106 Z" fill="url(#depthNeedleGrad)" stroke="#2a1107" stroke-width="1"/>
-                  <circle cx="110" cy="110" r="15" fill="#4a4337" opacity="0.9"/>
-                  <circle cx="110" cy="110" r="11" fill="#8d928a" opacity="0.65"/>
-                  <circle cx="110" cy="110" r="8.4" fill="#d45124" stroke="#f5d87f" stroke-width="2"/>
-                  <circle cx="110" cy="110" r="3" fill="#f7e9b0"/>
-                </g>
-              </svg>
-            </div>
+            ${buildDepthGaugeMarkup()}
             <div class="instrument-controls">
               <button class="button secondary block" id="depth-up">${t('gameplay.surface')}</button>
               <button class="button block" id="depth-down">${t('gameplay.dive')}</button>
@@ -123,6 +155,7 @@ export function renderGameplay(t, mission) {
         <div class="periscope-shell" id="periscope-shell">
           <div class="periscope-window" id="periscope-window">
             <img id="periscope-ocean" class="periscope-ocean" src="assets/periscope/ocean_panorama_day.png" alt="ocean">
+            <div class="periscope-horizon" aria-hidden="true"></div>
             <img id="target-ship" class="periscope-entity target-ship" src="assets/ships/merchant_ship_01.png" alt="merchant">
             <img id="escort-ship" class="periscope-entity escort-ship" src="assets/ships/destroyer_01.png" alt="destroyer">
             <img id="torpedo-shot" class="periscope-effect torpedo-shot hidden" src="assets/effects/torpedo_moving_01.png" alt="torpedo">
@@ -134,6 +167,9 @@ export function renderGameplay(t, mission) {
             <div class="crosshair-h"></div>
             <div class="crosshair-center"></div>
             <div class="crosshair-bottom-arc"></div>
+          </div>
+          <div class="periscope-heading-scale" aria-hidden="true">
+            <span>350</span><span>000</span><span>010</span>
           </div>
           <div class="periscope-glass-clean" aria-hidden="true"></div>
           <div class="periscope-ring-clean" aria-hidden="true"></div>
@@ -184,27 +220,30 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     depth: 12,
     speed: 'slow',
     scanAngle: 0,
-    viewX: -120,
+    viewX: -70,
     viewY: 0,
     worldTime: 0,
     playerDetected: false,
     targetDestroyed: false,
     periscopeOpen: false,
-    target: { x: 220, y: 28 },
-    escort: { x: 310, y: 42 },
+    target: { x: 82, y: 0 },
+    escort: { x: 210, y: -6 },
     torpedoActive: false,
     torpedoHit: false,
-    canComplete: false
+    canComplete: false,
+    currentLock: false
   };
 
   function clamp(num, min, max) { return Math.max(min, Math.min(max, num)); }
-  function depthToAngle(depth) { return -120 + (clamp(depth, DEPTH_MIN, DEPTH_MAX) / DEPTH_MAX) * 240; }
+  function depthToAngle(depth) {
+    return DEPTH_START + (clamp(depth, DEPTH_MIN, DEPTH_MAX) / DEPTH_MAX) * DEPTH_SWEEP;
+  }
 
   function updateHUD() {
     els.hudDepth.textContent = `${Math.round(session.depth)} m`;
     els.hudSpeed.textContent = t('speed.' + session.speed).toUpperCase();
     let alertKey = 'gameplay.alertSilent';
-    if (session.depth > 230) alertKey = 'gameplay.alertCritical';
+    if (session.depth > 240) alertKey = 'gameplay.alertCritical';
     else if (session.depth > 180) alertKey = 'gameplay.alertWarning';
     else if (SPEED_NOISE[session.speed] >= 40) alertKey = 'gameplay.alertLoud';
     if (session.playerDetected) alertKey = 'gameplay.alertDetected';
@@ -221,10 +260,10 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     session.scanAngle = (session.scanAngle + 2.2) % 360;
     els.radarScan.style.transform = `translate(-50%, -50%) rotate(${session.scanAngle}deg)`;
 
-    const targetX = clamp(50 + session.target.x * 0.42, 26, 74);
-    const targetY = clamp(50 + session.target.y * 0.42, 26, 74);
-    const escortX = clamp(50 + session.escort.x * 0.42, 26, 74);
-    const escortY = clamp(50 + session.escort.y * 0.42, 26, 74);
+    const targetX = clamp(50 + session.target.x * 0.45, 18, 82);
+    const targetY = clamp(50 + session.target.y * 0.45, 18, 82);
+    const escortX = clamp(50 + session.escort.x * 0.45, 18, 82);
+    const escortY = clamp(50 + session.escort.y * 0.45, 18, 82);
 
     els.radarTarget.style.left = `${targetX}%`;
     els.radarTarget.style.top = `${targetY}%`;
@@ -240,28 +279,31 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   function updateWorld() {
     session.worldTime += 1;
     const movement = SPEED_MOVE[session.speed];
-    session.target.x -= movement * 0.7;
-    session.escort.x -= movement * 0.95;
+    session.target.x -= movement * 0.55;
+    session.escort.x -= movement * 0.82;
     session.playerDetected = SPEED_NOISE[session.speed] > 35 && session.depth < 40;
-    if (session.playerDetected && session.worldTime % 180 === 0) {
-      session.escort.y += session.escort.y > 0 ? -6 : 6;
+    if (session.playerDetected && session.worldTime % 160 === 0) {
+      session.escort.y += session.escort.y > 0 ? -4 : 4;
     }
     updatePeriscopeVisuals();
   }
 
   function getShipScreenLeft(baseX) {
-    return 50 + ((baseX + session.viewX) / 500) * 50;
+    return 50 + ((baseX + session.viewX) / 250) * 34;
   }
 
   function updatePeriscopeVisuals() {
-    els.periscopeOcean.style.transform = `translate(${session.viewX}px, ${session.viewY}px)`;
-    const targetLeft = getShipScreenLeft(session.target.x);
-    const escortLeft = getShipScreenLeft(session.escort.x);
+    els.periscopeOcean.style.transform = `translate(${session.viewX * 1.6}px, ${session.viewY}px)`;
+    const targetLeft = clamp(getShipScreenLeft(session.target.x), 10, 90);
+    const escortLeft = clamp(getShipScreenLeft(session.escort.x), 12, 92);
+    const targetBottom = 21 + session.target.y * 0.16;
+    const escortBottom = 24 + session.escort.y * 0.12;
     els.targetShip.style.left = `${targetLeft}%`;
-    els.targetShip.style.bottom = `${22 + session.target.y * 0.2}%`;
+    els.targetShip.style.bottom = `${targetBottom}%`;
     els.escortShip.style.left = `${escortLeft}%`;
-    els.escortShip.style.bottom = `${20 + session.escort.y * 0.18}%`;
-    const lock = Math.abs(targetLeft - 50) < 6 && session.depth <= PERISCOPE_MAX_DEPTH;
+    els.escortShip.style.bottom = `${escortBottom}%`;
+    const lock = Math.abs(targetLeft - 50) < 9 && session.depth <= PERISCOPE_MAX_DEPTH && !session.targetDestroyed;
+    session.currentLock = lock;
     els.lockLabel.textContent = session.targetDestroyed ? t('gameplay.lockDestroyed') : (lock ? t('gameplay.lockReady') : t('gameplay.lockSearching'));
     els.lockLabel.classList.toggle('active', lock);
     return lock;
@@ -276,24 +318,25 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
       els.lockLabel.textContent = t('gameplay.lockTooDeep');
       return;
     }
-    if (session.torpedoActive) return;
+    if (session.torpedoActive || session.targetDestroyed) return;
     hideShotEffects();
     session.torpedoActive = true;
     els.torpedoShot.classList.remove('hidden');
-    const hit = updatePeriscopeVisuals();
+    const hit = session.currentLock;
     const timeout1 = setTimeout(() => {
       els.torpedoShot.classList.add('hidden');
       if (hit) {
         session.targetDestroyed = true;
         session.canComplete = true;
         els.impactExplosion.classList.remove('hidden');
-        els.targetShip.style.opacity = '0.2';
+        els.targetShip.style.opacity = '0.15';
         els.completeMission.classList.remove('hidden');
         els.missionHint.textContent = t('gameplay.hintSuccess');
       } else {
         els.impactSplash.classList.remove('hidden');
         els.missionHint.textContent = t('gameplay.hintMiss');
       }
+      updatePeriscopeVisuals();
       updateHUD();
     }, 850);
     const timeout2 = setTimeout(() => {
@@ -333,13 +376,13 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     cleanupFns.push(() => button.removeEventListener('click', handler));
   });
 
-  bind(app.querySelector('#depth-up'), 'click', () => { session.depth = clamp(session.depth - 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); });
-  bind(app.querySelector('#depth-down'), 'click', () => { session.depth = clamp(session.depth + 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); });
+  bind(app.querySelector('#depth-up'), 'click', () => { session.depth = clamp(session.depth - 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); updatePeriscopeVisuals(); });
+  bind(app.querySelector('#depth-down'), 'click', () => { session.depth = clamp(session.depth + 12, DEPTH_MIN, DEPTH_MAX); updateInstruments(); updateHUD(); updatePeriscopeVisuals(); });
   bind(els.openPeriscope, 'click', openPeriscope);
   bind(els.closePeriscope, 'click', closePeriscope);
   bind(els.fireTorpedo, 'click', fire);
-  bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + 44, -260, 90); updatePeriscopeVisuals(); });
-  bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - 44, -260, 90); updatePeriscopeVisuals(); });
+  bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + 32, -180, 120); updatePeriscopeVisuals(); });
+  bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - 32, -180, 120); updatePeriscopeVisuals(); });
   bind(els.completeMission, 'click', () => { if (session.canComplete) onMissionComplete?.(missionId); });
 
   const interval = setInterval(() => {

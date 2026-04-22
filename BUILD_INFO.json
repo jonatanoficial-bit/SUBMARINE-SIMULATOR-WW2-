@@ -1,7 +1,7 @@
 {
   "app": "Submarine Commander WW2",
-  "build": "2026-04-20 20:55",
-  "version": "v0.3.4",
-  "phase": "Correcao de periscopio e profundidade",
-  "progress": "62%"
+  "build": "2026-04-20 21:15",
+  "version": "v0.3.5",
+  "phase": "Calibracao real do periscopio e do medidor de profundidade",
+  "progress": "65%"
 }
