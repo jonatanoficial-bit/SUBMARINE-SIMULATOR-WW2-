@@ -13,6 +13,7 @@ const VIEW_RANGE_X = 240;
 const VIEW_RANGE_Y = 70;
 const TARGET_LOCK_X = 84;
 const TARGET_LOCK_Y = 52;
+const ESCORT_THREAT_RANGE = 110;
 
 function speedLabelMarkup(t) {
   const labels = [
@@ -240,6 +241,9 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     worldTime: 0,
     playerDetected: false,
     targetDestroyed: false,
+    escortAggro: false,
+    hull: 100,
+    missionFailed: false,
     periscopeOpen: false,
     target: { x: 220, y: 18 },
     escort: { x: 310, y: 42 },
@@ -258,7 +262,9 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     else if (session.depth > 180) alertKey = 'gameplay.alertWarning';
     else if (SPEED_NOISE[session.speed] >= 40) alertKey = 'gameplay.alertLoud';
     if (session.playerDetected) alertKey = 'gameplay.alertDetected';
+    if (session.escortAggro) alertKey = 'gameplay.alertDetected';
     if (session.targetDestroyed) alertKey = 'gameplay.alertSuccess';
+    if (session.missionFailed) alertKey = 'gameplay.alertCritical';
     els.hudAlert.textContent = t(alertKey);
   }
 
@@ -271,30 +277,55 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     session.scanAngle = (session.scanAngle + 2.2) % 360;
     els.radarScan.style.transform = `translate(-50%, -50%) rotate(${session.scanAngle}deg)`;
 
-    const targetX = clamp(50 + session.target.x * 0.11, 18, 82);
-    const targetY = clamp(50 + session.target.y * 0.35, 18, 82);
     const escortX = clamp(50 + session.escort.x * 0.11, 18, 82);
     const escortY = clamp(50 + session.escort.y * 0.35, 18, 82);
-
-    els.radarTarget.style.left = `${targetX}%`;
-    els.radarTarget.style.top = `${targetY}%`;
     els.radarEscort.style.left = `${escortX}%`;
     els.radarEscort.style.top = `${escortY}%`;
 
-    const targetRange = Math.round(Math.hypot(session.target.x, session.target.y) * 4);
     const escortRange = Math.round(Math.hypot(session.escort.x, session.escort.y) * 4);
-    els.targetRange.textContent = `${targetRange} m`;
     els.escortRange.textContent = `${escortRange} m`;
+
+    if (session.targetDestroyed) {
+      els.radarTarget.classList.add('hidden');
+      els.targetRange.textContent = 'DESTROYED';
+      return;
+    }
+
+    const targetX = clamp(50 + session.target.x * 0.11, 18, 82);
+    const targetY = clamp(50 + session.target.y * 0.35, 18, 82);
+    els.radarTarget.classList.remove('hidden');
+    els.radarTarget.style.left = `${targetX}%`;
+    els.radarTarget.style.top = `${targetY}%`;
+    const targetRange = Math.round(Math.hypot(session.target.x, session.target.y) * 4);
+    els.targetRange.textContent = `${targetRange} m`;
   }
 
   function updateWorld() {
     session.worldTime += 1;
     const movement = SPEED_MOVE[session.speed];
-    session.target.x -= movement * 0.7;
+    if (!session.targetDestroyed) session.target.x -= movement * 0.7;
     session.escort.x -= movement * 0.95;
     session.playerDetected = SPEED_NOISE[session.speed] > 35 && session.depth < 40;
-    if (session.playerDetected && session.worldTime % 180 === 0) {
-      session.escort.y += session.escort.y > 0 ? -6 : 6;
+    if ((session.playerDetected || session.targetDestroyed) && !session.missionFailed) session.escortAggro = true;
+    if (session.escortAggro) {
+      session.escort.x += (0 - session.escort.x) * 0.012;
+      session.escort.y += (0 - session.escort.y) * 0.02;
+      const escortRange = Math.hypot(session.escort.x, session.escort.y);
+      if (escortRange < ESCORT_THREAT_RANGE && session.worldTime % 25 === 0) {
+        session.hull = clamp(session.hull - 4, 0, 100);
+        if (!session.targetDestroyed) {
+          els.missionHint.textContent = 'Destroyer em ataque. Afunde o mercante e recue.';
+        } else {
+          els.missionHint.textContent = 'Escolta em alerta. Retire-se e conclua a missão.';
+        }
+        if (session.hull <= 0) {
+          session.missionFailed = true;
+          session.canComplete = false;
+          els.completeMission.classList.add('hidden');
+          els.missionHint.textContent = 'Casco comprometido. Missão perdida.';
+          closePeriscope();
+        }
+      }
     }
     updatePeriscopeVisuals();
   }
@@ -321,15 +352,25 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
 
   function updatePeriscopeVisuals() {
     els.periscopeOcean.style.transform = `translate(${session.viewX}px, ${session.viewY}px)`;
-    const targetLeft = getShipScreenLeft(session.target.x);
     const escortLeft = getShipScreenLeft(session.escort.x);
     const targetBottom = getShipScreenBottom(session.target.y);
     const escortBottom = getShipScreenBottom(session.escort.y);
-    els.targetShip.style.left = `${targetLeft}%`;
-    els.targetShip.style.bottom = `${targetBottom}%`;
+    if (session.targetDestroyed) {
+      els.targetShip.classList.add('hidden');
+    } else {
+      const targetLeft = getShipScreenLeft(session.target.x);
+      els.targetShip.classList.remove('hidden');
+      els.targetShip.style.left = `${targetLeft}%`;
+      els.targetShip.style.bottom = `${targetBottom}%`;
+    }
     els.escortShip.style.left = `${escortLeft}%`;
     els.escortShip.style.bottom = `${escortBottom}%`;
     const lock = computeTargetLock();
+    if (session.missionFailed) {
+      els.lockLabel.textContent = 'MISSÃO PERDIDA';
+      els.lockLabel.classList.remove('active');
+      return false;
+    }
     els.lockLabel.textContent = session.targetDestroyed ? t('gameplay.lockDestroyed') : (lock ? t('gameplay.lockReady') : t('gameplay.lockSearching'));
     els.lockLabel.classList.toggle('active', lock);
     return lock;
@@ -344,7 +385,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
       els.lockLabel.textContent = t('gameplay.lockTooDeep');
       return;
     }
-    if (session.torpedoActive) return;
+    if (session.torpedoActive || session.targetDestroyed || session.missionFailed) return;
     hideShotEffects();
     session.torpedoActive = true;
     els.torpedoShot.classList.remove('hidden');
@@ -354,20 +395,26 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
       if (hit) {
         session.targetDestroyed = true;
         session.canComplete = true;
+        session.escortAggro = true;
         els.impactExplosion.classList.remove('hidden');
-        els.targetShip.style.opacity = '0.15';
         els.completeMission.classList.remove('hidden');
         els.missionHint.textContent = t('gameplay.hintSuccess');
       } else {
+        session.escortAggro = true;
         els.impactSplash.classList.remove('hidden');
         els.missionHint.textContent = t('gameplay.hintMiss');
       }
+      updatePeriscopeVisuals();
+      updateRadar();
       updateHUD();
       session.torpedoActive = false;
     }, 1000);
     const timeout2 = setTimeout(() => {
       els.impactExplosion.classList.add('hidden');
       els.impactSplash.classList.add('hidden');
+      if (session.targetDestroyed) {
+        els.targetShip.classList.add('hidden');
+      }
     }, 2400);
     cleanupFns.push(() => clearTimeout(timeout1), () => clearTimeout(timeout2));
   }
@@ -414,7 +461,7 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
   bind(els.openPeriscope, 'click', openPeriscope);
   bind(els.closePeriscope, 'click', closePeriscope);
   bind(els.fireTorpedo, 'click', fire);
-  bind(els.completeMission, 'click', () => onMissionComplete(session.missionId));
+  bind(els.completeMission, 'click', () => { if (!session.missionFailed && session.canComplete) onMissionComplete(session.missionId); });
   bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
   bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
   bind(els.viewUp, 'click', () => { session.viewY = clamp(session.viewY - VIEW_STEP_Y, -VIEW_RANGE_Y, VIEW_RANGE_Y); updatePeriscopeVisuals(); });
