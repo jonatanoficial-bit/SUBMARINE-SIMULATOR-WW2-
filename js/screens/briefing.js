@@ -13,7 +13,11 @@ export function renderBriefing(t, mission) {
       <div class="panel hero-panel">
         <div class="panel-header">${t(mission.titleKey)}</div>
         <div class="panel-body stack">
-          <span class="tag gold">${t(mission.theatreKey)}</span>
+          <div class="mission-meta">
+            <span class="tag gold">${mission.year}</span>
+            <span class="tag">${t(mission.theatreKey)}</span>
+            <span class="tag">${t(mission.operationKey)}</span>
+          </div>
           <p>${t(mission.summaryKey)}</p>
           <div class="stat-strip">
             <div class="stat-box"><div class="stat-label">${t('common.reward')}</div><div class="stat-value">${mission.reward}</div></div>

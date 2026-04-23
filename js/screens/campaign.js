@@ -21,7 +21,11 @@ export function renderCampaign(t, missions, selectedMission) {
               <span class="tag ${mission.status === 'available' ? 'success' : 'warn'}">${t(`campaign.status.${mission.status}`)}</span>
             </div>
             <div class="mission-meta">
+              <span class="tag gold">${mission.year}</span>
               <span class="tag">${t(mission.theatreKey)}</span>
+              <span class="tag">${t(mission.operationKey)}</span>
+            </div>
+            <div class="mission-meta">
               <span class="tag gold">${t('common.difficulty')}: ${mission.difficulty}</span>
               <span class="tag">${t('common.reward')}: ${mission.reward}</span>
               <span class="tag">XP: ${mission.xp}</span>
@@ -33,6 +37,9 @@ export function renderCampaign(t, missions, selectedMission) {
       <div class="panel">
         <div class="panel-header">${selectedMission ? t(selectedMission.titleKey) : t('campaign.play')}</div>
         <div class="panel-body stack">
+          <div class="mission-meta">
+            ${selectedMission ? `<span class="tag gold">${selectedMission.year}</span><span class="tag">${t(selectedMission.theatreKey)}</span><span class="tag">${t(selectedMission.operationKey)}</span>` : ''}
+          </div>
           <p class="muted">${selectedMission ? t(selectedMission.summaryKey) : t('campaign.placeholder')}</p>
           <button class="button ${selectedMission && selectedMission.status === 'available' ? '' : 'secondary'} block" ${selectedMission && selectedMission.status === 'available' ? 'data-action="open-briefing"' : 'disabled'}>${t('campaign.play')}</button>
         </div>

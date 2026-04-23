@@ -252,7 +252,7 @@ function render() {
     case 'lobby': app.innerHTML = renderLobby(t, state.save, nation, getCurrentSubmarine(), getCurrentCrew()); break;
     case 'campaign': app.innerHTML = renderCampaign(t, state.data.missions, getSelectedMission()); break;
     case 'briefing': app.innerHTML = renderBriefing(t, getSelectedMission()); break;
-    case 'gameplay': app.innerHTML = renderGameplay(t, getSelectedMission()); mountGameplay({ app, missionId: getSelectedMission().id, onMissionComplete: handleCompleteMission, t }); break;
+    case 'gameplay': app.innerHTML = renderGameplay(t, getSelectedMission()); mountGameplay({ app, mission: getSelectedMission(), onMissionComplete: handleCompleteMission, t }); break;
     case 'arsenal': app.innerHTML = renderArsenal(t, submarinesByNation(nationId), state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades); break;
     case 'crew': app.innerHTML = renderCrew(t, crewByNation(nationId), state.save?.crew.hiredIds || [], state.save?.progression.credits || 0); break;
     case 'settings': app.innerHTML = renderSettings(t, state.settings); break;

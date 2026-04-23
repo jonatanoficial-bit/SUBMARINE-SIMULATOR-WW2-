@@ -6,13 +6,13 @@ const SPEED_NOISE = { stop: 0, slow: 12, half: 24, full: 40, flank: 60 };
 const SPEED_MOVE = { stop: 0, slow: 0.35, half: 0.7, full: 1.2, flank: 1.7 };
 const DEPTH_MIN = 0;
 const DEPTH_MAX = 300;
-const PERISCOPE_MAX_DEPTH = 20;
-const VIEW_STEP_X = 28;
-const VIEW_STEP_Y = 14;
-const VIEW_RANGE_X = 240;
-const VIEW_RANGE_Y = 70;
-const TARGET_LOCK_X = 84;
-const TARGET_LOCK_Y = 52;
+const PERISCOPE_MAX_DEPTH = 28;
+const VIEW_STEP_X = 24;
+const VIEW_STEP_Y = 12;
+const VIEW_RANGE_X = 260;
+const VIEW_RANGE_Y = 88;
+const TARGET_LOCK_X = 96;
+const TARGET_LOCK_Y = 62;
 const ESCORT_THREAT_RANGE = 110;
 const DETECTION_DECAY = 0.25;
 const DETECTION_ALERT_THRESHOLD = 28;
@@ -200,7 +200,7 @@ export function renderGameplay(t, mission) {
   `;
 }
 
-export function mountGameplay({ app, missionId, onMissionComplete, t }) {
+export function mountGameplay({ app, mission, onMissionComplete, t }) {
   cleanupGameplay();
 
   const els = {
@@ -235,8 +235,10 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     viewDown: app.querySelector('#view-down')
   };
 
+  const missionData = mission || {};
   const session = {
-    missionId,
+    missionId: missionData.id,
+    mission: missionData,
     depth: 12,
     speed: 'slow',
     scanAngle: 0,
@@ -254,11 +256,22 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     hull: 100,
     missionFailed: false,
     periscopeOpen: false,
-    target: { x: 220, y: 18 },
-    escort: { x: 310, y: 42 },
+    target: { x: missionData.targetStartX ?? 220, y: missionData.targetStartY ?? 18 },
+    escort: { x: missionData.escortStartX ?? 310, y: missionData.escortStartY ?? 42 },
     torpedoActive: false,
     canComplete: false
   };
+
+
+  const targetSpriteMap = {
+    merchant: 'assets/ships/merchant_ship_01.png',
+    destroyer: 'assets/ships/destroyer_01.png',
+    submarine: 'assets/ships/submarine_ww2_01.png'
+  };
+  if (els.targetShip) {
+    els.targetShip.src = targetSpriteMap[missionData.targetType] || targetSpriteMap.merchant;
+    els.targetShip.alt = missionData.targetType || 'target';
+  }
 
   function clamp(num, min, max) { return Math.max(min, Math.min(max, num)); }
   function depthToAngle(depth) { return -120 + (clamp(depth, DEPTH_MIN, DEPTH_MAX) / DEPTH_MAX) * 240; }
@@ -347,8 +360,12 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     const phase = session.worldTime / 18;
 
     if (!session.targetDestroyed) {
-      session.target.x -= movement * 0.7;
-      session.target.y = 18 + Math.sin(phase * 0.35) * 6;
+      const drift = session.mission.targetDrift ?? 0.7;
+      const bob = session.mission.targetBob ?? 6;
+      const wave = session.mission.targetWave ?? 0.35;
+      const baseY = session.mission.targetStartY ?? 18;
+      session.target.x -= movement * drift;
+      session.target.y = baseY + Math.sin(phase * wave) * bob;
     }
 
     if (session.torpedoRevealTicks > 0) session.torpedoRevealTicks -= 1;
@@ -356,7 +373,8 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     const noise = SPEED_NOISE[session.speed];
     const depthRisk = Math.max(0, PERISCOPE_MAX_DEPTH - session.depth) * 0.45;
     const exposure = (session.periscopeOpen ? 1.2 : 0.35) + (session.torpedoRevealTicks > 0 ? 2.4 : 0);
-    const detectionGain = (noise * 0.06) + depthRisk * exposure;
+    const sensitivity = session.mission.escortSensitivity ?? 1;
+    const detectionGain = ((noise * 0.06) + depthRisk * exposure) * sensitivity;
     session.detectionScore = clamp(session.detectionScore + detectionGain - DETECTION_DECAY, 0, 100);
 
     if (session.targetDestroyed) {
@@ -381,6 +399,10 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     }
 
     const escortRange = Math.hypot(session.escort.x, session.escort.y);
+    if (session.targetDestroyed) {
+      session.lastKnownX = session.target.x * 0.45;
+      session.lastKnownY = session.target.y * 0.45;
+    }
     session.playerDetected = session.escortState === 'hunt';
     if (escortRange < ESCORT_THREAT_RANGE && session.worldTime % 25 === 0) {
       session.hull = clamp(session.hull - (session.escortState === 'hunt' ? 6 : 3), 0, 100);
@@ -394,41 +416,39 @@ export function mountGameplay({ app, missionId, onMissionComplete, t }) {
     updatePeriscopeVisuals();
   }
 
-  function getShipScreenLeft(baseX) {
-    return 50 + ((baseX + session.viewX) / 500) * 50;
-  }
-  function getShipScreenBottom(baseY) {
-    return 22 + ((baseY + session.viewY) / 180) * 18;
+  function worldToPeriscopePosition(entityX, entityY) {
+    const dx = entityX - session.viewX;
+    const dy = entityY - session.viewY;
+    const left = 50 + (dx / VIEW_RANGE_X) * 50;
+    const bottom = 22 + (dy / VIEW_RANGE_Y) * 18;
+    return { left, bottom, dx, dy };
   }
 
   function computeTargetLock() {
-    if (!els.periscopeWindow || !els.targetShip || session.depth > PERISCOPE_MAX_DEPTH || session.targetDestroyed) return false;
-    const windowRect = els.periscopeWindow.getBoundingClientRect();
-    const targetRect = els.targetShip.getBoundingClientRect();
-    const crosshairX = windowRect.left + windowRect.width * 0.5;
-    const crosshairY = windowRect.top + windowRect.height * 0.5;
-    const targetAimX = targetRect.left + targetRect.width * 0.5;
-    const targetAimY = targetRect.top + targetRect.height * 0.58;
-    const dx = Math.abs(targetAimX - crosshairX);
-    const dy = Math.abs(targetAimY - crosshairY);
-    return dx <= TARGET_LOCK_X && dy <= TARGET_LOCK_Y;
+    if (session.depth > PERISCOPE_MAX_DEPTH || session.targetDestroyed) return false;
+    const { dx, dy } = worldToPeriscopePosition(session.target.x, session.target.y);
+    return Math.abs(dx) <= TARGET_LOCK_X && Math.abs(dy) <= TARGET_LOCK_Y;
   }
 
   function updatePeriscopeVisuals() {
-    els.periscopeOcean.style.transform = `translate(${session.viewX}px, ${session.viewY}px)`;
-    const escortLeft = getShipScreenLeft(session.escort.x);
-    const targetBottom = getShipScreenBottom(session.target.y);
-    const escortBottom = getShipScreenBottom(session.escort.y);
+    const oceanX = -220 - (session.viewX * 0.72);
+    const oceanY = -18 - (session.viewY * 0.52);
+    els.periscopeOcean.style.transform = `translate(${oceanX}px, ${oceanY}px)`;
+
+    const escortPos = worldToPeriscopePosition(session.escort.x, session.escort.y);
+    const targetPos = worldToPeriscopePosition(session.target.x, session.target.y);
+
     if (session.targetDestroyed) {
       els.targetShip.classList.add('hidden');
     } else {
-      const targetLeft = getShipScreenLeft(session.target.x);
       els.targetShip.classList.remove('hidden');
-      els.targetShip.style.left = `${targetLeft}%`;
-      els.targetShip.style.bottom = `${targetBottom}%`;
+      els.targetShip.style.left = `${targetPos.left}%`;
+      els.targetShip.style.bottom = `${targetPos.bottom}%`;
     }
-    els.escortShip.style.left = `${escortLeft}%`;
-    els.escortShip.style.bottom = `${escortBottom}%`;
+
+    els.escortShip.style.left = `${escortPos.left}%`;
+    els.escortShip.style.bottom = `${escortPos.bottom}%`;
+
     const lock = computeTargetLock();
     if (session.missionFailed) {
       els.lockLabel.textContent = 'MISSÃO PERDIDA';
