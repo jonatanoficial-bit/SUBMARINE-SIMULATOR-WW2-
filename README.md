@@ -14,3 +14,10 @@ Build focada em sistemas funcionais.
 
 ## Estrutura
 Este ZIP contém apenas uma pasta principal da build atual, seguindo o padrão Vale Games.
+
+
+## Build v0.5.1
+- Coerência de derrota: ações bloqueadas e resultado claro quando o casco é comprometido.
+- Reparo emergencial durante missão.
+- Reparo completo na oficina/arsenal com custo em créditos.
+- Integridade do casco e sistemas persistem no save local.

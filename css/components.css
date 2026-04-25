@@ -532,3 +532,21 @@ input[type="range"] { width: 100%; accent-color: var(--gold-strong); }
   height: 20px;
   right: -1px;
 }
+
+
+/* v0.5.1 survival + repair loop */
+.gameplay-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mission-result {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(82, 24, 18, 0.72), rgba(15, 12, 12, 0.9));
+  border: 1px solid rgba(255, 111, 92, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+.mission-result strong { color: #ffd5c8; font-size: 18px; }
+.mission-result span { color: var(--text-soft); line-height: 1.45; }
+.repair-panel .progress-bar > span { background: linear-gradient(90deg, #d95b46, #e8c76c 50%, #77d48d); }
+@media (max-width: 720px) { .gameplay-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .gameplay-kpis { grid-template-columns: 1fr; } }

@@ -14,6 +14,9 @@ const VIEW_RANGE_Y = 88;
 const TARGET_LOCK_X = 96;
 const TARGET_LOCK_Y = 62;
 const ESCORT_THREAT_RANGE = 110;
+const EMERGENCY_REPAIR_AMOUNT = 28;
+const EMERGENCY_REPAIR_USES = 2;
+const REPAIR_TICKS = 55;
 const DETECTION_DECAY = 0.25;
 const DETECTION_ALERT_THRESHOLD = 28;
 const DETECTION_HUNT_THRESHOLD = 56;
@@ -58,6 +61,7 @@ export function renderGameplay(t, mission) {
           <div class="stat-box"><div class="stat-label">${t('gameplay.depth')}</div><div id="hud-depth" class="stat-value">0 m</div></div>
           <div class="stat-box"><div class="stat-label">${t('gameplay.speed')}</div><div id="hud-speed" class="stat-value">STOP</div></div>
           <div class="stat-box"><div class="stat-label">${t('gameplay.alert')}</div><div id="hud-alert" class="stat-value">${t('gameplay.alertSilent')}</div></div>
+          <div class="stat-box"><div class="stat-label">${t('repair.hull')}</div><div id="hud-hull" class="stat-value">100%</div></div>
         </div>
       </div>
 
@@ -160,8 +164,15 @@ export function renderGameplay(t, mission) {
         <div class="panel-header">${t('gameplay.combatStation')}</div>
         <div class="panel-body stack">
           <button class="button block" id="open-periscope">${t('gameplay.openPeriscope')}</button>
+          <button class="button secondary block hidden" id="emergency-repair-btn">${t('repair.emergency')}</button>
           <button class="button secondary block hidden" id="complete-mission-btn">${t('gameplay.completeMission')}</button>
           <div class="empty-state" id="mission-hint">${t('gameplay.hint')}</div>
+          <div id="mission-result" class="mission-result hidden">
+            <strong id="mission-result-title"></strong>
+            <span id="mission-result-text"></span>
+            <button class="button block" data-nav="lobby">${t('repair.returnLobby')}</button>
+            <button class="button secondary block" data-nav="arsenal">${t('repair.goWorkshop')}</button>
+          </div>
         </div>
       </div>
 
@@ -200,7 +211,7 @@ export function renderGameplay(t, mission) {
   `;
 }
 
-export function mountGameplay({ app, mission, onMissionComplete, t }) {
+export function mountGameplay({ app, mission, initialHull = 100, initialSystems = {}, onHullUpdate = () => {}, onMissionComplete, t }) {
   cleanupGameplay();
 
   const els = {
@@ -209,6 +220,7 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     hudDepth: app.querySelector('#hud-depth'),
     hudSpeed: app.querySelector('#hud-speed'),
     hudAlert: app.querySelector('#hud-alert'),
+    hudHull: app.querySelector('#hud-hull'),
     radarScan: app.querySelector('#radar-scan'),
     radarTarget: app.querySelector('#radar-target'),
     radarEscort: app.querySelector('#radar-escort'),
@@ -221,6 +233,10 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     fireTorpedo: app.querySelector('#fire-torpedo'),
     missionHint: app.querySelector('#mission-hint'),
     completeMission: app.querySelector('#complete-mission-btn'),
+    emergencyRepair: app.querySelector('#emergency-repair-btn'),
+    missionResult: app.querySelector('#mission-result'),
+    missionResultTitle: app.querySelector('#mission-result-title'),
+    missionResultText: app.querySelector('#mission-result-text'),
     periscopeWindow: app.querySelector('#periscope-window'),
     periscopeOcean: app.querySelector('#periscope-ocean'),
     targetShip: app.querySelector('#target-ship'),
@@ -253,7 +269,10 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     torpedoRevealTicks: 0,
     lastKnownX: 0,
     lastKnownY: 0,
-    hull: 100,
+    hull: initialHull,
+    systems: { engines: 100, sonar: 100, periscope: 100, weapons: 100, ...initialSystems },
+    repairUses: EMERGENCY_REPAIR_USES,
+    repairTicks: 0,
     missionFailed: false,
     periscopeOpen: false,
     target: { x: missionData.targetStartX ?? 220, y: missionData.targetStartY ?? 18 },
@@ -294,6 +313,14 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
       els.missionHint.textContent = t('gameplay.hintMissionFailed');
       return;
     }
+    if (session.repairTicks > 0) {
+      els.missionHint.textContent = t('repair.inProgress');
+      return;
+    }
+    if (session.hull < 55) {
+      els.missionHint.textContent = t('repair.hintEmergency');
+      return;
+    }
     if (session.targetDestroyed) {
       els.missionHint.textContent = session.escortState === 'hunt'
         ? t('gameplay.hintSuccess') + ' ' + t('gameplay.escortHuntSuffix')
@@ -319,6 +346,15 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     if (session.targetDestroyed) alertText = t('gameplay.alertSuccess');
     if (session.missionFailed) alertText = t('gameplay.alertCritical');
     els.hudAlert.textContent = alertText;
+    if (els.hudHull) els.hudHull.textContent = `${Math.round(session.hull)}%`;
+    if (els.emergencyRepair) {
+      const canRepair = !session.missionFailed && session.hull > 0 && session.hull < 92 && session.repairUses > 0 && session.repairTicks <= 0;
+      els.emergencyRepair.classList.toggle('hidden', !canRepair);
+      els.emergencyRepair.disabled = !canRepair;
+      if (canRepair) els.emergencyRepair.textContent = t('repair.emergencyWithUses', { uses: session.repairUses });
+    }
+    if (els.openPeriscope) els.openPeriscope.disabled = session.missionFailed || session.repairTicks > 0;
+    if (els.fireTorpedo) els.fireTorpedo.disabled = session.missionFailed || session.repairTicks > 0 || session.torpedoActive || session.targetDestroyed;
     updateEscortHint();
   }
 
@@ -356,7 +392,7 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
 
   function updateWorld() {
     session.worldTime += 1;
-    const movement = SPEED_MOVE[session.speed];
+    const movement = session.repairTicks > 0 ? 0 : SPEED_MOVE[session.speed];
     const phase = session.worldTime / 18;
 
     if (!session.targetDestroyed) {
@@ -369,6 +405,14 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     }
 
     if (session.torpedoRevealTicks > 0) session.torpedoRevealTicks -= 1;
+    if (session.repairTicks > 0) {
+      session.repairTicks -= 1;
+      if (session.repairTicks === 0) {
+        session.hull = clamp(session.hull + EMERGENCY_REPAIR_AMOUNT, 0, 74);
+        session.systems.engines = clamp((session.systems.engines ?? 100) + 14, 0, 100);
+        onHullUpdate(session.hull, session.systems);
+      }
+    }
 
     const noise = SPEED_NOISE[session.speed];
     const depthRisk = Math.max(0, PERISCOPE_MAX_DEPTH - session.depth) * 0.45;
@@ -406,11 +450,10 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     session.playerDetected = session.escortState === 'hunt';
     if (escortRange < ESCORT_THREAT_RANGE && session.worldTime % 25 === 0) {
       session.hull = clamp(session.hull - (session.escortState === 'hunt' ? 6 : 3), 0, 100);
+      session.systems.engines = clamp((session.systems.engines ?? 100) - (session.escortState === 'hunt' ? 3 : 1), 0, 100);
+      onHullUpdate(session.hull, session.systems);
       if (session.hull <= 0) {
-        session.missionFailed = true;
-        session.canComplete = false;
-        els.completeMission.classList.add('hidden');
-        closePeriscope();
+        failMission();
       }
     }
     updatePeriscopeVisuals();
@@ -460,16 +503,46 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
     return lock;
   }
 
+
+
+  function failMission() {
+    if (session.missionFailed) return;
+    session.missionFailed = true;
+    session.canComplete = false;
+    session.periscopeOpen = false;
+    session.hull = 0;
+    session.systems.engines = Math.min(session.systems.engines ?? 100, 20);
+    onHullUpdate(session.hull, session.systems);
+    els.completeMission.classList.add('hidden');
+    if (els.emergencyRepair) els.emergencyRepair.classList.add('hidden');
+    closePeriscope();
+    els.missionResult?.classList.remove('hidden');
+    if (els.missionResultTitle) els.missionResultTitle.textContent = t('repair.missionLostTitle');
+    if (els.missionResultText) els.missionResultText.textContent = t('repair.missionLostText');
+    updateHUD();
+  }
+
+  function startEmergencyRepair() {
+    if (session.missionFailed || session.repairUses <= 0 || session.repairTicks > 0 || session.hull <= 0 || session.hull >= 92) return;
+    session.repairUses -= 1;
+    session.repairTicks = REPAIR_TICKS;
+    session.speed = 'stop';
+    closePeriscope();
+    updateInstruments();
+    updateHUD();
+  }
+
   function hideShotEffects() {
     [els.torpedoShot, els.impactExplosion, els.impactSplash].forEach((el) => el.classList.add('hidden'));
   }
 
   function fire() {
+    if (session.repairTicks > 0) { els.missionHint.textContent = t('repair.inProgress'); updateHUD(); return; }
     if (session.depth > PERISCOPE_MAX_DEPTH) {
       els.lockLabel.textContent = t('gameplay.lockTooDeep');
       return;
     }
-    if (session.torpedoActive || session.targetDestroyed || session.missionFailed) return;
+    if (session.torpedoActive || session.targetDestroyed || session.missionFailed || session.repairTicks > 0) return;
     hideShotEffects();
     session.torpedoActive = true;
     session.torpedoRevealTicks = 70;
@@ -507,6 +580,8 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
   }
 
   function openPeriscope() {
+    if (session.repairTicks > 0) { els.missionHint.textContent = t('repair.inProgress'); updateHUD(); return; }
+    if (session.missionFailed) return;
     if (session.depth > PERISCOPE_MAX_DEPTH) {
       els.missionHint.textContent = t('gameplay.hintTooDeep');
       updateHUD();
@@ -548,6 +623,7 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
   bind(els.openPeriscope, 'click', openPeriscope);
   bind(els.closePeriscope, 'click', closePeriscope);
   bind(els.fireTorpedo, 'click', fire);
+  bind(els.emergencyRepair, 'click', startEmergencyRepair);
   bind(els.completeMission, 'click', () => { if (!session.missionFailed && session.canComplete) onMissionComplete(session.missionId); });
   bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
   bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
@@ -558,6 +634,7 @@ export function mountGameplay({ app, mission, onMissionComplete, t }) {
   updateRadar();
   updateHUD();
   updatePeriscopeVisuals();
+  if (initialHull <= 0) failMission();
 }
 
 export function cleanupGameplay() {

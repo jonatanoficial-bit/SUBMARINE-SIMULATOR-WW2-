@@ -155,6 +155,27 @@ function handleBuyUpgrade(id) {
   render();
 }
 
+function handleRepairSubmarine() {
+  if (!state.save) return;
+  const hull = state.save.submarine.hull ?? 100;
+  const missingHull = Math.max(0, 100 - hull);
+  const damagedSystems = Object.values(state.save.submarine.systems || {}).some((value) => value < 100);
+  if (missingHull <= 0 && !damagedSystems) { showToast(t('toast.noRepairsNeeded')); return; }
+  const cost = Math.max(250, Math.ceil(missingHull * 18) + (damagedSystems ? 400 : 0));
+  if (!spendCredits(cost)) { showToast(t('toast.notEnoughCredits')); return; }
+  state.save.submarine.hull = 100;
+  state.save.submarine.systems = { engines: 100, sonar: 100, periscope: 100, weapons: 100 };
+  commitSave('toast.submarineRepaired');
+  render();
+}
+
+function handleHullUpdate(hull, systems) {
+  if (!state.save) return;
+  state.save.submarine.hull = Math.max(0, Math.min(100, Math.round(hull)));
+  if (systems) state.save.submarine.systems = { ...(state.save.submarine.systems || {}), ...systems };
+  commitSave();
+}
+
 function handleCompleteMission(id) {
   const mission = state.data.missions.find((item) => item.id === id);
   if (!mission) return;
@@ -222,6 +243,7 @@ function initEvents() {
       case 'unlock-submarine': handleUnlockSubmarine(target.dataset.submarine); break;
       case 'equip-submarine': handleEquipSubmarine(target.dataset.submarine); break;
       case 'buy-upgrade': handleBuyUpgrade(target.dataset.upgrade); break;
+      case 'repair-submarine': handleRepairSubmarine(); break;
       default: break;
     }
   });
@@ -252,8 +274,8 @@ function render() {
     case 'lobby': app.innerHTML = renderLobby(t, state.save, nation, getCurrentSubmarine(), getCurrentCrew()); break;
     case 'campaign': app.innerHTML = renderCampaign(t, state.data.missions, getSelectedMission()); break;
     case 'briefing': app.innerHTML = renderBriefing(t, getSelectedMission()); break;
-    case 'gameplay': app.innerHTML = renderGameplay(t, getSelectedMission()); mountGameplay({ app, mission: getSelectedMission(), onMissionComplete: handleCompleteMission, t }); break;
-    case 'arsenal': app.innerHTML = renderArsenal(t, submarinesByNation(nationId), state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades); break;
+    case 'gameplay': app.innerHTML = renderGameplay(t, getSelectedMission()); mountGameplay({ app, mission: getSelectedMission(), initialHull: state.save?.submarine?.hull ?? 100, initialSystems: state.save?.submarine?.systems || {}, onHullUpdate: handleHullUpdate, onMissionComplete: handleCompleteMission, t }); break;
+    case 'arsenal': app.innerHTML = renderArsenal(t, submarinesByNation(nationId), state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null); break;
     case 'crew': app.innerHTML = renderCrew(t, crewByNation(nationId), state.save?.crew.hiredIds || [], state.save?.progression.credits || 0); break;
     case 'settings': app.innerHTML = renderSettings(t, state.settings); break;
     default: setScreen('mainMenu'); render(); break;

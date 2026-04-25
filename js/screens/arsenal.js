@@ -1,6 +1,10 @@
 import { renderBottomNav, renderStatBar } from '../components/ui.js';
 
-export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades) {
+export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades, submarineState = null) {
+  const hull = submarineState?.hull ?? 100;
+  const systems = submarineState?.systems || { engines: 100, sonar: 100, periscope: 100, weapons: 100 };
+  const damagedSystems = Object.values(systems).some((value) => value < 100);
+  const repairCost = Math.max(250, Math.ceil((100 - hull) * 18) + (damagedSystems ? 400 : 0));
   return `
     <section class="screen screen-shell">
       <div class="screen-header">
@@ -41,6 +45,22 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
             </div>
           `;
         }).join('')}
+      </div>
+
+
+      <div class="panel repair-panel">
+        <div class="panel-header">${t('repair.title')}</div>
+        <div class="panel-body stack">
+          <div class="row space-between"><span>${t('repair.hull')}</span><strong>${Math.round(hull)}%</strong></div>
+          <div class="progress-bar"><span style="width:${Math.max(0, Math.min(100, hull))}%"></span></div>
+          <div class="mission-meta">
+            <span class="tag">${t('repair.engines')}: ${Math.round(systems.engines ?? 100)}%</span>
+            <span class="tag">${t('repair.sonar')}: ${Math.round(systems.sonar ?? 100)}%</span>
+            <span class="tag">${t('repair.periscope')}: ${Math.round(systems.periscope ?? 100)}%</span>
+            <span class="tag">${t('repair.weapons')}: ${Math.round(systems.weapons ?? 100)}%</span>
+          </div>
+          ${(hull < 100 || damagedSystems) ? `<button class="button block" data-action="repair-submarine">${t('repair.fullRepair', { cost: repairCost })}</button>` : `<div class="empty-state">${t('repair.noDamage')}</div>`}
+        </div>
       </div>
 
       <div class="panel">

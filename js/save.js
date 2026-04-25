@@ -13,7 +13,15 @@ function migrateSave(save) {
   save.submarine = {
     currentId: save.submarine?.currentId || null,
     unlockedIds: save.submarine?.unlockedIds || [],
-    upgrades: save.submarine?.upgrades || []
+    upgrades: save.submarine?.upgrades || [],
+    hull: typeof save.submarine?.hull === 'number' ? save.submarine.hull : 100,
+    systems: {
+      engines: 100,
+      sonar: 100,
+      periscope: 100,
+      weapons: 100,
+      ...(save.submarine?.systems || {})
+    }
   };
   save.crew = {
     hiredIds: save.crew?.hiredIds || []
@@ -69,7 +77,9 @@ export function createInitialSave({ commander, starterSubmarineId, credits }) {
     submarine: {
       currentId: starterSubmarineId,
       unlockedIds: [starterSubmarineId],
-      upgrades: []
+      upgrades: [],
+      hull: 100,
+      systems: { engines: 100, sonar: 100, periscope: 100, weapons: 100 }
     },
     crew: {
       hiredIds: []
