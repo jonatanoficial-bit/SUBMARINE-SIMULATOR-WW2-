@@ -44,3 +44,7 @@ Regra Vale Games: ZIP completo, uma única pasta principal, build visível no jo
 - Ações táticas: corrida silenciosa, mergulho de emergência e iscas.
 - IA da escolta com cargas de profundidade e pressão de sobrevivência.
 - Radar preservado conforme build aprovada.
+
+
+## v0.8.0
+Campanha comercial: objetivos vivos, briefing com contexto histórico, tutorial de combate, relatório de desempenho e pontuação de missão.

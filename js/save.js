@@ -8,6 +8,8 @@ function migrateSave(save) {
     xp: 0,
     credits: 5000,
     completedMissions: [],
+    missionReports: [],
+    bestScore: 0,
     ...save.progression
   };
   save.submarine = {
@@ -72,7 +74,9 @@ export function createInitialSave({ commander, starterSubmarineId, credits }) {
       level: 1,
       xp: 0,
       credits,
-      completedMissions: []
+      completedMissions: [],
+      missionReports: [],
+      bestScore: 0
     },
     submarine: {
       currentId: starterSubmarineId,

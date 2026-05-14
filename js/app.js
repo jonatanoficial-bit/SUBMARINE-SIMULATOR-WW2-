@@ -177,16 +177,26 @@ function handleHullUpdate(hull, systems) {
   commitSave();
 }
 
-function handleCompleteMission(id) {
+function handleCompleteMission(id, report = null) {
   const mission = state.data.missions.find((item) => item.id === id);
   if (!mission) return;
-  if (!state.save.progression.completedMissions.includes(id)) {
+  const alreadyCompleted = state.save.progression.completedMissions.includes(id);
+  const bonusCredits = report?.bonusCredits || 0;
+  const bonusXp = report?.bonusXp || 0;
+  const totalCredits = mission.reward + bonusCredits;
+  const totalXp = mission.xp + bonusXp;
+  if (!alreadyCompleted) {
     state.save.progression.completedMissions.push(id);
-    addRewards(mission.reward, mission.xp);
     const idx = state.data.missions.findIndex((item) => item.id === id);
     const next = state.data.missions[idx + 1];
     if (next && next.status === 'locked') next.status = 'available';
   }
+  addRewards(totalCredits, totalXp);
+  state.save.progression.bestScore = Math.max(state.save.progression.bestScore || 0, report?.score || 0);
+  state.save.progression.missionReports = [
+    { missionId: id, score: report?.score || 0, bonusCredits, bonusXp, hull: report?.hull ?? null, stealth: report?.stealth ?? null, shots: report?.shots ?? null, completedAt: new Date().toISOString() },
+    ...(state.save.progression.missionReports || [])
+  ].slice(0, 12);
   commitSave('toast.missionCompleted');
   setScreen('lobby');
   render();

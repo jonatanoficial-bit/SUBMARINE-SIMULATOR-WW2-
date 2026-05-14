@@ -74,6 +74,18 @@ export function renderGameplay(t, mission) {
         </div>
       </div>
 
+
+
+      <div class="panel mission-live-panel">
+        <div class="panel-header">${t('gameplay.objectives')}</div>
+        <div class="panel-body stack">
+          <div class="objective-line"><span id="obj-primary" class="objective-dot"></span><b>${t('gameplay.objPrimary')}</b><small>${t('gameplay.objPrimaryDesc')}</small></div>
+          <div class="objective-line"><span id="obj-survive" class="objective-dot"></span><b>${t('gameplay.objSurvive')}</b><small>${t('gameplay.objSurviveDesc')}</small></div>
+          <div class="objective-line"><span id="obj-stealth" class="objective-dot"></span><b>${t('gameplay.objStealth')}</b><small>${t('gameplay.objStealthDesc')}</small></div>
+          <div class="tutorial-strip">${t('gameplay.tutorialTip')}</div>
+        </div>
+      </div>
+
       <div class="instrument-grid">
         <div class="panel instrument-card">
           <div class="panel-header">${t('gameplay.depthGauge')}</div>
@@ -282,7 +294,10 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     viewLeft: app.querySelector('#view-left'),
     viewRight: app.querySelector('#view-right'),
     viewUp: app.querySelector('#view-up'),
-    viewDown: app.querySelector('#view-down')
+    viewDown: app.querySelector('#view-down'),
+    objPrimary: app.querySelector('#obj-primary'),
+    objSurvive: app.querySelector('#obj-survive'),
+    objStealth: app.querySelector('#obj-stealth')
   };
 
   const missionData = mission || {};
@@ -319,7 +334,8 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     emergencyDiveCooldown: 0,
     damageFlashTicks: 0,
     lastEventKey: 'gameplay.hint',
-    canComplete: false
+    canComplete: false,
+    metrics: { shots: 0, hits: 0, maxDetection: 0, damageTaken: 0, startHull: initialHull }
   };
 
 
@@ -385,6 +401,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     if (session.missionFailed) return;
     const hullDamage = Math.max(1, Math.round(amount));
     session.hull = clamp(session.hull - hullDamage, 0, 100);
+    session.metrics.damageTaken += hullDamage;
     const affected = systemKey || ['engines', 'sonar', 'periscope', 'weapons'][session.worldTime % 4];
     session.systems[affected] = clamp((session.systems[affected] ?? 100) - Math.max(2, Math.round(amount * 0.72)), 0, 100);
     session.damageFlashTicks = 18;
@@ -485,6 +502,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
       els.decoy.textContent = t('gameplay.decoyWithCount', { count: session.decoys });
     }
     updateEscortHint();
+    updateObjectives();
   }
 
   function updateInstruments() {
@@ -559,6 +577,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     const detectionGain = (((noise * 0.06) + depthRisk * exposure) * sensitivity * deepCover) / sonarFactor;
     const decay = DETECTION_DECAY + (session.silentTicks > 0 ? 0.55 : 0) + (session.decoyTicks > 0 ? 0.75 : 0);
     session.detectionScore = clamp(session.detectionScore + detectionGain - decay, 0, 100);
+    session.metrics.maxDetection = Math.max(session.metrics.maxDetection, Math.round(session.detectionScore));
 
     if (session.targetDestroyed) {
       setEscortState('hunt');
@@ -647,6 +666,25 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
 
 
 
+
+  function updateObjectives() {
+    if (els.objPrimary) els.objPrimary.classList.toggle('done', session.targetDestroyed);
+    if (els.objSurvive) els.objSurvive.classList.toggle('done', session.hull > 0 && !session.missionFailed);
+    if (els.objStealth) els.objStealth.classList.toggle('done', session.metrics.maxDetection < 72);
+  }
+
+  function buildMissionReport() {
+    const hullScore = Math.max(0, Math.round(session.hull));
+    const stealthScore = Math.max(0, 100 - Math.round(session.metrics.maxDetection));
+    const shotScore = Math.max(0, 100 - Math.max(0, session.metrics.shots - 1) * 25);
+    const systemMin = Math.min(...Object.values(session.systems || { engines: 100, sonar: 100, periscope: 100, weapons: 100 }));
+    const systemScore = Math.max(0, Math.round(systemMin));
+    const score = Math.round((hullScore * 0.32) + (stealthScore * 0.28) + (shotScore * 0.22) + (systemScore * 0.18));
+    const bonusCredits = Math.round((session.mission.bonusReward || 450) * (score / 100));
+    const bonusXp = Math.round((session.mission.bonusXp || 60) * (score / 100));
+    return { score, bonusCredits, bonusXp, hull: Math.round(session.hull), stealth: stealthScore, shots: session.metrics.shots };
+  }
+
   function failMission() {
     if (session.missionFailed) return;
     session.missionFailed = true;
@@ -690,6 +728,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     if (session.torpedoActive || session.targetDestroyed || session.missionFailed || session.repairTicks > 0) return;
     hideShotEffects();
     session.torpedoActive = true;
+    session.metrics.shots += 1;
     session.torpedoes -= 1;
     session.torpedoRevealTicks = 70;
     session.detectionScore = clamp(session.detectionScore + TORPEDO_ALERT_BOOST, 0, 100);
@@ -703,6 +742,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
       if (hit) {
         session.systems.weapons = clamp((session.systems.weapons ?? 100) - 4, 0, 100);
         session.targetDestroyed = true;
+        session.metrics.hits += 1;
         session.canComplete = true;
         setEscortState('hunt');
         els.impactExplosion.classList.remove('hidden');
@@ -711,6 +751,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
         session.systems.weapons = clamp((session.systems.weapons ?? 100) - 7, 0, 100);
         setEscortState('alert');
         els.impactSplash.classList.remove('hidden');
+        setHintKey('gameplay.hintMiss');
       }
       updatePeriscopeVisuals();
       updateRadar();
@@ -776,7 +817,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
   bind(els.silentRunning, 'click', triggerSilentRunning);
   bind(els.emergencyDive, 'click', triggerEmergencyDive);
   bind(els.decoy, 'click', launchDecoy);
-  bind(els.completeMission, 'click', () => { if (!session.missionFailed && session.canComplete) onMissionComplete(session.missionId); });
+  bind(els.completeMission, 'click', () => { if (!session.missionFailed && session.canComplete) onMissionComplete(session.missionId, buildMissionReport()); });
   bind(els.viewLeft, 'click', () => { session.viewX = clamp(session.viewX + VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
   bind(els.viewRight, 'click', () => { session.viewX = clamp(session.viewX - VIEW_STEP_X, -VIEW_RANGE_X, VIEW_RANGE_X); updatePeriscopeVisuals(); });
   bind(els.viewUp, 'click', () => { session.viewY = clamp(session.viewY - VIEW_STEP_Y, -VIEW_RANGE_Y, VIEW_RANGE_Y); updatePeriscopeVisuals(); });

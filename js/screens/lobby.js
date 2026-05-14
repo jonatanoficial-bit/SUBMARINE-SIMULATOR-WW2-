@@ -2,6 +2,8 @@ import { renderBottomNav, renderCommanderSummary, renderProgressMini } from '../
 
 export function renderLobby(t, save, nation, submarine, crewMembers) {
   const nextLevelXp = save.progression.level * 300;
+  const reports = save.progression.missionReports || [];
+  const lastReport = reports[0];
   return `
     <section class="screen screen-shell">
       <div class="screen-header">
@@ -24,6 +26,20 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
             <div class="stat-box"><div class="stat-label">${t('lobby.totalSpent')}</div><div class="stat-value">${save.economy.totalSpent}</div></div>
             <div class="stat-box"><div class="stat-label">${t('lobby.totalEarned')}</div><div class="stat-value">${save.economy.totalEarned}</div></div>
           </div>
+        </div>
+      </div>
+
+
+
+      <div class="panel campaign-score-panel">
+        <div class="panel-header">${t('lobby.commercialReadiness')}</div>
+        <div class="panel-body stack">
+          <div class="stat-strip">
+            <div class="stat-box"><div class="stat-label">${t('lobby.bestScore')}</div><div class="stat-value">${save.progression.bestScore || 0}</div></div>
+            <div class="stat-box"><div class="stat-label">${t('lobby.lastScore')}</div><div class="stat-value">${lastReport ? lastReport.score : '--'}</div></div>
+            <div class="stat-box"><div class="stat-label">${t('lobby.reportCount')}</div><div class="stat-value">${reports.length}</div></div>
+          </div>
+          <div class="empty-state compact">${lastReport ? t('lobby.lastReport', { hull: lastReport.hull ?? '--', stealth: lastReport.stealth ?? '--', shots: lastReport.shots ?? '--' }) : t('lobby.noReports')}</div>
         </div>
       </div>
 

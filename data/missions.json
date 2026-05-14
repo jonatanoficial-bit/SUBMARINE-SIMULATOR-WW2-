@@ -18,7 +18,15 @@
     "escortSensitivity": 0.95,
     "targetDrift": 0.65,
     "targetWave": 0.28,
-    "targetBob": 4
+    "targetBob": 4,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m1.history",
+    "bonusReward": 490,
+    "bonusXp": 60
   },
   {
     "id": "m2",
@@ -39,7 +47,15 @@
     "escortSensitivity": 1.05,
     "targetDrift": 0.72,
     "targetWave": 0.33,
-    "targetBob": 6
+    "targetBob": 6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m2.history",
+    "bonusReward": 530,
+    "bonusXp": 65
   },
   {
     "id": "m3",
@@ -60,7 +76,15 @@
     "escortSensitivity": 1.12,
     "targetDrift": 0.78,
     "targetWave": 0.3,
-    "targetBob": 5
+    "targetBob": 5,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m3.history",
+    "bonusReward": 570,
+    "bonusXp": 70
   },
   {
     "id": "m4",
@@ -81,7 +105,15 @@
     "escortSensitivity": 1.2,
     "targetDrift": 0.84,
     "targetWave": 0.36,
-    "targetBob": 8
+    "targetBob": 8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m4.history",
+    "bonusReward": 610,
+    "bonusXp": 75
   },
   {
     "id": "m5",
@@ -102,7 +134,15 @@
     "escortSensitivity": 1.25,
     "targetDrift": 0.88,
     "targetWave": 0.4,
-    "targetBob": 8
+    "targetBob": 8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m5.history",
+    "bonusReward": 650,
+    "bonusXp": 80
   },
   {
     "id": "m6",
@@ -123,7 +163,15 @@
     "escortSensitivity": 1.32,
     "targetDrift": 0.95,
     "targetWave": 0.42,
-    "targetBob": 8
+    "targetBob": 8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m6.history",
+    "bonusReward": 690,
+    "bonusXp": 85
   },
   {
     "id": "m7",
@@ -144,7 +192,15 @@
     "escortSensitivity": 1.4,
     "targetDrift": 1.02,
     "targetWave": 0.44,
-    "targetBob": 10
+    "targetBob": 10,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m7.history",
+    "bonusReward": 730,
+    "bonusXp": 90
   },
   {
     "id": "m8",
@@ -165,7 +221,15 @@
     "escortSensitivity": 1.45,
     "targetDrift": 1.04,
     "targetWave": 0.48,
-    "targetBob": 10
+    "targetBob": 10,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m8.history",
+    "bonusReward": 770,
+    "bonusXp": 95
   },
   {
     "id": "m9",
@@ -186,7 +250,15 @@
     "escortSensitivity": 1.5,
     "targetDrift": 1.1,
     "targetWave": 0.52,
-    "targetBob": 12
+    "targetBob": 12,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m9.history",
+    "bonusReward": 810,
+    "bonusXp": 100
   },
   {
     "id": "m10",
@@ -207,7 +279,15 @@
     "escortSensitivity": 1.56,
     "targetDrift": 1.14,
     "targetWave": 0.55,
-    "targetBob": 12
+    "targetBob": 12,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m10.history",
+    "bonusReward": 850,
+    "bonusXp": 105
   },
   {
     "id": "m11",
@@ -228,7 +308,15 @@
     "escortSensitivity": 1.62,
     "targetDrift": 1.18,
     "targetWave": 0.57,
-    "targetBob": 12
+    "targetBob": 12,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m11.history",
+    "bonusReward": 890,
+    "bonusXp": 110
   },
   {
     "id": "m12",
@@ -249,7 +337,15 @@
     "escortSensitivity": 1.7,
     "targetDrift": 1.22,
     "targetWave": 0.6,
-    "targetBob": 14
+    "targetBob": 14,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m12.history",
+    "bonusReward": 930,
+    "bonusXp": 115
   },
   {
     "id": "m13",
@@ -271,6 +367,14 @@
     "escortSensitivity": 1.0,
     "targetDrift": 0.75,
     "targetWave": 0.3,
-    "targetBob": 6
+    "targetBob": 6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.m13.history",
+    "bonusReward": 970,
+    "bonusXp": 120
   }
 ]

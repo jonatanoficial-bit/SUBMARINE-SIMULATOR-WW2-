@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2",
-  "short_name": "Submarine WW2",
+  "name": "Submarine Commander WW2 v0.8.0",
+  "short_name": "Sub Commander",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -29,5 +29,6 @@
     "games",
     "simulation",
     "strategy"
-  ]
+  ],
+  "version": "0.8.0"
 }
