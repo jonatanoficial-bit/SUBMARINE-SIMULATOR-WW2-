@@ -21,6 +21,14 @@ export function renderSettings(t, settings) {
       </div>
 
       <div class="panel">
+        <div class="panel-header">${t('settings.mobile')}</div>
+        <div class="panel-body stack">
+          <button class="button block" data-action="request-fullscreen">${t('settings.fullscreen')}</button>
+          <div class="empty-state compact">${t('settings.fullscreenHint')}</div>
+        </div>
+      </div>
+
+      <div class="panel">
         <div class="panel-body stack">
           <label class="slider-row">
             <span>${t('settings.music')}: ${settings.music}</span>

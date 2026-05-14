@@ -21,3 +21,19 @@ Este ZIP contém apenas uma pasta principal da build atual, seguindo o padrão V
 - Reparo emergencial durante missão.
 - Reparo completo na oficina/arsenal com custo em créditos.
 - Integridade do casco e sistemas persistem no save local.
+
+
+## Build v0.6.0 — Fullscreen Mobile + Sistema Antiquebra
+
+Data/hora: 2026-05-14 14:01
+Progresso geral: 87%
+
+Inclui:
+- PWA em display fullscreen com orientação portrait.
+- Botão de tela cheia no menu e em configurações.
+- Safe loader para imagens ausentes com fallback visual.
+- Guardas globais de erro para evitar tela branca.
+- Unidade dinâmica de viewport para Android (`--vh`).
+- Service worker mais tolerante a assets ausentes.
+
+Regra Vale Games: ZIP completo, uma única pasta principal, build visível no jogo.

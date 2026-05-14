@@ -1,1 +1,1 @@
-export const BUILD_INFO = { version: 'v0.5.1', date: '2026-04-23', time: '22:10', progress: '84' };
+export const BUILD_INFO = { version: 'v0.6.0', date: '2026-05-14', time: '14:01', progress: '87' };

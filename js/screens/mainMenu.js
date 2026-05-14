@@ -18,6 +18,7 @@ export function renderMainMenu(t, hasSave, settingsLanguage) {
         <div class="panel-body main-menu-actions">
           <button class="button block" data-action="go-new-game">${t('menu.newGame')}</button>
           <button class="button secondary block" data-action="continue" ${hasSave ? '' : 'disabled'}>${t('menu.continue')}</button>
+          <button class="button ghost block" data-action="request-fullscreen">${t('menu.fullscreen')}</button>
           <button class="button ghost block" data-nav="settings">${t('menu.settings')}</button>
           <div class="main-menu-grid">
             <button class="chip ${settingsLanguage === 'pt-BR' ? 'active' : ''}" data-action="set-language" data-lang="pt-BR">${t('languages.ptBR')}</button>

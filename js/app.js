@@ -14,6 +14,7 @@ import { renderCrew } from './screens/crew.js';
 import { renderSettings } from './screens/settings.js';
 import { renderBriefing } from './screens/briefing.js';
 import { renderGameplay, mountGameplay, cleanupGameplay } from './screens/gameplay.js';
+import { initSafety, requestFullscreenSafe, vibrateSafe } from './safety.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
@@ -240,6 +241,7 @@ function initEvents() {
       case 'set-language': setLanguage(target.dataset.lang); syncPersistentSettings(); applyDocumentLanguage(); render(); break;
       case 'toggle-vibration': setSettings({ vibration: !state.settings.vibration }); commitSave('toast.settingsSaved'); render(); break;
       case 'reset-progress': handleReset(); break;
+      case 'request-fullscreen': requestFullscreenSafe(); vibrateSafe(12); showToast(t('toast.fullscreen')); break;
       case 'unlock-submarine': handleUnlockSubmarine(target.dataset.submarine); break;
       case 'equip-submarine': handleEquipSubmarine(target.dataset.submarine); break;
       case 'buy-upgrade': handleBuyUpgrade(target.dataset.upgrade); break;
@@ -300,4 +302,5 @@ async function boot() {
 }
 
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}));
+initSafety();
 initEvents(); render(); boot();

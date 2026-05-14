@@ -8,3 +8,16 @@
 @media (min-width: 460px) {
   .avatar-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+
+/* v0.6.0 mobile fullscreen safeguards */
+@media (display-mode: fullscreen), (display-mode: standalone) {
+  .build-footer { opacity: .72; }
+  .app-shell { padding-top: max(10px, env(safe-area-inset-top)); }
+}
+@media (max-width: 520px) {
+  :root { --container: min(100vw - 12px, 480px); }
+  .button { min-height: 52px; }
+  .periscope-modal { padding: max(10px, env(safe-area-inset-top)) 8px max(10px, env(safe-area-inset-bottom)); }
+  .periscope-controls-grid { position: sticky; bottom: env(safe-area-inset-bottom); }
+}

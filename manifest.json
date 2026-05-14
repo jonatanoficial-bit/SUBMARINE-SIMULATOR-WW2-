@@ -1,8 +1,8 @@
 {
   "name": "Submarine Commander WW2",
   "short_name": "Submarine WW2",
-  "start_url": ".",
-  "display": "standalone",
+  "start_url": "./index.html",
+  "display": "fullscreen",
   "background_color": "#0b1420",
   "theme_color": "#0b1420",
   "lang": "pt-BR",
@@ -17,5 +17,17 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
+  "orientation": "portrait",
+  "scope": "./",
+  "description": "Submarine Commander WW2 — simulador tático mobile-first da Vale Games.",
+  "categories": [
+    "games",
+    "simulation",
+    "strategy"
   ]
 }

@@ -273,5 +273,10 @@
   "repair.missionLostTitle": "Misión perdida",
   "repair.missionLostText": "Casco comprometido. Vuelva al taller para reparar el submarino antes de la próxima patrulla.",
   "toast.submarineRepaired": "Submarino reparado.",
-  "toast.noRepairsNeeded": "No se necesitan reparaciones."
+  "toast.noRepairsNeeded": "No se necesitan reparaciones.",
+  "menu.fullscreen": "Pantalla completa",
+  "settings.mobile": "Móvil / Android",
+  "settings.fullscreen": "Activar pantalla completa",
+  "settings.fullscreenHint": "En Android, usa pantalla completa o instala como PWA para mayor inmersión.",
+  "toast.fullscreen": "Modo pantalla completa solicitado."
 }

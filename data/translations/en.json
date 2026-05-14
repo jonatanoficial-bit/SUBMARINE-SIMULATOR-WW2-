@@ -273,5 +273,10 @@
   "repair.missionLostTitle": "Mission failed",
   "repair.missionLostText": "Hull compromised. Return to the workshop to repair the submarine before the next patrol.",
   "toast.submarineRepaired": "Submarine repaired.",
-  "toast.noRepairsNeeded": "No repairs needed."
+  "toast.noRepairsNeeded": "No repairs needed.",
+  "menu.fullscreen": "Fullscreen",
+  "settings.mobile": "Mobile / Android",
+  "settings.fullscreen": "Enable fullscreen",
+  "settings.fullscreenHint": "On Android, use fullscreen or install as PWA for better immersion.",
+  "toast.fullscreen": "Fullscreen mode requested."
 }
