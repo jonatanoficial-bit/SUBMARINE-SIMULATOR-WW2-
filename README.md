@@ -37,3 +37,10 @@ Inclui:
 - Service worker mais tolerante a assets ausentes.
 
 Regra Vale Games: ZIP completo, uma única pasta principal, build visível no jogo.
+
+
+## Build v0.7.0
+- Combate avançado com dano por sistemas.
+- Ações táticas: corrida silenciosa, mergulho de emergência e iscas.
+- IA da escolta com cargas de profundidade e pressão de sobrevivência.
+- Radar preservado conforme build aprovada.

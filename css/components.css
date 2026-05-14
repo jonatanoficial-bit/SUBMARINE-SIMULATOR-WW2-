@@ -550,3 +550,23 @@ input[type="range"] { width: 100%; accent-color: var(--gold-strong); }
 .repair-panel .progress-bar > span { background: linear-gradient(90deg, #d95b46, #e8c76c 50%, #77d48d); }
 @media (max-width: 720px) { .gameplay-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .gameplay-kpis { grid-template-columns: 1fr; } }
+
+
+/* v0.7.0 combat advanced: systems, survival actions and status bars */
+.systems-panel {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(4,12,16,.72), rgba(10,22,24,.48));
+  border: 1px solid rgba(212,172,91,.22);
+}
+.systems-title { color: #ffe1a6; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+.system-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; font-size: 12px; color: var(--text-soft); }
+.system-row i { grid-column: 1 / -1; display: block; height: 8px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.06); }
+.system-row em { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #69ff9a, #d0ff8a); transition: width .22s ease; }
+.system-row em[data-level="warning"] { background: linear-gradient(90deg, #ffd45e, #ff9c45); }
+.system-row em[data-level="critical"] { background: linear-gradient(90deg, #ff6b57, #ff2e2e); box-shadow: 0 0 10px rgba(255,64,64,.45); }
+.tactical-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.tactical-grid .button { min-height: 44px; padding-inline: 8px; font-size: 12px; }
+@media (max-width: 520px) { .tactical-grid { grid-template-columns: 1fr; } }
