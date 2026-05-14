@@ -1,7 +1,9 @@
 {
-  "version": "v0.8.0",
+  "version": "v1.0.0",
   "date": "2026-05-14",
-  "time": "14:35",
-  "progress": 94,
-  "phase": "Campanha comercial, objetivos secundários e tutorial"
+  "time": "21:20",
+  "progress": 100,
+  "release": true,
+  "releaseName": "Commercial Release",
+  "notes": "Full commercial release candidate for GitHub Pages/PWA with campaign, combat, repair, survival, fullscreen mobile and trilingual interface."
 }

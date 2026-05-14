@@ -1,50 +1,34 @@
-# Submarine Commander WW2 — Build v0.3.0
+# Submarine Commander WW2 — Build v1.0.0
 
-Build focada em sistemas funcionais.
+Release comercial inicial da Vale Games para simulador tático de submarino da Segunda Guerra Mundial.
 
-## Inclui
-- fundação jogável da carreira
-- economia, progressão, campanha, arsenal e tripulação
-- profundidade funcional com ponteiro real
-- velocidade funcional com alavanca real
-- radar tático funcional com scan e contatos
-- periscópio funcional com panorama, mira, lente e disparo de torpedo
-- impacto com explosão e erro com respingo
-- PT-BR, English e Español
+## Build
 
-## Estrutura
-Este ZIP contém apenas uma pasta principal da build atual, seguindo o padrão Vale Games.
+- Versão: v1.0.0
+- Data/hora: 2026-05-14 21:20
+- Progresso: 100%
+- Plataforma: Web/PWA mobile-first para Android
+- Hospedagem: GitHub Pages
+- Idiomas: Português BR, English, Español
 
+## Conteúdo principal
 
-## Build v0.5.1
-- Coerência de derrota: ações bloqueadas e resultado claro quando o casco é comprometido.
-- Reparo emergencial durante missão.
-- Reparo completo na oficina/arsenal com custo em créditos.
-- Integridade do casco e sistemas persistem no save local.
+- Splash, menu inicial, novo jogo, continuar, criação de comandante, lobby e settings.
+- Campanha com missões históricas/inspiradas em teatros reais da Segunda Guerra Mundial.
+- Arsenal, upgrades, tripulação, economia, XP e progressão.
+- Gameplay com radar, periscópio, profundidade, velocidade, torpedos, dano e reparo.
+- IA inicial de destroyer com patrulha, alerta e caça.
+- Dano por sistemas: motores, sonar, periscópio e armas.
+- Reparo emergencial na missão e reparo completo na oficina.
+- Áudio procedural e feedback visual premium.
+- PWA fullscreen/portrait com proteções antiquebra.
 
+## Publicação rápida
 
-## Build v0.6.0 — Fullscreen Mobile + Sistema Antiquebra
+1. Publique o conteúdo da pasta principal no GitHub Pages.
+2. Garanta que `index.html` fique na raiz publicada.
+3. Abra no Android Chrome e use "Adicionar à tela inicial" para experiência fullscreen.
 
-Data/hora: 2026-05-14 14:01
-Progresso geral: 87%
+## Regra Vale Games
 
-Inclui:
-- PWA em display fullscreen com orientação portrait.
-- Botão de tela cheia no menu e em configurações.
-- Safe loader para imagens ausentes com fallback visual.
-- Guardas globais de erro para evitar tela branca.
-- Unidade dinâmica de viewport para Android (`--vh`).
-- Service worker mais tolerante a assets ausentes.
-
-Regra Vale Games: ZIP completo, uma única pasta principal, build visível no jogo.
-
-
-## Build v0.7.0
-- Combate avançado com dano por sistemas.
-- Ações táticas: corrida silenciosa, mergulho de emergência e iscas.
-- IA da escolta com cargas de profundidade e pressão de sobrevivência.
-- Radar preservado conforme build aprovada.
-
-
-## v0.8.0
-Campanha comercial: objetivos vivos, briefing com contexto histórico, tutorial de combate, relatório de desempenho e pontuação de missão.
+Cada nova atualização deve ser entregue como ZIP completo do jogo inteiro, contendo apenas a versão atual e com build visível no jogo.

@@ -1,3 +1,4 @@
+import { playSfx } from '../audio.js';
 let cleanupFns = [];
 
 const SPEEDS = ['stop', 'slow', 'half', 'full', 'flank'];
@@ -11,8 +12,8 @@ const VIEW_STEP_X = 24;
 const VIEW_STEP_Y = 12;
 const VIEW_RANGE_X = 260;
 const VIEW_RANGE_Y = 88;
-const TARGET_LOCK_X = 96;
-const TARGET_LOCK_Y = 62;
+const TARGET_LOCK_X = 116;
+const TARGET_LOCK_Y = 76;
 const ESCORT_THREAT_RANGE = 110;
 const EMERGENCY_REPAIR_AMOUNT = 28;
 const EMERGENCY_REPAIR_USES = 2;
@@ -355,8 +356,10 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
   function setEscortState(nextState) {
     const order = { patrol: 0, alert: 1, hunt: 2 };
     if ((order[nextState] ?? 0) < (order[session.escortState] ?? 0)) return;
+    const prevState = session.escortState;
     session.escortState = nextState;
     session.escortAggro = nextState !== 'patrol';
+    if (prevState !== nextState && nextState !== 'patrol') playSfx(nextState === 'hunt' ? 'alert' : 'sonar');
   }
 
   function getEscortStateLabel() {
@@ -405,6 +408,9 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     const affected = systemKey || ['engines', 'sonar', 'periscope', 'weapons'][session.worldTime % 4];
     session.systems[affected] = clamp((session.systems[affected] ?? 100) - Math.max(2, Math.round(amount * 0.72)), 0, 100);
     session.damageFlashTicks = 18;
+    playSfx('damage');
+    document.body.classList.add('damage-flash');
+    setTimeout(() => document.body.classList.remove('damage-flash'), 360);
     setHintKey(hintKey);
     onHullUpdate(session.hull, session.systems);
     if (session.hull <= 0) failMission();
@@ -412,6 +418,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
 
   function triggerSilentRunning() {
     if (session.missionFailed || session.repairTicks > 0) return;
+    playSfx('sonar');
     session.silentTicks = SILENT_TICKS;
     session.speed = 'slow';
     session.detectionScore = clamp(session.detectionScore - 18, 0, 100);
@@ -421,6 +428,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
 
   function triggerEmergencyDive() {
     if (session.missionFailed || session.repairTicks > 0 || session.emergencyDiveCooldown > 0) return;
+    playSfx('alert');
     session.depth = clamp(session.depth + 72, DEPTH_MIN, DEPTH_MAX);
     session.speed = 'slow';
     session.periscopeOpen = false;
@@ -433,6 +441,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
 
   function launchDecoy() {
     if (session.missionFailed || session.repairTicks > 0 || session.decoys <= 0) return;
+    playSfx('sonar');
     session.decoys -= 1;
     session.decoyTicks = DECOY_TICKS;
     session.detectionScore = clamp(session.detectionScore - 30, 0, 100);
@@ -727,6 +736,7 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
     if (session.torpedoes <= 0) { setHintKey('gameplay.hintNoTorpedoes'); updateHUD(); return; }
     if (session.torpedoActive || session.targetDestroyed || session.missionFailed || session.repairTicks > 0) return;
     hideShotEffects();
+    playSfx('torpedo');
     session.torpedoActive = true;
     session.metrics.shots += 1;
     session.torpedoes -= 1;
@@ -746,11 +756,15 @@ export function mountGameplay({ app, mission, initialHull = 100, initialSystems 
         session.canComplete = true;
         setEscortState('hunt');
         els.impactExplosion.classList.remove('hidden');
+        playSfx('hit');
+        document.body.classList.add('combat-success');
+        setTimeout(() => document.body.classList.remove('combat-success'), 520);
         els.completeMission.classList.remove('hidden');
       } else {
         session.systems.weapons = clamp((session.systems.weapons ?? 100) - 7, 0, 100);
         setEscortState('alert');
         els.impactSplash.classList.remove('hidden');
+        playSfx('miss');
         setHintKey('gameplay.hintMiss');
       }
       updatePeriscopeVisuals();

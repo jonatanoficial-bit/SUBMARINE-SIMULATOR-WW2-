@@ -570,3 +570,64 @@ input[type="range"] { width: 100%; accent-color: var(--gold-strong); }
 .tactical-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
 .tactical-grid .button { min-height: 44px; padding-inline: 8px; font-size: 12px; }
 @media (max-width: 520px) { .tactical-grid { grid-template-columns: 1fr; } }
+
+
+/* v0.9.0 premium polish: feedback, audio-ready UI and final mobile refinement */
+body.damage-flash::after,
+body.combat-success::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  animation: vgFeedbackFlash .46s ease-out;
+}
+body.damage-flash::after { background: radial-gradient(circle, transparent 34%, rgba(255,45,30,.24) 100%); }
+body.combat-success::after { background: radial-gradient(circle, transparent 38%, rgba(255,190,75,.22) 100%); }
+@keyframes vgFeedbackFlash { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0; } }
+
+.button:active, .chip:active { transform: translateY(1px) scale(.985); filter: brightness(1.12); }
+.button.warn { box-shadow: 0 0 0 1px rgba(255,134,91,.25), 0 12px 24px rgba(126,35,20,.28); }
+.panel { backdrop-filter: blur(8px); }
+.stat-box, .system-row, .objective-line { transition: border-color .22s ease, background .22s ease, transform .22s ease; }
+.objective-dot.done { animation: vgObjectivePulse 1.2s ease-out 1; }
+@keyframes vgObjectivePulse { 0% { transform: scale(.7); } 45% { transform: scale(1.24); } 100% { transform: scale(1); } }
+
+.radar-css-scan { animation: vgRadarGlow 1.65s linear infinite; }
+@keyframes vgRadarGlow { 0%,100% { opacity:.55; } 48% { opacity:.92; } }
+.periscope-lock.active { color: #b7ffd5; text-shadow: 0 0 14px rgba(76,255,141,.5); }
+.periscope-window::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 28%, rgba(0,0,0,.12) 100%);
+  mix-blend-mode: screen;
+}
+.torpedo-shot:not(.hidden) { animation: vgTorpedoRun .9s ease-in forwards; }
+@keyframes vgTorpedoRun { from { transform: translate(-38%, 22%) scale(.75); opacity:.2; } to { transform: translate(34%, -8%) scale(1.05); opacity:1; } }
+.impact-explosion:not(.hidden) { animation: vgImpact .42s ease-out; }
+.impact-splash:not(.hidden) { animation: vgImpact .32s ease-out; }
+@keyframes vgImpact { from { transform: scale(.45); opacity:.2; } to { transform: scale(1); opacity:1; } }
+
+@media (max-width: 520px) {
+  .periscope-shell.css-periscope { width: min(96vw, 400px); }
+  .periscope-controls-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .screen-header { gap: 8px; }
+  .button { min-height: 44px; }
+}
+
+
+/* v1.0.0 commercial release: final mobile polish and release safeguards */
+body.release-ready .button:active,
+body.release-ready .chip:active,
+body.release-ready .nav-button:active { transform: translateY(1px) scale(.99); }
+@media (max-width: 520px) {
+  .gameplay-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mission-live-panel .panel-body { gap: 8px; }
+  .periscope-lock { font-size: 12px; letter-spacing: 1.2px; }
+}
+@supports (padding: max(0px)) {
+  .periscope-actions { padding-top: max(0px, env(safe-area-inset-top)); }
+}

@@ -15,10 +15,12 @@ import { renderSettings } from './screens/settings.js';
 import { renderBriefing } from './screens/briefing.js';
 import { renderGameplay, mountGameplay, cleanupGameplay } from './screens/gameplay.js';
 import { initSafety, requestFullscreenSafe, vibrateSafe } from './safety.js';
+import { initAudio, setAudioLevels, playSfx } from './audio.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
 const toastEl = document.getElementById('toast');
+document.body.classList.add('release-ready');
 let toastTimer = null;
 
 const SCREEN_BACKGROUNDS = {
@@ -79,7 +81,7 @@ function setBackground(screen) {
   document.querySelector('.app-background').style.backgroundImage = `url(assets/backgrounds/${document.body.dataset.background}.png)`;
 }
 function updateFooter() { buildFooter.textContent = renderBuildFooter(t); }
-function syncPersistentSettings() { saveSettings(state.settings); }
+function syncPersistentSettings() { saveSettings(state.settings); setAudioLevels(state.settings); }
 function commitSave(messageKey) {
   if (state.save) {
     state.save.meta.updatedAt = new Date().toISOString();
@@ -227,6 +229,7 @@ function initEvents() {
   document.addEventListener('click', (event) => {
     const target = event.target.closest('[data-nav], [data-action]');
     if (!target) return;
+    playSfx('tap');
     const nav = target.dataset.nav;
     if (nav) {
       if (nav !== 'settings' && !state.save && ['lobby', 'campaign', 'briefing', 'arsenal', 'crew', 'gameplay'].includes(nav)) { showToast(t('menu.noSave')); return; }
@@ -299,6 +302,7 @@ async function boot() {
     const [data, settings, save] = await Promise.all([loadGameData(), Promise.resolve(loadSettings()), Promise.resolve(loadSave())]);
     setData(data);
     if (settings) setSettings(settings);
+    initAudio(state.settings);
     setLanguage(settings?.language || 'pt-BR');
     if (save) setSave(save);
     syncMissionAvailability();
