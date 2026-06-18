@@ -1,0 +1,20 @@
+{
+  "missionCount": 13,
+  "quietMissionsWithoutDamage": 13,
+  "minimumPeriscopeDamageSeconds": 50.4,
+  "minimumTorpedoDamageSeconds": 36,
+  "missionsFailedWithin90SecondsAfterTorpedo": 0
+}
+m1   quietDamage=null  periscopeDamage=65.44  torpedoDamage=36     torpedoFail=null
+m2   quietDamage=null  periscopeDamage=59.44  torpedoDamage=36     torpedoFail=null
+m3   quietDamage=null  periscopeDamage=57.76  torpedoDamage=36     torpedoFail=null
+m4   quietDamage=null  periscopeDamage=56     torpedoDamage=46.16  torpedoFail=null
+m5   quietDamage=null  periscopeDamage=55.04  torpedoDamage=45.52  torpedoFail=null
+m6   quietDamage=null  periscopeDamage=54.16  torpedoDamage=36     torpedoFail=null
+m7   quietDamage=null  periscopeDamage=53.84  torpedoDamage=36     torpedoFail=null
+m8   quietDamage=null  periscopeDamage=53.12  torpedoDamage=36     torpedoFail=null
+m9   quietDamage=null  periscopeDamage=52.48  torpedoDamage=36     torpedoFail=null
+m10  quietDamage=null  periscopeDamage=51.76  torpedoDamage=36     torpedoFail=null
+m11  quietDamage=null  periscopeDamage=51.2   torpedoDamage=36     torpedoFail=null
+m12  quietDamage=null  periscopeDamage=50.4   torpedoDamage=36     torpedoFail=null
+m13  quietDamage=null  periscopeDamage=63.6   torpedoDamage=50.48  torpedoFail=null

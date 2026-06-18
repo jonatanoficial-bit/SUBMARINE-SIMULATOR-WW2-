@@ -1,0 +1,149 @@
+{
+  "summary": {
+    "passed": 28,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone menu has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name is sanitized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary combat control remains above fold",
+      "status": "PASS",
+      "details": "{'x': 23.953125, 'y': 523.171875, 'width': 312.09375, 'height': 58}"
+    },
+    {
+      "name": "Simulation engine mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 3, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'physicsVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 1, 'elapsedMs': 80}}"
+    },
+    {
+      "name": "Navigation and physics subsystems mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 3, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'physicsVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 1, 'elapsedMs': 80}}"
+    },
+    {
+      "name": "Physics station is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot schema includes physics",
+      "status": "PASS",
+      "details": "{'depth': 12, 'orderedDepth': 12, 'verticalSpeed': 0, 'ballast': 50, 'ballastCommand': 'auto', 'trim': 0, 'depthHold': True, 'pressurePercent': 6.185567010309279, 'hullStress': 0, 'fuel': 100, 'battery': 99.99994490010515, 'oxygen': 99.99997008888889, 'co2': 3.671111111111111e-05, 'noise': 15.253333333333332, 'cavitation': 0, 'actualSpeedKnots': 2.8195200000000002, 'propulsionEfficiency': 0.88, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': True, 'simulatedElapsedMs': 80, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}"
+    },
+    {
+      "name": "Depth, battery and oxygen meters read live state",
+      "status": "PASS",
+      "details": "{'depth': '12.0 m', 'battery': '100%', 'oxygen': '100%'}"
+    },
+    {
+      "name": "Depth changes progressively instead of teleporting",
+      "status": "PASS",
+      "details": "{'before': 12, 'beforeOrder': 12, 'immediate': 12, 'order': 72, 'after': 24.69089521140847, 'vertical': 1.7103477997440903}"
+    },
+    {
+      "name": "Ballast controls change measured ballast and vertical motion",
+      "status": "PASS",
+      "details": "{'before': 67.51879052073276, 'flooded': 93.91879052073263, 'blown': 67.51879052073276, 'verticalFlood': 1.80645116772148, 'verticalBlow': 0.858712287721485}"
+    },
+    {
+      "name": "Trim meter responds and level command restores hold",
+      "status": "PASS",
+      "details": "{'moved': 6.292099636977758, 'level': 0, 'hold': True}"
+    },
+    {
+      "name": "Submerged resource meters consume battery and atmosphere",
+      "status": "PASS",
+      "details": "{'depth': 59.17879626500619, 'orderedDepth': 60, 'verticalSpeed': -0.20530093374845268, 'ballast': 45.706438561392574, 'ballastCommand': 'auto', 'trim': -1.202197202810079, 'depthHold': True, 'pressurePercent': 30.504534157219688, 'hullStress': 0, 'fuel': 100, 'battery': 74.198738170347, 'oxygen': 78.276, 'co2': 12.138, 'noise': 58.159534450867625, 'cavitation': 0, 'actualSpeedKnots': 6.719856, 'propulsionEfficiency': 0.6292, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': False, 'simulatedElapsedMs': 3612960, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}"
+    },
+    {
+      "name": "Map click adds exactly one waypoint",
+      "status": "PASS",
+      "details": "3->4"
+    },
+    {
+      "name": "Periscope forces time compression to 1x",
+      "status": "PASS",
+      "details": "{'opened': {'ok': True}, 'nav': {'missionId': 'm1', 'position': {'lat': 48.09005862459136, 'lon': -15.58978755212858}, 'heading': 67.16753016208798, 'orderedHeading': 66.22670791317461, 'rudder': -1.6054614798641296, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.7034375, 'lon': -14.21875, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.7122603481740084, 'nextWaypointBearing': 66.22669501491652, 'routeDistanceNm': 78.1494298121573, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 13040, 'distanceTravelledNm': 0.009212468319999998, 'speedKnots': 2.29086, 'etaHours': 34.11357735180557, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}}"
+    },
+    {
+      "name": "Operation autosave is offered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave restores all critical gauges",
+      "status": "PASS",
+      "details": "{'depth': 72.06860736, 'orderedDepth': 105, 'verticalSpeed': 0.857592, 'ballast': 66.12, 'ballastCommand': 'auto', 'trim': 3.7199999999999998, 'depthHold': True, 'pressurePercent': 37.14876668041237, 'hullStress': 0, 'fuel': 84, 'battery': 62.999944900105156, 'oxygen': 76.99997008888889, 'co2': 19.00003671111111, 'noise': 26.948788533333328, 'cavitation': 0, 'actualSpeedKnots': 2.0159568, 'propulsionEfficiency': 0.6292, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': False, 'simulatedElapsedMs': 3613120, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}"
+    },
+    {
+      "name": "Operation autosave preserves navigation",
+      "status": "PASS",
+      "details": "{'lat': 48.0900589143615, 'lon': -15.589786521937393}"
+    },
+    {
+      "name": "Combat remains deterministic",
+      "status": "PASS",
+      "details": "{'score': 36, 'bonusCredits': 176, 'bonusXp': 22, 'hull': 12, 'stealth': 0, 'shots': 1}"
+    },
+    {
+      "name": "320x568 gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 combat control remains reachable",
+      "status": "PASS",
+      "details": "{'x': 20, 'y': 429.34375, 'width': 280, 'height': 58}"
+    },
+    {
+      "name": "Desktop gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop physics console uses multiple columns",
+      "status": "PASS",
+      "details": "734.391px 489.594px"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

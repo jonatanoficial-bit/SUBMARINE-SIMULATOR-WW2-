@@ -1,0 +1,89 @@
+/* Phase 7 — hydrophone, active sonar, radar and contact acquisition */
+.sensor-kpi .stat-value { color:#9de8ff; }
+.sensor-panel { overflow:hidden; }
+.sensor-panel-header { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.sensor-mode-badge { padding:5px 9px; border:1px solid rgba(83,213,255,.45); border-radius:999px; background:rgba(8,54,70,.55); color:#aeeeff; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
+.sensor-layout { display:grid; gap:12px; }
+.sensor-scope-column { min-width:0; }
+.sensor-scope { width:min(100%,320px); margin-inline:auto; }
+.sensor-scope .radar-base { isolation:isolate; }
+.sensor-scope-legend { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:8px; color:var(--muted); font-size:.72rem; }
+.sensor-scope-legend span { display:inline-flex; align-items:center; gap:6px; }
+.sensor-legend-dot { width:8px; height:8px; border-radius:50%; display:inline-block; box-shadow:0 0 8px currentColor; }
+.sensor-legend-dot.target { color:#ffca69; background:#ffca69; }
+.sensor-legend-dot.escort { color:#ff6d68; background:#ff6d68; }
+.hydrophone-bearing-line { position:absolute; left:50%; top:50%; width:2px; height:46%; transform-origin:50% 100%; background:linear-gradient(to top,rgba(90,226,255,.1),rgba(90,226,255,.9)); box-shadow:0 0 8px rgba(90,226,255,.55); z-index:3; transition:transform 150ms linear,opacity 180ms ease; }
+.hydrophone-bearing-line::after { content:""; position:absolute; top:-3px; left:50%; width:7px; height:7px; transform:translateX(-50%) rotate(45deg); background:#79e8ff; }
+.hydrophone-bearing-line.inactive { opacity:.18; }
+.radar-scan.inactive { opacity:.12; }
+.active-ping-wave { position:absolute; inset:50%; width:8px; height:8px; border:2px solid rgba(133,238,255,.9); border-radius:50%; transform:translate(-50%,-50%); z-index:4; animation:sensor-ping 1.05s ease-out infinite; pointer-events:none; }
+.radar-icon[data-confidence="low"] { opacity:.45; filter:blur(.5px); }
+.radar-icon[data-confidence="medium"] { opacity:.75; }
+.radar-icon[data-confidence="high"] { opacity:1; filter:drop-shadow(0 0 7px currentColor); }
+.radar-icon.stale { opacity:.35; animation:sensor-stale 1.2s steps(2,end) infinite; }
+.sensor-console { display:grid; gap:10px; min-width:0; }
+.sensor-mode-grid,.sensor-bearing-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.sensor-mode-grid .chip.active,.radar-mast-toggle.active { color:#061b23; background:#80e7ff; border-color:#b8f1ff; }
+.sensor-bearing-control { padding:10px; border:1px solid rgba(113,199,225,.2); border-radius:9px; background:rgba(5,24,32,.72); }
+.sensor-bearing-control > span { display:block; color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; }
+.sensor-bearing-control > strong { display:block; margin:5px 0 9px; color:#d9f8ff; font-size:1.35rem; letter-spacing:.08em; }
+.sensor-action-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.sensor-profile-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.sensor-profile-grid > div { padding:8px 9px; border:1px solid rgba(113,199,225,.16); border-radius:8px; background:rgba(5,24,32,.58); min-width:0; }
+.sensor-profile-grid span { display:block; color:var(--muted); font-size:.68rem; text-transform:uppercase; }
+.sensor-profile-grid strong { display:block; margin-top:3px; color:#e4faff; overflow-wrap:anywhere; }
+.sensor-message { padding:9px 10px; border-left:3px solid #55d9a4; background:rgba(20,91,68,.2); color:#bdebd9; font-size:.76rem; line-height:1.35; }
+.sensor-message.warning { border-left-color:#ffb650; background:rgba(126,77,16,.22); color:#ffe0a8; }
+.sensor-contact-list { display:grid; gap:10px; }
+.sensor-contact-card { padding:10px; border:1px solid rgba(113,199,225,.16); border-radius:10px; background:linear-gradient(180deg,rgba(8,34,44,.84),rgba(4,20,28,.9)); opacity:.62; transition:opacity 160ms ease,border-color 160ms ease; }
+.sensor-contact-card.detected { opacity:1; border-color:rgba(95,218,248,.36); }
+.sensor-contact-card.stale { border-style:dashed; }
+.sensor-contact-card header,.sensor-contact-card > div { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+.sensor-contact-card header { margin-bottom:8px; padding-bottom:7px; border-bottom:1px solid rgba(255,255,255,.08); color:#dff8ff; }
+.sensor-contact-card header span { font-weight:700; }
+.sensor-contact-card header b { color:#8ceaff; }
+.sensor-contact-card > div { margin:5px 0; font-size:.74rem; }
+.sensor-contact-card > div span { color:var(--muted); }
+.sensor-contact-card > div strong { color:#effcff; text-align:right; }
+.sensor-contact-card > i { display:block; height:7px; margin-top:8px; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.08); }
+.sensor-contact-card > i em { display:block; height:100%; border-radius:inherit; background:#637c88; transition:width 180ms linear; }
+.sensor-contact-card > i em[data-state="medium"] { background:linear-gradient(90deg,#9e741d,#e8bd4d); }
+.sensor-contact-card > i em[data-state="high"] { background:linear-gradient(90deg,#238b71,#70e0bb); }
+.periscope-sensor-readout { position:absolute; left:50%; bottom:54px; transform:translateX(-50%); z-index:8; max-width:80%; padding:6px 10px; border:1px solid rgba(115,225,255,.28); border-radius:5px; background:rgba(1,16,22,.78); color:#9fb7bf; text-align:center; font-size:.72rem; letter-spacing:.04em; }
+.periscope-sensor-readout.active { color:#c8f7ff; border-color:rgba(115,225,255,.65); box-shadow:0 0 12px rgba(87,213,245,.16); }
+
+@keyframes sensor-ping { from { width:8px; height:8px; opacity:1; } to { width:88%; height:88%; opacity:0; } }
+@keyframes sensor-stale { 50% { opacity:.16; } }
+
+@media (min-width:620px) {
+  .sensor-layout { grid-template-columns:minmax(240px,.85fr) minmax(260px,1fr); align-items:start; }
+  .sensor-contact-list { grid-column:1/-1; grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media (min-width:1024px) {
+  .sensor-layout { grid-template-columns:minmax(250px,.8fr) minmax(260px,.9fr); }
+  .sensor-contact-list { grid-column:auto; grid-template-columns:1fr; }
+  .sensor-panel .panel-body { padding:12px; }
+}
+
+@media (max-width:380px) {
+  .sensor-action-grid,.sensor-profile-grid { grid-template-columns:1fr; }
+  .sensor-contact-card > div { align-items:flex-start; }
+}
+
+@media (orientation:landscape) and (max-height:540px) {
+  .sensor-layout { grid-template-columns:minmax(210px,.75fr) minmax(240px,1fr) minmax(220px,.8fr); }
+  .sensor-contact-list { grid-column:auto; grid-template-columns:1fr; }
+  .sensor-scope { width:min(100%,230px); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .active-ping-wave,.radar-icon.stale { animation:none; }
+  .hydrophone-bearing-line,.sensor-contact-card,.sensor-contact-card > i em { transition:none; }
+}
+
+@media (max-width: 619px) {
+  .gameplay-kpis .sensor-kpi {
+    display: none;
+  }
+}

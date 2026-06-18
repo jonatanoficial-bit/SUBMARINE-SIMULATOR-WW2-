@@ -1,0 +1,74 @@
+{
+  "summary": {
+    "passed": 13,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Deterministic sea environment is mounted",
+      "status": "PASS",
+      "details": "{'environmentVersion': 1, 'elapsedMs': 160, 'hour': 18.347771717171714, 'seaState': 1.999806204016875, 'beaufort': 4, 'windKnots': 12.154215092716978, 'windBearing': 198.00088888888877, 'precipitation': 2.0986002333333333, 'cloudCover': 36.48066462313744, 'visibilityMeters': 6465.082106211559, 'daylight': 71.74094276094299, 'lightCondition': 'dawnDusk', 'moonlight': 87, 'waterTemperatureC': 11, 'thermalLayerDepth': 30, 'ambientNoise': 33.845206873891385, 'acousticPropagation': 1.0319710729228257, 'visualFactor': 0.6293363738273328, 'radarClutter': 19.15248596448521, 'wavePhase': 0.0655996510432022, 'rollDegrees': 0.0894424583845049, 'pitchDegrees': 0.6336264216381982, 'horizonOffset': 0.14000896466115015, 'lastMessageKey': 'environment.steady'}"
+    },
+    {
+      "name": "Environment console exposes six live readouts",
+      "status": "PASS",
+      "details": "{'time': '18:20', 'sea': '2/6 · B4', 'visibility': '6.5 km', 'wind': '12 kn · 198°', 'layer': '30 m', 'noise': '34%'}"
+    },
+    {
+      "name": "Acoustic waterfall is rendered with 18 history rows",
+      "status": "PASS",
+      "details": "18"
+    },
+    {
+      "name": "Precise visual solution survives weaker passive updates",
+      "status": "PASS",
+      "details": "{'visualSource': 'periscope', 'visualUncertainty': 1.9897885204596903, 'fusedSource': 'periscope', 'supporting': 'hydrophone', 'fusedUncertainty': 1.9897885204596903, 'history': 5, 'trend': 'opening', 'aspect': 'crossing'}"
+    },
+    {
+      "name": "Contact fusion produces bounded history and motion analysis",
+      "status": "PASS",
+      "details": "{'visualSource': 'periscope', 'visualUncertainty': 1.9897885204596903, 'fusedSource': 'periscope', 'supporting': 'hydrophone', 'fusedUncertainty': 1.9897885204596903, 'history': 5, 'trend': 'opening', 'aspect': 'crossing'}"
+    },
+    {
+      "name": "Sensor card exposes signal, trend, estimated speed, age and history",
+      "status": "PASS",
+      "details": "{'signal': '35%', 'trend': 'Afastando · Cruzando', 'speed': '≈ 36.0 kn', 'age': '2 s', 'markers': 5}"
+    },
+    {
+      "name": "Hydrophone listening control remains interactive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Periscope renders horizon, weather, visibility and live sea data",
+      "status": "PASS",
+      "details": "{'horizon': True, 'weather': 'false', 'visibility': '0.371014', 'quality': '63%', 'sea': '2/6', 'targetHidden': False}"
+    },
+    {
+      "name": "Optical target presentation respects field of view and range",
+      "status": "PASS",
+      "details": "{'horizon': True, 'weather': 'false', 'visibility': '0.371014', 'quality': '63%', 'sea': '2/6', 'targetHidden': False}"
+    },
+    {
+      "name": "Operational console has no mobile horizontal overflow",
+      "status": "PASS",
+      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350}"
+    },
+    {
+      "name": "Mobile touch scrolling remains functional with realism panels",
+      "status": "PASS",
+      "details": "140"
+    },
+    {
+      "name": "Desktop environment strip expands to six columns without overflow",
+      "status": "PASS",
+      "details": "184.328px 184.328px 184.328px 184.344px 184.328px 184.328px; overflow=0"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ],
+  "consoleErrors": []
+}

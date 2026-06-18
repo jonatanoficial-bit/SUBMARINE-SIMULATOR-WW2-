@@ -1,0 +1,310 @@
+{
+  "project": "Submarine Commander WW2",
+  "version": "v2.0.0-alpha.03",
+  "buildId": "SCWW2-20260611-1821-BRT",
+  "generatedAt": "2026-06-11T21:26:58.493131+00:00",
+  "summary": {
+    "passed": 59,
+    "failed": 0,
+    "files": 146,
+    "bytes": 37240626
+  },
+  "projectSha256": "30bfafb496d67bb7f12b09708547431654b5cfc6411b3c090bd4d24604c9e8ee",
+  "checks": [
+    {
+      "name": "Required project files",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Foreign Stage Music module removed",
+      "status": "PASS",
+      "details": "present=[]"
+    },
+    {
+      "name": "No Stage Music runtime strings",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All JSON files parse",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 3 metadata",
+      "status": "PASS",
+      "details": "{'phase': 3, 'version': 'v2.0.0-alpha.03'}"
+    },
+    {
+      "name": "Build version centralized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker cache matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Alpha build not mislabeled release",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visible build metadata fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Package version matches build",
+      "status": "PASS",
+      "details": "{'package': '2.0.0-alpha.3', 'build': '2.0.0-alpha.3'}"
+    },
+    {
+      "name": "Translation key parity PT/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 347, 'en': 347, 'es': 347}"
+    },
+    {
+      "name": "Phase 3 strings translated",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Unique IDs: nations",
+      "status": "PASS",
+      "details": "count=3"
+    },
+    {
+      "name": "Unique IDs: submarines",
+      "status": "PASS",
+      "details": "count=6"
+    },
+    {
+      "name": "Unique IDs: crew",
+      "status": "PASS",
+      "details": "count=12"
+    },
+    {
+      "name": "Unique IDs: missions",
+      "status": "PASS",
+      "details": "count=13"
+    },
+    {
+      "name": "Unique IDs: upgrades",
+      "status": "PASS",
+      "details": "count=5"
+    },
+    {
+      "name": "Starter submarines exist",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Submarine nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crew nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker app shell files exist",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Phase 2 and Phase 3 CSS cached",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine cached for offline PWA",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Service worker does not use HTML fallback for assets",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker only clears own caches",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Save checksum enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Save schema migration enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander input sanitized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Runtime error log enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Accessible scalable viewport",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Adaptive manifest orientation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visual viewport synchronization",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Best-effort immersive mode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mission requests immersive mode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Responsive phone/tablet/desktop breakpoints",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape command console breakpoint",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mobile combat controls prioritized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sticky navigation does not require fixed overlay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Safe-area support",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced-motion accessibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Engine telemetry does not displace phone controls",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Scene lifecycle manager used by app",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay scene exit owns cleanup",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay screen delegates to SimulationEngine",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay screen has no autonomous interval loop",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "World rules moved out of interface",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine is DOM independent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Engine support modules are DOM independent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fixed-step clock with frame cap",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Event bus supports unsubscribe and clear",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Independent submarine and ship entities",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Serializable engine snapshots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Pure simulation calculations extracted",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Deterministic torpedo travel uses ticks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Scene manager supports enter and exit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Architecture document defines layer boundaries",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine unit tests",
+      "status": "PASS",
+      "details": "TAP version 13\n# Subtest: EventBus subscribes, emits and unsubscribes deterministically\nok 1 - EventBus subscribes, emits and unsubscribes deterministically\n  ---\n  duration_ms: 1.068488\n  type: 'test'\n  ...\n# Subtest: SimulationClock supports deterministic manual fixed steps\nok 2 - SimulationClock supports deterministic manual fixed steps\n  ---\n  duration_ms: 0.832401\n  type: 'test'\n  ...\n# Subtest: Entity positions and distance are serializable\nok 3 - Entity positions and distance are serializable\n  ---\n  duration_ms: 0.252122\n  type: 'test'\n  ...\n# Subtest: SceneManager enforces enter and exit lifecycle\nok 4 - SceneManager enforces enter and exit lifecycle\n  ---\n  duration_ms: 0.304711\n  type: 'test'\n  ...\n# Subtest: SimulationEngine exposes three independent entities and advances the world\nok 5 - SimulationEngine exposes three independent entities and advances the world\n  ---\n  duration_ms: 1.939837\n  type: 'test'\n  ...\n# Subtest: Torpedo resolution is deterministic and independent from DOM timers\nok 6 - Torpedo resolution is deterministic and independent from DOM timers\n  ---\n  duration_ms: 1.121957\n  type: 'test'\n  ...\n# Subtest: Damage, failure and emergency repair use engine state only\nok 7 - Damage, failure and emergency repair use engine state only\n  ---\n  duration_ms: 0.66588\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 111.600652"
+    },
+    {
+      "name": "No empty runtime files",
+      "status": "PASS",
+      "details": "empty=[]"
+    }
+  ]
+}

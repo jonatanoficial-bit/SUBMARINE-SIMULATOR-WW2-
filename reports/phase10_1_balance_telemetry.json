@@ -1,0 +1,415 @@
+{
+  "generatedAt": "2026-06-17T19:12:51.101Z",
+  "summary": {
+    "missionCount": 13,
+    "quietMissionsWithoutDamage": 13,
+    "minimumPeriscopeDamageSeconds": 50.4,
+    "minimumTorpedoDamageSeconds": 36,
+    "missionsFailedWithin90SecondsAfterTorpedo": 0
+  },
+  "missions": [
+    {
+      "missionId": "m1",
+      "difficulty": "I",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 14.96,
+        "huntSeconds": 29.52,
+        "firstDamageSeconds": 65.44,
+        "failureSeconds": null,
+        "hull": 86,
+        "detection": 100,
+        "patterns": 2
+      },
+      "torpedo90": {
+        "alertSeconds": 3.36,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 88,
+        "detection": 100,
+        "patterns": 2
+      }
+    },
+    {
+      "missionId": "m2",
+      "difficulty": "II",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 12,
+        "huntSeconds": 23.52,
+        "firstDamageSeconds": 59.44,
+        "failureSeconds": null,
+        "hull": 69,
+        "detection": 100,
+        "patterns": 3
+      },
+      "torpedo90": {
+        "alertSeconds": 2.88,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 69,
+        "detection": 100,
+        "patterns": 2
+      }
+    },
+    {
+      "missionId": "m3",
+      "difficulty": "II",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 11.12,
+        "huntSeconds": 21.84,
+        "firstDamageSeconds": 57.76,
+        "failureSeconds": null,
+        "hull": 77,
+        "detection": 100,
+        "patterns": 3
+      },
+      "torpedo90": {
+        "alertSeconds": 2.64,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 78,
+        "detection": 100,
+        "patterns": 2
+      }
+    },
+    {
+      "missionId": "m4",
+      "difficulty": "III",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 10.24,
+        "huntSeconds": 20.08,
+        "firstDamageSeconds": 56,
+        "failureSeconds": null,
+        "hull": 59,
+        "detection": 100,
+        "patterns": 3
+      },
+      "torpedo90": {
+        "alertSeconds": 2.48,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 46.16,
+        "failureSeconds": null,
+        "hull": 70,
+        "detection": 100,
+        "patterns": 2
+      }
+    },
+    {
+      "missionId": "m5",
+      "difficulty": "III",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 9.76,
+        "huntSeconds": 19.12,
+        "firstDamageSeconds": 55.04,
+        "failureSeconds": null,
+        "hull": 60,
+        "detection": 100,
+        "patterns": 3
+      },
+      "torpedo90": {
+        "alertSeconds": 2.4,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 45.52,
+        "failureSeconds": null,
+        "hull": 71,
+        "detection": 100,
+        "patterns": 2
+      }
+    },
+    {
+      "missionId": "m6",
+      "difficulty": "III",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 9.36,
+        "huntSeconds": 18.24,
+        "firstDamageSeconds": 54.16,
+        "failureSeconds": null,
+        "hull": 53,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 2.24,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 71,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m7",
+      "difficulty": "IV",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 9.28,
+        "huntSeconds": 17.92,
+        "firstDamageSeconds": 53.84,
+        "failureSeconds": null,
+        "hull": 48,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 2.16,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 65,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m8",
+      "difficulty": "IV",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 8.88,
+        "huntSeconds": 17.2,
+        "firstDamageSeconds": 53.12,
+        "failureSeconds": null,
+        "hull": 46,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 2.08,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 64,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m9",
+      "difficulty": "IV",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 8.56,
+        "huntSeconds": 16.56,
+        "firstDamageSeconds": 52.48,
+        "failureSeconds": null,
+        "hull": 48,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 2.08,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 66,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m10",
+      "difficulty": "V",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 8.16,
+        "huntSeconds": 15.84,
+        "firstDamageSeconds": 51.76,
+        "failureSeconds": null,
+        "hull": 45,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 1.92,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 64,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m11",
+      "difficulty": "V",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 7.84,
+        "huntSeconds": 15.28,
+        "firstDamageSeconds": 51.2,
+        "failureSeconds": null,
+        "hull": 47,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 1.92,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 62,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m12",
+      "difficulty": "V",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 7.44,
+        "huntSeconds": 14.48,
+        "firstDamageSeconds": 50.4,
+        "failureSeconds": null,
+        "hull": 41,
+        "detection": 100,
+        "patterns": 5
+      },
+      "torpedo90": {
+        "alertSeconds": 1.76,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 36,
+        "failureSeconds": null,
+        "hull": 62,
+        "detection": 100,
+        "patterns": 4
+      }
+    },
+    {
+      "missionId": "m13",
+      "difficulty": "∞",
+      "quiet60": {
+        "alertSeconds": null,
+        "huntSeconds": null,
+        "firstDamageSeconds": null,
+        "failureSeconds": null,
+        "hull": 100,
+        "detection": 0,
+        "patterns": 0
+      },
+      "periscope120": {
+        "alertSeconds": 14,
+        "huntSeconds": 27.68,
+        "firstDamageSeconds": 63.6,
+        "failureSeconds": null,
+        "hull": 86,
+        "detection": 100,
+        "patterns": 2
+      },
+      "torpedo90": {
+        "alertSeconds": 3.2,
+        "huntSeconds": 0.08,
+        "firstDamageSeconds": 50.48,
+        "failureSeconds": null,
+        "hull": 86,
+        "detection": 100,
+        "patterns": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Checklist de QA — Fase 6
+
+- [x] Build, versão, data, hora e QA visíveis.
+- [x] Profundidade real evolui progressivamente.
+- [x] Profundidade ordenada não move o submarino instantaneamente.
+- [x] Ponteiro real e marcador de ordem usam o snapshot do motor.
+- [x] Velocidade vertical responde a lastro e trimagem.
+- [x] Lastro inundar/soprar altera a tendência vertical.
+- [x] Nivelamento restaura controle automático.
+- [x] Velocidade real responde à bateria e danos de máquinas.
+- [x] Combustível é consumido na superfície.
+- [x] Bateria é consumida submersa e recarregada na superfície.
+- [x] Oxigênio e CO₂ respondem ao tempo submerso.
+- [x] Pressão usa a classe do submarino.
+- [x] Excesso de profundidade produz dano determinístico.
+- [x] Ruído e cavitação respondem à velocidade e profundidade.
+- [x] Compressão de tempo cai para 1× em risco crítico.
+- [x] Todos os medidores restauram pelo autosave.
+- [x] Waypoint por toque não é duplicado.
+- [x] PT-BR, EN e ES possuem paridade de chaves.
+- [x] Layout aprovado em 320×568, 360×640, 640×360, 768×1024 e 1366×768.
+- [x] Testes unitários, estruturais e jogáveis aprovados.

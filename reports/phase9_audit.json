@@ -1,0 +1,2201 @@
+{
+  "generatedAt": "2026-06-13T15:29:30.514343+00:00",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.09",
+    "semver": "2.0.0-alpha.9",
+    "buildId": "SCWW2-20260613-1228-BRT",
+    "date": "2026-06-13",
+    "time": "12:28",
+    "timezone": "America/Sao_Paulo",
+    "phase": 9,
+    "phaseName": "Coordinated Convoy AI & Anti-Submarine Warfare",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 3,
+    "notes": "Phase 9: deterministic multi-ship convoys, coordinated escort states, evasive formations, depth-charge patterns, ASW aircraft, tactical threat display and full operation autosave persistence."
+  },
+  "summary": {
+    "passed": 435,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Arquivo obrigatório: index.html",
+      "status": "PASS",
+      "details": "bytes=2064"
+    },
+    {
+      "name": "Arquivo obrigatório: manifest.json",
+      "status": "PASS",
+      "details": "bytes=764"
+    },
+    {
+      "name": "Arquivo obrigatório: BUILD_INFO.json",
+      "status": "PASS",
+      "details": "bytes=623"
+    },
+    {
+      "name": "Arquivo obrigatório: service-worker.js",
+      "status": "PASS",
+      "details": "bytes=4766"
+    },
+    {
+      "name": "Arquivo obrigatório: package.json",
+      "status": "PASS",
+      "details": "bytes=793"
+    },
+    {
+      "name": "Arquivo obrigatório: ANTI_BREAK_PROTOCOL.md",
+      "status": "PASS",
+      "details": "bytes=2010"
+    },
+    {
+      "name": "Arquivo obrigatório: CHANGELOG.md",
+      "status": "PASS",
+      "details": "bytes=8105"
+    },
+    {
+      "name": "Arquivo obrigatório: README.md",
+      "status": "PASS",
+      "details": "bytes=1833"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase2-responsive.css",
+      "status": "PASS",
+      "details": "bytes=17191"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase3-engine.css",
+      "status": "PASS",
+      "details": "bytes=851"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase4-save.css",
+      "status": "PASS",
+      "details": "bytes=2338"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase5-navigation.css",
+      "status": "PASS",
+      "details": "bytes=6906"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase6-physics.css",
+      "status": "PASS",
+      "details": "bytes=5211"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase7-sensors.css",
+      "status": "PASS",
+      "details": "bytes=6931"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase8-weapons.css",
+      "status": "PASS",
+      "details": "bytes=5975"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase9-ai.css",
+      "status": "PASS",
+      "details": "bytes=6175"
+    },
+    {
+      "name": "Arquivo obrigatório: js/app.js",
+      "status": "PASS",
+      "details": "bytes=25963"
+    },
+    {
+      "name": "Arquivo obrigatório: js/build.js",
+      "status": "PASS",
+      "details": "bytes=729"
+    },
+    {
+      "name": "Arquivo obrigatório: js/save.js",
+      "status": "PASS",
+      "details": "bytes=19295"
+    },
+    {
+      "name": "Arquivo obrigatório: js/state.js",
+      "status": "PASS",
+      "details": "bytes=1436"
+    },
+    {
+      "name": "Arquivo obrigatório: js/safety.js",
+      "status": "PASS",
+      "details": "bytes=6108"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/mainMenu.js",
+      "status": "PASS",
+      "details": "bytes=2861"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/profiles.js",
+      "status": "PASS",
+      "details": "bytes=4312"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/briefing.js",
+      "status": "PASS",
+      "details": "bytes=2615"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/gameplay.js",
+      "status": "PASS",
+      "details": "bytes=91176"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/core/EventBus.js",
+      "status": "PASS",
+      "details": "bytes=1336"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/core/SimulationClock.js",
+      "status": "PASS",
+      "details": "bytes=2690"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/navigation/NavigationSystem.js",
+      "status": "PASS",
+      "details": "bytes=13140"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/physics/SubmarinePhysicsSystem.js",
+      "status": "PASS",
+      "details": "bytes=13325"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/sensors/SensorSystem.js",
+      "status": "PASS",
+      "details": "bytes=17068"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/weapons/WeaponSystem.js",
+      "status": "PASS",
+      "details": "bytes=21108"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/ai/NavalAISystem.js",
+      "status": "PASS",
+      "details": "bytes=24642"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/simulation/SimulationEngine.js",
+      "status": "PASS",
+      "details": "bytes=33503"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/scenes/SceneManager.js",
+      "status": "PASS",
+      "details": "bytes=1151"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/engine.test.js",
+      "status": "PASS",
+      "details": "bytes=5048"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/save.test.js",
+      "status": "PASS",
+      "details": "bytes=4941"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/navigation.test.js",
+      "status": "PASS",
+      "details": "bytes=5731"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/physics.test.js",
+      "status": "PASS",
+      "details": "bytes=10202"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/sensors.test.js",
+      "status": "PASS",
+      "details": "bytes=6985"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/weapons.test.js",
+      "status": "PASS",
+      "details": "bytes=5500"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/naval_ai.test.js",
+      "status": "PASS",
+      "details": "bytes=7362"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/smoke_test.py",
+      "status": "PASS",
+      "details": "bytes=29252"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/SAVE_ARCHITECTURE_V3.md",
+      "status": "PASS",
+      "details": "bytes=2648"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/NAVIGATION_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=2986"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/PHYSICS_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=3717"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/SENSOR_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=2771"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/WEAPON_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=2073"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/NAVAL_AI_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=3998"
+    },
+    {
+      "name": "Arquivo obrigatório: RELEASE_NOTES_v2.0.0-alpha.09.md",
+      "status": "PASS",
+      "details": "bytes=1143"
+    },
+    {
+      "name": "Arquivo obrigatório: PHASE_9_DELIVERY_REPORT.md",
+      "status": "PASS",
+      "details": "bytes=1429"
+    },
+    {
+      "name": "Arquivo obrigatório: QA_CHECKLIST_PHASE_9.md",
+      "status": "PASS",
+      "details": "bytes=1064"
+    },
+    {
+      "name": "Arquivo obrigatório: KNOWN_ISSUES_PHASE_9.md",
+      "status": "PASS",
+      "details": "bytes=654"
+    },
+    {
+      "name": "Arquivo obrigatório: ROLLBACK_PHASE_9.md",
+      "status": "PASS",
+      "details": "bytes=670"
+    },
+    {
+      "name": "Arquivo obrigatório: data/nations.json",
+      "status": "PASS",
+      "details": "bytes=757"
+    },
+    {
+      "name": "Arquivo obrigatório: data/submarines.json",
+      "status": "PASS",
+      "details": "bytes=1931"
+    },
+    {
+      "name": "Arquivo obrigatório: data/crew.json",
+      "status": "PASS",
+      "details": "bytes=3280"
+    },
+    {
+      "name": "Arquivo obrigatório: data/missions.json",
+      "status": "PASS",
+      "details": "bytes=21540"
+    },
+    {
+      "name": "Arquivo obrigatório: data/upgrades.json",
+      "status": "PASS",
+      "details": "bytes=1241"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/pt-BR.json",
+      "status": "PASS",
+      "details": "bytes=36372"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/en.json",
+      "status": "PASS",
+      "details": "bytes=35359"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/es.json",
+      "status": "PASS",
+      "details": "bytes=37833"
+    },
+    {
+      "name": "Resíduos de outros projetos e arquivo de teste obsoleto removidos",
+      "status": "PASS",
+      "details": "presentes=[]"
+    },
+    {
+      "name": "Todos os JSON do projeto são válidos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Metadados identificam a Fase 9",
+      "status": "PASS",
+      "details": "{'phase': 9, 'version': 'v2.0.0-alpha.09'}"
+    },
+    {
+      "name": "Semver correto",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build ID da Fase 9",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Data e hora da build presentes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Timezone oficial preservado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Canal alpha sem falso lançamento comercial",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Status QA permitido no portão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Schema de save permanece v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Versão centralizada no JS gerado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Versão visível no título e descrição",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Manifesto PWA acompanha versão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Package acompanha versão e ESM",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Scripts unitários de sensores, armas e IA registrados",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Suite geral inclui física, sensores, armas e IA naval",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache PWA acompanha versão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS das Fases 7, 8 e 9 carregados pelo HTML",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Paridade de chaves PT-BR/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 644, 'en': 644, 'es': 644}"
+    },
+    {
+      "name": "Quantidade robusta de traduções",
+      "status": "PASS",
+      "details": "{'pt-BR': 644, 'en': 644, 'es': 644}"
+    },
+    {
+      "name": "Todas as strings de física existem nos três idiomas",
+      "status": "PASS",
+      "details": "chaves=31"
+    },
+    {
+      "name": "Textos de física não vazios: pt-BR",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de física não vazios: en",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de física não vazios: es",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Todas as strings de sensores existem nos três idiomas",
+      "status": "PASS",
+      "details": "chaves=25"
+    },
+    {
+      "name": "Textos de sensores não vazios: pt-BR",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de sensores não vazios: en",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de sensores não vazios: es",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "IDs únicos: nações",
+      "status": "PASS",
+      "details": "quantidade=3"
+    },
+    {
+      "name": "IDs únicos: submarinos",
+      "status": "PASS",
+      "details": "quantidade=6"
+    },
+    {
+      "name": "IDs únicos: tripulação",
+      "status": "PASS",
+      "details": "quantidade=12"
+    },
+    {
+      "name": "IDs únicos: missões",
+      "status": "PASS",
+      "details": "quantidade=13"
+    },
+    {
+      "name": "IDs únicos: upgrades",
+      "status": "PASS",
+      "details": "quantidade=5"
+    },
+    {
+      "name": "Submarino inicial de cada nação existe",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Referências de nação dos submarinos são válidas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Referências de nação da tripulação são válidas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os submarinos possuem estatísticas para física",
+      "status": "PASS",
+      "details": "quantidade=6"
+    },
+    {
+      "name": "Atributos de profundidade estão em faixa válida",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Planos de navegação das missões continuam válidos",
+      "status": "PASS",
+      "details": "missões=13"
+    },
+    {
+      "name": "Validador de navegação permanece ativo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os arquivos do app shell existem",
+      "status": "PASS",
+      "details": "ausentes=[]"
+    },
+    {
+      "name": "Módulos de física e sensores disponíveis offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de física e sensores disponíveis offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Motor, navegação e save continuam offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instalação falha se app shell estiver incompleto",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fallback HTML restrito a navegação",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache limpa somente versões do próprio jogo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JSON usa estratégia network-first sem HTML",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: export class SubmarinePhysicsSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setOrderedDepth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: adjustOrderedDepth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setBallastCommand",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: nudgeTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: levelTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: emergencyDive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: emergencyBlow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: recalculateDerived",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: actualSpeedKnots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: pressurePercent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: hullStress",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: fuel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: battery",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: oxygen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: co2",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: noise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: cavitation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: drainDamageEvents",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: physicsVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profundidade ordenada separada da real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mergulho usa convergência e não teleporte",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Lastro automático considera erro e velocidade vertical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Trimagem participa da força vertical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Propulsão alterna diesel/elétrica por profundidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Energia reduz velocidade real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Recursos usam tempo simulado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Bateria e atmosfera são consumidas submersas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Superfície consome combustível e recarrega",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cavitação depende de pouca profundidade e velocidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Pressão acima do limite gera dano",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atmosfera crítica gera dano",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restauração limita valores físicos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: import { SubmarinePhysicsSystem }",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics = new SubmarinePhysicsSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.update(stepMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.drainDamageEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.snapshot().actualSpeedKnots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: physics: this.physics.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: sensors: this.sensors.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: snapshotVersion: 6",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: setBallastCommand(mode)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: nudgeTrim(delta)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: levelTrim()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: emergencyBlow()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navegação recebe velocidade física real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Risco físico limita compressão de tempo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Diagnóstico expõe física, sensores e versão do motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Correção de waypoint duplicado aplicada",
+      "status": "PASS",
+      "details": "ocorrências=1"
+    },
+    {
+      "name": "Medidor presente na interface: physics-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-ordered-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-vertical-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-actual-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-ballast",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-trim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-pressure",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-propulsion",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-fuel-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-battery-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-oxygen-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-co2-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-noise-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-cavitation-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-fuel-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-battery-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-oxygen-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-co2-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-noise-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-cavitation-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Função de atualização física lê snapshot real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os recursos usam a função de medidor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Barras recebem largura e estado visual",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ponteiro de profundidade usa profundidade real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Marcador de ordem usa profundidade ordenada",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HUD de bateria e oxigênio usa física",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Interface atualiza em tick e mudança de estado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles de lastro conectados ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles de trimagem conectados ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Subida de emergência conectada ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Autosave recebe snapshot físico",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-panel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-readout-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-meter-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-control-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-status.warning",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-status.critical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: em[data-state=\"warning\"]",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: em[data-state=\"critical\"]",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (min-width: 620px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (min-width: 980px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (max-width: 380px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (prefers-reduced-motion: reduce)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (orientation: landscape) and (max-height: 540px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Console físico ocupa área própria no grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles prioritários continuam antes da física no mobile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "KPIs duplicados são ocultos em telefones",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: export class SensorSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: setMode(mode)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: nudgeHydrophoneBearing(delta)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: toggleRadarMast(force = null, depth = 0)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: activePing(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: observeVisual(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: observeActive(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: observePassive(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: activePingCooldownMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: radarMastRaised",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: bearingUncertainty",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: rangeUncertainty",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: confidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: classification",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: stale",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de sensores contém: sensorVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Hidrofone sofre interferência de ruído e cavitação",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sonar ativo gera exposição e possui recarga",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Radar respeita disponibilidade histórica",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mastro de radar respeita profundidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contato visual exige periscópio e profundidade segura",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Soluções envelhecem gradualmente",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restauração de sensores limita valores",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: import { SensorSystem }",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: this.sensors = new SensorSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: this.sensors.update(stepMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: this.sensors.drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: this.sensors.observeVisual(this.sensorContext())",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: setSensorMode(mode)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: nudgeHydrophoneBearing(delta)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: toggleRadarMast(force = null)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: activeSonarPing()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: sensors: this.sensors.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de sensores no motor contém: sensorVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ping ativo aumenta detecção do submarino",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Trava de torpedo exige solução visual",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-mode-badge",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-bearing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-passive-range",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-radar-range",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-integrity",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-contact-count",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: active-sonar-ping",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: radar-mast-toggle",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-target-confidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-target-bearing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-target-range",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-target-source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-escort-confidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-escort-bearing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-escort-range",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: sensor-escort-source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de sensores presente: periscope-sensor-readout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Interface de sensores lê snapshot real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles de sensores chamam o motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Confiança dos contatos controla barras reais",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Periscópio mostra solução do sensor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-panel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-scope",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-contact-card",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-contact-card.detected",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .sensor-contact-card.stale",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: .active-ping-wave",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: @media (min-width:620px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: @media (min-width:1024px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: @media (max-width:380px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: @media (orientation:landscape) and (max-height:540px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de sensores responsivo contém: @media (prefers-reduced-motion:reduce)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "KPI de sensor é ocultado em telefone para preservar comandos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todas as strings de armas existem nos três idiomas",
+      "status": "PASS",
+      "details": "chaves=35"
+    },
+    {
+      "name": "Textos de armas não vazios: pt-BR",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de armas não vazios: en",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de armas não vazios: es",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Contrato de armas contém: export class WeaponSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: setTarget(role)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: selectTube(id)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: setSalvoSize(value)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: setTorpedoType(type)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: setTdcValue(key, value)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: syncFromContact(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: tubeArcAllows(tube, relativeBearing)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: fireCheck(context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: chooseTubes(validTubes)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: beginReload(tube, weaponsHealth = 100)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: buildShot(tube, context = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: drainResolutionEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de armas contém: weaponVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Perfis de torpedo a vapor e elétrico possuem parâmetros próprios",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Falhas históricas variam por nação e ano",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Resolução de falhas inclui espoleta, profundidade e prematura",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Recarga consome reserva e tempo simulado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot de armas restaura tubos, TDC e tiros ativos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Auxiliares de armas não colidem com o módulo de sensores no harness",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: import { WeaponSystem }",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: this.weapons = new WeaponSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: this.weapons.update(stepMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: this.weapons.drainResolutionEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: this.weapons.drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: setWeaponTarget(role)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: selectTorpedoTube(id)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: setSalvoSize(value)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: setTorpedoType(type)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: setTdcValue(key, value)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: syncTdcSolution()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: weapons: this.weapons.snapshot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: weaponVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração de armas no motor contém: snapshotVersion: 6",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Disparo antigo foi substituído pelo WeaponSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Alvo principal e escolta podem ser destruídos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Estoque do HUD deriva do banco real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-status",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-loaded-count",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-reserve-count",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-failure-rate",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-max-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-quality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-quality-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-bearing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-range",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-gyro",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-confidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-target-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-target-course",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-aob",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-run-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: tdc-sync",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-fire",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: weapons-message",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de armas presente: open-weapons-station",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Interface de armas lê snapshot real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles TDC chamam o motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tubos exibem estado e progresso de recarga",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Qualidade TDC controla instrumento real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .weapons-panel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .weapons-layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .tube-rack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .torpedo-tube.loaded",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .torpedo-tube.reloading",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .tdc-readout-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .tdc-quality-track",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: .weapon-actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: @media (min-width:620px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: @media (min-width:1024px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: @media (max-width:380px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: @media (orientation:landscape) and (max-height:540px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de armas responsivo contém: @media (prefers-reduced-motion:reduce)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Estação de torpedos vem antes dos relatórios no mobile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todas as strings de IA naval existem nos três idiomas",
+      "status": "PASS",
+      "details": "chaves=43"
+    },
+    {
+      "name": "Textos de IA naval não vazios: pt-BR",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de IA naval não vazios: en",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de IA naval não vazios: es",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Contrato de IA naval contém: export class NavalAISystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: buildConvoy()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: merchantShips()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: escortShips()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: setGlobalState(next",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: notifyTorpedoLaunch(shots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: notifyShipDestroyed(shipId)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: updateFormation(deltaMs, context)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: updateEscorts(deltaMs, context)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: launchDepthChargePattern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: updatePatterns(deltaMs, context)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: updateAircraft(deltaMs, context)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: drainDamageEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: drainThreatEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: restore(snapshot = {})",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de IA naval contém: aiVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Comboio cria múltiplos mercantes e escoltas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Estados coordenados de IA estão definidos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "IA usa relógio simulado sem temporizadores externos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Temporizador de aeronave indisponível permanece serializável em JSON",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cargas de profundidade consideram posição, profundidade e contramedidas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Aeronave ASW respeita ano e disponibilidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: import { NavalAISystem }",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI = new NavalAISystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.target = this.navalAI.primaryTarget",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.escort = this.navalAI.primaryEscort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.update(stepMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.notifyTorpedoLaunch",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.notifyShipDestroyed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.drainExposureEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.drainDamageEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: this.navalAI.drainThreatEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: navalAI: this.navalAI.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: snapshotVersion: 6",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração da IA no motor contém: aiVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contagem de entidades acompanha força naval e aeronave",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot anterior continua aceito sem bloco de IA",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: hud-asw",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: hud-convoy",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: convoy-tactical-plot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-merchants-active",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-escorts-active",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-nearest-escort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-formation-status",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-aircraft-status",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-depth-charge-alert",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instrumento de IA naval presente: ai-message",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Interface de IA lê snapshot real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Plot tático representa navios e aeronave do motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização geral inclui IA naval",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .naval-ai-panel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .naval-ai-layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .convoy-tactical-plot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .ai-contact-marker",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .ai-contact-marker.aircraft",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: .ai-depth-charge-alert",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: @media (min-width:700px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: @media (min-width:1024px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: @media (max-width:380px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de IA naval responsivo contém: @media (orientation:landscape) and (max-height:540px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "KPIs de IA são ocultados em telefone para preservar comandos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "PWA inclui CSS e motor de IA naval",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os JavaScript passam no parser",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Importação ESM: Módulo físico",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Módulo de sensores",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Módulo de armas",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Módulo de IA naval",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Motor de simulação",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Navegação",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Tela de gameplay",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Save v3",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Suite unitária completa aprovada",
+      "status": "PASS",
+      "details": "pass=70, fail=0"
+    }
+  ]
+}

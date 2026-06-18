@@ -1,0 +1,106 @@
+/* Phase 9 — coordinated convoy and anti-submarine warfare station */
+.naval-ai-panel { grid-area:ai; overflow:hidden; }
+.naval-ai-panel-header { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.ai-state-badge { padding:4px 8px; border:1px solid rgba(131,232,191,.35); border-radius:999px; color:#a9f1d2; background:rgba(38,110,82,.22); font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; }
+.ai-state-badge[data-state="alert"],.ai-state-badge[data-state="search"] { color:#ffe0a0; border-color:rgba(230,175,71,.48); background:rgba(121,74,14,.28); }
+.ai-state-badge[data-state="hunt"] { color:#ffc1b6; border-color:rgba(239,98,77,.55); background:rgba(122,34,25,.34); box-shadow:0 0 12px rgba(239,98,77,.16); }
+.naval-ai-layout { display:grid; gap:12px; }
+.convoy-tactical-column,.ai-command-column { min-width:0; }
+.convoy-tactical-plot { position:relative; min-height:230px; overflow:hidden; border:1px solid rgba(108,181,170,.28); border-radius:12px; background:radial-gradient(circle at 50% 50%,rgba(26,82,76,.36),rgba(3,20,24,.94) 66%); box-shadow:inset 0 0 28px rgba(0,0,0,.46); }
+.convoy-tactical-plot::before,.convoy-tactical-plot::after { content:""; position:absolute; background:rgba(115,205,193,.13); pointer-events:none; }
+.convoy-tactical-plot::before { left:50%; top:0; bottom:0; width:1px; }
+.convoy-tactical-plot::after { top:50%; left:0; right:0; height:1px; }
+.ai-range-ring { position:absolute; left:50%; top:50%; translate:-50% -50%; border:1px solid rgba(118,207,195,.18); border-radius:50%; pointer-events:none; }
+.ai-range-ring.ring-one { width:34%; aspect-ratio:1; }
+.ai-range-ring.ring-two { width:70%; aspect-ratio:1; }
+.ai-player-marker { position:absolute; left:50%; top:50%; width:15px; height:20px; translate:-50% -50%; clip-path:polygon(50% 0,100% 100%,50% 78%,0 100%); background:#8ff0ce; filter:drop-shadow(0 0 5px rgba(99,240,196,.75)); z-index:4; }
+.ai-contact-marker { position:absolute; width:12px; height:12px; translate:-50% -50%; z-index:3; transition:left 160ms linear,top 160ms linear,opacity 160ms linear; }
+.ai-contact-marker.merchant { border:2px solid #e6c86d; background:rgba(225,188,72,.26); transform:rotate(45deg); }
+.ai-contact-marker.escort { border-radius:50%; border:2px solid #ef796c; background:rgba(224,73,57,.32); box-shadow:0 0 5px rgba(239,92,73,.38); }
+.ai-contact-marker.aircraft { width:16px; height:11px; background:#8bd8ff; clip-path:polygon(50% 0,61% 38%,100% 50%,62% 62%,56% 100%,44% 100%,38% 62%,0 50%,39% 38%); filter:drop-shadow(0 0 4px rgba(96,197,255,.66)); }
+.ai-contact-marker.destroyed { opacity:.25; filter:grayscale(1); }
+.convoy-tactical-plot[data-threat="critical"] { border-color:rgba(239,91,70,.52); box-shadow:inset 0 0 28px rgba(0,0,0,.46),0 0 14px rgba(239,91,70,.12); }
+.ai-legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; color:var(--muted); font-size:.69rem; }
+.ai-legend span { display:inline-flex; align-items:center; gap:5px; }
+.ai-legend i { display:inline-block; width:9px; height:9px; }
+.ai-legend i.merchant { border:2px solid #e6c86d; transform:rotate(45deg); }
+.ai-legend i.escort { border:2px solid #ef796c; border-radius:50%; }
+.ai-legend i.aircraft { background:#8bd8ff; clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); }
+.ai-readout-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.ai-readout-grid > div { min-width:0; padding:9px; border:1px solid rgba(217,190,107,.15); border-radius:8px; background:rgba(19,24,20,.62); }
+.ai-readout-grid span { display:block; color:var(--muted); font-size:.64rem; text-transform:uppercase; letter-spacing:.045em; }
+.ai-readout-grid strong { display:block; margin-top:4px; color:#fff0bd; font-size:.82rem; overflow-wrap:anywhere; }
+.ai-depth-charge-alert,.ai-message { margin-top:9px; padding:9px 10px; border-left:3px solid #4eae89; background:rgba(31,95,72,.2); color:#bdebd8; font-size:.75rem; line-height:1.35; }
+.ai-depth-charge-alert.warning { border-color:#d2a03c; background:rgba(107,69,13,.24); color:#f4d890; }
+.ai-depth-charge-alert.critical { border-color:#e75e4e; background:rgba(116,34,25,.3); color:#ffc1b6; animation:ai-danger-pulse 850ms ease-in-out infinite alternate; }
+.ai-message { border-color:#d6b656; background:rgba(91,72,20,.18); color:#f1dda0; }
+#hud-asw[data-state="warning"] { color:#f0c968; }
+#hud-asw[data-state="critical"] { color:#ff8e7d; }
+
+.gameplay-console-grid {
+  grid-template-areas:
+    "action"
+    "weapons"
+    "ai"
+    "mission"
+    "instruments"
+    "physics"
+    "radar";
+}
+
+@keyframes ai-danger-pulse { from { opacity:.78; } to { opacity:1; box-shadow:0 0 10px rgba(231,94,78,.18); } }
+
+@media (min-width:700px) {
+  .naval-ai-layout { grid-template-columns:minmax(280px,.9fr) minmax(300px,1.1fr); align-items:start; }
+  .gameplay-console-grid {
+    grid-template-areas:
+      "action mission"
+      "weapons weapons"
+      "ai ai"
+      "instruments instruments"
+      "physics physics"
+      "radar radar";
+  }
+}
+
+@media (min-width:1024px) {
+  .gameplay-console-grid {
+    grid-template-areas:
+      "action instruments radar"
+      "mission instruments radar"
+      "weapons weapons weapons"
+      "ai ai ai"
+      "physics physics physics";
+  }
+  .naval-ai-layout { grid-template-columns:minmax(420px,.9fr) minmax(430px,1.1fr); }
+  .convoy-tactical-plot { min-height:300px; }
+  .ai-readout-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+@media (max-width:380px) {
+  .ai-readout-grid { grid-template-columns:1fr; }
+  .convoy-tactical-plot { min-height:205px; }
+}
+
+@media (orientation:landscape) and (max-height:540px) {
+  .gameplay-console-grid {
+    grid-template-areas:
+      "action instruments"
+      "weapons weapons"
+      "ai ai"
+      "radar instruments"
+      "mission mission"
+      "physics physics";
+  }
+  .naval-ai-layout { grid-template-columns:minmax(320px,.9fr) minmax(380px,1.1fr); }
+  .convoy-tactical-plot { min-height:210px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .ai-contact-marker { transition:none; }
+  .ai-depth-charge-alert.critical { animation:none; }
+}
+
+@media (max-width:480px) and (max-height:700px) {
+  .gameplay-kpis .ai-kpi { display:none; }
+}

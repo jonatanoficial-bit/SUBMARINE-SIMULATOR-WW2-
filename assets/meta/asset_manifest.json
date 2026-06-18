@@ -1,0 +1,190 @@
+[
+  {
+    "source": "1000881756-removebg-preview.png",
+    "target": "assets/logos/submarine_commander_logo.png"
+  },
+  {
+    "source": "1000881757-removebg-preview.png",
+    "target": "assets/ui/icons/icon_submarine.png"
+  },
+  {
+    "source": "1000881758-removebg-preview.png",
+    "target": "assets/ui/icons/icon_crew.png"
+  },
+  {
+    "source": "1000881759-removebg-preview.png",
+    "target": "assets/ui/icons/icon_navigation.png"
+  },
+  {
+    "source": "1000881760-removebg-preview.png",
+    "target": "assets/ui/icons/icon_economy.png"
+  },
+  {
+    "source": "1000881761-removebg-preview.png",
+    "target": "assets/ui/icons/icon_settings.png"
+  },
+  {
+    "source": "1000881778-removebg-preview.png",
+    "target": "assets/avatars/de/captain_01.png"
+  },
+  {
+    "source": "1000881779-removebg-preview.png",
+    "target": "assets/avatars/de/officer_01.png"
+  },
+  {
+    "source": "1000881780-removebg-preview.png",
+    "target": "assets/avatars/de/mechanic_01.png"
+  },
+  {
+    "source": "1000881781-removebg-preview.png",
+    "target": "assets/avatars/de/sonar_01.png"
+  },
+  {
+    "source": "1000881782-removebg-preview.png",
+    "target": "assets/avatars/uk/captain_01.png"
+  },
+  {
+    "source": "1000881783-removebg-preview.png",
+    "target": "assets/avatars/uk/sailor_01.png"
+  },
+  {
+    "source": "1000881784-removebg-preview.png",
+    "target": "assets/avatars/us/captain_01.png"
+  },
+  {
+    "source": "1000881785-removebg-preview.png",
+    "target": "assets/avatars/us/sailor_01.png"
+  },
+  {
+    "source": "1000881786-removebg-preview.png",
+    "target": "assets/logos/vale_games_logo_01.png"
+  },
+  {
+    "source": "1000881787-removebg-preview.png",
+    "target": "assets/logos/vale_games_logo_02.png"
+  },
+  {
+    "source": "1000881788-removebg-preview.png",
+    "target": "assets/logos/vale_games_logo_clean.png"
+  },
+  {
+    "source": "1000881789-removebg-preview.png",
+    "target": "assets/ui/instruments/periscope_icon.png"
+  },
+  {
+    "source": "1000881790-removebg-preview.png",
+    "target": "assets/ui/instruments/sonar_icon.png"
+  },
+  {
+    "source": "1000881791-removebg-preview.png",
+    "target": "assets/ui/instruments/depth_needle.png"
+  },
+  {
+    "source": "1000881792-removebg-preview.png",
+    "target": "assets/ui/instruments/torpedo_icon.png"
+  },
+  {
+    "source": "1000881793-removebg-preview.png",
+    "target": "assets/ui/instruments/depth_gauge_icon.png"
+  },
+  {
+    "source": "1000881794-removebg-preview.png",
+    "target": "assets/ui/instruments/helm_icon.png"
+  },
+  {
+    "source": "1000881795-removebg-preview.png",
+    "target": "assets/ui/instruments/speed_telegraph_icon.png"
+  },
+  {
+    "source": "1000881796-removebg-preview.png",
+    "target": "assets/ui/instruments/speed_telegraph_lever.png"
+  },
+  {
+    "source": "1000881797-removebg-preview.png",
+    "target": "assets/effects/alert_light.png"
+  },
+  {
+    "source": "1000881798-removebg-preview.png",
+    "target": "assets/ui/radar/radar_map_icon.png"
+  },
+  {
+    "source": "1000881799-removebg-preview.png",
+    "target": "assets/ui/radar/radar_player.png"
+  },
+  {
+    "source": "1000881800-removebg-preview.png",
+    "target": "assets/ui/radar/radar_enemy.png"
+  },
+  {
+    "source": "1000881801-removebg-preview.png",
+    "target": "assets/ui/radar/radar_ally.png"
+  },
+  {
+    "source": "1000881802-removebg-preview.png",
+    "target": "assets/ui/radar/radar_scan.png"
+  },
+  {
+    "source": "1000881803-removebg-preview.png",
+    "target": "assets/ui/radar/radar_base.png"
+  },
+  {
+    "source": "1000881804-removebg-preview.png",
+    "target": "assets/ui/periscope/periscope_crosshair.png"
+  },
+  {
+    "source": "1000881805-removebg-preview.png",
+    "target": "assets/ui/periscope/periscope_glass.png"
+  },
+  {
+    "source": "1000881807-removebg-preview.png",
+    "target": "assets/ships/merchant_ship_01.png"
+  },
+  {
+    "source": "1000881808-removebg-preview.png",
+    "target": "assets/ships/destroyer_01.png"
+  },
+  {
+    "source": "1000881809-removebg-preview.png",
+    "target": "assets/ships/submarine_ww2_01.png"
+  },
+  {
+    "source": "1000881810-removebg-preview.png",
+    "target": "assets/effects/ocean_explosion_01.png"
+  },
+  {
+    "source": "1000881811-removebg-preview.png",
+    "target": "assets/effects/torpedo_moving_01.png"
+  },
+  {
+    "source": "1000881812-removebg-preview.png",
+    "target": "assets/effects/water_splash_01.png"
+  },
+  {
+    "source": "file_000000000c64720ebfa3f60f440a9094.png",
+    "target": "assets/backgrounds/strategy_room_alt.png"
+  },
+  {
+    "source": "file_00000000508871f594584fac3c52dea2.png",
+    "target": "assets/backgrounds/briefing_room.png"
+  },
+  {
+    "source": "file_00000000711c720e851e37aa305dbb92.png",
+    "target": "assets/backgrounds/naval_base_lobby.png"
+  },
+  {
+    "source": "file_000000007c94720ea9dfc52b8ba3c748.png",
+    "target": "assets/backgrounds/arsenal_workshop.png"
+  },
+  {
+    "source": "file_0000000086f871f5890c8acbecd510fe.png",
+    "target": "assets/backgrounds/submarine_control_room.png"
+  },
+  {
+    "source": "file_0000000097cc71f58df5a9a21c5f5a2e.png",
+    "target": "assets/effects/water_splash_large.png"
+  },
+  {
+    "source": "file_00000000bf28720eae32a5bb00db9066.png",
+    "target": "assets/backgrounds/naval_battle.png"
+  }
+]

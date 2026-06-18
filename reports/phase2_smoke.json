@@ -1,0 +1,159 @@
+{
+  "summary": {
+    "passed": 30,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.02 • 2026-06-11 18:04 BRT • F2 • QA PASS"
+    },
+    {
+      "name": "Phone menu no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone viewport classified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander screen no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name rendered safely",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Protected save envelope",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Automatic save backup created",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Corrupted save recovered",
+      "status": "PASS",
+      "details": "{'recovered': True, 'diagnostics': {'source': 'backup', 'recovered': True, 'migrated': False, 'error': \"Expected property name or '}' in JSON at position 1 (line 1 column 2)\"}}"
+    },
+    {
+      "name": "Phone gameplay mounts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary combat control in first phone viewport",
+      "status": "PASS",
+      "details": "{'x': 23.953125, 'y': 399.484375, 'width': 312.09375, 'height': 58}"
+    },
+    {
+      "name": "320x568 menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 combat control reachable in first viewport",
+      "status": "PASS",
+      "details": "{'x': 20, 'y': 429.34375, 'width': 280, 'height': 58}"
+    },
+    {
+      "name": "Landscape orientation detected",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "640x360 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape primary control above fold",
+      "status": "PASS",
+      "details": "{'x': 29, 'y': 144.75, 'width': 241.359375, 'height': 44}"
+    },
+    {
+      "name": "Landscape periscope opens",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope fits viewport height",
+      "status": "PASS",
+      "details": "{'x': 190.40625, 'y': 50.40625, 'width': 259.1875, 'height': 259.1875}"
+    },
+    {
+      "name": "Tablet lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tablet uses multi-column lobby",
+      "status": "PASS",
+      "details": "361.094px 361.094px"
+    },
+    {
+      "name": "Desktop menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop shell expands beyond legacy 460px",
+      "status": "PASS",
+      "details": "1280"
+    },
+    {
+      "name": "Desktop menu uses two columns",
+      "status": "PASS",
+      "details": "756px 504px"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

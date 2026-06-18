@@ -1,0 +1,1668 @@
+{
+  "summary": {
+    "passed": 332,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Versão 10.3",
+      "status": "PASS",
+      "details": "v2.0.0-alpha.10.3"
+    },
+    {
+      "name": "Semver 10.3",
+      "status": "PASS",
+      "details": "2.0.0-alpha.10.3"
+    },
+    {
+      "name": "Fase 10.3",
+      "status": "PASS",
+      "details": "10.3"
+    },
+    {
+      "name": "Nome da fase",
+      "status": "PASS",
+      "details": "Operational Realism, Sea Environment & Sensor Fusion"
+    },
+    {
+      "name": "Build São Paulo",
+      "status": "PASS",
+      "details": "America/Sao_Paulo"
+    },
+    {
+      "name": "Canal alpha",
+      "status": "PASS",
+      "details": "alpha"
+    },
+    {
+      "name": "QA permitido",
+      "status": "PASS",
+      "details": "PASS"
+    },
+    {
+      "name": "Save schema preservado",
+      "status": "PASS",
+      "details": "3"
+    },
+    {
+      "name": "Package sincronizado",
+      "status": "PASS",
+      "details": "2.0.0-alpha.10.3"
+    },
+    {
+      "name": "Manifest sincronizado",
+      "status": "PASS",
+      "details": "2.0.0-alpha.10.3"
+    },
+    {
+      "name": "HTML sincronizado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache sincronizado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase10-3-realism.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/environment/EnvironmentSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: tests/environment.test.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: tests/operational_realism_smoke.py",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: docs/OPERATIONAL_REALISM_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: QA_CHECKLIST_PHASE_10_3.md",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: KNOWN_ISSUES_PHASE_10_3.md",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: ROLLBACK_PHASE_10_3.md",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Arquivo obrigatório: RELEASE_NOTES_v2.0.0-alpha.10.3.md",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache offline inclui ./css/phase10-3-realism.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache offline inclui ./js/engine/environment/EnvironmentSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: environmentVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: hashText",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: theatreProfile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: daylightAtHour",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: visibilityMeters",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: ambientNoise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: acousticPropagation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: visualFactor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: radarClutter",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: rollDegrees",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: pitchDegrees",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: horizonOffset",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: Deterministic slow weather evolution",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ambiente contém: restore(snapshot)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: sensorVersion: 2",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: SOURCE_QUALITY",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: fuseObservation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: supportingSource",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: recordHistory",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: bearingRateDegMin",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: rangeRateMps",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: speedEstimateKnots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: deriveTrend",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: deriveAspect",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: ambientNoise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: acousticPropagation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: radarClutter",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: currentVisualRangeMeters",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fusão de sensores contém: strongestContact()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: import { EnvironmentSystem } from '../environment/EnvironmentSystem.js'",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.environment = new EnvironmentSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.environment.update",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: environment: this.environment.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: snapshotVersion: 9",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: environmentVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: sensorVersion: 2",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: hud-environment",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-time",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-sea-state",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-visibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-wind",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-layer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: environment-noise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: hydrophone-waterfall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: hydrophone-listen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-target-signal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-target-trend",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-target-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-target-age",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-target-history",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: sensor-escort-history",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: periscope-horizon",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: periscope-weather",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: periscope-visibility-layer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: periscope-visual-quality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "UI operacional: periscope-sea-state",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: updateEnvironment(snapshot)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: updateHydrophoneWaterfall(sensors)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: renderContactHistory",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: contactTrendLabel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: targetOpticallyVisible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: escortOpticallyVisible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atualização visual: updateOperationalAmbience(snapshot)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Áudio operacional: hydrophoneMerchant",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Áudio operacional: hydrophoneEscort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Áudio operacional: hydrophoneUnknown",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Áudio operacional: updateOperationalAmbience",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .environment-strip",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .hydrophone-waterfall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .contact-history",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .periscope-horizon",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .periscope-weather",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: .periscope-visibility-layer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: @keyframes periscope-rain",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: @media (max-width:560px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS operacional: @media (prefers-reduced-motion:reduce)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Paridade PT/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 796, 'en': 796, 'es': 796}"
+    },
+    {
+      "name": "Mínimo de 30 chaves ambientais",
+      "status": "PASS",
+      "details": "33"
+    },
+    {
+      "name": "Tradução pt-BR: environment.acousticWaterfall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.ambientNoise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.aspect.bow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.aspect.crossing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.aspect.stern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.aspect.unknown",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.contactAge",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.estimatedSpeed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.heavySea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.light.dawnDusk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.light.day",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.light.night",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.light.twilight",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.listenContact",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.motionTrend",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.nightWatch",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.noContactToListen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.restrictedVisibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.sea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.seaShort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.seaState",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.signal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.signatureEscort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.signatureMerchant",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.thermalLayer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.time",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.trend.closing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.trend.opening",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.trend.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.visibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.visualQuality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução pt-BR: environment.wind",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.acousticWaterfall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.ambientNoise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.aspect.bow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.aspect.crossing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.aspect.stern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.aspect.unknown",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.contactAge",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.estimatedSpeed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.heavySea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.light.dawnDusk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.light.day",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.light.night",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.light.twilight",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.listenContact",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.motionTrend",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.nightWatch",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.noContactToListen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.restrictedVisibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.sea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.seaShort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.seaState",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.signal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.signatureEscort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.signatureMerchant",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.thermalLayer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.time",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.trend.closing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.trend.opening",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.trend.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.visibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.visualQuality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução en: environment.wind",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.acousticWaterfall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.ambientNoise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.aspect.bow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.aspect.crossing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.aspect.stern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.aspect.unknown",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.contactAge",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.estimatedSpeed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.heavySea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.light.dawnDusk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.light.day",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.light.night",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.light.twilight",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.listenContact",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.motionTrend",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.nightWatch",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.noContactToListen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.restrictedVisibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.sea",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.seaShort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.seaState",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.signal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.signatureEscort",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.signatureMerchant",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.thermalLayer",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.time",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.trend.closing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.trend.opening",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.trend.steady",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.visibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.visualQuality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tradução es: environment.wind",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./index.html",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./manifest.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./BUILD_INFO.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/reset.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/variables.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/base.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/layout.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/components.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/screens.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/responsive.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase2-responsive.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase3-engine.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase4-save.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase5-navigation.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase6-physics.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase7-sensors.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase8-weapons.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase9-ai.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase10-damage.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase10-1-stabilization.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase10-2-tactical.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./css/phase10-3-realism.css",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/app.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/build.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/state.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/save.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/i18n.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/dataLoader.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/safety.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/audio.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/utils/sanitize.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/components/ui.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/core/EventBus.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/core/SimulationClock.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/navigation/NavigationSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/physics/SubmarinePhysicsSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/sensors/SensorSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/weapons/WeaponSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/ai/NavalAISystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/damage/DamageControlSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/tactical/TacticalEncounterSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/environment/EnvironmentSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/entities/Entity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/entities/SubmarineEntity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/entities/ShipEntity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/simulation/constants.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/simulation/simulationMath.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/simulation/SimulationEngine.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/engine/scenes/SceneManager.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/splash.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/mainMenu.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/commander.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/lobby.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/campaign.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/arsenal.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/crew.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/settings.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/profiles.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/briefing.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./js/screens/gameplay.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/nations.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/submarines.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/crew.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/missions.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/upgrades.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/translations/pt-BR.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/translations/en.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./data/translations/es.json",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/logos/submarine_commander_logo.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/meta/icons/icon-192.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/meta/icons/icon-512.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/naval_base_lobby.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/briefing_room.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/arsenal_workshop.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/strategy_room_alt.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/submarine_control_room.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/backgrounds/naval_battle.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/periscope/ocean_panorama_day.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/ships/merchant_ship_01.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/ships/destroyer_01.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/effects/torpedo_moving_01.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/effects/ocean_explosion_01.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App shell existe: ./assets/effects/water_splash_01.png",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fallback apenas para navegação",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/app.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/assets.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/audio.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/build.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/components/ui.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/dataLoader.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/ai/NavalAISystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/core/EventBus.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/core/SimulationClock.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/damage/DamageControlSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/entities/Entity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/entities/ShipEntity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/entities/SubmarineEntity.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/environment/EnvironmentSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/navigation/NavigationSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/physics/SubmarinePhysicsSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/scenes/SceneManager.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/sensors/SensorSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/simulation/SimulationEngine.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/simulation/constants.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/simulation/simulationMath.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/tactical/TacticalEncounterSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/engine/weapons/WeaponSystem.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/i18n.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/safety.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/save.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/arsenal.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/briefing.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/campaign.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/commander.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/crew.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/gameplay.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/lobby.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/mainMenu.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/profiles.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/settings.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/screens/splash.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/state.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sintaxe JS: js/utils/sanitize.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Smoke aprovado: reports/phase10_3_operational_smoke.json",
+      "status": "PASS",
+      "details": "{'passed': 13, 'failed': 0}"
+    },
+    {
+      "name": "Smoke aprovado: reports/phase10_3_regression_smoke.json",
+      "status": "PASS",
+      "details": "{'passed': 56, 'failed': 0}"
+    },
+    {
+      "name": "Smoke aprovado: reports/phase10_1_stabilization_smoke.json",
+      "status": "PASS",
+      "details": "{'passed': 14, 'failed': 0}"
+    },
+    {
+      "name": "Smoke aprovado: reports/phase10_2_tactical_smoke.json",
+      "status": "PASS",
+      "details": "{'passed': 12, 'failed': 0}"
+    },
+    {
+      "name": "Telemetria cobre 13 missões",
+      "status": "PASS",
+      "details": "{'passed': True, 'missionCount': 13, 'cautiousCompletionRangeSeconds': [91.2, 91.2], 'cautiousSearchRangeSeconds': [34.64, 34.64], 'cautiousRegroupRangeSeconds': [69.28, 69.28], 'exposedFirstDamageRangeSeconds': [36, 139.04]}"
+    },
+    {
+      "name": "Telemetria tática aprovada",
+      "status": "PASS",
+      "details": "{'passed': True, 'missionCount': 13, 'cautiousCompletionRangeSeconds': [91.2, 91.2], 'cautiousSearchRangeSeconds': [34.64, 34.64], 'cautiousRegroupRangeSeconds': [69.28, 69.28], 'exposedFirstDamageRangeSeconds': [36, 139.04]}"
+    },
+    {
+      "name": "Suite unitária completa",
+      "status": "PASS",
+      "details": " is blocked below maximum firing depth\nok 102 - launch is blocked below maximum firing depth\n  ---\n  duration_ms: 2.046896\n  type: 'test'\n  ...\n# Subtest: stern arc rejects bow-only firing geometry\nok 103 - stern arc rejects bow-only firing geometry\n  ---\n  duration_ms: 0.975795\n  type: 'test'\n  ...\n# Subtest: snapshot restore preserves tubes, TDC, salvo and active shots\nok 104 - snapshot restore preserves tubes, TDC, salvo and active shots\n  ---\n  duration_ms: 5.845636\n  type: 'test'\n  ...\n# Subtest: early-war profiles carry a higher deterministic failure risk\nok 105 - early-war profiles carry a higher deterministic failure risk\n  ---\n  duration_ms: 1.267928\n  type: 'test'\n  ...\n1..105\n# tests 105\n# suites 0\n# pass 105\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3495.529563\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# QA Checklist — Phase 5
+
+- [x] Build/version/date/time visible
+- [x] Portuguese, English and Spanish key parity
+- [x] All 13 missions contain valid map bounds, origins, routes and sectors
+- [x] Geographic helpers unit-tested
+- [x] Heading wraps correctly through 0°/360°
+- [x] Manual rudder disengages autopilot
+- [x] Autopilot follows and advances waypoints
+- [x] Chart click creates bounded custom waypoint
+- [x] Route rejects more than eight waypoints
+- [x] Patrol-sector entry persists
+- [x] Time compression works during safe transit
+- [x] Compression drops to ×1 during periscope exposure
+- [x] Navigation state restores from operation autosave
+- [x] Existing save corruption recovery remains functional
+- [x] 320×568 primary combat control remains above fold
+- [x] No horizontal overflow at mandatory viewports
+- [x] Navigation chart has desktop two-column layout
+- [x] New files included in PWA offline shell
+- [x] ZIP extracted and audited after packaging

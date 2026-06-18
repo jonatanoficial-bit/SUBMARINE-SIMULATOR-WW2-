@@ -1,0 +1,200 @@
+/* Phase 10.2 — tactical encounter reconstruction and simulator readability */
+
+.encounter-console {
+  display: grid;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid rgba(113, 210, 190, .28);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(16, 52, 58, .96), rgba(7, 25, 34, .97)),
+    repeating-linear-gradient(0deg, transparent 0 19px, rgba(132, 219, 202, .025) 20px);
+  box-shadow: inset 0 0 22px rgba(49, 187, 158, .045), 0 10px 28px rgba(0, 0, 0, .24);
+}
+
+.encounter-console > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.encounter-console > header div { display: grid; gap: 2px; }
+.encounter-console > header span {
+  color: #81aeb2;
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+#encounter-phase {
+  color: #e9fff8;
+  font-size: .95rem;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+#encounter-phase[data-phase="attack"] { color: #ffe6a4; }
+#encounter-phase[data-phase="evade"] { color: #ffb198; }
+#encounter-phase[data-phase="complete"] { color: #8dffd0; }
+#encounter-phase[data-phase="failed"] { color: #ff7f7f; }
+
+#encounter-contact-state {
+  padding: 5px 7px;
+  border: 1px solid rgba(137, 196, 203, .24);
+  border-radius: 999px;
+  color: #b8d3d6;
+  font-size: .58rem;
+  text-align: center;
+}
+#encounter-contact-state[data-state="firm"] { border-color: rgba(104, 237, 194, .46); color: #a7f5d8; }
+#encounter-contact-state[data-state="probable"] { border-color: rgba(244, 207, 119, .42); color: #ffe1a2; }
+#encounter-contact-state[data-state="lost"] { border-color: rgba(121, 175, 227, .42); color: #b9d9ff; }
+
+.encounter-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.encounter-timeline span {
+  position: relative;
+  min-width: 0;
+  padding: 7px 3px;
+  border: 1px solid rgba(121, 166, 172, .17);
+  border-radius: 6px;
+  background: rgba(7, 22, 29, .72);
+  color: #78969b;
+  font-size: .5rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.encounter-timeline span.complete {
+  border-color: rgba(90, 204, 172, .28);
+  color: #91cbbb;
+}
+
+.encounter-timeline span.active {
+  border-color: rgba(106, 231, 198, .62);
+  background: linear-gradient(180deg, rgba(32, 108, 91, .95), rgba(13, 61, 59, .96));
+  color: #effff9;
+  box-shadow: 0 0 12px rgba(71, 226, 183, .12);
+}
+
+.encounter-readouts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.encounter-readouts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 7px;
+  align-items: center;
+  padding: 7px;
+  border: 1px solid rgba(126, 181, 188, .14);
+  border-radius: 7px;
+  background: rgba(3, 15, 21, .5);
+}
+
+.encounter-readouts span { color: #8aaeb2; font-size: .58rem; }
+.encounter-readouts strong { color: #e4f8f3; font-size: .72rem; font-variant-numeric: tabular-nums; }
+.encounter-readouts i {
+  grid-column: 1 / -1;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .07);
+}
+.encounter-readouts em {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #5fc9ad;
+  transition: width .18s linear;
+}
+.encounter-readouts em[data-state="medium"] { background: #d6b65c; }
+.encounter-readouts em[data-state="high"] { background: #e87962; }
+#encounter-contact-bar[data-state="high"], #encounter-attack-bar[data-state="high"], #encounter-escape-bar[data-state="high"] { background: #70dfb8; }
+
+.encounter-doctrine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.encounter-doctrine {
+  min-width: 0;
+  padding-inline: 4px;
+  font-size: .56rem;
+  white-space: normal;
+}
+
+.encounter-doctrine.active {
+  border-color: rgba(117, 237, 202, .65);
+  color: #e9fff8;
+  background: rgba(27, 101, 87, .88);
+}
+
+.encounter-recommendation {
+  min-height: 38px;
+  padding: 8px 10px;
+  border-left: 3px solid #6bd4b5;
+  border-radius: 5px;
+  background: rgba(6, 24, 30, .76);
+  color: #cfe8e3;
+  font-size: .69rem;
+  line-height: 1.42;
+}
+
+.periscope-data-ribbon {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(78%, 560px);
+}
+
+#periscope-mast-time[data-state="warning"] { color: #ffd66e; }
+#periscope-mast-time[data-state="critical"] { color: #ff8577; }
+
+.periscope-window::after {
+  content: "";
+  position: absolute;
+  inset: 11% 7%;
+  z-index: 8;
+  border-radius: 50%;
+  box-shadow: inset 0 0 46px 25px rgba(0, 0, 0, .62);
+  pointer-events: none;
+}
+
+.periscope-entity {
+  filter: saturate(.78) contrast(1.08) drop-shadow(0 5px 4px rgba(0,0,0,.45));
+  transition: opacity .15s linear, left .12s linear, bottom .12s linear;
+}
+
+.ai-readout-grid::after {
+  content: "";
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .encounter-console { padding: 8px; gap: 7px; }
+  .encounter-console > header { align-items: flex-start; }
+  .encounter-timeline span { padding: 6px 2px; font-size: .44rem; }
+  .encounter-readouts { gap: 5px; }
+  .encounter-readouts > div { padding: 6px; }
+  .encounter-doctrine-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .encounter-doctrine { min-height: 36px; }
+  .periscope-data-ribbon { width: 82%; font-size: .42rem; }
+  .periscope-data-ribbon b { font-size: .54rem; }
+}
+
+@media (min-width: 900px) {
+  .combat-station-layout { grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); }
+  .encounter-readouts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

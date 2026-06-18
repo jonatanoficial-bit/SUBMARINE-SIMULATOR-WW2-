@@ -1,0 +1,21 @@
+# Checklist de QA — Fase 9
+
+- [x] Build, versão, data, hora, fase e QA centralizados.
+- [x] Comboio contém múltiplos mercantes.
+- [x] Missões geram escoltas conforme dificuldade.
+- [x] Todos os navios possuem estado e posição independentes.
+- [x] Formação avança pelo relógio determinístico.
+- [x] Lançamento de torpedo provoca resposta de caça.
+- [x] Escoltas coordenam busca e cargas de profundidade.
+- [x] Dano e quase impacto são reproduzíveis.
+- [x] Contramedidas e navegação silenciosa influenciam ataques.
+- [x] Aeronaves respeitam ano e disponibilidade histórica.
+- [x] Estado da aeronave é serializável em JSON.
+- [x] Snapshot v6 preserva força naval e ameaças.
+- [x] Autosave restaura IA sem alterar os medidores.
+- [x] Plot tático funciona em celular, tablet e PC.
+- [x] Comando principal permanece acessível em 320×568.
+- [x] PT-BR, EN e ES possuem paridade de chaves.
+- [x] PWA inclui todos os recursos da Fase 9.
+- [x] Testes unitários, jogáveis e auditoria sem falhas.
+- [x] Manifesto SHA-256 e ZIP extraído validados.

@@ -1,0 +1,79 @@
+{
+  "summary": {
+    "passed": 14,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Main menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.01 • 2026-06-11 17:38 BRT • F1 • QA PASS"
+    },
+    {
+      "name": "No mobile horizontal overflow on menu",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Portuguese switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name rendered as text",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Protected save envelope",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Automatic save backup created",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Corrupted primary save recovered",
+      "status": "PASS",
+      "details": "{'recovered': True, 'diagnostics': {'source': 'backup', 'recovered': True, 'migrated': False, 'error': \"Expected property name or '}' in JSON at position 1 (line 1 column 2)\"}}"
+    },
+    {
+      "name": "Gameplay screen mounts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No mobile horizontal overflow in gameplay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop boot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No desktop horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

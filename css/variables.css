@@ -1,0 +1,22 @@
+:root {
+  --bg-deep: #071018;
+  --bg-mid: #0b1420;
+  --bg-panel: rgba(11, 17, 24, 0.82);
+  --bg-panel-strong: rgba(8, 12, 18, 0.92);
+  --line-soft: rgba(222, 190, 132, 0.18);
+  --line-strong: rgba(222, 190, 132, 0.42);
+  --text-main: #f1eadf;
+  --text-soft: #c7c0b6;
+  --gold: #d8b16b;
+  --gold-strong: #f3cc87;
+  --blue: #86bfdc;
+  --danger: #ff6d5c;
+  --success: #74d58f;
+  --radius-xl: 26px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-deep: 0 18px 42px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.28);
+  --container: min(100vw - 24px, 460px);
+}

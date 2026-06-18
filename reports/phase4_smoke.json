@@ -1,0 +1,229 @@
+{
+  "summary": {
+    "passed": 44,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.04 • 2026-06-11 18:38 BRT • F4 • QA PASS"
+    },
+    {
+      "name": "Phone menu no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone viewport classified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander screen no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name rendered safely",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Protected save envelope v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three independent profile slots",
+      "status": "PASS",
+      "details": "[{'id': 'slot-1', 'number': 1, 'active': True, 'occupied': True, 'metadata': {'commanderName': 'img src=xJonatan', 'nationId': 'de', 'level': 1, 'updatedAt': '2026-06-11T21:44:43.413Z', 'revision': 1, 'buildVersion': 'v2.0.0-alpha.04'}}, {'id': 'slot-2', 'number': 2, 'active': False, 'occupied': False, 'metadata': None}, {'id': 'slot-3', 'number': 3, 'active': False, 'occupied': False, 'metadata': None}]"
+    },
+    {
+      "name": "Lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Rotating backup created",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Corrupted profile recovered",
+      "status": "PASS",
+      "details": "{'recovered': True, 'diagnostics': {'source': 'backup-1', 'recovered': True, 'migrated': False, 'transactionRecovered': False, 'slotId': 'slot-1', 'error': \"primary: Expected property name or '}' in JSON at position 1 (line 1 column 2)\"}}"
+    },
+    {
+      "name": "Profile manager renders three cards",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Second profile created independently",
+      "status": "PASS",
+      "details": "{'active': 'slot-2', 'count': 2}"
+    },
+    {
+      "name": "Profile switching restores slot 1",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Phone gameplay mounts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary combat control in first phone viewport",
+      "status": "PASS",
+      "details": "{'x': 23.953125, 'y': 399.484375, 'width': 312.09375, 'height': 58}"
+    },
+    {
+      "name": "Simulation engine mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 1, 'missionId': 'm1', 'entityCount': 3, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Three entities registered",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 1, 'missionId': 'm1', 'entityCount': 3, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Fixed-step clock configured",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 1, 'missionId': 'm1', 'entityCount': 3, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Simulation clock advances",
+      "status": "PASS",
+      "details": "3"
+    },
+    {
+      "name": "Operation autosave offered after leaving combat",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave restores tactical depth",
+      "status": "PASS",
+      "details": "72"
+    },
+    {
+      "name": "Deterministic browser torpedo simulation",
+      "status": "PASS",
+      "details": "{'opened': {'ok': True}, 'fired': {'ok': True, 'hitPredicted': True}, 'snapshot': {'missionId': 'm1', 'mission': {'id': 'm1', 'titleKey': 'mission.m1.title', 'summaryKey': 'mission.m1.summary', 'theatreKey': 'mission.theatre.atlantic', 'operationKey': 'mission.m1.operation', 'year': '1939', 'difficulty': 'I', 'reward': 1400, 'xp': 120, 'status': 'available', 'targetType': 'merchant', 'targetStartX': 230, 'targetStartY': 16, 'escortStartX': 320, 'escortStartY': 40, 'escortSensitivity': 0.95, 'targetDrift': 0.65, 'targetWave': 0.28, 'targetBob': 4, 'objectiveKeys': ['briefing.objectiveSilent', 'briefing.objectiveStrike', 'briefing.objectiveReturn'], 'historicalNoteKey': 'mission.m1.history', 'bonusReward': 490, 'bonusXp': 60, '_baseStatus': 'available'}, 'depth': 0, 'speed': 'slow', 'hull': 100, 'systems': {'engines': 100, 'sonar': 100, 'periscope': 100, 'weapons': 96}, 'torpedoes': 3, 'decoys': 2, 'target': {'x': 221.3550000000003, 'y': 18.229135786845355, 'type': 'merchant'}, 'escort': {'x': 171.48728786749703, 'y': 19.885929057076375, 'state': 'hunt'}, 'targetDestroyed': True, 'escortState': 'hunt', 'playerDetected': True, 'detectionScore': 100, 'scanAngle': 83.60000000000005, 'view': {'x': 220, 'y': 18}, 'worldTime': 38, 'elapsedMs': 3040, 'repairUses': 2, 'repairTicks': 0, 'missionFailed': False, 'periscopeOpen': True, 'torpedoActive': False, 'torpedoRevealTicks': 57, 'torpedoTravelTicks': 0, 'torpedoLockedAtLaunch': True, 'lastKnown': {'x': 99.60975000000013, 'y': 8.20311110408041}, 'silentTicks': 0, 'decoyTicks': 0, 'emergencyDiveCooldown': 0, 'damageFlashTicks': 0, 'lastEventKey': 'gameplay.hint', 'canComplete': True, 'metrics': {'shots': 1, 'hits': 1, 'maxDetection': 100, 'damageTaken': 0, 'startHull': 100}, 'snapshotVersion': 1, 'entityCount': 3}, 'report': {'score': 71, 'bonusCredits': 348, 'bonusXp': 43, 'hull': 100, 'stealth': 0, 'shots': 1}}"
+    },
+    {
+      "name": "Mission report calculated by engine",
+      "status": "PASS",
+      "details": "{'score': 71, 'bonusCredits': 348, 'bonusXp': 43, 'hull': 100, 'stealth': 0, 'shots': 1}"
+    },
+    {
+      "name": "Scene exit stops and detaches engine",
+      "status": "PASS",
+      "details": "{'stopped': True, 'detached': True}"
+    },
+    {
+      "name": "320x568 menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 combat control reachable in first viewport",
+      "status": "PASS",
+      "details": "{'x': 20, 'y': 429.34375, 'width': 280, 'height': 58}"
+    },
+    {
+      "name": "Landscape orientation detected",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "640x360 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape primary control above fold",
+      "status": "PASS",
+      "details": "{'x': 29, 'y': 144.75, 'width': 241.359375, 'height': 44}"
+    },
+    {
+      "name": "Landscape periscope opens",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope fits viewport height",
+      "status": "PASS",
+      "details": "{'x': 190.40625, 'y': 50.40625, 'width': 259.1875, 'height': 259.1875}"
+    },
+    {
+      "name": "Tablet lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tablet uses multi-column lobby",
+      "status": "PASS",
+      "details": "361.094px 361.094px"
+    },
+    {
+      "name": "Desktop menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop shell expands beyond legacy 460px",
+      "status": "PASS",
+      "details": "1280"
+    },
+    {
+      "name": "Desktop menu uses two columns",
+      "status": "PASS",
+      "details": "756px 504px"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

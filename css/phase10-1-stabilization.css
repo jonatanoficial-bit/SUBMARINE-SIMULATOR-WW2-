@@ -1,0 +1,354 @@
+/* Phase 10.1 — mobile scrolling, station navigation, readable instruments and periscope stabilization */
+
+html,
+body {
+  touch-action: pan-y pinch-zoom;
+}
+
+body[data-screen="gameplay"] {
+  height: var(--app-height, 100dvh);
+  min-height: 0;
+  overflow: hidden;
+}
+
+body[data-screen="gameplay"] .app-shell {
+  width: min(calc(100vw - (var(--page-gutter) * 2)), var(--shell-game-max));
+  height: calc(var(--app-height, 100dvh) - 34px - env(safe-area-inset-bottom));
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;
+  padding-bottom: 92px;
+}
+
+body[data-screen="gameplay"] .build-footer {
+  position: fixed;
+  left: 50%;
+  bottom: max(4px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 55;
+  width: min(calc(100vw - 16px), 760px);
+  margin: 0;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 8px;
+  line-height: 1.15;
+  opacity: .88;
+}
+
+.station-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 32;
+  display: flex;
+  gap: 7px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px;
+  border: 1px solid rgba(133, 205, 224, .18);
+  border-radius: 12px;
+  background: rgba(4, 17, 24, .95);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+  scrollbar-width: thin;
+  touch-action: pan-x;
+}
+
+.station-tab {
+  flex: 0 0 auto;
+  min-height: 42px;
+  min-width: 94px;
+  padding: 8px 12px;
+  border: 1px solid rgba(122, 196, 216, .2);
+  border-radius: 9px;
+  background: rgba(12, 37, 47, .82);
+  color: #b9d3dc;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.station-tab.active {
+  border-color: rgba(112, 224, 195, .72);
+  background: linear-gradient(180deg, rgba(33, 111, 98, .92), rgba(16, 67, 64, .94));
+  color: #f1fff9;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 14px rgba(65, 207, 176, .15);
+}
+
+.station-panel {
+  display: none !important;
+}
+
+.station-panel.active {
+  display: block !important;
+}
+
+.instrument-grid.station-panel.active {
+  display: grid !important;
+}
+
+.gameplay-console-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-areas: none !important;
+}
+
+.gameplay-console-grid > .station-panel,
+.navigation-panel.station-panel {
+  grid-area: auto !important;
+}
+
+.gameplay-status-panel {
+  position: sticky;
+  top: 58px;
+  z-index: 25;
+  backdrop-filter: blur(12px);
+  background: rgba(6, 20, 28, .94);
+}
+
+.gameplay-kpis {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gameplay-kpis .stat-box {
+  min-width: 0;
+}
+
+.gameplay-kpis .stat-value {
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.depth-command-marker-svg,
+.depth-needle-svg {
+  transform-box: view-box;
+  transform-origin: 110px 110px;
+}
+
+.telegraph-digital {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: grid;
+  min-width: 88px;
+  padding: 5px 8px;
+  border: 1px solid rgba(245, 211, 139, .35);
+  border-radius: 7px;
+  background: rgba(7, 10, 10, .82);
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(255, 191, 84, .06);
+  pointer-events: none;
+}
+
+.telegraph-digital strong {
+  color: #fff0b8;
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.telegraph-digital span {
+  color: #c3a96e;
+  font-size: .52rem;
+  letter-spacing: .08em;
+}
+
+.periscope-modal {
+  --periscope-zoom: 1;
+  touch-action: pan-y pinch-zoom;
+}
+
+.periscope-window {
+  background: linear-gradient(#8fb5c0 0 46%, #335a66 47% 50%, #0d3442 51% 100%);
+}
+
+.css-periscope-ocean,
+.periscope-entity {
+  transform-origin: center;
+  scale: var(--periscope-zoom);
+}
+
+.periscope-compass {
+  position: absolute;
+  top: 15.5%;
+  left: 50%;
+  z-index: 9;
+  width: 62%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  padding: 4px 7px;
+  border-bottom: 1px solid rgba(170, 255, 193, .36);
+  background: linear-gradient(180deg, rgba(2, 11, 14, .76), rgba(2, 11, 14, .18));
+  color: rgba(188, 244, 204, .72);
+  font-size: .55rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.periscope-compass strong {
+  color: #d8ffe2;
+  font-size: .78rem;
+}
+
+.periscope-data-ribbon {
+  position: absolute;
+  left: 50%;
+  bottom: 15.5%;
+  z-index: 9;
+  width: 67%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  padding: 5px;
+  border-top: 1px solid rgba(170, 255, 193, .36);
+  background: rgba(2, 11, 14, .78);
+  color: #93b9a0;
+  font-size: .5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.periscope-data-ribbon b {
+  display: block;
+  color: #d8ffe2;
+  font-size: .62rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#periscope-exposure[data-state="warning"] { color: #ffd66e; }
+#periscope-exposure[data-state="critical"] { color: #ff8577; }
+
+.periscope-crosshair-css .range-mark {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: rgba(153,255,181,.7);
+}
+.periscope-crosshair-css .range-mark-1 { top: 40%; }
+.periscope-crosshair-css .range-mark-2 { top: 45%; width: 28px; }
+.periscope-crosshair-css .range-mark-3 { top: 55%; width: 28px; }
+
+.periscope-controls-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 560px) {
+  body[data-screen="gameplay"] .app-shell {
+    width: calc(100vw - 10px);
+    height: calc(var(--app-height, 100dvh) - 26px - env(safe-area-inset-bottom));
+    padding-top: max(4px, env(safe-area-inset-top));
+    padding-bottom: 80px;
+  }
+
+  .gameplay-screen {
+    gap: 8px;
+  }
+
+  .gameplay-screen > .screen-header {
+    gap: 6px;
+  }
+
+  .gameplay-screen > .screen-header .screen-subtitle,
+  .simulation-core-strip,
+  .gameplay-orientation-note {
+    display: none;
+  }
+
+  .gameplay-status-panel {
+    top: 58px;
+    padding: 6px;
+  }
+
+  .gameplay-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .gameplay-kpis .stat-box {
+    padding: 5px;
+    border-radius: 7px;
+  }
+
+  .gameplay-kpis .stat-label {
+    font-size: 6.5px;
+  }
+
+  .gameplay-kpis .stat-value {
+    font-size: 11px;
+  }
+
+  .gameplay-kpis .navigation-kpi,
+  .gameplay-kpis .physics-kpi,
+  .gameplay-kpis .sensor-kpi,
+  .gameplay-kpis .ai-kpi {
+    display: none;
+  }
+
+  .station-tabs {
+    top: 0;
+    order: -1;
+    border-radius: 9px;
+    padding: 5px;
+  }
+
+  .station-tab {
+    min-width: 82px;
+    min-height: 38px;
+    padding: 6px 8px;
+    font-size: .61rem;
+  }
+
+  .instrument-grid.station-panel.active {
+    grid-template-columns: 1fr;
+  }
+
+  .periscope-controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .periscope-data-ribbon {
+    width: 72%;
+  }
+}
+
+@media (min-width: 900px) {
+  .station-tabs {
+    justify-content: center;
+  }
+
+  .station-panel.active {
+    width: min(100%, 1180px);
+    margin-inline: auto;
+  }
+
+  .instrument-grid.station-panel.active {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-screen="gameplay"] .app-shell { scroll-behavior: auto; }
+}
+
+/* Command station prioritizes immediate controls before briefing text. */
+.action-panel { order: 1; }
+.mission-live-panel { order: 2; }
+.objective-line b { margin-right: .35em; }
+.objective-line small { display: block; margin-top: 3px; line-height: 1.35; }
+
+.periscope-window {
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+}
+.periscope-window.dragging { cursor: grabbing; }

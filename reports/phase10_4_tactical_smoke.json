@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "passed": 12,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Tactical encounter console fits 360px mobile width",
+      "status": "PASS",
+      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 480}"
+    },
+    {
+      "name": "Tactical console is visible near the command station",
+      "status": "PASS",
+      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 480}"
+    },
+    {
+      "name": "Four tactical doctrines are available",
+      "status": "PASS",
+      "details": "4"
+    },
+    {
+      "name": "Doctrine controls update engine and UI together",
+      "status": "PASS",
+      "details": "{'active': True, 'engine': 'attack', 'phase': 'patrol'}"
+    },
+    {
+      "name": "Target destruction does not end mission immediately",
+      "status": "PASS",
+      "details": "{'targetDestroyed': True, 'canComplete': False, 'phase': 'evade', 'buttonHidden': True}"
+    },
+    {
+      "name": "Verified disengagement unlocks mission completion only after safety window",
+      "status": "PASS",
+      "details": "{'canComplete': True, 'phase': 'complete', 'escape': 100, 'ai': 'formation', 'buttonHidden': False}"
+    },
+    {
+      "name": "Tactical readouts expose contact, readiness, enemy solution and escape",
+      "status": "PASS",
+      "details": "{'contact': '0%', 'readiness': '2%', 'enemy': '0%', 'escape': '100%', 'recommendation': 'Área segura confirmada. A operação pode ser encerrada.'}"
+    },
+    {
+      "name": "Periscope shows live mast exposure, bearing and range",
+      "status": "PASS",
+      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '842 m', 'targetHidden': False}"
+    },
+    {
+      "name": "Detected target is shown only inside optical field of view",
+      "status": "PASS",
+      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '842 m', 'targetHidden': False}"
+    },
+    {
+      "name": "Mobile touch scrolling remains functional",
+      "status": "PASS",
+      "details": "440"
+    },
+    {
+      "name": "Desktop tactical layout uses available width without overflow",
+      "status": "PASS",
+      "details": "{'width': 1310, 'viewport': 1366, 'overflow': 0, 'consoleVisible': True}"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ],
+  "consoleErrors": []
+}

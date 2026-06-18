@@ -1,0 +1,341 @@
+{
+  "generatedAt": "2026-06-11T21:44:38.479135+00:00",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.04",
+    "semver": "2.0.0-alpha.4",
+    "buildId": "SCWW2-20260611-1838-BRT",
+    "date": "2026-06-11",
+    "time": "18:38",
+    "timezone": "America/Sao_Paulo",
+    "phase": 4,
+    "phaseName": "Transactional Profiles, Save Recovery & Operation Autosave",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 3,
+    "notes": "Phase 4: three independent commander profiles, transactional local saves, rotating backups, legacy migration, verified export/import, operation autosave and deterministic tactical state restoration."
+  },
+  "summary": {
+    "passed": 63,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Required Phase 4 project files",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Foreign Stage Music module remains removed",
+      "status": "PASS",
+      "details": "present=[]"
+    },
+    {
+      "name": "All JSON files parse",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 4 metadata",
+      "status": "PASS",
+      "details": "{'phase': 4, 'version': 'v2.0.0-alpha.04'}"
+    },
+    {
+      "name": "Save schema upgraded to v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build is alpha and not mislabeled release",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visible build metadata fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build version centralized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Package version matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker cache matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 4 stylesheet loaded",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Translation key parity PT/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 391, 'en': 391, 'es': 391}"
+    },
+    {
+      "name": "Phase 4 strings translated in all languages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Unique IDs: nations",
+      "status": "PASS",
+      "details": "count=3"
+    },
+    {
+      "name": "Unique IDs: submarines",
+      "status": "PASS",
+      "details": "count=6"
+    },
+    {
+      "name": "Unique IDs: crew",
+      "status": "PASS",
+      "details": "count=12"
+    },
+    {
+      "name": "Unique IDs: missions",
+      "status": "PASS",
+      "details": "count=13"
+    },
+    {
+      "name": "Unique IDs: upgrades",
+      "status": "PASS",
+      "details": "count=5"
+    },
+    {
+      "name": "Starter submarines exist",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Submarine nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crew nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker app shell files exist",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Phase 4 files cached offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine remains cached offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker avoids HTML fallback for assets",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker only clears owned caches",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three profile slots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Transactional journal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Verified temporary record",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Automatic rollback",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three rotating backups",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary checksum",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Legacy migration archive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Migration completion marker",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile export archive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Import checksum validation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave envelope",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation corruption rejection",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Backup restoration API",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile deletion API",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager scene registered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager has all three card actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Import file input restricted",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Main menu displays active profile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Settings links to profile manager",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Briefing offers resume and discard operation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay writes periodic operation autosaves",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay saves operation on scene cleanup",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay clears resolved operation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App routes import/export/profile actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App reports migration and transaction recovery",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine accepts initial snapshot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine restores tactical snapshot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored snapshot validates mission identity",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored state includes contact positions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored state includes torpedo transit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot includes format version",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile grid has mobile layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile grid has tablet/desktop layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Small phones collapse metadata",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile cards allow wrapped text",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All JavaScript files pass syntax check",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Engine and save unit suite passes",
+      "status": "PASS",
+      "details": "passed=14"
+    }
+  ]
+}

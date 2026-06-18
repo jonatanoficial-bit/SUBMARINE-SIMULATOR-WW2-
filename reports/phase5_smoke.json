@@ -1,0 +1,279 @@
+{
+  "summary": {
+    "passed": 54,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.05 • 2026-06-11 19:11 BRT • F5 • QA PASS"
+    },
+    {
+      "name": "Phone menu no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone viewport classified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander screen no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name rendered safely",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Protected save envelope v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three independent profile slots",
+      "status": "PASS",
+      "details": "[{'id': 'slot-1', 'number': 1, 'active': True, 'occupied': True, 'metadata': {'commanderName': 'img src=xJonatan', 'nationId': 'de', 'level': 1, 'updatedAt': '2026-06-11T22:12:57.232Z', 'revision': 1, 'buildVersion': 'v2.0.0-alpha.05'}}, {'id': 'slot-2', 'number': 2, 'active': False, 'occupied': False, 'metadata': None}, {'id': 'slot-3', 'number': 3, 'active': False, 'occupied': False, 'metadata': None}]"
+    },
+    {
+      "name": "Lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Rotating backup created",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Corrupted profile recovered",
+      "status": "PASS",
+      "details": "{'recovered': True, 'diagnostics': {'source': 'backup-1', 'recovered': True, 'migrated': False, 'transactionRecovered': False, 'slotId': 'slot-1', 'error': \"primary: Expected property name or '}' in JSON at position 1 (line 1 column 2)\"}}"
+    },
+    {
+      "name": "Profile manager renders three cards",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Second profile created independently",
+      "status": "PASS",
+      "details": "{'active': 'slot-2', 'count': 2}"
+    },
+    {
+      "name": "Profile switching restores slot 1",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Phone gameplay mounts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary combat control in first phone viewport",
+      "status": "PASS",
+      "details": "{'x': 23.953125, 'y': 523.171875, 'width': 312.09375, 'height': 58}"
+    },
+    {
+      "name": "Simulation engine mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 2, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Three entities registered",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 2, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Fixed-step clock configured",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 2, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Navigation subsystem registered",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 2, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+    },
+    {
+      "name": "Navigation station rendered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mission route and patrol sector loaded",
+      "status": "PASS",
+      "details": "{'missionId': 'm1', 'position': {'lat': 48.09, 'lon': -15.59}, 'heading': 68, 'orderedHeading': 68, 'rudder': 0, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.7214701560161756, 'nextWaypointBearing': 66.22997846530029, 'routeDistanceNm': 71.473168701699, 'routeComplete': False, 'requestedTimeCompression': 1, 'timeCompression': 1, 'safetyLimit': 16, 'safetyLimited': False, 'simulatedElapsedMs': 0, 'distanceTravelledNm': 0, 'speedKnots': 0, 'etaHours': None, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 0, 'navigationVersion': 1}"
+    },
+    {
+      "name": "Geographic position visible",
+      "status": "PASS",
+      "details": "48°5.40′N 15°35.40′W"
+    },
+    {
+      "name": "Chart click adds a bounded waypoint",
+      "status": "PASS",
+      "details": "3->4"
+    },
+    {
+      "name": "Time compression advances ocean position",
+      "status": "PASS",
+      "details": "{'missionId': 'm1', 'position': {'lat': 48.090143116018055, 'lon': -15.589481166053645}, 'heading': 67.30004522206491, 'orderedHeading': 66.22296875132423, 'rudder': -1.9879977593418743, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.32758522727273, 'lon': -13.193750000000001, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.6989796091920066, 'nextWaypointBearing': 66.22188406700849, 'routeDistanceNm': 112.16343096255525, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 16, 'safetyLimit': 16, 'safetyLimited': False, 'simulatedElapsedMs': 7840, 'distanceTravelledNm': 0.022497066666666666, 'speedKnots': 10.48, 'etaHours': 10.70261745825909, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}"
+    },
+    {
+      "name": "Periscope safety interlock limits compression",
+      "status": "PASS",
+      "details": "{'missionId': 'm1', 'position': {'lat': 48.09014611278263, 'lon': -15.589470445039591}, 'heading': 67.28943000251655, 'orderedHeading': 66.22181653655537, 'rudder': -1.8239437941950882, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.32758522727273, 'lon': -13.193750000000001, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.698513917415, 'nextWaypointBearing': 66.22174933085341, 'routeDistanceNm': 112.16296527077824, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 8000, 'distanceTravelledNm': 0.022962844444444446, 'speedKnots': 10.48, 'etaHours': 10.702573022020824, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}"
+    },
+    {
+      "name": "Compression request remains guarded after danger",
+      "status": "PASS",
+      "details": "{'missionId': 'm1', 'position': {'lat': 48.090176150777566, 'lon': -15.589363279014627}, 'heading': 67.18879075558391, 'orderedHeading': 66.22053209246724, 'rudder': -1.6542029827033047, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.32758522727273, 'lon': -13.193750000000001, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.6938569155018843, 'nextWaypointBearing': 66.22047106360168, 'routeDistanceNm': 112.15830826886511, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 9600, 'distanceTravelledNm': 0.02762062222222225, 'speedKnots': 10.48, 'etaHours': 10.702128651609266, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}"
+    },
+    {
+      "name": "Simulation clock advances",
+      "status": "PASS",
+      "details": "35"
+    },
+    {
+      "name": "Operation autosave offered after leaving combat",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave restores tactical depth",
+      "status": "PASS",
+      "details": "60"
+    },
+    {
+      "name": "Operation autosave restores ocean navigation",
+      "status": "PASS",
+      "details": "{'missionId': 'm1', 'position': {'lat': 48.09019121529582, 'lon': -15.58930972462044}, 'heading': 67.14203973508302, 'orderedHeading': 66.21993484255319, 'rudder': -1.5753524566237047, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.32758522727273, 'lon': -13.193750000000001, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.691528362734896, 'nextWaypointBearing': 66.2198766858022, 'routeDistanceNm': 112.15597971609813, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 10400, 'distanceTravelledNm': 0.02994951111111115, 'speedKnots': 0, 'etaHours': None, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}"
+    },
+    {
+      "name": "Deterministic browser torpedo simulation",
+      "status": "PASS",
+      "details": "{'opened': {'ok': True}, 'fired': {'ok': True, 'hitPredicted': True}, 'snapshot': {'missionId': 'm1', 'mission': {'id': 'm1', 'titleKey': 'mission.m1.title', 'summaryKey': 'mission.m1.summary', 'theatreKey': 'mission.theatre.atlantic', 'operationKey': 'mission.m1.operation', 'year': '1939', 'difficulty': 'I', 'reward': 1400, 'xp': 120, 'status': 'available', 'targetType': 'merchant', 'targetStartX': 230, 'targetStartY': 16, 'escortStartX': 320, 'escortStartY': 40, 'escortSensitivity': 0.95, 'targetDrift': 0.65, 'targetWave': 0.28, 'targetBob': 4, 'objectiveKeys': ['briefing.objectiveSilent', 'briefing.objectiveStrike', 'briefing.objectiveReturn'], 'historicalNoteKey': 'mission.m1.history', 'bonusReward': 490, 'bonusXp': 60, 'navigation': {'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'origin': {'lat': 48.09, 'lon': -15.59}, 'heading': 68, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture'}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach'}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol'}]}, '_baseStatus': 'available'}, 'depth': 0, 'speed': 'full', 'hull': 78, 'systems': {'engines': 96, 'sonar': 100, 'periscope': 88, 'weapons': 96}, 'torpedoes': 3, 'decoys': 2, 'target': {'x': 189.8586, 'y': 18.936682771271283, 'type': 'merchant'}, 'escort': {'x': 36.25116937393301, 'y': 2.475438952733637, 'state': 'hunt'}, 'targetDestroyed': True, 'escortState': 'hunt', 'playerDetected': True, 'detectionScore': 100, 'scanAngle': 116.6000000000001, 'view': {'x': 220, 'y': 18}, 'worldTime': 53, 'elapsedMs': 4240, 'repairUses': 2, 'repairTicks': 0, 'missionFailed': False, 'periscopeOpen': True, 'torpedoActive': False, 'torpedoRevealTicks': 57, 'torpedoTravelTicks': 0, 'torpedoLockedAtLaunch': True, 'lastKnown': {'x': 85.43637, 'y': 8.521507247072078}, 'silentTicks': 0, 'decoyTicks': 0, 'emergencyDiveCooldown': 0, 'damageFlashTicks': 15, 'lastEventKey': 'gameplay.hintEscortDamage', 'canComplete': True, 'metrics': {'shots': 1, 'hits': 1, 'maxDetection': 100, 'damageTaken': 22, 'startHull': 100}, 'navigation': {'missionId': 'm1', 'position': {'lat': 48.09021084144158, 'lon': -15.589240130570484}, 'heading': 67.08457893966568, 'orderedHeading': 66.21920023884996, 'rudder': -1.4784396800017703, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.32758522727273, 'lon': -13.193750000000001, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.6885011991813745, 'nextWaypointBearing': 66.21914561470555, 'routeDistanceNm': 112.1529525525446, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 11440, 'distanceTravelledNm': 0.03297706666666669, 'speedKnots': 10.48, 'etaHours': 10.70161760997563, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}, 'snapshotVersion': 2, 'entityCount': 3}, 'report': {'score': 63, 'bonusCredits': 309, 'bonusXp': 38, 'hull': 78, 'stealth': 0, 'shots': 1}}"
+    },
+    {
+      "name": "Mission report calculated by engine",
+      "status": "PASS",
+      "details": "{'score': 63, 'bonusCredits': 309, 'bonusXp': 38, 'hull': 78, 'stealth': 0, 'shots': 1}"
+    },
+    {
+      "name": "Scene exit stops and detaches engine",
+      "status": "PASS",
+      "details": "{'stopped': True, 'detached': True}"
+    },
+    {
+      "name": "320x568 menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 combat control reachable in first viewport",
+      "status": "PASS",
+      "details": "{'x': 20, 'y': 429.34375, 'width': 280, 'height': 58}"
+    },
+    {
+      "name": "Landscape orientation detected",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "640x360 gameplay no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape primary control above fold",
+      "status": "PASS",
+      "details": "{'x': 29, 'y': 202.375, 'width': 241.359375, 'height': 44}"
+    },
+    {
+      "name": "Landscape periscope opens",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape periscope fits viewport height",
+      "status": "PASS",
+      "details": "{'x': 190.40625, 'y': 50.40625, 'width': 259.1875, 'height': 259.1875}"
+    },
+    {
+      "name": "Tablet lobby no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Tablet uses multi-column lobby",
+      "status": "PASS",
+      "details": "361.094px 361.094px"
+    },
+    {
+      "name": "Desktop menu no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop shell expands beyond legacy 460px",
+      "status": "PASS",
+      "details": "1280"
+    },
+    {
+      "name": "Desktop menu uses two columns",
+      "status": "PASS",
+      "details": "756px 504px"
+    },
+    {
+      "name": "Desktop navigation uses chart and console columns",
+      "status": "PASS",
+      "details": "738px 492px"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "summary": {
+    "passed": 7,
+    "failed": 1
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata and final QA status visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.09 • 2026-06-13 12:28 BRT • F9 • QA PASS"
+    },
+    {
+      "name": "Phone menu has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name is sanitized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Smoke execution",
+      "status": "FAIL",
+      "details": "TimeoutError('Locator.wait_for: Timeout 10000ms exceeded.\\nCall log:\\n  - waiting for locator(\".gameplay-screen\") to be visible\\n')"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

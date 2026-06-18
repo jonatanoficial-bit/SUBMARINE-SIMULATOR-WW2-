@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "passed": 9,
+    "failed": 1
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.04 • 2026-06-11 18:38 BRT • F4 • QA PENDING"
+    },
+    {
+      "name": "Phone menu no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone viewport classified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish switch works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander screen no overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name rendered safely",
+      "status": "PASS",
+      "details": "img src=xJonatan"
+    },
+    {
+      "name": "Smoke execution",
+      "status": "FAIL",
+      "details": "AttributeError(\"'NoneType' object has no attribute 'get'\")"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

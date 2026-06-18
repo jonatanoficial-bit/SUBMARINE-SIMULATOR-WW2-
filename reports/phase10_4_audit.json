@@ -1,0 +1,133 @@
+{
+  "phase": "10.4",
+  "total": 25,
+  "passed": 25,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "version",
+      "pass": true,
+      "detail": "2.0.0-alpha.10.4"
+    },
+    {
+      "name": "phase",
+      "pass": true,
+      "detail": "10.4"
+    },
+    {
+      "name": "difficulty module",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "training module",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "training css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "offline css/phase10-4-training.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "offline js/engine/training/DifficultyProfile.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "offline js/engine/training/OperationalTraining.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "css linked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "difficulty passed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tutorial passed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gameplay operational-guide",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gameplay station-help-drawer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gameplay OperationalTraining",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gameplay difficulty-badge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "engine getDifficultyProfile",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "engine enemyDetectionMultiplier",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "engine enemyDamageMultiplier",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "engine resourceConsumptionMultiplier",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "engine snapshotVersion: 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR training keys",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en training keys",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es training keys",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "translation parity",
+      "pass": true,
+      "detail": "[845, 845, 845]"
+    },
+    {
+      "name": "no merge markers",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

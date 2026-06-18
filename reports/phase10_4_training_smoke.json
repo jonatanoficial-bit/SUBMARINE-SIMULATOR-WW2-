@@ -1,0 +1,87 @@
+{
+  "passed": 16,
+  "total": 16,
+  "results": [
+    {
+      "name": "Difficulty selector exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Tutorial toggle exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Contextual help toggle exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Difficulty setting persists",
+      "pass": true,
+      "detail": "{'language': 'pt-BR', 'music': 70, 'sound': 80, 'graphics': 'high', 'vibration': True, 'difficulty': 'hardcore', 'tutorials': True, 'contextualHelp': True}"
+    },
+    {
+      "name": "Engine receives selected difficulty",
+      "pass": true,
+      "detail": "{'id': 'hardcore', 'enemyDetectionMultiplier': 1.28, 'enemyDamageMultiplier': 1.22, 'sensorConfidenceMultiplier': 0.88, 'weaponQualityBonus': -8, 'torpedoFailureMultiplier': 1.18, 'resourceConsumptionMultiplier': 1.16}"
+    },
+    {
+      "name": "Difficulty badge visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Operational guide visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Nine tutorial steps rendered",
+      "pass": true,
+      "detail": "9"
+    },
+    {
+      "name": "Station help controls rendered",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "Contextual help drawer opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Contextual help contains operational guidance",
+      "pass": true,
+      "detail": "Use esta estação para acompanhar objetivos, escolher doutrina e acessar o periscópio. Antes do ataqu"
+    },
+    {
+      "name": "Tutorial advances from real simulator actions",
+      "pass": true,
+      "detail": "{'before': 3, 'after': 5, 'depth': 8.1043595054479}"
+    },
+    {
+      "name": "Operational recommendation updates",
+      "pass": true,
+      "detail": "Obtenha solução TDC mínima de 42%"
+    },
+    {
+      "name": "Difficulty profiles materially alter simulation",
+      "pass": true,
+      "detail": "{'cadetDetection': 0.72, 'hardcoreDetection': 1.28, 'cadetDamage': 0.68, 'hardcoreDamage': 1.22, 'cadetSensor': 1.14, 'hardcoreSensor': 0.88}"
+    },
+    {
+      "name": "Training UI has no horizontal overflow",
+      "pass": true,
+      "detail": "{'scroll': 360, 'inner': 360}"
+    },
+    {
+      "name": "No page errors",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": []
+}

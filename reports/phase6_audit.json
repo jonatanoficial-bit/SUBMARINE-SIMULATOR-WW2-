@@ -1,0 +1,1006 @@
+{
+  "generatedAt": "2026-06-13T12:26:59.574237+00:00",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.06",
+    "semver": "2.0.0-alpha.6",
+    "buildId": "SCWW2-20260613-0920-BRT",
+    "date": "2026-06-13",
+    "time": "09:20",
+    "timezone": "America/Sao_Paulo",
+    "phase": 6,
+    "phaseName": "Submarine Physics, Resources & Live Instrumentation",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 3,
+    "notes": "Phase 6: deterministic submarine physics with progressive depth control, ballast, trim, buoyancy, pressure limits, diesel/electric propulsion, fuel, battery, oxygen, CO2, noise, cavitation and live instruments synchronized to the simulation state."
+  },
+  "summary": {
+    "passed": 196,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Arquivo obrigatório: index.html",
+      "status": "PASS",
+      "details": "bytes=1901"
+    },
+    {
+      "name": "Arquivo obrigatório: manifest.json",
+      "status": "PASS",
+      "details": "bytes=764"
+    },
+    {
+      "name": "Arquivo obrigatório: BUILD_INFO.json",
+      "status": "PASS",
+      "details": "bytes=684"
+    },
+    {
+      "name": "Arquivo obrigatório: service-worker.js",
+      "status": "PASS",
+      "details": "bytes=4562"
+    },
+    {
+      "name": "Arquivo obrigatório: package.json",
+      "status": "PASS",
+      "details": "bytes=559"
+    },
+    {
+      "name": "Arquivo obrigatório: ANTI_BREAK_PROTOCOL.md",
+      "status": "PASS",
+      "details": "bytes=2010"
+    },
+    {
+      "name": "Arquivo obrigatório: CHANGELOG.md",
+      "status": "PASS",
+      "details": "bytes=6722"
+    },
+    {
+      "name": "Arquivo obrigatório: README.md",
+      "status": "PASS",
+      "details": "bytes=2665"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase2-responsive.css",
+      "status": "PASS",
+      "details": "bytes=17191"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase3-engine.css",
+      "status": "PASS",
+      "details": "bytes=851"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase4-save.css",
+      "status": "PASS",
+      "details": "bytes=2338"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase5-navigation.css",
+      "status": "PASS",
+      "details": "bytes=6906"
+    },
+    {
+      "name": "Arquivo obrigatório: css/phase6-physics.css",
+      "status": "PASS",
+      "details": "bytes=5211"
+    },
+    {
+      "name": "Arquivo obrigatório: js/app.js",
+      "status": "PASS",
+      "details": "bytes=25963"
+    },
+    {
+      "name": "Arquivo obrigatório: js/build.js",
+      "status": "PASS",
+      "details": "bytes=790"
+    },
+    {
+      "name": "Arquivo obrigatório: js/save.js",
+      "status": "PASS",
+      "details": "bytes=19295"
+    },
+    {
+      "name": "Arquivo obrigatório: js/state.js",
+      "status": "PASS",
+      "details": "bytes=1436"
+    },
+    {
+      "name": "Arquivo obrigatório: js/safety.js",
+      "status": "PASS",
+      "details": "bytes=6108"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/mainMenu.js",
+      "status": "PASS",
+      "details": "bytes=2861"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/profiles.js",
+      "status": "PASS",
+      "details": "bytes=4312"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/briefing.js",
+      "status": "PASS",
+      "details": "bytes=2615"
+    },
+    {
+      "name": "Arquivo obrigatório: js/screens/gameplay.js",
+      "status": "PASS",
+      "details": "bytes=60337"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/core/EventBus.js",
+      "status": "PASS",
+      "details": "bytes=1336"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/core/SimulationClock.js",
+      "status": "PASS",
+      "details": "bytes=2690"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/navigation/NavigationSystem.js",
+      "status": "PASS",
+      "details": "bytes=13140"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/physics/SubmarinePhysicsSystem.js",
+      "status": "PASS",
+      "details": "bytes=13325"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/simulation/SimulationEngine.js",
+      "status": "PASS",
+      "details": "bytes=27697"
+    },
+    {
+      "name": "Arquivo obrigatório: js/engine/scenes/SceneManager.js",
+      "status": "PASS",
+      "details": "bytes=1151"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/engine.test.js",
+      "status": "PASS",
+      "details": "bytes=4905"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/save.test.js",
+      "status": "PASS",
+      "details": "bytes=4941"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/navigation.test.js",
+      "status": "PASS",
+      "details": "bytes=5731"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/physics.test.js",
+      "status": "PASS",
+      "details": "bytes=10202"
+    },
+    {
+      "name": "Arquivo obrigatório: tests/smoke_test.py",
+      "status": "PASS",
+      "details": "bytes=17919"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/SAVE_ARCHITECTURE_V3.md",
+      "status": "PASS",
+      "details": "bytes=2648"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/NAVIGATION_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=2986"
+    },
+    {
+      "name": "Arquivo obrigatório: docs/PHYSICS_ARCHITECTURE_V1.md",
+      "status": "PASS",
+      "details": "bytes=3717"
+    },
+    {
+      "name": "Arquivo obrigatório: RELEASE_NOTES_v2.0.0-alpha.06.md",
+      "status": "PASS",
+      "details": "bytes=1240"
+    },
+    {
+      "name": "Arquivo obrigatório: PHASE_6_DELIVERY_REPORT.md",
+      "status": "PASS",
+      "details": "bytes=1361"
+    },
+    {
+      "name": "Arquivo obrigatório: QA_CHECKLIST_PHASE_6.md",
+      "status": "PASS",
+      "details": "bytes=1164"
+    },
+    {
+      "name": "Arquivo obrigatório: KNOWN_ISSUES_PHASE_6.md",
+      "status": "PASS",
+      "details": "bytes=547"
+    },
+    {
+      "name": "Arquivo obrigatório: ROLLBACK_PHASE_6.md",
+      "status": "PASS",
+      "details": "bytes=565"
+    },
+    {
+      "name": "Arquivo obrigatório: data/nations.json",
+      "status": "PASS",
+      "details": "bytes=757"
+    },
+    {
+      "name": "Arquivo obrigatório: data/submarines.json",
+      "status": "PASS",
+      "details": "bytes=1931"
+    },
+    {
+      "name": "Arquivo obrigatório: data/crew.json",
+      "status": "PASS",
+      "details": "bytes=3280"
+    },
+    {
+      "name": "Arquivo obrigatório: data/missions.json",
+      "status": "PASS",
+      "details": "bytes=21540"
+    },
+    {
+      "name": "Arquivo obrigatório: data/upgrades.json",
+      "status": "PASS",
+      "details": "bytes=1241"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/pt-BR.json",
+      "status": "PASS",
+      "details": "bytes=27430"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/en.json",
+      "status": "PASS",
+      "details": "bytes=26944"
+    },
+    {
+      "name": "Arquivo obrigatório: data/translations/es.json",
+      "status": "PASS",
+      "details": "bytes=28770"
+    },
+    {
+      "name": "Resíduos de outros projetos e arquivo de teste obsoleto removidos",
+      "status": "PASS",
+      "details": "presentes=[]"
+    },
+    {
+      "name": "Todos os JSON do projeto são válidos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Metadados identificam a Fase 6",
+      "status": "PASS",
+      "details": "{'phase': 6, 'version': 'v2.0.0-alpha.06'}"
+    },
+    {
+      "name": "Semver correto",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build ID da Fase 6",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Data e hora da build presentes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Timezone oficial preservado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Canal alpha sem falso lançamento comercial",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Status QA permitido no portão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Schema de save permanece v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Versão centralizada no JS gerado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Versão visível no título e descrição",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Manifesto PWA acompanha versão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Package acompanha versão e ESM",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Script unitário de física registrado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Suite geral inclui física",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache PWA acompanha versão",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS da Fase 6 carregado pelo HTML",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Paridade de chaves PT-BR/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 491, 'en': 491, 'es': 491}"
+    },
+    {
+      "name": "Quantidade robusta de traduções",
+      "status": "PASS",
+      "details": "{'pt-BR': 491, 'en': 491, 'es': 491}"
+    },
+    {
+      "name": "Todas as strings de física existem nos três idiomas",
+      "status": "PASS",
+      "details": "chaves=31"
+    },
+    {
+      "name": "Textos de física não vazios: pt-BR",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de física não vazios: en",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "Textos de física não vazios: es",
+      "status": "PASS",
+      "details": "vazios=[]"
+    },
+    {
+      "name": "IDs únicos: nações",
+      "status": "PASS",
+      "details": "quantidade=3"
+    },
+    {
+      "name": "IDs únicos: submarinos",
+      "status": "PASS",
+      "details": "quantidade=6"
+    },
+    {
+      "name": "IDs únicos: tripulação",
+      "status": "PASS",
+      "details": "quantidade=12"
+    },
+    {
+      "name": "IDs únicos: missões",
+      "status": "PASS",
+      "details": "quantidade=13"
+    },
+    {
+      "name": "IDs únicos: upgrades",
+      "status": "PASS",
+      "details": "quantidade=5"
+    },
+    {
+      "name": "Submarino inicial de cada nação existe",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Referências de nação dos submarinos são válidas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Referências de nação da tripulação são válidas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os submarinos possuem estatísticas para física",
+      "status": "PASS",
+      "details": "quantidade=6"
+    },
+    {
+      "name": "Atributos de profundidade estão em faixa válida",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Planos de navegação das missões continuam válidos",
+      "status": "PASS",
+      "details": "missões=13"
+    },
+    {
+      "name": "Validador de navegação permanece ativo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os arquivos do app shell existem",
+      "status": "PASS",
+      "details": "ausentes=[]"
+    },
+    {
+      "name": "Módulo de física disponível offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS de física disponível offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Motor, navegação e save continuam offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Instalação falha se app shell estiver incompleto",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fallback HTML restrito a navegação",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cache limpa somente versões do próprio jogo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JSON usa estratégia network-first sem HTML",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: export class SubmarinePhysicsSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setOrderedDepth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: adjustOrderedDepth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setBallastCommand",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: setTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: nudgeTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: levelTrim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: emergencyDive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: emergencyBlow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: recalculateDerived",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: actualSpeedKnots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: pressurePercent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: hullStress",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: fuel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: battery",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: oxygen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: co2",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: noise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: cavitation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: drainDamageEvents",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contrato de física contém: physicsVersion: 1",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profundidade ordenada separada da real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mergulho usa convergência e não teleporte",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Lastro automático considera erro e velocidade vertical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Trimagem participa da força vertical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Propulsão alterna diesel/elétrica por profundidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Energia reduz velocidade real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Recursos usam tempo simulado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Bateria e atmosfera são consumidas submersas",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Superfície consome combustível e recarrega",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cavitação depende de pouca profundidade e velocidade",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Pressão acima do limite gera dano",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Atmosfera crítica gera dano",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restauração limita valores físicos",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: import { SubmarinePhysicsSystem }",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics = new SubmarinePhysicsSystem",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.update(stepMs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.drainDamageEvents()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: this.physics.snapshot().actualSpeedKnots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: physics: this.physics.snapshot()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: snapshotVersion: 3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: setBallastCommand(mode)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: nudgeTrim(delta)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: levelTrim()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Integração do motor contém: emergencyBlow()",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navegação recebe velocidade física real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Risco físico limita compressão de tempo",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Diagnóstico expõe física e versão do motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Correção de waypoint duplicado aplicada",
+      "status": "PASS",
+      "details": "ocorrências=1"
+    },
+    {
+      "name": "Medidor presente na interface: physics-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-ordered-depth",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-vertical-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-actual-speed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-ballast",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-trim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-pressure",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-propulsion",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-fuel-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-battery-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-oxygen-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-co2-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-noise-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-cavitation-value",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-fuel-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-battery-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-oxygen-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-co2-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-noise-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Medidor presente na interface: physics-cavitation-bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Função de atualização física lê snapshot real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os recursos usam a função de medidor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Barras recebem largura e estado visual",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ponteiro de profundidade usa profundidade real",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Marcador de ordem usa profundidade ordenada",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HUD de bateria e oxigênio usa física",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Interface atualiza em tick e mudança de estado",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles de lastro conectados ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles de trimagem conectados ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Subida de emergência conectada ao motor",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Autosave recebe snapshot físico",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-panel",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-readout-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-meter-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-control-grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-status.warning",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: .physics-status.critical",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: em[data-state=\"warning\"]",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: em[data-state=\"critical\"]",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (min-width: 620px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (min-width: 980px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (max-width: 380px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (prefers-reduced-motion: reduce)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS responsivo contém: @media (orientation: landscape) and (max-height: 540px)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Console físico ocupa área própria no grid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Controles prioritários continuam antes da física no mobile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "KPIs duplicados são ocultos em telefones",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Todos os JavaScript passam no parser",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Importação ESM: Módulo físico",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Motor de simulação",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Navegação",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Tela de gameplay",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Importação ESM: Save v3",
+      "status": "PASS",
+      "details": "IMPORT_PASS"
+    },
+    {
+      "name": "Suite unitária completa aprovada",
+      "status": "PASS",
+      "details": "pass=38, fail=0"
+    }
+  ]
+}

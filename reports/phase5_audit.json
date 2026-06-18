@@ -1,0 +1,466 @@
+{
+  "generatedAt": "2026-06-11T22:12:38.214103+00:00",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.05",
+    "semver": "2.0.0-alpha.5",
+    "buildId": "SCWW2-20260611-1911-BRT",
+    "date": "2026-06-11",
+    "time": "19:11",
+    "timezone": "America/Sao_Paulo",
+    "phase": 5,
+    "phaseName": "Ocean Navigation, Routes, Patrol Sectors & Time Compression",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 3,
+    "notes": "Phase 5: deterministic ocean navigation with geographic coordinates, heading and rudder control, mission routes, interactive waypoints, patrol sectors, guarded time compression and complete operation autosave restoration."
+  },
+  "summary": {
+    "passed": 88,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Required Phase 5 project files",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Foreign Stage Music module remains removed",
+      "status": "PASS",
+      "details": "present=[]"
+    },
+    {
+      "name": "All JSON files parse",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 5 metadata",
+      "status": "PASS",
+      "details": "{'phase': 5, 'version': 'v2.0.0-alpha.05'}"
+    },
+    {
+      "name": "Save schema upgraded to v3",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build is alpha and not mislabeled release",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visible build metadata fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build version centralized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Package version matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker cache matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 4 save stylesheet retained",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 5 navigation stylesheet loaded",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Translation key parity PT/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 441, 'en': 441, 'es': 441}"
+    },
+    {
+      "name": "Phase 4 strings translated in all languages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 5 strings translated in all languages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Unique IDs: nations",
+      "status": "PASS",
+      "details": "count=3"
+    },
+    {
+      "name": "Unique IDs: submarines",
+      "status": "PASS",
+      "details": "count=6"
+    },
+    {
+      "name": "Unique IDs: crew",
+      "status": "PASS",
+      "details": "count=12"
+    },
+    {
+      "name": "Unique IDs: missions",
+      "status": "PASS",
+      "details": "count=13"
+    },
+    {
+      "name": "Unique IDs: upgrades",
+      "status": "PASS",
+      "details": "count=5"
+    },
+    {
+      "name": "Starter submarines exist",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Submarine nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crew nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All missions contain valid navigation plans",
+      "status": "PASS",
+      "details": "count=13"
+    },
+    {
+      "name": "All missions contain three baseline waypoints",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mission loader validates navigation bounds and route limits",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker app shell files exist",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Phase 4 files retained offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 5 files cached offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine remains cached offline",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker avoids HTML fallback for assets",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker only clears owned caches",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three profile slots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Transactional journal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Verified temporary record",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Automatic rollback",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Three rotating backups",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary checksum",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Legacy migration archive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Migration completion marker",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile export archive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Import checksum validation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave envelope",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation corruption rejection",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Backup restoration API",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile deletion API",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager scene registered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile manager has all three card actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Import file input restricted",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Main menu displays active profile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Settings links to profile manager",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Briefing offers resume and discard operation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay writes periodic operation autosaves",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay saves operation on scene cleanup",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay clears resolved operation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App routes import/export/profile actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "App reports migration and transaction recovery",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine accepts initial snapshot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Simulation engine restores tactical snapshot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored snapshot validates mission identity",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored state includes contact positions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Restored state includes torpedo transit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot upgraded to format v2",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navigation system class",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Geographic range calculation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Bearing calculation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Rudder limit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Eight-waypoint safety limit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Route autopilot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Patrol-sector entry",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Time compression options",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Compression safety limiter",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navigation snapshot version",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Engine exposes navigation command API",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Engine applies tactical compression interlock",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay renders operational chart",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay supports chart-created waypoints",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Gameplay keeps combat shortcut to navigation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navigation uses responsive mobile layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Navigation uses desktop chart/console layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Small phones hide secondary navigation KPIs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile grid has mobile layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile grid has tablet/desktop layout",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Small phones collapse metadata",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Profile cards allow wrapped text",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All JavaScript files pass syntax check",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Critical ES modules resolve named imports",
+      "status": "PASS",
+      "details": "ESM_IMPORT_PASS"
+    },
+    {
+      "name": "Engine, save and navigation unit suite passes",
+      "status": "PASS",
+      "details": "passed=22"
+    }
+  ]
+}

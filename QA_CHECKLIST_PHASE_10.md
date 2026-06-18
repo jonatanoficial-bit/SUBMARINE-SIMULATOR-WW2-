@@ -1,0 +1,24 @@
+# Checklist de QA — Fase 10
+
+- [x] Build, versão, data, hora e QA visíveis.
+- [x] Sete compartimentos inicializados com IDs únicos.
+- [x] Três equipes inicializadas e independentes.
+- [x] Impactos determinísticos geram danos localizados.
+- [x] Alagamento progride e pode ser bombeado.
+- [x] Incêndio progride e pode ser combatido.
+- [x] Reparos restauram compartimento e sistema associado.
+- [x] Atendimento trata feridos sem reviver mortos.
+- [x] Portas estanques reduzem propagação.
+- [x] Bombas dependem de energia.
+- [x] Energia de emergência restaura serviços essenciais.
+- [x] Casco recebe dano progressivo em emergência crítica.
+- [x] Medidores físicos anteriores continuam ligados ao motor.
+- [x] Snapshot v7 exporta e restaura controle de avarias.
+- [x] Autosave de operação preserva todo o estado.
+- [x] Português, inglês e espanhol têm paridade.
+- [x] Interface funciona em 320×568, 360×640 e desktop.
+- [x] Nenhum overflow horizontal.
+- [x] Nenhum erro JavaScript não tratado.
+- [x] Testes unitários, auditoria estática e smoke test aprovados.
+- [x] Manifesto SHA-256 gerado antes do empacotamento.
+- [x] ZIP extraído em pasta limpa e revalidado.

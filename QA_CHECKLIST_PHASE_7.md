@@ -1,0 +1,22 @@
+# Checklist de QA — Fase 7
+
+- [x] Build, versão, data, hora, fase e QA visíveis.
+- [x] Hidrofone passivo usa estado real do motor.
+- [x] Ruído próprio e cavitação reduzem desempenho passivo.
+- [x] Direção do hidrofone pode ser ajustada.
+- [x] Sonar ativo retorna distância e marcação precisas.
+- [x] Sonar ativo aumenta o risco de detecção.
+- [x] Recarga impede ping contínuo.
+- [x] Radar respeita nação e ano da missão.
+- [x] Radar respeita profundidade e estado do mastro.
+- [x] Mastro é recolhido automaticamente em mergulho profundo.
+- [x] Periscópio confirma somente contatos no campo visual.
+- [x] Torpedo exige solução visual com confiança mínima.
+- [x] Contatos armazenam fonte, confiança, incerteza e classificação.
+- [x] Soluções envelhecem e ficam obsoletas.
+- [x] Estado completo dos sensores retorna pelo autosave.
+- [x] Navegação, física e medidores mantêm regressão aprovada.
+- [x] Combate determinístico continua funcional.
+- [x] PT-BR, EN e ES possuem paridade.
+- [x] Layout aprovado em 320×568, 360×640, 640×360, 768×1024 e 1366×768.
+- [x] Testes unitários, estruturais e jogáveis aprovados.

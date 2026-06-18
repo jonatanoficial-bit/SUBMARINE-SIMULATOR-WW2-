@@ -1,0 +1,32 @@
+[
+  {
+    "id": "de",
+    "flag": "DE",
+    "nameKey": "nation.de.name",
+    "factionKey": "nation.de.faction",
+    "rankKey": "rank.de.junior",
+    "starterCredits": 5000,
+    "starterSubmarineId": "de_type_viia_starter",
+    "theme": "iron-wolf"
+  },
+  {
+    "id": "uk",
+    "flag": "UK",
+    "nameKey": "nation.uk.name",
+    "factionKey": "nation.uk.faction",
+    "rankKey": "rank.uk.junior",
+    "starterCredits": 5000,
+    "starterSubmarineId": "uk_t_class_starter",
+    "theme": "atlantic-crown"
+  },
+  {
+    "id": "us",
+    "flag": "US",
+    "nameKey": "nation.us.name",
+    "factionKey": "nation.us.faction",
+    "rankKey": "rank.us.junior",
+    "starterCredits": 5000,
+    "starterSubmarineId": "us_gato_starter",
+    "theme": "pacific-steel"
+  }
+]

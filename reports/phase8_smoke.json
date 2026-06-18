@@ -1,0 +1,219 @@
+{
+  "summary": {
+    "passed": 42,
+    "failed": 0
+  },
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "Phone menu boots",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Build metadata and final QA status visible",
+      "status": "PASS",
+      "details": "Build v2.0.0-alpha.08 • 2026-06-13 11:39 BRT • F8 • QA PASS"
+    },
+    {
+      "name": "Phone menu has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "English localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Spanish localization works",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander name is sanitized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phone gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Primary combat control remains above fold",
+      "status": "PASS",
+      "details": "{'x': 23.953125, 'y': 523.171875, 'width': 312.09375, 'height': 58}"
+    },
+    {
+      "name": "Simulation engine mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 5, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 1, 'weaponVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 3, 'elapsedMs': 240}}"
+    },
+    {
+      "name": "Navigation, physics, sensor and weapon subsystems mounted",
+      "status": "PASS",
+      "details": "{'engine': 'SimulationEngine', 'version': 5, 'missionId': 'm1', 'entityCount': 3, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 1, 'weaponVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 3, 'elapsedMs': 240}}"
+    },
+    {
+      "name": "Physics station is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Snapshot schema includes physics, sensors and weapons",
+      "status": "PASS",
+      "details": "{'physics': {'depth': 12, 'orderedDepth': 12, 'verticalSpeed': 0, 'ballast': 50, 'ballastCommand': 'auto', 'trim': 0, 'depthHold': True, 'pressurePercent': 6.185567010309279, 'hullStress': 0, 'fuel': 100, 'battery': 99.99983470031545, 'oxygen': 99.99991026666666, 'co2': 0.00011013333333333333, 'noise': 15.253333333333332, 'cavitation': 0, 'actualSpeedKnots': 2.8195200000000002, 'propulsionEfficiency': 0.88, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': True, 'simulatedElapsedMs': 240, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}, 'sensors': {'sensorVersion': 1, 'mode': 'hydrophone', 'hydrophoneBearing': 0, 'radarMastRaised': False, 'radarSweepAngle': 13.199999999999932, 'activePingCooldownMs': 0, 'activePingFlashMs': 0, 'lastMessageKey': 'sensors.radarEraUnavailable', 'profile': {'nation': 'de', 'year': 1939, 'hydrophoneRangeMeters': 3324, 'activeSonarRangeMeters': 2652, 'radarRangeMeters': 0, 'periscopeRangeMeters': 6762, 'radarAvailable': False, 'radarIntroduction': 1942, 'activeSonarAvailable': True, 'radarMastMaxDepth': 12}, 'contacts': {'target': {'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': False, 'bearing': None, 'rangeMeters': None, 'rangeKnown': False, 'confidence': 0, 'signal': 0, 'bearingUncertainty': 180, 'rangeUncertainty': 1, 'classification': 'unknown', 'source': 'none', 'lastUpdateWorldTime': 0, 'ageMs': 240, 'stale': True}, 'escort': {'id': 'escort', 'role': 'escort', 'type': 'destroyer', 'detected': False, 'bearing': None, 'rangeMeters': None, 'rangeKnown': False, 'confidence': 0, 'signal': 0, 'bearingUncertainty': 180, 'rangeUncertainty': 1, 'classification': 'unknown', 'source': 'none', 'lastUpdateWorldTime': 0, 'ageMs': 240, 'stale': True}}, 'visibleContactCount': 0}, 'weapons': {'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 1, 'reserveTorpedoes': 1, 'totalTorpedoes': 6, 'loadedTubeCount': 5, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': None, 'rangeMeters': None, 'targetSpeedKnots': 8, 'targetCourse': 270, 'aobDegrees': 90, 'gyroAngle': 0, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 0, 'solutionStatus': 'noContact', 'contactConfidence': 0, 'lastContactAgeMs': 0, 'synced': False}, 'activeShots': [], 'shotCounter': 0, 'lastMessageKey': 'weapons.ready', 'lastResolution': None, 'canFire': False, 'fireReason': 'noWeaponContact', 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}}"
+    },
+    {
+      "name": "Depth, battery and oxygen meters read live state",
+      "status": "PASS",
+      "details": "{'depth': '12.0 m', 'battery': '100%', 'oxygen': '100%'}"
+    },
+    {
+      "name": "Depth changes progressively instead of teleporting",
+      "status": "PASS",
+      "details": "{'before': 12, 'beforeOrder': 12, 'immediate': 12, 'order': 72, 'after': 24.69089521140847, 'vertical': 1.7103477997440903}"
+    },
+    {
+      "name": "Ballast controls change measured ballast and vertical motion",
+      "status": "PASS",
+      "details": "{'before': 67.51879052073276, 'flooded': 93.91879052073263, 'blown': 67.51879052073276, 'verticalFlood': 1.80645116772148, 'verticalBlow': 0.858712287721485}"
+    },
+    {
+      "name": "Trim meter responds and level command restores hold",
+      "status": "PASS",
+      "details": "{'moved': 6.292099636977758, 'level': 0, 'hold': True}"
+    },
+    {
+      "name": "Submerged resource meters consume battery and atmosphere",
+      "status": "PASS",
+      "details": "{'depth': 59.17879626500619, 'orderedDepth': 60, 'verticalSpeed': -0.20530093374845268, 'ballast': 45.706438561392574, 'ballastCommand': 'auto', 'trim': -1.202197202810079, 'depthHold': True, 'pressurePercent': 30.504534157219688, 'hullStress': 0, 'fuel': 100, 'battery': 74.198738170347, 'oxygen': 78.276, 'co2': 12.138, 'noise': 58.159534450867625, 'cavitation': 0, 'actualSpeedKnots': 6.719856, 'propulsionEfficiency': 0.6292, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': False, 'simulatedElapsedMs': 3613120, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}"
+    },
+    {
+      "name": "Sensor station is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Passive hydrophone acquires an uncertain contact",
+      "status": "PASS",
+      "details": "{'contact': {'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': True, 'bearing': 16.815672500332994, 'rangeMeters': 500, 'rangeKnown': False, 'confidence': 11.632250161823446, 'signal': 52.61999008782907, 'bearingUncertainty': 17.93562340517026, 'rangeUncertainty': 0.55, 'classification': 'unknown', 'source': 'hydrophone', 'lastUpdateWorldTime': 164, 'ageMs': 0, 'stale': False}, 'count': 2, 'mode': 'hydrophone', 'radar': False, 'profile': {'nation': 'de', 'year': 1939, 'hydrophoneRangeMeters': 3324, 'activeSonarRangeMeters': 2652, 'radarRangeMeters': 0, 'periscopeRangeMeters': 6762, 'radarAvailable': False, 'radarIntroduction': 1942, 'activeSonarAvailable': True, 'radarMastMaxDepth': 12}}"
+    },
+    {
+      "name": "1939 German radar is correctly unavailable",
+      "status": "PASS",
+      "details": "{'contact': {'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': True, 'bearing': 16.815672500332994, 'rangeMeters': 500, 'rangeKnown': False, 'confidence': 11.632250161823446, 'signal': 52.61999008782907, 'bearingUncertainty': 17.93562340517026, 'rangeUncertainty': 0.55, 'classification': 'unknown', 'source': 'hydrophone', 'lastUpdateWorldTime': 164, 'ageMs': 0, 'stale': False}, 'count': 2, 'mode': 'hydrophone', 'radar': False, 'profile': {'nation': 'de', 'year': 1939, 'hydrophoneRangeMeters': 3324, 'activeSonarRangeMeters': 2652, 'radarRangeMeters': 0, 'periscopeRangeMeters': 6762, 'radarAvailable': False, 'radarIntroduction': 1942, 'activeSonarAvailable': True, 'radarMastMaxDepth': 12}}"
+    },
+    {
+      "name": "Active sonar provides range and raises detection risk",
+      "status": "PASS",
+      "details": "{'result': {'ok': True, 'contacts': 2}, 'before': 5, 'after': 31, 'contact': {'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': True, 'bearing': 0.01150757345897091, 'rangeMeters': 396, 'rangeKnown': True, 'confidence': 83, 'signal': 76.15826702033598, 'bearingUncertainty': 0.7, 'rangeUncertainty': 0.04, 'classification': 'merchant', 'source': 'activeSonar', 'lastUpdateWorldTime': 164, 'ageMs': 0, 'stale': False}, 'cooldown': 12000}"
+    },
+    {
+      "name": "Sensor instruments render engine contact state",
+      "status": "PASS",
+      "details": "{'contacts': '2', 'target': '396 m', 'source': 'Sonar ativo'}"
+    },
+    {
+      "name": "Torpedo room and TDC are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "TDC builds a valid solution from sensor contact",
+      "status": "PASS",
+      "details": "{'bearing': 90.4306188997798, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 98, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 0, 'synced': True}"
+    },
+    {
+      "name": "TDC instruments mirror engine values",
+      "status": "PASS",
+      "details": "{'quality': '98%', 'bearing': '090°', 'loaded': '5'}"
+    },
+    {
+      "name": "Two-torpedo salvo uses separate tubes",
+      "status": "PASS",
+      "details": "{'salvo': {'ok': True, 'size': 2}, 'fired': {'ok': True, 'shots': [{'id': 'shot-1', 'tubeId': 'tube-1', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 4506.1888527844, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': False}, {'id': 'shot-2', 'tubeId': 'tube-2', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 4506.1888527844, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': False}], 'salvoSize': 2, 'hitPredicted': True}, 'before': {'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 2, 'reserveTorpedoes': 1, 'totalTorpedoes': 6, 'loadedTubeCount': 5, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': 90.4306188997798, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 98, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 0, 'synced': True}, 'activeShots': [], 'shotCounter': 0, 'lastMessageKey': 'weapons.solutionSynced', 'lastResolution': None, 'canFire': True, 'fireReason': None, 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}, 'after': {'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 2, 'reserveTorpedoes': 0, 'totalTorpedoes': 4, 'loadedTubeCount': 3, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': False, 'reloadMs': 45000, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': False, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': 90.4306188997798, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 98, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 0, 'synced': True}, 'activeShots': [{'id': 'shot-1', 'tubeId': 'tube-1', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 4506.1888527844, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': False}, {'id': 'shot-2', 'tubeId': 'tube-2', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 4506.1888527844, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': False}], 'shotCounter': 2, 'lastMessageKey': 'weapons.salvoFired', 'lastResolution': None, 'canFire': True, 'fireReason': None, 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}, 'total': 4}"
+    },
+    {
+      "name": "Salvo resolves in deterministic simulated time",
+      "status": "PASS",
+      "details": "{'guard': 57, 'weapons': {'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 2, 'reserveTorpedoes': 0, 'totalTorpedoes': 4, 'loadedTubeCount': 3, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': False, 'reloadMs': 40440, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': False, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': 90.4306188997798, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.461396766485564, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 97, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 0, 'synced': True}, 'activeShots': [], 'shotCounter': 2, 'lastMessageKey': 'weapons.outcome.hit', 'lastResolution': {'id': 'shot-2', 'tubeId': 'tube-2', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 0, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': True, 'outcome': 'hit'}, 'canFire': False, 'fireReason': 'noWeaponContact', 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}, 'targetDestroyed': True, 'shots': 2}"
+    },
+    {
+      "name": "Map click adds exactly one waypoint",
+      "status": "PASS",
+      "details": "3->4"
+    },
+    {
+      "name": "Periscope forces time compression to 1x",
+      "status": "PASS",
+      "details": "{'opened': {'ok': True}, 'nav': {'missionId': 'm1', 'position': {'lat': 48.090085397712954, 'lon': -15.589692852579885}, 'heading': 66.96309982666469, 'orderedHeading': 66.22578355764222, 'rudder': -1.2586309081660148, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.70940340909091, 'lon': -14.21875, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.708139520626274, 'nextWaypointBearing': 66.22576982881753, 'routeDistanceNm': 78.1655085345475, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 17760, 'distanceTravelledNm': 0.013333766400000027, 'speedKnots': 3.10788, 'etaHours': 25.150748592142392, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}}"
+    },
+    {
+      "name": "Operation autosave is offered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Operation autosave restores all critical gauges",
+      "status": "PASS",
+      "details": "{'depth': 72, 'orderedDepth': 105, 'verticalSpeed': 0.8, 'ballast': 67, 'ballastCommand': 'auto', 'trim': 4, 'depthHold': True, 'pressurePercent': 37.11340206185567, 'hullStress': 0, 'fuel': 84, 'battery': 63, 'oxygen': 77, 'co2': 19, 'noise': 8.58, 'cavitation': 0, 'actualSpeedKnots': 0, 'propulsionEfficiency': 0.88, 'propulsionMode': 'electric', 'surfaced': False, 'snorkelAvailable': False, 'simulatedElapsedMs': 3617760, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}"
+    },
+    {
+      "name": "Operation autosave preserves navigation",
+      "status": "PASS",
+      "details": "{'lat': 48.090085397712954, 'lon': -15.589692852579885}"
+    },
+    {
+      "name": "Operation autosave preserves sensor tracks",
+      "status": "PASS",
+      "details": "{'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': True, 'bearing': 100.17953983059931, 'rangeMeters': 370, 'rangeKnown': True, 'confidence': 100, 'signal': 70.98, 'bearingUncertainty': 1.9050000000000002, 'rangeUncertainty': 0.08899999999999998, 'classification': 'merchant', 'source': 'periscope', 'lastUpdateWorldTime': 221, 'ageMs': 80, 'stale': False}"
+    },
+    {
+      "name": "Operation autosave preserves TDC and tube state",
+      "status": "PASS",
+      "details": "{'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 2, 'reserveTorpedoes': 0, 'totalTorpedoes': 4, 'loadedTubeCount': 3, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': False, 'reloadMs': 40360, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': False, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': 90.4306188997798, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.467519073115113, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 96, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 80, 'synced': True}, 'activeShots': [], 'shotCounter': 2, 'lastMessageKey': 'weapons.outcome.hit', 'lastResolution': {'id': 'shot-2', 'tubeId': 'tube-2', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 0, 'solutionQuality': 98, 'gyroAngle': 23.2664210554276, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': True, 'outcome': 'hit'}, 'canFire': False, 'fireReason': 'torpedoTooDeep', 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}"
+    },
+    {
+      "name": "Combat remains deterministic",
+      "status": "PASS",
+      "details": "{'opened': {'ok': True}, 'synced': {'ok': True, 'tdc': {'bearing': 89.88851918975706, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 22.928344132493862, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 98, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 0, 'synced': True}}, 'fired': {'ok': True, 'shots': [{'id': 'shot-3', 'tubeId': 'tube-3', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 4506.1888527844, 'solutionQuality': 98, 'gyroAngle': 22.928344132493862, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': False}], 'salvoSize': 1, 'hitPredicted': True}, 'snapshot': {'missionId': 'm1', 'mission': {'id': 'm1', 'titleKey': 'mission.m1.title', 'summaryKey': 'mission.m1.summary', 'theatreKey': 'mission.theatre.atlantic', 'operationKey': 'mission.m1.operation', 'year': '1939', 'difficulty': 'I', 'reward': 1400, 'xp': 120, 'status': 'available', 'targetType': 'merchant', 'targetStartX': 230, 'targetStartY': 16, 'escortStartX': 320, 'escortStartY': 40, 'escortSensitivity': 0.95, 'targetDrift': 0.65, 'targetWave': 0.28, 'targetBob': 4, 'objectiveKeys': ['briefing.objectiveSilent', 'briefing.objectiveStrike', 'briefing.objectiveReturn'], 'historicalNoteKey': 'mission.m1.history', 'bonusReward': 490, 'bonusXp': 60, 'navigation': {'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'origin': {'lat': 48.09, 'lon': -15.59}, 'heading': 68, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture'}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach'}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol'}]}, '_baseStatus': 'available'}, 'depth': 5.2672130660041825, 'speed': 'slow', 'hull': 75, 'systems': {'engines': 92, 'sonar': 100, 'periscope': 91, 'weapons': 97}, 'torpedoes': 3, 'decoys': 2, 'target': {'x': 87.35099999999977, 'y': 12.25196947021389, 'type': 'merchant'}, 'escort': {'x': 17.532054119587016, 'y': 1.2008562588502907, 'state': 'hunt', 'destroyed': False}, 'targetDestroyed': True, 'escortState': 'hunt', 'playerDetected': True, 'detectionScore': 100, 'scanAngle': 255.99999999999838, 'view': {'x': 100, 'y': 0}, 'worldTime': 280, 'elapsedMs': 22400, 'repairUses': 2, 'repairTicks': 0, 'missionFailed': False, 'periscopeOpen': True, 'torpedoActive': False, 'torpedoRevealTicks': 13, 'torpedoTravelTicks': 0, 'torpedoLockedAtLaunch': True, 'lastKnown': {'x': 39.3079499999999, 'y': 5.513386261596251}, 'silentTicks': 0, 'decoyTicks': 0, 'emergencyDiveCooldown': 0, 'damageFlashTicks': 13, 'lastEventKey': 'gameplay.hintEscortDamage', 'canComplete': True, 'metrics': {'shots': 1, 'hits': 1, 'maxDetection': 100, 'damageTaken': 25, 'startHull': 100}, 'navigation': {'missionId': 'm1', 'position': {'lat': 48.09011186545863, 'lon': -15.589600043064358}, 'heading': 66.805369612145, 'orderedHeading': 66.2250660270928, 'rudder': -0.9905625689923795, 'autopilot': True, 'route': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}, {'id': 'custom-1', 'lat': 48.70940340909091, 'lon': -14.21875, 'labelKey': 'navigation.waypointCustom', 'custom': True}], 'originalRoute': [{'id': 'm1-wp-1', 'lat': 48.115, 'lon': -15.505, 'labelKey': 'navigation.waypointDeparture', 'custom': False}, {'id': 'm1-wp-2', 'lat': 48.395, 'lon': -14.82, 'labelKey': 'navigation.waypointApproach', 'custom': False}, {'id': 'm1-wp-3', 'lat': 48.7, 'lon': -14.05, 'labelKey': 'navigation.waypointPatrol', 'custom': False}], 'activeWaypointIndex': 0, 'activeWaypointId': 'm1-wp-1', 'nextWaypointDistanceNm': 3.7040953947412874, 'nextWaypointBearing': 66.22505554447469, 'routeDistanceNm': 78.16146440866251, 'routeComplete': False, 'requestedTimeCompression': 16, 'timeCompression': 1, 'safetyLimit': 1, 'safetyLimited': True, 'simulatedElapsedMs': 22400, 'distanceTravelledNm': 0.01737818272000006, 'speedKnots': 3.01176, 'etaHours': 25.95208927957822, 'patrolSector': {'id': 'm1-sector', 'labelKey': 'navigation.sectorAtlantic', 'north': 49.05, 'south': 48.35, 'west': -14.75, 'east': -13.35}, 'mapBounds': {'north': 50.6, 'south': 46.4, 'west': -19.6, 'east': -11.4}, 'patrolEntered': False, 'customWaypointSerial': 1, 'navigationVersion': 1}, 'physics': {'depth': 5.2672130660041825, 'orderedDepth': 5, 'verticalSpeed': -0.009660450806359895, 'ballast': 49.9010497081133, 'ballastCommand': 'auto', 'trim': -0.01859456105794266, 'depthHold': True, 'pressurePercent': 2.715058281445455, 'hullStress': 0, 'fuel': 83.9988333333337, 'battery': 80.0051530111114, 'oxygen': 80.0354666666665, 'co2': 9.951866666666655, 'noise': 16.90098148217698, 'cavitation': 0, 'actualSpeedKnots': 3.01176, 'propulsionEfficiency': 0.9400000000000001, 'propulsionMode': 'diesel', 'surfaced': True, 'snorkelAvailable': True, 'simulatedElapsedMs': 3622400, 'emergencyBlowCooldownMs': 0, 'criticalFlags': [], 'status': 'normal', 'maxOperationalDepth': 194, 'crushDepth': 269, 'surfaceDepth': 6, 'physicsVersion': 1}, 'sensors': {'sensorVersion': 1, 'mode': 'hydrophone', 'hydrophoneBearing': 0, 'radarMastRaised': False, 'radarSweepAngle': 151.99999999999363, 'activePingCooldownMs': 2720, 'activePingFlashMs': 0, 'lastMessageKey': 'sensors.visualContact', 'profile': {'nation': 'de', 'year': 1939, 'hydrophoneRangeMeters': 3324, 'activeSonarRangeMeters': 2652, 'radarRangeMeters': 0, 'periscopeRangeMeters': 6762, 'radarAvailable': False, 'radarIntroduction': 1942, 'activeSonarAvailable': True, 'radarMastMaxDepth': 12}, 'contacts': {'target': {'id': 'target', 'role': 'target', 'type': 'merchant', 'detected': True, 'bearing': 98.7380443015058, 'rangeMeters': 346, 'rangeKnown': True, 'confidence': 100, 'signal': 70.98, 'bearingUncertainty': 1.9050000000000002, 'rangeUncertainty': 0.08899999999999998, 'classification': 'merchant', 'source': 'periscope', 'lastUpdateWorldTime': 278, 'ageMs': 160, 'stale': False}, 'escort': {'id': 'escort', 'role': 'escort', 'type': 'destroyer', 'detected': True, 'bearing': 94.52702437908482, 'rangeMeters': 80, 'rangeKnown': True, 'confidence': 100, 'signal': 70.98, 'bearingUncertainty': 1.9050000000000002, 'rangeUncertainty': 0.08899999999999998, 'classification': 'destroyer', 'source': 'periscope', 'lastUpdateWorldTime': 278, 'ageMs': 160, 'stale': False}}, 'visibleContactCount': 2}, 'weapons': {'weaponVersion': 1, 'profile': {'nation': 'de', 'year': 1939, 'tubeCount': 5, 'bowTubes': 4, 'sternTubes': 1, 'initialTorpedoes': 6, 'baseFailureRate': 0.22, 'reloadMs': 45000, 'maxLaunchDepth': 60}, 'selectedTarget': 'target', 'selectedTubeId': 'tube-1', 'salvoSize': 1, 'reserveTorpedoes': 0, 'totalTorpedoes': 3, 'loadedTubeCount': 2, 'tubes': [{'id': 'tube-1', 'label': 'B1', 'position': 'bow', 'loaded': False, 'reloadMs': 35720, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-2', 'label': 'B2', 'position': 'bow', 'loaded': False, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-3', 'label': 'B3', 'position': 'bow', 'loaded': False, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-4', 'label': 'B4', 'position': 'bow', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}, {'id': 'tube-5', 'label': 'S1', 'position': 'stern', 'loaded': True, 'reloadMs': 0, 'reloadDurationMs': 45000, 'torpedoType': 'steam'}], 'tdc': {'bearing': 89.88851918975706, 'rangeMeters': 408, 'targetSpeedKnots': 7.630000000000001, 'targetCourse': 270, 'aobDegrees': 0, 'gyroAngle': 23.080769298551104, 'runDepthMeters': 3, 'torpedoType': 'steam', 'torpedoSpeedKnots': 44, 'solutionQuality': 97, 'solutionStatus': 'excellent', 'contactConfidence': 100, 'lastContactAgeMs': 160, 'synced': True}, 'activeShots': [], 'shotCounter': 3, 'lastMessageKey': 'weapons.outcome.hit', 'lastResolution': {'id': 'shot-3', 'tubeId': 'tube-3', 'targetRole': 'target', 'torpedoType': 'steam', 'travelMs': 4506.1888527844, 'remainingMs': 0, 'solutionQuality': 98, 'gyroAngle': 22.928344132493862, 'runDepthMeters': 3, 'rangeMeters': 408, 'predictedHit': True, 'failureMode': None, 'resolved': True, 'outcome': 'hit'}, 'canFire': False, 'fireReason': 'noWeaponContact', 'minimumSolutionQuality': 42, 'torpedoTypes': {'steam': {'id': 'steam', 'speedKnots': 44, 'maxRangeMeters': 5200, 'wake': True, 'exposure': 16, 'reliabilityBonus': 0}, 'electric': {'id': 'electric', 'speedKnots': 30, 'maxRangeMeters': 3200, 'wake': False, 'exposure': 7, 'reliabilityBonus': 0.025}}}, 'snapshotVersion': 5, 'entityCount': 3}, 'report': {'score': 62, 'bonusCredits': 304, 'bonusXp': 37, 'hull': 75, 'stealth': 0, 'shots': 1}}"
+    },
+    {
+      "name": "320x568 gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "320x568 combat control remains reachable",
+      "status": "PASS",
+      "details": "{'x': 20, 'y': 429.34375, 'width': 280, 'height': 58}"
+    },
+    {
+      "name": "Desktop gameplay has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Desktop physics console uses multiple columns",
+      "status": "PASS",
+      "details": "734.391px 489.594px"
+    },
+    {
+      "name": "Desktop sensor station uses multiple columns",
+      "status": "PASS",
+      "details": "250px 260px"
+    },
+    {
+      "name": "Desktop torpedo station uses multiple columns",
+      "status": "PASS",
+      "details": "459.734px 766.25px"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

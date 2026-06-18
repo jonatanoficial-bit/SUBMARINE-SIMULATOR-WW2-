@@ -1,0 +1,30 @@
+{
+  "name": "submarine-commander-ww2",
+  "private": true,
+  "version": "2.0.0-alpha.10.4",
+  "type": "module",
+  "scripts": {
+    "test:engine": "node --test tests/engine.test.js",
+    "test:save": "node --test tests/save.test.js",
+    "test:navigation": "node --test tests/navigation.test.js",
+    "test:physics": "node --test tests/physics.test.js",
+    "test": "node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/environment.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js tests/tactical_encounter.test.js tests/training.test.js",
+    "audit": "python3 tools/audit_phase10_4.py",
+    "smoke": "python3 tests/smoke_test.py",
+    "test:sensors": "node --test tests/sensors.test.js",
+    "test:weapons": "node --test tests/weapons.test.js",
+    "test:ai": "node --test tests/naval_ai.test.js",
+    "test:damage": "node --test tests/damage_control.test.js",
+    "test:stabilization": "node --test tests/stabilization.test.js",
+    "audit:phase10": "python3 tools/audit_project.py",
+    "smoke:regression": "python3 tests/smoke_test.py",
+    "smoke:stabilization": "python3 tests/stabilization_smoke.py",
+    "test:tactical": "node --test tests/tactical_encounter.test.js",
+    "telemetry:tactical": "node tools/measure_tactical_balance.mjs",
+    "smoke:tactical": "python3 tests/tactical_encounter_smoke.py",
+    "test:environment": "node --test tests/environment.test.js",
+    "smoke:operational": "python3 tests/operational_realism_smoke.py",
+    "test:training": "node --test tests/training.test.js",
+    "smoke:training": "python3 tests/training_smoke.py"
+  }
+}

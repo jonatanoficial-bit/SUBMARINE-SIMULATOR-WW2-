@@ -1,0 +1,22 @@
+# QA Checklist — Fase 1
+
+- [x] Arquivos Stage Music removidos do runtime.
+- [x] Build centralizada em `BUILD_INFO.json`.
+- [x] Data, hora, fase, versão e QA visíveis.
+- [x] Manifesto sincronizado.
+- [x] Cache do service worker sincronizado.
+- [x] Service worker não retorna HTML para asset/JSON ausente.
+- [x] Service worker não apaga caches de outros apps.
+- [x] Save legado migra para schema v2.
+- [x] Save possui checksum.
+- [x] Backup automático é criado.
+- [x] Save principal corrompido recupera pelo backup.
+- [x] Nome do comandante não injeta HTML.
+- [x] Reset restaura o estado original das missões.
+- [x] Paridade das traduções PT-BR/EN/ES.
+- [x] IDs e relações dos dados validados.
+- [x] Menu abre em viewport mobile.
+- [x] Gameplay monta em viewport mobile.
+- [x] Menu abre em desktop.
+- [x] Sem overflow horizontal nos testes executados.
+- [x] Sem erro JavaScript não tratado no smoke test.

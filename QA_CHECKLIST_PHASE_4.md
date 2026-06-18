@@ -1,0 +1,22 @@
+# QA Checklist — Phase 4
+
+- [x] Build, manifest, package and service-worker cache synchronized with `v2.0.0-alpha.04`.
+- [x] Save schema upgraded to 3.
+- [x] Three independent profiles created and switched successfully.
+- [x] Primary record protected by checksum.
+- [x] Three rotating backups available per slot.
+- [x] Corrupted primary recovered from backup 1.
+- [x] Pending transaction recovered from a verified temporary record.
+- [x] Legacy schema-2 save migrated once and archived.
+- [x] Deleted migrated profile is not recreated from the legacy archive.
+- [x] Export/import archive checksum validated.
+- [x] Tampered archive rejected.
+- [x] Tactical autosave stores and restores engine state.
+- [x] Mission identity validated before tactical restore.
+- [x] Completed and failed operations clear tactical autosave.
+- [x] 63 structural and security checks approved.
+- [x] 14 engine/save unit tests approved.
+- [x] 44 browser smoke, gameplay and responsive checks approved.
+- [x] Portuguese, English and Spanish contain the same 391 keys.
+- [x] No horizontal overflow in mandatory phone, landscape, tablet and desktop viewports.
+- [x] No uncaught JavaScript errors in browser audit.

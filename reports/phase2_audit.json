@@ -1,0 +1,215 @@
+{
+  "project": "Submarine Commander WW2",
+  "version": "v2.0.0-alpha.02",
+  "buildId": "SCWW2-20260611-1804-BRT",
+  "generatedAt": "2026-06-11T21:12:08.149255+00:00",
+  "summary": {
+    "passed": 40,
+    "failed": 0,
+    "files": 127,
+    "bytes": 37173787
+  },
+  "projectSha256": "9abd4c9e01ca1e6dfbbd2be0e3588b8c3a2d0778cd0dade534d0644b704a11fd",
+  "checks": [
+    {
+      "name": "Required project files",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Foreign Stage Music module removed",
+      "status": "PASS",
+      "details": "present=[]"
+    },
+    {
+      "name": "No Stage Music runtime strings",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All JSON files parse",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Phase 2 metadata",
+      "status": "PASS",
+      "details": "{'phase': 2, 'version': 'v2.0.0-alpha.02'}"
+    },
+    {
+      "name": "Build version centralized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker cache matches build",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Alpha build not mislabeled release",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visible build metadata fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Translation key parity PT/EN/ES",
+      "status": "PASS",
+      "details": "{'pt-BR': 339, 'en': 339, 'es': 339}"
+    },
+    {
+      "name": "Phase 2 strings translated",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Unique IDs: nations",
+      "status": "PASS",
+      "details": "count=3"
+    },
+    {
+      "name": "Unique IDs: submarines",
+      "status": "PASS",
+      "details": "count=6"
+    },
+    {
+      "name": "Unique IDs: crew",
+      "status": "PASS",
+      "details": "count=12"
+    },
+    {
+      "name": "Unique IDs: missions",
+      "status": "PASS",
+      "details": "count=13"
+    },
+    {
+      "name": "Unique IDs: upgrades",
+      "status": "PASS",
+      "details": "count=5"
+    },
+    {
+      "name": "Starter submarines exist",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Submarine nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crew nation references valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker app shell files exist",
+      "status": "PASS",
+      "details": "missing=[]"
+    },
+    {
+      "name": "Phase 2 CSS cached",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker does not use HTML fallback for assets",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Service worker only clears own caches",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Save checksum enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Save schema migration enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Commander input sanitized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Runtime error log enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Accessible scalable viewport",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Adaptive manifest orientation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Visual viewport synchronization",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Best-effort immersive mode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mission requests immersive mode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Responsive phone/tablet/desktop breakpoints",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Landscape command console breakpoint",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Mobile combat controls prioritized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Sticky navigation does not require fixed overlay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Safe-area support",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced-motion accessibility",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No empty runtime files",
+      "status": "PASS",
+      "details": "empty=[]"
+    }
+  ]
+}

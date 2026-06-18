@@ -1,0 +1,543 @@
+
+> submarine-commander-ww2@2.0.0-alpha.10.1 test
+> node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js
+
+TAP version 13
+# Subtest: damage control initializes seven watertight compartments and three teams
+ok 1 - damage control initializes seven watertight compartments and three teams
+  ---
+  duration_ms: 2.268849
+  type: 'test'
+  ...
+# Subtest: impact creates deterministic compartment damage, flooding and casualties
+ok 2 - impact creates deterministic compartment damage, flooding and casualties
+  ---
+  duration_ms: 2.269472
+  type: 'test'
+  ...
+# Subtest: watertight doors reduce progressive flooding spread
+ok 3 - watertight doors reduce progressive flooding spread
+  ---
+  duration_ms: 0.872872
+  type: 'test'
+  ...
+# Subtest: pump team reduces flooding faster than unattended pumps
+ok 4 - pump team reduces flooding faster than unattended pumps
+  ---
+  duration_ms: 0.953689
+  type: 'test'
+  ...
+# Subtest: fire team suppresses fire and consumes local oxygen
+ok 5 - fire team suppresses fire and consumes local oxygen
+  ---
+  duration_ms: 0.360537
+  type: 'test'
+  ...
+# Subtest: repair team restores compartment integrity and mapped system
+ok 6 - repair team restores compartment integrity and mapped system
+  ---
+  duration_ms: 0.425136
+  type: 'test'
+  ...
+# Subtest: medical team returns injured crew to fit duty without reviving dead crew
+ok 7 - medical team returns injured crew to fit duty without reviving dead crew
+  ---
+  duration_ms: 0.98774
+  type: 'test'
+  ...
+# Subtest: loss of main power disables pumps until emergency power is enabled
+ok 8 - loss of main power disables pumps until emergency power is enabled
+  ---
+  duration_ms: 3.326699
+  type: 'test'
+  ...
+# Subtest: damage control snapshot restores compartments, teams, power and casualties
+ok 9 - damage control snapshot restores compartments, teams, power and casualties
+  ---
+  duration_ms: 1.333451
+  type: 'test'
+  ...
+# Subtest: critical flooding produces progressive hull damage events
+ok 10 - critical flooding produces progressive hull damage events
+  ---
+  duration_ms: 1.100222
+  type: 'test'
+  ...
+# Subtest: SimulationEngine routes damage through compartments and exports snapshot v7
+ok 11 - SimulationEngine routes damage through compartments and exports snapshot v7
+  ---
+  duration_ms: 4.075245
+  type: 'test'
+  ...
+# Subtest: SimulationEngine restores damage-control teams and gauges from operation snapshot
+ok 12 - SimulationEngine restores damage-control teams and gauges from operation snapshot
+  ---
+  duration_ms: 10.758692
+  type: 'test'
+  ...
+# Subtest: EventBus subscribes, emits and unsubscribes deterministically
+ok 13 - EventBus subscribes, emits and unsubscribes deterministically
+  ---
+  duration_ms: 1.114687
+  type: 'test'
+  ...
+# Subtest: SimulationClock supports deterministic manual fixed steps
+ok 14 - SimulationClock supports deterministic manual fixed steps
+  ---
+  duration_ms: 0.859127
+  type: 'test'
+  ...
+# Subtest: Entity positions and distance are serializable
+ok 15 - Entity positions and distance are serializable
+  ---
+  duration_ms: 0.287984
+  type: 'test'
+  ...
+# Subtest: SceneManager enforces enter and exit lifecycle
+ok 16 - SceneManager enforces enter and exit lifecycle
+  ---
+  duration_ms: 0.265701
+  type: 'test'
+  ...
+# Subtest: SimulationEngine exposes a multi-entity convoy and advances the world
+ok 17 - SimulationEngine exposes a multi-entity convoy and advances the world
+  ---
+  duration_ms: 6.986404
+  type: 'test'
+  ...
+# Subtest: Torpedo resolution is deterministic and independent from DOM timers
+ok 18 - Torpedo resolution is deterministic and independent from DOM timers
+  ---
+  duration_ms: 98.267511
+  type: 'test'
+  ...
+# Subtest: Damage, failure and emergency repair use engine state only
+ok 19 - Damage, failure and emergency repair use engine state only
+  ---
+  duration_ms: 82.626233
+  type: 'test'
+  ...
+# Subtest: simulation snapshot restores deterministic tactical state
+ok 20 - simulation snapshot restores deterministic tactical state
+  ---
+  duration_ms: 7.649951
+  type: 'test'
+  ...
+# Subtest: difficulty creates a real multi-ship convoy with coordinated escorts
+ok 21 - difficulty creates a real multi-ship convoy with coordinated escorts
+  ---
+  duration_ms: 2.70267
+  type: 'test'
+  ...
+# Subtest: convoy formation advances while preserving independent ship positions
+ok 22 - convoy formation advances while preserving independent ship positions
+  ---
+  duration_ms: 2.081916
+  type: 'test'
+  ...
+# Subtest: detection drives alert, search and hunt states deterministically
+ok 23 - detection drives alert, search and hunt states deterministically
+  ---
+  duration_ms: 1.299341
+  type: 'test'
+  ...
+# Subtest: torpedo wake immediately forces coordinated hunting
+ok 24 - torpedo wake immediately forces coordinated hunting
+  ---
+  duration_ms: 0.389442
+  type: 'test'
+  ...
+# Subtest: escort attack has a readable hunt lead time before launching depth charges
+ok 25 - escort attack has a readable hunt lead time before launching depth charges
+  ---
+  duration_ms: 79.626889
+  type: 'test'
+  ...
+# Subtest: decoys reduce or preserve depth-charge damage relative to an identical pattern
+ok 26 - decoys reduce or preserve depth-charge damage relative to an identical pattern
+  ---
+  duration_ms: 0.355446
+  type: 'test'
+  ...
+# Subtest: aircraft availability respects mission year
+ok 27 - aircraft availability respects mission year
+  ---
+  duration_ms: 0.486653
+  type: 'test'
+  ...
+# Subtest: ASW aircraft spawns, tracks exposed submarine and launches an attack
+ok 28 - ASW aircraft spawns, tracks exposed submarine and launches an attack
+  ---
+  duration_ms: 1.15364
+  type: 'test'
+  ...
+# Subtest: AI snapshot restores convoy, search and ASW states
+ok 29 - AI snapshot restores convoy, search and ASW states
+  ---
+  duration_ms: 1.724836
+  type: 'test'
+  ...
+# Subtest: SimulationEngine exports AI snapshot v7 and all active entities
+ok 30 - SimulationEngine exports AI snapshot v7 and all active entities
+  ---
+  duration_ms: 3.388551
+  type: 'test'
+  ...
+# Subtest: SimulationEngine operation snapshot restores complete convoy AI state
+ok 31 - SimulationEngine operation snapshot restores complete convoy AI state
+  ---
+  duration_ms: 4.968703
+  type: 'test'
+  ...
+# Subtest: geographic helpers normalize heading, range and bearing
+ok 32 - geographic helpers normalize heading, range and bearing
+  ---
+  duration_ms: 1.047211
+  type: 'test'
+  ...
+# Subtest: autopilot follows the active route and advances waypoints
+ok 33 - autopilot follows the active route and advances waypoints
+  ---
+  duration_ms: 80.575937
+  type: 'test'
+  ...
+# Subtest: manual rudder disables autopilot and turns the boat
+ok 34 - manual rudder disables autopilot and turns the boat
+  ---
+  duration_ms: 0.450572
+  type: 'test'
+  ...
+# Subtest: time compression is guarded by a tactical safety limit
+ok 35 - time compression is guarded by a tactical safety limit
+  ---
+  duration_ms: 0.261774
+  type: 'test'
+  ...
+# Subtest: custom waypoints are bounded and limited to eight route points
+ok 36 - custom waypoints are bounded and limited to eight route points
+  ---
+  duration_ms: 0.682295
+  type: 'test'
+  ...
+# Subtest: patrol sector entry and route state survive snapshot restoration
+ok 37 - patrol sector entry and route state survive snapshot restoration
+  ---
+  duration_ms: 1.056894
+  type: 'test'
+  ...
+# Subtest: SimulationEngine exports navigation in deterministic operation autosaves
+ok 38 - SimulationEngine exports navigation in deterministic operation autosaves
+  ---
+  duration_ms: 81.783355
+  type: 'test'
+  ...
+# Subtest: SimulationEngine immediately limits compression during periscope exposure
+ok 39 - SimulationEngine immediately limits compression during periscope exposure
+  ---
+  duration_ms: 1.633729
+  type: 'test'
+  ...
+# Subtest: submarine ratings derive safe and crush depth limits
+ok 40 - submarine ratings derive safe and crush depth limits
+  ---
+  duration_ms: 70.546742
+  type: 'test'
+  ...
+# Subtest: depth order changes commanded depth before actual depth
+ok 41 - depth order changes commanded depth before actual depth
+  ---
+  duration_ms: 1.082655
+  type: 'test'
+  ...
+# Subtest: automatic depth hold converges without teleporting
+ok 42 - automatic depth hold converges without teleporting
+  ---
+  duration_ms: 1.533584
+  type: 'test'
+  ...
+# Subtest: manual flood and blow commands move ballast in the correct direction
+ok 43 - manual flood and blow commands move ballast in the correct direction
+  ---
+  duration_ms: 0.307511
+  type: 'test'
+  ...
+# Subtest: trim controls affect vertical motion and level command restores hold
+ok 44 - trim controls affect vertical motion and level command restores hold
+  ---
+  duration_ms: 0.409247
+  type: 'test'
+  ...
+# Subtest: submerged propulsion drains battery and atmosphere resources
+ok 45 - submerged propulsion drains battery and atmosphere resources
+  ---
+  duration_ms: 0.304051
+  type: 'test'
+  ...
+# Subtest: surface diesel propulsion consumes fuel and restores atmosphere and battery
+ok 46 - surface diesel propulsion consumes fuel and restores atmosphere and battery
+  ---
+  duration_ms: 0.595428
+  type: 'test'
+  ...
+# Subtest: shallow flank speed creates more cavitation than deep slow speed
+ok 47 - shallow flank speed creates more cavitation than deep slow speed
+  ---
+  duration_ms: 0.391696
+  type: 'test'
+  ...
+# Subtest: depleted battery reduces real speed while telegraph remains a command
+ok 48 - depleted battery reduces real speed while telegraph remains a command
+  ---
+  duration_ms: 0.465484
+  type: 'test'
+  ...
+# Subtest: pressure beyond the operating depth raises a critical flag
+ok 49 - pressure beyond the operating depth raises a critical flag
+  ---
+  duration_ms: 1.097917
+  type: 'test'
+  ...
+# Subtest: pressure and atmosphere generate deterministic damage events
+ok 50 - pressure and atmosphere generate deterministic damage events
+  ---
+  duration_ms: 0.419589
+  type: 'test'
+  ...
+# Subtest: physics snapshot restores all live gauges
+ok 51 - physics snapshot restores all live gauges
+  ---
+  duration_ms: 0.222081
+  type: 'test'
+  ...
+# Subtest: SimulationEngine snapshots include physics and progressive depth
+ok 52 - SimulationEngine snapshots include physics and progressive depth
+  ---
+  duration_ms: 95.4552
+  type: 'test'
+  ...
+# Subtest: SimulationEngine operation autosave restores physics gauges
+ok 53 - SimulationEngine operation autosave restores physics gauges
+  ---
+  duration_ms: 2.471903
+  type: 'test'
+  ...
+# Subtest: critical atmosphere and pressure force safe time compression
+ok 54 - critical atmosphere and pressure force safe time compression
+  ---
+  duration_ms: 1.026464
+  type: 'test'
+  ...
+# Subtest: navigation uses actual physics speed instead of telegraph label
+ok 55 - navigation uses actual physics speed instead of telegraph label
+  ---
+  duration_ms: 0.771815
+  type: 'test'
+  ...
+# [SaveV3] Invalid operation autosave SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+#     at JSON.parse (<anonymous>)
+#     at Module.loadOperationAutosave (file:///mnt/data/submarine_phase10_1_work/SUBMARINE-COMMANDER-WW2-v2.0.0-alpha.10.1-F10.1/js/save.js:373:25)
+#     at TestContext.<anonymous> (file:///mnt/data/submarine_phase10_1_work/SUBMARINE-COMMANDER-WW2-v2.0.0-alpha.10.1-F10.1/tests/save.test.js:78:27)
+#     at Test.runInAsyncScope (node:async_hooks:214:14)
+#     at Test.run (node:internal/test_runner/test:1047:25)
+#     at async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+# Subtest: legacy save migrates once into slot 1
+ok 56 - legacy save migrates once into slot 1
+  ---
+  duration_ms: 6.066206
+  type: 'test'
+  ...
+# Subtest: three profile slots remain independent
+ok 57 - three profile slots remain independent
+  ---
+  duration_ms: 2.286556
+  type: 'test'
+  ...
+# Subtest: corrupted primary recovers from rotating backup
+ok 58 - corrupted primary recovers from rotating backup
+  ---
+  duration_ms: 3.117151
+  type: 'test'
+  ...
+# Subtest: export and import validate archive checksum
+ok 59 - export and import validate archive checksum
+  ---
+  duration_ms: 1.154883
+  type: 'test'
+  ...
+# Subtest: operation autosave preserves tactical snapshot and rejects corruption
+ok 60 - operation autosave preserves tactical snapshot and rejects corruption
+  ---
+  duration_ms: 1.978202
+  type: 'test'
+  ...
+# Subtest: pending transaction journal is completed from verified temporary record
+ok 61 - pending transaction journal is completed from verified temporary record
+  ---
+  duration_ms: 0.601913
+  type: 'test'
+  ...
+# Subtest: sensor profile respects nation and mission year radar introduction
+ok 62 - sensor profile respects nation and mission year radar introduction
+  ---
+  duration_ms: 1.778651
+  type: 'test'
+  ...
+# Subtest: passive hydrophone acquires contacts without exposure events
+ok 63 - passive hydrophone acquires contacts without exposure events
+  ---
+  duration_ms: 0.967117
+  type: 'test'
+  ...
+# Subtest: own noise degrades passive signal quality deterministically
+ok 64 - own noise degrades passive signal quality deterministically
+  ---
+  duration_ms: 0.489449
+  type: 'test'
+  ...
+# Subtest: hydrophone bearing control changes focused listening direction
+ok 65 - hydrophone bearing control changes focused listening direction
+  ---
+  duration_ms: 0.162275
+  type: 'test'
+  ...
+# Subtest: active sonar ping returns range and creates detection exposure
+ok 66 - active sonar ping returns range and creates detection exposure
+  ---
+  duration_ms: 0.518164
+  type: 'test'
+  ...
+# Subtest: active sonar cooldown blocks repeated pings and expires in simulated time
+ok 67 - active sonar cooldown blocks repeated pings and expires in simulated time
+  ---
+  duration_ms: 0.189897
+  type: 'test'
+  ...
+# Subtest: radar mast is year-gated and depth-interlocked
+ok 68 - radar mast is year-gated and depth-interlocked
+  ---
+  duration_ms: 0.403041
+  type: 'test'
+  ...
+# Subtest: radar provides precise contact and auto-lowers when submerged
+ok 69 - radar provides precise contact and auto-lowers when submerged
+  ---
+  duration_ms: 0.197781
+  type: 'test'
+  ...
+# Subtest: periscope observation increases confidence and classifies the target
+ok 70 - periscope observation increases confidence and classifies the target
+  ---
+  duration_ms: 0.445258
+  type: 'test'
+  ...
+# Subtest: sensor snapshot restores contacts and instrument state
+ok 71 - sensor snapshot restores contacts and instrument state
+  ---
+  duration_ms: 0.94085
+  type: 'test'
+  ...
+# Subtest: SimulationEngine exposes sensors in operation autosaves and diagnostics
+ok 72 - SimulationEngine exposes sensors in operation autosaves and diagnostics
+  ---
+  duration_ms: 17.131576
+  type: 'test'
+  ...
+# Subtest: active sonar ping increases engine detection score and visual contact enables lock
+ok 73 - active sonar ping increases engine detection score and visual contact enables lock
+  ---
+  duration_ms: 1.178499
+  type: 'test'
+  ...
+# Subtest: quiet initial patrol does not trigger an instant alert or attack
+ok 74 - quiet initial patrol does not trigger an instant alert or attack
+  ---
+  duration_ms: 153.165209
+  type: 'test'
+  ...
+# Subtest: continuous periscope exposure warns the player before the first damaging attack
+ok 75 - continuous periscope exposure warns the player before the first damaging attack
+  ---
+  duration_ms: 74.855299
+  type: 'test'
+  ...
+# Subtest: torpedo wake provokes immediate hunting but not instant damage
+ok 76 - torpedo wake provokes immediate hunting but not instant damage
+  ---
+  duration_ms: 60.720199
+  type: 'test'
+  ...
+# Subtest: depth order and actual depth remain separate progressive instrument values
+ok 77 - depth order and actual depth remain separate progressive instrument values
+  ---
+  duration_ms: 7.42396
+  type: 'test'
+  ...
+# Subtest: telegraph command and actual speed are separate physical values
+ok 78 - telegraph command and actual speed are separate physical values
+  ---
+  duration_ms: 4.559096
+  type: 'test'
+  ...
+# Subtest: tube bank loads tubes and keeps remaining torpedoes in reserve
+ok 79 - tube bank loads tubes and keeps remaining torpedoes in reserve
+  ---
+  duration_ms: 2.232941
+  type: 'test'
+  ...
+# Subtest: TDC synchronizes bearing, range, target motion and gyro angle
+ok 80 - TDC synchronizes bearing, range, target motion and gyro angle
+  ---
+  duration_ms: 0.659314
+  type: 'test'
+  ...
+# Subtest: a three-torpedo salvo consumes loaded tubes and starts reload cycles
+ok 81 - a three-torpedo salvo consumes loaded tubes and starts reload cycles
+  ---
+  duration_ms: 0.784691
+  type: 'test'
+  ...
+# Subtest: torpedoes resolve deterministically and report historical outcome
+ok 82 - torpedoes resolve deterministically and report historical outcome
+  ---
+  duration_ms: 0.656937
+  type: 'test'
+  ...
+# Subtest: tube reload completes using simulated elapsed time
+ok 83 - tube reload completes using simulated elapsed time
+  ---
+  duration_ms: 0.44695
+  type: 'test'
+  ...
+# Subtest: launch is blocked below maximum firing depth
+ok 84 - launch is blocked below maximum firing depth
+  ---
+  duration_ms: 1.176814
+  type: 'test'
+  ...
+# Subtest: stern arc rejects bow-only firing geometry
+ok 85 - stern arc rejects bow-only firing geometry
+  ---
+  duration_ms: 0.62261
+  type: 'test'
+  ...
+# Subtest: snapshot restore preserves tubes, TDC, salvo and active shots
+ok 86 - snapshot restore preserves tubes, TDC, salvo and active shots
+  ---
+  duration_ms: 0.749391
+  type: 'test'
+  ...
+# Subtest: early-war profiles carry a higher deterministic failure risk
+ok 87 - early-war profiles carry a higher deterministic failure risk
+  ---
+  duration_ms: 0.530629
+  type: 'test'
+  ...
+1..87
+# tests 87
+# suites 0
+# pass 87
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 726.329682
