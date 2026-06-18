@@ -1,0 +1,71 @@
+[
+  {
+    "id": "campaign.de.wolfpack",
+    "nationId": "de",
+    "titleKey": "campaign.de.title",
+    "summaryKey": "campaign.de.summary",
+    "baseKey": "campaign.de.base",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "startingYear": 1939,
+    "endingYear": 1944,
+    "missionIds": [
+      "de1",
+      "de2",
+      "de3",
+      "de4",
+      "de5",
+      "de6",
+      "de7",
+      "de8"
+    ]
+  },
+  {
+    "id": "campaign.uk.mediterranean",
+    "nationId": "uk",
+    "titleKey": "campaign.uk.title",
+    "summaryKey": "campaign.uk.summary",
+    "baseKey": "campaign.uk.base",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "startingYear": 1940,
+    "endingYear": 1944,
+    "missionIds": [
+      "uk1",
+      "uk2",
+      "uk3",
+      "uk4",
+      "uk5",
+      "uk6",
+      "uk7",
+      "uk8"
+    ]
+  },
+  {
+    "id": "campaign.us.pacific",
+    "nationId": "us",
+    "titleKey": "campaign.us.title",
+    "summaryKey": "campaign.us.summary",
+    "baseKey": "campaign.us.base",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "startingYear": 1941,
+    "endingYear": 1945,
+    "missionIds": [
+      "us1",
+      "us2",
+      "us3",
+      "us4",
+      "us5",
+      "us6",
+      "us7",
+      "us8"
+    ]
+  }
+]

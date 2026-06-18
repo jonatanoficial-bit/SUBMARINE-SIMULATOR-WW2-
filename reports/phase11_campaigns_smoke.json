@@ -1,0 +1,90 @@
+{
+  "summary": {
+    "passed": 16,
+    "failed": 0,
+    "total": 16
+  },
+  "checks": [
+    {
+      "name": "de campaign title rendered",
+      "status": "PASS",
+      "detail": "Kriegsmarine — Alcateias do Atlântico"
+    },
+    {
+      "name": "de renders eight missions",
+      "status": "PASS",
+      "detail": "8"
+    },
+    {
+      "name": "de starts with one available mission",
+      "status": "PASS",
+      "detail": "1"
+    },
+    {
+      "name": "de campaign overview is visible",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "de has no mobile overflow",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk campaign title rendered",
+      "status": "PASS",
+      "detail": "Royal Navy — Mediterrâneo e Interdição Aliada"
+    },
+    {
+      "name": "uk renders eight missions",
+      "status": "PASS",
+      "detail": "8"
+    },
+    {
+      "name": "uk starts with one available mission",
+      "status": "PASS",
+      "detail": "1"
+    },
+    {
+      "name": "uk campaign overview is visible",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk has no mobile overflow",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us campaign title rendered",
+      "status": "PASS",
+      "detail": "US Navy — Patrulhas do Pacífico"
+    },
+    {
+      "name": "us renders eight missions",
+      "status": "PASS",
+      "detail": "8"
+    },
+    {
+      "name": "us starts with one available mission",
+      "status": "PASS",
+      "detail": "1"
+    },
+    {
+      "name": "us campaign overview is visible",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us has no mobile overflow",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "errors": []
+}

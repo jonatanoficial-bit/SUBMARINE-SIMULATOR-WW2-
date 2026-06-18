@@ -1,0 +1,902 @@
+{
+  "generatedAt": "2026-06-18T19:19:16.353Z",
+  "phase": "11",
+  "passed": true,
+  "assertions": {
+    "allProfilesPresent": true,
+    "allMissionsQuietSafeForSixtySeconds": true,
+    "noInstantAlertOnAnyProfile": true,
+    "noInstantDamageOnAnyProfile": true,
+    "exposedRiskOrdersByDifficulty": true,
+    "resourceBurdenOrdersByDifficulty": true,
+    "profileMultipliersOrdered": true
+  },
+  "profiles": [
+    {
+      "id": "cadet",
+      "enemyDetectionMultiplier": 0.72,
+      "enemyDamageMultiplier": 0.68,
+      "sensorConfidenceMultiplier": 1.14,
+      "weaponQualityBonus": 12,
+      "torpedoFailureMultiplier": 0.55,
+      "resourceConsumptionMultiplier": 0.76,
+      "automaticHints": true,
+      "contactLabels": true,
+      "recommendedForTraining": true
+    },
+    {
+      "id": "officer",
+      "enemyDetectionMultiplier": 1,
+      "enemyDamageMultiplier": 1,
+      "sensorConfidenceMultiplier": 1,
+      "weaponQualityBonus": 2,
+      "torpedoFailureMultiplier": 0.9,
+      "resourceConsumptionMultiplier": 1,
+      "automaticHints": true,
+      "contactLabels": true,
+      "recommendedForTraining": false
+    },
+    {
+      "id": "simulator",
+      "enemyDetectionMultiplier": 1.12,
+      "enemyDamageMultiplier": 1.08,
+      "sensorConfidenceMultiplier": 0.96,
+      "weaponQualityBonus": -3,
+      "torpedoFailureMultiplier": 1.05,
+      "resourceConsumptionMultiplier": 1.06,
+      "automaticHints": false,
+      "contactLabels": true,
+      "recommendedForTraining": false
+    },
+    {
+      "id": "hardcore",
+      "enemyDetectionMultiplier": 1.28,
+      "enemyDamageMultiplier": 1.22,
+      "sensorConfidenceMultiplier": 0.88,
+      "weaponQualityBonus": -8,
+      "torpedoFailureMultiplier": 1.18,
+      "resourceConsumptionMultiplier": 1.16,
+      "automaticHints": false,
+      "contactLabels": false,
+      "recommendedForTraining": false
+    }
+  ],
+  "quiet": [
+    {
+      "missionId": "de1",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de2",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de3",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de4",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de5",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de6",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de7",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de8",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk1",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk2",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk3",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk4",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk5",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk6",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk7",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk8",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us1",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us2",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us3",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us4",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us5",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us6",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us7",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us8",
+      "difficulty": "cadet",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de1",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de2",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de3",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de4",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de5",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de6",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de7",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de8",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk1",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk2",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk3",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk4",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk5",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk6",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk7",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk8",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us1",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us2",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us3",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us4",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us5",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us6",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us7",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us8",
+      "difficulty": "officer",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de1",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de2",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de3",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de4",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de5",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de6",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de7",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de8",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk1",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk2",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk3",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk4",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk5",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk6",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk7",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk8",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us1",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us2",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us3",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us4",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us5",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us6",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us7",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us8",
+      "difficulty": "simulator",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de1",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de2",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de3",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de4",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de5",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de6",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de7",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "de8",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk1",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk2",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk3",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk4",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk5",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk6",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk7",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "uk8",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us1",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us2",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us3",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us4",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us5",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us6",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us7",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    },
+    {
+      "missionId": "us8",
+      "difficulty": "hardcore",
+      "damage": 0,
+      "detection": 0,
+      "patterns": 0,
+      "hull": 100
+    }
+  ],
+  "exposed": [
+    {
+      "difficulty": "cadet",
+      "alertAtSeconds": 51.52,
+      "huntAtSeconds": 78.88,
+      "firstDamageAtSeconds": null,
+      "firstDamageAmount": null,
+      "finalDetection": 100,
+      "finalHull": 100,
+      "patterns": 3
+    },
+    {
+      "difficulty": "officer",
+      "alertAtSeconds": 29.12,
+      "huntAtSeconds": 48.08,
+      "firstDamageAtSeconds": null,
+      "firstDamageAmount": null,
+      "finalDetection": 100,
+      "finalHull": 100,
+      "patterns": 4
+    },
+    {
+      "difficulty": "simulator",
+      "alertAtSeconds": 24.48,
+      "huntAtSeconds": 42.08,
+      "firstDamageAtSeconds": null,
+      "firstDamageAmount": null,
+      "finalDetection": 100,
+      "finalHull": 100,
+      "patterns": 4
+    },
+    {
+      "difficulty": "hardcore",
+      "alertAtSeconds": 20.24,
+      "huntAtSeconds": 36.16,
+      "firstDamageAtSeconds": null,
+      "firstDamageAmount": null,
+      "finalDetection": 100,
+      "finalHull": 100,
+      "patterns": 4
+    }
+  ],
+  "resources": [
+    {
+      "difficulty": "cadet",
+      "battery": 95.591,
+      "oxygen": 98.69,
+      "co2": 1.625
+    },
+    {
+      "difficulty": "officer",
+      "battery": 94.199,
+      "oxygen": 98.276,
+      "co2": 2.138
+    },
+    {
+      "difficulty": "simulator",
+      "battery": 93.851,
+      "oxygen": 98.173,
+      "co2": 2.266
+    },
+    {
+      "difficulty": "hardcore",
+      "battery": 93.271,
+      "oxygen": 98,
+      "co2": 2.48
+    }
+  ]
+}

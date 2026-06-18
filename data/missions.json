@@ -1,910 +1,1943 @@
 [
   {
-    "id": "m1",
-    "titleKey": "mission.m1.title",
-    "summaryKey": "mission.m1.summary",
+    "id": "de1",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 1,
+    "titleKey": "mission.de1.title",
+    "summaryKey": "mission.de1.summary",
     "theatreKey": "mission.theatre.atlantic",
-    "operationKey": "mission.m1.operation",
+    "operationKey": "mission.de1.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1939",
     "difficulty": "I",
-    "reward": 1400,
-    "xp": 120,
+    "reward": 1630,
+    "xp": 143,
     "status": "available",
     "targetType": "merchant",
     "targetStartX": 230,
-    "targetStartY": 16,
-    "escortStartX": 320,
-    "escortStartY": 40,
-    "escortSensitivity": 0.95,
+    "targetStartY": 14,
+    "escortStartX": 325,
+    "escortStartY": 35,
+    "escortSensitivity": 0.93,
     "targetDrift": 0.65,
     "targetWave": 0.28,
     "targetBob": 4,
+    "targetSpeedKnots": 6.5,
+    "escortSpeedKnots": 14.8,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m1.history",
-    "bonusReward": 490,
-    "bonusXp": 60,
+    "historicalNoteKey": "mission.de1.history",
+    "bonusReward": 425,
+    "bonusXp": 53,
     "navigation": {
       "mapBounds": {
-        "north": 50.6,
-        "south": 46.4,
-        "west": -19.6,
-        "east": -11.4
+        "north": 49.84,
+        "south": 46.72,
+        "west": -17.52,
+        "east": -13.11
       },
       "origin": {
-        "lat": 48.09,
-        "lon": -15.59
+        "lat": 48.115,
+        "lon": -15.618
       },
-      "heading": 68,
+      "heading": 56,
       "patrolSector": {
-        "id": "m1-sector",
-        "labelKey": "navigation.sectorAtlantic",
-        "north": 49.05,
-        "south": 48.35,
-        "west": -14.75,
-        "east": -13.35
+        "id": "de1-sector",
+        "labelKey": "campaign.atlantic.sector",
+        "north": 48.761,
+        "south": 48.121,
+        "west": -15.472,
+        "east": -14.552
       },
       "route": [
         {
-          "id": "m1-wp-1",
-          "lat": 48.115,
-          "lon": -15.505,
+          "id": "de1-wp-1",
+          "lat": 48.155,
+          "lon": -15.498,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m1-wp-2",
-          "lat": 48.395,
-          "lon": -14.82,
+          "id": "de1-wp-2",
+          "lat": 48.3,
+          "lon": -15.273,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m1-wp-3",
-          "lat": 48.7,
-          "lon": -14.05,
+          "id": "de1-wp-3",
+          "lat": 48.441,
+          "lon": -15.012,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m2",
-    "titleKey": "mission.m2.title",
-    "summaryKey": "mission.m2.summary",
-    "theatreKey": "mission.theatre.atlantic",
-    "operationKey": "mission.m2.operation",
-    "year": "1940",
-    "difficulty": "II",
-    "reward": 1750,
-    "xp": 160,
-    "status": "available",
-    "targetType": "merchant",
-    "targetStartX": 250,
-    "targetStartY": 20,
-    "escortStartX": 330,
-    "escortStartY": 46,
-    "escortSensitivity": 1.05,
-    "targetDrift": 0.72,
-    "targetWave": 0.33,
-    "targetBob": 6,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m2.history",
-    "bonusReward": 530,
-    "bonusXp": 65,
-    "navigation": {
-      "mapBounds": {
-        "north": 50.6,
-        "south": 46.4,
-        "west": -19.6,
-        "east": -11.4
-      },
-      "origin": {
-        "lat": 48.15,
-        "lon": -15.65
-      },
-      "heading": 68,
-      "patrolSector": {
-        "id": "m2-sector",
-        "labelKey": "navigation.sectorAtlantic",
-        "north": 49.05,
-        "south": 48.35,
-        "west": -14.75,
-        "east": -13.35
-      },
-      "route": [
-        {
-          "id": "m2-wp-1",
-          "lat": 48.175,
-          "lon": -15.565,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m2-wp-2",
-          "lat": 48.425,
-          "lon": -14.85,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m2-wp-3",
-          "lat": 48.7,
-          "lon": -14.05,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m3",
-    "titleKey": "mission.m3.title",
-    "summaryKey": "mission.m3.summary",
+    "id": "de2",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 2,
+    "titleKey": "mission.de2.title",
+    "summaryKey": "mission.de2.summary",
     "theatreKey": "mission.theatre.convoy",
-    "operationKey": "mission.m3.operation",
+    "operationKey": "mission.de2.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1940",
     "difficulty": "II",
-    "reward": 2100,
-    "xp": 190,
-    "status": "available",
+    "reward": 1960,
+    "xp": 181,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 240,
+    "targetStartY": 16,
+    "escortStartX": 332,
+    "escortStartY": 38,
+    "escortSensitivity": 1.0,
+    "targetDrift": 0.72,
+    "targetWave": 0.31,
+    "targetBob": 5,
+    "targetSpeedKnots": 6.9,
+    "escortSpeedKnots": 15.6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.de2.history",
+    "bonusReward": 490,
+    "bonusXp": 61,
+    "navigation": {
+      "mapBounds": {
+        "north": 49.89,
+        "south": 46.73,
+        "west": -17.54,
+        "east": -13.06
+      },
+      "origin": {
+        "lat": 48.13,
+        "lon": -15.636
+      },
+      "heading": 67,
+      "patrolSector": {
+        "id": "de2-sector",
+        "labelKey": "campaign.convoy.sector",
+        "north": 48.814,
+        "south": 48.174,
+        "west": -15.424,
+        "east": -14.504
+      },
+      "route": [
+        {
+          "id": "de2-wp-1",
+          "lat": 48.17,
+          "lon": -15.516,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "de2-wp-2",
+          "lat": 48.34,
+          "lon": -15.246,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "de2-wp-3",
+          "lat": 48.494,
+          "lon": -14.964,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "de3",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 3,
+    "titleKey": "mission.de3.title",
+    "summaryKey": "mission.de3.summary",
+    "theatreKey": "mission.theatre.convoy",
+    "operationKey": "mission.de3.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
+    "year": "1940",
+    "difficulty": "II",
+    "reward": 2290,
+    "xp": 219,
+    "status": "locked",
+    "targetType": "tanker",
+    "targetStartX": 250,
+    "targetStartY": 18,
+    "escortStartX": 339,
+    "escortStartY": 41,
+    "escortSensitivity": 1.07,
+    "targetDrift": 0.79,
+    "targetWave": 0.34,
+    "targetBob": 6,
+    "targetSpeedKnots": 7.3,
+    "escortSpeedKnots": 16.4,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.de3.history",
+    "bonusReward": 555,
+    "bonusXp": 69,
+    "navigation": {
+      "mapBounds": {
+        "north": 49.95,
+        "south": 46.75,
+        "west": -17.55,
+        "east": -13.02
+      },
+      "origin": {
+        "lat": 48.145,
+        "lon": -15.654
+      },
+      "heading": 78,
+      "patrolSector": {
+        "id": "de3-sector",
+        "labelKey": "campaign.convoy.sector",
+        "north": 48.867,
+        "south": 48.227,
+        "west": -15.376,
+        "east": -14.456
+      },
+      "route": [
+        {
+          "id": "de3-wp-1",
+          "lat": 48.185,
+          "lon": -15.534,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "de3-wp-2",
+          "lat": 48.38,
+          "lon": -15.219,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "de3-wp-3",
+          "lat": 48.547,
+          "lon": -14.916,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "de4",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 4,
+    "titleKey": "mission.de4.title",
+    "summaryKey": "mission.de4.summary",
+    "theatreKey": "mission.theatre.atlantic",
+    "operationKey": "mission.de4.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
+    "year": "1941",
+    "difficulty": "III",
+    "reward": 2620,
+    "xp": 257,
+    "status": "locked",
     "targetType": "merchant",
     "targetStartX": 260,
-    "targetStartY": 22,
-    "escortStartX": 320,
-    "escortStartY": 48,
-    "escortSensitivity": 1.12,
-    "targetDrift": 0.78,
-    "targetWave": 0.3,
-    "targetBob": 5,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m3.history",
-    "bonusReward": 570,
-    "bonusXp": 70,
-    "navigation": {
-      "mapBounds": {
-        "north": 54.2,
-        "south": 49.8,
-        "west": -25.2,
-        "east": -15.0
-      },
-      "origin": {
-        "lat": 51.41,
-        "lon": -20.91
-      },
-      "heading": 61,
-      "patrolSector": {
-        "id": "m3-sector",
-        "labelKey": "navigation.sectorConvoy",
-        "north": 52.45,
-        "south": 51.65,
-        "west": -19.7,
-        "east": -17.8
-      },
-      "route": [
-        {
-          "id": "m3-wp-1",
-          "lat": 51.435,
-          "lon": -20.825,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m3-wp-2",
-          "lat": 51.73,
-          "lon": -19.83,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m3-wp-3",
-          "lat": 52.05,
-          "lon": -18.75,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m4",
-    "titleKey": "mission.m4.title",
-    "summaryKey": "mission.m4.summary",
-    "theatreKey": "mission.theatre.atlantic",
-    "operationKey": "mission.m4.operation",
-    "year": "1941",
-    "difficulty": "III",
-    "reward": 2500,
-    "xp": 240,
-    "status": "locked",
-    "targetType": "merchant",
-    "targetStartX": 280,
-    "targetStartY": 16,
-    "escortStartX": 310,
+    "targetStartY": 20,
+    "escortStartX": 346,
     "escortStartY": 44,
-    "escortSensitivity": 1.2,
-    "targetDrift": 0.84,
-    "targetWave": 0.36,
-    "targetBob": 8,
+    "escortSensitivity": 1.14,
+    "targetDrift": 0.86,
+    "targetWave": 0.38,
+    "targetBob": 7,
+    "targetSpeedKnots": 7.8,
+    "escortSpeedKnots": 17.2,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m4.history",
-    "bonusReward": 610,
-    "bonusXp": 75,
+    "historicalNoteKey": "mission.de4.history",
+    "bonusReward": 620,
+    "bonusXp": 77,
     "navigation": {
       "mapBounds": {
-        "north": 50.6,
-        "south": 46.4,
-        "west": -19.6,
-        "east": -11.4
+        "north": 50.0,
+        "south": 46.76,
+        "west": -17.57,
+        "east": -12.97
       },
       "origin": {
-        "lat": 48.09,
-        "lon": -15.59
+        "lat": 48.16,
+        "lon": -15.672
       },
-      "heading": 68,
+      "heading": 89,
       "patrolSector": {
-        "id": "m4-sector",
-        "labelKey": "navigation.sectorAtlantic",
-        "north": 49.05,
-        "south": 48.35,
-        "west": -14.75,
-        "east": -13.35
+        "id": "de4-sector",
+        "labelKey": "campaign.atlantic.sector",
+        "north": 48.92,
+        "south": 48.28,
+        "west": -15.328,
+        "east": -14.408
       },
       "route": [
         {
-          "id": "m4-wp-1",
-          "lat": 48.115,
-          "lon": -15.505,
+          "id": "de4-wp-1",
+          "lat": 48.2,
+          "lon": -15.552,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m4-wp-2",
-          "lat": 48.395,
-          "lon": -14.82,
+          "id": "de4-wp-2",
+          "lat": 48.42,
+          "lon": -15.192,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m4-wp-3",
-          "lat": 48.7,
-          "lon": -14.05,
+          "id": "de4-wp-3",
+          "lat": 48.6,
+          "lon": -14.868,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m5",
-    "titleKey": "mission.m5.title",
-    "summaryKey": "mission.m5.summary",
+    "id": "de5",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 5,
+    "titleKey": "mission.de5.title",
+    "summaryKey": "mission.de5.summary",
     "theatreKey": "mission.theatre.mediterranean",
-    "operationKey": "mission.m5.operation",
+    "operationKey": "mission.de5.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1941",
     "difficulty": "III",
-    "reward": 2800,
-    "xp": 275,
-    "status": "locked",
-    "targetType": "destroyer",
-    "targetStartX": 265,
-    "targetStartY": 18,
-    "escortStartX": 300,
-    "escortStartY": 54,
-    "escortSensitivity": 1.25,
-    "targetDrift": 0.88,
-    "targetWave": 0.4,
-    "targetBob": 8,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m5.history",
-    "bonusReward": 650,
-    "bonusXp": 80,
-    "navigation": {
-      "mapBounds": {
-        "north": 39.4,
-        "south": 34.0,
-        "west": 3.0,
-        "east": 13.2
-      },
-      "origin": {
-        "lat": 36.55,
-        "lon": 7.15
-      },
-      "heading": 55,
-      "patrolSector": {
-        "id": "m5-sector",
-        "labelKey": "navigation.sectorMediterranean",
-        "north": 37.35,
-        "south": 36.6,
-        "west": 8.25,
-        "east": 9.65
-      },
-      "route": [
-        {
-          "id": "m5-wp-1",
-          "lat": 36.575,
-          "lon": 7.235,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m5-wp-2",
-          "lat": 36.7625,
-          "lon": 8.05,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m5-wp-3",
-          "lat": 36.975,
-          "lon": 8.95,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m6",
-    "titleKey": "mission.m6.title",
-    "summaryKey": "mission.m6.summary",
-    "theatreKey": "mission.theatre.atlantic",
-    "operationKey": "mission.m6.operation",
-    "year": "1942",
-    "difficulty": "III",
-    "reward": 3200,
-    "xp": 310,
+    "reward": 2950,
+    "xp": 295,
     "status": "locked",
     "targetType": "merchant",
-    "targetStartX": 290,
-    "targetStartY": 18,
-    "escortStartX": 295,
-    "escortStartY": 52,
-    "escortSensitivity": 1.32,
-    "targetDrift": 0.95,
+    "targetStartX": 270,
+    "targetStartY": 22,
+    "escortStartX": 353,
+    "escortStartY": 47,
+    "escortSensitivity": 1.21,
+    "targetDrift": 0.93,
     "targetWave": 0.42,
     "targetBob": 8,
+    "targetSpeedKnots": 8.2,
+    "escortSpeedKnots": 18.0,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m6.history",
-    "bonusReward": 690,
+    "historicalNoteKey": "mission.de5.history",
+    "bonusReward": 685,
     "bonusXp": 85,
     "navigation": {
       "mapBounds": {
-        "north": 50.6,
-        "south": 46.4,
-        "west": -19.6,
-        "east": -11.4
+        "north": 50.05,
+        "south": 46.77,
+        "west": -17.59,
+        "east": -12.92
       },
       "origin": {
-        "lat": 48.21,
-        "lon": -15.71
+        "lat": 48.175,
+        "lon": -15.69
       },
-      "heading": 68,
+      "heading": 100,
       "patrolSector": {
-        "id": "m6-sector",
-        "labelKey": "navigation.sectorAtlantic",
-        "north": 49.05,
-        "south": 48.35,
-        "west": -14.75,
-        "east": -13.35
+        "id": "de5-sector",
+        "labelKey": "campaign.mediterranean.sector",
+        "north": 48.973,
+        "south": 48.333,
+        "west": -15.28,
+        "east": -14.36
       },
       "route": [
         {
-          "id": "m6-wp-1",
-          "lat": 48.235,
-          "lon": -15.625,
+          "id": "de5-wp-1",
+          "lat": 48.215,
+          "lon": -15.57,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m6-wp-2",
-          "lat": 48.455,
-          "lon": -14.88,
+          "id": "de5-wp-2",
+          "lat": 48.46,
+          "lon": -15.165,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m6-wp-3",
-          "lat": 48.7,
-          "lon": -14.05,
+          "id": "de5-wp-3",
+          "lat": 48.653,
+          "lon": -14.82,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m7",
-    "titleKey": "mission.m7.title",
-    "summaryKey": "mission.m7.summary",
-    "theatreKey": "mission.theatre.arctic",
-    "operationKey": "mission.m7.operation",
+    "id": "de6",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 6,
+    "titleKey": "mission.de6.title",
+    "summaryKey": "mission.de6.summary",
+    "theatreKey": "mission.theatre.atlantic",
+    "operationKey": "mission.de6.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1942",
     "difficulty": "IV",
-    "reward": 3600,
-    "xp": 350,
+    "reward": 3280,
+    "xp": 333,
     "status": "locked",
-    "targetType": "merchant",
-    "targetStartX": 305,
-    "targetStartY": 12,
-    "escortStartX": 290,
-    "escortStartY": 56,
-    "escortSensitivity": 1.4,
-    "targetDrift": 1.02,
-    "targetWave": 0.44,
-    "targetBob": 10,
+    "targetType": "tanker",
+    "targetStartX": 280,
+    "targetStartY": 24,
+    "escortStartX": 360,
+    "escortStartY": 50,
+    "escortSensitivity": 1.28,
+    "targetDrift": 1.0,
+    "targetWave": 0.45,
+    "targetBob": 9,
+    "targetSpeedKnots": 8.7,
+    "escortSpeedKnots": 18.8,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m7.history",
-    "bonusReward": 730,
-    "bonusXp": 90,
+    "historicalNoteKey": "mission.de6.history",
+    "bonusReward": 750,
+    "bonusXp": 93,
     "navigation": {
       "mapBounds": {
-        "north": 72.5,
-        "south": 65.5,
-        "west": -2.0,
-        "east": 18.0
+        "north": 50.11,
+        "south": 46.79,
+        "west": -17.61,
+        "east": -12.87
       },
       "origin": {
-        "lat": 68.19,
-        "lon": 5.06
+        "lat": 48.19,
+        "lon": -15.708
       },
-      "heading": 40,
+      "heading": 111,
       "patrolSector": {
-        "id": "m7-sector",
-        "labelKey": "navigation.sectorArctic",
-        "north": 69.75,
-        "south": 68.85,
-        "west": 7.2,
-        "east": 10.6
+        "id": "de6-sector",
+        "labelKey": "campaign.atlantic.sector",
+        "north": 49.026,
+        "south": 48.386,
+        "west": -15.232,
+        "east": -14.312
       },
       "route": [
         {
-          "id": "m7-wp-1",
-          "lat": 68.215,
-          "lon": 5.145,
+          "id": "de6-wp-1",
+          "lat": 48.23,
+          "lon": -15.588,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m7-wp-2",
-          "lat": 68.745,
-          "lon": 6.98,
+          "id": "de6-wp-2",
+          "lat": 48.5,
+          "lon": -15.138,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m7-wp-3",
-          "lat": 69.3,
-          "lon": 8.9,
+          "id": "de6-wp-3",
+          "lat": 48.706,
+          "lon": -14.772,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m8",
-    "titleKey": "mission.m8.title",
-    "summaryKey": "mission.m8.summary",
-    "theatreKey": "mission.theatre.mediterranean",
-    "operationKey": "mission.m8.operation",
+    "id": "de7",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 7,
+    "titleKey": "mission.de7.title",
+    "summaryKey": "mission.de7.summary",
+    "theatreKey": "mission.theatre.arctic",
+    "operationKey": "mission.de7.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1942",
     "difficulty": "IV",
-    "reward": 3950,
-    "xp": 380,
+    "reward": 3610,
+    "xp": 371,
     "status": "locked",
-    "targetType": "destroyer",
-    "targetStartX": 300,
-    "targetStartY": 18,
-    "escortStartX": 285,
-    "escortStartY": 60,
-    "escortSensitivity": 1.45,
-    "targetDrift": 1.04,
+    "targetType": "merchant",
+    "targetStartX": 290,
+    "targetStartY": 26,
+    "escortStartX": 367,
+    "escortStartY": 53,
+    "escortSensitivity": 1.35,
+    "targetDrift": 1.07,
     "targetWave": 0.48,
     "targetBob": 10,
+    "targetSpeedKnots": 9.2,
+    "escortSpeedKnots": 19.6,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m8.history",
-    "bonusReward": 770,
-    "bonusXp": 95,
+    "historicalNoteKey": "mission.de7.history",
+    "bonusReward": 815,
+    "bonusXp": 101,
     "navigation": {
       "mapBounds": {
-        "north": 39.4,
-        "south": 34.0,
-        "west": 3.0,
-        "east": 13.2
+        "north": 50.16,
+        "south": 46.8,
+        "west": -17.63,
+        "east": -12.82
       },
       "origin": {
-        "lat": 36.55,
-        "lon": 7.15
+        "lat": 48.205,
+        "lon": -15.726
       },
-      "heading": 55,
+      "heading": 122,
       "patrolSector": {
-        "id": "m8-sector",
-        "labelKey": "navigation.sectorMediterranean",
-        "north": 37.35,
-        "south": 36.6,
-        "west": 8.25,
-        "east": 9.65
+        "id": "de7-sector",
+        "labelKey": "campaign.arctic.sector",
+        "north": 49.079,
+        "south": 48.439,
+        "west": -15.184,
+        "east": -14.264
       },
       "route": [
         {
-          "id": "m8-wp-1",
-          "lat": 36.575,
-          "lon": 7.235,
+          "id": "de7-wp-1",
+          "lat": 48.245,
+          "lon": -15.606,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m8-wp-2",
-          "lat": 36.7625,
-          "lon": 8.05,
+          "id": "de7-wp-2",
+          "lat": 48.54,
+          "lon": -15.111,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m8-wp-3",
-          "lat": 36.975,
-          "lon": 8.95,
+          "id": "de7-wp-3",
+          "lat": 48.759,
+          "lon": -14.724,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m9",
-    "titleKey": "mission.m9.title",
-    "summaryKey": "mission.m9.summary",
+    "id": "de8",
+    "nationId": "de",
+    "campaignId": "campaign.de.wolfpack",
+    "campaignOrder": 8,
+    "titleKey": "mission.de8.title",
+    "summaryKey": "mission.de8.summary",
     "theatreKey": "mission.theatre.biscay",
-    "operationKey": "mission.m9.operation",
-    "year": "1943",
-    "difficulty": "IV",
-    "reward": 4300,
-    "xp": 420,
-    "status": "locked",
-    "targetType": "submarine",
-    "targetStartX": 310,
-    "targetStartY": 8,
-    "escortStartX": 270,
-    "escortStartY": 58,
-    "escortSensitivity": 1.5,
-    "targetDrift": 1.1,
-    "targetWave": 0.52,
-    "targetBob": 12,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m9.history",
-    "bonusReward": 810,
-    "bonusXp": 100,
-    "navigation": {
-      "mapBounds": {
-        "north": 49.5,
-        "south": 42.4,
-        "west": -12.5,
-        "east": -1.0
-      },
-      "origin": {
-        "lat": 45.61,
-        "lon": -8.91
-      },
-      "heading": 55,
-      "patrolSector": {
-        "id": "m9-sector",
-        "labelKey": "navigation.sectorBiscay",
-        "north": 46.65,
-        "south": 45.75,
-        "west": -7.4,
-        "east": -5.75
-      },
-      "route": [
-        {
-          "id": "m9-wp-1",
-          "lat": 45.635,
-          "lon": -8.825,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m9-wp-2",
-          "lat": 45.905,
-          "lon": -7.7425,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m9-wp-3",
-          "lat": 46.2,
-          "lon": -6.575,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m10",
-    "titleKey": "mission.m10.title",
-    "summaryKey": "mission.m10.summary",
-    "theatreKey": "mission.theatre.arctic",
-    "operationKey": "mission.m10.operation",
+    "operationKey": "mission.de8.operation",
+    "baseKey": "campaign.de.base",
+    "strategicGoalKey": "campaign.de.goal",
+    "enemyKey": "campaign.de.enemy",
+    "chronologyKey": "campaign.de.chronology",
+    "doctrineKey": "campaign.de.doctrine",
     "year": "1943",
     "difficulty": "V",
-    "reward": 4700,
-    "xp": 460,
+    "reward": 3940,
+    "xp": 409,
     "status": "locked",
     "targetType": "merchant",
-    "targetStartX": 320,
-    "targetStartY": 14,
-    "escortStartX": 265,
-    "escortStartY": 64,
-    "escortSensitivity": 1.56,
+    "targetStartX": 300,
+    "targetStartY": 28,
+    "escortStartX": 374,
+    "escortStartY": 56,
+    "escortSensitivity": 1.42,
     "targetDrift": 1.14,
-    "targetWave": 0.55,
-    "targetBob": 12,
+    "targetWave": 0.52,
+    "targetBob": 11,
+    "targetSpeedKnots": 9.6,
+    "escortSpeedKnots": 20.4,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m10.history",
-    "bonusReward": 850,
-    "bonusXp": 105,
+    "historicalNoteKey": "mission.de8.history",
+    "bonusReward": 880,
+    "bonusXp": 109,
     "navigation": {
       "mapBounds": {
-        "north": 72.5,
-        "south": 65.5,
-        "west": -2.0,
-        "east": 18.0
+        "north": 50.21,
+        "south": 46.82,
+        "west": -17.64,
+        "east": -12.78
       },
       "origin": {
-        "lat": 68.19,
-        "lon": 5.06
+        "lat": 48.22,
+        "lon": -15.744
       },
-      "heading": 40,
+      "heading": 133,
       "patrolSector": {
-        "id": "m10-sector",
-        "labelKey": "navigation.sectorArctic",
-        "north": 69.75,
-        "south": 68.85,
-        "west": 7.2,
-        "east": 10.6
+        "id": "de8-sector",
+        "labelKey": "campaign.biscay.sector",
+        "north": 49.132,
+        "south": 48.492,
+        "west": -15.136,
+        "east": -14.216
       },
       "route": [
         {
-          "id": "m10-wp-1",
-          "lat": 68.215,
-          "lon": 5.145,
+          "id": "de8-wp-1",
+          "lat": 48.26,
+          "lon": -15.624,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m10-wp-2",
-          "lat": 68.745,
-          "lon": 6.98,
+          "id": "de8-wp-2",
+          "lat": 48.58,
+          "lon": -15.084,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m10-wp-3",
-          "lat": 69.3,
-          "lon": 8.9,
+          "id": "de8-wp-3",
+          "lat": 48.812,
+          "lon": -14.676,
           "labelKey": "navigation.waypointPatrol"
         }
       ]
     }
   },
   {
-    "id": "m11",
-    "titleKey": "mission.m11.title",
-    "summaryKey": "mission.m11.summary",
-    "theatreKey": "mission.theatre.pacific",
-    "operationKey": "mission.m11.operation",
-    "year": "1944",
-    "difficulty": "V",
-    "reward": 5200,
-    "xp": 500,
-    "status": "locked",
-    "targetType": "merchant",
-    "targetStartX": 330,
-    "targetStartY": 18,
-    "escortStartX": 255,
-    "escortStartY": 66,
-    "escortSensitivity": 1.62,
-    "targetDrift": 1.18,
-    "targetWave": 0.57,
-    "targetBob": 12,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m11.history",
-    "bonusReward": 890,
-    "bonusXp": 110,
-    "navigation": {
-      "mapBounds": {
-        "north": 27.5,
-        "south": 17.0,
-        "west": 132.0,
-        "east": 146.0
-      },
-      "origin": {
-        "lat": 21.2,
-        "lon": 137.3
-      },
-      "heading": 58,
-      "patrolSector": {
-        "id": "m11-sector",
-        "labelKey": "navigation.sectorPacific",
-        "north": 23.0,
-        "south": 22.0,
-        "west": 139.0,
-        "east": 141.0
-      },
-      "route": [
-        {
-          "id": "m11-wp-1",
-          "lat": 21.225,
-          "lon": 137.385,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m11-wp-2",
-          "lat": 21.85,
-          "lon": 138.65,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m11-wp-3",
-          "lat": 22.5,
-          "lon": 140.0,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m12",
-    "titleKey": "mission.m12.title",
-    "summaryKey": "mission.m12.summary",
-    "theatreKey": "mission.theatre.pacific",
-    "operationKey": "mission.m12.operation",
-    "year": "1944",
-    "difficulty": "V",
-    "reward": 5600,
-    "xp": 540,
-    "status": "locked",
-    "targetType": "destroyer",
-    "targetStartX": 335,
-    "targetStartY": 20,
-    "escortStartX": 250,
-    "escortStartY": 70,
-    "escortSensitivity": 1.7,
-    "targetDrift": 1.22,
-    "targetWave": 0.6,
-    "targetBob": 14,
-    "objectiveKeys": [
-      "briefing.objectiveSilent",
-      "briefing.objectiveStrike",
-      "briefing.objectiveReturn"
-    ],
-    "historicalNoteKey": "mission.m12.history",
-    "bonusReward": 930,
-    "bonusXp": 115,
-    "navigation": {
-      "mapBounds": {
-        "north": 27.5,
-        "south": 17.0,
-        "west": 132.0,
-        "east": 146.0
-      },
-      "origin": {
-        "lat": 21.26,
-        "lon": 137.24
-      },
-      "heading": 58,
-      "patrolSector": {
-        "id": "m12-sector",
-        "labelKey": "navigation.sectorPacific",
-        "north": 23.0,
-        "south": 22.0,
-        "west": 139.0,
-        "east": 141.0
-      },
-      "route": [
-        {
-          "id": "m12-wp-1",
-          "lat": 21.285,
-          "lon": 137.325,
-          "labelKey": "navigation.waypointDeparture"
-        },
-        {
-          "id": "m12-wp-2",
-          "lat": 21.88,
-          "lon": 138.62,
-          "labelKey": "navigation.waypointApproach"
-        },
-        {
-          "id": "m12-wp-3",
-          "lat": 22.5,
-          "lon": 140.0,
-          "labelKey": "navigation.waypointPatrol"
-        }
-      ]
-    }
-  },
-  {
-    "id": "m13",
-    "titleKey": "mission.m13.title",
-    "summaryKey": "mission.m13.summary",
-    "theatreKey": "mission.theatre.sandbox",
-    "operationKey": "mission.m13.operation",
-    "year": "∞",
-    "difficulty": "∞",
-    "reward": 999,
-    "xp": 90,
+    "id": "uk1",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 1,
+    "titleKey": "mission.uk1.title",
+    "summaryKey": "mission.uk1.summary",
+    "theatreKey": "mission.theatre.northsea",
+    "operationKey": "mission.uk1.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1940",
+    "difficulty": "I",
+    "reward": 1630,
+    "xp": 143,
     "status": "available",
-    "isSandbox": true,
     "targetType": "merchant",
+    "targetStartX": 230,
+    "targetStartY": 14,
+    "escortStartX": 325,
+    "escortStartY": 35,
+    "escortSensitivity": 0.93,
+    "targetDrift": 0.65,
+    "targetWave": 0.28,
+    "targetBob": 4,
+    "targetSpeedKnots": 6.5,
+    "escortSpeedKnots": 14.8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk1.history",
+    "bonusReward": 425,
+    "bonusXp": 53,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.54,
+        "south": 35.41,
+        "west": 12.68,
+        "east": 17.09
+      },
+      "origin": {
+        "lat": 36.815,
+        "lon": 14.582
+      },
+      "heading": 56,
+      "patrolSector": {
+        "id": "uk1-sector",
+        "labelKey": "campaign.northsea.sector",
+        "north": 37.461,
+        "south": 36.821,
+        "west": 14.728,
+        "east": 15.648
+      },
+      "route": [
+        {
+          "id": "uk1-wp-1",
+          "lat": 36.855,
+          "lon": 14.702,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk1-wp-2",
+          "lat": 37.0,
+          "lon": 14.927,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk1-wp-3",
+          "lat": 37.141,
+          "lon": 15.188,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk2",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 2,
+    "titleKey": "mission.uk2.title",
+    "summaryKey": "mission.uk2.summary",
+    "theatreKey": "mission.theatre.mediterranean",
+    "operationKey": "mission.uk2.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1941",
+    "difficulty": "II",
+    "reward": 1960,
+    "xp": 181,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 240,
+    "targetStartY": 16,
+    "escortStartX": 332,
+    "escortStartY": 38,
+    "escortSensitivity": 1.0,
+    "targetDrift": 0.72,
+    "targetWave": 0.31,
+    "targetBob": 5,
+    "targetSpeedKnots": 6.9,
+    "escortSpeedKnots": 15.6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk2.history",
+    "bonusReward": 490,
+    "bonusXp": 61,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.59,
+        "south": 35.43,
+        "west": 12.66,
+        "east": 17.14
+      },
+      "origin": {
+        "lat": 36.83,
+        "lon": 14.564
+      },
+      "heading": 67,
+      "patrolSector": {
+        "id": "uk2-sector",
+        "labelKey": "campaign.mediterranean.sector",
+        "north": 37.514,
+        "south": 36.874,
+        "west": 14.776,
+        "east": 15.696
+      },
+      "route": [
+        {
+          "id": "uk2-wp-1",
+          "lat": 36.87,
+          "lon": 14.684,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk2-wp-2",
+          "lat": 37.04,
+          "lon": 14.954,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk2-wp-3",
+          "lat": 37.194,
+          "lon": 15.236,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk3",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 3,
+    "titleKey": "mission.uk3.title",
+    "summaryKey": "mission.uk3.summary",
+    "theatreKey": "mission.theatre.mediterranean",
+    "operationKey": "mission.uk3.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1941",
+    "difficulty": "II",
+    "reward": 2290,
+    "xp": 219,
+    "status": "locked",
+    "targetType": "tanker",
     "targetStartX": 250,
     "targetStartY": 18,
-    "escortStartX": 320,
-    "escortStartY": 42,
-    "escortSensitivity": 1.0,
-    "targetDrift": 0.75,
-    "targetWave": 0.3,
+    "escortStartX": 339,
+    "escortStartY": 41,
+    "escortSensitivity": 1.07,
+    "targetDrift": 0.79,
+    "targetWave": 0.34,
     "targetBob": 6,
+    "targetSpeedKnots": 7.3,
+    "escortSpeedKnots": 16.4,
     "objectiveKeys": [
       "briefing.objectiveSilent",
       "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
       "briefing.objectiveReturn"
     ],
-    "historicalNoteKey": "mission.m13.history",
-    "bonusReward": 970,
-    "bonusXp": 120,
+    "historicalNoteKey": "mission.uk3.history",
+    "bonusReward": 555,
+    "bonusXp": 69,
     "navigation": {
       "mapBounds": {
-        "north": 55.0,
-        "south": 35.0,
-        "west": -30.0,
-        "east": 5.0
+        "north": 38.65,
+        "south": 35.45,
+        "west": 12.65,
+        "east": 17.18
       },
       "origin": {
-        "lat": 44.44,
-        "lon": -17.94
+        "lat": 36.845,
+        "lon": 14.546
       },
-      "heading": 48,
+      "heading": 78,
       "patrolSector": {
-        "id": "m13-sector",
-        "labelKey": "navigation.sectorSandbox",
-        "north": 48.5,
-        "south": 46.5,
-        "west": -14.0,
-        "east": -10.0
+        "id": "uk3-sector",
+        "labelKey": "campaign.mediterranean.sector",
+        "north": 37.567,
+        "south": 36.927,
+        "west": 14.824,
+        "east": 15.744
       },
       "route": [
         {
-          "id": "m13-wp-1",
-          "lat": 44.465,
-          "lon": -17.855,
+          "id": "uk3-wp-1",
+          "lat": 36.885,
+          "lon": 14.666,
           "labelKey": "navigation.waypointDeparture"
         },
         {
-          "id": "m13-wp-2",
-          "lat": 45.97,
-          "lon": -14.97,
+          "id": "uk3-wp-2",
+          "lat": 37.08,
+          "lon": 14.981,
           "labelKey": "navigation.waypointApproach"
         },
         {
-          "id": "m13-wp-3",
-          "lat": 47.5,
-          "lon": -12.0,
+          "id": "uk3-wp-3",
+          "lat": 37.247,
+          "lon": 15.284,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk4",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 4,
+    "titleKey": "mission.uk4.title",
+    "summaryKey": "mission.uk4.summary",
+    "theatreKey": "mission.theatre.arctic",
+    "operationKey": "mission.uk4.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1942",
+    "difficulty": "III",
+    "reward": 2620,
+    "xp": 257,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 260,
+    "targetStartY": 20,
+    "escortStartX": 346,
+    "escortStartY": 44,
+    "escortSensitivity": 1.14,
+    "targetDrift": 0.86,
+    "targetWave": 0.38,
+    "targetBob": 7,
+    "targetSpeedKnots": 7.8,
+    "escortSpeedKnots": 17.2,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk4.history",
+    "bonusReward": 620,
+    "bonusXp": 77,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.7,
+        "south": 35.46,
+        "west": 12.63,
+        "east": 17.23
+      },
+      "origin": {
+        "lat": 36.86,
+        "lon": 14.528
+      },
+      "heading": 89,
+      "patrolSector": {
+        "id": "uk4-sector",
+        "labelKey": "campaign.arctic.sector",
+        "north": 37.62,
+        "south": 36.98,
+        "west": 14.872,
+        "east": 15.792
+      },
+      "route": [
+        {
+          "id": "uk4-wp-1",
+          "lat": 36.9,
+          "lon": 14.648,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk4-wp-2",
+          "lat": 37.12,
+          "lon": 15.008,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk4-wp-3",
+          "lat": 37.3,
+          "lon": 15.332,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk5",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 5,
+    "titleKey": "mission.uk5.title",
+    "summaryKey": "mission.uk5.summary",
+    "theatreKey": "mission.theatre.biscay",
+    "operationKey": "mission.uk5.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1942",
+    "difficulty": "III",
+    "reward": 2950,
+    "xp": 295,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 270,
+    "targetStartY": 22,
+    "escortStartX": 353,
+    "escortStartY": 47,
+    "escortSensitivity": 1.21,
+    "targetDrift": 0.93,
+    "targetWave": 0.42,
+    "targetBob": 8,
+    "targetSpeedKnots": 8.2,
+    "escortSpeedKnots": 18.0,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk5.history",
+    "bonusReward": 685,
+    "bonusXp": 85,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.75,
+        "south": 35.48,
+        "west": 12.61,
+        "east": 17.28
+      },
+      "origin": {
+        "lat": 36.875,
+        "lon": 14.51
+      },
+      "heading": 100,
+      "patrolSector": {
+        "id": "uk5-sector",
+        "labelKey": "campaign.biscay.sector",
+        "north": 37.673,
+        "south": 37.033,
+        "west": 14.92,
+        "east": 15.84
+      },
+      "route": [
+        {
+          "id": "uk5-wp-1",
+          "lat": 36.915,
+          "lon": 14.63,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk5-wp-2",
+          "lat": 37.16,
+          "lon": 15.035,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk5-wp-3",
+          "lat": 37.353,
+          "lon": 15.38,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk6",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 6,
+    "titleKey": "mission.uk6.title",
+    "summaryKey": "mission.uk6.summary",
+    "theatreKey": "mission.theatre.mediterranean",
+    "operationKey": "mission.uk6.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1943",
+    "difficulty": "IV",
+    "reward": 3280,
+    "xp": 333,
+    "status": "locked",
+    "targetType": "tanker",
+    "targetStartX": 280,
+    "targetStartY": 24,
+    "escortStartX": 360,
+    "escortStartY": 50,
+    "escortSensitivity": 1.28,
+    "targetDrift": 1.0,
+    "targetWave": 0.45,
+    "targetBob": 9,
+    "targetSpeedKnots": 8.7,
+    "escortSpeedKnots": 18.8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk6.history",
+    "bonusReward": 750,
+    "bonusXp": 93,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.81,
+        "south": 35.49,
+        "west": 12.59,
+        "east": 17.33
+      },
+      "origin": {
+        "lat": 36.89,
+        "lon": 14.492
+      },
+      "heading": 111,
+      "patrolSector": {
+        "id": "uk6-sector",
+        "labelKey": "campaign.mediterranean.sector",
+        "north": 37.726,
+        "south": 37.086,
+        "west": 14.968,
+        "east": 15.888
+      },
+      "route": [
+        {
+          "id": "uk6-wp-1",
+          "lat": 36.93,
+          "lon": 14.612,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk6-wp-2",
+          "lat": 37.2,
+          "lon": 15.062,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk6-wp-3",
+          "lat": 37.406,
+          "lon": 15.428,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk7",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 7,
+    "titleKey": "mission.uk7.title",
+    "summaryKey": "mission.uk7.summary",
+    "theatreKey": "mission.theatre.northsea",
+    "operationKey": "mission.uk7.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1944",
+    "difficulty": "IV",
+    "reward": 3610,
+    "xp": 371,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 290,
+    "targetStartY": 26,
+    "escortStartX": 367,
+    "escortStartY": 53,
+    "escortSensitivity": 1.35,
+    "targetDrift": 1.07,
+    "targetWave": 0.48,
+    "targetBob": 10,
+    "targetSpeedKnots": 9.2,
+    "escortSpeedKnots": 19.6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk7.history",
+    "bonusReward": 815,
+    "bonusXp": 101,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.86,
+        "south": 35.51,
+        "west": 12.57,
+        "east": 17.38
+      },
+      "origin": {
+        "lat": 36.905,
+        "lon": 14.474
+      },
+      "heading": 122,
+      "patrolSector": {
+        "id": "uk7-sector",
+        "labelKey": "campaign.northsea.sector",
+        "north": 37.779,
+        "south": 37.139,
+        "west": 15.016,
+        "east": 15.936
+      },
+      "route": [
+        {
+          "id": "uk7-wp-1",
+          "lat": 36.945,
+          "lon": 14.594,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk7-wp-2",
+          "lat": 37.24,
+          "lon": 15.089,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk7-wp-3",
+          "lat": 37.459,
+          "lon": 15.476,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "uk8",
+    "nationId": "uk",
+    "campaignId": "campaign.uk.mediterranean",
+    "campaignOrder": 8,
+    "titleKey": "mission.uk8.title",
+    "summaryKey": "mission.uk8.summary",
+    "theatreKey": "mission.theatre.patrol",
+    "operationKey": "mission.uk8.operation",
+    "baseKey": "campaign.uk.base",
+    "strategicGoalKey": "campaign.uk.goal",
+    "enemyKey": "campaign.uk.enemy",
+    "chronologyKey": "campaign.uk.chronology",
+    "doctrineKey": "campaign.uk.doctrine",
+    "year": "1944",
+    "difficulty": "V",
+    "reward": 3940,
+    "xp": 409,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 300,
+    "targetStartY": 28,
+    "escortStartX": 374,
+    "escortStartY": 56,
+    "escortSensitivity": 1.42,
+    "targetDrift": 1.14,
+    "targetWave": 0.52,
+    "targetBob": 11,
+    "targetSpeedKnots": 9.6,
+    "escortSpeedKnots": 20.4,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.uk8.history",
+    "bonusReward": 880,
+    "bonusXp": 109,
+    "navigation": {
+      "mapBounds": {
+        "north": 38.91,
+        "south": 35.52,
+        "west": 12.56,
+        "east": 17.42
+      },
+      "origin": {
+        "lat": 36.92,
+        "lon": 14.456
+      },
+      "heading": 133,
+      "patrolSector": {
+        "id": "uk8-sector",
+        "labelKey": "campaign.patrol.sector",
+        "north": 37.832,
+        "south": 37.192,
+        "west": 15.064,
+        "east": 15.984
+      },
+      "route": [
+        {
+          "id": "uk8-wp-1",
+          "lat": 36.96,
+          "lon": 14.576,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "uk8-wp-2",
+          "lat": 37.28,
+          "lon": 15.116,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "uk8-wp-3",
+          "lat": 37.512,
+          "lon": 15.524,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us1",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 1,
+    "titleKey": "mission.us1.title",
+    "summaryKey": "mission.us1.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us1.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1941",
+    "difficulty": "I",
+    "reward": 1880,
+    "xp": 143,
+    "status": "available",
+    "targetType": "merchant",
+    "targetStartX": 230,
+    "targetStartY": 14,
+    "escortStartX": 325,
+    "escortStartY": 35,
+    "escortSensitivity": 0.93,
+    "targetDrift": 0.65,
+    "targetWave": 0.28,
+    "targetBob": 4,
+    "targetSpeedKnots": 6.5,
+    "escortSpeedKnots": 14.8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us1.history",
+    "bonusReward": 425,
+    "bonusXp": 53,
+    "navigation": {
+      "mapBounds": {
+        "north": 13.94,
+        "south": 10.81,
+        "west": 140.74,
+        "east": 145.2
+      },
+      "origin": {
+        "lat": 12.215,
+        "lon": 143.182
+      },
+      "heading": 56,
+      "patrolSector": {
+        "id": "us1-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 12.861,
+        "south": 12.221,
+        "west": 142.176,
+        "east": 143.096
+      },
+      "route": [
+        {
+          "id": "us1-wp-1",
+          "lat": 12.255,
+          "lon": 143.302,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us1-wp-2",
+          "lat": 12.4,
+          "lon": 142.887,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us1-wp-3",
+          "lat": 12.541,
+          "lon": 142.636,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us2",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 2,
+    "titleKey": "mission.us2.title",
+    "summaryKey": "mission.us2.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us2.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1942",
+    "difficulty": "II",
+    "reward": 2210,
+    "xp": 181,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 240,
+    "targetStartY": 16,
+    "escortStartX": 332,
+    "escortStartY": 38,
+    "escortSensitivity": 1.0,
+    "targetDrift": 0.72,
+    "targetWave": 0.31,
+    "targetBob": 5,
+    "targetSpeedKnots": 6.9,
+    "escortSpeedKnots": 15.6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us2.history",
+    "bonusReward": 490,
+    "bonusXp": 61,
+    "navigation": {
+      "mapBounds": {
+        "north": 13.99,
+        "south": 10.83,
+        "west": 140.71,
+        "east": 145.18
+      },
+      "origin": {
+        "lat": 12.23,
+        "lon": 143.164
+      },
+      "heading": 67,
+      "patrolSector": {
+        "id": "us2-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 12.914,
+        "south": 12.274,
+        "west": 142.152,
+        "east": 143.072
+      },
+      "route": [
+        {
+          "id": "us2-wp-1",
+          "lat": 12.27,
+          "lon": 143.284,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us2-wp-2",
+          "lat": 12.44,
+          "lon": 142.874,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us2-wp-3",
+          "lat": 12.594,
+          "lon": 142.612,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us3",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 3,
+    "titleKey": "mission.us3.title",
+    "summaryKey": "mission.us3.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us3.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1942",
+    "difficulty": "II",
+    "reward": 2540,
+    "xp": 219,
+    "status": "locked",
+    "targetType": "tanker",
+    "targetStartX": 250,
+    "targetStartY": 18,
+    "escortStartX": 339,
+    "escortStartY": 41,
+    "escortSensitivity": 1.07,
+    "targetDrift": 0.79,
+    "targetWave": 0.34,
+    "targetBob": 6,
+    "targetSpeedKnots": 7.3,
+    "escortSpeedKnots": 16.4,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us3.history",
+    "bonusReward": 555,
+    "bonusXp": 69,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.05,
+        "south": 10.84,
+        "west": 140.69,
+        "east": 145.17
+      },
+      "origin": {
+        "lat": 12.245,
+        "lon": 143.146
+      },
+      "heading": 78,
+      "patrolSector": {
+        "id": "us3-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 12.967,
+        "south": 12.327,
+        "west": 142.128,
+        "east": 143.048
+      },
+      "route": [
+        {
+          "id": "us3-wp-1",
+          "lat": 12.285,
+          "lon": 143.266,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us3-wp-2",
+          "lat": 12.48,
+          "lon": 142.861,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us3-wp-3",
+          "lat": 12.647,
+          "lon": 142.588,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us4",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 4,
+    "titleKey": "mission.us4.title",
+    "summaryKey": "mission.us4.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us4.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1943",
+    "difficulty": "III",
+    "reward": 2870,
+    "xp": 257,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 260,
+    "targetStartY": 20,
+    "escortStartX": 346,
+    "escortStartY": 44,
+    "escortSensitivity": 1.14,
+    "targetDrift": 0.86,
+    "targetWave": 0.38,
+    "targetBob": 7,
+    "targetSpeedKnots": 7.8,
+    "escortSpeedKnots": 17.2,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us4.history",
+    "bonusReward": 620,
+    "bonusXp": 77,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.1,
+        "south": 10.86,
+        "west": 140.66,
+        "east": 145.15
+      },
+      "origin": {
+        "lat": 12.26,
+        "lon": 143.128
+      },
+      "heading": 89,
+      "patrolSector": {
+        "id": "us4-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 13.02,
+        "south": 12.38,
+        "west": 142.104,
+        "east": 143.024
+      },
+      "route": [
+        {
+          "id": "us4-wp-1",
+          "lat": 12.3,
+          "lon": 143.248,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us4-wp-2",
+          "lat": 12.52,
+          "lon": 142.848,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us4-wp-3",
+          "lat": 12.7,
+          "lon": 142.564,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us5",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 5,
+    "titleKey": "mission.us5.title",
+    "summaryKey": "mission.us5.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us5.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1943",
+    "difficulty": "III",
+    "reward": 3200,
+    "xp": 295,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 270,
+    "targetStartY": 22,
+    "escortStartX": 353,
+    "escortStartY": 47,
+    "escortSensitivity": 1.21,
+    "targetDrift": 0.93,
+    "targetWave": 0.42,
+    "targetBob": 8,
+    "targetSpeedKnots": 8.2,
+    "escortSpeedKnots": 18.0,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us5.history",
+    "bonusReward": 685,
+    "bonusXp": 85,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.15,
+        "south": 10.88,
+        "west": 140.64,
+        "east": 145.13
+      },
+      "origin": {
+        "lat": 12.275,
+        "lon": 143.11
+      },
+      "heading": 100,
+      "patrolSector": {
+        "id": "us5-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 13.073,
+        "south": 12.433,
+        "west": 142.08,
+        "east": 143.0
+      },
+      "route": [
+        {
+          "id": "us5-wp-1",
+          "lat": 12.315,
+          "lon": 143.23,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us5-wp-2",
+          "lat": 12.56,
+          "lon": 142.835,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us5-wp-3",
+          "lat": 12.753,
+          "lon": 142.54,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us6",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 6,
+    "titleKey": "mission.us6.title",
+    "summaryKey": "mission.us6.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us6.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1944",
+    "difficulty": "IV",
+    "reward": 3530,
+    "xp": 333,
+    "status": "locked",
+    "targetType": "tanker",
+    "targetStartX": 280,
+    "targetStartY": 24,
+    "escortStartX": 360,
+    "escortStartY": 50,
+    "escortSensitivity": 1.36,
+    "targetDrift": 1.0,
+    "targetWave": 0.45,
+    "targetBob": 9,
+    "targetSpeedKnots": 8.7,
+    "escortSpeedKnots": 18.8,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us6.history",
+    "bonusReward": 750,
+    "bonusXp": 93,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.21,
+        "south": 10.89,
+        "west": 140.62,
+        "east": 145.11
+      },
+      "origin": {
+        "lat": 12.29,
+        "lon": 143.092
+      },
+      "heading": 111,
+      "patrolSector": {
+        "id": "us6-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 13.126,
+        "south": 12.486,
+        "west": 142.056,
+        "east": 142.976
+      },
+      "route": [
+        {
+          "id": "us6-wp-1",
+          "lat": 12.33,
+          "lon": 143.212,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us6-wp-2",
+          "lat": 12.6,
+          "lon": 142.822,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us6-wp-3",
+          "lat": 12.806,
+          "lon": 142.516,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us7",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 7,
+    "titleKey": "mission.us7.title",
+    "summaryKey": "mission.us7.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us7.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1944",
+    "difficulty": "IV",
+    "reward": 3860,
+    "xp": 371,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 290,
+    "targetStartY": 26,
+    "escortStartX": 367,
+    "escortStartY": 53,
+    "escortSensitivity": 1.43,
+    "targetDrift": 1.07,
+    "targetWave": 0.48,
+    "targetBob": 10,
+    "targetSpeedKnots": 9.2,
+    "escortSpeedKnots": 19.6,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us7.history",
+    "bonusReward": 815,
+    "bonusXp": 101,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.26,
+        "south": 10.9,
+        "west": 140.59,
+        "east": 145.09
+      },
+      "origin": {
+        "lat": 12.305,
+        "lon": 143.074
+      },
+      "heading": 122,
+      "patrolSector": {
+        "id": "us7-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 13.179,
+        "south": 12.539,
+        "west": 142.032,
+        "east": 142.952
+      },
+      "route": [
+        {
+          "id": "us7-wp-1",
+          "lat": 12.345,
+          "lon": 143.194,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us7-wp-2",
+          "lat": 12.64,
+          "lon": 142.809,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us7-wp-3",
+          "lat": 12.859,
+          "lon": 142.492,
+          "labelKey": "navigation.waypointPatrol"
+        }
+      ]
+    }
+  },
+  {
+    "id": "us8",
+    "nationId": "us",
+    "campaignId": "campaign.us.pacific",
+    "campaignOrder": 8,
+    "titleKey": "mission.us8.title",
+    "summaryKey": "mission.us8.summary",
+    "theatreKey": "mission.theatre.pacific",
+    "operationKey": "mission.us8.operation",
+    "baseKey": "campaign.us.base",
+    "strategicGoalKey": "campaign.us.goal",
+    "enemyKey": "campaign.us.enemy",
+    "chronologyKey": "campaign.us.chronology",
+    "doctrineKey": "campaign.us.doctrine",
+    "year": "1945",
+    "difficulty": "V",
+    "reward": 4190,
+    "xp": 409,
+    "status": "locked",
+    "targetType": "merchant",
+    "targetStartX": 300,
+    "targetStartY": 28,
+    "escortStartX": 374,
+    "escortStartY": 56,
+    "escortSensitivity": 1.5,
+    "targetDrift": 1.14,
+    "targetWave": 0.52,
+    "targetBob": 11,
+    "targetSpeedKnots": 9.6,
+    "escortSpeedKnots": 20.4,
+    "objectiveKeys": [
+      "briefing.objectiveSilent",
+      "briefing.objectiveStrike",
+      "briefing.objectiveEvade",
+      "briefing.objectiveReturn"
+    ],
+    "historicalNoteKey": "mission.us8.history",
+    "bonusReward": 880,
+    "bonusXp": 109,
+    "navigation": {
+      "mapBounds": {
+        "north": 14.31,
+        "south": 10.92,
+        "west": 140.57,
+        "east": 145.08
+      },
+      "origin": {
+        "lat": 12.32,
+        "lon": 143.056
+      },
+      "heading": 133,
+      "patrolSector": {
+        "id": "us8-sector",
+        "labelKey": "campaign.pacific.sector",
+        "north": 13.232,
+        "south": 12.592,
+        "west": 142.008,
+        "east": 142.928
+      },
+      "route": [
+        {
+          "id": "us8-wp-1",
+          "lat": 12.36,
+          "lon": 143.176,
+          "labelKey": "navigation.waypointDeparture"
+        },
+        {
+          "id": "us8-wp-2",
+          "lat": 12.68,
+          "lon": 142.796,
+          "labelKey": "navigation.waypointApproach"
+        },
+        {
+          "id": "us8-wp-3",
+          "lat": 12.912,
+          "lon": 142.468,
           "labelKey": "navigation.waypointPatrol"
         }
       ]

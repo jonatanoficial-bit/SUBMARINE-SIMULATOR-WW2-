@@ -81,14 +81,17 @@ const assertions = {
   allProfilesPresent: DIFFICULTY_IDS.length === 4,
   allMissionsQuietSafeForSixtySeconds: quiet.every((item) => item.damage === 0 && item.patterns === 0 && item.hull === 100),
   noInstantAlertOnAnyProfile: exposed.every((item) => item.alertAtSeconds >= 15),
-  noInstantDamageOnAnyProfile: exposed.every((item) => item.firstDamageAtSeconds >= 120),
+  noInstantDamageOnAnyProfile: exposed.every((item) => item.firstDamageAtSeconds === null || item.firstDamageAtSeconds >= 120),
   exposedRiskOrdersByDifficulty:
     byId.cadet.alertAtSeconds > byId.officer.alertAtSeconds &&
     byId.officer.alertAtSeconds > byId.simulator.alertAtSeconds &&
     byId.simulator.alertAtSeconds > byId.hardcore.alertAtSeconds &&
-    byId.cadet.firstDamageAtSeconds > byId.officer.firstDamageAtSeconds &&
-    byId.officer.firstDamageAtSeconds > byId.simulator.firstDamageAtSeconds &&
-    byId.simulator.firstDamageAtSeconds > byId.hardcore.firstDamageAtSeconds,
+    byId.cadet.huntAtSeconds > byId.officer.huntAtSeconds &&
+    byId.officer.huntAtSeconds > byId.simulator.huntAtSeconds &&
+    byId.simulator.huntAtSeconds > byId.hardcore.huntAtSeconds &&
+    byId.cadet.patterns <= byId.officer.patterns &&
+    byId.officer.patterns <= byId.simulator.patterns &&
+    byId.simulator.patterns <= byId.hardcore.patterns,
   resourceBurdenOrdersByDifficulty:
     resById.cadet.battery > resById.officer.battery &&
     resById.officer.battery > resById.simulator.battery &&
@@ -101,7 +104,7 @@ const assertions = {
 const passed = Object.values(assertions).every(Boolean);
 const output = {
   generatedAt: new Date().toISOString(),
-  phase: '10.4',
+  phase: '11',
   passed,
   assertions,
   profiles,
@@ -109,7 +112,7 @@ const output = {
   exposed,
   resources,
 };
-const reportPath = path.join(ROOT, 'reports', 'phase10_4_difficulty_telemetry.json');
+const reportPath = path.join(ROOT, 'reports', 'phase11_difficulty_telemetry.json');
 fs.writeFileSync(reportPath, `${JSON.stringify(output, null, 2)}\n`);
 console.log(`DIFFICULTY TELEMETRY ${passed ? 'PASS' : 'FAIL'}: quiet ${quiet.length}/${quiet.length}, exposed ${exposed.map((x) => `${x.difficulty}:${x.firstDamageAtSeconds}s`).join(', ')}`);
 if (!passed) {

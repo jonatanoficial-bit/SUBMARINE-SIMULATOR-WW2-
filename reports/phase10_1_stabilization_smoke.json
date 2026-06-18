@@ -7,17 +7,17 @@
     {
       "name": "Gameplay uses a dedicated mobile scroll container",
       "status": "PASS",
-      "details": "{'client': 614, 'scroll': 2399, 'body': 640, 'overflow': 'auto'}"
+      "details": "{'client': 614, 'scroll': 2375, 'body': 640, 'overflow': 'auto'}"
     },
     {
       "name": "Gameplay document is no longer one giant 10k-pixel page",
       "status": "PASS",
-      "details": "{'client': 614, 'scroll': 2399, 'body': 640, 'overflow': 'auto'}"
+      "details": "{'client': 614, 'scroll': 2375, 'body': 640, 'overflow': 'auto'}"
     },
     {
       "name": "Real touch swipe scrolls the mobile gameplay screen",
       "status": "PASS",
-      "details": "335"
+      "details": "640"
     },
     {
       "name": "Combat is divided into seven readable stations",
@@ -32,17 +32,17 @@
     {
       "name": "Depth gauge separates actual depth from ordered depth",
       "status": "PASS",
-      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.3 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.8 m', 'order': 'CMD 27 m', 'speed': '2.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-109.76deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.7 m', 'order': 'CMD 27 m', 'speed': '7.2 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.417deg)', 'marker': 'rotate(-98.4deg)', 'hud': '7.2 kn'}}"
+      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.2 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.1 m', 'order': 'CMD 27 m', 'speed': '2.6 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-110.32deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.2 m', 'order': 'CMD 27 m', 'speed': '6.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.87deg)', 'marker': 'rotate(-98.4deg)', 'hud': '6.9 kn'}}"
     },
     {
       "name": "Depth needle and command marker move independently",
       "status": "PASS",
-      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.3 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.8 m', 'order': 'CMD 27 m', 'speed': '2.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-109.76deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.7 m', 'order': 'CMD 27 m', 'speed': '7.2 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.417deg)', 'marker': 'rotate(-98.4deg)', 'hud': '7.2 kn'}}"
+      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.2 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.1 m', 'order': 'CMD 27 m', 'speed': '2.6 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-110.32deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.2 m', 'order': 'CMD 27 m', 'speed': '6.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.87deg)', 'marker': 'rotate(-98.4deg)', 'hud': '6.9 kn'}}"
     },
     {
       "name": "Speed gauge separates telegraph command from actual knots",
       "status": "PASS",
-      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.3 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.8 m', 'order': 'CMD 27 m', 'speed': '2.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-109.76deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.7 m', 'order': 'CMD 27 m', 'speed': '7.2 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.417deg)', 'marker': 'rotate(-98.4deg)', 'hud': '7.2 kn'}}"
+      "details": "{'initial': {'depth': '12.0 m', 'order': 'CMD 12 m', 'speed': '2.2 kn', 'command': 'LENTO', 'needle': 'rotate(-110.4deg)', 'marker': 'rotate(-110.4deg)'}, 'ordered': {'depth': '12.1 m', 'order': 'CMD 27 m', 'speed': '2.6 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-110.32deg)', 'marker': 'rotate(-98.4deg)'}, 'progressed': {'depth': '15.2 m', 'order': 'CMD 27 m', 'speed': '6.9 kn', 'command': 'FLANCO TOTAL', 'needle': 'rotate(-107.87deg)', 'marker': 'rotate(-98.4deg)', 'hud': '6.9 kn'}}"
     },
     {
       "name": "Periscope exposes bearing, range, zoom and exposure instruments",
@@ -62,12 +62,12 @@
     {
       "name": "Quiet patrol remains safe for the first simulated minute",
       "status": "PASS",
-      "details": "{'quiet': {'detection': 0, 'damage': 0, 'patterns': 0}, 'periscopeFirstDamage': 88.72, 'exposure': {'detection': 100, 'patterns': 3, 'ai': 'hunt'}}"
+      "details": "{'quiet': {'detection': 0, 'damage': 0, 'patterns': 0}, 'periscopeFirstDamage': 101.04, 'exposure': {'detection': 100, 'patterns': 2, 'ai': 'hunt'}}"
     },
     {
       "name": "Continuous periscope exposure gives reaction time before damage",
       "status": "PASS",
-      "details": "{'quiet': {'detection': 0, 'damage': 0, 'patterns': 0}, 'periscopeFirstDamage': 88.72, 'exposure': {'detection': 100, 'patterns': 3, 'ai': 'hunt'}}"
+      "details": "{'quiet': {'detection': 0, 'damage': 0, 'patterns': 0}, 'periscopeFirstDamage': 101.04, 'exposure': {'detection': 100, 'patterns': 2, 'ai': 'hunt'}}"
     },
     {
       "name": "No uncaught browser errors",

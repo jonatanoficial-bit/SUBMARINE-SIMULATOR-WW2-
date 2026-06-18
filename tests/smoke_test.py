@@ -29,13 +29,13 @@ MODULE_ORDER = [
     "js/engine/entities/Entity.js", "js/engine/entities/SubmarineEntity.js", "js/engine/entities/ShipEntity.js",
     "js/engine/simulation/SimulationEngine.js", "js/engine/scenes/SceneManager.js",
     "js/screens/splash.js", "js/screens/mainMenu.js", "js/screens/commander.js",
-    "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/arsenal.js", "js/screens/crew.js",
+    "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/career.js", "js/screens/strategy.js", "js/screens/arsenal.js", "js/screens/crew.js",
     "js/screens/settings.js", "js/screens/profiles.js", "js/screens/briefing.js", "js/screens/gameplay.js", "js/app.js",
 ]
 CSS_ORDER = [
     "css/reset.css", "css/variables.css", "css/base.css", "css/layout.css", "css/components.css",
     "css/screens.css", "css/responsive.css", "css/phase2-responsive.css", "css/phase3-engine.css",
-    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css",
+    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase13-strategic-command.css",
 ]
 
 
@@ -54,7 +54,7 @@ def build_harness() -> str:
     css = "\n".join((ROOT / path).read_text(encoding="utf-8") for path in CSS_ORDER)
     index = index.replace("</head>", f"<style>{css}</style></head>")
     paths = [
-        "data/nations.json", "data/submarines.json", "data/crew.json", "data/missions.json", "data/upgrades.json",
+        "data/nations.json", "data/submarines.json", "data/crew.json", "data/missions.json", "data/campaigns.json", "data/logistics.json", "data/strategy.json", "data/upgrades.json",
         "data/translations/pt-BR.json", "data/translations/en.json", "data/translations/es.json",
     ]
     data_map = {path: json.loads((ROOT / path).read_text(encoding="utf-8")) for path in paths}

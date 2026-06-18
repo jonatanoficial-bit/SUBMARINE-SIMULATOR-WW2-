@@ -1,0 +1,140 @@
+{
+  "phase": "12",
+  "summary": {
+    "passed": 26,
+    "failed": 0,
+    "total": 26
+  },
+  "checks": [
+    {
+      "name": "phase 12 metadata",
+      "status": "PASS",
+      "detail": "{'product': 'Submarine Commander WW2', 'studio': 'Vale Games', 'version': 'v2.0.0-alpha.12', 'semver': '2.0.0-alpha.12', 'buildId': 'SCWW2-20260618-1645-BRT-F12', 'date': '2026-06-18', 'time': '16:45', 'timezone': 'America/Sao_Paulo', 'phase': '12', 'phaseName': 'Strategic Career and Logistics', 'channel': 'alpha', 'release': False, 'qaStatus': 'PASS', 'saveSchemaVersion': 4, 'notes': 'Phase 12 extends the real Phase 11 build with persistent commander career, national rank progression, medals, patrol service record, port logistics, sortie planning, supply consumption, crew fatigue, morale and readiness gates while preserving independent national campaigns and the homologated simulator core.'}"
+    },
+    {
+      "name": "QA gate status allowed",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "index loads phase 12 css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "service worker caches phase 12 files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "data loader fetches and validates logistics",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "package version and scripts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "logistics bases cover every nation",
+      "status": "PASS",
+      "detail": "['de', 'uk', 'us']"
+    },
+    {
+      "name": "four sortie planning profiles",
+      "status": "PASS",
+      "detail": "['balanced', 'stealth', 'aggressive', 'economy']"
+    },
+    {
+      "name": "us rank ladder present",
+      "status": "PASS",
+      "detail": "[{'key': 'rank.us.0', 'reputation': 0}, {'key': 'rank.us.1', 'reputation': 35}, {'key': 'rank.us.2', 'reputation': 85}, {'key': 'rank.us.3', 'reputation': 150}, {'key': 'rank.us.4', 'reputation': 240}, {'key': 'rank.us.5', 'reputation': 360}]"
+    },
+    {
+      "name": "de rank ladder present",
+      "status": "PASS",
+      "detail": "[{'key': 'rank.de.0', 'reputation': 0}, {'key': 'rank.de.1', 'reputation': 35}, {'key': 'rank.de.2', 'reputation': 85}, {'key': 'rank.de.3', 'reputation': 150}, {'key': 'rank.de.4', 'reputation': 240}, {'key': 'rank.de.5', 'reputation': 360}]"
+    },
+    {
+      "name": "uk rank ladder present",
+      "status": "PASS",
+      "detail": "[{'key': 'rank.uk.0', 'reputation': 0}, {'key': 'rank.uk.1', 'reputation': 35}, {'key': 'rank.uk.2', 'reputation': 85}, {'key': 'rank.uk.3', 'reputation': 150}, {'key': 'rank.uk.4', 'reputation': 240}, {'key': 'rank.uk.5', 'reputation': 360}]"
+    },
+    {
+      "name": "medal rules present",
+      "status": "PASS",
+      "detail": "['first_patrol', 'silent_hunter', 'tonnage_cross', 'fleet_logistician']"
+    },
+    {
+      "name": "save migration adds career and logistics",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "app contains logistics launch gate",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mission completion updates career record",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "bottom navigation includes career",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "briefing exposes logistics readiness",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "three campaigns preserved",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "twenty four missions preserved",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "translation parity",
+      "status": "PASS",
+      "detail": "{'pt-BR': 1079, 'en': 1079, 'es': 1079}"
+    },
+    {
+      "name": "phase 12 keys translated pt-BR",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "phase 12 keys translated en",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "phase 12 keys translated es",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "career logistics unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: phase 12 metadata and schema are active\nok 1 - phase 12 metadata and schema are active\n  ---\n  duration_ms: 0.820921\n  type: 'test'\n  ...\n# Subtest: logistics data covers all independent campaign nations\nok 2 - logistics data covers all independent campaign nations\n  ---\n  duration_ms: 0.786797\n  type: 'test'\n  ...\n# Subtest: new saves include career and logistics blocks without breaking profile slots\nok 3 - new saves include career and logistics blocks without breaking profile slots\n  ---\n  duration_ms: 3.526951\n  type: 'test'\n  ...\n# Subtest: legacy phase 11 save migrates to career/logistics schema 4\nok 4 - legacy phase 11 save migrates to career/logistics schema 4\n  ---\n  duration_ms: 0.455361\n  type: 'test'\n  ...\n# Subtest: phase 12 translation keys are present in all languages\nok 5 - phase 12 translation keys are present in all languages\n  ---\n  duration_ms: 0.471189\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 110.749113\n\n"
+    },
+    {
+      "name": "campaign regression tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 1.390974\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 0.466561\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.254223\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 0.429492\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 104.812369\n\n"
+    },
+    {
+      "name": "all JS modules pass syntax check",
+      "status": "PASS",
+      "detail": "[]"
+    }
+  ]
+}

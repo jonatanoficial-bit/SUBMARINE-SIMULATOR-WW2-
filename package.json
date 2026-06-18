@@ -1,15 +1,15 @@
 {
   "name": "submarine-commander-ww2",
   "private": true,
-  "version": "2.0.0-alpha.10.4",
+  "version": "2.0.0-alpha.13",
   "type": "module",
   "scripts": {
     "test:engine": "node --test tests/engine.test.js",
     "test:save": "node --test tests/save.test.js",
     "test:navigation": "node --test tests/navigation.test.js",
     "test:physics": "node --test tests/physics.test.js",
-    "test": "node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/environment.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js tests/tactical_encounter.test.js tests/training.test.js",
-    "audit": "python3 tools/audit_phase10_4.py",
+    "test": "node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/environment.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js tests/tactical_encounter.test.js tests/training.test.js tests/campaigns.test.js tests/career_logistics.test.js tests/strategic_command.test.js",
+    "audit": "python3 tools/audit_phase13.py",
     "smoke": "python3 tests/smoke_test.py",
     "test:sensors": "node --test tests/sensors.test.js",
     "test:weapons": "node --test tests/weapons.test.js",
@@ -25,6 +25,10 @@
     "test:environment": "node --test tests/environment.test.js",
     "smoke:operational": "python3 tests/operational_realism_smoke.py",
     "test:training": "node --test tests/training.test.js",
-    "smoke:training": "python3 tests/training_smoke.py"
+    "smoke:training": "python3 tests/training_smoke.py",
+    "test:campaigns": "node --test tests/campaigns.test.js",
+    "smoke:campaigns": "python3 tests/campaigns_smoke.py",
+    "test:career": "node --test tests/career_logistics.test.js",
+    "test:strategy": "node --test tests/strategic_command.test.js"
   }
 }

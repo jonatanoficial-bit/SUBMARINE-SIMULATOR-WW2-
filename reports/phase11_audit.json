@@ -1,0 +1,175 @@
+{
+  "phase": "11",
+  "summary": {
+    "passed": 33,
+    "failed": 0,
+    "total": 33
+  },
+  "checks": [
+    {
+      "name": "phase 11 metadata",
+      "status": "PASS",
+      "detail": "{'product': 'Submarine Commander WW2', 'studio': 'Vale Games', 'version': 'v2.0.0-alpha.11', 'semver': '2.0.0-alpha.11', 'buildId': 'SCWW2-20260618-1605-BRT', 'date': '2026-06-18', 'time': '16:05', 'timezone': 'America/Sao_Paulo', 'phase': '11', 'phaseName': 'Independent National Campaigns', 'channel': 'alpha', 'release': False, 'qaStatus': 'PASS', 'saveSchemaVersion': 3, 'notes': 'Phase 11 adds independent campaigns for Germany, United Kingdom and United States with nation-filtered mission progression, campaign briefing intelligence and multilingual mission arcs while preserving the homologated simulator core.'}"
+    },
+    {
+      "name": "QA gate status allowed",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "index loads phase 11 css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "service worker caches campaign data and css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "data loader fetches and validates campaigns",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "package version and scripts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "three campaigns for three nations",
+      "status": "PASS",
+      "detail": "['de', 'uk', 'us']"
+    },
+    {
+      "name": "campaign campaign.de.wolfpack has 8 missions",
+      "status": "PASS",
+      "detail": "['de1', 'de2', 'de3', 'de4', 'de5', 'de6', 'de7', 'de8']"
+    },
+    {
+      "name": "campaign campaign.de.wolfpack missions exist",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign campaign.uk.mediterranean has 8 missions",
+      "status": "PASS",
+      "detail": "['uk1', 'uk2', 'uk3', 'uk4', 'uk5', 'uk6', 'uk7', 'uk8']"
+    },
+    {
+      "name": "campaign campaign.uk.mediterranean missions exist",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign campaign.us.pacific has 8 missions",
+      "status": "PASS",
+      "detail": "['us1', 'us2', 'us3', 'us4', 'us5', 'us6', 'us7', 'us8']"
+    },
+    {
+      "name": "campaign campaign.us.pacific missions exist",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "de mission order matches campaign",
+      "status": "PASS",
+      "detail": "['de1', 'de2', 'de3', 'de4', 'de5', 'de6', 'de7', 'de8']"
+    },
+    {
+      "name": "de first mission only available at baseline",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us mission order matches campaign",
+      "status": "PASS",
+      "detail": "['us1', 'us2', 'us3', 'us4', 'us5', 'us6', 'us7', 'us8']"
+    },
+    {
+      "name": "us first mission only available at baseline",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk mission order matches campaign",
+      "status": "PASS",
+      "detail": "['uk1', 'uk2', 'uk3', 'uk4', 'uk5', 'uk6', 'uk7', 'uk8']"
+    },
+    {
+      "name": "uk first mission only available at baseline",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "all missions include campaign metadata",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mission ids unique",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign ids unique",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mission campaign references valid",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "app filters missions by current nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "completion unlocks within campaign",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign renderer receives filtered missions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "briefing renderer receives campaign intel",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "translation parity",
+      "status": "PASS",
+      "detail": "{'pt-BR': 981, 'en': 981, 'es': 981}"
+    },
+    {
+      "name": "all campaign keys translated pt-BR",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "all campaign keys translated en",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "all campaign keys translated es",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "campaign unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 1.277055\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 0.466459\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.184792\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 0.45354\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 102.52675\n\n"
+    },
+    {
+      "name": "all JS modules pass syntax check",
+      "status": "PASS",
+      "detail": "[]"
+    }
+  ]
+}

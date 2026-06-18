@@ -7,12 +7,12 @@
     {
       "name": "Tactical encounter console fits 360px mobile width",
       "status": "PASS",
-      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 480}"
+      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 468}"
     },
     {
       "name": "Tactical console is visible near the command station",
       "status": "PASS",
-      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 480}"
+      "details": "{'viewport': 360, 'body': 360, 'shellClient': 350, 'shellScroll': 350, 'consoleTop': 468}"
     },
     {
       "name": "Four tactical doctrines are available",
@@ -42,17 +42,17 @@
     {
       "name": "Periscope shows live mast exposure, bearing and range",
       "status": "PASS",
-      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '842 m', 'targetHidden': False}"
+      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '822 m', 'targetHidden': False}"
     },
     {
       "name": "Detected target is shown only inside optical field of view",
       "status": "PASS",
-      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '842 m', 'targetHidden': False}"
+      "details": "{'mast': '6 s', 'bearing': '090°', 'distance': '822 m', 'targetHidden': False}"
     },
     {
       "name": "Mobile touch scrolling remains functional",
       "status": "PASS",
-      "details": "440"
+      "details": "601"
     },
     {
       "name": "Desktop tactical layout uses available width without overflow",

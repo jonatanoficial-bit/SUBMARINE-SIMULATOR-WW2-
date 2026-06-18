@@ -1,0 +1,130 @@
+{
+  "phase": "13",
+  "summary": {
+    "passed": 24,
+    "failed": 0,
+    "total": 24
+  },
+  "checks": [
+    {
+      "name": "phase 13 metadata",
+      "status": "PASS",
+      "detail": "{'product': 'Submarine Commander WW2', 'studio': 'Vale Games', 'version': 'v2.0.0-alpha.13', 'semver': '2.0.0-alpha.13', 'buildId': 'SCWW2-20260618-1030-BRT-F13', 'date': '2026-06-18', 'time': '10:30', 'timezone': 'America/Sao_Paulo', 'phase': '13', 'phaseName': 'Strategic Naval Command and Intelligence', 'channel': 'alpha', 'release': False, 'qaStatus': 'PASS', 'saveSchemaVersion': 5, 'notes': 'Phase 13 extends the real Phase 12 build with a strategic war-room layer: convoy lane intelligence, national command directives, decryption efforts, theater pressure, patrol modifiers, command history and exportable intelligence dossiers while preserving career, logistics, campaigns and the homologated simulator core.'}"
+    },
+    {
+      "name": "index loads phase 13 css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "service worker caches phase 13 files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "package version and scripts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "data loader fetches and validates strategy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "strategy theaters cover every nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "strategy networks cover every nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk has at least three convoy lanes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "de has at least three convoy lanes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us has at least three convoy lanes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "strategic directives present",
+      "status": "PASS",
+      "detail": "['directive_balanced', 'directive_interdiction', 'directive_shadow', 'directive_deception']"
+    },
+    {
+      "name": "save migration adds strategy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "app contains strategy screen and actions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "bottom navigation includes strategy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "career and logistics preserved",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaigns preserved",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "translation parity",
+      "status": "PASS",
+      "detail": "{'pt-BR': 1181, 'en': 1181, 'es': 1181}"
+    },
+    {
+      "name": "phase 13 keys translated pt-BR",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "phase 13 keys translated en",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "phase 13 keys translated es",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "strategic command unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: phase 13 metadata and schema are active\nok 1 - phase 13 metadata and schema are active\n  ---\n  duration_ms: 0.92484\n  type: 'test'\n  ...\n# Subtest: strategy data covers each campaign nation\nok 2 - strategy data covers each campaign nation\n  ---\n  duration_ms: 1.124903\n  type: 'test'\n  ...\n# Subtest: new saves include strategy block without breaking career and logistics\nok 3 - new saves include strategy block without breaking career and logistics\n  ---\n  duration_ms: 2.307548\n  type: 'test'\n  ...\n# Subtest: legacy phase 12 save migrates to strategic schema 5\nok 4 - legacy phase 12 save migrates to strategic schema 5\n  ---\n  duration_ms: 0.522569\n  type: 'test'\n  ...\n# Subtest: phase 13 translation keys are present in all languages\nok 5 - phase 13 translation keys are present in all languages\n  ---\n  duration_ms: 0.533767\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 116.439735\n\n"
+    },
+    {
+      "name": "career logistics regression tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: phase 12 career/logistics systems remain active in current build\nok 1 - phase 12 career/logistics systems remain active in current build\n  ---\n  duration_ms: 1.280212\n  type: 'test'\n  ...\n# Subtest: logistics data covers all independent campaign nations\nok 2 - logistics data covers all independent campaign nations\n  ---\n  duration_ms: 0.951855\n  type: 'test'\n  ...\n# Subtest: new saves include career and logistics blocks without breaking profile slots\nok 3 - new saves include career and logistics blocks without breaking profile slots\n  ---\n  duration_ms: 4.166753\n  type: 'test'\n  ...\n# Subtest: legacy phase 11 save migrates with career/logistics into current schema\nok 4 - legacy phase 11 save migrates with career/logistics into current schema\n  ---\n  duration_ms: 0.534991\n  type: 'test'\n  ...\n# Subtest: phase 12 translation keys are present in all languages\nok 5 - phase 12 translation keys are present in all languages\n  ---\n  duration_ms: 0.555544\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 116.054882\n\n"
+    },
+    {
+      "name": "campaign regression tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 1.52156\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 1.649084\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.214531\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 0.475895\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 100.812302\n\n"
+    },
+    {
+      "name": "all JS modules pass syntax check",
+      "status": "PASS",
+      "detail": "[]"
+    }
+  ]
+}

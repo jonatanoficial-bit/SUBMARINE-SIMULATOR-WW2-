@@ -1,3 +1,36 @@
+
+## v2.0.0-alpha.13 — Fase 13: Comando Naval Estratégico e Inteligência
+
+- Adicionada tela Estratégia com rotas de comboio, diretrizes e rede de inteligência.
+- Adicionados teatros estratégicos para Alemanha, Reino Unido e Estados Unidos.
+- Save migrado para schema 5 com bloco `strategy`.
+- Planejamento de patrulha agora considera inteligência, rota selecionada e diretriz ativa.
+- Preservados carreira/logística da Fase 12 e campanhas independentes da Fase 11.
+
+# Changelog
+
+## v2.0.0-alpha.12 — Fase 12 — Carreira Estratégica e Logística
+
+- Build recriada sobre o ZIP real da Fase 11.
+- Adicionada tela Carreira no menu inferior.
+- Adicionado sistema persistente de patentes, reputação, prestígio, medalhas, tonelagem e histórico de serviço.
+- Adicionada logística de base naval: combustível, torpedos, munição de convés, víveres, peças, moral e fadiga.
+- Adicionados quatro perfis de planejamento de patrulha: equilibrado, furtivo, agressivo e econômico.
+- Briefing agora exibe prontidão logística e acesso à carreira.
+- Lançamento de missão passa por gate de suprimentos.
+- Saves migrados para schema 4.
+- Auditoria F12, teste de carreira/logística e smoke test atualizados.
+
+
+## v2.0.0-alpha.11 — Phase 11
+
+- Added independent national campaigns for Germany, United Kingdom and United States.
+- Added 24 nation-specific missions with campaign order, base, doctrine, chronology, enemy force and strategic goals.
+- Campaign screen now filters missions by commander nation.
+- Mission unlock progression is now isolated by campaign lane.
+- Briefing includes campaign intelligence.
+- Added Phase 11 campaign audit, unit tests and browser smoke test.
+
 # Changelog
 
 ## v2.0.0-alpha.10.4 — Phase 10.4

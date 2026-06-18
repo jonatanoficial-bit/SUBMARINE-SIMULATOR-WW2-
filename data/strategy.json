@@ -1,0 +1,241 @@
+{
+  "theaters": [
+    {
+      "id": "de_atlantic_command",
+      "nationId": "de",
+      "titleKey": "strategy.theater.de.title",
+      "summaryKey": "strategy.theater.de.summary",
+      "hqKey": "strategy.hq.de",
+      "baselinePressure": 62,
+      "baselineIntel": 54,
+      "baselineTraffic": 84,
+      "baselineAsw": 68,
+      "defaultLaneId": "lane_north_atlantic"
+    },
+    {
+      "id": "uk_western_approaches",
+      "nationId": "uk",
+      "titleKey": "strategy.theater.uk.title",
+      "summaryKey": "strategy.theater.uk.summary",
+      "hqKey": "strategy.hq.uk",
+      "baselinePressure": 58,
+      "baselineIntel": 67,
+      "baselineTraffic": 72,
+      "baselineAsw": 66,
+      "defaultLaneId": "lane_bay_biscay"
+    },
+    {
+      "id": "us_pacific_command",
+      "nationId": "us",
+      "titleKey": "strategy.theater.us.title",
+      "summaryKey": "strategy.theater.us.summary",
+      "hqKey": "strategy.hq.us",
+      "baselinePressure": 54,
+      "baselineIntel": 64,
+      "baselineTraffic": 78,
+      "baselineAsw": 61,
+      "defaultLaneId": "lane_philippine_sea"
+    }
+  ],
+  "convoyLanes": [
+    {
+      "id": "lane_north_atlantic",
+      "nationId": "de",
+      "nameKey": "strategy.lane.northAtlantic",
+      "descKey": "strategy.lane.northAtlantic.desc",
+      "regionKey": "strategy.region.atlantic",
+      "traffic": 88,
+      "risk": 72,
+      "intel": 56,
+      "tonnageBonus": 1.18,
+      "fuelMultiplier": 1.1,
+      "readinessBonus": -2
+    },
+    {
+      "id": "lane_arctic_convoys",
+      "nationId": "de",
+      "nameKey": "strategy.lane.arcticConvoys",
+      "descKey": "strategy.lane.arcticConvoys.desc",
+      "regionKey": "strategy.region.arctic",
+      "traffic": 74,
+      "risk": 82,
+      "intel": 45,
+      "tonnageBonus": 1.26,
+      "fuelMultiplier": 1.18,
+      "readinessBonus": -6
+    },
+    {
+      "id": "lane_western_approaches",
+      "nationId": "de",
+      "nameKey": "strategy.lane.westernApproaches",
+      "descKey": "strategy.lane.westernApproaches.desc",
+      "regionKey": "strategy.region.britain",
+      "traffic": 69,
+      "risk": 77,
+      "intel": 50,
+      "tonnageBonus": 1.12,
+      "fuelMultiplier": 1.08,
+      "readinessBonus": -4
+    },
+    {
+      "id": "lane_bay_biscay",
+      "nationId": "uk",
+      "nameKey": "strategy.lane.bayBiscay",
+      "descKey": "strategy.lane.bayBiscay.desc",
+      "regionKey": "strategy.region.biscay",
+      "traffic": 70,
+      "risk": 69,
+      "intel": 68,
+      "tonnageBonus": 1.1,
+      "fuelMultiplier": 1.05,
+      "readinessBonus": 2
+    },
+    {
+      "id": "lane_norwegian_sea",
+      "nationId": "uk",
+      "nameKey": "strategy.lane.norwegianSea",
+      "descKey": "strategy.lane.norwegianSea.desc",
+      "regionKey": "strategy.region.norway",
+      "traffic": 62,
+      "risk": 76,
+      "intel": 61,
+      "tonnageBonus": 1.16,
+      "fuelMultiplier": 1.13,
+      "readinessBonus": -2
+    },
+    {
+      "id": "lane_mediterranean",
+      "nationId": "uk",
+      "nameKey": "strategy.lane.mediterranean",
+      "descKey": "strategy.lane.mediterranean.desc",
+      "regionKey": "strategy.region.med",
+      "traffic": 78,
+      "risk": 74,
+      "intel": 58,
+      "tonnageBonus": 1.14,
+      "fuelMultiplier": 1.11,
+      "readinessBonus": -1
+    },
+    {
+      "id": "lane_philippine_sea",
+      "nationId": "us",
+      "nameKey": "strategy.lane.philippineSea",
+      "descKey": "strategy.lane.philippineSea.desc",
+      "regionKey": "strategy.region.pacific",
+      "traffic": 84,
+      "risk": 67,
+      "intel": 63,
+      "tonnageBonus": 1.2,
+      "fuelMultiplier": 1.12,
+      "readinessBonus": 0
+    },
+    {
+      "id": "lane_south_china_sea",
+      "nationId": "us",
+      "nameKey": "strategy.lane.southChinaSea",
+      "descKey": "strategy.lane.southChinaSea.desc",
+      "regionKey": "strategy.region.southChina",
+      "traffic": 79,
+      "risk": 78,
+      "intel": 55,
+      "tonnageBonus": 1.23,
+      "fuelMultiplier": 1.15,
+      "readinessBonus": -3
+    },
+    {
+      "id": "lane_marshall_islands",
+      "nationId": "us",
+      "nameKey": "strategy.lane.marshallIslands",
+      "descKey": "strategy.lane.marshallIslands.desc",
+      "regionKey": "strategy.region.marshalls",
+      "traffic": 66,
+      "risk": 63,
+      "intel": 69,
+      "tonnageBonus": 1.08,
+      "fuelMultiplier": 1.08,
+      "readinessBonus": 4
+    }
+  ],
+  "directives": [
+    {
+      "id": "directive_balanced",
+      "nameKey": "strategy.directive.balanced",
+      "descKey": "strategy.directive.balanced.desc",
+      "cost": 0,
+      "commandCost": 0,
+      "riskDelta": 0,
+      "intelDelta": 0,
+      "readinessBonus": 0,
+      "tonnageMultiplier": 1.0,
+      "fuelMultiplier": 1.0
+    },
+    {
+      "id": "directive_interdiction",
+      "nameKey": "strategy.directive.interdiction",
+      "descKey": "strategy.directive.interdiction.desc",
+      "cost": 460,
+      "commandCost": 1,
+      "riskDelta": 8,
+      "intelDelta": -2,
+      "readinessBonus": -2,
+      "tonnageMultiplier": 1.18,
+      "fuelMultiplier": 1.07
+    },
+    {
+      "id": "directive_shadow",
+      "nameKey": "strategy.directive.shadow",
+      "descKey": "strategy.directive.shadow.desc",
+      "cost": 360,
+      "commandCost": 1,
+      "riskDelta": -8,
+      "intelDelta": 7,
+      "readinessBonus": 4,
+      "tonnageMultiplier": 0.9,
+      "fuelMultiplier": 1.04
+    },
+    {
+      "id": "directive_deception",
+      "nameKey": "strategy.directive.deception",
+      "descKey": "strategy.directive.deception.desc",
+      "cost": 520,
+      "commandCost": 2,
+      "riskDelta": -12,
+      "intelDelta": 4,
+      "readinessBonus": 3,
+      "tonnageMultiplier": 0.96,
+      "fuelMultiplier": 1.02
+    }
+  ],
+  "intelNetworks": [
+    {
+      "id": "network_de",
+      "nationId": "de",
+      "nameKey": "strategy.network.de",
+      "descKey": "strategy.network.de.desc",
+      "cost": 720,
+      "intelGain": 9,
+      "decryptionGain": 7,
+      "pressureRelief": 3
+    },
+    {
+      "id": "network_uk",
+      "nationId": "uk",
+      "nameKey": "strategy.network.uk",
+      "descKey": "strategy.network.uk.desc",
+      "cost": 680,
+      "intelGain": 10,
+      "decryptionGain": 8,
+      "pressureRelief": 3
+    },
+    {
+      "id": "network_us",
+      "nationId": "us",
+      "nameKey": "strategy.network.us",
+      "descKey": "strategy.network.us.desc",
+      "cost": 760,
+      "intelGain": 8,
+      "decryptionGain": 9,
+      "pressureRelief": 4
+    }
+  ]
+}

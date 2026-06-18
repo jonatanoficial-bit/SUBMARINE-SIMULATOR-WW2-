@@ -1,0 +1,209 @@
+{
+  "bases": [
+    {
+      "nationId": "de",
+      "homePortKey": "logistics.port.de",
+      "dockNameKey": "logistics.dock.de",
+      "staffKey": "logistics.staff.de",
+      "fuelMax": 12000,
+      "torpedoMax": 30,
+      "deckAmmoMax": 460,
+      "rationMax": 72,
+      "sparePartsMax": 38,
+      "starterMorale": 78,
+      "starterFatigue": 8,
+      "id": "base_de"
+    },
+    {
+      "nationId": "uk",
+      "homePortKey": "logistics.port.uk",
+      "dockNameKey": "logistics.dock.uk",
+      "staffKey": "logistics.staff.uk",
+      "fuelMax": 11000,
+      "torpedoMax": 26,
+      "deckAmmoMax": 430,
+      "rationMax": 68,
+      "sparePartsMax": 40,
+      "starterMorale": 82,
+      "starterFatigue": 7,
+      "id": "base_uk"
+    },
+    {
+      "nationId": "us",
+      "homePortKey": "logistics.port.us",
+      "dockNameKey": "logistics.dock.us",
+      "staffKey": "logistics.staff.us",
+      "fuelMax": 13000,
+      "torpedoMax": 34,
+      "deckAmmoMax": 520,
+      "rationMax": 80,
+      "sparePartsMax": 44,
+      "starterMorale": 84,
+      "starterFatigue": 6,
+      "id": "base_us"
+    }
+  ],
+  "supplyCosts": {
+    "fuel": 1,
+    "torpedoes": 190,
+    "deckAmmo": 4,
+    "rations": 18,
+    "spareParts": 85
+  },
+  "planningProfiles": [
+    {
+      "id": "balanced",
+      "labelKey": "logistics.plan.balanced",
+      "descKey": "logistics.plan.balanced.desc",
+      "fuel": 1.0,
+      "torpedoes": 1.0,
+      "deckAmmo": 1.0,
+      "rations": 1.0,
+      "spareParts": 1.0,
+      "fatigue": 1.0,
+      "morale": 0
+    },
+    {
+      "id": "stealth",
+      "labelKey": "logistics.plan.stealth",
+      "descKey": "logistics.plan.stealth.desc",
+      "fuel": 1.12,
+      "torpedoes": 0.85,
+      "deckAmmo": 0.75,
+      "rations": 1.12,
+      "spareParts": 1.15,
+      "fatigue": 0.9,
+      "morale": 2
+    },
+    {
+      "id": "aggressive",
+      "labelKey": "logistics.plan.aggressive",
+      "descKey": "logistics.plan.aggressive.desc",
+      "fuel": 1.18,
+      "torpedoes": 1.35,
+      "deckAmmo": 1.25,
+      "rations": 1.0,
+      "spareParts": 1.25,
+      "fatigue": 1.18,
+      "morale": -2
+    },
+    {
+      "id": "economy",
+      "labelKey": "logistics.plan.economy",
+      "descKey": "logistics.plan.economy.desc",
+      "fuel": 0.78,
+      "torpedoes": 0.82,
+      "deckAmmo": 0.8,
+      "rations": 0.9,
+      "spareParts": 0.75,
+      "fatigue": 1.12,
+      "morale": -1
+    }
+  ],
+  "ranks": {
+    "de": [
+      {
+        "key": "rank.de.0",
+        "reputation": 0
+      },
+      {
+        "key": "rank.de.1",
+        "reputation": 35
+      },
+      {
+        "key": "rank.de.2",
+        "reputation": 85
+      },
+      {
+        "key": "rank.de.3",
+        "reputation": 150
+      },
+      {
+        "key": "rank.de.4",
+        "reputation": 240
+      },
+      {
+        "key": "rank.de.5",
+        "reputation": 360
+      }
+    ],
+    "uk": [
+      {
+        "key": "rank.uk.0",
+        "reputation": 0
+      },
+      {
+        "key": "rank.uk.1",
+        "reputation": 35
+      },
+      {
+        "key": "rank.uk.2",
+        "reputation": 85
+      },
+      {
+        "key": "rank.uk.3",
+        "reputation": 150
+      },
+      {
+        "key": "rank.uk.4",
+        "reputation": 240
+      },
+      {
+        "key": "rank.uk.5",
+        "reputation": 360
+      }
+    ],
+    "us": [
+      {
+        "key": "rank.us.0",
+        "reputation": 0
+      },
+      {
+        "key": "rank.us.1",
+        "reputation": 35
+      },
+      {
+        "key": "rank.us.2",
+        "reputation": 85
+      },
+      {
+        "key": "rank.us.3",
+        "reputation": 150
+      },
+      {
+        "key": "rank.us.4",
+        "reputation": 240
+      },
+      {
+        "key": "rank.us.5",
+        "reputation": 360
+      }
+    ]
+  },
+  "medals": [
+    {
+      "id": "first_patrol",
+      "key": "medal.firstPatrol",
+      "condition": "patrols",
+      "threshold": 1
+    },
+    {
+      "id": "silent_hunter",
+      "key": "medal.silentHunter",
+      "condition": "bestScore",
+      "threshold": 750
+    },
+    {
+      "id": "tonnage_cross",
+      "key": "medal.tonnageCross",
+      "condition": "tonnage",
+      "threshold": 50000
+    },
+    {
+      "id": "fleet_logistician",
+      "key": "medal.fleetLogistician",
+      "condition": "readiness",
+      "threshold": 90
+    }
+  ]
+}
