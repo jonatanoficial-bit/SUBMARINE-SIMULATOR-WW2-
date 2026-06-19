@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.13",
-  "short_name": "Sub Commander",
+  "name": "Submarine Commander WW2",
+  "short_name": "SCWW2",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — v2.0.0-alpha.13 by Vale Games",
+  "description": "Submarine Commander WW2 — Fase 20 com correção de rolagem mobile, painel de medições no fluxo da tela e base para controle de avarias avançado.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.13",
+  "version": "2.0.0-alpha.20",
   "id": "./"
 }

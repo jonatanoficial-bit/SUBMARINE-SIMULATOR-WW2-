@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.13",
-  "semver": "2.0.0-alpha.13",
-  "buildId": "SCWW2-20260618-1030-BRT-F13",
-  "date": "2026-06-18",
-  "time": "10:30",
+  "version": "v2.0.0-alpha.20",
+  "semver": "2.0.0-alpha.20",
+  "buildId": "SCWW2-20260619-1645-BRT-F20",
+  "date": "2026-06-19",
+  "time": "16:45",
   "timezone": "America/Sao_Paulo",
-  "phase": "13",
-  "phaseName": "Strategic Naval Command and Intelligence",
+  "phase": "20",
+  "phaseName": "Mobile Scroll Stabilization and Damage-Control Foundation",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 5,
-  "notes": "Phase 13 extends the real Phase 12 build with a strategic war-room layer: convoy lane intelligence, national command directives, decryption efforts, theater pressure, patrol modifiers, command history and exportable intelligence dossiers while preserving career, logistics, campaigns and the homologated simulator core."
+  "saveSchemaVersion": 6,
+  "notes": "Phase 20 preserves Phase 19 and fixes mobile gameplay scrolling by returning the combat measurement dashboard to the natural document flow, removing sticky/fixed overlay behavior from gameplay panels, enabling touch panning on the shell, keeping navigation readable, and preparing the next damage-control layer."
 }

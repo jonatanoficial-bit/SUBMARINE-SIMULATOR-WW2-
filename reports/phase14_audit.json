@@ -1,0 +1,290 @@
+{
+  "checks": [
+    {
+      "name": "required file index.html",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file manifest.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file service-worker.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file BUILD_INFO.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file js/build.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file js/app.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file js/components/ui.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file js/screens/bridge.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file css/phase14-bridge-instruments.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file tests/bridge_instruments.test.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file data/translations/pt-BR.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file data/translations/en.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "required file data/translations/es.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase is 14",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "version is alpha 14",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "schema migrated to 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css linked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index title updated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge screen imported",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge screen registered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge screen protected by save guard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge background assigned",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bottom nav includes bridge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains createBridgeTelemetry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains bridge-digital",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains writeNeedle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains oxygen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains battery",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains noise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains detection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bridge contains data-bridge-command=\"${mode}\"",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css contains .bridge-dial",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css contains .needle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css contains .bridge-digital",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css contains @media(max-width:700px)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase14 css contains grid-template-columns:repeat(8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker cache bumped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker caches bridge JS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker caches phase14 CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR key parity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR has nav.bridge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR has bridge.subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR has bridge.depth",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR has bridge.oxygen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pt-BR has bridge.mode.emergency",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en key parity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en has nav.bridge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en has bridge.subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en has bridge.depth",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en has bridge.oxygen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "en has bridge.mode.emergency",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es key parity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es has nav.bridge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es has bridge.subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es has bridge.depth",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es has bridge.oxygen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "es has bridge.mode.emergency",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

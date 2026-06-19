@@ -30,11 +30,85 @@ function radarGridMarkup() {
 
 
 function hydrophoneWaterfallMarkup() {
-  return Array.from({ length: 18 }, (_, index) => `<i class="hydrophone-waterfall-row" data-waterfall-row="${index}"><span></span><b></b></i>`).join('');
+  return Array.from({ length: 26 }, (_, index) => `<i class="hydrophone-waterfall-row" data-waterfall-row="${index}"><span></span><b></b></i>`).join('');
 }
 
 function periscopeWeatherMarkup() {
   return Array.from({ length: 14 }, (_, index) => `<i style="--drop:${index}"></i>`).join('');
+}
+
+export function createPeriscopeOpticsSolution({ snapshot = {}, periscopeZoom = 1 } = {}) {
+  const environment = snapshot.environment || {};
+  const physics = snapshot.physics || {};
+  const sensors = snapshot.sensors || {};
+  const contact = sensors.contacts?.target || {};
+  const depth = Number(snapshot.depth ?? physics.depth ?? 0);
+  const visualRange = Math.max(700, Number(sensors.profile?.currentVisualRangeMeters || environment.visibilityMeters || 6000));
+  const visualFactor = clamp(Number(environment.visualFactor || 1), 0.16, 1.12);
+  const target = snapshot.target || {};
+  const targetTrueRange = Math.hypot(Number(target.x || 0), Number(target.y || 0)) * 4;
+  const periscopeDepth = Number(sensors.profile?.radarMastMaxDepth || 12);
+  const depthDelta = Math.abs(depth - periscopeDepth);
+  const depthPenalty = depthDelta <= 3 ? 0 : Math.min(38, depthDelta * 3.8);
+  const mastWakeRisk = clamp((snapshot.detectionScore || 0) * 0.52 + depthPenalty + (Number(environment.seaState || 0) < 35 ? 8 : 0), 0, 100);
+  const rangeError = clamp((1 - visualFactor) * 34 + depthDelta * 2.2 + Math.max(0, targetTrueRange / visualRange - 0.55) * 18, 3, 64);
+  const speedError = clamp((1 - visualFactor) * 3.2 + (Number(environment.precipitation || 0) / 100) * 2.5 + depthDelta * 0.16, 0.3, 8.5);
+  const opticalQuality = clamp((contact.confidence || 0) * 0.42 + visualFactor * 42 + Number(periscopeZoom || 1) * 6 - depthPenalty, 0, 100);
+  let state = 'safe';
+  if (mastWakeRisk >= 68 || opticalQuality < 28) state = 'critical';
+  else if (mastWakeRisk >= 38 || opticalQuality < 52) state = 'warning';
+  return {
+    periscopeDepth,
+    depthDelta,
+    mastWakeRisk: Math.round(mastWakeRisk),
+    rangeError: Math.round(rangeError),
+    speedError: Math.round(speedError * 10) / 10,
+    opticalQuality: Math.round(opticalQuality),
+    estimatedRangeMeters: targetTrueRange ? Math.round(targetTrueRange * (1 + (rangeError / 100) * 0.34)) : null,
+    estimatedSpeedKnots: contact.speedEstimateKnots ? Math.max(0, Math.round((contact.speedEstimateKnots + speedError * 0.18) * 10) / 10) : null,
+    visualRange: Math.round(visualRange),
+    state
+  };
+}
+
+
+
+export function createTdcFireControlSolution({ snapshot = {} } = {}) {
+  const weapons = snapshot.weapons || {};
+  const tdc = weapons.tdc || {};
+  const torpedo = weapons.torpedoTypes?.[tdc.torpedoType] || { speedKnots: Number(tdc.torpedoSpeedKnots || 44), maxRangeMeters: 5200, wake: true };
+  const quality = clamp(Number(tdc.solutionQuality || 0), 0, 100);
+  const range = Math.max(0, Number(tdc.rangeMeters || 0));
+  const targetSpeed = Math.max(0, Number(tdc.targetSpeedKnots || 0));
+  const torpedoSpeed = Math.max(1, Number(torpedo.speedKnots || tdc.torpedoSpeedKnots || 44));
+  const aob = clamp(Number(tdc.aobDegrees || 0), 0, 180);
+  const ratio = clamp((targetSpeed / torpedoSpeed) * Math.sin((aob * Math.PI) / 180), -0.95, 0.95);
+  const leadAngle = Math.asin(ratio) * 180 / Math.PI;
+  const impactSeconds = range > 0 ? Math.round(range / (torpedoSpeed * 0.514444)) : null;
+  const gyroAngle = ((Number(tdc.gyroAngle || 0) % 360) + 360) % 360;
+  const rangeFactor = range && torpedo.maxRangeMeters ? clamp(range / torpedo.maxRangeMeters, 0, 1.35) : 0;
+  const stalePenalty = Math.min(22, Number(tdc.lastContactAgeMs || 0) / 900);
+  const wakePenalty = torpedo.wake ? 8 : 2;
+  const depthPenalty = Number(snapshot.depth || 0) > Number(weapons.profile?.maxLaunchDepth || 60) ? 45 : 0;
+  const fireRisk = clamp(100 - quality + stalePenalty + rangeFactor * 12 + wakePenalty + depthPenalty - (weapons.canFire ? 4 : 0), 0, 100);
+  const spread = Math.max(1, Number(weapons.salvoSize || 1));
+  const spreadDegrees = spread === 1 ? 0 : Math.round((1.4 + (100 - quality) / 70) * 10) / 10;
+  const hitWindowMeters = range ? Math.max(18, Math.round(range * clamp((100 - quality) / 260, 0.04, 0.34))) : null;
+  const discipline = !weapons.canFire ? 'hold' : quality >= 78 && fireRisk < 35 ? 'fire' : quality >= weapons.minimumSolutionQuality ? 'wait' : 'hold';
+  const state = discipline === 'fire' ? 'safe' : discipline === 'wait' ? 'warning' : 'critical';
+  return {
+    quality: Math.round(quality),
+    leadAngle: Math.round(leadAngle * 10) / 10,
+    gyroAngle: Math.round(gyroAngle),
+    impactSeconds,
+    fireRisk: Math.round(fireRisk),
+    spreadDegrees,
+    hitWindowMeters,
+    targetMotion: targetSpeed >= 12 ? 'fast' : targetSpeed >= 6 ? 'steady' : 'slow',
+    salvoPattern: spread === 1 ? 'single' : spread === 2 ? 'paired' : 'fan',
+    discipline,
+    state
+  };
 }
 
 function navigationGridMarkup() {
@@ -45,7 +119,7 @@ function navigationGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen">
+    <section class="screen gameplay-screen phase15-command-room-screen">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -60,6 +134,17 @@ export function renderGameplay(t, mission, settings = {}) {
       </div>
 
       <div class="panel hero-panel gameplay-status-panel">
+        <button class="button block primary-command top-quick-periscope" id="open-periscope">${t('gameplay.openPeriscope')}</button>
+        <div class="command-room-ribbon">
+          <div class="command-room-ribbon-title">${t('bridge.commandRoom')}</div>
+          <div class="command-room-ribbon-grid">
+            <div><img src="assets/ui/instruments/helm_icon.png" alt=""><span>${t('stabilization.stationCommand')}</span></div>
+            <div><img src="assets/ui/instruments/sonar_icon.png" alt=""><span>${t('stabilization.stationSensors')}</span></div>
+            <div><img src="assets/ui/instruments/periscope_icon.png" alt=""><span>${t('bridge.station.periscope')}</span></div>
+            <div><img src="assets/ui/instruments/torpedo_icon.png" alt=""><span>${t('stabilization.stationWeapons')}</span></div>
+            <div><img src="assets/ui/instruments/speed_telegraph_icon.png" alt=""><span>${t('bridge.station.engines')}</span></div>
+          </div>
+        </div>
         <div class="gameplay-kpis">
           <div class="stat-box"><div class="stat-label">${t('gameplay.depth')}</div><div id="hud-depth" class="stat-value">0 m</div></div>
           <div class="stat-box"><div class="stat-label">${t('gameplay.speed')}</div><div id="hud-speed" class="stat-value">STOP</div></div>
@@ -223,6 +308,9 @@ export function renderGameplay(t, mission, settings = {}) {
             <div class="physics-readout"><span>${t('physics.ballast')}</span><strong id="physics-ballast">54%</strong></div>
             <div class="physics-readout"><span>${t('physics.trim')}</span><strong id="physics-trim">0.0°</strong></div>
             <div class="physics-readout"><span>${t('physics.pressure')}</span><strong id="physics-pressure">0%</strong></div>
+            <div class="physics-readout"><span>${t('physics.depthZone')}</span><strong id="physics-depth-zone">${t('physics.zone.patrol')}</strong></div>
+            <div class="physics-readout"><span>${t('physics.reserveBuoyancy')}</span><strong id="physics-reserve-buoyancy">50%</strong></div>
+            <div class="physics-readout"><span>${t('physics.buoyancyState')}</span><strong id="physics-buoyancy-state">${t('physics.buoyancy.neutral')}</strong></div>
             <div class="physics-readout"><span>${t('physics.propulsion')}</span><strong id="physics-propulsion">${t('physics.electric')}</strong></div>
           </div>
           <div class="physics-meter-grid">
@@ -287,8 +375,13 @@ export function renderGameplay(t, mission, settings = {}) {
               <span><i class="sensor-legend-dot target"></i>${t('sensors.targetContact')}</span>
               <span><i class="sensor-legend-dot escort"></i>${t('sensors.escortContact')}</span>
             </div>
-            <div class="hydrophone-waterfall" id="hydrophone-waterfall" aria-label="${t('environment.acousticWaterfall')}">${hydrophoneWaterfallMarkup()}</div>
-            <button class="button secondary block" id="hydrophone-listen">${t('environment.listenContact')}</button>
+            <div class="hydrophone-waterfall phase17-waterfall" id="hydrophone-waterfall" aria-label="${t('environment.acousticWaterfall')}">${hydrophoneWaterfallMarkup()}</div>
+            <div class="sonar-room-status-grid" aria-label="${t('sonarRoom.acousticStatus')}">
+              <div><span>${t('sonarRoom.waterfall')}</span><strong>${t('sonarRoom.waterfallLive')}</strong></div>
+              <div><span>${t('sonarRoom.bearingTuner')}</span><strong id="sonar-bearing-tuner">000°</strong></div>
+              <div><span>${t('sonarRoom.pingRisk')}</span><strong id="sonar-ping-risk">${t('sonarRoom.riskLow')}</strong></div>
+            </div>
+            <button class="button secondary block sonar-listen-button" id="hydrophone-listen">${t('environment.listenContact')}</button>
           </div>
           <div class="sensor-console">
             <div class="chip-grid sensor-mode-grid">
@@ -314,6 +407,15 @@ export function renderGameplay(t, mission, settings = {}) {
               <div><span>${t('sensors.contactCount')}</span><strong id="sensor-contact-count">0</strong></div>
             </div>
             <div id="sensor-message" class="sensor-message">${t('sensors.ready')}</div>
+            <div class="sonar-room-acoustic-board">
+              <div class="sonar-room-board-title">${t('sonarRoom.signatureBoard')}</div>
+              <div class="sonar-room-board-grid">
+                <div><span>${t('sonarRoom.merchantSignature')}</span><strong>${t('sonarRoom.lowCadence')}</strong></div>
+                <div><span>${t('sonarRoom.escortSignature')}</span><strong>${t('sonarRoom.highCadence')}</strong></div>
+                <div><span>${t('sonarRoom.ownNoise')}</span><strong id="sonar-own-noise">--</strong></div>
+                <div><span>${t('sonarRoom.thermalLayer')}</span><strong id="sonar-layer-effect">--</strong></div>
+              </div>
+            </div>
           </div>
           <div class="sensor-contact-list">
             <article class="sensor-contact-card" id="sensor-contact-target" data-contact="target">
@@ -436,7 +538,7 @@ export function renderGameplay(t, mission, settings = {}) {
         <div class="panel-header">${t('gameplay.combatStation')}</div>
         <div class="panel-body combat-station-layout">
           <div class="combat-controls stack">
-            <button class="button block primary-command" id="open-periscope">${t('gameplay.openPeriscope')}</button>
+            <button class="button block primary-command" id="open-periscope-secondary">${t('gameplay.openPeriscope')}</button>
             <section class="encounter-console" aria-live="polite">
               <header>
                 <div><span>${t('encounter.station')}</span><strong id="encounter-phase">${t('encounter.phase.patrol')}</strong></div>
@@ -520,6 +622,22 @@ export function renderGameplay(t, mission, settings = {}) {
               <label><span>${t('weapons.targetCourse')}</span><input id="tdc-target-course" type="number" min="0" max="359" step="1" value="270"></label>
               <label><span>${t('weapons.aob')}</span><input id="tdc-aob" type="number" min="0" max="180" step="1" value="90"></label>
               <label><span>${t('weapons.runDepth')}</span><input id="tdc-run-depth" type="number" min="1" max="15" step="1" value="3"></label>
+            </div>
+            <div class="phase19-tdc-solution" data-state="critical">
+              <div class="phase19-tdc-plot">
+                <span class="tdc-plot-line ownship"></span>
+                <span class="tdc-plot-line target"></span>
+                <span class="tdc-plot-line torpedo" id="tdc-plot-torpedo"></span>
+                <strong>${t('tdc.attackTriangle')}</strong>
+              </div>
+              <div class="phase19-tdc-grid">
+                <div><span>${t('tdc.leadAngle')}</span><strong id="tdc-lead-angle">--</strong></div>
+                <div><span>${t('tdc.impactTime')}</span><strong id="tdc-impact-time">--</strong></div>
+                <div><span>${t('tdc.fireRisk')}</span><strong id="tdc-fire-risk">--</strong></div>
+                <div><span>${t('tdc.hitWindow')}</span><strong id="tdc-hit-window">--</strong></div>
+                <div><span>${t('tdc.salvoPattern')}</span><strong id="tdc-salvo-pattern">--</strong></div>
+                <div><span>${t('tdc.fireDiscipline')}</span><strong id="tdc-fire-discipline">--</strong></div>
+              </div>
             </div>
             <div class="navigation-control-title">${t('weapons.torpedoType')}</div>
             <div class="chip-grid weapon-type-grid">
@@ -648,6 +766,14 @@ export function renderGameplay(t, mission, settings = {}) {
               <span>${t('encounter.mastTime')} <b id="periscope-mast-time">0 s</b></span>
               <span>${t('environment.visualQuality')} <b id="periscope-visual-quality">--</b></span>
               <span>${t('environment.seaShort')} <b id="periscope-sea-state">--</b></span>
+              <span>${t('periscope.opticalQuality')} <b id="periscope-optical-quality">--</b></span>
+              <span>${t('periscope.mastWake')} <b id="periscope-mast-wake">--</b></span>
+            </div>
+            <div class="phase18-periscope-solution">
+              <div><span>${t('periscope.depthEnvelope')}</span><strong id="periscope-depth-envelope">--</strong></div>
+              <div><span>${t('periscope.estimatedRange')}</span><strong id="periscope-estimated-range">--</strong></div>
+              <div><span>${t('periscope.estimatedSpeed')}</span><strong id="periscope-estimated-speed">--</strong></div>
+              <div><span>${t('periscope.errorWindow')}</span><strong id="periscope-error-window">--</strong></div>
             </div>
           </div>
           <div class="periscope-rim"></div>
@@ -763,6 +889,9 @@ export function mountGameplay({
     physicsBallast: app.querySelector('#physics-ballast'),
     physicsTrim: app.querySelector('#physics-trim'),
     physicsPressure: app.querySelector('#physics-pressure'),
+    physicsDepthZone: app.querySelector('#physics-depth-zone'),
+    physicsReserveBuoyancy: app.querySelector('#physics-reserve-buoyancy'),
+    physicsBuoyancyState: app.querySelector('#physics-buoyancy-state'),
     physicsPropulsion: app.querySelector('#physics-propulsion'),
     physicsFuelValue: app.querySelector('#physics-fuel-value'),
     physicsBatteryValue: app.querySelector('#physics-battery-value'),
@@ -786,6 +915,10 @@ export function mountGameplay({
     activePingWave: app.querySelector('#active-ping-wave'),
     sensorModeBadge: app.querySelector('#sensor-mode-badge'),
     sensorBearing: app.querySelector('#sensor-bearing'),
+    sonarBearingTuner: app.querySelector('#sonar-bearing-tuner'),
+    sonarPingRisk: app.querySelector('#sonar-ping-risk'),
+    sonarOwnNoise: app.querySelector('#sonar-own-noise'),
+    sonarLayerEffect: app.querySelector('#sonar-layer-effect'),
     sensorPassiveRange: app.querySelector('#sensor-passive-range'),
     sensorRadarRange: app.querySelector('#sensor-radar-range'),
     sensorIntegrity: app.querySelector('#sensor-integrity'),
@@ -841,12 +974,21 @@ export function mountGameplay({
     tdcTargetCourse: app.querySelector('#tdc-target-course'),
     tdcAob: app.querySelector('#tdc-aob'),
     tdcRunDepth: app.querySelector('#tdc-run-depth'),
+    tdcLeadAngle: app.querySelector('#tdc-lead-angle'),
+    tdcImpactTime: app.querySelector('#tdc-impact-time'),
+    tdcFireRisk: app.querySelector('#tdc-fire-risk'),
+    tdcHitWindow: app.querySelector('#tdc-hit-window'),
+    tdcSalvoPattern: app.querySelector('#tdc-salvo-pattern'),
+    tdcFireDiscipline: app.querySelector('#tdc-fire-discipline'),
+    tdcPlotTorpedo: app.querySelector('#tdc-plot-torpedo'),
+    tdcSolutionPanel: app.querySelector('.phase19-tdc-solution'),
     tdcSync: app.querySelector('#tdc-sync'),
     weaponsFire: app.querySelector('#weapons-fire'),
     weaponsMessage: app.querySelector('#weapons-message'),
     openWeaponsStation: app.querySelector('#open-weapons-station'),
     openDamageControl: app.querySelector('#open-damage-control'),
     openPeriscope: app.querySelector('#open-periscope'),
+    openPeriscopeSecondary: app.querySelector('#open-periscope-secondary'),
     periscopeModal: app.querySelector('#periscope-modal'),
     periscopeWindow: app.querySelector('.periscope-window'),
     closePeriscope: app.querySelector('#close-periscope'),
@@ -878,6 +1020,12 @@ export function mountGameplay({
     periscopeMastTime: app.querySelector('#periscope-mast-time'),
     periscopeVisualQuality: app.querySelector('#periscope-visual-quality'),
     periscopeSeaState: app.querySelector('#periscope-sea-state'),
+    periscopeOpticalQuality: app.querySelector('#periscope-optical-quality'),
+    periscopeMastWake: app.querySelector('#periscope-mast-wake'),
+    periscopeDepthEnvelope: app.querySelector('#periscope-depth-envelope'),
+    periscopeEstimatedRange: app.querySelector('#periscope-estimated-range'),
+    periscopeEstimatedSpeed: app.querySelector('#periscope-estimated-speed'),
+    periscopeErrorWindow: app.querySelector('#periscope-error-window'),
     periscopeZoomOut: app.querySelector('#periscope-zoom-out'),
     periscopeZoomIn: app.querySelector('#periscope-zoom-in'),
     viewLeft: app.querySelector('#view-left'),
@@ -1115,6 +1263,9 @@ export function mountGameplay({
     if (els.physicsBallast) els.physicsBallast.textContent = `${Math.round(physics.ballast)}% · ${t(`physics.ballastMode.${physics.ballastCommand || 'auto'}`)}`;
     if (els.physicsTrim) els.physicsTrim.textContent = `${Number(physics.trim || 0).toFixed(1)}°`;
     if (els.physicsPressure) els.physicsPressure.textContent = `${Math.round(physics.pressurePercent || 0)}% · ${Math.round(physics.maxOperationalDepth || 0)} m`;
+    if (els.physicsDepthZone) els.physicsDepthZone.textContent = t(`physics.zone.${physics.depthZone || 'patrol'}`);
+    if (els.physicsReserveBuoyancy) els.physicsReserveBuoyancy.textContent = `${Math.round(physics.reserveBuoyancy ?? 50)}%`;
+    if (els.physicsBuoyancyState) els.physicsBuoyancyState.textContent = t(`physics.buoyancy.${physics.buoyancyState || 'neutral'}`);
     if (els.physicsPropulsion) els.physicsPropulsion.textContent = t(physics.propulsionMode === 'diesel' ? 'physics.diesel' : 'physics.electric');
     setMeter(els.physicsFuelValue, els.physicsFuelBar, physics.fuel);
     setMeter(els.physicsBatteryValue, els.physicsBatteryBar, physics.battery);
@@ -1261,6 +1412,26 @@ export function mountGameplay({
       screen.dataset.environmentLight = environment.lightCondition || 'day';
       screen.dataset.environmentSea = sea >= 5 ? 'heavy' : sea >= 3 ? 'moderate' : 'calm';
     }
+    const optics = createPeriscopeOpticsSolution({ snapshot, periscopeZoom });
+    if (els.periscopeOpticalQuality) {
+      els.periscopeOpticalQuality.textContent = `${optics.opticalQuality}%`;
+      els.periscopeOpticalQuality.dataset.state = optics.opticalQuality < 32 ? 'critical' : optics.opticalQuality < 58 ? 'warning' : 'safe';
+    }
+    if (els.periscopeMastWake) {
+      els.periscopeMastWake.textContent = `${optics.mastWakeRisk}%`;
+      els.periscopeMastWake.dataset.state = optics.mastWakeRisk >= 68 ? 'critical' : optics.mastWakeRisk >= 38 ? 'warning' : 'safe';
+    }
+    if (els.periscopeDepthEnvelope) {
+      els.periscopeDepthEnvelope.textContent = t('periscope.depthEnvelopeValue', { depth: Math.round(snapshot.depth || 0), ideal: Math.round(optics.periscopeDepth), delta: optics.depthDelta.toFixed(1) });
+      els.periscopeDepthEnvelope.dataset.state = optics.depthDelta > 10 ? 'critical' : optics.depthDelta > 4 ? 'warning' : 'safe';
+    }
+    if (els.periscopeEstimatedRange) els.periscopeEstimatedRange.textContent = optics.estimatedRangeMeters ? `${Math.round(optics.estimatedRangeMeters)} m` : '--';
+    if (els.periscopeEstimatedSpeed) els.periscopeEstimatedSpeed.textContent = optics.estimatedSpeedKnots ? `${optics.estimatedSpeedKnots.toFixed(1)} kn` : '--';
+    if (els.periscopeErrorWindow) {
+      els.periscopeErrorWindow.textContent = `±${optics.rangeError}% / ±${optics.speedError.toFixed(1)} kn`;
+      els.periscopeErrorWindow.dataset.state = optics.state;
+    }
+
     if (els.periscopeModal) {
       els.periscopeModal.dataset.light = environment.lightCondition || 'day';
       els.periscopeModal.dataset.sea = sea >= 5 ? 'heavy' : sea >= 3 ? 'moderate' : 'calm';
@@ -1323,6 +1494,7 @@ export function mountGameplay({
     updateContactCard('escort', escort);
     updateHydrophoneWaterfall(sensors);
     if (els.sensorModeBadge) els.sensorModeBadge.textContent = t(sensors.mode === 'radar' ? 'sensors.modeRadar' : 'sensors.modeHydrophone');
+    if (els.sonarBearingTuner) els.sonarBearingTuner.textContent = `${String(Math.round(snapshot.sensors?.hydrophoneBearing ?? 0)).padStart(3, '0')}°`;
     if (els.sensorBearing) els.sensorBearing.textContent = `${String(Math.round(sensors.hydrophoneBearing || 0) % 360).padStart(3, '0')}°`;
     if (els.sensorPassiveRange) els.sensorPassiveRange.textContent = `${Math.round((profile.hydrophoneRangeMeters || 0) / 100) / 10} km`;
     if (els.sensorRadarRange) els.sensorRadarRange.textContent = profile.radarAvailable ? `${Math.round((profile.radarRangeMeters || 0) / 100) / 10} km` : t('sensors.unavailableForYear');
@@ -1342,6 +1514,9 @@ export function mountGameplay({
       els.activeSonarPing.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || seconds > 0 || (snapshot.systems?.sonar ?? 100) <= 10;
       els.activeSonarPing.textContent = seconds > 0 ? t('sensors.activePingCooldown', { seconds }) : t('sensors.activePing');
     }
+    if (els.sonarOwnNoise) els.sonarOwnNoise.textContent = `${Math.round(snapshot.physics?.noise ?? 0)}%`;
+    if (els.sonarLayerEffect) els.sonarLayerEffect.textContent = `${Math.round(snapshot.environment?.thermalLayerDepth ?? 0)} m`;
+    if (els.sonarPingRisk) els.sonarPingRisk.textContent = t((sensors.activePingCooldownMs || 0) > 0 ? 'sonarRoom.riskHigh' : (snapshot.physics?.noise || 0) > 55 ? 'sonarRoom.riskMedium' : 'sonarRoom.riskLow');
     if (els.radarMastToggle) {
       els.radarMastToggle.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || !profile.radarAvailable || (!sensors.radarMastRaised && snapshot.depth > profile.radarMastMaxDepth);
       els.radarMastToggle.textContent = sensors.radarMastRaised ? t('sensors.lowerRadarMast') : t('sensors.raiseRadarMast');
@@ -1825,7 +2000,9 @@ export function mountGameplay({
       els.emergencyRepair.disabled = !canRepair;
       if (canRepair) els.emergencyRepair.textContent = t('repair.emergencyWithUses', { uses: snapshot.repairUses });
     }
-    if (els.openPeriscope) els.openPeriscope.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || (snapshot.systems.periscope ?? 100) <= 10;
+    const periscopeDisabled = snapshot.missionFailed || snapshot.repairTicks > 0 || (snapshot.systems.periscope ?? 100) <= 10;
+    if (els.openPeriscope) els.openPeriscope.disabled = periscopeDisabled;
+    if (els.openPeriscopeSecondary) els.openPeriscopeSecondary.disabled = periscopeDisabled;
     if (els.fireTorpedo) els.fireTorpedo.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || !snapshot.weapons?.canFire || (snapshot.systems.weapons ?? 100) <= 10;
     if (els.silentRunning) els.silentRunning.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || snapshot.silentTicks > 0;
     if (els.emergencyDive) els.emergencyDive.disabled = snapshot.missionFailed || snapshot.repairTicks > 0 || snapshot.emergencyDiveCooldown > 0;
@@ -2036,6 +2213,7 @@ export function mountGameplay({
   });
   app.querySelectorAll('.damage-compartment-card').forEach((button) => bind(button, 'click', () => commandHint(engine.assignDamageControlTeam(els.damageTeamSelect?.value || 'dc-team-1', button.dataset.compartmentId, els.damageTaskSelect?.value || 'repair'))));
   bind(els.openPeriscope, 'click', () => commandHint(engine.openPeriscope()));
+  bind(els.openPeriscopeSecondary, 'click', () => commandHint(engine.openPeriscope()));
   bind(els.closePeriscope, 'click', () => engine.closePeriscope());
   bind(els.fireTorpedo, 'click', () => commandHint(engine.fireTorpedo()));
   bind(els.emergencyRepair, 'click', () => commandHint(engine.startEmergencyRepair()));

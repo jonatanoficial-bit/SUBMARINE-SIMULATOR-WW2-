@@ -1,0 +1,138 @@
+/* Phase 15 — internal command room visuals, asset-based in-simulation presentation */
+body[data-background-mode="none"] .app-background { opacity: 0; }
+body[data-background-mode="none"] .app-overlay {
+  background:
+    linear-gradient(180deg, rgba(3,8,12,0.24) 0%, rgba(3,8,12,0.38) 100%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04), transparent 22%);
+}
+body[data-local-asset-screen="true"] .app-overlay { background: linear-gradient(180deg, rgba(5,8,12,0.32), rgba(6,10,15,0.66)); }
+
+.bridge-shell {
+  background:
+    linear-gradient(180deg, rgba(4,7,10,.90), rgba(3,6,10,.94)),
+    url('../assets/backgrounds/submarine_control_room.png') center/cover no-repeat;
+}
+.bridge-canopy {
+  background:
+    linear-gradient(180deg, rgba(8,13,19,.74), rgba(4,7,10,.94)),
+    url('../assets/backgrounds/submarine_control_room.png') center 18%/cover no-repeat;
+}
+.bridge-window-grid span {
+  background:
+    linear-gradient(180deg, rgba(30,71,95,.14), rgba(2,5,8,.82)),
+    url('../assets/backgrounds/naval_battle.png') center/cover no-repeat;
+}
+.bridge-command-room-strip {
+  position: relative;
+  border-radius: 20px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(16,22,30,.84), rgba(6,9,14,.92));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.command-room-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.command-room-card {
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(145,190,214,.13);
+}
+.command-room-icon {
+  width: 40px; height: 40px; object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.32));
+}
+.command-room-meta { display:grid; gap:4px; min-width:0; }
+.command-room-meta span { font-size: 11px; color: rgba(230,241,255,.72); text-transform: uppercase; letter-spacing: .12em; }
+.command-room-meta strong { font-size: 13px; color: #ecfbff; }
+
+.phase15-command-room-screen {
+  background:
+    linear-gradient(180deg, rgba(2,4,7,.80), rgba(3,7,11,.88)),
+    url('../assets/backgrounds/submarine_control_room.png') center/cover no-repeat;
+  border-radius: 28px;
+  padding: 14px;
+  box-shadow: 0 28px 70px rgba(0,0,0,.30);
+}
+.gameplay-status-panel {
+  background:
+    linear-gradient(180deg, rgba(9,15,21,.74), rgba(7,10,15,.90)),
+    url('../assets/backgrounds/submarine_control_room.png') center/cover no-repeat;
+  box-shadow: inset 0 0 120px rgba(0,0,0,.44), var(--shadow-card);
+}
+.command-room-ribbon {
+  display:grid;
+  gap:10px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(6,11,16,.62), rgba(10,18,24,.82));
+  border: 1px solid rgba(144,193,218,.14);
+}
+.command-room-ribbon-title {
+  font-size: 11px;
+  color: var(--gold-strong);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+.command-room-ribbon-grid {
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.command-room-ribbon-grid > div {
+  display:grid;
+  gap:6px;
+  justify-items:center;
+  text-align:center;
+  padding: 10px 8px;
+  min-height: 86px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.command-room-ribbon-grid img { width: 34px; height: 34px; object-fit: contain; }
+.command-room-ribbon-grid span { font-size: 11px; color: rgba(230,241,255,.82); }
+.navigation-panel {
+  background: linear-gradient(180deg, rgba(8,20,30,.96), rgba(2,10,18,.98)) !important;
+  background-image: none !important;
+}
+@media (max-width: 980px) {
+  .command-room-grid, .command-room-ribbon-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 640px) {
+  .phase15-command-room-screen { padding: 10px; border-radius: 20px; }
+  .command-room-grid, .command-room-ribbon-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .command-room-card { grid-template-columns: 38px 1fr; min-height: 76px; }
+}
+@media (max-width: 420px) {
+  .command-room-grid, .command-room-ribbon-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 360px), (max-height: 600px) {
+  .command-room-ribbon { display: none; }
+  .phase15-command-room-screen { padding: 8px; }
+  .gameplay-status-panel { display: none; }
+  .gameplay-orientation-note, .simulation-core-strip { display: none; }
+  .phase15-command-room-screen .screen-subtitle { display: none; }
+  .mission-live-panel[data-station-panel="command"] { order: 2; }
+  .action-panel[data-station-panel="command"] { order: 1; padding-top: 58px; }
+  #operational-guide { display: none !important; }
+  #open-periscope {
+    position: fixed;
+    top: 78px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    z-index: 45;
+    box-shadow: 0 14px 30px rgba(0,0,0,.28);
+  }
+}

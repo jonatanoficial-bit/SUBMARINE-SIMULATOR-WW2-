@@ -1,8 +1,12 @@
-# Submarine Commander WW2 — v2.0.0-alpha.13
+# Submarine Commander WW2 — v2.0.0-alpha.18
+
+Fase 18: Periscópio Realista e Estimativa Óptica.
+
+# Submarine Commander WW2 — v2.0.0-alpha.14
 
 Fase 13 adiciona Comando Naval Estratégico e Inteligência sobre a base real da Fase 12, preservando carreira, logística, campanhas independentes e núcleo homologado.
 
-# Submarine Commander WW2 — v2.0.0-alpha.13
+# Submarine Commander WW2 — v2.0.0-alpha.14
 
 Fase 12: Carreira Estratégica e Logística. Esta build usa a Fase 11 real como base e adiciona carreira persistente, patentes nacionais, medalhas, histórico de patrulhas, suprimentos, planejamento de saída, moral, fadiga e prontidão operacional.
 
@@ -63,3 +67,16 @@ A Fase 11 permanece bloqueada. A Fase 10.3 aprofunda ambiente marítimo, perisc�
 ## Realismo operacional da Fase 10.3
 
 O ambiente, os sensores e o periscópio compartilham o mesmo estado determinístico. Uma leitura de hidrofone não apaga mais uma solução precisa recém-obtida por periscópio, radar ou sonar ativo. O autosave preserva ambiente, histórico de contato e instrumentação.
+
+
+## Fase 14 — Ponte Imersiva Mobile
+
+A build agora inclui uma tela `Ponte` com instrumentos vivos de profundidade, velocidade, pressão do casco, oxigênio, bateria, ruído, detecção, lastro e trim. A interface foi priorizada para celular em tela cheia horizontal e prepara a base para flutuabilidade realista nas próximas fases.
+
+
+## v2.0.0-alpha.20 — Fase 19
+TDC / controle de fogo realista com solução de disparo, risco e padrão de salva.
+
+
+## Phase 20 — Mobile Scroll Stabilization
+Gameplay mobile scroll was stabilized: measurement dashboard and station tabs are no longer sticky/fixed over the rest of the content.

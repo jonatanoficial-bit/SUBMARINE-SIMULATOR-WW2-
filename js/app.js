@@ -18,6 +18,7 @@ import { renderLobby } from './screens/lobby.js';
 import { renderCampaign } from './screens/campaign.js';
 import { renderCareer } from './screens/career.js';
 import { renderStrategy } from './screens/strategy.js';
+import { renderBridge, mountBridge, cleanupBridge } from './screens/bridge.js';
 import { renderArsenal } from './screens/arsenal.js';
 import { renderCrew } from './screens/crew.js';
 import { renderSettings } from './screens/settings.js';
@@ -46,6 +47,7 @@ const SCREEN_BACKGROUNDS = {
   campaign: 'strategy_room_alt',
   career: 'strategy_room_alt',
   strategy: 'strategy_room_alt',
+  bridge: 'submarine_control_room',
   briefing: 'briefing_room',
   gameplay: 'submarine_control_room',
   arsenal: 'arsenal_workshop',
@@ -53,6 +55,13 @@ const SCREEN_BACKGROUNDS = {
   settings: 'submarine_control_room',
   profiles: 'strategy_room_alt'
 };
+
+const BACKGROUND_MODE = {
+  gameplay: 'none',
+  bridge: 'local'
+};
+
+const LOCAL_ASSET_SCREENS = new Set(['bridge', 'gameplay']);
 
 function nationById(id) { return state.data.nations.find((item) => item.id === id); }
 function submarinesByNation(id) {
@@ -306,8 +315,13 @@ function showToast(message) {
 }
 
 function setBackground(screen) {
-  document.body.dataset.background = SCREEN_BACKGROUNDS[screen] || 'naval_base_lobby';
-  document.querySelector('.app-background').style.backgroundImage = `url(assets/backgrounds/${document.body.dataset.background}.png)`;
+  const backgroundKey = SCREEN_BACKGROUNDS[screen] || 'naval_base_lobby';
+  const mode = BACKGROUND_MODE[screen] || 'global';
+  document.body.dataset.background = backgroundKey;
+  document.body.dataset.backgroundMode = mode;
+  document.body.dataset.localAssetScreen = LOCAL_ASSET_SCREENS.has(screen) ? 'true' : 'false';
+  const appBackground = document.querySelector('.app-background');
+  if (appBackground) appBackground.style.backgroundImage = `url(assets/backgrounds/${backgroundKey}.png)`;
 }
 function updateFooter() { buildFooter.textContent = renderBuildFooter(t); }
 function syncPersistentSettings() { saveSettings(state.settings); setAudioLevels(state.settings); }
@@ -596,7 +610,7 @@ function initEvents() {
     playSfx('tap');
     const nav = target.dataset.nav;
     if (nav) {
-      if (nav !== 'settings' && !state.save && ['lobby', 'campaign', 'career', 'strategy', 'briefing', 'arsenal', 'crew', 'gameplay'].includes(nav)) { showToast(t('menu.noSave')); return; }
+      if (nav !== 'settings' && !state.save && ['lobby', 'campaign', 'career', 'strategy', 'bridge', 'briefing', 'arsenal', 'crew', 'gameplay'].includes(nav)) { showToast(t('menu.noSave')); return; }
       setScreen(nav); render(); return;
     }
     switch (target.dataset.action) {
@@ -813,6 +827,11 @@ sceneManager
   .register('campaign', { render: ({ t: translate, nation }) => renderCampaign(translate, missionsForNation(), getSelectedMission(), getCampaignForNation(), nation, getCampaignProgress()) })
   .register('career', { render: ({ t: translate, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans }) => renderCareer(translate, state.save, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans) })
   .register('strategy', { render: ({ t: translate, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment }) => renderStrategy(translate, state.save, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment) })
+  .register('bridge', {
+    render: ({ t: translate, nation, submarine, mission, readiness, strategicAssessment }) => renderBridge(translate, state.save, nation, submarine, mission, readiness, strategicAssessment),
+    enter: ({ app: root, t: translate, nation, submarine, mission, readiness, strategicAssessment }) => mountBridge({ app: root, t: translate, save: state.save, nation, submarine, mission, readiness, strategicAssessment }),
+    exit: cleanupBridge,
+  })
   .register('briefing', { render: ({ t: translate, mission, readiness }) => renderBriefing(translate, mission, state.operationAutosave, getCampaignForNation(mission?.nationId), state.save?.logistics?.activePlan || null, readiness) })
   .register('gameplay', {
     render: ({ t: translate, mission }) => renderGameplay(translate, mission, state.settings),

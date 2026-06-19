@@ -1,0 +1,93 @@
+/* Phase 18 — realistic periscope optics and target estimation */
+.periscope-data-ribbon {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.phase18-periscope-solution {
+  position: absolute;
+  z-index: 16;
+  left: 50%;
+  bottom: 8.5%;
+  transform: translateX(-50%);
+  width: min(86%, 720px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  pointer-events: none;
+}
+.phase18-periscope-solution > div {
+  min-width: 0;
+  padding: 8px 9px;
+  border-radius: 10px;
+  border: 1px solid rgba(123, 217, 235, .18);
+  background: linear-gradient(180deg, rgba(3, 18, 27, .78), rgba(1, 9, 15, .88));
+  box-shadow: inset 0 0 18px rgba(57, 175, 210, .05);
+}
+.phase18-periscope-solution span {
+  display: block;
+  color: rgba(188, 226, 235, .68);
+  font-size: .52rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.phase18-periscope-solution strong {
+  display: block;
+  margin-top: 4px;
+  color: #e9fbff;
+  font-size: .72rem;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.phase18-periscope-solution [data-state="warning"],
+.periscope-data-ribbon [data-state="warning"] {
+  color: #ffd36f !important;
+}
+.phase18-periscope-solution [data-state="critical"],
+.periscope-data-ribbon [data-state="critical"] {
+  color: #ff8f7e !important;
+  text-shadow: 0 0 10px rgba(255, 84, 70, .34);
+}
+.periscope-crosshair-css .range-mark {
+  box-shadow: 0 0 10px rgba(120, 230, 255, .22);
+}
+.periscope-window::after {
+  content: "";
+  position: absolute;
+  z-index: 15;
+  inset: 7%;
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(168, 242, 255, .14) 50%, transparent 50.2%),
+    linear-gradient(180deg, transparent 49.8%, rgba(168, 242, 255, .14) 50%, transparent 50.2%),
+    repeating-radial-gradient(circle, transparent 0 38px, rgba(168, 242, 255, .075) 39px 40px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.periscope-lock.active {
+  background: rgba(34, 95, 52, .72);
+  border-color: rgba(139, 255, 177, .44);
+}
+@media (max-width: 720px) {
+  .periscope-data-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phase18-periscope-solution {
+    bottom: 7.2%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 90%;
+  }
+  .phase18-periscope-solution > div { padding: 6px 7px; }
+}
+@media (orientation: landscape) and (max-height: 540px) {
+  .phase18-periscope-solution {
+    right: 8px;
+    left: auto;
+    bottom: 8px;
+    transform: none;
+    width: min(34vw, 260px);
+    grid-template-columns: 1fr;
+  }
+  .phase18-periscope-solution > div {
+    padding: 5px 6px;
+  }
+  .phase18-periscope-solution span { font-size: .45rem; }
+  .phase18-periscope-solution strong { font-size: .62rem; }
+}

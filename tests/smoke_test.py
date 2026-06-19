@@ -29,13 +29,13 @@ MODULE_ORDER = [
     "js/engine/entities/Entity.js", "js/engine/entities/SubmarineEntity.js", "js/engine/entities/ShipEntity.js",
     "js/engine/simulation/SimulationEngine.js", "js/engine/scenes/SceneManager.js",
     "js/screens/splash.js", "js/screens/mainMenu.js", "js/screens/commander.js",
-    "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/career.js", "js/screens/strategy.js", "js/screens/arsenal.js", "js/screens/crew.js",
+    "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/career.js", "js/screens/strategy.js", "js/screens/bridge.js", "js/screens/arsenal.js", "js/screens/crew.js",
     "js/screens/settings.js", "js/screens/profiles.js", "js/screens/briefing.js", "js/screens/gameplay.js", "js/app.js",
 ]
 CSS_ORDER = [
     "css/reset.css", "css/variables.css", "css/base.css", "css/layout.css", "css/components.css",
     "css/screens.css", "css/responsive.css", "css/phase2-responsive.css", "css/phase3-engine.css",
-    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase13-strategic-command.css",
+    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase13-strategic-command.css", "css/phase14-bridge-instruments.css",
 ]
 
 
@@ -116,7 +116,7 @@ def main() -> int:
     try:
         harness = build_harness()
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(headless=True, executable_path=os.getenv("CHROMIUM_PATH", "/usr/bin/chromium"))
+            browser = pw.chromium.launch(headless=True, executable_path=os.getenv("CHROMIUM_PATH", "/usr/bin/chromium"), args=["--disable-gpu", "--disable-gpu-compositing", "--disable-accelerated-2d-canvas", "--disable-dev-shm-usage", "--use-gl=swiftshader"])
 
             phone = browser.new_context(viewport={"width": 360, "height": 640}, device_scale_factor=1, is_mobile=True, has_touch=True)
             page = phone.new_page()

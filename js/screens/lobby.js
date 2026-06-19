@@ -74,6 +74,10 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
             <img class="action-icon" src="assets/ui/icons/icon_navigation.png" alt="">
             <div><div class="action-title">${t('nav.strategy')}</div><div class="action-subtitle">${t('strategy.subtitle')}</div></div>
           </button>
+          <button class="action-card" data-nav="bridge">
+            <img class="action-icon" src="assets/ui/icons/icon_submarine.png" alt="">
+            <div><div class="action-title">${t('nav.bridge')}</div><div class="action-subtitle">${t('bridge.subtitle')}</div></div>
+          </button>
           <button class="action-card" data-nav="arsenal">
             <img class="action-icon" src="assets/ui/icons/icon_submarine.png" alt="">
             <div><div class="action-title">${t('nav.arsenal')}</div><div class="action-subtitle">${t('arsenal.subtitle')}</div></div>

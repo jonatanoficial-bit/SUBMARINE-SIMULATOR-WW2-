@@ -1,0 +1,76 @@
+/* Phase 19 — Torpedo Data Computer / realistic fire-control solution */
+.phase19-tdc-solution {
+  display: grid;
+  grid-template-columns: minmax(116px, .36fr) minmax(0, .64fr);
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgba(236, 197, 102, .18);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(26, 24, 16, .78), rgba(7, 12, 16, .88));
+}
+.phase19-tdc-solution[data-state="safe"] { border-color: rgba(98, 228, 165, .34); box-shadow: inset 0 0 26px rgba(64, 218, 158, .06); }
+.phase19-tdc-solution[data-state="warning"] { border-color: rgba(245, 199, 91, .42); box-shadow: inset 0 0 26px rgba(245, 199, 91, .06); }
+.phase19-tdc-solution[data-state="critical"] { border-color: rgba(255, 91, 79, .34); box-shadow: inset 0 0 26px rgba(255, 91, 79, .06); }
+.phase19-tdc-plot {
+  position: relative;
+  min-height: 128px;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(105, 220, 190, .12), transparent 42%),
+    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    rgba(4, 13, 18, .86);
+  background-size: auto, 22px 22px, 22px 22px, auto;
+  border: 1px solid rgba(130, 212, 224, .14);
+}
+.phase19-tdc-plot strong {
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  z-index: 2;
+  color: rgba(245, 229, 180, .82);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.tdc-plot-line { position: absolute; left: 50%; top: 50%; width: 4px; border-radius: 99px; transform-origin: 50% 100%; }
+.tdc-plot-line.ownship { height: 46px; background: #9cf1ff; transform: translate(-50%, -100%) rotate(0deg); box-shadow: 0 0 12px rgba(156,241,255,.35); }
+.tdc-plot-line.target { height: 60px; background: #f7df91; transform: translate(-50%, -100%) rotate(72deg); box-shadow: 0 0 12px rgba(247,223,145,.35); }
+.tdc-plot-line.torpedo { height: 70px; background: #ff8e61; transform: translate(-50%, -100%) rotate(var(--tdc-gyro, 0deg)); box-shadow: 0 0 14px rgba(255,142,97,.46); }
+.phase19-tdc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.phase19-tdc-grid > div {
+  min-width: 0;
+  padding: 8px 9px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0, 0, 0, .22);
+}
+.phase19-tdc-grid span {
+  display: block;
+  color: rgba(226, 214, 178, .68);
+  font-size: .58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.phase19-tdc-grid strong {
+  display: block;
+  margin-top: 4px;
+  color: #fff5cf;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .83rem;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 720px) {
+  .phase19-tdc-solution { grid-template-columns: 1fr; }
+  .phase19-tdc-plot { min-height: 92px; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .phase19-tdc-solution { grid-template-columns: minmax(90px, .32fr) minmax(0, .68fr); gap: 7px; padding: 7px; }
+  .phase19-tdc-plot { min-height: 86px; }
+  .phase19-tdc-grid { gap: 5px; }
+  .phase19-tdc-grid > div { padding: 5px 6px; }
+  .phase19-tdc-grid span { font-size: .46rem; }
+  .phase19-tdc-grid strong { font-size: .68rem; }
+}

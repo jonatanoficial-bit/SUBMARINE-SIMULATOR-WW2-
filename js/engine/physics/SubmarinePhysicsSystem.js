@@ -34,6 +34,32 @@ function deriveConfiguration(submarine = {}) {
   };
 }
 
+function depthZoneFor(depth, config) {
+  if (depth <= config.surfaceDepth) return 'surface';
+  if (depth <= 18) return 'periscope';
+  if (depth <= config.maxOperationalDepth * 0.55) return 'patrol';
+  if (depth <= config.maxOperationalDepth) return 'deep';
+  if (depth <= config.crushDepth) return 'overdepth';
+  return 'collapse';
+}
+
+function buoyancyStateFor(verticalSpeed) {
+  if (verticalSpeed > 0.12) return 'negative';
+  if (verticalSpeed < -0.12) return 'positive';
+  return 'neutral';
+}
+
+function depthEnvelope(depth, config) {
+  return {
+    surfaceDepth: config.surfaceDepth,
+    periscopeDepth: 14,
+    tacticalDepth: Math.round(config.maxOperationalDepth * 0.55),
+    maxOperationalDepth: config.maxOperationalDepth,
+    crushDepth: config.crushDepth,
+    depthZone: depthZoneFor(depth, config)
+  };
+}
+
 export class SubmarinePhysicsSystem {
   constructor({ submarine = null, initialDepth = 12, initialSnapshot = null } = {}) {
     this.config = deriveConfiguration(submarine || {});
@@ -64,6 +90,12 @@ export class SubmarinePhysicsSystem {
       emergencyBlowCooldownMs: 0,
       criticalFlags: [],
       status: 'normal',
+      reserveBuoyancy: 50,
+      buoyancyState: 'neutral',
+      depthZone: depthZoneFor(depth, this.config),
+      pressureEnvelope: depthEnvelope(depth, this.config),
+      ascentRate: 0,
+      descentRate: 0,
     };
     this.pendingDamage = [];
     this.pressureDamageAccumulator = 0;
@@ -92,6 +124,9 @@ export class SubmarinePhysicsSystem {
     this.state.hullStress = safe('hullStress', 0, 0, 100);
     this.state.simulatedElapsedMs = Math.max(0, Number(source.simulatedElapsedMs) || 0);
     this.state.emergencyBlowCooldownMs = Math.max(0, Number(source.emergencyBlowCooldownMs) || 0);
+    this.state.reserveBuoyancy = safe('reserveBuoyancy', this.state.reserveBuoyancy ?? 50, 0, 100);
+    this.state.depthZone = typeof source.depthZone === 'string' ? source.depthZone : depthZoneFor(this.state.depth, this.config);
+    this.state.buoyancyState = typeof source.buoyancyState === 'string' ? source.buoyancyState : buoyancyStateFor(this.state.verticalSpeed);
     this.recalculateDerived(source.telegraphSpeed || 'stop', { engines: 100 }, Boolean(source.silentRunning));
     return true;
   }
@@ -187,6 +222,13 @@ export class SubmarinePhysicsSystem {
     this.state.noise = clamp((PHYSICS_SPEED_NOISE[telegraphSpeed] + this.state.cavitation * 0.52 + pumpNoise + verticalNoise + damageNoise) * this.config.acousticFactor * silentFactor, 0, 100);
 
     this.state.pressurePercent = clamp((this.state.depth / this.config.maxOperationalDepth) * 100, 0, 180);
+    this.state.depthZone = depthZoneFor(this.state.depth, this.config);
+    this.state.buoyancyState = buoyancyStateFor(this.state.verticalSpeed);
+    this.state.ascentRate = clamp(-this.state.verticalSpeed, 0, 5);
+    this.state.descentRate = clamp(this.state.verticalSpeed, 0, 5);
+    this.state.pressureEnvelope = depthEnvelope(this.state.depth, this.config);
+    const reservePenalty = (this.state.depth / Math.max(1, this.config.maxOperationalDepth)) * 22 + this.state.hullStress * 0.22;
+    this.state.reserveBuoyancy = clamp(100 - this.state.ballast + (this.state.surfaced ? 18 : 0) - reservePenalty, 0, 100);
     const flags = [];
     if (this.state.pressurePercent >= 100) flags.push('pressure');
     if (this.state.battery <= 15) flags.push('battery');

@@ -1,0 +1,129 @@
+/* Phase 20 — mobile scroll stabilization and no-overlay combat dashboard
+   Goal: the combat measurement dashboard must scroll with the page on mobile.
+   No gameplay panel may remain fixed/sticky over the rest of the content. */
+
+html,
+body {
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior-y: auto;
+}
+
+body[data-screen="gameplay"] {
+  height: auto !important;
+  min-height: 100dvh !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+}
+
+body[data-screen="gameplay"] .app-shell {
+  height: auto !important;
+  min-height: 100dvh !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+  scroll-behavior: auto !important;
+  padding-bottom: max(34px, env(safe-area-inset-bottom)) !important;
+}
+
+body[data-screen="gameplay"] .build-footer {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: min(calc(100vw - 16px), 760px) !important;
+  margin: 10px auto max(10px, env(safe-area-inset-bottom)) !important;
+  z-index: 2 !important;
+}
+
+body[data-screen="gameplay"] .gameplay-status-panel,
+body[data-screen="gameplay"] .station-tabs,
+body[data-screen="gameplay"] .simulation-core-strip,
+body[data-screen="gameplay"] .action-panel,
+body[data-screen="gameplay"] .mission-live-panel,
+body[data-screen="gameplay"] .instrument-grid,
+body[data-screen="gameplay"] .physics-panel,
+body[data-screen="gameplay"] .sensor-panel,
+body[data-screen="gameplay"] .navigation-panel,
+body[data-screen="gameplay"] .naval-ai-panel,
+body[data-screen="gameplay"] .damage-control-panel {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  z-index: auto !important;
+}
+
+body[data-screen="gameplay"] .gameplay-status-panel {
+  display: block !important;
+  transform: none !important;
+  contain: layout paint;
+  margin-bottom: 10px;
+  backdrop-filter: none !important;
+}
+
+body[data-screen="gameplay"] .station-tabs {
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+body[data-screen="gameplay"] .gameplay-screen,
+body[data-screen="gameplay"] .gameplay-console-grid,
+body[data-screen="gameplay"] .panel,
+body[data-screen="gameplay"] .panel-body {
+  touch-action: pan-y pinch-zoom;
+}
+
+body[data-screen="gameplay"] #open-periscope {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  z-index: auto !important;
+}
+
+body[data-screen="gameplay"] .top-quick-periscope {
+  margin-bottom: 10px;
+}
+
+/* The periscope itself still needs drag gestures while the modal is open. */
+body[data-screen="gameplay"] .periscope-modal {
+  position: fixed !important;
+  touch-action: none;
+}
+body[data-screen="gameplay"] .periscope-window { touch-action: none; }
+
+@media (max-width: 700px) {
+  body[data-screen="gameplay"] .app-shell {
+    width: calc(100vw - 10px) !important;
+    padding-top: max(4px, env(safe-area-inset-top)) !important;
+  }
+  body[data-screen="gameplay"] .gameplay-status-panel {
+    display: block !important;
+    max-height: none !important;
+  }
+  body[data-screen="gameplay"] .gameplay-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-screen="gameplay"] .gameplay-kpis .stat-box {
+    min-height: 58px;
+  }
+}
+
+@media (max-width: 420px) {
+  body[data-screen="gameplay"] .gameplay-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  body[data-screen="gameplay"] .gameplay-kpis .stat-label { font-size: 7px; }
+  body[data-screen="gameplay"] .gameplay-kpis .stat-value { font-size: 13px; }
+}

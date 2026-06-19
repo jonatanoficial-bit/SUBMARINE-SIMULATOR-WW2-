@@ -1,4 +1,39 @@
 
+## v2.0.0-alpha.20 — Fase 20 — Mobile Scroll Stabilization
+- Corrigido painel de medições da sala de combate que ficava preso/sobreposto no mobile.
+- Gameplay voltou ao fluxo natural da página para rolagem com dedo.
+- Mantido periscópio fixo somente enquanto o modal está aberto.
+- Preservadas Fases 15–19.
+
+## v2.0.0-alpha.19 — Fase 19 TDC / Controle de Fogo Realista
+- Triângulo de ataque, lead angle, tempo até impacto, risco de disparo e disciplina de fogo.
+- Integra periscópio, sonar/hidrofone, alvo e torpedo ao painel TDC.
+
+# v2.0.0-alpha.18 — Fase 18: Periscópio Realista
+
+- Envelope de profundidade do periscópio.
+- Qualidade óptica, rastro do mastro, estimativa de distância/velocidade e janela de erro.
+- UI de periscópio aprimorada para mobile.
+
+## v2.0.0-alpha.16 — Fase 16 — Lastro e Flutuabilidade Realista
+
+- Adiciona envelope de profundidade e zona operacional.
+- Adiciona reserva de flutuabilidade e estado de flutuabilidade.
+- Amplia o painel da Ponte e da Central de Física.
+- Mantém assets internos da Fase 15 e navegação sem fundo decorativo.
+
+
+## v2.0.0-alpha.14 — Fase 14 — Ponte Imersiva Mobile e Instrumentos Vivos
+
+- Adicionada nova tela `Ponte` com central de comando imersiva.
+- Criados medidores digitais e ponteiros simulados para profundidade, velocidade e pressão.
+- Adicionados instrumentos vivos para oxigênio, bateria, ruído, detecção, lastro, trim e casco.
+- Adicionados modos superfície, cruzeiro, silêncio total, profundidade e mergulho de emergência.
+- Atualizado menu inferior para incluir a ponte sem remover campanhas, carreira, logística ou estratégia.
+- Atualizados PT-BR, EN e ES.
+- Incluídos teste e auditoria próprios da Fase 14.
+
+
 ## v2.0.0-alpha.13 — Fase 13: Comando Naval Estratégico e Inteligência
 
 - Adicionada tela Estratégia com rotas de comboio, diretrizes e rede de inteligência.

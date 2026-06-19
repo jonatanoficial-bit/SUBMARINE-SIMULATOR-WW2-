@@ -1,0 +1,105 @@
+/* Phase 17 — Immersive sonar and hydrophone room */
+.sensor-panel {
+  background:
+    linear-gradient(180deg, rgba(3,11,17,.92), rgba(2,7,11,.96)),
+    radial-gradient(circle at 35% 0%, rgba(74,180,206,.12), transparent 34%);
+}
+.sensor-panel-header {
+  background: linear-gradient(90deg, rgba(14,70,86,.28), transparent);
+}
+.sensor-scope {
+  box-shadow: inset 0 0 60px rgba(15,215,238,.08), 0 18px 38px rgba(0,0,0,.24);
+}
+.phase17-waterfall {
+  min-height: 148px;
+  background:
+    linear-gradient(90deg, transparent 16.4%, rgba(89,203,222,.10) 16.7%, transparent 17%, transparent 33%, rgba(89,203,222,.13) 33.3%, transparent 33.6%, transparent 49.8%, rgba(89,203,222,.15) 50%, transparent 50.2%, transparent 66.4%, rgba(89,203,222,.13) 66.7%, transparent 67%, transparent 83%, rgba(89,203,222,.10) 83.3%, transparent 83.6%),
+    linear-gradient(180deg, rgba(1,24,34,.98), rgba(0,7,13,.99));
+}
+.phase17-waterfall::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(101,234,255,.08), transparent 18%, rgba(101,234,255,.04) 50%, transparent 82%);
+  mix-blend-mode: screen;
+}
+.sonar-room-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 8px;
+}
+.sonar-room-status-grid > div,
+.sonar-room-board-grid > div {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(101,214,232,.16);
+  background: rgba(4,22,31,.66);
+}
+.sonar-room-status-grid span,
+.sonar-room-board-grid span {
+  display:block;
+  font-size: .62rem;
+  color: rgba(200,234,241,.66);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 800;
+}
+.sonar-room-status-grid strong,
+.sonar-room-board-grid strong {
+  display:block;
+  margin-top: 5px;
+  color: #e7fcff;
+  font-size: .78rem;
+  overflow-wrap: anywhere;
+}
+.sonar-room-acoustic-board {
+  display:grid;
+  gap:9px;
+  padding: 11px;
+  border-radius: 14px;
+  border: 1px solid rgba(107,214,233,.14);
+  background:
+    linear-gradient(180deg, rgba(7,25,34,.74), rgba(2,11,18,.88)),
+    radial-gradient(circle at top, rgba(98,214,235,.12), transparent 52%);
+}
+.sonar-room-board-title {
+  color: var(--gold-strong);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 900;
+}
+.sonar-room-board-grid {
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 8px;
+}
+.sonar-listen-button {
+  border-color: rgba(110,225,244,.28);
+  background: linear-gradient(180deg, rgba(10,42,55,.96), rgba(5,18,27,.98));
+}
+.sensor-contact-card {
+  position: relative;
+  overflow: hidden;
+}
+.sensor-contact-card::before {
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(101,230,255,.85), transparent);
+  opacity: .62;
+}
+@media (max-width: 720px) {
+  .sonar-room-status-grid,
+  .sonar-room-board-grid { grid-template-columns: 1fr; }
+  .phase17-waterfall { min-height: 118px; }
+}
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 960px) {
+  .phase17-waterfall { min-height: 82px; }
+  .sonar-room-status-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap:5px; }
+  .sonar-room-status-grid > div { padding:6px; }
+  .sonar-room-acoustic-board { display:none; }
+}

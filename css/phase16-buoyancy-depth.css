@@ -1,0 +1,65 @@
+/* Phase 16 — realistic ballast, buoyancy and depth safety envelope */
+
+.phase16-depth-envelope {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(6,15,22,.72), rgba(3,8,13,.86)),
+    linear-gradient(90deg, rgba(105,224,255,.08), transparent 42%, rgba(255,205,110,.08));
+  border: 1px solid rgba(138,206,230,.16);
+}
+
+.phase16-depth-envelope > div {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.065);
+}
+
+.phase16-depth-envelope span {
+  display: block;
+  color: rgba(230,241,255,.64);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.phase16-depth-envelope strong {
+  display: block;
+  margin-top: 5px;
+  color: #e9fbff;
+  font-size: 14px;
+  line-height: 1.12;
+}
+
+.phase16-depth-envelope[data-depth-zone="overdepth"],
+.phase16-depth-envelope[data-depth-zone="collapse"] {
+  border-color: rgba(255,93,73,.35);
+  box-shadow: inset 0 0 32px rgba(255,48,36,.08), 0 0 22px rgba(255,48,36,.08);
+}
+
+.physics-readout-grid .physics-readout:nth-child(9),
+.physics-readout-grid .physics-readout:nth-child(10),
+.physics-readout-grid .physics-readout:nth-child(11) {
+  border-color: rgba(116, 223, 255, .20);
+  background: linear-gradient(180deg, rgba(5,30,41,.60), rgba(3,16,25,.72));
+}
+
+.physics-readout-grid .physics-readout strong[id="physics-depth-zone"],
+.physics-readout-grid .physics-readout strong[id="physics-reserve-buoyancy"],
+.physics-readout-grid .physics-readout strong[id="physics-buoyancy-state"] {
+  color: #dff9ff;
+}
+
+@media (max-width: 760px) {
+  .phase16-depth-envelope { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 420px) {
+  .phase16-depth-envelope { grid-template-columns: 1fr; }
+}
