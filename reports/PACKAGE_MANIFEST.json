@@ -1,14 +1,14 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.23",
-  "phase": "23",
-  "phaseName": "Living Crew, Watch Rotation and Operational Readiness",
-  "buildId": "SCWW2-20260620-1245-BRT-F23",
+  "version": "v2.0.0-alpha.24",
+  "phase": "24",
+  "phaseName": "Ocean, Weather, Visibility and Patrol Conditions",
+  "buildId": "SCWW2-20260620-1535-BRT-F24",
   "qaStatus": "PASS",
-  "generatedAt": "2026-06-20T15:16:06.055684+00:00",
-  "fileCount": 528,
-  "totalBytes": 68423877,
+  "generatedAt": "2026-06-20T15:44:48.532124+00:00",
+  "fileCount": 537,
+  "totalBytes": 68523110,
   "hashAlgorithm": "SHA-256",
   "files": [
     {
@@ -38,13 +38,13 @@
     },
     {
       "path": "BUILD_INFO.json",
-      "bytes": 734,
-      "sha256": "e4025620770179ff33329c3d3545f3725d65b61f2816a1f8bcc3f51d0c0b579b"
+      "bytes": 719,
+      "sha256": "733f230be17e19a1bde0d68bf1b3bf95f0d6663093e03d0a9a346832e00f1a2f"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 15977,
-      "sha256": "977e0ad7bfb01455e1bb538cc584282af5eb6de0530fd55f679db19bc603da13"
+      "bytes": 16462,
+      "sha256": "35c9c6b2d21b5bf3112b075b25720358545bac87249098377176fe4be06a794b"
     },
     {
       "path": "DEPLOY_GITHUB_PAGES.md",
@@ -150,6 +150,11 @@
       "path": "KNOWN_ISSUES_PHASE_23.md",
       "bytes": 287,
       "sha256": "4178397f20e319fc0178a6b2f3ba45d44bcdc6a8b0b259fcf664ba7ba0419ee3"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_24.md",
+      "bytes": 145,
+      "sha256": "3fdd41d1ab1e9e97409fca5e97b36bd9c117a6f3de35648ae90d3ae399c1a2fc"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_3.md",
@@ -280,6 +285,11 @@
       "path": "PHASE_23_DELIVERY_REPORT.md",
       "bytes": 482,
       "sha256": "9d1195abe336a2ad4b0daef115e4e15722d1b814be9995e7e2251afed720f721"
+    },
+    {
+      "path": "PHASE_24_DELIVERY_REPORT.md",
+      "bytes": 220,
+      "sha256": "b3e42689c1dd8ccf969e777eca10642b7811693dca941f06cb6adb9e82a1550a"
     },
     {
       "path": "PHASE_2_DELIVERY_REPORT.md",
@@ -422,6 +432,11 @@
       "sha256": "13a954e6c8d22cd5eb3248ba288bfee3dbf04b9246735058f6737879e852b233"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_24.md",
+      "bytes": 241,
+      "sha256": "3e8a72ffcaea18976523877e89fa777abbf5fe1cbc94518581c9f33de91d9403"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_3.md",
       "bytes": 1046,
       "sha256": "18ccc80a8fadbb3f528aea9cee6ea8ec2cf649dc0c1aecc517703943e7415047"
@@ -459,7 +474,7 @@
     {
       "path": "README.md",
       "bytes": 4041,
-      "sha256": "64537be569f0aef2c100bd31390da468c79b9c8710c3b2ca5fcbaa7f096f5c08"
+      "sha256": "f6f529c59ae6b5188cc908e4f718814a7b68fb99f5a77f7350253415761d0ff8"
     },
     {
       "path": "RELEASE_NOTES_v2.0.0-alpha.01.md",
@@ -597,6 +612,11 @@
       "sha256": "75c3fb2632d539a90f88cef9094960bf53e42243f6ecc440c5b623b5ab752d6e"
     },
     {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.24.md",
+      "bytes": 131,
+      "sha256": "390f94b2c91bc12d9ef91de6af086be60ce7945088cf274cf191e1b03e51ac76"
+    },
+    {
       "path": "ROLLBACK_PHASE_1.md",
       "bytes": 808,
       "sha256": "d77a3375a4d5ef616665ada2e2f450a684e7968863a8cdad257703494f3d3197"
@@ -695,6 +715,11 @@
       "path": "ROLLBACK_PHASE_23.md",
       "bytes": 159,
       "sha256": "3f9fb5c8b1966339124c719519290f1ce7e96b3ba39f6358b42284f49680cf21"
+    },
+    {
+      "path": "ROLLBACK_PHASE_24.md",
+      "bytes": 108,
+      "sha256": "c3fe30c35794b26e3be1bcd3547e25102cce5b473b43f00559fd1fac532e3796"
     },
     {
       "path": "ROLLBACK_PHASE_3.md",
@@ -1192,6 +1217,11 @@
       "sha256": "861a4ebdf2f9a59627442107ec4cbd96bd03b146158b786e9f168d83bd82cb47"
     },
     {
+      "path": "css/phase24-ocean-weather.css",
+      "bytes": 1743,
+      "sha256": "5eea0ee05928c9b108b15a2c9be52fcdfb089de48663a7a4ed5d0edc8c662717"
+    },
+    {
       "path": "css/phase3-engine.css",
       "bytes": 851,
       "sha256": "fbcd4c3bf1d40af15d120e45c66c0cd3c2b211e5e9c907df9d869800f2049f24"
@@ -1283,18 +1313,18 @@
     },
     {
       "path": "data/translations/en.json",
-      "bytes": 76202,
-      "sha256": "f32389f85d420a7731a06da6c93ee06f15381eea4c7c68d0a01451d46da75397"
+      "bytes": 77068,
+      "sha256": "3eedf1f508fb0d66f629183ad21c7b2a565e25f50fd24e49b8c0b3c94710be4e"
     },
     {
       "path": "data/translations/es.json",
-      "bytes": 81364,
-      "sha256": "dadb469d75a3bd856018df05459ca435e5231673b65fe2f4da99d28330ed49e1"
+      "bytes": 82294,
+      "sha256": "7b681b4f218186edcf1839cb49aee3d6f049e2d74092e2d30b11ffe521207e7b"
     },
     {
       "path": "data/translations/pt-BR.json",
-      "bytes": 79887,
-      "sha256": "0ad0c6c5840b9f320ec2d2c9f126007b46587fa33183ce2a1fcbff1306e8a7fd"
+      "bytes": 80820,
+      "sha256": "af943c0d8b7a3a938f137701005d0f86caa681ec719a2c8f0f0b4ea3f0fd93f4"
     },
     {
       "path": "data/upgrades.json",
@@ -1393,8 +1423,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 3136,
-      "sha256": "8e16d5a61a1b9f615bd2f4d941c559cfda5c13903e52523a31ecf81f8db773d4"
+      "bytes": 3199,
+      "sha256": "080a0e2a097788c8b950b264dea4b6c78c49c1c7054bd728e4ea636f1481a680"
     },
     {
       "path": "js/app.js",
@@ -1413,8 +1443,8 @@
     },
     {
       "path": "js/build.js",
-      "bytes": 841,
-      "sha256": "750c7ac9c3432b87eddb73ffcb8a6de428ee4718ce9252b7d5dda70848a460c4"
+      "bytes": 826,
+      "sha256": "2cd75e6bd3de440cacc05f21f8ec7978512d6153f82967f0c07d9b697914fba5"
     },
     {
       "path": "js/components/ui.js",
@@ -1532,6 +1562,11 @@
       "sha256": "7cd05730df6d13bb4550d40ef2d40a8c06627584df7a6792659fafc6aca7eee7"
     },
     {
+      "path": "js/oceanWeather.js",
+      "bytes": 3011,
+      "sha256": "c57710ee1fc403b7bd52379ee3f710ed307be56a39fa3a52eeb0eec56a04f808"
+    },
+    {
       "path": "js/safety.js",
       "bytes": 6108,
       "sha256": "7ea3b9061ee04903efc154eb3fb3f84e5cabfdd046504d9ee332f700dbc02861"
@@ -1578,8 +1613,8 @@
     },
     {
       "path": "js/screens/gameplay.js",
-      "bytes": 153936,
-      "sha256": "a0566409a243e18f58aa30a8a1e39e72f9aec63014d07a401323ba25f952e72f"
+      "bytes": 156272,
+      "sha256": "13d9d5d7a5ee3338ecc405c97a2f88f3498279501336b6d4f0717b9170baf28f"
     },
     {
       "path": "js/screens/lobby.js",
@@ -1628,13 +1663,13 @@
     },
     {
       "path": "manifest.json",
-      "bytes": 781,
-      "sha256": "4862457fd6edbf78ccf9668255346e43e80b24eb95fd6dcfd860cf7b2d90a93f"
+      "bytes": 777,
+      "sha256": "45a0aa87e8a13598659a24979f543c5da111b72f4240aeb4ac6b457f62ff6fac"
     },
     {
       "path": "package.json",
-      "bytes": 2993,
-      "sha256": "b55138eb6640e8918eb0571d39ef3397cb7c701acdd5f3b979e73d1b3adb3633"
+      "bytes": 3106,
+      "sha256": "303fc609664a1093fdf7e56b80482f48851233ffc876ef2570779de9e5166742"
     },
     {
       "path": "reports/PHASE_10_1_AUDIT.md",
@@ -1873,8 +1908,8 @@
     },
     {
       "path": "reports/phase10_4_regression_smoke.json",
-      "bytes": 78160,
-      "sha256": "e46ed77dddc55b87ac709ec400ef53a61b2c8f78379cc02481260907d2fc8f90"
+      "bytes": 78157,
+      "sha256": "c80026b1a5e47dda44047d98b4e3a1adc478109b3bdb6ec9301be710e67b77b8"
     },
     {
       "path": "reports/phase10_4_stabilization_smoke.json",
@@ -2103,8 +2138,8 @@
     },
     {
       "path": "reports/screenshots/phase10_3_desktop_sensors.png",
-      "bytes": 335794,
-      "sha256": "f0896e1d16af717d383ba672a0f789cae6fb337d25a26d33224b4b5ef95b4298"
+      "bytes": 371829,
+      "sha256": "27278b806d40f867f90ccf38203154b182f1d68d561b7b89a1edcd85916302d0"
     },
     {
       "path": "reports/screenshots/phase10_3_mobile_periscope.png",
@@ -2133,23 +2168,23 @@
     },
     {
       "path": "reports/screenshots/phase10_phone_ai.png",
-      "bytes": 158909,
-      "sha256": "ebf83be838da67814b523bc0358e4d4bdfd78ccb5a172c6af7974eb7e6a28df1"
+      "bytes": 162020,
+      "sha256": "5ba39252063595689e64601a26101c16c5975a602933f5d178b2d74a4d009806"
     },
     {
       "path": "reports/screenshots/phase10_phone_damage.png",
-      "bytes": 353784,
-      "sha256": "b54421c0108942dea81728649cd6e5eb036fca0db649441fe8d3d13b00d82979"
+      "bytes": 356246,
+      "sha256": "0b9c069746fbf972974897eaa4d168c3f7625640fe59a088c8cc7b7025e7ef55"
     },
     {
       "path": "reports/screenshots/phase10_phone_physics.png",
-      "bytes": 132661,
-      "sha256": "a558e746af9a34e650d7400da58c3fe3d45a922771051a80f78dca975c36c922"
+      "bytes": 132900,
+      "sha256": "bf5fc3435054ae6dcd230803cbc2dbf5aa9d1f3f44bbbc8b9452b99e4c2d379a"
     },
     {
       "path": "reports/screenshots/phase10_phone_sensors.png",
-      "bytes": 293408,
-      "sha256": "06d391e3f02076f5ecf3822b602ff505ec61607c409e9de2b6de0848d7946d74"
+      "bytes": 334699,
+      "sha256": "4529d491831d6586bc7a0cd1d0fd68fc83ed4165adfac9b6ed16cacd5cf4e1bf"
     },
     {
       "path": "reports/screenshots/phase11_mobile_campaigns.png",
@@ -2373,8 +2408,8 @@
     },
     {
       "path": "service-worker.js",
-      "bytes": 6198,
-      "sha256": "40552cce19ff0247c3fc9336dc20ae0f73de694acfe9d7ff481939672c34af6f"
+      "bytes": 6261,
+      "sha256": "ffbe13bedc40f43a89c6255e29ddd0b8db7e7c650627b265089d68c1b17a3305"
     },
     {
       "path": "tests/bridge_instruments.test.js",
@@ -2394,7 +2429,7 @@
     {
       "path": "tests/career_logistics.test.js",
       "bytes": 3613,
-      "sha256": "a40cb5a73f32790023cf89927fd783ffd1a9ca8d6b1f2de5d15801ecf7a3553b"
+      "sha256": "4e87a8dc70c15ff8e2543dd81ba602fcc1e307b06867bf4bcea2cf79902bc2ca"
     },
     {
       "path": "tests/damage_control.test.js",
@@ -2434,7 +2469,7 @@
     {
       "path": "tests/periscope_room.test.js",
       "bytes": 2578,
-      "sha256": "ec5d56fbd69147eeb6ee6278f310ba3428be64ccfe435722ebf9f65fdc526460"
+      "sha256": "8cd17208fe1dd730ad846cd40d57778870329cf3cf80d2dfb1ea39362888ab34"
     },
     {
       "path": "tests/phase16_buoyancy.test.js",
@@ -2444,27 +2479,32 @@
     {
       "path": "tests/phase17_sonar_room.test.js",
       "bytes": 1622,
-      "sha256": "a69a22100e3a139ef5369fd170abb725e683f18568372a5244b06a0aae4ef238"
+      "sha256": "4eb333d50fce98e69d9f739175bf0eb9ceeb6f086dc64a7446a347c4158fb70a"
     },
     {
       "path": "tests/phase19_tdc_room.test.js",
       "bytes": 2910,
-      "sha256": "2ce8522561d47abefa4d7b2a909f80b33e3a0d4764e658ec56f667e636488c19"
+      "sha256": "c6fe5311b90f39f9e8a6ea02ce12c27b1407dfec2a72204bf62196882f6a4021"
     },
     {
       "path": "tests/phase20_mobile_scroll.test.js",
       "bytes": 1803,
-      "sha256": "f12c3a138c8cc115217f59178025802cf46beb70e4c69299cb64a8242cb4da05"
+      "sha256": "e183c5262440de5d219ed785120e0428a6acc59e2b2aded9505d30de707a77d0"
     },
     {
       "path": "tests/phase22_soundtrack.test.js",
       "bytes": 1932,
-      "sha256": "206911c19dc375b3e53868b687a725a6be46c611f457ead0cf09ce755611af1b"
+      "sha256": "38b2da9e9ebcc91560fc3248b4c85adc16c3dea6a31479eef674aad1d35ffc3e"
     },
     {
       "path": "tests/phase23_crew_readiness.test.js",
       "bytes": 2984,
-      "sha256": "9f46b155cae00fec3955790cccb0847ce2d591d0e2ca63b3e69edf671c221795"
+      "sha256": "672c1d7b984e3a5f6e012b5e46aa6f0c748de969b7c98a0bf7847d398037d979"
+    },
+    {
+      "path": "tests/phase24_ocean_weather.test.js",
+      "bytes": 2529,
+      "sha256": "ab01dc5ed7aa0f8624f514cfdaedb54ea47e4b184a54cf5c37676e871e69a7fc"
     },
     {
       "path": "tests/physics.test.js",
@@ -2483,8 +2523,8 @@
     },
     {
       "path": "tests/smoke_test.py",
-      "bytes": 34844,
-      "sha256": "4379f4b1a3d250bf42e63be7dd5f664dd24b306221410813861c42ccf18de0dd"
+      "bytes": 34899,
+      "sha256": "01c5c4a04fcc1bbf1f6ebfb9045acddd54fc689cc9f8404db15aa0c0b168c91a"
     },
     {
       "path": "tests/stabilization.test.js",
@@ -2499,7 +2539,7 @@
     {
       "path": "tests/strategic_command.test.js",
       "bytes": 3734,
-      "sha256": "989f68fbf001c79c15097aa4152eee0ad6e5ee304c16f8e255c93616baf875e2"
+      "sha256": "e2bdcaf2cad8e3981aa3c41cb34cde11ace68d754fac8f8a25d64ca8144749c9"
     },
     {
       "path": "tests/tactical_encounter.test.js",
@@ -2600,6 +2640,11 @@
       "path": "tools/audit_phase23.py",
       "bytes": 2238,
       "sha256": "a3214c171e39c43564d055fa8b85a1f2104917b39dc50225f00981c85bb2a0e6"
+    },
+    {
+      "path": "tools/audit_phase24.py",
+      "bytes": 2160,
+      "sha256": "13a80eba98304010d426b8810f6ac956ef648aec80ac5538e0b07d923888322c"
     },
     {
       "path": "tools/audit_project.py",

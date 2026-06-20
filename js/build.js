@@ -2,17 +2,17 @@
 export const BUILD_INFO = Object.freeze({
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.23",
-  "semver": "2.0.0-alpha.23",
-  "buildId": "SCWW2-20260620-1245-BRT-F23",
+  "version": "v2.0.0-alpha.24",
+  "semver": "2.0.0-alpha.24",
+  "buildId": "SCWW2-20260620-1535-BRT-F24",
   "date": "2026-06-20",
-  "time": "12:45",
+  "time": "15:35",
   "timezone": "America/Sao_Paulo",
-  "phase": "23",
-  "phaseName": "Living Crew, Watch Rotation and Operational Readiness",
+  "phase": "24",
+  "phaseName": "Ocean, Weather, Visibility and Patrol Conditions",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 6,
-  "notes": "Phase 23 preserves the official soundtrack and all prior simulator systems while adding living crew readiness, fatigue, morale, watch rotation and station coverage analysis. The crew screen now shows command readiness, sonar, navigation, repair and watch coverage with mobile-safe layout."
+  "notes": "Phase 24 preserves the official soundtrack, living crew readiness and mobile scroll hotfix while adding an ocean/weather tactical layer with sea severity, visibility cover, surface risk, sonar degradation, recommended depth and patrol advice integrated into the sensors station."
 });

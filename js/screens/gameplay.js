@@ -3,6 +3,7 @@ import { SimulationEngine } from '../engine/simulation/SimulationEngine.js';
 import { PERISCOPE_MAX_DEPTH, SPEED_ANGLES, SPEEDS, VIEW_STEP_X, VIEW_STEP_Y } from '../engine/simulation/constants.js';
 import { clamp, depthToAngle, worldToViewPosition } from '../engine/simulation/simulationMath.js';
 import { OperationalTraining } from '../engine/training/OperationalTraining.js';
+import { classifyOceanWeather } from '../oceanWeather.js';
 
 let cleanupFns = [];
 
@@ -358,6 +359,17 @@ export function renderGameplay(t, mission, settings = {}) {
             <div><span>${t('environment.wind')}</span><strong id="environment-wind">--</strong></div>
             <div><span>${t('environment.thermalLayer')}</span><strong id="environment-layer">--</strong></div>
             <div><span>${t('environment.ambientNoise')}</span><strong id="environment-noise">--</strong></div>
+          </div>
+          <div class="ocean-weather-panel" id="ocean-weather-panel">
+            <div class="ocean-weather-title">${t('ocean.title')}</div>
+            <div class="ocean-weather-grid">
+              <div><span>${t('ocean.severity')}</span><strong id="ocean-severity">--</strong></div>
+              <div><span>${t('ocean.cover')}</span><strong id="ocean-cover">--</strong></div>
+              <div><span>${t('ocean.surfaceRisk')}</span><strong id="ocean-surface-risk">--</strong></div>
+              <div><span>${t('ocean.sonarEffect')}</span><strong id="ocean-sonar-effect">--</strong></div>
+              <div><span>${t('ocean.recommendedDepth')}</span><strong id="ocean-recommended-depth">--</strong></div>
+              <div class="ocean-advice"><span>${t('ocean.advice')}</span><strong id="ocean-advice">--</strong></div>
+            </div>
           </div>
           <div class="sensor-scope-column">
             <div class="radar-stage sensor-scope" id="radar-stage">
@@ -952,6 +964,13 @@ export function mountGameplay({
     environmentWind: app.querySelector('#environment-wind'),
     environmentLayer: app.querySelector('#environment-layer'),
     environmentNoise: app.querySelector('#environment-noise'),
+    oceanWeatherPanel: app.querySelector('#ocean-weather-panel'),
+    oceanSeverity: app.querySelector('#ocean-severity'),
+    oceanCover: app.querySelector('#ocean-cover'),
+    oceanSurfaceRisk: app.querySelector('#ocean-surface-risk'),
+    oceanSonarEffect: app.querySelector('#ocean-sonar-effect'),
+    oceanRecommendedDepth: app.querySelector('#ocean-recommended-depth'),
+    oceanAdvice: app.querySelector('#ocean-advice'),
     hydrophoneWaterfall: app.querySelector('#hydrophone-waterfall'),
     hydrophoneListen: app.querySelector('#hydrophone-listen'),
     activeSonarPing: app.querySelector('#active-sonar-ping'),
@@ -1424,6 +1443,18 @@ export function mountGameplay({
     if (els.environmentLayer) els.environmentLayer.textContent = `${Math.round(environment.thermalLayerDepth)} m`;
     if (els.environmentNoise) els.environmentNoise.textContent = `${Math.round(environment.ambientNoise)}%`;
     if (els.hudEnvironment) els.hudEnvironment.textContent = `${t(`environment.light.${environment.lightCondition || 'day'}`)} · ${sea}/6`;
+    const ocean = classifyOceanWeather({ environment, physics: snapshot.physics || {}, sensors: snapshot.sensors || {} });
+    if (els.oceanWeatherPanel) {
+      els.oceanWeatherPanel.dataset.sea = ocean.seaBand;
+      els.oceanWeatherPanel.dataset.visibility = ocean.visibilityBand;
+      els.oceanWeatherPanel.dataset.storm = ocean.isStorm ? 'true' : 'false';
+    }
+    if (els.oceanSeverity) els.oceanSeverity.textContent = `${ocean.seaSeverity}% · ${t(`ocean.sea.${ocean.seaBand}`)}`;
+    if (els.oceanCover) els.oceanCover.textContent = `${ocean.coverScore}% · ${t(`ocean.visibility.${ocean.visibilityBand}`)}`;
+    if (els.oceanSurfaceRisk) els.oceanSurfaceRisk.textContent = `${ocean.surfaceRisk}%`;
+    if (els.oceanSonarEffect) els.oceanSonarEffect.textContent = `${ocean.sonarDegradation}%`;
+    if (els.oceanRecommendedDepth) els.oceanRecommendedDepth.textContent = `${ocean.recommendedDepth} m`;
+    if (els.oceanAdvice) els.oceanAdvice.textContent = t(ocean.adviceKey);
     if (els.environmentStrip) {
       els.environmentStrip.dataset.sea = sea >= 5 ? 'heavy' : sea >= 3 ? 'moderate' : 'calm';
       els.environmentStrip.dataset.light = environment.lightCondition || 'day';

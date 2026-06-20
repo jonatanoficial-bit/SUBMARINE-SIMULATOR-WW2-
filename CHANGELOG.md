@@ -324,3 +324,10 @@
 - Tela de Tripulação agora mostra cobertura de comando, sonar, navegação, avarias e vigia.
 - Layout mobile seguro preserva a correção de rolagem da Fase 20.
 - Trilha sonora oficial da Fase 22 preservada.
+
+## v2.0.0-alpha.24 — Fase 24 — Oceano, Clima e Condições de Patrulha
+
+- Adicionado painel de condições reais do oceano na estação de sensores.
+- Nova análise tática de mar, cobertura visual, risco na superfície, degradação de sonar e profundidade indicada.
+- Integração com clima, visibilidade, ruído ambiente, termoclina, profundidade e ruído próprio.
+- Preservadas Fase 23 Tripulação Viva, Fase 22 Trilha Sonora, Fase 21 Dano Interno e Fase 20 rolagem mobile.

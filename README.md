@@ -1,18 +1,18 @@
-# Submarine Commander WW2 — v2.0.0-alpha.23
+# Submarine Commander WW2 — v2.0.0-alpha.24
 
 Fase 21: dano interno, vazamentos, fumaça, entrada de pressão, estabilidade de compartimentos e controle de emergência.
 
 Esta build preserva as fases anteriores, incluindo a correção de rolagem mobile da Fase 20.
 
-# Submarine Commander WW2 — v2.0.0-alpha.23
+# Submarine Commander WW2 — v2.0.0-alpha.24
 
 Fase 18: Periscópio Realista e Estimativa Óptica.
 
-# Submarine Commander WW2 — v2.0.0-alpha.23
+# Submarine Commander WW2 — v2.0.0-alpha.24
 
 Fase 13 adiciona Comando Naval Estratégico e Inteligência sobre a base real da Fase 12, preservando carreira, logística, campanhas independentes e núcleo homologado.
 
-# Submarine Commander WW2 — v2.0.0-alpha.23
+# Submarine Commander WW2 — v2.0.0-alpha.24
 
 Fase 12: Carreira Estratégica e Logística. Esta build usa a Fase 11 real como base e adiciona carreira persistente, patentes nacionais, medalhas, histórico de patrulhas, suprimentos, planejamento de saída, moral, fadiga e prontidão operacional.
 

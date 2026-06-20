@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.23';
+const CACHE_VERSION = '2.0.0-alpha.24';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -38,6 +38,7 @@ const APP_SHELL = [
   './css/phase20-mobile-scroll.css',
   './css/phase21-damage-emergency.css',
   './css/phase23-crew-readiness.css',
+  './css/phase24-ocean-weather.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -46,6 +47,7 @@ const APP_SHELL = [
   './js/dataLoader.js',
   './js/safety.js',
   './js/audio.js',
+  './js/oceanWeather.js',
   './js/utils/sanitize.js',
   './js/components/ui.js',
   './js/engine/core/EventBus.js',
