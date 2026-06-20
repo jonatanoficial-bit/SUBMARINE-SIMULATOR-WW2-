@@ -501,6 +501,19 @@ export function renderGameplay(t, mission, settings = {}) {
               <div><span>${t('damage.crewDead')}</span><strong id="damage-crew-dead">0</strong></div>
               <div><span>${t('damage.criticalCompartments')}</span><strong id="damage-critical-count">0</strong></div>
             </div>
+            <div class="damage-emergency-grid">
+              <div><span>${t('damage.pressureIngress')}</span><strong id="damage-pressure-ingress">0%</strong><i><em id="damage-pressure-bar" style="width:0%"></em></i></div>
+              <div><span>${t('damage.smokeLoad')}</span><strong id="damage-smoke-load">0%</strong><i><em id="damage-smoke-bar" style="width:0%"></em></i></div>
+              <div><span>${t('damage.compartmentStability')}</span><strong id="damage-stability">100%</strong><i><em id="damage-stability-bar" style="width:100%"></em></i></div>
+              <div><span>${t('damage.emergencyPosture')}</span><strong id="damage-posture">Normal</strong></div>
+            </div>
+            <div class="damage-posture-controls">
+              <button class="chip damage-posture-chip" data-damage-posture="normal">${t('damage.posture.normal.short')}</button>
+              <button class="chip damage-posture-chip" data-damage-posture="brace">${t('damage.posture.brace.short')}</button>
+              <button class="chip damage-posture-chip" data-damage-posture="silent">${t('damage.posture.silent.short')}</button>
+              <button class="chip damage-posture-chip" data-damage-posture="evacuateForward">${t('damage.posture.evacuateForward.short')}</button>
+              <button class="chip damage-ventilation-chip" id="damage-ventilation">${t('damage.ventilate')}</button>
+            </div>
             <div class="damage-global-controls">
               <button class="button secondary" id="damage-doors-toggle">${t('damage.closeDoors')}</button>
               <button class="button secondary" id="damage-pumps-toggle">${t('damage.pumpsOn')}</button>
@@ -865,6 +878,14 @@ export function mountGameplay({
     damageCrewInjured: app.querySelector('#damage-crew-injured'),
     damageCrewDead: app.querySelector('#damage-crew-dead'),
     damageCriticalCount: app.querySelector('#damage-critical-count'),
+    damagePressureIngress: app.querySelector('#damage-pressure-ingress'),
+    damageSmokeLoad: app.querySelector('#damage-smoke-load'),
+    damageStability: app.querySelector('#damage-stability'),
+    damagePosture: app.querySelector('#damage-posture'),
+    damagePressureBar: app.querySelector('#damage-pressure-bar'),
+    damageSmokeBar: app.querySelector('#damage-smoke-bar'),
+    damageStabilityBar: app.querySelector('#damage-stability-bar'),
+    damageVentilation: app.querySelector('#damage-ventilation'),
     damageDoorsToggle: app.querySelector('#damage-doors-toggle'),
     damagePumpsToggle: app.querySelector('#damage-pumps-toggle'),
     damageEmergencyPower: app.querySelector('#damage-emergency-power'),
@@ -1730,6 +1751,15 @@ export function mountGameplay({
     setDamageMeter(els.damageTotalFire, els.damageFireBar, fire);
     setDamageMeter(els.damagePower, els.damagePowerBar, power, true);
     setDamageMeter(els.damageMorale, els.damageMoraleBar, morale, true);
+    setDamageMeter(els.damagePressureIngress, els.damagePressureBar, Number(damage.pressureIngress || 0));
+    setDamageMeter(els.damageSmokeLoad, els.damageSmokeBar, Number(damage.smokeLoad || 0));
+    setDamageMeter(els.damageStability, els.damageStabilityBar, Number(damage.compartmentStability ?? 100), true);
+    if (els.damagePosture) els.damagePosture.textContent = t(`damage.posture.${damage.emergencyPosture || 'normal'}.short`);
+    app.querySelectorAll('.damage-posture-chip').forEach((button) => {
+      button.classList.toggle('active', button.dataset.damagePosture === (damage.emergencyPosture || 'normal'));
+      button.disabled = snapshot.missionFailed;
+    });
+    if (els.damageVentilation) els.damageVentilation.disabled = snapshot.missionFailed || (!damage.mainPower && !damage.emergencyPower);
     if (els.damageCrewFit) els.damageCrewFit.textContent = String(damage.casualtyTotals?.fit || 0);
     if (els.damageCrewInjured) els.damageCrewInjured.textContent = String(damage.casualtyTotals?.injured || 0);
     if (els.damageCrewDead) els.damageCrewDead.textContent = String(damage.casualtyTotals?.dead || 0);
@@ -2204,6 +2234,8 @@ export function mountGameplay({
   bind(els.weaponsFire, 'click', () => commandHint(engine.fireTorpedo()));
   bind(els.openWeaponsStation, 'click', () => setStation('weapons'));
   bind(els.openDamageControl, 'click', () => setStation('damage'));
+  app.querySelectorAll('.damage-posture-chip').forEach((button) => bind(button, 'click', () => commandHint(engine.setDamageEmergencyPosture(button.dataset.damagePosture))));
+  bind(els.damageVentilation, 'click', () => commandHint(engine.runEmergencyVentilation()));
   bind(els.damageDoorsToggle, 'click', () => commandHint(engine.toggleWatertightDoors()));
   bind(els.damagePumpsToggle, 'click', () => commandHint(engine.toggleDamageControlPumps()));
   bind(els.damageEmergencyPower, 'click', () => commandHint(engine.toggleEmergencyPower()));

@@ -857,7 +857,7 @@ sceneManager
     exit: cleanupGameplay,
   })
   .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null) })
-  .register('crew', { render: ({ t: translate, nationCrew }) => renderCrew(translate, nationCrew, state.save?.crew.hiredIds || [], state.save?.progression.credits || 0) })
+  .register('crew', { render: ({ t: translate, nationCrew }) => renderCrew(translate, nationCrew, state.save?.crew.hiredIds || [], state.save?.progression.credits || 0, state.save || {}) })
   .register('settings', { render: ({ t: translate }) => renderSettings(translate, state.settings) })
   .register('profiles', { render: ({ t: translate }) => renderProfiles(translate, state.profiles, state.language, state.operationAutosave) });
 

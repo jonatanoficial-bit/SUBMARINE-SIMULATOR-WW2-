@@ -1,4 +1,22 @@
 
+## v2.0.0-alpha.22 — Phase 22 Official Soundtrack Playlist
+
+- Added six user-created MP3 tracks to assets/audio/music.
+- Added sequential playback: each song starts after the previous one ends.
+- Added automatic loop back to track 1 after track 6.
+- Preserved Phase 21 and mobile scroll fixes.
+
+# Changelog
+
+## v2.0.0-alpha.21 — Fase 21 — Dano Interno e Controle de Emergência
+- Adicionado sistema de entrada de pressão.
+- Adicionada fumaça interna derivada de incêndios e dano elétrico.
+- Adicionado índice de estabilidade dos compartimentos.
+- Adicionadas posturas de emergência: normal, contenção, silêncio e evacuar proa.
+- Adicionada ventilação de emergência.
+- Corrigida integração UI do painel de avarias sem quebrar rolagem mobile da Fase 20.
+
+
 ## v2.0.0-alpha.20 — Fase 20 — Mobile Scroll Stabilization
 - Corrigido painel de medições da sala de combate que ficava preso/sobreposto no mobile.
 - Gameplay voltou ao fluxo natural da página para rolagem com dedo.
@@ -297,3 +315,12 @@
 - Corrigido o estado de caça permanente após a destruição do alvo.
 - Periscópio passou a respeitar campo de visão e tempo de exposição do mastro.
 - Snapshot tático atualizado para v8 e IA naval para v2.
+
+
+## v2.0.0-alpha.23 — Fase 23 — Tripulação Viva e Prontidão Operacional
+
+- Adicionada avaliação de prontidão viva da tripulação.
+- Adicionados moral, fadiga, cobertura de postos, escala de quartos e recomendações do imediato.
+- Tela de Tripulação agora mostra cobertura de comando, sonar, navegação, avarias e vigia.
+- Layout mobile seguro preserva a correção de rolagem da Fase 20.
+- Trilha sonora oficial da Fase 22 preservada.

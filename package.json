@@ -1,15 +1,15 @@
 {
   "name": "submarine-commander-ww2",
   "private": true,
-  "version": "2.0.0-alpha.20",
+  "version": "2.0.0-alpha.23",
   "type": "module",
   "scripts": {
     "test:engine": "node --test tests/engine.test.js",
     "test:save": "node --test tests/save.test.js",
     "test:navigation": "node --test tests/navigation.test.js",
     "test:physics": "node --test tests/physics.test.js",
-    "test": "node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/environment.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js tests/tactical_encounter.test.js tests/training.test.js tests/campaigns.test.js tests/career_logistics.test.js tests/strategic_command.test.js tests/bridge_instruments.test.js tests/phase16_buoyancy.test.js tests/phase17_sonar_room.test.js tests/periscope_room.test.js tests/phase19_tdc_room.test.js tests/phase20_mobile_scroll.test.js",
-    "audit": "python3 tools/audit_phase20.py",
+    "test": "node --test tests/engine.test.js tests/save.test.js tests/navigation.test.js tests/physics.test.js tests/environment.test.js tests/sensors.test.js tests/weapons.test.js tests/naval_ai.test.js tests/damage_control.test.js tests/stabilization.test.js tests/tactical_encounter.test.js tests/training.test.js tests/campaigns.test.js tests/career_logistics.test.js tests/strategic_command.test.js tests/bridge_instruments.test.js tests/phase16_buoyancy.test.js tests/phase17_sonar_room.test.js tests/periscope_room.test.js tests/phase19_tdc_room.test.js tests/phase20_mobile_scroll.test.js tests/damage_emergency_phase21.test.js tests/phase22_soundtrack.test.js tests/phase23_crew_readiness.test.js",
+    "audit": "python3 tools/audit_phase23.py",
     "smoke": "python3 tests/smoke_test.py",
     "test:sensors": "node --test tests/sensors.test.js",
     "test:weapons": "node --test tests/weapons.test.js",
@@ -35,6 +35,9 @@
     "test:sonar-room": "node --test tests/phase17_sonar_room.test.js",
     "test:periscope-room": "node --test tests/periscope_room.test.js",
     "test:tdc-room": "node --test tests/phase19_tdc_room.test.js",
-    "test:mobile-scroll": "node --test tests/phase20_mobile_scroll.test.js"
+    "test:mobile-scroll": "node --test tests/phase20_mobile_scroll.test.js",
+    "test:damage-emergency": "node --test tests/damage_emergency_phase21.test.js",
+    "test:soundtrack": "node --test tests/phase22_soundtrack.test.js",
+    "test:crew-readiness": "node --test tests/phase23_crew_readiness.test.js"
   }
 }

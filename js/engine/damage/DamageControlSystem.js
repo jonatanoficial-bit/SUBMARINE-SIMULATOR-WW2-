@@ -77,6 +77,11 @@ export class DamageControlSystem {
       emergencyPower: false,
       mainPower: true,
       busVoltage: 100,
+      emergencyPosture: 'normal',
+      pressureIngress: 0,
+      smokeLoad: 0,
+      compartmentStability: 100,
+      evacuationOrder: false,
       morale: 100,
       casualtyTotals: { fit: crewTotal, injured: 0, dead: 0 },
       totalFlooding: 0,
@@ -93,6 +98,9 @@ export class DamageControlSystem {
         firesExtinguished: 0,
         systemsRestored: 0,
         casualtiesTreated: 0,
+        emergencyPostureChanges: 0,
+        pressureIngressEvents: 0,
+        ventilationCycles: 0,
       },
     };
     this.events = [];
@@ -139,6 +147,8 @@ export class DamageControlSystem {
     compartment.integrity = clamp(compartment.integrity - impact * (0.72 + roll * 0.28), 0, 100);
     compartment.flooding = clamp(compartment.flooding + impact * pressureFactor * (0.72 + roll * 0.48), 0, 100);
     compartment.fire = clamp(compartment.fire + impact * fireFactor * (0.18 + deterministicRoll(`${seed}:fire`) * 0.34), 0, 100);
+    this.state.smokeLoad = clamp(this.state.smokeLoad + compartment.fire * 0.18 + (sourceType === 'electrical' ? impact * 0.35 : 0), 0, 100);
+    this.state.pressureIngress = clamp(this.state.pressureIngress + (sourceType === 'depthCharge' ? impact * 0.22 : impact * 0.06), 0, 100);
     compartment.electricalDamage = clamp(compartment.electricalDamage + impact * (0.45 + deterministicRoll(`${seed}:electrical`) * 0.45), 0, 100);
     const casualtyPressure = impact + compartment.fire * 0.08 + compartment.flooding * 0.05;
     const injured = Math.min(compartment.casualties.fit, casualtyPressure >= 8 ? Math.max(1, Math.floor(casualtyPressure / 13)) : 0);
@@ -230,6 +240,34 @@ export class DamageControlSystem {
     this.recalculate();
     return { ok: true, active: this.state.emergencyPower };
   }
+  setEmergencyPosture(posture = 'normal') {
+    const valid = ['normal', 'brace', 'silent', 'evacuateForward'];
+    if (!valid.includes(posture)) return { ok: false, reason: 'invalidDamagePosture' };
+    this.state.emergencyPosture = posture;
+    this.state.evacuationOrder = posture === 'evacuateForward';
+    this.state.metrics.emergencyPostureChanges += 1;
+    this.state.lastMessageKey = `damage.posture.${posture}`;
+    this.emit('postureChanged', { posture });
+    this.recalculate();
+    return { ok: true, posture };
+  }
+
+  emergencyVentilation() {
+    const powered = this.state.mainPower || this.state.emergencyPower;
+    if (!powered) return { ok: false, reason: 'damageNoPower' };
+    const before = this.state.smokeLoad;
+    for (const compartment of this.state.compartments) {
+      compartment.oxygen = clamp(compartment.oxygen + 8, 0, 100);
+      compartment.fire = clamp(compartment.fire - 3.2, 0, 100);
+    }
+    this.state.smokeLoad = clamp(this.state.smokeLoad - 18, 0, 100);
+    this.state.metrics.ventilationCycles += 1;
+    this.state.lastMessageKey = before > 0 ? 'damage.ventilationCycle' : 'damage.airClear';
+    this.emit('ventilation', { before, after: this.state.smokeLoad });
+    this.recalculate();
+    return { ok: true, smokeLoad: this.state.smokeLoad };
+  }
+
 
   emergencyStabilize(amount = 12) {
     const worst = this.state.compartments.slice().sort((a, b) => (b.flooding + b.fire + (100 - b.integrity)) - (a.flooding + a.fire + (100 - a.integrity)))[0];
@@ -249,7 +287,8 @@ export class DamageControlSystem {
     if (!compartment || team.task === 'idle') return;
     const fitRatio = compartment.crew > 0 ? compartment.casualties.fit / compartment.crew : 0;
     const fatigueFactor = clamp(1 - team.fatigue / 140, 0.35, 1);
-    const efficiency = clamp((0.55 + fitRatio * 0.45) * fatigueFactor, 0.2, 1.15);
+    const postureFactor = this.state.emergencyPosture === 'brace' ? 0.88 : this.state.emergencyPosture === 'silent' ? 0.72 : this.state.emergencyPosture === 'evacuateForward' && ['bowTorpedo','forwardBattery'].includes(compartment.id) ? 0.62 : 1;
+    const efficiency = clamp((0.55 + fitRatio * 0.45) * fatigueFactor * postureFactor, 0.15, 1.15);
     team.fatigue = clamp(team.fatigue + seconds * 0.38, 0, 100);
     team.progress = (team.progress + seconds * efficiency * 7) % 100;
     if (team.task === 'pump') {
@@ -283,6 +322,8 @@ export class DamageControlSystem {
   update(deltaMs = 80, context = {}) {
     const compression = clamp(Number(context.timeCompression) || 1, 1, 16);
     const seconds = clamp((Number(deltaMs) || 80) / 1000 * compression, 0.001, 8);
+    const depth = clamp(Number(context.depth) || 0, 0, 400);
+    const pressureStress = clamp((depth - 70) / 180, 0, 1.7);
     this.state.elapsedMs += Number(deltaMs) || 80;
     for (const team of this.state.teams) {
       const compartment = this.compartment(team.compartmentId);
@@ -298,9 +339,15 @@ export class DamageControlSystem {
     for (let index = 0; index < this.state.compartments.length; index += 1) {
       const compartment = this.state.compartments[index];
       const breach = clamp((100 - compartment.integrity) / 100, 0, 1);
+      const pressureLeak = pressureStress * breach * (this.state.emergencyPosture === 'brace' ? 0.52 : 1);
+      if (pressureLeak > 0.08) {
+        compartment.flooding = clamp(compartment.flooding + seconds * pressureLeak * 0.38 * doorsFactor, 0, 100);
+        this.state.pressureIngress = clamp(this.state.pressureIngress + seconds * pressureLeak * 0.18, 0, 100);
+      }
       if (breach > 0.08) compartment.flooding = clamp(compartment.flooding + seconds * breach * 0.22 * doorsFactor, 0, 100);
       if (compartment.electricalDamage > 38 && powered) compartment.fire = clamp(compartment.fire + seconds * compartment.electricalDamage * 0.00045, 0, 100);
       if (compartment.fire > 0) {
+        this.state.smokeLoad = clamp(this.state.smokeLoad + seconds * compartment.fire * 0.0065, 0, 100);
         compartment.oxygen = clamp(compartment.oxygen - seconds * compartment.fire * 0.0024, 0, 100);
         compartment.integrity = clamp(compartment.integrity - seconds * compartment.fire * 0.0015, 0, 100);
       } else {
@@ -315,6 +362,10 @@ export class DamageControlSystem {
         if (compartment.flooding > 62) next.flooding = clamp(next.flooding + seconds * 0.035, 0, 100);
       }
     }
+
+    if (this.state.emergencyPosture === 'silent') this.state.smokeLoad = clamp(this.state.smokeLoad + seconds * 0.07, 0, 100);
+    else this.state.smokeLoad = clamp(this.state.smokeLoad - seconds * ((this.state.mainPower || this.state.emergencyPower) ? 0.18 : 0.04), 0, 100);
+    this.state.pressureIngress = clamp(this.state.pressureIngress - seconds * (this.state.pumpsActive ? 0.12 : 0.03), 0, 100);
 
     const control = this.compartment('controlRoom');
     const engine = this.compartment('engineRoom');
@@ -331,6 +382,11 @@ export class DamageControlSystem {
       this.state.attritionAccumulator -= amount;
       const worst = this.state.compartments.slice().sort((a, b) => (b.flooding + b.fire) - (a.flooding + a.fire))[0];
       this.hullDamageEvents.push({ amount, system: worst?.systemKey || 'engines', key: severeFlooding >= severeFire ? 'damage.hintProgressiveFlooding' : 'damage.hintProgressiveFire' });
+    }
+    if (this.state.pressureIngress >= 70 && depth > 90) {
+      this.state.metrics.pressureIngressEvents += 1;
+      this.hullDamageEvents.push({ amount: 1, system: 'engines', key: 'damage.hintPressureIngress' });
+      this.state.pressureIngress = clamp(this.state.pressureIngress - 18, 0, 100);
     }
     return this.snapshot();
   }
@@ -349,7 +405,8 @@ export class DamageControlSystem {
     this.state.totalFlooding = totals.flooding / this.state.compartments.length;
     this.state.totalFire = totals.fire / this.state.compartments.length;
     this.state.criticalCompartments = totals.critical;
-    this.state.morale = clamp(100 - totals.injured * 1.6 - totals.dead * 4.5 - this.state.totalFlooding * 0.2 - this.state.totalFire * 0.22, 0, 100);
+    this.state.compartmentStability = clamp(100 - this.state.totalFlooding * 0.42 - this.state.totalFire * 0.36 - this.state.pressureIngress * 0.22 - this.state.smokeLoad * 0.18 - totals.critical * 8, 0, 100);
+    this.state.morale = clamp(100 - totals.injured * 1.6 - totals.dead * 4.5 - this.state.totalFlooding * 0.2 - this.state.totalFire * 0.22 - this.state.smokeLoad * 0.08 - (100 - this.state.compartmentStability) * 0.07, 0, 100);
     for (const key of DAMAGE_SYSTEM_KEYS) {
       const rooms = this.state.compartments.filter((item) => item.systemKey === key);
       const condition = rooms.reduce((sum, item) => sum + clamp(item.integrity - item.flooding * 0.45 - item.fire * 0.5 - item.electricalDamage * 0.32, 0, 100), 0) / Math.max(1, rooms.length);
@@ -394,6 +451,11 @@ export class DamageControlSystem {
     this.state.emergencyPower = Boolean(snapshot.emergencyPower);
     this.state.mainPower = snapshot.mainPower !== false;
     this.state.busVoltage = safeNumber(snapshot.busVoltage, this.state.busVoltage, 0, 100);
+    this.state.emergencyPosture = ['normal','brace','silent','evacuateForward'].includes(snapshot.emergencyPosture) ? snapshot.emergencyPosture : 'normal';
+    this.state.pressureIngress = safeNumber(snapshot.pressureIngress, 0, 0, 100);
+    this.state.smokeLoad = safeNumber(snapshot.smokeLoad, 0, 0, 100);
+    this.state.compartmentStability = safeNumber(snapshot.compartmentStability, 100, 0, 100);
+    this.state.evacuationOrder = Boolean(snapshot.evacuationOrder);
     this.state.lastMessageKey = typeof snapshot.lastMessageKey === 'string' ? snapshot.lastMessageKey : 'damage.ready';
     this.state.elapsedMs = safeNumber(snapshot.elapsedMs, 0, 0);
     this.state.attritionAccumulator = safeNumber(snapshot.attritionAccumulator, 0, 0, 100);
@@ -404,7 +466,7 @@ export class DamageControlSystem {
 
   snapshot() {
     return {
-      damageControlVersion: 1,
+      damageControlVersion: 2,
       profile: { ...this.profile },
       hullIntegrity: this.state.hullIntegrity,
       compartments: this.state.compartments.map(cloneCompartment),
@@ -415,6 +477,11 @@ export class DamageControlSystem {
       emergencyPower: this.state.emergencyPower,
       mainPower: this.state.mainPower,
       busVoltage: this.state.busVoltage,
+      emergencyPosture: this.state.emergencyPosture,
+      pressureIngress: this.state.pressureIngress,
+      smokeLoad: this.state.smokeLoad,
+      compartmentStability: this.state.compartmentStability,
+      evacuationOrder: this.state.evacuationOrder,
       morale: this.state.morale,
       casualtyTotals: { ...this.state.casualtyTotals },
       totalFlooding: this.state.totalFlooding,

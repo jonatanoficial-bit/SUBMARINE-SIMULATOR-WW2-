@@ -28,6 +28,7 @@ MODULE_ORDER = [
     "js/engine/simulation/constants.js", "js/engine/simulation/simulationMath.js",
     "js/engine/entities/Entity.js", "js/engine/entities/SubmarineEntity.js", "js/engine/entities/ShipEntity.js",
     "js/engine/simulation/SimulationEngine.js", "js/engine/scenes/SceneManager.js",
+    "js/systems/crewReadiness.js",
     "js/screens/splash.js", "js/screens/mainMenu.js", "js/screens/commander.js",
     "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/career.js", "js/screens/strategy.js", "js/screens/bridge.js", "js/screens/arsenal.js", "js/screens/crew.js",
     "js/screens/settings.js", "js/screens/profiles.js", "js/screens/briefing.js", "js/screens/gameplay.js", "js/app.js",
@@ -35,7 +36,7 @@ MODULE_ORDER = [
 CSS_ORDER = [
     "css/reset.css", "css/variables.css", "css/base.css", "css/layout.css", "css/components.css",
     "css/screens.css", "css/responsive.css", "css/phase2-responsive.css", "css/phase3-engine.css",
-    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase13-strategic-command.css", "css/phase14-bridge-instruments.css",
+    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase13-strategic-command.css", "css/phase14-bridge-instruments.css", "css/phase15-command-room.css", "css/phase16-buoyancy-depth.css", "css/phase17-sonar-room.css", "css/phase18-periscope-optics.css", "css/phase19-tdc-fire-control.css", "css/phase20-mobile-scroll.css", "css/phase21-damage-emergency.css", "css/phase23-crew-readiness.css",
 ]
 
 
@@ -304,7 +305,7 @@ def main() -> int:
             record("Operation autosave preserves sensor tracks", restored["sensors"]["sensorVersion"] == 2 and abs(restored["sensors"]["contacts"]["target"]["confidence"] - before_leave["sensors"]["contacts"]["target"]["confidence"]) < 2, str(restored["sensors"]["contacts"]["target"]))
             record("Operation autosave preserves TDC and tube state", restored["weapons"]["weaponVersion"] == 1 and restored["weapons"]["totalTorpedoes"] == before_leave["weapons"]["totalTorpedoes"] and restored["weapons"]["salvoSize"] == before_leave["weapons"]["salvoSize"], str(restored["weapons"]))
             record("Operation autosave preserves convoy and ASW state", restored["navalAI"]["aiVersion"] == 2 and restored["navalAI"]["totalShips"] == before_leave["navalAI"]["totalShips"] and restored["navalAI"]["globalState"] == before_leave["navalAI"]["globalState"], str(restored["navalAI"]))
-            record("Operation autosave preserves damage-control state", restored["damageControl"]["damageControlVersion"] == 1 and len(restored["damageControl"]["teams"]) == len(before_leave["damageControl"]["teams"]) and abs(restored["damageControl"]["totalFlooding"] - before_leave["damageControl"]["totalFlooding"]) < 0.2 and restored["damageControl"]["casualtyTotals"] == before_leave["damageControl"]["casualtyTotals"], str(restored["damageControl"]))
+            record("Operation autosave preserves damage-control state", restored["damageControl"]["damageControlVersion"] >= 1 and len(restored["damageControl"]["teams"]) == len(before_leave["damageControl"]["teams"]) and abs(restored["damageControl"]["totalFlooding"] - before_leave["damageControl"]["totalFlooding"]) < 0.2 and restored["damageControl"]["casualtyTotals"] == before_leave["damageControl"]["casualtyTotals"], str(restored["damageControl"]))
 
             # Deterministic torpedo still works after sensor and TDC integration.
             combat = page.evaluate("""

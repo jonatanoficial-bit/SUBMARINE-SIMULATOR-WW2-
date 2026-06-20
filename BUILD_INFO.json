@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.20",
-  "semver": "2.0.0-alpha.20",
-  "buildId": "SCWW2-20260619-1645-BRT-F20",
-  "date": "2026-06-19",
-  "time": "16:45",
+  "version": "v2.0.0-alpha.23",
+  "semver": "2.0.0-alpha.23",
+  "buildId": "SCWW2-20260620-1245-BRT-F23",
+  "date": "2026-06-20",
+  "time": "12:45",
   "timezone": "America/Sao_Paulo",
-  "phase": "20",
-  "phaseName": "Mobile Scroll Stabilization and Damage-Control Foundation",
+  "phase": "23",
+  "phaseName": "Living Crew, Watch Rotation and Operational Readiness",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 6,
-  "notes": "Phase 20 preserves Phase 19 and fixes mobile gameplay scrolling by returning the combat measurement dashboard to the natural document flow, removing sticky/fixed overlay behavior from gameplay panels, enabling touch panning on the shell, keeping navigation readable, and preparing the next damage-control layer."
+  "notes": "Phase 23 preserves the official soundtrack and all prior simulator systems while adding living crew readiness, fatigue, morale, watch rotation and station coverage analysis. The crew screen now shows command readiness, sonar, navigation, repair and watch coverage with mobile-safe layout."
 }

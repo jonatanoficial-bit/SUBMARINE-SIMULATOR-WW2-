@@ -1,12 +1,18 @@
-# Submarine Commander WW2 — v2.0.0-alpha.18
+# Submarine Commander WW2 — v2.0.0-alpha.23
+
+Fase 21: dano interno, vazamentos, fumaça, entrada de pressão, estabilidade de compartimentos e controle de emergência.
+
+Esta build preserva as fases anteriores, incluindo a correção de rolagem mobile da Fase 20.
+
+# Submarine Commander WW2 — v2.0.0-alpha.23
 
 Fase 18: Periscópio Realista e Estimativa Óptica.
 
-# Submarine Commander WW2 — v2.0.0-alpha.14
+# Submarine Commander WW2 — v2.0.0-alpha.23
 
 Fase 13 adiciona Comando Naval Estratégico e Inteligência sobre a base real da Fase 12, preservando carreira, logística, campanhas independentes e núcleo homologado.
 
-# Submarine Commander WW2 — v2.0.0-alpha.14
+# Submarine Commander WW2 — v2.0.0-alpha.23
 
 Fase 12: Carreira Estratégica e Logística. Esta build usa a Fase 11 real como base e adiciona carreira persistente, patentes nacionais, medalhas, histórico de patrulhas, suprimentos, planejamento de saída, moral, fadiga e prontidão operacional.
 
@@ -80,3 +86,13 @@ TDC / controle de fogo realista com solução de disparo, risco e padrão de sal
 
 ## Phase 20 — Mobile Scroll Stabilization
 Gameplay mobile scroll was stabilized: measurement dashboard and station tabs are no longer sticky/fixed over the rest of the content.
+
+
+## Phase 22 — Official Soundtrack Playlist
+
+Six user-composed MP3 tracks are included as an official sequential soundtrack playlist.
+
+
+## Fase 23 — Tripulação Viva
+
+A build adiciona prontidão operacional da tripulação, moral, fadiga, cobertura de postos e escala de quartos, mantendo a trilha sonora oficial e todos os sistemas anteriores.

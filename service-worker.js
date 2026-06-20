@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.20';
+const CACHE_VERSION = '2.0.0-alpha.23';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -36,6 +36,8 @@ const APP_SHELL = [
   './css/phase18-periscope-optics.css',
   './css/phase19-tdc-fire-control.css',
   './css/phase20-mobile-scroll.css',
+  './css/phase21-damage-emergency.css',
+  './css/phase23-crew-readiness.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -79,6 +81,7 @@ const APP_SHELL = [
   './js/screens/profiles.js',
   './js/screens/briefing.js',
   './js/screens/gameplay.js',
+  './js/systems/crewReadiness.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -104,7 +107,13 @@ const APP_SHELL = [
   './assets/ships/destroyer_01.png',
   './assets/effects/torpedo_moving_01.png',
   './assets/effects/ocean_explosion_01.png',
-  './assets/effects/water_splash_01.png'
+  './assets/effects/water_splash_01.png',
+  './assets/audio/music/submarine_commander_theme_01.mp3',
+  './assets/audio/music/submarine_commander_theme_02.mp3',
+  './assets/audio/music/submarine_commander_theme_03.mp3',
+  './assets/audio/music/submarine_commander_theme_04.mp3',
+  './assets/audio/music/submarine_commander_theme_05.mp3',
+  './assets/audio/music/submarine_commander_theme_06.mp3',
 ];
 
 async function cacheAppShell() {

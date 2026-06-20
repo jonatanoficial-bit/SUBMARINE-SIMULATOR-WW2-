@@ -527,6 +527,20 @@ export class SimulationEngine {
     if (result.ok) this.emitState();
     return result;
   }
+  setDamageEmergencyPosture(posture = 'normal') {
+    if (this.session.missionFailed) return { ok: false, reason: 'failed' };
+    const result = this.damageControl.setEmergencyPosture(posture);
+    if (result.ok) this.emitState();
+    return result;
+  }
+
+  runEmergencyVentilation() {
+    if (this.session.missionFailed) return { ok: false, reason: 'failed' };
+    const result = this.damageControl.emergencyVentilation();
+    if (result.ok) this.emitState();
+    return result;
+  }
+
 
   setWeaponTarget(role) {
     if (this.session.missionFailed) return { ok: false, reason: 'failed' };

@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 20 com correção de rolagem mobile, painel de medições no fluxo da tela e base para controle de avarias avançado.",
+  "description": "Submarine Commander WW2 — Fase 23 com tripulação viva, fadiga, moral e prontidão operacional.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.20",
+  "version": "2.0.0-alpha.23",
   "id": "./"
 }

@@ -5,6 +5,92 @@ let musicLevel = 0.7;
 let ambientOsc = null;
 let ambientGain = null;
 
+const MUSIC_PLAYLIST = Object.freeze([
+  { id: 'official-theme-01', title: 'Submarine Commander Theme 01', src: 'assets/audio/music/submarine_commander_theme_01.mp3' },
+  { id: 'official-theme-02', title: 'Submarine Commander Theme 02', src: 'assets/audio/music/submarine_commander_theme_02.mp3' },
+  { id: 'official-theme-03', title: 'Submarine Commander Theme 03', src: 'assets/audio/music/submarine_commander_theme_03.mp3' },
+  { id: 'official-theme-04', title: 'Submarine Commander Theme 04', src: 'assets/audio/music/submarine_commander_theme_04.mp3' },
+  { id: 'official-theme-05', title: 'Submarine Commander Theme 05', src: 'assets/audio/music/submarine_commander_theme_05.mp3' },
+  { id: 'official-theme-06', title: 'Submarine Commander Theme 06', src: 'assets/audio/music/submarine_commander_theme_06.mp3' }
+]);
+let musicAudio = null;
+let musicIndex = 0;
+let unlockListenersBound = false;
+let soundtrackRequested = false;
+
+
+function musicVolume() {
+  return Math.max(0, Math.min(1, musicLevel)) * 0.55;
+}
+
+function browserCanPlayMusic() {
+  return typeof window !== 'undefined' && typeof Audio !== 'undefined';
+}
+
+function ensureMusicElement() {
+  if (!browserCanPlayMusic()) return null;
+  if (musicAudio) return musicAudio;
+  musicAudio = new Audio();
+  musicAudio.preload = 'auto';
+  musicAudio.loop = false;
+  musicAudio.volume = musicVolume();
+  musicAudio.addEventListener('ended', () => playNextSoundtrackTrack());
+  musicAudio.addEventListener('error', () => playNextSoundtrackTrack());
+  return musicAudio;
+}
+
+function armPlaybackUnlock() {
+  if (unlockListenersBound || typeof window === 'undefined') return;
+  unlockListenersBound = true;
+  const unlock = () => {
+    ensureContext();
+    if (soundtrackRequested) startSoundtrackPlaylist();
+  };
+  ['pointerdown', 'touchstart', 'click', 'keydown'].forEach((eventName) => {
+    window.addEventListener(eventName, unlock, { passive: true });
+  });
+}
+
+function playCurrentSoundtrackTrack({ reset = false } = {}) {
+  const audio = ensureMusicElement();
+  if (!audio || musicLevel <= 0 || !MUSIC_PLAYLIST.length) return;
+  const track = MUSIC_PLAYLIST[musicIndex % MUSIC_PLAYLIST.length];
+  let expected = track.src;
+  try {
+    expected = new URL(track.src, document?.baseURI || window.location.href || './').href;
+  } catch {
+    expected = track.src;
+  }
+  if (audio.src !== expected && audio.src !== track.src) {
+    audio.src = track.src;
+    audio.load();
+  }
+  if (reset) audio.currentTime = 0;
+  audio.volume = musicVolume();
+  const promise = audio.play();
+  if (promise?.catch) promise.catch(() => armPlaybackUnlock());
+}
+
+function playNextSoundtrackTrack() {
+  if (!MUSIC_PLAYLIST.length) return;
+  musicIndex = (musicIndex + 1) % MUSIC_PLAYLIST.length;
+  playCurrentSoundtrackTrack({ reset: true });
+}
+
+export function getSoundtrackPlaylist() {
+  return MUSIC_PLAYLIST.map((track, index) => ({ ...track, order: index + 1 }));
+}
+
+export function startSoundtrackPlaylist() {
+  soundtrackRequested = true;
+  if (musicLevel <= 0) {
+    if (musicAudio) musicAudio.pause();
+    return;
+  }
+  playCurrentSoundtrackTrack();
+  armPlaybackUnlock();
+}
+
 function ensureContext() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   if (!AudioContext) return null;
@@ -23,12 +109,16 @@ export function initAudio(settings = {}) {
   musicLevel = (Number(settings.music ?? 70) || 0) / 100;
   ensureContext();
   startAmbient(settings);
+  startSoundtrackPlaylist();
 }
 
 export function setAudioLevels(settings = {}) {
   soundLevel = (Number(settings.sound ?? 80) || 0) / 100;
   musicLevel = (Number(settings.music ?? 70) || 0) / 100;
   if (ambientGain) ambientGain.gain.setTargetAtTime(0.015 * musicLevel, ctx?.currentTime || 0, 0.2);
+  if (musicAudio) musicAudio.volume = musicVolume();
+  if (musicLevel <= 0) musicAudio?.pause();
+  else if (soundtrackRequested) startSoundtrackPlaylist();
 }
 
 export function startAmbient(settings = {}) {
