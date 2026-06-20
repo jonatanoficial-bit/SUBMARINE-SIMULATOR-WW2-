@@ -4,6 +4,7 @@ import { PERISCOPE_MAX_DEPTH, SPEED_ANGLES, SPEEDS, VIEW_STEP_X, VIEW_STEP_Y } f
 import { clamp, depthToAngle, worldToViewPosition } from '../engine/simulation/simulationMath.js';
 import { OperationalTraining } from '../engine/training/OperationalTraining.js';
 import { classifyOceanWeather } from '../oceanWeather.js';
+import { analyzeConvoyDoctrine } from '../systems/convoyDoctrine.js';
 
 let cleanupFns = [];
 
@@ -488,6 +489,19 @@ export function renderGameplay(t, mission, settings = {}) {
               <div><span>${t('encounter.enemyContactConfidence')}</span><strong id="ai-contact-confidence">0%</strong></div>
               <div><span>${t('encounter.attackSolution')}</span><strong id="ai-attack-solution">0%</strong></div>
             </div>
+            <section class="convoy-doctrine-panel" id="convoy-doctrine-panel" aria-live="polite">
+              <div class="convoy-doctrine-title">${t('convoy.title')}</div>
+              <div class="convoy-doctrine-grid">
+                <div><span>${t('convoy.integrity')}</span><strong id="convoy-integrity">0%</strong><i><em id="convoy-integrity-bar" style="width:0%"></em></i></div>
+                <div><span>${t('convoy.escortScreen')}</span><strong id="convoy-escort-screen">0%</strong><i><em id="convoy-escort-screen-bar" style="width:0%"></em></i></div>
+                <div><span>${t('convoy.zigzag')}</span><strong id="convoy-zigzag">0%</strong><i><em id="convoy-zigzag-bar" style="width:0%"></em></i></div>
+                <div><span>${t('convoy.interceptWindow')}</span><strong id="convoy-intercept-window">0%</strong><i><em id="convoy-intercept-window-bar" style="width:0%"></em></i></div>
+                <div><span>${t('convoy.spacing')}</span><strong id="convoy-spacing">--</strong></div>
+                <div><span>${t('convoy.screenRange')}</span><strong id="convoy-screen-range">--</strong></div>
+              </div>
+              <div class="convoy-doctrine-status"><span id="convoy-doctrine">${t('convoy.doctrine.formation')}</span><strong id="convoy-risk">0%</strong></div>
+              <div id="convoy-recommendation" class="convoy-recommendation">${t('convoy.recommend.shadow')}</div>
+            </section>
             <div id="ai-depth-charge-alert" class="ai-depth-charge-alert clear">${t('ai.noDepthCharges')}</div>
             <div id="ai-message" class="ai-message">${t('ai.formationHolding')}</div>
           </div>
@@ -877,6 +891,20 @@ export function mountGameplay({
     aiAttackSolution: app.querySelector('#ai-attack-solution'),
     aiDepthChargeAlert: app.querySelector('#ai-depth-charge-alert'),
     aiMessage: app.querySelector('#ai-message'),
+    convoyDoctrinePanel: app.querySelector('#convoy-doctrine-panel'),
+    convoyIntegrity: app.querySelector('#convoy-integrity'),
+    convoyIntegrityBar: app.querySelector('#convoy-integrity-bar'),
+    convoyEscortScreen: app.querySelector('#convoy-escort-screen'),
+    convoyEscortScreenBar: app.querySelector('#convoy-escort-screen-bar'),
+    convoyZigzag: app.querySelector('#convoy-zigzag'),
+    convoyZigzagBar: app.querySelector('#convoy-zigzag-bar'),
+    convoyInterceptWindow: app.querySelector('#convoy-intercept-window'),
+    convoyInterceptWindowBar: app.querySelector('#convoy-intercept-window-bar'),
+    convoySpacing: app.querySelector('#convoy-spacing'),
+    convoyScreenRange: app.querySelector('#convoy-screen-range'),
+    convoyDoctrine: app.querySelector('#convoy-doctrine'),
+    convoyRisk: app.querySelector('#convoy-risk'),
+    convoyRecommendation: app.querySelector('#convoy-recommendation'),
     damageStatusBadge: app.querySelector('#damage-status-badge'),
     damageTotalFlooding: app.querySelector('#damage-total-flooding'),
     damageTotalFire: app.querySelector('#damage-total-fire'),
@@ -1870,6 +1898,32 @@ export function mountGameplay({
       els.aiDepthChargeAlert.className = `ai-depth-charge-alert ${nextPattern ? 'critical' : threat}`;
     }
     if (els.aiMessage) els.aiMessage.textContent = t(ai.lastMessageKey || 'ai.formationHolding');
+    const convoy = analyzeConvoyDoctrine({
+      navalAI: ai,
+      environment: snapshot.environment || {},
+      sensors: snapshot.sensors || {},
+      physics: snapshot.physics || {},
+      weapons: snapshot.weapons || {},
+      encounter: snapshot.encounter || {}
+    });
+    const setGauge = (valueEl, barEl, value) => {
+      const bounded = clamp(Number(value || 0), 0, 100);
+      if (valueEl) valueEl.textContent = `${Math.round(bounded)}%`;
+      if (barEl) barEl.style.width = `${Math.round(bounded)}%`;
+    };
+    setGauge(els.convoyIntegrity, els.convoyIntegrityBar, convoy.formationIntegrity);
+    setGauge(els.convoyEscortScreen, els.convoyEscortScreenBar, convoy.escortScreen);
+    setGauge(els.convoyZigzag, els.convoyZigzagBar, convoy.zigzagIntensity);
+    setGauge(els.convoyInterceptWindow, els.convoyInterceptWindowBar, convoy.interceptWindow);
+    if (els.convoySpacing) els.convoySpacing.textContent = convoy.convoySpacingMeters ? `${convoy.convoySpacingMeters} m` : '--';
+    if (els.convoyScreenRange) els.convoyScreenRange.textContent = convoy.screenRangeMeters ? `${convoy.screenRangeMeters} m` : '--';
+    if (els.convoyDoctrine) els.convoyDoctrine.textContent = t(convoy.doctrineKey);
+    if (els.convoyRisk) els.convoyRisk.textContent = `${convoy.risk}%`;
+    if (els.convoyRecommendation) els.convoyRecommendation.textContent = t(convoy.recommendationKey);
+    if (els.convoyDoctrinePanel) {
+      els.convoyDoctrinePanel.dataset.posture = convoy.posture;
+      els.convoyDoctrinePanel.dataset.risk = convoy.risk >= 70 ? 'critical' : convoy.risk >= 42 ? 'warning' : 'safe';
+    }
     if (els.aiTacticalPlot) {
       const persistent = '<i class="ai-range-ring ring-one"></i><i class="ai-range-ring ring-two"></i><span class="ai-player-marker" title="' + t('ai.playerSubmarine') + '"></span>';
       const shipMarkup = (ai.ships || []).map((ship) => {

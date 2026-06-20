@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.24",
-  "semver": "2.0.0-alpha.24",
-  "buildId": "SCWW2-20260620-1535-BRT-F24",
+  "version": "v2.0.0-alpha.25",
+  "semver": "2.0.0-alpha.25",
+  "buildId": "SCWW2-20260620-1325-BRT-F25",
   "date": "2026-06-20",
-  "time": "15:35",
+  "time": "13:25",
   "timezone": "America/Sao_Paulo",
-  "phase": "24",
-  "phaseName": "Ocean, Weather, Visibility and Patrol Conditions",
+  "phase": "25",
+  "phaseName": "Convoy and Escort Tactical Intelligence",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 6,
-  "notes": "Phase 24 preserves the official soundtrack, living crew readiness and mobile scroll hotfix while adding an ocean/weather tactical layer with sea severity, visibility cover, surface risk, sonar degradation, recommended depth and patrol advice integrated into the sensors station."
+  "notes": "Phase 25 preserves mobile scrolling, soundtrack, crew readiness and ocean/weather systems while adding a convoy doctrine layer that evaluates formation integrity, escort screen, zigzag behavior, intercept window and tactical recommendations inside the AI station."
 }

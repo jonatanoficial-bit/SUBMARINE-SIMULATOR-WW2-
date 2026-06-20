@@ -1340,5 +1340,22 @@
   "ocean.advice.deep": "bajar bajo la capa y reducir exposición",
   "ocean.advice.silent": "reducir ruido propio y escuchar pasivo",
   "ocean.advice.periscope": "usar cobertura climática para observación corta",
-  "ocean.advice.slow": "reducir velocidad y corregir deriva"
+  "ocean.advice.slow": "reducir velocidad y corregir deriva",
+  "convoy.title": "Doctrina de convoy y escoltas",
+  "convoy.integrity": "integridad del convoy",
+  "convoy.escortScreen": "pantalla de escolta",
+  "convoy.zigzag": "zigzag",
+  "convoy.interceptWindow": "ventana de interceptación",
+  "convoy.spacing": "espaciado medio",
+  "convoy.screenRange": "escolta más cercana",
+  "convoy.doctrine.formation": "Formación mercante",
+  "convoy.doctrine.alert": "Alerta defensiva",
+  "convoy.doctrine.search": "Búsqueda coordinada",
+  "convoy.doctrine.hunt": "Caza ASW",
+  "convoy.doctrine.regroup": "Reagrupando convoy",
+  "convoy.recommend.shadow": "Siga al convoy, mantenga bajo el ruido y espere mejor geometría de ataque.",
+  "convoy.recommend.deepSilent": "Baje profundidad, reduzca máquinas y rompa contacto antes de otro ataque.",
+  "convoy.recommend.attackWindow": "Ventana de ataque favorable: priorice una solución TDC limpia y una salva corta.",
+  "convoy.recommend.periscope": "Use la cobertura del clima para una lectura rápida de periscopio y baje el mástil.",
+  "convoy.recommend.waitCourse": "Espere a que termine el zigzag antes de disparar; la solución está inestable."
 }

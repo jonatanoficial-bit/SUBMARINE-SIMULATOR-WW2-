@@ -96,3 +96,7 @@ Six user-composed MP3 tracks are included as an official sequential soundtrack p
 ## Fase 23 — Tripulação Viva
 
 A build adiciona prontidão operacional da tripulação, moral, fadiga, cobertura de postos e escala de quartos, mantendo a trilha sonora oficial e todos os sistemas anteriores.
+
+
+### Fase 25
+Convoy and Escort Tactical Intelligence: análise tática de comboio, escoltas e recomendação de ataque/evasão dentro da estação de IA.

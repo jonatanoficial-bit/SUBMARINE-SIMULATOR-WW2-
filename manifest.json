@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2",
-  "short_name": "SCWW2",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.25",
+  "short_name": "Sub Commander",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 24 com oceano, clima, visibilidade e condições de patrulha.",
+  "description": "Submarine Commander WW2 — v2.0.0-alpha.25 by Vale Games",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.24",
+  "version": "2.0.0-alpha.25",
   "id": "./"
 }

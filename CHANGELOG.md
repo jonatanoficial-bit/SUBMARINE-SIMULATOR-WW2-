@@ -331,3 +331,8 @@
 - Nova análise tática de mar, cobertura visual, risco na superfície, degradação de sonar e profundidade indicada.
 - Integração com clima, visibilidade, ruído ambiente, termoclina, profundidade e ruído próprio.
 - Preservadas Fase 23 Tripulação Viva, Fase 22 Trilha Sonora, Fase 21 Dano Interno e Fase 20 rolagem mobile.
+
+## v2.0.0-alpha.25 — Fase 25
+- Adicionado painel de doutrina de comboio e escoltas na estação de IA.
+- Adicionada análise de integridade, cortina de escoltas, zigue-zague e janela de interceptação.
+- Preservadas as fases 20–24.

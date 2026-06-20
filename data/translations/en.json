@@ -1340,5 +1340,22 @@
   "ocean.advice.deep": "drop below layer and reduce exposure",
   "ocean.advice.silent": "reduce own noise and listen passive",
   "ocean.advice.periscope": "use weather cover for short observation",
-  "ocean.advice.slow": "reduce speed and correct drift"
+  "ocean.advice.slow": "reduce speed and correct drift",
+  "convoy.title": "Convoy and escort doctrine",
+  "convoy.integrity": "convoy integrity",
+  "convoy.escortScreen": "escort screen",
+  "convoy.zigzag": "zigzag",
+  "convoy.interceptWindow": "intercept window",
+  "convoy.spacing": "average spacing",
+  "convoy.screenRange": "nearest escort",
+  "convoy.doctrine.formation": "Merchant formation",
+  "convoy.doctrine.alert": "Defensive alert",
+  "convoy.doctrine.search": "Coordinated search",
+  "convoy.doctrine.hunt": "ASW hunt",
+  "convoy.doctrine.regroup": "Convoy regrouping",
+  "convoy.recommend.shadow": "Shadow the convoy, keep noise low and wait for better attack geometry.",
+  "convoy.recommend.deepSilent": "Go deep, reduce machinery noise and break contact before a new attack.",
+  "convoy.recommend.attackWindow": "Favorable attack window: prioritize a clean TDC solution and a short salvo.",
+  "convoy.recommend.periscope": "Use weather cover for a quick periscope reading, then lower the mast.",
+  "convoy.recommend.waitCourse": "Wait for zigzag to settle before firing; the solution is unstable."
 }

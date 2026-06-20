@@ -1340,5 +1340,22 @@
   "ocean.advice.deep": "descer abaixo da camada e reduzir exposição",
   "ocean.advice.silent": "reduzir ruído próprio e escutar passivo",
   "ocean.advice.periscope": "usar cobertura climática para observação curta",
-  "ocean.advice.slow": "reduzir velocidade e corrigir deriva"
+  "ocean.advice.slow": "reduzir velocidade e corrigir deriva",
+  "convoy.title": "Doutrina de comboio e escoltas",
+  "convoy.integrity": "integridade do comboio",
+  "convoy.escortScreen": "cortina de escolta",
+  "convoy.zigzag": "zigue-zague",
+  "convoy.interceptWindow": "janela de interceptação",
+  "convoy.spacing": "espaçamento médio",
+  "convoy.screenRange": "escolta mais próxima",
+  "convoy.doctrine.formation": "Formação mercante",
+  "convoy.doctrine.alert": "Alerta defensivo",
+  "convoy.doctrine.search": "Busca coordenada",
+  "convoy.doctrine.hunt": "Caçada ASW",
+  "convoy.doctrine.regroup": "Reagrupando comboio",
+  "convoy.recommend.shadow": "Sombreie o comboio, mantenha ruído baixo e espere melhor geometria de ataque.",
+  "convoy.recommend.deepSilent": "Desça, reduza máquinas e quebre contato antes de tentar novo ataque.",
+  "convoy.recommend.attackWindow": "Janela de ataque favorável: priorize solução TDC limpa e salva curta.",
+  "convoy.recommend.periscope": "Use cobertura de clima para leitura rápida de periscópio e feche o mastro em seguida.",
+  "convoy.recommend.waitCourse": "Aguarde o fim do zigue-zague antes de disparar; solução instável."
 }
