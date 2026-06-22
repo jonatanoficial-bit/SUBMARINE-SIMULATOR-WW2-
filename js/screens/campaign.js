@@ -137,6 +137,47 @@ function renderObjectiveDeck(t, deck = null) {
   `;
 }
 
+
+function renderConsequenceDeck(t, deck = null) {
+  const tracks = Array.isArray(deck?.tracks) ? deck.tracks : [];
+  if (!tracks.length) return '';
+  const effect = deck.effect || {};
+  const milestone = effect.milestone || null;
+  return `
+    <div class="campaign-consequence-deck phase14-campaign-consequences" aria-label="${t('campaignConsequences.title')}">
+      <div class="row space-between align-start consequence-deck-head">
+        <div>
+          <div class="mini-title">${t('campaignConsequences.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag gold">${deck.missionProgress.completed}/${deck.missionProgress.total}</span>
+      </div>
+      <div class="consequence-front-card">
+        <span>${t('campaignConsequences.front')}</span>
+        <strong>${t(deck.frontKey)}</strong>
+        <small>${milestone ? t(milestone.descKey) : t('campaignConsequences.noMilestone')}</small>
+      </div>
+      <div class="consequence-track-grid">
+        ${tracks.map((track) => `
+          <div class="consequence-track-card">
+            <span>${t(track.labelKey)}</span>
+            <strong>${track.value}%</strong>
+            <div class="campaign-objective-track"><i style="width:${track.percent}%"></i></div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="consequence-effect-grid">
+        <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${Math.round((Number(effect.tonnageMultiplier || 1) - 1) * 100) > 0 ? '+' : ''}${Math.round((Number(effect.tonnageMultiplier || 1) - 1) * 100)}%</strong></div>
+      </div>
+      ${milestone ? `<div class="empty-state compact"><strong>${t(milestone.titleKey)}</strong><br>${t(milestone.descKey)}</div>` : ''}
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -170,6 +211,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const doctrineStage = options.doctrineStage || {};
   const doctrineImpact = options.doctrineImpact || {};
   const campaignObjectives = options.campaignObjectives || null;
+  const campaignConsequences = options.campaignConsequences || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -210,6 +252,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             <div class="empty-state compact"><strong>${t('campaign.goal')}</strong><br>${campaign ? t(campaign.strategicGoalKey) : ''}</div>
             ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
             ${renderObjectiveDeck(t, campaignObjectives)}
+            ${renderConsequenceDeck(t, campaignConsequences)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

@@ -1,3 +1,12 @@
+
+## v2.0.0-alpha.30 — Fase 15 — Alto Comando Estratégico
+
+- Adicionado sistema nacional de ordens estratégicas persistentes para Alemanha, Reino Unido e Estados Unidos.
+- Adicionado painel de Alto Comando no Comando Estratégico.
+- Adicionados custos, requisitos por missão e trava anti-duplicação de ordens no save.
+- Integrados efeitos de ordens em inteligência, decifração, risco, pressão, prontidão, moral, fadiga e tonelagem.
+- Atualizado save schema para 9, PWA cache, manifest, build visível, traduções e auditorias.
+
 # Changelog
 
 ## v2.0.0-alpha.27 — Fase 12 — Doutrinas nacionais de campanha

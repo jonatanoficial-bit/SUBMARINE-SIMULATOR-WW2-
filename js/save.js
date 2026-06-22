@@ -142,6 +142,11 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
   const intelligenceReports = Array.isArray(value.intelligenceReports)
     ? value.intelligenceReports.filter((item) => item && typeof item === 'object').slice(0, 20)
     : [];
+  const highCommandOrders = value.highCommandOrders && typeof value.highCommandOrders === 'object' ? value.highCommandOrders : {};
+  const highCommandLegacy = Array.isArray(value.highCommandApplied) ? value.highCommandApplied : [];
+  const highCommandHistory = Array.isArray(highCommandOrders.history)
+    ? highCommandOrders.history.filter((item) => item && typeof item === 'object').slice(0, 20)
+    : [];
   return {
     theaterId: normalizeStringId(value.theaterId, defaults.theaterId) || defaults.theaterId,
     selectedLaneId: normalizeStringId(value.selectedLaneId || value.laneId, defaults.laneId) || defaults.laneId,
@@ -153,7 +158,11 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
     commandPoints: Math.floor(clampNumber(value.commandPoints, 0, 99, 2)),
     ordersIssued: Math.floor(clampNumber(value.ordersIssued, 0, 999999, 0)),
     commandHistory,
-    intelligenceReports
+    intelligenceReports,
+    highCommandOrders: {
+      appliedIds: uniqueStringArray([...(highCommandOrders.appliedIds || []), ...highCommandLegacy]),
+      history: highCommandHistory
+    }
   };
 }
 

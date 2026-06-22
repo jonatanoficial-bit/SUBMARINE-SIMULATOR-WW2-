@@ -1,0 +1,290 @@
+[
+  {
+    "id": "high_command.de",
+    "nationId": "de",
+    "titleKey": "highCommand.de.title",
+    "summaryKey": "highCommand.de.summary",
+    "orders": [
+      {
+        "id": "de_wolfpack_concentration",
+        "nameKey": "highCommand.de.wolfpack.name",
+        "descKey": "highCommand.de.wolfpack.desc",
+        "cost": {
+          "credits": 900,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 6,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.08,
+          "moraleBonus": 1,
+          "fatigueDelta": 2
+        },
+        "requires": {
+          "completedMissions": 0
+        }
+      },
+      {
+        "id": "de_b_dienst_push",
+        "nameKey": "highCommand.de.bdienst.name",
+        "descKey": "highCommand.de.bdienst.desc",
+        "cost": {
+          "credits": 1100,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 8,
+          "decryptionBonus": 9,
+          "pressureRelief": 2,
+          "riskDelta": 1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 0,
+          "fatigueDelta": 0
+        },
+        "requires": {
+          "completedMissions": 1
+        }
+      },
+      {
+        "id": "de_milk_cow_support",
+        "nameKey": "highCommand.de.milkcow.name",
+        "descKey": "highCommand.de.milkcow.desc",
+        "cost": {
+          "credits": 1550,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 4,
+          "riskDelta": 3,
+          "readinessBonus": 8,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 3,
+          "fatigueDelta": -4
+        },
+        "requires": {
+          "completedMissions": 3
+        }
+      },
+      {
+        "id": "de_emergency_silent_running",
+        "nameKey": "highCommand.de.silent.name",
+        "descKey": "highCommand.de.silent.desc",
+        "cost": {
+          "credits": 1300,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 8,
+          "riskDelta": -7,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 0.98,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        },
+        "requires": {
+          "completedMissions": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "high_command.uk",
+    "nationId": "uk",
+    "titleKey": "highCommand.uk.title",
+    "summaryKey": "highCommand.uk.summary",
+    "orders": [
+      {
+        "id": "uk_western_approaches_plot",
+        "nameKey": "highCommand.uk.plot.name",
+        "descKey": "highCommand.uk.plot.desc",
+        "cost": {
+          "credits": 850,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 4,
+          "pressureRelief": 3,
+          "riskDelta": -3,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        },
+        "requires": {
+          "completedMissions": 0
+        }
+      },
+      {
+        "id": "uk_hfdf_net",
+        "nameKey": "highCommand.uk.hfdf.name",
+        "descKey": "highCommand.uk.hfdf.desc",
+        "cost": {
+          "credits": 1100,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 8,
+          "decryptionBonus": 8,
+          "pressureRelief": 2,
+          "riskDelta": -4,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 0,
+          "fatigueDelta": 0
+        },
+        "requires": {
+          "completedMissions": 1
+        }
+      },
+      {
+        "id": "uk_escort_support_group",
+        "nameKey": "highCommand.uk.support.name",
+        "descKey": "highCommand.uk.support.desc",
+        "cost": {
+          "credits": 1600,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 7,
+          "riskDelta": -6,
+          "readinessBonus": 6,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 3,
+          "fatigueDelta": -3
+        },
+        "requires": {
+          "completedMissions": 3
+        }
+      },
+      {
+        "id": "uk_air_cover_window",
+        "nameKey": "highCommand.uk.air.name",
+        "descKey": "highCommand.uk.air.desc",
+        "cost": {
+          "credits": 1350,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 9,
+          "riskDelta": -8,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 0.99,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        },
+        "requires": {
+          "completedMissions": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "high_command.us",
+    "nationId": "us",
+    "titleKey": "highCommand.us.title",
+    "summaryKey": "highCommand.us.summary",
+    "orders": [
+      {
+        "id": "us_magic_intercepts",
+        "nameKey": "highCommand.us.magic.name",
+        "descKey": "highCommand.us.magic.desc",
+        "cost": {
+          "credits": 900,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 7,
+          "decryptionBonus": 6,
+          "pressureRelief": 2,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        },
+        "requires": {
+          "completedMissions": 0
+        }
+      },
+      {
+        "id": "us_forward_tender_line",
+        "nameKey": "highCommand.us.tender.name",
+        "descKey": "highCommand.us.tender.desc",
+        "cost": {
+          "credits": 1450,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 3,
+          "riskDelta": 2,
+          "readinessBonus": 8,
+          "tonnageMultiplier": 1.07,
+          "moraleBonus": 3,
+          "fatigueDelta": -5
+        },
+        "requires": {
+          "completedMissions": 2
+        }
+      },
+      {
+        "id": "us_radar_refit_priority",
+        "nameKey": "highCommand.us.radar.name",
+        "descKey": "highCommand.us.radar.desc",
+        "cost": {
+          "credits": 1700,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 3,
+          "pressureRelief": 5,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        },
+        "requires": {
+          "completedMissions": 3
+        }
+      },
+      {
+        "id": "us_blockade_directive",
+        "nameKey": "highCommand.us.blockade.name",
+        "descKey": "highCommand.us.blockade.desc",
+        "cost": {
+          "credits": 1900,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 1,
+          "pressureRelief": 4,
+          "riskDelta": 4,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.12,
+          "moraleBonus": 1,
+          "fatigueDelta": 2
+        },
+        "requires": {
+          "completedMissions": 5
+        }
+      }
+    ]
+  }
+]

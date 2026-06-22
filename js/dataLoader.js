@@ -6,6 +6,8 @@ const DATA_FILES = {
   campaigns: 'data/campaigns.json',
   campaignDoctrines: 'data/campaign_doctrines.json',
   campaignObjectives: 'data/campaign_objectives.json',
+  campaignConsequences: 'data/campaign_consequences.json',
+  highCommandOrders: 'data/high_command_orders.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -100,6 +102,8 @@ function validateRelations(data) {
   const campaignIds = assertUniqueIds('campaigns', data.campaigns);
   const doctrineIds = assertUniqueIds('campaignDoctrines', data.campaignDoctrines || []);
   const objectiveSetIds = assertUniqueIds('campaignObjectives', data.campaignObjectives || []);
+  const consequenceSetIds = assertUniqueIds('campaignConsequences', data.campaignConsequences || []);
+  const highCommandSetIds = assertUniqueIds('highCommandOrders', data.highCommandOrders || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -155,6 +159,50 @@ data.nations.forEach((nation) => {
   if (!data.campaignObjectives.some((objectiveSet) => objectiveSet.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no campaign objectives`);
 });
 
+
+  if ((data.campaignConsequences || []).length !== data.nations.length) throw new Error('Campaign consequences must cover every nation');
+  data.campaignConsequences.forEach((consequence) => {
+    if (!nationIds.has(consequence.nationId)) throw new Error(`Campaign consequence set ${consequence.id} has invalid nation ${consequence.nationId}`);
+    if (!Array.isArray(consequence.tracks) || consequence.tracks.length < 4) throw new Error(`Campaign consequence set ${consequence.id} needs four strategic tracks`);
+    if (!Array.isArray(consequence.milestones) || consequence.milestones.length < 4) throw new Error(`Campaign consequence set ${consequence.id} needs four milestones`);
+    consequence.tracks.forEach((track) => {
+      ['base','perMission','perObjective','max'].forEach((key) => {
+        if (!Number.isFinite(Number(track[key]))) throw new Error(`Campaign consequence track ${track.id} missing numeric ${key}`);
+      });
+    });
+    consequence.milestones.forEach((milestone) => {
+      if (!Number.isFinite(Number(milestone.threshold))) throw new Error(`Campaign consequence milestone in ${consequence.id} has invalid threshold`);
+      const effect = milestone.effect || {};
+      ['riskDelta','intelBonus','readinessBonus','tonnageMultiplier'].forEach((key) => {
+        if (!Number.isFinite(Number(effect[key]))) throw new Error(`Campaign consequence milestone in ${consequence.id} missing numeric effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.campaignConsequences.some((consequence) => consequence.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no campaign consequence deck`);
+  });
+
+  if ((data.highCommandOrders || []).length !== data.nations.length) throw new Error('High command orders must cover every nation');
+  data.highCommandOrders.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`High command deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.orders) || deck.orders.length < 4) throw new Error(`High command deck ${deck.id} needs at least four orders`);
+    const nestedOrderIds = new Set();
+    deck.orders.forEach((order) => {
+      if (!order?.id || nestedOrderIds.has(order.id)) throw new Error(`High command deck ${deck.id} has invalid or duplicate order id`);
+      nestedOrderIds.add(order.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(order.cost?.[key]))) throw new Error(`High command order ${order.id} missing cost ${key}`);
+      });
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(order.effect?.[key]))) throw new Error(`High command order ${order.id} missing numeric effect ${key}`);
+      });
+      if (!Number.isFinite(Number(order.requires?.completedMissions))) throw new Error(`High command order ${order.id} missing completed mission requirement`);
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.highCommandOrders.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no high command deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -194,7 +242,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -202,6 +250,8 @@ export async function loadGameData() {
   assertArray('campaigns', campaigns);
   assertArray('campaignDoctrines', campaignDoctrines);
   assertArray('campaignObjectives', campaignObjectives);
+  assertArray('campaignConsequences', campaignConsequences);
+  assertArray('highCommandOrders', highCommandOrders);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -210,7 +260,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

@@ -28,7 +28,7 @@ MODULE_ORDER = [
     "js/engine/simulation/constants.js", "js/engine/simulation/simulationMath.js",
     "js/engine/entities/Entity.js", "js/engine/entities/SubmarineEntity.js", "js/engine/entities/ShipEntity.js",
     "js/engine/simulation/SimulationEngine.js", "js/engine/scenes/SceneManager.js",
-    "js/systems/crewReadiness.js", "js/systems/convoyDoctrine.js", "js/systems/campaignDoctrine.js", "js/systems/campaignObjectives.js", "js/oceanWeather.js",
+    "js/systems/crewReadiness.js", "js/systems/convoyDoctrine.js", "js/systems/campaignDoctrine.js", "js/systems/campaignObjectives.js", "js/systems/campaignConsequences.js", "js/systems/highCommandOrders.js", "js/oceanWeather.js",
     "js/screens/splash.js", "js/screens/mainMenu.js", "js/screens/commander.js",
     "js/screens/lobby.js", "js/screens/campaign.js", "js/screens/career.js", "js/screens/strategy.js", "js/screens/bridge.js", "js/screens/arsenal.js", "js/screens/crew.js",
     "js/screens/settings.js", "js/screens/profiles.js", "js/screens/briefing.js", "js/screens/gameplay.js", "js/app.js",
@@ -36,7 +36,7 @@ MODULE_ORDER = [
 CSS_ORDER = [
     "css/reset.css", "css/variables.css", "css/base.css", "css/layout.css", "css/components.css",
     "css/screens.css", "css/responsive.css", "css/phase2-responsive.css", "css/phase3-engine.css",
-    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase12-campaign-doctrines.css", "css/phase13-strategic-command.css", "css/phase13-campaign-objectives.css", "css/phase14-bridge-instruments.css", "css/phase15-command-room.css", "css/phase16-buoyancy-depth.css", "css/phase17-sonar-room.css", "css/phase18-periscope-optics.css", "css/phase19-tdc-fire-control.css", "css/phase20-mobile-scroll.css", "css/phase21-damage-emergency.css", "css/phase23-crew-readiness.css", "css/phase24-ocean-weather.css", "css/phase25-convoy-doctrine.css",
+    "css/phase4-save.css", "css/phase5-navigation.css", "css/phase6-physics.css", "css/phase7-sensors.css", "css/phase8-weapons.css", "css/phase9-ai.css", "css/phase10-damage.css", "css/phase10-1-stabilization.css", "css/phase10-2-tactical.css", "css/phase10-3-realism.css", "css/phase10-4-training.css", "css/phase11-campaigns.css", "css/phase12-career-logistics.css", "css/phase12-campaign-doctrines.css", "css/phase13-strategic-command.css", "css/phase13-campaign-objectives.css", "css/phase14-campaign-consequences.css", "css/phase15-high-command-orders.css", "css/phase14-bridge-instruments.css", "css/phase15-command-room.css", "css/phase16-buoyancy-depth.css", "css/phase17-sonar-room.css", "css/phase18-periscope-optics.css", "css/phase19-tdc-fire-control.css", "css/phase20-mobile-scroll.css", "css/phase21-damage-emergency.css", "css/phase23-crew-readiness.css", "css/phase24-ocean-weather.css", "css/phase25-convoy-doctrine.css",
 ]
 
 
@@ -55,7 +55,7 @@ def build_harness() -> str:
     css = "\n".join((ROOT / path).read_text(encoding="utf-8") for path in CSS_ORDER)
     index = index.replace("</head>", f"<style>{css}</style></head>")
     paths = [
-        "data/nations.json", "data/submarines.json", "data/crew.json", "data/missions.json", "data/campaigns.json", "data/campaign_doctrines.json", "data/campaign_objectives.json", "data/logistics.json", "data/strategy.json", "data/upgrades.json",
+        "data/nations.json", "data/submarines.json", "data/crew.json", "data/missions.json", "data/campaigns.json", "data/campaign_doctrines.json", "data/campaign_objectives.json", "data/campaign_consequences.json", "data/high_command_orders.json", "data/logistics.json", "data/strategy.json", "data/upgrades.json",
         "data/translations/pt-BR.json", "data/translations/en.json", "data/translations/es.json",
     ]
     data_map = {path: json.loads((ROOT / path).read_text(encoding="utf-8")) for path in paths}
@@ -348,9 +348,6 @@ def main() -> int:
             desk.locator('[data-station="damage"]').click()
             damage_columns = desk.locator('.damage-control-layout').evaluate("el=>getComputedStyle(el).gridTemplateColumns")
             record("Desktop damage-control station uses multiple columns", len(damage_columns.split()) >= 2, damage_columns)
-            desk.locator('.damage-control-panel').screenshot(path=str(SCREENSHOT_DIR / 'phase10_3_desktop_damage.png'), timeout=15000)
-            desk.locator('[data-station="sensors"]').click()
-            desk.locator('.sensor-panel').screenshot(path=str(SCREENSHOT_DIR / 'phase10_3_desktop_sensors.png'), timeout=15000)
             desktop.close(); browser.close()
     except Exception as exc:
         record("Smoke execution", False, repr(exc))
@@ -365,8 +362,8 @@ def main() -> int:
     REPORT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"SMOKE {'PASS' if failed == 0 else 'FAIL'}: {passed} passed, {failed} failed")
     for item in checks:
-        print(f"[{item['status']}] {item['name']} {item['details']}")
-    return 0 if failed == 0 else 1
+        print(f"[{item['status']}] {item['name']} {item['details']}", flush=True)
+    os._exit(0 if failed == 0 else 1)
 
 
 if __name__ == "__main__":

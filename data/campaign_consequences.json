@@ -1,0 +1,59 @@
+[
+  {
+    "id": "campaign_consequence.de",
+    "nationId": "de",
+    "titleKey": "campaignConsequences.de.title",
+    "summaryKey": "campaignConsequences.de.summary",
+    "frontKey": "campaignConsequences.de.front",
+    "tracks": [
+      { "id": "convoyDisruption", "labelKey": "campaignConsequences.track.convoyDisruption", "base": 22, "perMission": 6, "perObjective": 5, "max": 100 },
+      { "id": "enemyAsw", "labelKey": "campaignConsequences.track.enemyAsw", "base": 38, "perMission": 5, "perObjective": 4, "max": 100 },
+      { "id": "intelMomentum", "labelKey": "campaignConsequences.track.intelMomentum", "base": 18, "perMission": 3, "perObjective": 7, "max": 100 },
+      { "id": "warPressure", "labelKey": "campaignConsequences.track.warPressure", "base": 62, "perMission": 4, "perObjective": -3, "max": 100 }
+    ],
+    "milestones": [
+      { "threshold": 0, "titleKey": "campaignConsequences.de.m1.title", "descKey": "campaignConsequences.de.m1.desc", "effect": { "riskDelta": 1, "intelBonus": 0, "readinessBonus": 0, "tonnageMultiplier": 1.02 } },
+      { "threshold": 2, "titleKey": "campaignConsequences.de.m2.title", "descKey": "campaignConsequences.de.m2.desc", "effect": { "riskDelta": 4, "intelBonus": 2, "readinessBonus": 1, "tonnageMultiplier": 1.06 } },
+      { "threshold": 4, "titleKey": "campaignConsequences.de.m3.title", "descKey": "campaignConsequences.de.m3.desc", "effect": { "riskDelta": 7, "intelBonus": 4, "readinessBonus": 0, "tonnageMultiplier": 1.1 } },
+      { "threshold": 6, "titleKey": "campaignConsequences.de.m4.title", "descKey": "campaignConsequences.de.m4.desc", "effect": { "riskDelta": 10, "intelBonus": 5, "readinessBonus": -2, "tonnageMultiplier": 1.14 } }
+    ]
+  },
+  {
+    "id": "campaign_consequence.uk",
+    "nationId": "uk",
+    "titleKey": "campaignConsequences.uk.title",
+    "summaryKey": "campaignConsequences.uk.summary",
+    "frontKey": "campaignConsequences.uk.front",
+    "tracks": [
+      { "id": "convoyProtection", "labelKey": "campaignConsequences.track.convoyProtection", "base": 30, "perMission": 5, "perObjective": 8, "max": 100 },
+      { "id": "enemyAsw", "labelKey": "campaignConsequences.track.enemyAsw", "base": 34, "perMission": 3, "perObjective": 2, "max": 100 },
+      { "id": "intelMomentum", "labelKey": "campaignConsequences.track.intelMomentum", "base": 28, "perMission": 4, "perObjective": 8, "max": 100 },
+      { "id": "warPressure", "labelKey": "campaignConsequences.track.warPressure", "base": 58, "perMission": -2, "perObjective": -5, "max": 100 }
+    ],
+    "milestones": [
+      { "threshold": 0, "titleKey": "campaignConsequences.uk.m1.title", "descKey": "campaignConsequences.uk.m1.desc", "effect": { "riskDelta": -1, "intelBonus": 1, "readinessBonus": 1, "tonnageMultiplier": 0.98 } },
+      { "threshold": 2, "titleKey": "campaignConsequences.uk.m2.title", "descKey": "campaignConsequences.uk.m2.desc", "effect": { "riskDelta": -4, "intelBonus": 3, "readinessBonus": 3, "tonnageMultiplier": 1.0 } },
+      { "threshold": 4, "titleKey": "campaignConsequences.uk.m3.title", "descKey": "campaignConsequences.uk.m3.desc", "effect": { "riskDelta": -6, "intelBonus": 5, "readinessBonus": 4, "tonnageMultiplier": 1.02 } },
+      { "threshold": 6, "titleKey": "campaignConsequences.uk.m4.title", "descKey": "campaignConsequences.uk.m4.desc", "effect": { "riskDelta": -8, "intelBonus": 7, "readinessBonus": 5, "tonnageMultiplier": 1.04 } }
+    ]
+  },
+  {
+    "id": "campaign_consequence.us",
+    "nationId": "us",
+    "titleKey": "campaignConsequences.us.title",
+    "summaryKey": "campaignConsequences.us.summary",
+    "frontKey": "campaignConsequences.us.front",
+    "tracks": [
+      { "id": "seaDenial", "labelKey": "campaignConsequences.track.seaDenial", "base": 26, "perMission": 6, "perObjective": 7, "max": 100 },
+      { "id": "enemyAsw", "labelKey": "campaignConsequences.track.enemyAsw", "base": 30, "perMission": 4, "perObjective": 4, "max": 100 },
+      { "id": "intelMomentum", "labelKey": "campaignConsequences.track.intelMomentum", "base": 24, "perMission": 4, "perObjective": 7, "max": 100 },
+      { "id": "warPressure", "labelKey": "campaignConsequences.track.warPressure", "base": 54, "perMission": -1, "perObjective": -4, "max": 100 }
+    ],
+    "milestones": [
+      { "threshold": 0, "titleKey": "campaignConsequences.us.m1.title", "descKey": "campaignConsequences.us.m1.desc", "effect": { "riskDelta": 0, "intelBonus": 1, "readinessBonus": 1, "tonnageMultiplier": 1.01 } },
+      { "threshold": 2, "titleKey": "campaignConsequences.us.m2.title", "descKey": "campaignConsequences.us.m2.desc", "effect": { "riskDelta": 2, "intelBonus": 3, "readinessBonus": 2, "tonnageMultiplier": 1.06 } },
+      { "threshold": 4, "titleKey": "campaignConsequences.us.m3.title", "descKey": "campaignConsequences.us.m3.desc", "effect": { "riskDelta": 3, "intelBonus": 5, "readinessBonus": 3, "tonnageMultiplier": 1.1 } },
+      { "threshold": 6, "titleKey": "campaignConsequences.us.m4.title", "descKey": "campaignConsequences.us.m4.desc", "effect": { "riskDelta": 5, "intelBonus": 7, "readinessBonus": 4, "tonnageMultiplier": 1.14 } }
+    ]
+  }
+]

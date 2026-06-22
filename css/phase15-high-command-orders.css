@@ -1,0 +1,62 @@
+/* Fase 15 — ordens estratégicas do alto comando */
+.phase15-high-command-panel {
+  margin: 16px 0;
+  border: 1px solid rgba(243, 204, 135, .24);
+  background:
+    radial-gradient(circle at 85% 0%, rgba(243, 204, 135, .12), transparent 44%),
+    linear-gradient(145deg, rgba(14, 20, 30, .94), rgba(5, 10, 17, .92));
+}
+.high-command-effect-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 9px;
+}
+.high-command-effect-grid div,
+.high-command-mini-effects {
+  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.045);
+  border-radius: 14px;
+  padding: 10px;
+}
+.high-command-effect-grid span,
+.high-command-mini-effects span {
+  display: block;
+  color: rgba(230,241,255,.64);
+  font-size: .7rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.high-command-effect-grid strong {
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+.high-command-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.high-command-card {
+  border-color: rgba(243,204,135,.16);
+}
+.high-command-card.active {
+  border-color: rgba(111,207,151,.36);
+  background: linear-gradient(180deg, rgba(34, 70, 52, .48), rgba(10, 17, 24, .88));
+}
+.high-command-card.locked:not(.active) {
+  opacity: .76;
+}
+.high-command-mini-effects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 10px;
+  margin: 6px 0;
+}
+@media (max-width: 980px) {
+  .high-command-effect-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .high-command-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .high-command-effect-grid,
+  .high-command-mini-effects { grid-template-columns: 1fr; }
+  .phase15-high-command-panel .row.space-between { gap: 10px; }
+}

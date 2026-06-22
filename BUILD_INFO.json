@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.28",
-  "semver": "2.0.0-alpha.28",
-  "buildId": "SCWW2-20260622-1715-BRT-F13-CAMPAIGN-OBJECTIVES",
+  "version": "v2.0.0-alpha.30",
+  "semver": "2.0.0-alpha.30",
+  "buildId": "SCWW2-20260622-1810-BRT-F15-HIGH-COMMAND-ORDERS",
   "date": "2026-06-22",
-  "time": "17:15",
+  "time": "18:10",
   "timezone": "America/Sao_Paulo",
-  "phase": "13",
-  "phaseName": "Historic Campaign Objectives",
+  "phase": "15",
+  "phaseName": "Strategic High Command Orders",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 7,
-  "notes": "Phase 13 adds independent historical objective chains for Germany, United Kingdom and United States campaigns, act rewards with anti-duplication save tracking, strategic effects, UI objective deck and validation while preserving all systems through convoy and escort AI."
+  "saveSchemaVersion": 9,
+  "notes": "Phase 15 adds national high command orders for Germany, United Kingdom and United States: one-time theater decisions, cost gating, mission requirements, persistent save effects, strategic assessment integration, mobile strategy panel, translations and automated validation while preserving all earlier systems."
 }
