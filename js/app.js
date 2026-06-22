@@ -30,6 +30,7 @@ import { initSafety, reportRuntimeError, requestFullscreenSafe, requestImmersive
 import { normalizeCommanderName } from './utils/sanitize.js';
 import { initAudio, setAudioLevels, playSfx } from './audio.js';
 import { applyDoctrineToPatrolCost, findDoctrineForNation, normalizeDoctrineModifiers, resolveDoctrineStage, summarizeDoctrineImpact } from './systems/campaignDoctrine.js';
+import { buildCampaignObjectiveDeck, findCampaignObjectivesForNation, getNewlyCompletedObjectiveRewards } from './systems/campaignObjectives.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
@@ -89,6 +90,16 @@ function getDoctrineStageForNation(nationId = getCurrentNationId()) {
 }
 function getDoctrineImpactForNation(nationId = getCurrentNationId()) {
   return summarizeDoctrineImpact(getDoctrineForNation(nationId));
+}
+function getCampaignObjectivesForNation(nationId = getCurrentNationId()) {
+  return findCampaignObjectivesForNation(state.data?.campaignObjectives || [], nationId);
+}
+function getCampaignObjectiveDeckForNation(nationId = getCurrentNationId()) {
+  return buildCampaignObjectiveDeck(
+    getCampaignObjectivesForNation(nationId),
+    state.save?.progression?.completedMissions || [],
+    state.save?.progression?.campaignObjectiveRewards || []
+  );
 }
 function missionsForNation(nationId = getCurrentNationId()) {
   const campaign = getCampaignForNation(nationId);
@@ -483,12 +494,51 @@ function handleHullUpdate(hull, systems) {
   commitSave();
 }
 
+
+
+function applyCampaignObjectiveRewards(nationId, completedBefore = [], completedAfter = []) {
+  if (!state.save?.progression) return [];
+  const objectiveSet = getCampaignObjectivesForNation(nationId);
+  const claimed = state.save.progression.campaignObjectiveRewards || [];
+  const newlyCompleted = getNewlyCompletedObjectiveRewards(objectiveSet, completedBefore, completedAfter, claimed);
+  if (!newlyCompleted.length) return [];
+  const nextClaimed = new Set(claimed);
+  newlyCompleted.forEach((objective) => {
+    nextClaimed.add(objective.id);
+    addRewards(objective.reward.credits, objective.reward.xp);
+    if (state.save.career) {
+      state.save.career.reputation += objective.reward.reputation;
+      state.save.career.prestige += objective.reward.prestige;
+      state.save.career.serviceRecord = [{
+        missionId: objective.id,
+        missionTitle: t(objective.titleKey),
+        score: 0,
+        tonnage: 0,
+        reputationGained: objective.reward.reputation,
+        completedAt: new Date().toISOString(),
+        rankIndex: state.save.career.rankIndex || 0,
+        objectiveReward: true,
+      }, ...(state.save.career.serviceRecord || [])].slice(0, 24);
+    }
+    if (state.save.strategy) {
+      state.save.strategy.commandPoints = Math.min(99, (state.save.strategy.commandPoints || 0) + objective.reward.commandPoints);
+      state.save.strategy.intelLevel = Math.min(100, (state.save.strategy.intelLevel || 0) + objective.reward.intel);
+      state.save.strategy.pressure = Math.max(0, (state.save.strategy.pressure || 0) - objective.reward.pressureRelief);
+      pushStrategyHistory({ type: 'campaign-objective', title: t(objective.titleKey), detail: t(objective.effectKey) });
+      pushIntelReport({ title: t('campaignObjectives.rewardReport'), detail: t(objective.effectKey) });
+    }
+  });
+  state.save.progression.campaignObjectiveRewards = [...nextClaimed].slice(-32);
+  return newlyCompleted;
+}
+
 function handleCompleteMission(id, report = null) {
   clearOperationAutosave(state.activeProfileId);
   setOperationAutosave(null);
   setResumeOperation(false);
   const mission = state.data.missions.find((item) => item.id === id);
   if (!mission) return;
+  const completedBefore = [...(state.save.progression.completedMissions || [])];
   const alreadyCompleted = state.save.progression.completedMissions.includes(id);
   const bonusCredits = report?.bonusCredits || 0;
   const bonusXp = report?.bonusXp || 0;
@@ -502,9 +552,11 @@ function handleCompleteMission(id, report = null) {
     if (next && next.status === 'locked') next.status = 'available';
   }
   addRewards(totalCredits, totalXp);
+  const completedAfter = [...(state.save.progression.completedMissions || [])];
+  const objectiveRewards = applyCampaignObjectiveRewards(mission.nationId, completedBefore, completedAfter);
   state.save.progression.bestScore = Math.max(state.save.progression.bestScore || 0, report?.score || 0);
   state.save.progression.missionReports = [
-    { missionId: id, score: report?.score || 0, bonusCredits, bonusXp, hull: report?.hull ?? null, stealth: report?.stealth ?? null, shots: report?.shots ?? null, completedAt: new Date().toISOString() },
+    { missionId: id, score: report?.score || 0, bonusCredits, bonusXp, objectiveRewardIds: objectiveRewards.map((item) => item.id), hull: report?.hull ?? null, stealth: report?.stealth ?? null, shots: report?.shots ?? null, completedAt: new Date().toISOString() },
     ...(state.save.progression.missionReports || [])
   ].slice(0, 12);
   const score = report?.score || 0;
@@ -851,6 +903,7 @@ function createSceneContext() {
     campaignViewDoctrine: getDoctrineForNation(campaignViewNationId),
     campaignViewDoctrineStage: getDoctrineStageForNation(campaignViewNationId),
     campaignViewDoctrineImpact: getDoctrineImpactForNation(campaignViewNationId),
+    campaignViewObjectives: getCampaignObjectiveDeckForNation(campaignViewNationId),
     campaignProgressByNation: getCampaignProgressByNation(),
     logisticsBase: getLogisticsBase(nationId),
     logisticsData: state.data.logistics,
@@ -877,7 +930,7 @@ sceneManager
   .register('mainMenu', { render: ({ t: translate }) => renderMainMenu(translate, Boolean(state.save), state.settings.language, activeProfile(), Boolean(state.operationAutosave)) })
   .register('commander', { render: ({ t: translate, nationId, avatarsByNation }) => renderCommanderScreen(translate, state.data.nations, state.commanderDraft, avatarsByNation[nationId]) })
   .register('lobby', { render: ({ t: translate, nation, submarine, crew }) => renderLobby(translate, state.save, nation, submarine, crew) })
-  .register('campaign', { render: ({ t: translate, campaignViewNation, campaignViewNationId, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewProgress, campaignViewDoctrine, campaignViewDoctrineStage, campaignViewDoctrineImpact, campaignProgressByNation }) => renderCampaign(translate, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewNation, campaignViewProgress, { allNations: state.data.nations, allCampaigns: state.data.campaigns, currentNationId: getCurrentNationId(), viewNationId: campaignViewNationId, progressByNation: campaignProgressByNation, completedMissions: state.save?.progression?.completedMissions || [], doctrine: campaignViewDoctrine, doctrineStage: campaignViewDoctrineStage, doctrineImpact: campaignViewDoctrineImpact }) })
+  .register('campaign', { render: ({ t: translate, campaignViewNation, campaignViewNationId, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewProgress, campaignViewDoctrine, campaignViewDoctrineStage, campaignViewDoctrineImpact, campaignViewObjectives, campaignProgressByNation }) => renderCampaign(translate, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewNation, campaignViewProgress, { allNations: state.data.nations, allCampaigns: state.data.campaigns, currentNationId: getCurrentNationId(), viewNationId: campaignViewNationId, progressByNation: campaignProgressByNation, completedMissions: state.save?.progression?.completedMissions || [], campaignObjectives: campaignViewObjectives, doctrine: campaignViewDoctrine, doctrineStage: campaignViewDoctrineStage, doctrineImpact: campaignViewDoctrineImpact }) })
   .register('career', { render: ({ t: translate, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans }) => renderCareer(translate, state.save, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans) })
   .register('strategy', { render: ({ t: translate, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment }) => renderStrategy(translate, state.save, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment) })
   .register('bridge', {

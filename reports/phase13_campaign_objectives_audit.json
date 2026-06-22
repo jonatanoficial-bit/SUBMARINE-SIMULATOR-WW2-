@@ -1,0 +1,142 @@
+{
+  "phase": "13",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.28",
+    "semver": "2.0.0-alpha.28",
+    "buildId": "SCWW2-20260622-1715-BRT-F13-CAMPAIGN-OBJECTIVES",
+    "date": "2026-06-22",
+    "time": "17:15",
+    "timezone": "America/Sao_Paulo",
+    "phase": "13",
+    "phaseName": "Historic Campaign Objectives",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 7,
+    "notes": "Phase 13 adds independent historical objective chains for Germany, United Kingdom and United States campaigns, act rewards with anti-duplication save tracking, strategic effects, UI objective deck and validation while preserving all systems through convoy and escort AI."
+  },
+  "summary": {
+    "passed": 19,
+    "failed": 0,
+    "total": 19
+  },
+  "checks": [
+    {
+      "name": "metadata points to phase 13 objective build",
+      "status": "PASS",
+      "detail": {
+        "product": "Submarine Commander WW2",
+        "studio": "Vale Games",
+        "version": "v2.0.0-alpha.28",
+        "semver": "2.0.0-alpha.28",
+        "buildId": "SCWW2-20260622-1715-BRT-F13-CAMPAIGN-OBJECTIVES",
+        "date": "2026-06-22",
+        "time": "17:15",
+        "timezone": "America/Sao_Paulo",
+        "phase": "13",
+        "phaseName": "Historic Campaign Objectives",
+        "channel": "alpha",
+        "release": false,
+        "qaStatus": "PASS",
+        "saveSchemaVersion": 7,
+        "notes": "Phase 13 adds independent historical objective chains for Germany, United Kingdom and United States campaigns, act rewards with anti-duplication save tracking, strategic effects, UI objective deck and validation while preserving all systems through convoy and escort AI."
+      }
+    },
+    {
+      "name": "package manifest and service worker updated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "index loads campaign objective css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "service worker caches objective files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "loader validates campaign objectives",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "app imports objective system",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "save tracks objective reward claims",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign screen renders objective deck",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "exactly one objective set per nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "de objectives have four rewarded acts",
+      "status": "PASS",
+      "detail": "campaign_objectives.de"
+    },
+    {
+      "name": "uk objectives have four rewarded acts",
+      "status": "PASS",
+      "detail": "campaign_objectives.uk"
+    },
+    {
+      "name": "us objectives have four rewarded acts",
+      "status": "PASS",
+      "detail": "campaign_objectives.us"
+    },
+    {
+      "name": "translation parity across PT/EN/ES",
+      "status": "PASS",
+      "detail": {
+        "pt-BR": 1504,
+        "en": 1504,
+        "es": 1504
+      }
+    },
+    {
+      "name": "objective translation keys exist pt-BR",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "objective translation keys exist en",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "objective translation keys exist es",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "phase 13 objective unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: phase 13 campaign objectives cover Germany, United Kingdom and United States\nok 1 - phase 13 campaign objectives cover Germany, United Kingdom and United States\n  ---\n  duration_ms: 2.980644\n  type: 'test'\n  ...\n# Subtest: objective deck resolves progress and claimed rewards deterministically\nok 2 - objective deck resolves progress and claimed rewards deterministically\n  ---\n  duration_ms: 0.688076\n  type: 'test'\n  ...\n# Subtest: new objective rewards trigger once and never duplicate on replay\nok 3 - new objective rewards trigger once and never duplicate on replay\n  ---\n  duration_ms: 0.495986\n  type: 'test'\n  ...\n# Subtest: save schema tracks campaign objective rewards for anti-duplication\nok 4 - save schema tracks campaign objective rewards for anti-duplication\n  ---\n  duration_ms: 3.871123\n  type: 'test'\n  ...\n# Subtest: phase 13 objective translation keys exist in all languages\nok 5 - phase 13 objective translation keys exist in all languages\n  ---\n  duration_ms: 4.378379\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 195.91836\n\n"
+    },
+    {
+      "name": "campaign and doctrine regression tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 3.195605\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 0.825191\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.4466\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 1.034637\n  type: 'test'\n  ...\n# Subtest: campaign screen can preview all nations without launching wrong-nation missions\nok 5 - campaign screen can preview all nations without launching wrong-nation missions\n  ---\n  duration_ms: 3.852982\n  type: 'test'\n  ...\n# Subtest: phase 12 metadata and package identify national doctrine build\nok 6 - phase 12 metadata and package identify national doctrine build\n  ---\n  duration_ms: 2.043374\n  type: 'test'\n  ...\n# Subtest: campaign doctrines cover Germany United Kingdom and United States\nok 7 - campaign doctrines cover Germany United Kingdom and United States\n  ---\n  duration_ms: 2.853982\n  type: 'test'\n  ...\n# Subtest: doctrine modifiers affect patrol costs and stage progression deterministically\nok 8 - doctrine modifiers affect patrol costs and stage progression deterministically\n  ---\n  duration_ms: 1.654226\n  type: 'test'\n  ...\n# Subtest: all doctrine translation keys exist in PT EN ES\nok 9 - all doctrine translation keys exist in PT EN ES\n  ---\n  duration_ms: 9.028654\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 191.537971\n\n"
+    },
+    {
+      "name": "all JavaScript modules pass syntax check",
+      "status": "PASS",
+      "detail": []
+    }
+  ]
+}

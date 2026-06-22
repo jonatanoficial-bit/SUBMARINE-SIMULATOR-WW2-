@@ -1,0 +1,266 @@
+[
+  {
+    "id": "campaign_objectives.de",
+    "nationId": "de",
+    "titleKey": "campaignObjectives.de.title",
+    "summaryKey": "campaignObjectives.de.summary",
+    "objectives": [
+      {
+        "id": "de_obj_atlantic_opening",
+        "act": 1,
+        "titleKey": "campaignObjectives.de.act1.title",
+        "descKey": "campaignObjectives.de.act1.desc",
+        "missionIds": [
+          "de1",
+          "de2"
+        ],
+        "effectKey": "campaignObjectives.de.act1.effect",
+        "reward": {
+          "credits": 1200,
+          "xp": 85,
+          "commandPoints": 1,
+          "reputation": 10,
+          "prestige": 5,
+          "intel": 4,
+          "pressureRelief": 1
+        }
+      },
+      {
+        "id": "de_obj_happy_time",
+        "act": 2,
+        "titleKey": "campaignObjectives.de.act2.title",
+        "descKey": "campaignObjectives.de.act2.desc",
+        "missionIds": [
+          "de3",
+          "de4"
+        ],
+        "effectKey": "campaignObjectives.de.act2.effect",
+        "reward": {
+          "credits": 1600,
+          "xp": 120,
+          "commandPoints": 2,
+          "reputation": 16,
+          "prestige": 8,
+          "intel": 5,
+          "pressureRelief": 2
+        }
+      },
+      {
+        "id": "de_obj_black_pit",
+        "act": 3,
+        "titleKey": "campaignObjectives.de.act3.title",
+        "descKey": "campaignObjectives.de.act3.desc",
+        "missionIds": [
+          "de5",
+          "de6"
+        ],
+        "effectKey": "campaignObjectives.de.act3.effect",
+        "reward": {
+          "credits": 2000,
+          "xp": 150,
+          "commandPoints": 2,
+          "reputation": 20,
+          "prestige": 10,
+          "intel": 6,
+          "pressureRelief": 2
+        }
+      },
+      {
+        "id": "de_obj_final_patrols",
+        "act": 4,
+        "titleKey": "campaignObjectives.de.act4.title",
+        "descKey": "campaignObjectives.de.act4.desc",
+        "missionIds": [
+          "de7",
+          "de8"
+        ],
+        "effectKey": "campaignObjectives.de.act4.effect",
+        "reward": {
+          "credits": 2600,
+          "xp": 210,
+          "commandPoints": 3,
+          "reputation": 28,
+          "prestige": 14,
+          "intel": 8,
+          "pressureRelief": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "campaign_objectives.uk",
+    "nationId": "uk",
+    "titleKey": "campaignObjectives.uk.title",
+    "summaryKey": "campaignObjectives.uk.summary",
+    "objectives": [
+      {
+        "id": "uk_obj_mediterranean_entry",
+        "act": 1,
+        "titleKey": "campaignObjectives.uk.act1.title",
+        "descKey": "campaignObjectives.uk.act1.desc",
+        "missionIds": [
+          "uk1",
+          "uk2"
+        ],
+        "effectKey": "campaignObjectives.uk.act1.effect",
+        "reward": {
+          "credits": 1100,
+          "xp": 90,
+          "commandPoints": 1,
+          "reputation": 12,
+          "prestige": 6,
+          "intel": 5,
+          "pressureRelief": 2
+        }
+      },
+      {
+        "id": "uk_obj_supply_lifeline",
+        "act": 2,
+        "titleKey": "campaignObjectives.uk.act2.title",
+        "descKey": "campaignObjectives.uk.act2.desc",
+        "missionIds": [
+          "uk3",
+          "uk4"
+        ],
+        "effectKey": "campaignObjectives.uk.act2.effect",
+        "reward": {
+          "credits": 1500,
+          "xp": 125,
+          "commandPoints": 2,
+          "reputation": 18,
+          "prestige": 9,
+          "intel": 6,
+          "pressureRelief": 3
+        }
+      },
+      {
+        "id": "uk_obj_axis_interdiction",
+        "act": 3,
+        "titleKey": "campaignObjectives.uk.act3.title",
+        "descKey": "campaignObjectives.uk.act3.desc",
+        "missionIds": [
+          "uk5",
+          "uk6"
+        ],
+        "effectKey": "campaignObjectives.uk.act3.effect",
+        "reward": {
+          "credits": 1900,
+          "xp": 155,
+          "commandPoints": 2,
+          "reputation": 22,
+          "prestige": 11,
+          "intel": 7,
+          "pressureRelief": 3
+        }
+      },
+      {
+        "id": "uk_obj_allied_landing_screen",
+        "act": 4,
+        "titleKey": "campaignObjectives.uk.act4.title",
+        "descKey": "campaignObjectives.uk.act4.desc",
+        "missionIds": [
+          "uk7",
+          "uk8"
+        ],
+        "effectKey": "campaignObjectives.uk.act4.effect",
+        "reward": {
+          "credits": 2500,
+          "xp": 215,
+          "commandPoints": 3,
+          "reputation": 30,
+          "prestige": 15,
+          "intel": 9,
+          "pressureRelief": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "campaign_objectives.us",
+    "nationId": "us",
+    "titleKey": "campaignObjectives.us.title",
+    "summaryKey": "campaignObjectives.us.summary",
+    "objectives": [
+      {
+        "id": "us_obj_pearl_response",
+        "act": 1,
+        "titleKey": "campaignObjectives.us.act1.title",
+        "descKey": "campaignObjectives.us.act1.desc",
+        "missionIds": [
+          "us1",
+          "us2"
+        ],
+        "effectKey": "campaignObjectives.us.act1.effect",
+        "reward": {
+          "credits": 1300,
+          "xp": 95,
+          "commandPoints": 1,
+          "reputation": 11,
+          "prestige": 6,
+          "intel": 5,
+          "pressureRelief": 1
+        }
+      },
+      {
+        "id": "us_obj_island_pressure",
+        "act": 2,
+        "titleKey": "campaignObjectives.us.act2.title",
+        "descKey": "campaignObjectives.us.act2.desc",
+        "missionIds": [
+          "us3",
+          "us4"
+        ],
+        "effectKey": "campaignObjectives.us.act2.effect",
+        "reward": {
+          "credits": 1700,
+          "xp": 130,
+          "commandPoints": 2,
+          "reputation": 17,
+          "prestige": 9,
+          "intel": 6,
+          "pressureRelief": 2
+        }
+      },
+      {
+        "id": "us_obj_trade_war",
+        "act": 3,
+        "titleKey": "campaignObjectives.us.act3.title",
+        "descKey": "campaignObjectives.us.act3.desc",
+        "missionIds": [
+          "us5",
+          "us6"
+        ],
+        "effectKey": "campaignObjectives.us.act3.effect",
+        "reward": {
+          "credits": 2200,
+          "xp": 165,
+          "commandPoints": 2,
+          "reputation": 24,
+          "prestige": 12,
+          "intel": 8,
+          "pressureRelief": 3
+        }
+      },
+      {
+        "id": "us_obj_home_islands_blockade",
+        "act": 4,
+        "titleKey": "campaignObjectives.us.act4.title",
+        "descKey": "campaignObjectives.us.act4.desc",
+        "missionIds": [
+          "us7",
+          "us8"
+        ],
+        "effectKey": "campaignObjectives.us.act4.effect",
+        "reward": {
+          "credits": 2900,
+          "xp": 230,
+          "commandPoints": 3,
+          "reputation": 32,
+          "prestige": 16,
+          "intel": 10,
+          "pressureRelief": 4
+        }
+      }
+    ]
+  }
+]

@@ -98,6 +98,45 @@ function renderDoctrineDeck(t, doctrine = null, doctrineStage = {}, doctrineImpa
   `;
 }
 
+
+
+function renderObjectiveDeck(t, deck = null) {
+  const objectives = Array.isArray(deck?.objectives) ? deck.objectives : [];
+  if (!objectives.length) return '';
+  return `
+    <div class="campaign-objective-deck phase13-campaign-objectives" aria-label="${t('campaignObjectives.title')}">
+      <div class="row space-between align-start objective-deck-head">
+        <div>
+          <div class="mini-title">${t('campaignObjectives.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag gold">${deck.completed}/${deck.total}</span>
+      </div>
+      <div class="campaign-objective-list">
+        ${objectives.map((objective) => `
+          <div class="campaign-objective-card ${objective.progress.completed ? 'complete' : ''} ${objective.claimed ? 'claimed' : ''}">
+            <div class="row space-between align-start">
+              <div>
+                <span>${t('campaignObjectives.act')} ${objective.act}</span>
+                <strong>${t(objective.titleKey)}</strong>
+                <small>${t(objective.descKey)}</small>
+              </div>
+              <em>${objective.progress.done}/${objective.progress.total}</em>
+            </div>
+            <div class="campaign-objective-track"><i style="width:${objective.progress.percent}%"></i></div>
+            <div class="campaign-objective-reward">
+              <span>${t('campaignObjectives.reward')}</span>
+              <strong>+${objective.reward.credits} ${t('common.credits')} • +${objective.reward.xp} XP • +${objective.reward.commandPoints} ${t('strategy.commandPoints')}</strong>
+            </div>
+            <p class="muted compact-text">${t(objective.effectKey)}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -130,6 +169,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const doctrine = options.doctrine || null;
   const doctrineStage = options.doctrineStage || {};
   const doctrineImpact = options.doctrineImpact || {};
+  const campaignObjectives = options.campaignObjectives || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -169,6 +209,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             </div>
             <div class="empty-state compact"><strong>${t('campaign.goal')}</strong><br>${campaign ? t(campaign.strategicGoalKey) : ''}</div>
             ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
+            ${renderObjectiveDeck(t, campaignObjectives)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

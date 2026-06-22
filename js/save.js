@@ -175,6 +175,7 @@ export function migrateSave(input) {
     xp: Math.floor(clampNumber(save.progression?.xp, 0, 99999999, 0)),
     credits: Math.floor(clampNumber(save.progression?.credits, 0, 999999999, 5000)),
     completedMissions: uniqueStringArray(save.progression?.completedMissions),
+    campaignObjectiveRewards: uniqueStringArray(save.progression?.campaignObjectiveRewards),
     missionReports: Array.isArray(save.progression?.missionReports)
       ? save.progression.missionReports.filter((item) => item && typeof item === 'object').slice(0, 12)
       : [],
@@ -525,7 +526,7 @@ export function createInitialSave({ commander, starterSubmarineId, credits }) {
   const timestamp = nowIso();
   return migrateSave({
     commander,
-    progression: { level: 1, xp: 0, credits, completedMissions: [], missionReports: [], bestScore: 0 },
+    progression: { level: 1, xp: 0, credits, completedMissions: [], campaignObjectiveRewards: [], missionReports: [], bestScore: 0 },
     submarine: {
       currentId: starterSubmarineId, unlockedIds: [starterSubmarineId], upgrades: [], hull: 100,
       systems: { engines: 100, sonar: 100, periscope: 100, weapons: 100 }

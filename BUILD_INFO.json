@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.27",
-  "semver": "2.0.0-alpha.27",
-  "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
+  "version": "v2.0.0-alpha.28",
+  "semver": "2.0.0-alpha.28",
+  "buildId": "SCWW2-20260622-1715-BRT-F13-CAMPAIGN-OBJECTIVES",
   "date": "2026-06-22",
-  "time": "15:48",
+  "time": "17:15",
   "timezone": "America/Sao_Paulo",
-  "phase": "12",
-  "phaseName": "National Campaign Doctrines",
+  "phase": "13",
+  "phaseName": "Historic Campaign Objectives",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 6,
-  "notes": "Phase 12 expands the independent Germany, United Kingdom and United States campaigns with national naval doctrines, asymmetric patrol modifiers, staged doctrine progression, UI doctrine deck, and anti-break validation while preserving all systems through convoy and escort AI."
+  "saveSchemaVersion": 7,
+  "notes": "Phase 13 adds independent historical objective chains for Germany, United Kingdom and United States campaigns, act rewards with anti-duplication save tracking, strategic effects, UI objective deck and validation while preserving all systems through convoy and escort AI."
 }
