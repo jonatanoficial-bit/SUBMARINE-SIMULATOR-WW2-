@@ -24,6 +24,7 @@ export const state = {
     contextualHelp: true
   },
   selectedMissionId: null,
+  selectedCampaignNationId: null,
   toast: ''
 };
 
@@ -38,4 +39,5 @@ export function setResumeOperation(value) { state.resumeOperation = Boolean(valu
 export function setSettings(settings) { state.settings = { ...state.settings, ...settings }; }
 export function setDraft(partial) { state.commanderDraft = { ...state.commanderDraft, ...partial }; }
 export function setMission(id) { state.selectedMissionId = id; }
+export function setCampaignNation(id) { state.selectedCampaignNationId = id || null; }
 export function setToast(message) { state.toast = message; }

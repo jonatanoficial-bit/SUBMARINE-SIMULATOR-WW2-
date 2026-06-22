@@ -1,3 +1,21 @@
+# Submarine Commander WW2 — v2.0.0-alpha.26
+
+Fase 11 — Campanhas independentes para Alemanha, Reino Unido e Estados Unidos.
+
+Esta build foi evoluída sobre a base real mais recente enviada pelo usuário e preserva os sistemas posteriores já existentes até a Fase 25. A Fase 11 foi reforçada com seletor de campanhas por nação, prévia estratégica, linha do tempo, atos de campanha e trava anti-mistura para impedir lançamento de missão de uma marinha com comandante de outra.
+
+## Auditoria desta entrega
+
+```bash
+npm test
+npm run audit
+python3 tests/campaigns_smoke.py
+```
+
+Resultados registrados em `reports/phase11_tri_campaigns_audit.json`, `reports/PHASE_11_TRI_CAMPAIGNS_AUDIT.md` e `reports/phase11_campaigns_smoke.json`.
+
+---
+
 # Submarine Commander WW2 — v2.0.0-alpha.24
 
 Fase 21: dano interno, vazamentos, fumaça, entrada de pressão, estabilidade de compartimentos e controle de emergência.

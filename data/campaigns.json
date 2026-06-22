@@ -20,6 +20,60 @@
       "de6",
       "de7",
       "de8"
+    ],
+    "frontKey": "campaign.de.front",
+    "toneKey": "campaign.de.tone",
+    "timeline": [
+      {
+        "year": "1939",
+        "labelKey": "campaign.de.timeline.1939"
+      },
+      {
+        "year": "1940",
+        "labelKey": "campaign.de.timeline.1940"
+      },
+      {
+        "year": "1942",
+        "labelKey": "campaign.de.timeline.1942"
+      },
+      {
+        "year": "1944",
+        "labelKey": "campaign.de.timeline.1944"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "de_act1",
+        "titleKey": "campaign.de.act1.title",
+        "missionIds": [
+          "de1",
+          "de2"
+        ]
+      },
+      {
+        "id": "de_act2",
+        "titleKey": "campaign.de.act2.title",
+        "missionIds": [
+          "de3",
+          "de4"
+        ]
+      },
+      {
+        "id": "de_act3",
+        "titleKey": "campaign.de.act3.title",
+        "missionIds": [
+          "de5",
+          "de6"
+        ]
+      },
+      {
+        "id": "de_act4",
+        "titleKey": "campaign.de.act4.title",
+        "missionIds": [
+          "de7",
+          "de8"
+        ]
+      }
     ]
   },
   {
@@ -43,6 +97,60 @@
       "uk6",
       "uk7",
       "uk8"
+    ],
+    "frontKey": "campaign.uk.front",
+    "toneKey": "campaign.uk.tone",
+    "timeline": [
+      {
+        "year": "1940",
+        "labelKey": "campaign.uk.timeline.1940"
+      },
+      {
+        "year": "1941",
+        "labelKey": "campaign.uk.timeline.1941"
+      },
+      {
+        "year": "1942",
+        "labelKey": "campaign.uk.timeline.1942"
+      },
+      {
+        "year": "1944",
+        "labelKey": "campaign.uk.timeline.1944"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "uk_act1",
+        "titleKey": "campaign.uk.act1.title",
+        "missionIds": [
+          "uk1",
+          "uk2"
+        ]
+      },
+      {
+        "id": "uk_act2",
+        "titleKey": "campaign.uk.act2.title",
+        "missionIds": [
+          "uk3",
+          "uk4"
+        ]
+      },
+      {
+        "id": "uk_act3",
+        "titleKey": "campaign.uk.act3.title",
+        "missionIds": [
+          "uk5",
+          "uk6"
+        ]
+      },
+      {
+        "id": "uk_act4",
+        "titleKey": "campaign.uk.act4.title",
+        "missionIds": [
+          "uk7",
+          "uk8"
+        ]
+      }
     ]
   },
   {
@@ -66,6 +174,60 @@
       "us6",
       "us7",
       "us8"
+    ],
+    "frontKey": "campaign.us.front",
+    "toneKey": "campaign.us.tone",
+    "timeline": [
+      {
+        "year": "1941",
+        "labelKey": "campaign.us.timeline.1941"
+      },
+      {
+        "year": "1942",
+        "labelKey": "campaign.us.timeline.1942"
+      },
+      {
+        "year": "1943",
+        "labelKey": "campaign.us.timeline.1943"
+      },
+      {
+        "year": "1945",
+        "labelKey": "campaign.us.timeline.1945"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "us_act1",
+        "titleKey": "campaign.us.act1.title",
+        "missionIds": [
+          "us1",
+          "us2"
+        ]
+      },
+      {
+        "id": "us_act2",
+        "titleKey": "campaign.us.act2.title",
+        "missionIds": [
+          "us3",
+          "us4"
+        ]
+      },
+      {
+        "id": "us_act3",
+        "titleKey": "campaign.us.act3.title",
+        "missionIds": [
+          "us5",
+          "us6"
+        ]
+      },
+      {
+        "id": "us_act4",
+        "titleKey": "campaign.us.act4.title",
+        "missionIds": [
+          "us7",
+          "us8"
+        ]
+      }
     ]
   }
 ]

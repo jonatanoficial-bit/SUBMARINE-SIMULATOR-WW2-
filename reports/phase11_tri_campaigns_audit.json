@@ -1,0 +1,157 @@
+{
+  "phase": "11",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.26",
+    "semver": "2.0.0-alpha.26",
+    "buildId": "SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN",
+    "date": "2026-06-22",
+    "time": "12:40",
+    "timezone": "America/Sao_Paulo",
+    "phase": "11",
+    "phaseName": "Independent Germany UK USA Campaign Retrofit",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 6,
+    "notes": "Phase 11 retrofit on top of the latest base build. Adds a tri-nation independent campaign selector, preview-only safeguards, timeline/act maps for Germany, United Kingdom and United States, and anti-mix launch guards so missions cannot be started with the wrong navy profile. Later systems through phase 25 remain preserved."
+  },
+  "summary": {
+    "passed": 26,
+    "failed": 0,
+    "total": 26
+  },
+  "checks": [
+    {
+      "name": "metadata points to phase 11 retrofit",
+      "status": "PASS",
+      "detail": "{'product': 'Submarine Commander WW2', 'studio': 'Vale Games', 'version': 'v2.0.0-alpha.26', 'semver': '2.0.0-alpha.26', 'buildId': 'SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN', 'date': '2026-06-22', 'time': '12:40', 'timezone': 'America/Sao_Paulo', 'phase': '11', 'phaseName': 'Independent Germany UK USA Campaign Retrofit', 'channel': 'alpha', 'release': False, 'qaStatus': 'PASS', 'saveSchemaVersion': 6, 'notes': 'Phase 11 retrofit on top of the latest base build. Adds a tri-nation independent campaign selector, preview-only safeguards, timeline/act maps for Germany, United Kingdom and United States, and anti-mix launch guards so missions cannot be started with the wrong navy profile. Later systems through phase 25 remain preserved.'}"
+    },
+    {
+      "name": "package and manifest updated",
+      "status": "PASS",
+      "detail": "{'pkg': '2.0.0-alpha.26', 'manifest': '2.0.0-alpha.26'}"
+    },
+    {
+      "name": "service worker cache bumped",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "index title and meta updated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "phase 11 CSS still loaded and expanded",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "exactly three independent campaign nations",
+      "status": "PASS",
+      "detail": "['de', 'uk', 'us']"
+    },
+    {
+      "name": "de has eight ordered mission ids",
+      "status": "PASS",
+      "detail": "['de1', 'de2', 'de3', 'de4', 'de5', 'de6', 'de7', 'de8']"
+    },
+    {
+      "name": "de has timeline and act map",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "de chapters are isolated inside same campaign",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk has eight ordered mission ids",
+      "status": "PASS",
+      "detail": "['uk1', 'uk2', 'uk3', 'uk4', 'uk5', 'uk6', 'uk7', 'uk8']"
+    },
+    {
+      "name": "uk has timeline and act map",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "uk chapters are isolated inside same campaign",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us has eight ordered mission ids",
+      "status": "PASS",
+      "detail": "['us1', 'us2', 'us3', 'us4', 'us5', 'us6', 'us7', 'us8']"
+    },
+    {
+      "name": "us has timeline and act map",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "us chapters are isolated inside same campaign",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "state stores selected campaign preview nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "app filters preview missions by selected nation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wrong-nation launch guard exists",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign renderer includes three-nation selector",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign renderer blocks other-nation launch visually",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "translation parity across PT/EN/ES",
+      "status": "PASS",
+      "detail": "{'pt-BR': 1402, 'en': 1402, 'es': 1402}"
+    },
+    {
+      "name": "new campaign UI keys translated pt-BR",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "new campaign UI keys translated en",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "new campaign UI keys translated es",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "name": "campaign unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 1.736124\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 0.447969\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.198935\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 0.458913\n  type: 'test'\n  ...\n# Subtest: campaign screen can preview all nations without launching wrong-nation missions\nok 5 - campaign screen can preview all nations without launching wrong-nation missions\n  ---\n  duration_ms: 2.111183\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 110.428482\n\n"
+    },
+    {
+      "name": "all JavaScript modules pass syntax check",
+      "status": "PASS",
+      "detail": "[]"
+    }
+  ]
+}

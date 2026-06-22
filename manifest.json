@@ -1,5 +1,5 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.25",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.26",
   "short_name": "Sub Commander",
   "start_url": "./index.html",
   "display": "fullscreen",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — v2.0.0-alpha.25 by Vale Games",
+  "description": "Submarine Commander WW2 — v2.0.0-alpha.26 by Vale Games",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.25",
+  "version": "2.0.0-alpha.26",
   "id": "./"
 }

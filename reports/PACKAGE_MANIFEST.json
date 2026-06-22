@@ -1,14 +1,14 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.25",
-  "phase": "25",
-  "phaseName": "Convoy and Escort Tactical Intelligence",
-  "buildId": "SCWW2-20260620-1325-BRT-F25",
+  "version": "v2.0.0-alpha.26",
+  "phase": "11",
+  "phaseName": "Independent Germany UK USA Campaign Retrofit",
+  "buildId": "SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN",
   "qaStatus": "PASS",
-  "generatedAt": "2026-06-20T16:28:47.715847+00:00",
-  "fileCount": 546,
-  "totalBytes": 68599751,
+  "generatedAt": "2026-06-22T15:43:59.690300+00:00",
+  "fileCount": 554,
+  "totalBytes": 68642461,
   "hashAlgorithm": "SHA-256",
   "files": [
     {
@@ -38,13 +38,13 @@
     },
     {
       "path": "BUILD_INFO.json",
-      "bytes": 696,
-      "sha256": "a2a6c9eb3f84be70960f23141164c11d06ed2c093f2bea78ad1eae686c8890bf"
+      "bytes": 775,
+      "sha256": "aeab594aae9b278ab565851d7bffe5d05e77ee1d551142139ce7eed4718d84b0"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 16700,
-      "sha256": "8d11d22f35a972d0c243b4b41b96487e88fef706036ca73ef28a3ccb8bf860ea"
+      "bytes": 17322,
+      "sha256": "a9220d18549164a8b3c5a95908818efb3ced0e109e79df14289b478eb6768787"
     },
     {
       "path": "DEPLOY_GITHUB_PAGES.md",
@@ -85,6 +85,11 @@
       "path": "KNOWN_ISSUES_PHASE_11.md",
       "bytes": 528,
       "sha256": "f19c98f475518b12c8bb57f11871c84aa737486dff0514754b66957215204034"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_11_TRI_CAMPAIGNS.md",
+      "bytes": 253,
+      "sha256": "b73132b59c0a21617931f80d1e7647393fc85949dda3710384e5db1fb7a89c04"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_12.md",
@@ -225,6 +230,11 @@
       "path": "PHASE_11_DELIVERY_REPORT.md",
       "bytes": 1163,
       "sha256": "6341ce3a5369b803d17c7d49fc4737e9cb566d23440c816f23dab33eecd57023"
+    },
+    {
+      "path": "PHASE_11_TRI_CAMPAIGNS_DELIVERY_REPORT.md",
+      "bytes": 1638,
+      "sha256": "219643a2f89e920818df8bd6e074ada076023c9a221270b2c2454870e0f1bd1a"
     },
     {
       "path": "PHASE_12_DELIVERY_REPORT.md",
@@ -377,6 +387,11 @@
       "sha256": "9d8662411193487cd1640dd28c48e9859e6df2d5bb7a9838451ab97c2fcb93a6"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_11_TRI_CAMPAIGNS.md",
+      "bytes": 539,
+      "sha256": "745ac0db7f6504cf74b73e240b712cd49b4304d480c558290c00aab2b3c002d5"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_12.md",
       "bytes": 756,
       "sha256": "51e9b0f9e79ab9096d459fd66466c221f4687314164901547c15c31f3a6d8be4"
@@ -488,8 +503,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4196,
-      "sha256": "ea894e62ff76ece91bd344acd86f343c7a25a20e6113ccf57a21ef07931bb1e7"
+      "bytes": 4942,
+      "sha256": "0f992aea4576cc902c3867df7589dfb4d66bb97639a6bedb2f87ac6d0ff2a329"
     },
     {
       "path": "RELEASE_NOTES_v2.0.0-alpha.01.md",
@@ -637,6 +652,11 @@
       "sha256": "ae243d3e5b6f160146cec5b0b322d8e4da8ebc95452b8cdaf63864b45dd226bc"
     },
     {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.26.md",
+      "bytes": 827,
+      "sha256": "52b5e2ae01f4cb3729207fcc32841ced40a807766999218214cda47c4e09ef28"
+    },
+    {
       "path": "ROLLBACK_PHASE_1.md",
       "bytes": 808,
       "sha256": "d77a3375a4d5ef616665ada2e2f450a684e7968863a8cdad257703494f3d3197"
@@ -670,6 +690,11 @@
       "path": "ROLLBACK_PHASE_11.md",
       "bytes": 305,
       "sha256": "56c038e05acd0d33f9d50743c005a3cd95032d7b86849194c0b09286ca67ce03"
+    },
+    {
+      "path": "ROLLBACK_PHASE_11_TRI_CAMPAIGNS.md",
+      "bytes": 340,
+      "sha256": "83b771c5cc8d3ef93af837563b5161dff7e2819c0a72613312ee5963bbad1be8"
     },
     {
       "path": "ROLLBACK_PHASE_12.md",
@@ -1178,8 +1203,8 @@
     },
     {
       "path": "css/phase11-campaigns.css",
-      "bytes": 2291,
-      "sha256": "c435a3e520ecebc707cbdb0d68348a3df3fe95888dff258f8aa4a62260e5f0ec"
+      "bytes": 5035,
+      "sha256": "bb48294b8dc41c5b8bc2ce97f312a955e31402058e5a0b258797bca283044b9a"
     },
     {
       "path": "css/phase12-career-logistics.css",
@@ -1308,8 +1333,8 @@
     },
     {
       "path": "data/campaigns.json",
-      "bytes": 1591,
-      "sha256": "cfb78a12422cab0ee73d287eec597ce2072edf63aa2fa4474b602f44503c501c"
+      "bytes": 4879,
+      "sha256": "be909273886f54f7747d39ef75603a25b3252d41bac0d846833b453221ab8e04"
     },
     {
       "path": "data/crew.json",
@@ -1343,18 +1368,18 @@
     },
     {
       "path": "data/translations/en.json",
-      "bytes": 78128,
-      "sha256": "f8818571dcd1339389934b864da0077255eef3535fd751d5e4a03a463c4afc74"
+      "bytes": 81454,
+      "sha256": "daec001b3fb16275020e5cbebd11d5ea16189d6ce84d9cd46bd956cd5833c27a"
     },
     {
       "path": "data/translations/es.json",
-      "bytes": 83432,
-      "sha256": "733b98eba94b96b97b6b3a455a759e63b81a7958b24e709f52d123fbca0f60d0"
+      "bytes": 86928,
+      "sha256": "d4a65a2ba56544bb3323a67682db6a4de94869d2a246466c15795fd9d725ebda"
     },
     {
       "path": "data/translations/pt-BR.json",
-      "bytes": 81950,
-      "sha256": "6f539837d3d09734b17a5c6ad5910e203f8ea565980a54e561f04ed7011f9c2f"
+      "bytes": 85433,
+      "sha256": "6ccdd8e7bf5da88ee96262f66d2669ec2131564b7ca33a733d27b83a825d1bed"
     },
     {
       "path": "data/upgrades.json",
@@ -1454,12 +1479,12 @@
     {
       "path": "index.html",
       "bytes": 3264,
-      "sha256": "df341c0b0df1737e40fe54be984359670100d1281fe0db294f79f83489140ff2"
+      "sha256": "2bcff4b0bf48bc8f54ac5e4baa1144be55460f1d8fc020bcf07b2eb30a735f97"
     },
     {
       "path": "js/app.js",
-      "bytes": 52022,
-      "sha256": "e6582ab89b021057a72ada46bd2471ecbbe4e311693975d29bd42df9cedcf309"
+      "bytes": 54813,
+      "sha256": "4e7e36c109fe60f7378739c1cc5bf88c7414218f365b38e4d046f40bd9798f31"
     },
     {
       "path": "js/assets.js",
@@ -1473,8 +1498,8 @@
     },
     {
       "path": "js/build.js",
-      "bytes": 802,
-      "sha256": "4af456b03b0638c2b786cd1c0b93f437561c2aa3e2270afb206ddecae74febd4"
+      "bytes": 881,
+      "sha256": "35dddb28468c1232da3bd3a5782c4072e5b4a5249991a5350c61b4b3e45ede55"
     },
     {
       "path": "js/components/ui.js",
@@ -1623,8 +1648,8 @@
     },
     {
       "path": "js/screens/campaign.js",
-      "bytes": 4971,
-      "sha256": "6e2a251a5bfebd120633bab4b35431a25e515c377f2a570bd511720470a9a4f6"
+      "bytes": 9049,
+      "sha256": "f8a1af0c6536a0484d532903e3dfe4571a30d9933e176bbc6549d2c17d874992"
     },
     {
       "path": "js/screens/career.js",
@@ -1678,8 +1703,8 @@
     },
     {
       "path": "js/state.js",
-      "bytes": 1510,
-      "sha256": "c1b832e3182e2901685e1d5902349f78cf5c4a2a3b9f3ac99e00622d9d4ce4ba"
+      "bytes": 1631,
+      "sha256": "3b1a9c081dde150e1d22fe71e68b09471c666ec86b6a1e89e518788cd90d22fe"
     },
     {
       "path": "js/systems/convoyDoctrine.js",
@@ -1699,12 +1724,12 @@
     {
       "path": "manifest.json",
       "bytes": 765,
-      "sha256": "3ec2750bdc5febdbf3bd5c7eab05c757c9bd54f9ac4d58ad9cbd6a64344d2a08"
+      "sha256": "c1a0a4a07717f54af6ea8e13980e67f5fecf71637ed6bc777aa750fe75a45326"
     },
     {
       "path": "package.json",
-      "bytes": 3226,
-      "sha256": "a9cc69d6930a829fe79c83ecd6338829430e4fc108a8ca3ae372840b8d4c4208"
+      "bytes": 3240,
+      "sha256": "7a6401fc77a2d5df40c9e9332abf033579563268d38b39b999d4bcd139b0de4b"
     },
     {
       "path": "reports/PHASE_10_1_AUDIT.md",
@@ -1740,6 +1765,11 @@
       "path": "reports/PHASE_11_EXTRACT_VERIFICATION.md",
       "bytes": 765,
       "sha256": "93939df80fed4f60c47ffdbacedd8894d50fd5e2ddf41e2a4230c4f1796af925"
+    },
+    {
+      "path": "reports/PHASE_11_TRI_CAMPAIGNS_AUDIT.md",
+      "bytes": 3559,
+      "sha256": "778785bf387c0eda492fa40671a4c7b48e96eca0c26a17d443ab86f28fd59bfc"
     },
     {
       "path": "reports/PHASE_12_AUDIT.md",
@@ -1997,6 +2027,11 @@
       "sha256": "32bbd8413036f3ddf1e69fd88d6e4a2f51586b30c6d8670b83994671eff17732"
     },
     {
+      "path": "reports/phase11_tri_campaigns_audit.json",
+      "bytes": 6005,
+      "sha256": "57b8b6e97437e9fe7498d862732bc9700c09f3a664e7f1df66acc059d6be6927"
+    },
+    {
       "path": "reports/phase12_audit.json",
       "bytes": 6426,
       "sha256": "ec78148cc9c2a1b195644c48d30efca28dd986e64066eb50628b00ff1cb1496f"
@@ -2223,8 +2258,8 @@
     },
     {
       "path": "reports/screenshots/phase11_mobile_campaigns.png",
-      "bytes": 59351,
-      "sha256": "2f95670f2910a922933c7141df3e8680d8b97b2a8abc313ff0c0c30651f9c08e"
+      "bytes": 58180,
+      "sha256": "7f4fc6dccedc223a1e24ec0c5bc5b879569672eb48a62850d6fbfc877e6801da"
     },
     {
       "path": "reports/screenshots/phase2_desktop_menu.png",
@@ -2444,7 +2479,7 @@
     {
       "path": "service-worker.js",
       "bytes": 6336,
-      "sha256": "0551f679dbd2da71980a1f478ee12c148f0e4c7982f7f8c2ad8e70fb5f4a76e1"
+      "sha256": "2858c05faa50cee562ea8868a03a53cef3580296d3dd2af9a5bd601e56576d67"
     },
     {
       "path": "tests/bridge_instruments.test.js",
@@ -2453,8 +2488,8 @@
     },
     {
       "path": "tests/campaigns.test.js",
-      "bytes": 3696,
-      "sha256": "817f0b4cc4fb39adc411b4a917db55518db282469a62207ed23b9ba6243ee506"
+      "bytes": 4778,
+      "sha256": "6bdab6e73df5f14dc65761ce0b2ef52d318c2c873735cdcf1b3b05a5742f29c1"
     },
     {
       "path": "tests/campaigns_smoke.py",
@@ -2464,7 +2499,7 @@
     {
       "path": "tests/career_logistics.test.js",
       "bytes": 3613,
-      "sha256": "6a4e6fd19795ba671240eac89c4353082b2716b5efc4e10c4c0b458b8ea84d12"
+      "sha256": "cbe602c0a81cee3980ab99498b9aa2030f8d5084e2bde7be56e8789899a274ab"
     },
     {
       "path": "tests/damage_control.test.js",
@@ -2504,7 +2539,7 @@
     {
       "path": "tests/periscope_room.test.js",
       "bytes": 2578,
-      "sha256": "06309fae12a998ca73ff2902a916e2cb5cbdefafe7462bae3ecda81d1234ad40"
+      "sha256": "3ddb8bc3ddeb8adb0675ad2c31658d5629c12c0a161bf0af7c522a1bcf9e3032"
     },
     {
       "path": "tests/phase16_buoyancy.test.js",
@@ -2514,37 +2549,37 @@
     {
       "path": "tests/phase17_sonar_room.test.js",
       "bytes": 1622,
-      "sha256": "0082f545a49abe84589cd2560080d1e376c20dda37943074d78fd3f1df4eccdd"
+      "sha256": "5b04de999e3b3cf385610a0fb6415940e3ea1427edf80a4897161870f297c43f"
     },
     {
       "path": "tests/phase19_tdc_room.test.js",
       "bytes": 2910,
-      "sha256": "8cfd03c90a52a141220d2d393dcfca0bd30a2225a5587be64ab669c313358c02"
+      "sha256": "9f066f1b55fc91011947c412e778ae10afa850de76d3f07140477cde0026bcbf"
     },
     {
       "path": "tests/phase20_mobile_scroll.test.js",
       "bytes": 1803,
-      "sha256": "25fe4cb5b94d4178a91223b1544759dfe3aff7aad791ea4897e9303aa17c962d"
+      "sha256": "fed63277d559754dcd0bec5bf197331bb3cb531f8ed9fec1edc890180a3178c8"
     },
     {
       "path": "tests/phase22_soundtrack.test.js",
       "bytes": 1932,
-      "sha256": "8acaa52988748c1a147b4c1897e4626ba5a333129f73a47aadd5924ec1d02308"
+      "sha256": "ac2e6343dc80b64c1e27ef203d195e83f0d937861db3942ae516cb292df3fb72"
     },
     {
       "path": "tests/phase23_crew_readiness.test.js",
-      "bytes": 2984,
-      "sha256": "80441295de7279180a1420d9d206d3e2cbc98bc8e9c9244b9f0e381477dd19d0"
+      "bytes": 2998,
+      "sha256": "715d9b6a895d3a01f02ed768d263ba9a10730b696938a9bc5c73a914b7c1b294"
     },
     {
       "path": "tests/phase24_ocean_weather.test.js",
       "bytes": 2529,
-      "sha256": "3882143133c5cb9a1a92844fef259bf3e3bf0992f41da26a8fac6939e57530f3"
+      "sha256": "1d4fd7646ef3bae5ba237c6056e91b62fb629393233e71e86b0d076632178d75"
     },
     {
       "path": "tests/phase25_convoy_doctrine.test.js",
       "bytes": 2838,
-      "sha256": "0f714a661066169bbdfa9cd69ecf4040c7c51a876568cdb65f981f36ad6ad268"
+      "sha256": "1e92e063c0c1039f25a756c3982b7fc4138aae3088be245797d273644129203b"
     },
     {
       "path": "tests/physics.test.js",
@@ -2579,7 +2614,7 @@
     {
       "path": "tests/strategic_command.test.js",
       "bytes": 3734,
-      "sha256": "2ce97ed88c3b42f030b157c058f7aa9eb79495a47979ff47ac45e04d4de61133"
+      "sha256": "1b6b56e4f1f9edb765a5edae5db6a0ad894d9f875031c46394ed946c299a75fc"
     },
     {
       "path": "tests/tactical_encounter.test.js",
@@ -2620,6 +2655,11 @@
       "path": "tools/audit_phase11.py",
       "bytes": 5760,
       "sha256": "9784402dbfa4736b1d760903f2510c3e7d721fa3f68c6810294ca76e5985ad34"
+    },
+    {
+      "path": "tools/audit_phase11_tri_campaigns.py",
+      "bytes": 4757,
+      "sha256": "fdd9e6e8e5817bdf7ca3b56bdeacbc690bbdff770e64bbac21505d7acd2d1ee7"
     },
     {
       "path": "tools/audit_phase12.py",

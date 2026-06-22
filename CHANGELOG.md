@@ -1,3 +1,14 @@
+# Changelog
+
+## v2.0.0-alpha.26 — Fase 11 — Campanhas independentes Alemanha/Reino Unido/EUA
+
+- Reforçada a Fase 11 sobre a base real mais recente sem remover sistemas posteriores da build.
+- Adicionado seletor visual das três campanhas independentes na tela Campanha.
+- Adicionadas linhas do tempo e mapa de atos para Alemanha, Reino Unido e Estados Unidos.
+- Adicionada trava de segurança: missão de outra nação fica em prévia e não pode abrir briefing com comandante incorreto.
+- Atualizadas traduções PT-BR, EN e ES mantendo paridade completa.
+- Atualizados testes de campanha, auditoria e smoke mobile da Fase 11.
+
 
 ## v2.0.0-alpha.22 — Phase 22 Official Soundtrack Playlist
 
@@ -6,7 +17,6 @@
 - Added automatic loop back to track 1 after track 6.
 - Preserved Phase 21 and mobile scroll fixes.
 
-# Changelog
 
 ## v2.0.0-alpha.21 — Fase 21 — Dano Interno e Controle de Emergência
 - Adicionado sistema de entrada de pressão.

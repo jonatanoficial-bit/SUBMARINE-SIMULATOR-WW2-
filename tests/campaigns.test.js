@@ -24,6 +24,10 @@ test('each nation has one independent campaign with eight ordered missions', () 
     const campaign = campaigns.find((item) => item.nationId === nation.id);
     assert.ok(campaign, `missing campaign for ${nation.id}`);
     assert.equal(campaign.missionIds.length, 8);
+    assert.ok(campaign.frontKey && campaign.toneKey, `missing front/tone for ${nation.id}`);
+    assert.equal(campaign.timeline.length, 4, `timeline for ${nation.id}`);
+    assert.equal(campaign.chapters.length, 4, `chapters for ${nation.id}`);
+    assert.ok(campaign.chapters.every((chapter) => chapter.missionIds.length === 2));
     const nationMissions = missions.filter((mission) => mission.nationId === nation.id);
     assert.deepEqual(nationMissions.map((mission) => mission.id), campaign.missionIds);
     assert.equal(nationMissions[0].status, 'available');
@@ -58,7 +62,9 @@ test('campaign progression unlocks only within the same nation', () => {
 test('all campaign and mission keys are translated in three languages', () => {
   const keys = new Set();
   for (const campaign of campaigns) {
-    for (const field of ['titleKey','summaryKey','baseKey','chronologyKey','doctrineKey','strategicGoalKey','enemyKey']) keys.add(campaign[field]);
+    for (const field of ['titleKey','summaryKey','baseKey','chronologyKey','doctrineKey','strategicGoalKey','enemyKey','frontKey','toneKey']) keys.add(campaign[field]);
+    for (const item of campaign.timeline || []) keys.add(item.labelKey);
+    for (const chapter of campaign.chapters || []) keys.add(chapter.titleKey);
   }
   for (const mission of missions) {
     for (const field of ['titleKey','summaryKey','theatreKey','operationKey','historicalNoteKey','baseKey','strategicGoalKey','enemyKey','chronologyKey','doctrineKey']) keys.add(mission[field]);
@@ -69,4 +75,15 @@ test('all campaign and mission keys are translated in three languages', () => {
     const missing = [...keys].filter((key) => !dictionary[key]);
     assert.deepEqual(missing, []);
   }
+});
+
+
+test('campaign screen can preview all nations without launching wrong-nation missions', () => {
+  const appSource = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
+  const screenSource = fs.readFileSync(path.join(ROOT, 'js/screens/campaign.js'), 'utf8');
+  assert.match(appSource, /selectedCampaignNationId/);
+  assert.match(appSource, /select-campaign-nation/);
+  assert.match(appSource, /getCampaignViewNationId\(\) !== getCurrentNationId\(\)/);
+  assert.match(screenSource, /campaign-nation-tabs/);
+  assert.match(screenSource, /campaign\.launchBlockedNation/);
 });

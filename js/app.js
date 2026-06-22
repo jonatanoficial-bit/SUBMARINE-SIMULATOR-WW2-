@@ -1,6 +1,6 @@
 import { BUILD_INFO } from './build.js';
 import {
-  state, setActiveProfileId, setData, setDraft, setLanguage, setMission, setOperationAutosave,
+  state, setActiveProfileId, setCampaignNation, setData, setDraft, setLanguage, setMission, setOperationAutosave,
   setProfiles, setResumeOperation, setSave, setScreen, setSettings, setToast
 } from './state.js';
 import { loadGameData } from './dataLoader.js';
@@ -90,6 +90,15 @@ function getCampaignProgress(nationId = getCurrentNationId()) {
   const missions = missionsForNation(nationId);
   const completed = new Set(state.save?.progression?.completedMissions || []);
   return { total: missions.length, completed: missions.filter((mission) => completed.has(mission.id)).length };
+}
+
+function getCampaignViewNationId() {
+  const fallback = getCurrentNationId();
+  const requested = state.selectedCampaignNationId || fallback;
+  return nationById(requested)?.id || fallback;
+}
+function getCampaignProgressByNation() {
+  return Object.fromEntries((state.data?.nations || []).map((nation) => [nation.id, getCampaignProgress(nation.id)]));
 }
 
 
@@ -277,8 +286,8 @@ function ensurePatrolReadyForLaunch() {
   showToast(t('toast.autoPatrolPlanned'));
   return true;
 }
-function getSelectedMission() {
-  const missions = missionsForNation();
+function getSelectedMission(nationId = getCurrentNationId()) {
+  const missions = missionsForNation(nationId);
   return missions.find((item) => item.id === state.selectedMissionId) || missions.find((item) => item.status === 'available') || missions[0] || state.data.missions[0];
 }
 function ensureSelectedMissionForNation(nationId = getCurrentNationId()) {
@@ -381,7 +390,7 @@ function createCommander() {
   if (!commanderName) { showToast(t('setup.validation')); return; }
   const commander = { name: commanderName, nationId: nation.id, avatar: draft.avatar, createdBuild: BUILD_INFO.version };
   const save = createInitialSave({ commander, starterSubmarineId: nation.starterSubmarineId, credits: nation.starterCredits });
-  setSave(save); saveGame(save); refreshProfileState(); ensureSelectedMissionForNation(nation.id); setScreen('lobby'); showToast(t('toast.commanderCreated')); render();
+  setSave(save); setCampaignNation(nation.id); saveGame(save); refreshProfileState(); ensureSelectedMissionForNation(nation.id); setScreen('lobby'); showToast(t('toast.commanderCreated')); render();
 }
 
 function spendCredits(amount) {
@@ -540,7 +549,7 @@ function syncMissionAvailability() {
       if (previous && completed.has(previous.id)) mission.status = 'available';
     });
   });
-  ensureSelectedMissionForNation();
+  ensureSelectedMissionForNation(state.currentScreen === 'campaign' ? getCampaignViewNationId() : getCurrentNationId());
 }
 
 
@@ -563,8 +572,9 @@ function activateProfile(slotId, destination = 'lobby') {
   setOperationAutosave(loadOperationAutosave(slotId));
   setResumeOperation(false);
   refreshProfileState();
+  setCampaignNation(save?.commander?.nationId || null);
   syncMissionAvailability();
-  ensureSelectedMissionForNation();
+  ensureSelectedMissionForNation(save?.commander?.nationId || getCurrentNationId());
   setScreen(save ? destination : 'commander');
   showToast(t(save ? 'toast.profileActivated' : 'toast.profileReady'));
   render();
@@ -574,7 +584,7 @@ function createProfile(slotId) {
   const profile = state.profiles.find((item) => item.id === slotId);
   if (profile?.occupied && !confirm(t('profiles.overwriteConfirm'))) return;
   selectProfile(slotId); clearProfile(slotId);
-  setActiveProfileId(slotId); setSave(null); setOperationAutosave(null); setResumeOperation(false);
+  setActiveProfileId(slotId); setSave(null); setCampaignNation(null); setOperationAutosave(null); setResumeOperation(false);
   setDraft({ name: '', nationId: 'de', avatar: 'assets/avatars/de/captain_01.png' });
   refreshProfileState(); setScreen('commander'); render();
 }
@@ -589,7 +599,7 @@ function deleteProfile(slotId) {
 function restoreProfile(slotId) {
   const restored = restoreLatestBackup(slotId);
   if (!restored) { showToast(t('toast.noBackup')); return; }
-  selectProfile(slotId); setActiveProfileId(slotId); setSave(restored); setOperationAutosave(loadOperationAutosave(slotId));
+  selectProfile(slotId); setActiveProfileId(slotId); setSave(restored); setCampaignNation(restored?.commander?.nationId || null); setOperationAutosave(loadOperationAutosave(slotId));
   refreshProfileState(); syncMissionAvailability(); render(); showToast(t('toast.backupRestored'));
 }
 
@@ -611,6 +621,8 @@ function initEvents() {
     const nav = target.dataset.nav;
     if (nav) {
       if (nav !== 'settings' && !state.save && ['lobby', 'campaign', 'career', 'strategy', 'bridge', 'briefing', 'arsenal', 'crew', 'gameplay'].includes(nav)) { showToast(t('menu.noSave')); return; }
+      if (nav === 'campaign' && !state.selectedCampaignNationId) setCampaignNation(getCurrentNationId());
+      if (nav === 'campaign') ensureSelectedMissionForNation(getCampaignViewNationId());
       setScreen(nav); render(); return;
     }
     switch (target.dataset.action) {
@@ -644,13 +656,28 @@ function initEvents() {
       case 'select-nation': {
         const nationId = target.dataset.nation;
         const nationAvatarMap = { de: 'assets/avatars/de/captain_01.png', uk: 'assets/avatars/uk/captain_01.png', us: 'assets/avatars/us/captain_01.png' };
-        setDraft({ nationId, avatar: nationAvatarMap[nationId] || state.commanderDraft.avatar }); ensureSelectedMissionForNation(nationId); render(); break;
+        setDraft({ nationId, avatar: nationAvatarMap[nationId] || state.commanderDraft.avatar }); setCampaignNation(nationId); ensureSelectedMissionForNation(nationId); render(); break;
       }
       case 'select-avatar': setDraft({ avatar: target.dataset.avatar }); render(); break;
       case 'confirm-commander': createCommander(); break;
-      case 'select-mission': setMission(target.dataset.mission); render(); break;
-      case 'open-briefing': setScreen('briefing'); render(); break;
+      case 'select-campaign-nation': {
+        const nationId = target.dataset.nation;
+        if (!nationById(nationId)) break;
+        setCampaignNation(nationId); ensureSelectedMissionForNation(nationId); render(); break;
+      }
+      case 'select-mission': {
+        const missionId = target.dataset.mission;
+        const viewNationId = state.currentScreen === 'campaign' ? getCampaignViewNationId() : getCurrentNationId();
+        if (missionsForNation(viewNationId).some((mission) => mission.id === missionId)) setMission(missionId);
+        render(); break;
+      }
+      case 'open-briefing': {
+        if (getCampaignViewNationId() !== getCurrentNationId()) { showToast(t('toast.campaignCreateCommander')); break; }
+        ensureSelectedMissionForNation(getCurrentNationId());
+        setScreen('briefing'); render(); break;
+      }
       case 'start-mission': {
+        if (getSelectedMission()?.nationId !== getCurrentNationId()) { showToast(t('toast.campaignCreateCommander')); break; }
         if (!ensurePatrolReadyForLaunch()) break;
         clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); setResumeOperation(false);
         await requestImmersiveMode({ preferLandscape: true });
@@ -778,7 +805,7 @@ function initEvents() {
       try {
         const text = await event.target.files[0].text();
         const imported = importProfile(text, slotId);
-        selectProfile(slotId); setActiveProfileId(slotId); setSave(imported); setOperationAutosave(null); setResumeOperation(false);
+        selectProfile(slotId); setActiveProfileId(slotId); setSave(imported); setCampaignNation(imported?.commander?.nationId || null); setOperationAutosave(null); setResumeOperation(false);
         refreshProfileState(); syncMissionAvailability(); setScreen('lobby'); render(); showToast(t('toast.profileImported'));
       } catch (error) { console.warn('[Import]', error); showToast(t('toast.importFailed')); }
       event.target.value = '';
@@ -788,17 +815,25 @@ function initEvents() {
 
 function createSceneContext() {
   const nationId = getCurrentNationId();
+  const campaignViewNationId = getCampaignViewNationId();
   return {
     app,
     t,
     state,
     nationId,
+    campaignViewNationId,
     nation: getCurrentNation(),
+    campaignViewNation: nationById(campaignViewNationId) || getCurrentNation(),
     submarine: getCurrentSubmarine(),
     crew: getCurrentCrew(),
     mission: getSelectedMission(),
     campaign: getCampaignForNation(),
     campaignProgress: getCampaignProgress(),
+    campaignViewMission: getSelectedMission(campaignViewNationId),
+    campaignViewCampaign: getCampaignForNation(campaignViewNationId),
+    campaignViewMissions: missionsForNation(campaignViewNationId),
+    campaignViewProgress: getCampaignProgress(campaignViewNationId),
+    campaignProgressByNation: getCampaignProgressByNation(),
     logisticsBase: getLogisticsBase(nationId),
     logisticsData: state.data.logistics,
     careerRank: currentRankInfo(),
@@ -824,7 +859,7 @@ sceneManager
   .register('mainMenu', { render: ({ t: translate }) => renderMainMenu(translate, Boolean(state.save), state.settings.language, activeProfile(), Boolean(state.operationAutosave)) })
   .register('commander', { render: ({ t: translate, nationId, avatarsByNation }) => renderCommanderScreen(translate, state.data.nations, state.commanderDraft, avatarsByNation[nationId]) })
   .register('lobby', { render: ({ t: translate, nation, submarine, crew }) => renderLobby(translate, state.save, nation, submarine, crew) })
-  .register('campaign', { render: ({ t: translate, nation }) => renderCampaign(translate, missionsForNation(), getSelectedMission(), getCampaignForNation(), nation, getCampaignProgress()) })
+  .register('campaign', { render: ({ t: translate, campaignViewNation, campaignViewNationId, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewProgress, campaignProgressByNation }) => renderCampaign(translate, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewNation, campaignViewProgress, { allNations: state.data.nations, allCampaigns: state.data.campaigns, currentNationId: getCurrentNationId(), viewNationId: campaignViewNationId, progressByNation: campaignProgressByNation, completedMissions: state.save?.progression?.completedMissions || [] }) })
   .register('career', { render: ({ t: translate, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans }) => renderCareer(translate, state.save, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans) })
   .register('strategy', { render: ({ t: translate, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment }) => renderStrategy(translate, state.save, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment) })
   .register('bridge', {
@@ -920,7 +955,7 @@ async function boot() {
     setLanguage(settings?.language || 'pt-BR');
     refreshProfileState();
     const save = loadSave({ slotId: state.activeProfileId });
-    if (save) setSave(save);
+    if (save) { setSave(save); setCampaignNation(save.commander?.nationId || null); }
     setOperationAutosave(loadOperationAutosave(state.activeProfileId));
     const saveDiagnostics = getSaveDiagnostics();
     if (saveDiagnostics.recovered) setTimeout(() => showToast(t('toast.saveRecovered')), 1400);

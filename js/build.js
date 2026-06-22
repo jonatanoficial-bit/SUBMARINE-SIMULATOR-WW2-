@@ -2,17 +2,17 @@
 export const BUILD_INFO = Object.freeze({
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.25",
-  "semver": "2.0.0-alpha.25",
-  "buildId": "SCWW2-20260620-1325-BRT-F25",
-  "date": "2026-06-20",
-  "time": "13:25",
+  "version": "v2.0.0-alpha.26",
+  "semver": "2.0.0-alpha.26",
+  "buildId": "SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN",
+  "date": "2026-06-22",
+  "time": "12:40",
   "timezone": "America/Sao_Paulo",
-  "phase": "25",
-  "phaseName": "Convoy and Escort Tactical Intelligence",
+  "phase": "11",
+  "phaseName": "Independent Germany UK USA Campaign Retrofit",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 6,
-  "notes": "Phase 25 preserves mobile scrolling, soundtrack, crew readiness and ocean/weather systems while adding a convoy doctrine layer that evaluates formation integrity, escort screen, zigzag behavior, intercept window and tactical recommendations inside the AI station."
+  "notes": "Phase 11 retrofit on top of the latest base build. Adds a tri-nation independent campaign selector, preview-only safeguards, timeline/act maps for Germany, United Kingdom and United States, and anti-mix launch guards so missions cannot be started with the wrong navy profile. Later systems through phase 25 remain preserved."
 });
