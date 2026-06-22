@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.26",
-  "semver": "2.0.0-alpha.26",
-  "buildId": "SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN",
+  "version": "v2.0.0-alpha.27",
+  "semver": "2.0.0-alpha.27",
+  "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
   "date": "2026-06-22",
-  "time": "12:40",
+  "time": "15:48",
   "timezone": "America/Sao_Paulo",
-  "phase": "11",
-  "phaseName": "Independent Germany UK USA Campaign Retrofit",
+  "phase": "12",
+  "phaseName": "National Campaign Doctrines",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 6,
-  "notes": "Phase 11 retrofit on top of the latest base build. Adds a tri-nation independent campaign selector, preview-only safeguards, timeline/act maps for Germany, United Kingdom and United States, and anti-mix launch guards so missions cannot be started with the wrong navy profile. Later systems through phase 25 remain preserved."
+  "notes": "Phase 12 expands the independent Germany, United Kingdom and United States campaigns with national naval doctrines, asymmetric patrol modifiers, staged doctrine progression, UI doctrine deck, and anti-break validation while preserving all systems through convoy and escort AI."
 }

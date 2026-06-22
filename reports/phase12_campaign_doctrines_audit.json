@@ -1,0 +1,151 @@
+{
+  "phase": "12",
+  "build": {
+    "product": "Submarine Commander WW2",
+    "studio": "Vale Games",
+    "version": "v2.0.0-alpha.27",
+    "semver": "2.0.0-alpha.27",
+    "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
+    "date": "2026-06-22",
+    "time": "15:48",
+    "timezone": "America/Sao_Paulo",
+    "phase": "12",
+    "phaseName": "National Campaign Doctrines",
+    "channel": "alpha",
+    "release": false,
+    "qaStatus": "PASS",
+    "saveSchemaVersion": 6,
+    "notes": "Phase 12 expands the independent Germany, United Kingdom and United States campaigns with national naval doctrines, asymmetric patrol modifiers, staged doctrine progression, UI doctrine deck, and anti-break validation while preserving all systems through convoy and escort AI."
+  },
+  "summary": {
+    "passed": 20,
+    "failed": 0,
+    "total": 20
+  },
+  "checks": [
+    {
+      "name": "metadata points to phase 12 doctrine build",
+      "status": "PASS",
+      "detail": {
+        "product": "Submarine Commander WW2",
+        "studio": "Vale Games",
+        "version": "v2.0.0-alpha.27",
+        "semver": "2.0.0-alpha.27",
+        "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
+        "date": "2026-06-22",
+        "time": "15:48",
+        "timezone": "America/Sao_Paulo",
+        "phase": "12",
+        "phaseName": "National Campaign Doctrines",
+        "channel": "alpha",
+        "release": false,
+        "qaStatus": "PASS",
+        "saveSchemaVersion": 6,
+        "notes": "Phase 12 expands the independent Germany, United Kingdom and United States campaigns with national naval doctrines, asymmetric patrol modifiers, staged doctrine progression, UI doctrine deck, and anti-break validation while preserving all systems through convoy and escort AI."
+      }
+    },
+    {
+      "name": "package manifest and service worker updated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "index loads phase 12 doctrine css",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "service worker caches new doctrine assets",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "loader validates campaign doctrines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "doctrine module imported by app",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "patrol plan uses doctrine modifiers",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mission completion uses doctrine rewards",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "campaign renderer has doctrine deck",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "exactly one doctrine per nation",
+      "status": "PASS",
+      "detail": [
+        "de",
+        "uk",
+        "us"
+      ]
+    },
+    {
+      "name": "de doctrine has stages traits and modifiers",
+      "status": "PASS",
+      "detail": "doctrine.de.wolfpack"
+    },
+    {
+      "name": "uk doctrine has stages traits and modifiers",
+      "status": "PASS",
+      "detail": "doctrine.uk.asw"
+    },
+    {
+      "name": "us doctrine has stages traits and modifiers",
+      "status": "PASS",
+      "detail": "doctrine.us.longrange"
+    },
+    {
+      "name": "translation parity across PT/EN/ES",
+      "status": "PASS",
+      "detail": {
+        "pt-BR": 1458,
+        "en": 1458,
+        "es": 1458
+      }
+    },
+    {
+      "name": "doctrine translation keys exist pt-BR",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "doctrine translation keys exist en",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "doctrine translation keys exist es",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "phase 12 doctrine unit tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: phase 12 metadata and package identify national doctrine build\nok 1 - phase 12 metadata and package identify national doctrine build\n  ---\n  duration_ms: 2.2731\n  type: 'test'\n  ...\n# Subtest: campaign doctrines cover Germany United Kingdom and United States\nok 2 - campaign doctrines cover Germany United Kingdom and United States\n  ---\n  duration_ms: 1.250651\n  type: 'test'\n  ...\n# Subtest: doctrine modifiers affect patrol costs and stage progression deterministically\nok 3 - doctrine modifiers affect patrol costs and stage progression deterministically\n  ---\n  duration_ms: 0.646403\n  type: 'test'\n  ...\n# Subtest: all doctrine translation keys exist in PT EN ES\nok 4 - all doctrine translation keys exist in PT EN ES\n  ---\n  duration_ms: 4.862672\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 104.785239\n\n"
+    },
+    {
+      "name": "campaign regression tests pass",
+      "status": "PASS",
+      "detail": "TAP version 13\n# Subtest: each nation has one independent campaign with eight ordered missions\nok 1 - each nation has one independent campaign with eight ordered missions\n  ---\n  duration_ms: 1.417417\n  type: 'test'\n  ...\n# Subtest: missions carry campaign metadata, briefing keys and valid navigation\nok 2 - missions carry campaign metadata, briefing keys and valid navigation\n  ---\n  duration_ms: 0.485811\n  type: 'test'\n  ...\n# Subtest: campaign progression unlocks only within the same nation\nok 3 - campaign progression unlocks only within the same nation\n  ---\n  duration_ms: 0.21322\n  type: 'test'\n  ...\n# Subtest: all campaign and mission keys are translated in three languages\nok 4 - all campaign and mission keys are translated in three languages\n  ---\n  duration_ms: 0.524659\n  type: 'test'\n  ...\n# Subtest: campaign screen can preview all nations without launching wrong-nation missions\nok 5 - campaign screen can preview all nations without launching wrong-nation missions\n  ---\n  duration_ms: 2.257972\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 113.36939\n\n"
+    },
+    {
+      "name": "all JavaScript modules pass syntax check",
+      "status": "PASS",
+      "detail": []
+    }
+  ]
+}

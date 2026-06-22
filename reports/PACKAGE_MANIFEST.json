@@ -1,14 +1,14 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.26",
-  "phase": "11",
-  "phaseName": "Independent Germany UK USA Campaign Retrofit",
-  "buildId": "SCWW2-20260622-1240-BRT-F11-TRI-CAMPAIGN",
+  "version": "v2.0.0-alpha.27",
+  "phase": "12",
+  "phaseName": "National Campaign Doctrines",
+  "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
   "qaStatus": "PASS",
-  "generatedAt": "2026-06-22T15:43:59.690300+00:00",
-  "fileCount": 554,
-  "totalBytes": 68642461,
+  "generatedAt": "2026-06-22T18:49:34.687863+00:00",
+  "fileCount": 567,
+  "totalBytes": 68704382,
   "hashAlgorithm": "SHA-256",
   "files": [
     {
@@ -38,13 +38,13 @@
     },
     {
       "path": "BUILD_INFO.json",
-      "bytes": 775,
-      "sha256": "aeab594aae9b278ab565851d7bffe5d05e77ee1d551142139ce7eed4718d84b0"
+      "bytes": 716,
+      "sha256": "0267c2589f152c477200e2bfe357b58342260f65fde3ea10988e742561def0ec"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 17322,
-      "sha256": "a9220d18549164a8b3c5a95908818efb3ced0e109e79df14289b478eb6768787"
+      "bytes": 18309,
+      "sha256": "0254e7a2df2c3c132600476431942ea333c19fd644bf07563e80a9200705af0f"
     },
     {
       "path": "DEPLOY_GITHUB_PAGES.md",
@@ -95,6 +95,11 @@
       "path": "KNOWN_ISSUES_PHASE_12.md",
       "bytes": 584,
       "sha256": "f1e12daf550cba5a66a28669f55f5059c9e1d41a1494cfda72981590739628aa"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_12_CAMPAIGN_DOCTRINES.md",
+      "bytes": 449,
+      "sha256": "7e6e18d214208184f0cdab3f6e8135259905da2d5a973d092a3ffba055b1096a"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_13.md",
@@ -235,6 +240,11 @@
       "path": "PHASE_11_TRI_CAMPAIGNS_DELIVERY_REPORT.md",
       "bytes": 1638,
       "sha256": "219643a2f89e920818df8bd6e074ada076023c9a221270b2c2454870e0f1bd1a"
+    },
+    {
+      "path": "PHASE_12_CAMPAIGN_DOCTRINES_DELIVERY_REPORT.md",
+      "bytes": 1364,
+      "sha256": "734cf706defea6d6054a6f4a9e6f2eb1a40aaa9b87efdfbe4f284538cff4d694"
     },
     {
       "path": "PHASE_12_DELIVERY_REPORT.md",
@@ -397,6 +407,11 @@
       "sha256": "51e9b0f9e79ab9096d459fd66466c221f4687314164901547c15c31f3a6d8be4"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_12_CAMPAIGN_DOCTRINES.md",
+      "bytes": 622,
+      "sha256": "7cd578fe5f8491b3f7c466ad17ebc7cf094b444a4f9e4298d029b92c8c76d78a"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_13.md",
       "bytes": 454,
       "sha256": "e74fe150f3911e11d8d0a5d06e7fecd8a30c8d96d3d018b23c0e6ada05ba7c21"
@@ -503,8 +518,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4942,
-      "sha256": "0f992aea4576cc902c3867df7589dfb4d66bb97639a6bedb2f87ac6d0ff2a329"
+      "bytes": 6605,
+      "sha256": "bb4c4f23f37b05581d7e190f2d977eb86e1c661d685a2e46626a1371afcfe6d1"
     },
     {
       "path": "RELEASE_NOTES_v2.0.0-alpha.01.md",
@@ -657,6 +672,11 @@
       "sha256": "52b5e2ae01f4cb3729207fcc32841ced40a807766999218214cda47c4e09ef28"
     },
     {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.27.md",
+      "bytes": 662,
+      "sha256": "5decbab29d35421686c6d1a17029ef053cfe2c28e50525d169f0b38e75f2243b"
+    },
+    {
       "path": "ROLLBACK_PHASE_1.md",
       "bytes": 808,
       "sha256": "d77a3375a4d5ef616665ada2e2f450a684e7968863a8cdad257703494f3d3197"
@@ -700,6 +720,11 @@
       "path": "ROLLBACK_PHASE_12.md",
       "bytes": 588,
       "sha256": "f6902a73a8580a79632e953cdcb9db13091ceb8549d70b3e439444fa8cc49be6"
+    },
+    {
+      "path": "ROLLBACK_PHASE_12_CAMPAIGN_DOCTRINES.md",
+      "bytes": 643,
+      "sha256": "f912d40e81d027e3ea9ce61c78e22dbf010448b6b6ab9eb40cd4c1eaff9aef9b"
     },
     {
       "path": "ROLLBACK_PHASE_13.md",
@@ -1207,6 +1232,11 @@
       "sha256": "bb48294b8dc41c5b8bc2ce97f312a955e31402058e5a0b258797bca283044b9a"
     },
     {
+      "path": "css/phase12-campaign-doctrines.css",
+      "bytes": 1956,
+      "sha256": "8b8ed9e3371db9e942db675d308f2bf425040754cf5e982c2aa6913d36c4d0dc"
+    },
+    {
       "path": "css/phase12-career-logistics.css",
       "bytes": 2865,
       "sha256": "74d858f16b3e53226ea385f583c013928bf4ab52263d06001b1adf1266dc1050"
@@ -1332,6 +1362,11 @@
       "sha256": "7fb81815e80eb8206537b32119d648e291b4acb4f72a3049590e5e8030ccadd2"
     },
     {
+      "path": "data/campaign_doctrines.json",
+      "bytes": 3321,
+      "sha256": "790a6666de30850bf8c51558279c646dbfccb56708926c59667edc097d8686d9"
+    },
+    {
       "path": "data/campaigns.json",
       "bytes": 4879,
       "sha256": "be909273886f54f7747d39ef75603a25b3252d41bac0d846833b453221ab8e04"
@@ -1368,18 +1403,18 @@
     },
     {
       "path": "data/translations/en.json",
-      "bytes": 81454,
-      "sha256": "daec001b3fb16275020e5cbebd11d5ea16189d6ce84d9cd46bd956cd5833c27a"
+      "bytes": 85481,
+      "sha256": "c115dc32f4785c77aef2c115caa00f7c00af587240129423eacf57fc82ae877a"
     },
     {
       "path": "data/translations/es.json",
-      "bytes": 86928,
-      "sha256": "d4a65a2ba56544bb3323a67682db6a4de94869d2a246466c15795fd9d725ebda"
+      "bytes": 91211,
+      "sha256": "fc35d69f864409917cfb7e1fdf1919a06596ca6d077bb545bd323cb6da0b828b"
     },
     {
       "path": "data/translations/pt-BR.json",
-      "bytes": 85433,
-      "sha256": "6ccdd8e7bf5da88ee96262f66d2669ec2131564b7ca33a733d27b83a825d1bed"
+      "bytes": 89688,
+      "sha256": "0fb7b95ffc6de84ecc4fde525ff69c7799f4c6ce2ce87ec84ad557d57ca6731f"
     },
     {
       "path": "data/upgrades.json",
@@ -1395,6 +1430,11 @@
       "path": "docs/CAMPAIGN_ARCHITECTURE_V1.md",
       "bytes": 1569,
       "sha256": "bb6cf642d8b17a2b1213a3f10361662f750a2c287bc51056941f722662cde0b2"
+    },
+    {
+      "path": "docs/CAMPAIGN_DOCTRINES_ARCHITECTURE_V1.md",
+      "bytes": 1306,
+      "sha256": "2ae646daacddf1622232f0f0af8bceec2f5c5e47bd98fdf0b10240d7b4ee472b"
     },
     {
       "path": "docs/CAREER_LOGISTICS_ARCHITECTURE_V1.md",
@@ -1478,13 +1518,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 3264,
-      "sha256": "2bcff4b0bf48bc8f54ac5e4baa1144be55460f1d8fc020bcf07b2eb30a735f97"
+      "bytes": 3332,
+      "sha256": "e3a2fcb95fa358567ec57d6f9883a1a5b3d514222c66a15493b00a364809cae3"
     },
     {
       "path": "js/app.js",
-      "bytes": 54813,
-      "sha256": "4e7e36c109fe60f7378739c1cc5bf88c7414218f365b38e4d046f40bd9798f31"
+      "bytes": 56820,
+      "sha256": "fc29d17e0bf6baa1caf4f2263377625c9d244df824a19362b3bc4ba7d208097d"
     },
     {
       "path": "js/assets.js",
@@ -1498,8 +1538,8 @@
     },
     {
       "path": "js/build.js",
-      "bytes": 881,
-      "sha256": "35dddb28468c1232da3bd3a5782c4072e5b4a5249991a5350c61b4b3e45ede55"
+      "bytes": 822,
+      "sha256": "ec7d577ff3ff21ea4d020582f2311a00582dfa5bc5aeda05c8afe165e73799bd"
     },
     {
       "path": "js/components/ui.js",
@@ -1508,8 +1548,8 @@
     },
     {
       "path": "js/dataLoader.js",
-      "bytes": 9722,
-      "sha256": "a11340e40fe85873b5c7cecd6f91d5ed5e94df2eeb8a69199ef93feefbf1f59c"
+      "bytes": 11012,
+      "sha256": "b9e2f6132fdbd9c499310a01cebf0edac8a04ee7726ca1e241e4e4dcf08eceec"
     },
     {
       "path": "js/engine/ARCHITECTURE.md",
@@ -1648,8 +1688,8 @@
     },
     {
       "path": "js/screens/campaign.js",
-      "bytes": 9049,
-      "sha256": "f8a1af0c6536a0484d532903e3dfe4571a30d9933e176bbc6549d2c17d874992"
+      "bytes": 11877,
+      "sha256": "93f46e8b457bca31d44cb733e64520ee73a7af6831663b4e9e88e1b7d1a0648d"
     },
     {
       "path": "js/screens/career.js",
@@ -1707,6 +1747,11 @@
       "sha256": "3b1a9c081dde150e1d22fe71e68b09471c666ec86b6a1e89e518788cd90d22fe"
     },
     {
+      "path": "js/systems/campaignDoctrine.js",
+      "bytes": 3684,
+      "sha256": "b4eb4a0e57b00d5c7ee4af716c952372087a2da97f6f2349f39f9863e95c4784"
+    },
+    {
       "path": "js/systems/convoyDoctrine.js",
       "bytes": 4800,
       "sha256": "39373299e971ff76e447d4aacdae32f193e025b4953c747bfd6314e5b1c1ab71"
@@ -1724,12 +1769,12 @@
     {
       "path": "manifest.json",
       "bytes": 765,
-      "sha256": "c1a0a4a07717f54af6ea8e13980e67f5fecf71637ed6bc777aa750fe75a45326"
+      "sha256": "2a047680374a3c3409a91a8a2375b72c272bd34c1f661dc08062cddff23c86d2"
     },
     {
       "path": "package.json",
-      "bytes": 3240,
-      "sha256": "7a6401fc77a2d5df40c9e9332abf033579563268d38b39b999d4bcd139b0de4b"
+      "bytes": 3373,
+      "sha256": "ba6861c4afedcf61a3264e643557d30d999bdf606986ea64778eb98a6b9571c3"
     },
     {
       "path": "reports/PHASE_10_1_AUDIT.md",
@@ -1775,6 +1820,11 @@
       "path": "reports/PHASE_12_AUDIT.md",
       "bytes": 4738,
       "sha256": "e550398f0359cf6922e3553fb6e9b16713edb7b95543480b897154378689c9b8"
+    },
+    {
+      "path": "reports/PHASE_12_CAMPAIGN_DOCTRINES_AUDIT.md",
+      "bytes": 3951,
+      "sha256": "4936edce65114dd34351dd555c40a998f53971fdb69b0d67836830451750a506"
     },
     {
       "path": "reports/PHASE_12_SMOKE.md",
@@ -1974,7 +2024,7 @@
     {
       "path": "reports/phase10_4_regression_smoke.json",
       "bytes": 78160,
-      "sha256": "81f474451e49ea63d8d57fae1015291ab80608b391aebed70b513ac8364bbcbb"
+      "sha256": "1c50a8db8bcd85ddf2efb3c74fc577c65c7a2136a34e4a5521d3d672e61967f3"
     },
     {
       "path": "reports/phase10_4_stabilization_smoke.json",
@@ -2035,6 +2085,11 @@
       "path": "reports/phase12_audit.json",
       "bytes": 6426,
       "sha256": "ec78148cc9c2a1b195644c48d30efca28dd986e64066eb50628b00ff1cb1496f"
+    },
+    {
+      "path": "reports/phase12_campaign_doctrines_audit.json",
+      "bytes": 6191,
+      "sha256": "c3f7357f84953e67a4b1d5b5331ff02465cca7988ed5ad7369ea1678bf5a3e4a"
     },
     {
       "path": "reports/phase12_smoke.json",
@@ -2208,8 +2263,8 @@
     },
     {
       "path": "reports/screenshots/phase10_3_desktop_sensors.png",
-      "bytes": 372113,
-      "sha256": "8988e31bf154f6feac1d9a92bd82ea7bc6a5fce9de20ece736600350351c8826"
+      "bytes": 372202,
+      "sha256": "95d7d2cbcdbddfa1c03d79537330fb9e36f7bc8687e12cbe3ceb707d254e5717"
     },
     {
       "path": "reports/screenshots/phase10_3_mobile_periscope.png",
@@ -2238,28 +2293,28 @@
     },
     {
       "path": "reports/screenshots/phase10_phone_ai.png",
-      "bytes": 228845,
-      "sha256": "68f17a0e6abac0e29b09132da0e249671bfd2870a736ab71b46a032c499867cb"
+      "bytes": 227732,
+      "sha256": "b92da47e5983318b2c0cf7d8c14f963b41089bcf59a0686a8b968cc23008c8c9"
     },
     {
       "path": "reports/screenshots/phase10_phone_damage.png",
-      "bytes": 345797,
-      "sha256": "34264a5751466935d4189935ecf8e3f1a324552f862ebc3102b7411cade77a96"
+      "bytes": 353784,
+      "sha256": "b54421c0108942dea81728649cd6e5eb036fca0db649441fe8d3d13b00d82979"
     },
     {
       "path": "reports/screenshots/phase10_phone_physics.png",
-      "bytes": 132900,
-      "sha256": "bf5fc3435054ae6dcd230803cbc2dbf5aa9d1f3f44bbbc8b9452b99e4c2d379a"
+      "bytes": 132661,
+      "sha256": "a558e746af9a34e650d7400da58c3fe3d45a922771051a80f78dca975c36c922"
     },
     {
       "path": "reports/screenshots/phase10_phone_sensors.png",
-      "bytes": 333328,
-      "sha256": "0f4d75b1ac5ded9c323746914d42ff3676ad712704912b954c830999f8e30e18"
+      "bytes": 334145,
+      "sha256": "9feff4ee7e34e637c5803a0cd96c6c8acf3f53145f3a3f1bbdf295437a0a0f01"
     },
     {
       "path": "reports/screenshots/phase11_mobile_campaigns.png",
-      "bytes": 58180,
-      "sha256": "7f4fc6dccedc223a1e24ec0c5bc5b879569672eb48a62850d6fbfc877e6801da"
+      "bytes": 58202,
+      "sha256": "b5a9f1ef8e8aea3ad9b0bbebbee316185941d457952b5ec56e7f4eddfbda7c81"
     },
     {
       "path": "reports/screenshots/phase2_desktop_menu.png",
@@ -2478,8 +2533,8 @@
     },
     {
       "path": "service-worker.js",
-      "bytes": 6336,
-      "sha256": "2858c05faa50cee562ea8868a03a53cef3580296d3dd2af9a5bd601e56576d67"
+      "bytes": 6452,
+      "sha256": "942ce1f34681441a66de782c6e37fada67e483e77317a942e2c0bc9186206902"
     },
     {
       "path": "tests/bridge_instruments.test.js",
@@ -2499,7 +2554,7 @@
     {
       "path": "tests/career_logistics.test.js",
       "bytes": 3613,
-      "sha256": "cbe602c0a81cee3980ab99498b9aa2030f8d5084e2bde7be56e8789899a274ab"
+      "sha256": "7cc2d924631d64cf501ac7ba7713119f2d2181753a7bbff2bd6edf636857cab0"
     },
     {
       "path": "tests/damage_control.test.js",
@@ -2539,7 +2594,12 @@
     {
       "path": "tests/periscope_room.test.js",
       "bytes": 2578,
-      "sha256": "3ddb8bc3ddeb8adb0675ad2c31658d5629c12c0a161bf0af7c522a1bcf9e3032"
+      "sha256": "1ef728c40ecc47ae8a7842c2ab2f1a306d9643d82fa22270c95ff3df66cf2e09"
+    },
+    {
+      "path": "tests/phase12_campaign_doctrines.test.js",
+      "bytes": 3380,
+      "sha256": "d784623ac6cc4c3794aeb313fd56087860026628661e33e71b061f9185c8519f"
     },
     {
       "path": "tests/phase16_buoyancy.test.js",
@@ -2549,37 +2609,37 @@
     {
       "path": "tests/phase17_sonar_room.test.js",
       "bytes": 1622,
-      "sha256": "5b04de999e3b3cf385610a0fb6415940e3ea1427edf80a4897161870f297c43f"
+      "sha256": "adb26cf867932caef94ecc7aaefb8a14cd675dd5fd64210628267bf44f60c5ac"
     },
     {
       "path": "tests/phase19_tdc_room.test.js",
       "bytes": 2910,
-      "sha256": "9f066f1b55fc91011947c412e778ae10afa850de76d3f07140477cde0026bcbf"
+      "sha256": "a3467ef04acda068f50dcce1ecd27435f98234b1938121995550a5e2ceaf3001"
     },
     {
       "path": "tests/phase20_mobile_scroll.test.js",
       "bytes": 1803,
-      "sha256": "fed63277d559754dcd0bec5bf197331bb3cb531f8ed9fec1edc890180a3178c8"
+      "sha256": "05a09f977045e7df79d57748fd41dd52319f0db0716f191e3e9888ba8ce60620"
     },
     {
       "path": "tests/phase22_soundtrack.test.js",
       "bytes": 1932,
-      "sha256": "ac2e6343dc80b64c1e27ef203d195e83f0d937861db3942ae516cb292df3fb72"
+      "sha256": "6c5327f3ea9d6bb194f762b86724ce63c97fbbfad854dbac273bbc1b64ed4327"
     },
     {
       "path": "tests/phase23_crew_readiness.test.js",
-      "bytes": 2998,
-      "sha256": "715d9b6a895d3a01f02ed768d263ba9a10730b696938a9bc5c73a914b7c1b294"
+      "bytes": 3003,
+      "sha256": "a05ddc2c1c887704d8f6896d9a5b675e1af2f613de8a775750ded2e8cc0591bc"
     },
     {
       "path": "tests/phase24_ocean_weather.test.js",
       "bytes": 2529,
-      "sha256": "1d4fd7646ef3bae5ba237c6056e91b62fb629393233e71e86b0d076632178d75"
+      "sha256": "91c00e028c058299e99062f0930b4d60cddc50bac9829a3cea8f525adf12e8df"
     },
     {
       "path": "tests/phase25_convoy_doctrine.test.js",
       "bytes": 2838,
-      "sha256": "1e92e063c0c1039f25a756c3982b7fc4138aae3088be245797d273644129203b"
+      "sha256": "ff1afc92ae8065906808ea1e3c3c7b1f482b9a4925326334d061fca94c7a64be"
     },
     {
       "path": "tests/physics.test.js",
@@ -2598,8 +2658,8 @@
     },
     {
       "path": "tests/smoke_test.py",
-      "bytes": 34966,
-      "sha256": "cd04b5ddc64d5f3c1871f8f51f1a9825fca54e3402576f3aa71bf674e49a3fbc"
+      "bytes": 35070,
+      "sha256": "70dc606f2a4e41be4a0d2306d6908ec5177ad38931694a966f0d3eaf000d524e"
     },
     {
       "path": "tests/stabilization.test.js",
@@ -2614,7 +2674,7 @@
     {
       "path": "tests/strategic_command.test.js",
       "bytes": 3734,
-      "sha256": "1b6b56e4f1f9edb765a5edae5db6a0ad894d9f875031c46394ed946c299a75fc"
+      "sha256": "c6acb836177d018b805cb87b60d8eda92dc3e0db6d20078e4b784628c57eb42e"
     },
     {
       "path": "tests/tactical_encounter.test.js",
@@ -2665,6 +2725,11 @@
       "path": "tools/audit_phase12.py",
       "bytes": 5256,
       "sha256": "03f1f8c40ca454128e4e9970fb6a8e6f27d3d5481016c393e711adfcbf6be692"
+    },
+    {
+      "path": "tools/audit_phase12_campaign_doctrines.py",
+      "bytes": 5181,
+      "sha256": "9c89a62ff1de9e1c864aa0f3a9657a19deea4d474444aecdddb4eec3f35566ad"
     },
     {
       "path": "tools/audit_phase13.py",

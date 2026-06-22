@@ -4,6 +4,7 @@ const DATA_FILES = {
   crew: 'data/crew.json',
   missions: 'data/missions.json',
   campaigns: 'data/campaigns.json',
+  campaignDoctrines: 'data/campaign_doctrines.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -96,6 +97,7 @@ function validateRelations(data) {
   assertUniqueIds('crew', data.crew);
   const missionIds = assertUniqueIds('missions', data.missions);
   const campaignIds = assertUniqueIds('campaigns', data.campaigns);
+  const doctrineIds = assertUniqueIds('campaignDoctrines', data.campaignDoctrines || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -114,6 +116,20 @@ function validateRelations(data) {
   assertUniqueIds('strategy.convoyLanes', data.strategy.convoyLanes);
   assertUniqueIds('strategy.directives', data.strategy.directives);
   assertUniqueIds('strategy.intelNetworks', data.strategy.intelNetworks);
+
+  if ((data.campaignDoctrines || []).length !== data.nations.length) throw new Error('Campaign doctrines must cover every nation');
+  data.campaignDoctrines.forEach((doctrine) => {
+    if (!nationIds.has(doctrine.nationId)) throw new Error(`Doctrine ${doctrine.id} has invalid nation ${doctrine.nationId}`);
+    if (!Array.isArray(doctrine.traitKeys) || doctrine.traitKeys.length < 3) throw new Error(`Doctrine ${doctrine.id} needs at least three traits`);
+    if (!Array.isArray(doctrine.stages) || doctrine.stages.length < 3) throw new Error(`Doctrine ${doctrine.id} needs progression stages`);
+    const modifiers = doctrine.modifiers || {};
+    ['fuelMultiplier','torpedoMultiplier','tonnageMultiplier'].forEach((key) => {
+      if (!Number.isFinite(Number(modifiers[key]))) throw new Error(`Doctrine ${doctrine.id} missing numeric ${key}`);
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.campaignDoctrines.some((doctrine) => doctrine.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no campaign doctrine`);
+  });
 
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
@@ -154,12 +170,13 @@ function validateRelations(data) {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
   assertArray('missions', missionsRaw);
   assertArray('campaigns', campaigns);
+  assertArray('campaignDoctrines', campaignDoctrines);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -168,7 +185,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

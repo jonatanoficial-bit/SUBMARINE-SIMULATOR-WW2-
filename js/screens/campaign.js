@@ -54,6 +54,50 @@ function renderTimeline(t, campaign) {
   `;
 }
 
+function formatSigned(value, suffix = '') {
+  const number = Number(value || 0);
+  return `${number > 0 ? '+' : ''}${number}${suffix}`;
+}
+
+function renderDoctrineDeck(t, doctrine = null, doctrineStage = {}, doctrineImpact = {}) {
+  if (!doctrine) return '';
+  const stage = doctrineStage?.stage || null;
+  const traits = Array.isArray(doctrine.traitKeys) ? doctrine.traitKeys : [];
+  return `
+    <div class="campaign-doctrine-deck phase12-doctrine-deck" aria-label="${t('campaign.doctrineDeck.title')}">
+      <div class="row space-between align-start doctrine-deck-head">
+        <div>
+          <div class="mini-title">${t('campaign.doctrineDeck.title')}</div>
+          <strong>${t(doctrine.titleKey)}</strong>
+          <p class="muted compact-text">${t(doctrine.summaryKey)}</p>
+        </div>
+        <span class="tag gold">${t('phase12.tag')}</span>
+      </div>
+      <div class="doctrine-stage-card">
+        <span>${t('campaign.doctrineDeck.stageLabel')} ${doctrineStage.index >= 0 ? doctrineStage.index + 1 : 1}</span>
+        <strong>${stage ? t(stage.titleKey) : t('campaign.doctrineDeck.stageFallback')}</strong>
+        <small>${stage ? t(stage.descKey) : t('campaign.doctrineDeck.stageFallbackDesc')}</small>
+      </div>
+      <div class="doctrine-traits">
+        ${traits.map((key) => `<span>${t(key)}</span>`).join('')}
+      </div>
+      <div class="doctrine-impact-grid">
+        <div><span>${t('campaign.modifier.fuel')}</span><strong>${formatSigned(doctrineImpact.fuelPercent, '%')}</strong></div>
+        <div><span>${t('campaign.modifier.torpedoes')}</span><strong>${formatSigned(doctrineImpact.torpedoPercent, '%')}</strong></div>
+        <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(doctrineImpact.readinessBonus)}</strong></div>
+        <div><span>${t('campaign.modifier.stealth')}</span><strong>${formatSigned(doctrineImpact.stealthBonus)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(doctrineImpact.tonnagePercent, '%')}</strong></div>
+        <div><span>${t('campaign.modifier.risk')}</span><strong>${formatSigned(doctrineImpact.riskDelta)}</strong></div>
+      </div>
+      <div class="doctrine-briefing-grid">
+        <div><span>${t('campaign.doctrineDeck.focusLabel')}</span><strong>${t(doctrine.focusKey)}</strong></div>
+        <div><span>${t('campaign.doctrineDeck.bonusLabel')}</span><strong>${t(doctrine.bonusKey)}</strong></div>
+        <div><span>${t('campaign.doctrineDeck.riskLabel')}</span><strong>${t(doctrine.riskKey)}</strong></div>
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -83,6 +127,9 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const viewNationId = options.viewNationId || nation?.id;
   const isCurrentNation = viewNationId === currentNationId;
   const completedSet = new Set(options.completedMissions || []);
+  const doctrine = options.doctrine || null;
+  const doctrineStage = options.doctrineStage || {};
+  const doctrineImpact = options.doctrineImpact || {};
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -121,6 +168,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
               <div><span>${t('campaign.tone')}</span><strong>${campaign?.toneKey ? t(campaign.toneKey) : '--'}</strong></div>
             </div>
             <div class="empty-state compact"><strong>${t('campaign.goal')}</strong><br>${campaign ? t(campaign.strategicGoalKey) : ''}</div>
+            ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

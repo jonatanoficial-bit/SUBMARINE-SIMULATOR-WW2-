@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.0.0-alpha.27 — Fase 12 — Doutrinas nacionais de campanha
+
+- Adicionado sistema de doutrina nacional por campanha para Alemanha, Reino Unido e Estados Unidos.
+- Alemanha agora recebe perfil de alcateia: mais furtividade, intercepção, tonelagem e risco estratégico.
+- Reino Unido agora recebe defesa/inteligência: mais prontidão, moral, inteligência e menor pressão operacional.
+- Estados Unidos agora recebe longo alcance no Pacífico: menor custo de combustível, mais torpedos planejados e mais oportunidade estratégica.
+- Adicionado deck visual de doutrina na tela Campanha, com estágio, traços, foco, vantagem, risco e modificadores.
+- Planejamento de patrulha passou a aplicar modificadores de doutrina em combustível, torpedos, prontidão, risco e oportunidade.
+- Conclusão de missão passou a aplicar doutrina em tonelagem, inteligência e pressão estratégica.
+- Atualizados cache PWA, manifesto, testes, auditoria e build visível para `v2.0.0-alpha.27`.
+
 ## v2.0.0-alpha.26 — Fase 11 — Campanhas independentes Alemanha/Reino Unido/EUA
 
 - Reforçada a Fase 11 sobre a base real mais recente sem remover sistemas posteriores da build.

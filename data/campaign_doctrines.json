@@ -1,0 +1,131 @@
+[
+  {
+    "id": "doctrine.de.wolfpack",
+    "nationId": "de",
+    "titleKey": "doctrine.de.title",
+    "summaryKey": "doctrine.de.summary",
+    "focusKey": "doctrine.de.focus",
+    "bonusKey": "doctrine.de.bonus",
+    "riskKey": "doctrine.de.risk",
+    "traitKeys": [
+      "doctrine.de.trait.stealth",
+      "doctrine.de.trait.intercept",
+      "doctrine.de.trait.tonnage"
+    ],
+    "modifiers": {
+      "fuelMultiplier": 0.96,
+      "torpedoMultiplier": 1.06,
+      "readinessBonus": 3,
+      "moraleDelta": 0,
+      "stealthBonus": 7,
+      "tonnageMultiplier": 1.12,
+      "intelGain": 1,
+      "pressureDelta": 2,
+      "riskDelta": 4,
+      "opportunityBonus": 4
+    },
+    "stages": [
+      {
+        "threshold": 0,
+        "titleKey": "doctrine.de.stage.1.title",
+        "descKey": "doctrine.de.stage.1.desc"
+      },
+      {
+        "threshold": 3,
+        "titleKey": "doctrine.de.stage.2.title",
+        "descKey": "doctrine.de.stage.2.desc"
+      },
+      {
+        "threshold": 6,
+        "titleKey": "doctrine.de.stage.3.title",
+        "descKey": "doctrine.de.stage.3.desc"
+      }
+    ]
+  },
+  {
+    "id": "doctrine.uk.asw",
+    "nationId": "uk",
+    "titleKey": "doctrine.uk.title",
+    "summaryKey": "doctrine.uk.summary",
+    "focusKey": "doctrine.uk.focus",
+    "bonusKey": "doctrine.uk.bonus",
+    "riskKey": "doctrine.uk.risk",
+    "traitKeys": [
+      "doctrine.uk.trait.intel",
+      "doctrine.uk.trait.coastal",
+      "doctrine.uk.trait.discipline"
+    ],
+    "modifiers": {
+      "fuelMultiplier": 1.0,
+      "torpedoMultiplier": 0.96,
+      "readinessBonus": 5,
+      "moraleDelta": 1,
+      "stealthBonus": 3,
+      "tonnageMultiplier": 1.03,
+      "intelGain": 4,
+      "pressureDelta": -2,
+      "riskDelta": -3,
+      "opportunityBonus": 2
+    },
+    "stages": [
+      {
+        "threshold": 0,
+        "titleKey": "doctrine.uk.stage.1.title",
+        "descKey": "doctrine.uk.stage.1.desc"
+      },
+      {
+        "threshold": 3,
+        "titleKey": "doctrine.uk.stage.2.title",
+        "descKey": "doctrine.uk.stage.2.desc"
+      },
+      {
+        "threshold": 6,
+        "titleKey": "doctrine.uk.stage.3.title",
+        "descKey": "doctrine.uk.stage.3.desc"
+      }
+    ]
+  },
+  {
+    "id": "doctrine.us.longrange",
+    "nationId": "us",
+    "titleKey": "doctrine.us.title",
+    "summaryKey": "doctrine.us.summary",
+    "focusKey": "doctrine.us.focus",
+    "bonusKey": "doctrine.us.bonus",
+    "riskKey": "doctrine.us.risk",
+    "traitKeys": [
+      "doctrine.us.trait.range",
+      "doctrine.us.trait.radar",
+      "doctrine.us.trait.logistics"
+    ],
+    "modifiers": {
+      "fuelMultiplier": 0.9,
+      "torpedoMultiplier": 1.12,
+      "readinessBonus": 4,
+      "moraleDelta": 1,
+      "stealthBonus": 2,
+      "tonnageMultiplier": 1.08,
+      "intelGain": 2,
+      "pressureDelta": 0,
+      "riskDelta": 1,
+      "opportunityBonus": 5
+    },
+    "stages": [
+      {
+        "threshold": 0,
+        "titleKey": "doctrine.us.stage.1.title",
+        "descKey": "doctrine.us.stage.1.desc"
+      },
+      {
+        "threshold": 3,
+        "titleKey": "doctrine.us.stage.2.title",
+        "descKey": "doctrine.us.stage.2.desc"
+      },
+      {
+        "threshold": 6,
+        "titleKey": "doctrine.us.stage.3.title",
+        "descKey": "doctrine.us.stage.3.desc"
+      }
+    ]
+  }
+]

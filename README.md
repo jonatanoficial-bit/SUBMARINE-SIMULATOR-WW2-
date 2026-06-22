@@ -1,3 +1,32 @@
+# Submarine Commander WW2 — v2.0.0-alpha.27
+
+Fase 12 — Doutrinas nacionais e progressão assimétrica para Alemanha, Reino Unido e Estados Unidos.
+
+Esta build continua a linha das campanhas independentes da Fase 11 e transforma cada nação em uma experiência jogável diferente. Alemanha recebe doutrina de alcateia e tonelagem; Reino Unido recebe defesa/inteligência e menor pressão operacional; Estados Unidos recebe longo alcance, radar/logística e poder de torpedos no Pacífico.
+
+## O que mudou nesta entrega
+
+- Novo arquivo `data/campaign_doctrines.json` com uma doutrina por nação.
+- Novo sistema `js/systems/campaignDoctrine.js` com modificadores normalizados, estágios e impacto de planejamento.
+- Tela Campanha agora exibe um deck de doutrina com foco, vantagem, risco, traços, modificadores e estágio atual.
+- Planejamento de patrulha usa doutrina nacional para alterar combustível, torpedos, prontidão, risco, oportunidade e moral.
+- Conclusão de missão usa doutrina para tonelagem estimada, inteligência e pressão estratégica.
+- Cache PWA, manifesto, build visível e auditoria atualizados para `v2.0.0-alpha.27`.
+- Sistemas já existentes preservados: campanha independente, carreira, logística, estratégia, ponte, periscópio, TDC, rolagem mobile, trilha sonora, clima/oceano e comboios/escoltas IA.
+
+## Auditoria desta entrega
+
+```bash
+npm test
+npm run audit
+npm run smoke
+python3 tests/campaigns_smoke.py
+```
+
+Resultados registrados em `reports/phase12_campaign_doctrines_audit.json`, `reports/PHASE_12_CAMPAIGN_DOCTRINES_AUDIT.md`, `reports/phase10_4_regression_smoke.json` e `reports/phase11_campaigns_smoke.json`.
+
+---
+
 # Submarine Commander WW2 — v2.0.0-alpha.26
 
 Fase 11 — Campanhas independentes para Alemanha, Reino Unido e Estados Unidos.
