@@ -1,3 +1,3 @@
-# Known Issues Phase 20
+# Known Issues — Fase 20
 
-- Visual validation still depends on device/browser testing after upload. The code-level scroll trap was corrected.
+Sem bloqueadores conhecidos em auditoria estática e testes automatizados. Homologação manual recomendada em Android, iOS, desktop e PWA instalado.

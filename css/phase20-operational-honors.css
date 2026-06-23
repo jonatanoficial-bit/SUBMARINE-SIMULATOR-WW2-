@@ -1,0 +1,52 @@
+.phase20-operational-honors,
+.phase20-operational-honors-panel {
+  border: 1px solid rgba(229, 185, 95, 0.24);
+  background: linear-gradient(145deg, rgba(49, 35, 18, 0.38), rgba(8, 17, 29, 0.74));
+}
+.operational-honor-score {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.operational-honor-score i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(188,142,62,0.55), rgba(255,220,134,0.95));
+  box-shadow: 0 0 18px rgba(255, 205, 111, 0.32);
+}
+.operational-honor-effect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 10px;
+}
+.operational-honor-effect-grid.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.operational-honor-effect-grid > div {
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.operational-honor-effect-grid span {
+  display: block;
+  font-size: .72rem;
+  color: var(--muted);
+}
+.operational-honor-effect-grid strong { color: #ffd98a; }
+.operational-honor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 12px;
+}
+.operational-honor-card.awarded {
+  border-color: rgba(115, 229, 167, 0.38);
+  box-shadow: inset 0 0 0 1px rgba(115,229,167,0.08), 0 0 18px rgba(115,229,167,0.08);
+}
+.operational-honor-card h3 { color: #ffe4a3; }
+@media (max-width: 700px) {
+  .operational-honor-effect-grid.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .operational-honor-grid { grid-template-columns: 1fr; }
+}

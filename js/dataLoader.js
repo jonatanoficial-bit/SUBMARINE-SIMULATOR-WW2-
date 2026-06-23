@@ -12,6 +12,7 @@ const DATA_FILES = {
   specialOperations: 'data/special_operations.json',
   operationChains: 'data/operation_chains.json',
   operationOutcomes: 'data/operation_outcomes.json',
+  operationalHonors: 'data/operational_honors.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -112,6 +113,7 @@ function validateRelations(data) {
   const specialOperationSetIds = assertUniqueIds('specialOperations', data.specialOperations || []);
   const operationChainSetIds = assertUniqueIds('operationChains', data.operationChains || []);
   const operationOutcomeSetIds = assertUniqueIds('operationOutcomes', data.operationOutcomes || []);
+  const operationalHonorSetIds = assertUniqueIds('operationalHonors', data.operationalHonors || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -321,6 +323,35 @@ data.nations.forEach((nation) => {
     if (!data.operationOutcomes.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operation outcome deck`);
   });
 
+
+  if ((data.operationalHonors || []).length !== data.nations.length) throw new Error('Operational honors must cover every nation');
+  const validOutcomeIds = new Set((data.operationOutcomes || []).flatMap((deck) => (deck.outcomes || []).map((outcome) => outcome.id)));
+  const validHonorOperationIds = new Set((data.specialOperations || []).flatMap((deck) => (deck.operations || []).map((operation) => operation.id)));
+  const validHonorStepIds = new Set((data.operationChains || []).flatMap((deck) => (deck.steps || []).map((step) => step.id)));
+  data.operationalHonors.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Operational honor deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.honors) || deck.honors.length !== 5) throw new Error(`Operational honor deck ${deck.id} must have five honors`);
+    const nestedHonorIds = new Set();
+    deck.honors.forEach((honor) => {
+      if (!honor?.id || nestedHonorIds.has(honor.id)) throw new Error(`Operational honor deck ${deck.id} has invalid or duplicate honor id`);
+      nestedHonorIds.add(honor.id);
+      if (!Number.isFinite(Number(honor.tier))) throw new Error(`Operational honor ${honor.id} missing numeric tier`);
+      const requires = honor.requires || {};
+      ['completedMissions','tonnageMin','reputationMin','prestigeMin','intelMin'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Operational honor ${honor.id} has invalid requirement ${key}`);
+      });
+      if (requires.launchedOperationId && !validHonorOperationIds.has(requires.launchedOperationId)) throw new Error(`Operational honor ${honor.id} references missing special operation ${requires.launchedOperationId}`);
+      if (requires.completedStepId && !validHonorStepIds.has(requires.completedStepId)) throw new Error(`Operational honor ${honor.id} references missing chain step ${requires.completedStepId}`);
+      if (requires.chosenOutcomeId && !validOutcomeIds.has(requires.chosenOutcomeId)) throw new Error(`Operational honor ${honor.id} references missing outcome ${requires.chosenOutcomeId}`);
+      ['credits','xp','commandPoints','reputation','prestige','intelBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(honor.reward?.[key]))) throw new Error(`Operational honor ${honor.id} missing reward ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.operationalHonors.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operational honor deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -360,7 +391,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -374,6 +405,7 @@ export async function loadGameData() {
   assertArray('specialOperations', specialOperations);
   assertArray('operationChains', operationChains);
   assertArray('operationOutcomes', operationOutcomes);
+  assertArray('operationalHonors', operationalHonors);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -382,7 +414,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

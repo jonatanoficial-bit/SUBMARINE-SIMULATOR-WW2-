@@ -1,3 +1,12 @@
+# v2.0.0-alpha.35 — Fase 20 — Reputação Operacional e Medalhas
+
+- Adicionado sistema de reputação operacional e condecorações de campanha.
+- Alemanha, Reino Unido e Estados Unidos receberam 5 honras exclusivas cada.
+- Medalhas desbloqueiam por missões, tonelagem, reputação, prestígio, operações especiais, cadeias e desfechos.
+- Honras concedem créditos, XP, CP, reputação, prestígio e efeitos persistentes no teatro.
+- Painéis adicionados à tela Campanha e ao Comando Estratégico.
+- Save schema atualizado para 14.
+
 # Changelog
 
 ## v2.0.0-alpha.34 — Phase 19 — Desfechos Estratégicos das Cadeias

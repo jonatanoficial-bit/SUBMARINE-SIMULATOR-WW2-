@@ -1,3 +1,3 @@
-# Rollback Phase 20
+# Rollback Fase 20
 
-Rollback target: v2.0.0-alpha.19. Remove phase20-mobile-scroll.css from index/service worker if needed.
+Para reverter, remover `data/operational_honors.json`, `js/systems/operationalHonors.js`, `css/phase20-operational-honors.css`, as integrações em `app.js`, `dataLoader.js`, `save.js`, telas de Campanha/Estratégia, traduções e voltar para v2.0.0-alpha.34.

@@ -396,7 +396,74 @@ function renderOperationOutcomes(t, save, summary = null) {
     </div>`;
 }
 
-export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null) {
+
+function honorToneClass(honor) {
+  if (honor?.tone === 'legendary' || Number(honor?.tier || 0) >= 4) return 'success';
+  if (honor?.tone === 'elite' || Number(honor?.tier || 0) >= 3) return 'gold';
+  return 'combat';
+}
+
+function renderOperationalHonors(t, save, summary = null) {
+  if (!summary?.honors?.length) return '';
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase20-operational-honors-panel">
+      <div class="panel-header">${t('operationalHonors.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('operationalHonors.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.availableCount ? 'gold' : summary.awardedCount ? 'success' : 'warn'}">${summary.awardedCount}/${summary.totalHonors}</span>
+        </div>
+        <div class="operational-honor-score"><i style="width:${summary.medalScore || 0}%"></i></div>
+        <div class="operational-honor-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+          <div><span>${t('career.morale')}</span><strong>${formatSigned(effect.moraleBonus)}</strong></div>
+        </div>
+        <div class="operational-honor-grid">
+          ${summary.honors.map((honor) => {
+            const reward = honor.reward || {};
+            const canAward = honor.unlocked && !honor.awarded;
+            const lockText = honor.awarded ? '' : (!honor.unlocked ? t(honor.lockedReason || 'operationalHonors.locked', { count: honor.lockCount || 0 }) : '');
+            return `
+              <div class="mission-card operational-honor-card ${honor.awarded ? 'awarded' : ''} ${canAward ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${honorToneClass(honor)}">${t(honor.ribbonKey)}</span>
+                    <h3>★ ${t(honor.nameKey)}</h3>
+                    <p>${t(honor.descKey)}</p>
+                  </div>
+                  <span class="tag ${honor.awarded ? 'success' : honor.unlocked ? 'gold' : 'warn'}">${honor.awarded ? t('operationalHonors.awarded') : honor.unlocked ? t('operationalHonors.available') : t('operationalHonors.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('operationalHonors.tier')}: ${honor.tier}</span>
+                  <span class="tag">${t('common.credits')}: +${reward.credits || 0}</span>
+                  <span class="tag">XP: +${reward.xp || 0}</span>
+                  <span class="tag gold">${t('strategy.commandPoints')}: +${reward.commandPoints || 0}</span>
+                </div>
+                <div class="operation-outcome-mini-effects">
+                  <span>${t('career.reputation')}: +${reward.reputation || 0}</span>
+                  <span>${t('career.prestige')}: +${reward.prestige || 0}</span>
+                  <span>${t('strategy.intel')}: ${formatSigned(reward.intelBonus)}</span>
+                  <span>${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((reward.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canAward ? '' : 'secondary'}" data-action="award-operational-honor" data-honor="${honor.id}" ${canAward ? '' : 'disabled'}>${honor.awarded ? t('operationalHonors.honorActive') : t('operationalHonors.award')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null, operationalHonors = null) {
   const strategy = save.strategy || {};
   const lanes = (strategyData.convoyLanes || []).filter((lane) => lane.nationId === nation.id);
   const network = (strategyData.intelNetworks || []).find((item) => item.nationId === nation.id) || {};
@@ -437,6 +504,7 @@ export function renderStrategy(t, save, nation, strategyData, theater, selectedL
       ${renderSpecialOperations(t, save, specialOperations)}
       ${renderOperationChains(t, save, operationChains)}
       ${renderOperationOutcomes(t, save, operationOutcomes)}
+      ${renderOperationalHonors(t, save, operationalHonors)}
       ${renderHighCommandOrders(t, save, highCommandOrders)}
 
       <div class="phase13-grid">

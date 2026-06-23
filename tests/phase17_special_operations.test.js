@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 17 metadata identifies campaign special operations build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.34');
-  assert.equal(BUILD_INFO.phase, '19');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 13);
-  assert.match(BUILD_INFO.buildId, /F19-STRATEGIC-OUTCOMES/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.35');
+  assert.equal(BUILD_INFO.phase, '20');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 14);
+  assert.match(BUILD_INFO.buildId, /F20-OPERATIONAL-HONORS/);
 });
 
 test('special operation decks cover every campaign nation with valid references', () => {

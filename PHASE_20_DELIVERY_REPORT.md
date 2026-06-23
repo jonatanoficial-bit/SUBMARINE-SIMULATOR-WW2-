@@ -1,3 +1,9 @@
-# Phase 20 Delivery Report
+# Fase 20 — Reputação Operacional e Medalhas
 
-Fixes mobile gameplay scrolling by preventing the measurement dashboard and station tabs from overlaying content. Keeps periscope modal fixed only while open.
+## Entrega
+- 3 quadros nacionais de condecorações.
+- 15 medalhas/honras com requisitos independentes.
+- Painéis na Campanha e no Comando Estratégico.
+- Recompensas persistentes em carreira, estratégia e logística.
+- Save schema 14 com migração anti-quebra.
+- Testes e auditoria específica da fase.

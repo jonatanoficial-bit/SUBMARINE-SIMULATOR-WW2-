@@ -75,6 +75,11 @@ function sanitizeCareer(value = {}) {
   const serviceRecord = Array.isArray(value.serviceRecord)
     ? value.serviceRecord.filter((item) => item && typeof item === 'object').slice(0, 24)
     : [];
+  const operationalHonors = value.operationalHonors && typeof value.operationalHonors === 'object' ? value.operationalHonors : {};
+  const operationalHonorLegacy = Array.isArray(value.operationalHonorAwarded) ? value.operationalHonorAwarded : [];
+  const operationalHonorHistory = Array.isArray(operationalHonors.history)
+    ? operationalHonors.history.filter((item) => item && typeof item === 'object').slice(0, 30)
+    : [];
   return {
     rankIndex: Math.floor(clampNumber(value.rankIndex, 0, 12, 0)),
     reputation: Math.floor(clampNumber(value.reputation, 0, 999999, 0)),
@@ -86,6 +91,11 @@ function sanitizeCareer(value = {}) {
     convoyDisruption: Math.floor(clampNumber(value.convoyDisruption, 0, 100, 0)),
     campaignPressure: Math.floor(clampNumber(value.campaignPressure, 0, 100, 15)),
     medals: uniqueStringArray(value.medals),
+    operationalHonors: {
+      awardedIds: uniqueStringArray([...(operationalHonors.awardedIds || []), ...operationalHonorLegacy]),
+      availableIds: uniqueStringArray(operationalHonors.availableIds || []),
+      history: operationalHonorHistory
+    },
     serviceRecord
   };
 }

@@ -1,8 +1,7 @@
-# QA Checklist Phase 20
+# QA Fase 20
 
-- [x] Gameplay body scroll enabled
-- [x] App shell no longer traps scroll
-- [x] Measurement dashboard relative, not sticky/fixed
-- [x] Station tabs relative in gameplay
-- [x] Periscope modal preserved
-- [x] Phase 19 TDC preserved
+- [x] Decks cobrem Alemanha, Reino Unido e Estados Unidos.
+- [x] Condecorações não duplicam no save.
+- [x] Requisitos cruzados validam operações, cadeias e desfechos.
+- [x] Traduções PT-BR/EN/ES em paridade.
+- [x] Painéis responsivos no mobile.

@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.34",
-  "semver": "2.0.0-alpha.34",
-  "buildId": "SCWW2-20260623-1036-BRT-F19-STRATEGIC-OUTCOMES",
+  "version": "v2.0.0-alpha.35",
+  "semver": "2.0.0-alpha.35",
+  "buildId": "SCWW2-20260623-1203-BRT-F20-OPERATIONAL-HONORS",
   "date": "2026-06-23",
-  "time": "10:36",
+  "time": "12:03",
   "timezone": "America/Sao_Paulo",
-  "phase": "19",
-  "phaseName": "Strategic Chain Outcomes",
+  "phase": "20",
+  "phaseName": "Operational Reputation and Campaign Honors",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 13,
-  "notes": "Phase 19 adds national strategic chain outcomes: after completing the four-step special operation chain, Germany, United Kingdom and United States can choose one irreversible campaign direction with persistent theater effects, campaign and strategy panels, dossier export, save migration, mobile UI and automated validation while preserving all previous systems."
+  "saveSchemaVersion": 14,
+  "notes": "Phase 20 adds national operational reputation and campaign honors: Germany, United Kingdom and United States now receive five staged decorations each, with unlock conditions tied to missions, tonnage, reputation, special operations, chain steps and strategic outcomes. Honors grant persistent commander rewards, theater modifiers, dossier export, campaign and strategy panels, save migration and automated validation while preserving all previous systems."
 };

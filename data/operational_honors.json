@@ -1,0 +1,441 @@
+[
+  {
+    "id": "operational_honors.de",
+    "nationId": "de",
+    "titleKey": "operationalHonors.de.title",
+    "summaryKey": "operationalHonors.de.summary",
+    "frontKey": "operationalHonors.de.front",
+    "honors": [
+      {
+        "id": "de_honor_iron_cross_second",
+        "nameKey": "operationalHonors.de.ironCrossSecond.name",
+        "descKey": "operationalHonors.de.ironCrossSecond.desc",
+        "ribbonKey": "operationalHonors.ribbon.combatPatrol",
+        "tier": 1,
+        "tone": "combat",
+        "requires": {
+          "completedMissions": 2,
+          "tonnageMin": 22000,
+          "reputationMin": 8
+        },
+        "reward": {
+          "credits": 600,
+          "xp": 180,
+          "commandPoints": 1,
+          "reputation": 5,
+          "prestige": 2,
+          "intelBonus": 2,
+          "pressureRelief": 1,
+          "riskDelta": 0,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "de_honor_iron_cross_first",
+        "nameKey": "operationalHonors.de.ironCrossFirst.name",
+        "descKey": "operationalHonors.de.ironCrossFirst.desc",
+        "ribbonKey": "operationalHonors.ribbon.eliteCommand",
+        "tier": 2,
+        "tone": "gold",
+        "requires": {
+          "completedMissions": 4,
+          "tonnageMin": 52000,
+          "reputationMin": 24,
+          "launchedOperationId": "de_operation_bdienst_shadow"
+        },
+        "reward": {
+          "credits": 1100,
+          "xp": 280,
+          "commandPoints": 1,
+          "reputation": 7,
+          "prestige": 4,
+          "intelBonus": 3,
+          "pressureRelief": 2,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "de_honor_knights_cross",
+        "nameKey": "operationalHonors.de.knightsCross.name",
+        "descKey": "operationalHonors.de.knightsCross.desc",
+        "ribbonKey": "operationalHonors.ribbon.strategicBreakthrough",
+        "tier": 3,
+        "tone": "elite",
+        "requires": {
+          "completedMissions": 6,
+          "tonnageMin": 88000,
+          "reputationMin": 42,
+          "completedStepId": "de_chain_silent_exit"
+        },
+        "reward": {
+          "credits": 1800,
+          "xp": 420,
+          "commandPoints": 2,
+          "reputation": 10,
+          "prestige": 8,
+          "intelBonus": 5,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.035,
+          "moraleBonus": 5,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "de_honor_oak_leaves",
+        "nameKey": "operationalHonors.de.oakLeaves.name",
+        "descKey": "operationalHonors.de.oakLeaves.desc",
+        "ribbonKey": "operationalHonors.ribbon.legendaryPatrol",
+        "tier": 4,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 7,
+          "tonnageMin": 125000,
+          "prestigeMin": 18,
+          "chosenOutcomeId": "de_outcome_shadow_doctrine"
+        },
+        "reward": {
+          "credits": 2600,
+          "xp": 620,
+          "commandPoints": 2,
+          "reputation": 14,
+          "prestige": 12,
+          "intelBonus": 6,
+          "pressureRelief": 4,
+          "riskDelta": -3,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 7,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "de_honor_uboat_ace",
+        "nameKey": "operationalHonors.de.uboatAce.name",
+        "descKey": "operationalHonors.de.uboatAce.desc",
+        "ribbonKey": "operationalHonors.ribbon.aceStatus",
+        "tier": 5,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 8,
+          "tonnageMin": 170000,
+          "reputationMin": 70,
+          "prestigeMin": 30
+        },
+        "reward": {
+          "credits": 3600,
+          "xp": 900,
+          "commandPoints": 3,
+          "reputation": 20,
+          "prestige": 18,
+          "intelBonus": 8,
+          "pressureRelief": 5,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.065,
+          "moraleBonus": 10,
+          "fatigueDelta": -4
+        }
+      }
+    ]
+  },
+  {
+    "id": "operational_honors.uk",
+    "nationId": "uk",
+    "titleKey": "operationalHonors.uk.title",
+    "summaryKey": "operationalHonors.uk.summary",
+    "frontKey": "operationalHonors.uk.front",
+    "honors": [
+      {
+        "id": "uk_honor_dsc",
+        "nameKey": "operationalHonors.uk.dsc.name",
+        "descKey": "operationalHonors.uk.dsc.desc",
+        "ribbonKey": "operationalHonors.ribbon.convoyGuard",
+        "tier": 1,
+        "tone": "combat",
+        "requires": {
+          "completedMissions": 2,
+          "reputationMin": 8
+        },
+        "reward": {
+          "credits": 620,
+          "xp": 180,
+          "commandPoints": 1,
+          "reputation": 5,
+          "prestige": 2,
+          "intelBonus": 3,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_honor_dso",
+        "nameKey": "operationalHonors.uk.dso.name",
+        "descKey": "operationalHonors.uk.dso.desc",
+        "ribbonKey": "operationalHonors.ribbon.commandService",
+        "tier": 2,
+        "tone": "gold",
+        "requires": {
+          "completedMissions": 4,
+          "reputationMin": 24,
+          "launchedOperationId": "uk_operation_hfdf_sweep"
+        },
+        "reward": {
+          "credits": 1150,
+          "xp": 300,
+          "commandPoints": 1,
+          "reputation": 7,
+          "prestige": 4,
+          "intelBonus": 4,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_honor_atlantic_star",
+        "nameKey": "operationalHonors.uk.atlanticStar.name",
+        "descKey": "operationalHonors.uk.atlanticStar.desc",
+        "ribbonKey": "operationalHonors.ribbon.atlanticStar",
+        "tier": 3,
+        "tone": "elite",
+        "requires": {
+          "completedMissions": 6,
+          "reputationMin": 42,
+          "completedStepId": "uk_chain_air_gap_net"
+        },
+        "reward": {
+          "credits": 1850,
+          "xp": 440,
+          "commandPoints": 2,
+          "reputation": 10,
+          "prestige": 8,
+          "intelBonus": 6,
+          "pressureRelief": 3,
+          "riskDelta": -3,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 5,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_honor_convoy_shield",
+        "nameKey": "operationalHonors.uk.convoyShield.name",
+        "descKey": "operationalHonors.uk.convoyShield.desc",
+        "ribbonKey": "operationalHonors.ribbon.convoyShield",
+        "tier": 4,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 7,
+          "prestigeMin": 18,
+          "chosenOutcomeId": "uk_outcome_escort_supremacy"
+        },
+        "reward": {
+          "credits": 2650,
+          "xp": 640,
+          "commandPoints": 2,
+          "reputation": 14,
+          "prestige": 12,
+          "intelBonus": 7,
+          "pressureRelief": 5,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.025,
+          "moraleBonus": 7,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "uk_honor_first_sea_lord_citation",
+        "nameKey": "operationalHonors.uk.firstSeaLord.name",
+        "descKey": "operationalHonors.uk.firstSeaLord.desc",
+        "ribbonKey": "operationalHonors.ribbon.theaterCitation",
+        "tier": 5,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 8,
+          "reputationMin": 70,
+          "prestigeMin": 30
+        },
+        "reward": {
+          "credits": 3650,
+          "xp": 900,
+          "commandPoints": 3,
+          "reputation": 20,
+          "prestige": 18,
+          "intelBonus": 10,
+          "pressureRelief": 6,
+          "riskDelta": -5,
+          "readinessBonus": 6,
+          "tonnageMultiplier": 1.035,
+          "moraleBonus": 10,
+          "fatigueDelta": -4
+        }
+      }
+    ]
+  },
+  {
+    "id": "operational_honors.us",
+    "nationId": "us",
+    "titleKey": "operationalHonors.us.title",
+    "summaryKey": "operationalHonors.us.summary",
+    "frontKey": "operationalHonors.us.front",
+    "honors": [
+      {
+        "id": "us_honor_navy_comm",
+        "nameKey": "operationalHonors.us.navyComm.name",
+        "descKey": "operationalHonors.us.navyComm.desc",
+        "ribbonKey": "operationalHonors.ribbon.pacificPatrol",
+        "tier": 1,
+        "tone": "combat",
+        "requires": {
+          "completedMissions": 2,
+          "tonnageMin": 20000,
+          "reputationMin": 8
+        },
+        "reward": {
+          "credits": 640,
+          "xp": 180,
+          "commandPoints": 1,
+          "reputation": 5,
+          "prestige": 2,
+          "intelBonus": 2,
+          "pressureRelief": 1,
+          "riskDelta": 0,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.015,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_honor_silver_star",
+        "nameKey": "operationalHonors.us.silverStar.name",
+        "descKey": "operationalHonors.us.silverStar.desc",
+        "ribbonKey": "operationalHonors.ribbon.silverStar",
+        "tier": 2,
+        "tone": "gold",
+        "requires": {
+          "completedMissions": 4,
+          "tonnageMin": 50000,
+          "reputationMin": 24,
+          "launchedOperationId": "us_operation_magic_intercept"
+        },
+        "reward": {
+          "credits": 1200,
+          "xp": 300,
+          "commandPoints": 1,
+          "reputation": 7,
+          "prestige": 4,
+          "intelBonus": 4,
+          "pressureRelief": 2,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.025,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_honor_navy_cross",
+        "nameKey": "operationalHonors.us.navyCross.name",
+        "descKey": "operationalHonors.us.navyCross.desc",
+        "ribbonKey": "operationalHonors.ribbon.navyCross",
+        "tier": 3,
+        "tone": "elite",
+        "requires": {
+          "completedMissions": 6,
+          "tonnageMin": 90000,
+          "reputationMin": 42,
+          "completedStepId": "us_chain_inner_blockade"
+        },
+        "reward": {
+          "credits": 1900,
+          "xp": 440,
+          "commandPoints": 2,
+          "reputation": 10,
+          "prestige": 8,
+          "intelBonus": 5,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 5,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "us_honor_presidential_unit",
+        "nameKey": "operationalHonors.us.presidentialUnit.name",
+        "descKey": "operationalHonors.us.presidentialUnit.desc",
+        "ribbonKey": "operationalHonors.ribbon.unitCitation",
+        "tier": 4,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 7,
+          "tonnageMin": 125000,
+          "prestigeMin": 18,
+          "chosenOutcomeId": "us_outcome_magic_stranglehold"
+        },
+        "reward": {
+          "credits": 2700,
+          "xp": 660,
+          "commandPoints": 2,
+          "reputation": 14,
+          "prestige": 12,
+          "intelBonus": 7,
+          "pressureRelief": 4,
+          "riskDelta": -3,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.055,
+          "moraleBonus": 7,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "us_honor_submarine_ace",
+        "nameKey": "operationalHonors.us.submarineAce.name",
+        "descKey": "operationalHonors.us.submarineAce.desc",
+        "ribbonKey": "operationalHonors.ribbon.aceStatus",
+        "tier": 5,
+        "tone": "legendary",
+        "requires": {
+          "completedMissions": 8,
+          "tonnageMin": 170000,
+          "reputationMin": 70,
+          "prestigeMin": 30
+        },
+        "reward": {
+          "credits": 3800,
+          "xp": 940,
+          "commandPoints": 3,
+          "reputation": 20,
+          "prestige": 18,
+          "intelBonus": 8,
+          "pressureRelief": 5,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.07,
+          "moraleBonus": 10,
+          "fatigueDelta": -4
+        }
+      }
+    ]
+  }
+]
