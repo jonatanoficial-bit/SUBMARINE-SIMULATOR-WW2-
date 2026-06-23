@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.35",
-  "short_name": "SCWW2 α34",
+  "name": "Submarine Commander WW2",
+  "short_name": "SC WW2",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -30,6 +30,6 @@
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.35",
+  "version": "2.0.0-alpha.36",
   "id": "./"
 }

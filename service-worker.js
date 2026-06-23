@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.35';
+const CACHE_VERSION = '2.0.0-alpha.36';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -44,6 +44,7 @@ const APP_SHELL = [
   './css/phase18-periscope-optics.css',
   './css/phase19-tdc-fire-control.css',
   './css/phase20-mobile-scroll.css',
+  './css/phase21-command-advancement.css',
   './css/phase21-damage-emergency.css',
   './css/phase23-crew-readiness.css',
   './css/phase24-ocean-weather.css',
@@ -102,6 +103,8 @@ const APP_SHELL = [
   './js/systems/specialOperations.js',
   './js/systems/operationChains.js',
   './js/systems/operationOutcomes.js',
+  './js/systems/operationalHonors.js',
+  './js/systems/commandAdvancement.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -115,6 +118,8 @@ const APP_SHELL = [
   './data/special_operations.json',
   './data/operation_chains.json',
   './data/operation_outcomes.json',
+  './data/operational_honors.json',
+  './data/command_advancement.json',
   './data/logistics.json',
   './data/strategy.json',
   './data/upgrades.json',

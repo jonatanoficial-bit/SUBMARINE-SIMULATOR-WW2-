@@ -1,5 +1,5 @@
-# Known Issues Phase 21
+# Known Issues — Phase 21
 
-- Visual Chromium smoke test may fail in the container due to GPU/headless startup limitations, not due to the game code.
-- Crew-by-name assignments are still abstracted by damage-control teams; individual crew simulation remains planned for the next phases.
-- Emergency posture affects damage response and stability but does not yet show individual sailor movement.
+- As patentes ainda não exibem insígnias gráficas realistas; a fase usa cartões textuais e classes visuais responsivas.
+- A progressão de carreira é persistente e funcional, mas ainda não inclui cerimônia animada de promoção.
+- A autoridade do comandante influencia o teatro de guerra, mas não altera individualmente tripulantes nomeados; isso permanece planejado para uma fase futura.

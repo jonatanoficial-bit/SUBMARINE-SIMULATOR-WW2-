@@ -383,6 +383,47 @@ function renderOperationalHonorsDeck(t, deck = null) {
   `;
 }
 
+
+function commandToneClass(rank) {
+  if (rank?.tone === 'legendary' || Number(rank?.rankIndex || 0) >= 5) return 'success';
+  if (rank?.tone === 'elite' || rank?.tone === 'staff' || Number(rank?.rankIndex || 0) >= 3) return 'gold';
+  return 'combat';
+}
+
+function renderCommandAdvancementDeck(t, deck = null) {
+  const ranks = Array.isArray(deck?.ranks) ? deck.ranks : [];
+  if (!ranks.length) return '';
+  const effect = deck.combinedEffect || {};
+  return `
+    <div class="campaign-command-advancement-deck phase21-command-advancement" aria-label="${t('commandAdvancement.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('commandAdvancement.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${deck.availableCount ? 'gold' : deck.claimedCount ? 'success' : 'warn'}">${deck.claimedCount}/${deck.totalRanks}</span>
+      </div>
+      <div class="command-authority-score" aria-label="${t('commandAdvancement.authorityScore')}"><i style="width:${deck.authorityScore || 0}%"></i></div>
+      <div class="command-advancement-effect-grid compact">
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+        <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+        <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+      </div>
+      <div class="campaign-event-list">
+        ${ranks.map((rank) => `
+          <div class="campaign-event-pill ${rank.claimed ? 'opportunity' : rank.unlocked ? 'support' : 'danger'}">
+            <span class="tag ${rank.claimed ? 'success' : rank.unlocked ? 'gold' : 'warn'}">${rank.claimed ? t('commandAdvancement.claimed') : rank.unlocked ? t('commandAdvancement.available') : t('commandAdvancement.locked')}</span>
+            <strong>⚓ ${t(rank.rankKey)}</strong>
+            <small>${t(rank.billetKey)} • ${t(rank.descKey)}</small>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -422,6 +463,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const operationChains = options.operationChains || null;
   const operationOutcomes = options.operationOutcomes || null;
   const operationalHonors = options.operationalHonors || null;
+  const commandAdvancement = options.commandAdvancement || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -468,6 +510,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             ${renderOperationChainsDeck(t, operationChains)}
             ${renderOperationOutcomesDeck(t, operationOutcomes)}
             ${renderOperationalHonorsDeck(t, operationalHonors)}
+            ${renderCommandAdvancementDeck(t, commandAdvancement)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

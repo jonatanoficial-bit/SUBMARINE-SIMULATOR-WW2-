@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.35",
-  "semver": "2.0.0-alpha.35",
-  "buildId": "SCWW2-20260623-1203-BRT-F20-OPERATIONAL-HONORS",
+  "version": "v2.0.0-alpha.36",
+  "semver": "2.0.0-alpha.36",
+  "buildId": "SCWW2-20260623-1221-BRT-F21-COMMAND-ADVANCEMENT",
   "date": "2026-06-23",
-  "time": "12:03",
+  "time": "12:21",
   "timezone": "America/Sao_Paulo",
-  "phase": "20",
-  "phaseName": "Operational Reputation and Campaign Honors",
+  "phase": "21",
+  "phaseName": "Ranks and Naval Career Advancement",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 14,
-  "notes": "Phase 20 adds national operational reputation and campaign honors with persistent commander rewards and theater modifiers."
+  "saveSchemaVersion": 15,
+  "notes": "Phase 21 adds national rank and naval career advancement for Germany, United Kingdom and United States. Commander promotions are tied to reputation, prestige, completed missions, tonnage, operational honors, chain steps and strategic outcomes. Consolidated promotions grant persistent rewards, theater modifiers, dossier export, campaign and strategy panels, save migration and automated validation while preserving all previous systems."
 }

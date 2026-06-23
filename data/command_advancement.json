@@ -1,0 +1,488 @@
+[
+  {
+    "id": "command_advancement.de",
+    "nationId": "de",
+    "titleKey": "commandAdvancement.de.title",
+    "summaryKey": "commandAdvancement.de.summary",
+    "frontKey": "commandAdvancement.de.front",
+    "ranks": [
+      {
+        "id": "de_adv_oberleutnant",
+        "rankIndex": 1,
+        "rankKey": "rank.de.1",
+        "billetKey": "commandAdvancement.de.billet.bridgeWatch",
+        "descKey": "commandAdvancement.de.oberleutnant.desc",
+        "tone": "junior",
+        "requires": {
+          "reputationMin": 35,
+          "completedMissions": 1,
+          "awardedHonors": 0
+        },
+        "reward": {
+          "credits": 500,
+          "xp": 160,
+          "commandPoints": 1,
+          "prestige": 2
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "de_adv_kapitanleutnant",
+        "rankIndex": 2,
+        "rankKey": "rank.de.2",
+        "billetKey": "commandAdvancement.de.billet.uBoatCommander",
+        "descKey": "commandAdvancement.de.kapitanleutnant.desc",
+        "tone": "combat",
+        "requires": {
+          "reputationMin": 85,
+          "prestigeMin": 12,
+          "completedMissions": 3,
+          "awardedHonors": 1,
+          "tonnageMin": 45000
+        },
+        "reward": {
+          "credits": 900,
+          "xp": 260,
+          "commandPoints": 1,
+          "prestige": 4
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 1,
+          "riskDelta": 0,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "de_adv_korvettenkapitan",
+        "rankIndex": 3,
+        "rankKey": "rank.de.3",
+        "billetKey": "commandAdvancement.de.billet.wolfpackLead",
+        "descKey": "commandAdvancement.de.korvettenkapitan.desc",
+        "tone": "elite",
+        "requires": {
+          "reputationMin": 150,
+          "prestigeMin": 24,
+          "completedMissions": 5,
+          "awardedHonors": 2,
+          "completedStepId": "de_chain_convoy_shadow"
+        },
+        "reward": {
+          "credits": 1300,
+          "xp": 360,
+          "commandPoints": 2,
+          "prestige": 6
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": 1,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 3,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_adv_fregattenkapitan",
+        "rankIndex": 4,
+        "rankKey": "rank.de.4",
+        "billetKey": "commandAdvancement.de.billet.atlanticStaff",
+        "descKey": "commandAdvancement.de.fregattenkapitan.desc",
+        "tone": "staff",
+        "requires": {
+          "reputationMin": 240,
+          "prestigeMin": 38,
+          "completedMissions": 7,
+          "awardedHonors": 3,
+          "chosenOutcomeId": "de_outcome_shadow_doctrine"
+        },
+        "reward": {
+          "credits": 1800,
+          "xp": 520,
+          "commandPoints": 2,
+          "prestige": 8
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 3,
+          "pressureRelief": 3,
+          "riskDelta": -1,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.06,
+          "moraleBonus": 4,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "de_adv_kapitan_zur_see",
+        "rankIndex": 5,
+        "rankKey": "rank.de.5",
+        "billetKey": "commandAdvancement.de.billet.fleetCommand",
+        "descKey": "commandAdvancement.de.kapitanZurSee.desc",
+        "tone": "legendary",
+        "requires": {
+          "reputationMin": 360,
+          "prestigeMin": 55,
+          "completedMissions": 8,
+          "awardedHonors": 5,
+          "tonnageMin": 190000
+        },
+        "reward": {
+          "credits": 2600,
+          "xp": 760,
+          "commandPoints": 3,
+          "prestige": 12
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 4,
+          "pressureRelief": 5,
+          "riskDelta": -2,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.09,
+          "moraleBonus": 6,
+          "fatigueDelta": -3
+        }
+      }
+    ]
+  },
+  {
+    "id": "command_advancement.uk",
+    "nationId": "uk",
+    "titleKey": "commandAdvancement.uk.title",
+    "summaryKey": "commandAdvancement.uk.summary",
+    "frontKey": "commandAdvancement.uk.front",
+    "ranks": [
+      {
+        "id": "uk_adv_lieutenant",
+        "rankIndex": 1,
+        "rankKey": "rank.uk.1",
+        "billetKey": "commandAdvancement.uk.billet.watchOfficer",
+        "descKey": "commandAdvancement.uk.lieutenant.desc",
+        "tone": "junior",
+        "requires": {
+          "reputationMin": 35,
+          "completedMissions": 1,
+          "awardedHonors": 0
+        },
+        "reward": {
+          "credits": 500,
+          "xp": 160,
+          "commandPoints": 1,
+          "prestige": 2
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 1,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 1,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_adv_lieutenant_commander",
+        "rankIndex": 2,
+        "rankKey": "rank.uk.2",
+        "billetKey": "commandAdvancement.uk.billet.escortLead",
+        "descKey": "commandAdvancement.uk.ltCommander.desc",
+        "tone": "escort",
+        "requires": {
+          "reputationMin": 85,
+          "prestigeMin": 12,
+          "completedMissions": 3,
+          "awardedHonors": 1,
+          "tonnageMin": 32000
+        },
+        "reward": {
+          "credits": 900,
+          "xp": 260,
+          "commandPoints": 1,
+          "prestige": 4
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_adv_commander",
+        "rankIndex": 3,
+        "rankKey": "rank.uk.3",
+        "billetKey": "commandAdvancement.uk.billet.westernApproaches",
+        "descKey": "commandAdvancement.uk.commander.desc",
+        "tone": "staff",
+        "requires": {
+          "reputationMin": 150,
+          "prestigeMin": 24,
+          "completedMissions": 5,
+          "awardedHonors": 2,
+          "completedStepId": "uk_chain_hfdf_plot"
+        },
+        "reward": {
+          "credits": 1300,
+          "xp": 360,
+          "commandPoints": 2,
+          "prestige": 6
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 3,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 3,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_adv_captain",
+        "rankIndex": 4,
+        "rankKey": "rank.uk.4",
+        "billetKey": "commandAdvancement.uk.billet.convoyCaptain",
+        "descKey": "commandAdvancement.uk.captain.desc",
+        "tone": "elite",
+        "requires": {
+          "reputationMin": 240,
+          "prestigeMin": 38,
+          "completedMissions": 7,
+          "awardedHonors": 3,
+          "chosenOutcomeId": "uk_outcome_escort_supremacy"
+        },
+        "reward": {
+          "credits": 1800,
+          "xp": 520,
+          "commandPoints": 2,
+          "prestige": 8
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 4,
+          "pressureRelief": 4,
+          "riskDelta": -3,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 4,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_adv_commodore",
+        "rankIndex": 5,
+        "rankKey": "rank.uk.5",
+        "billetKey": "commandAdvancement.uk.billet.admiralty",
+        "descKey": "commandAdvancement.uk.commodore.desc",
+        "tone": "legendary",
+        "requires": {
+          "reputationMin": 360,
+          "prestigeMin": 55,
+          "completedMissions": 8,
+          "awardedHonors": 5,
+          "tonnageMin": 140000
+        },
+        "reward": {
+          "credits": 2600,
+          "xp": 760,
+          "commandPoints": 3,
+          "prestige": 12
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 5,
+          "pressureRelief": 6,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 6,
+          "fatigueDelta": -3
+        }
+      }
+    ]
+  },
+  {
+    "id": "command_advancement.us",
+    "nationId": "us",
+    "titleKey": "commandAdvancement.us.title",
+    "summaryKey": "commandAdvancement.us.summary",
+    "frontKey": "commandAdvancement.us.front",
+    "ranks": [
+      {
+        "id": "us_adv_lieutenant_jg",
+        "rankIndex": 1,
+        "rankKey": "rank.us.1",
+        "billetKey": "commandAdvancement.us.billet.watchOfficer",
+        "descKey": "commandAdvancement.us.ltJg.desc",
+        "tone": "junior",
+        "requires": {
+          "reputationMin": 35,
+          "completedMissions": 1,
+          "awardedHonors": 0
+        },
+        "reward": {
+          "credits": 550,
+          "xp": 170,
+          "commandPoints": 1,
+          "prestige": 2
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_adv_lieutenant",
+        "rankIndex": 2,
+        "rankKey": "rank.us.2",
+        "billetKey": "commandAdvancement.us.billet.patrolCommander",
+        "descKey": "commandAdvancement.us.lieutenant.desc",
+        "tone": "combat",
+        "requires": {
+          "reputationMin": 85,
+          "prestigeMin": 12,
+          "completedMissions": 3,
+          "awardedHonors": 1,
+          "tonnageMin": 42000
+        },
+        "reward": {
+          "credits": 950,
+          "xp": 280,
+          "commandPoints": 1,
+          "prestige": 4
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 1,
+          "riskDelta": 0,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_adv_lieutenant_commander",
+        "rankIndex": 3,
+        "rankKey": "rank.us.3",
+        "billetKey": "commandAdvancement.us.billet.wolfpackPacific",
+        "descKey": "commandAdvancement.us.ltCommander.desc",
+        "tone": "elite",
+        "requires": {
+          "reputationMin": 150,
+          "prestigeMin": 24,
+          "completedMissions": 5,
+          "awardedHonors": 2,
+          "completedStepId": "us_chain_lifeguard_screen"
+        },
+        "reward": {
+          "credits": 1400,
+          "xp": 380,
+          "commandPoints": 2,
+          "prestige": 6
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": 0,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_adv_commander",
+        "rankIndex": 4,
+        "rankKey": "rank.us.4",
+        "billetKey": "commandAdvancement.us.billet.pacificCommand",
+        "descKey": "commandAdvancement.us.commander.desc",
+        "tone": "staff",
+        "requires": {
+          "reputationMin": 240,
+          "prestigeMin": 38,
+          "completedMissions": 7,
+          "awardedHonors": 3,
+          "chosenOutcomeId": "us_outcome_total_blockade"
+        },
+        "reward": {
+          "credits": 1900,
+          "xp": 540,
+          "commandPoints": 2,
+          "prestige": 8
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 3,
+          "pressureRelief": 3,
+          "riskDelta": -1,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.07,
+          "moraleBonus": 4,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "us_adv_captain",
+        "rankIndex": 5,
+        "rankKey": "rank.us.5",
+        "billetKey": "commandAdvancement.us.billet.subronCommand",
+        "descKey": "commandAdvancement.us.captain.desc",
+        "tone": "legendary",
+        "requires": {
+          "reputationMin": 360,
+          "prestigeMin": 55,
+          "completedMissions": 8,
+          "awardedHonors": 5,
+          "tonnageMin": 180000
+        },
+        "reward": {
+          "credits": 2800,
+          "xp": 780,
+          "commandPoints": 3,
+          "prestige": 12
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 4,
+          "pressureRelief": 5,
+          "riskDelta": -2,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.1,
+          "moraleBonus": 6,
+          "fatigueDelta": -3
+        }
+      }
+    ]
+  }
+]

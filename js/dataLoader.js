@@ -13,6 +13,7 @@ const DATA_FILES = {
   operationChains: 'data/operation_chains.json',
   operationOutcomes: 'data/operation_outcomes.json',
   operationalHonors: 'data/operational_honors.json',
+  commandAdvancement: 'data/command_advancement.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -114,6 +115,7 @@ function validateRelations(data) {
   const operationChainSetIds = assertUniqueIds('operationChains', data.operationChains || []);
   const operationOutcomeSetIds = assertUniqueIds('operationOutcomes', data.operationOutcomes || []);
   const operationalHonorSetIds = assertUniqueIds('operationalHonors', data.operationalHonors || []);
+  const commandAdvancementSetIds = assertUniqueIds('commandAdvancement', data.commandAdvancement || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -352,6 +354,35 @@ data.nations.forEach((nation) => {
     if (!data.operationalHonors.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operational honor deck`);
   });
 
+  if ((data.commandAdvancement || []).length !== data.nations.length) throw new Error('Command advancement must cover every nation');
+  const advancementOutcomeIds = new Set((data.operationOutcomes || []).flatMap((deck) => (deck.outcomes || []).map((outcome) => outcome.id)));
+  const advancementStepIds = new Set((data.operationChains || []).flatMap((deck) => (deck.steps || []).map((step) => step.id)));
+  data.commandAdvancement.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Command advancement deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.ranks) || deck.ranks.length !== 5) throw new Error(`Command advancement deck ${deck.id} must have five rank milestones`);
+    const nestedRankIds = new Set();
+    deck.ranks.forEach((rank) => {
+      if (!rank?.id || nestedRankIds.has(rank.id)) throw new Error(`Command advancement deck ${deck.id} has invalid or duplicate rank id`);
+      nestedRankIds.add(rank.id);
+      if (!Number.isFinite(Number(rank.rankIndex))) throw new Error(`Command advancement ${rank.id} missing rankIndex`);
+      const requires = rank.requires || {};
+      ['reputationMin','prestigeMin','completedMissions','tonnageMin','awardedHonors','intelMin'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Command advancement ${rank.id} has invalid requirement ${key}`);
+      });
+      if (requires.completedStepId && !advancementStepIds.has(requires.completedStepId)) throw new Error(`Command advancement ${rank.id} references missing chain step ${requires.completedStepId}`);
+      if (requires.chosenOutcomeId && !advancementOutcomeIds.has(requires.chosenOutcomeId)) throw new Error(`Command advancement ${rank.id} references missing outcome ${requires.chosenOutcomeId}`);
+      ['credits','xp','commandPoints','prestige'].forEach((key) => {
+        if (!Number.isFinite(Number(rank.reward?.[key]))) throw new Error(`Command advancement ${rank.id} missing reward ${key}`);
+      });
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(rank.effect?.[key]))) throw new Error(`Command advancement ${rank.id} missing effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.commandAdvancement.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no command advancement deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -391,7 +422,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -406,6 +437,7 @@ export async function loadGameData() {
   assertArray('operationChains', operationChains);
   assertArray('operationOutcomes', operationOutcomes);
   assertArray('operationalHonors', operationalHonors);
+  assertArray('commandAdvancement', commandAdvancement);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -414,7 +446,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

@@ -463,7 +463,75 @@ function renderOperationalHonors(t, save, summary = null) {
     </div>`;
 }
 
-export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null, operationalHonors = null) {
+
+function commandToneClass(rank) {
+  if (rank?.tone === 'legendary' || Number(rank?.rankIndex || 0) >= 5) return 'success';
+  if (rank?.tone === 'elite' || rank?.tone === 'staff' || Number(rank?.rankIndex || 0) >= 3) return 'gold';
+  return 'combat';
+}
+
+function renderCommandAdvancement(t, save, summary = null) {
+  if (!summary?.ranks?.length) return '';
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase21-command-advancement-panel">
+      <div class="panel-header">${t('commandAdvancement.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('commandAdvancement.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.availableCount ? 'gold' : summary.claimedCount ? 'success' : 'warn'}">${summary.claimedCount}/${summary.totalRanks}</span>
+        </div>
+        <div class="command-authority-score"><i style="width:${summary.authorityScore || 0}%"></i></div>
+        <div class="command-advancement-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+        </div>
+        <div class="command-advancement-grid">
+          ${summary.ranks.map((rank) => {
+            const reward = rank.reward || {};
+            const effect = rank.effect || {};
+            const canClaim = rank.unlocked && !rank.claimed;
+            const lockText = rank.claimed ? '' : (!rank.unlocked ? t(rank.lockedReason || 'commandAdvancement.locked', { count: rank.lockCount || 0 }) : '');
+            return `
+              <div class="mission-card command-advancement-card ${rank.claimed ? 'claimed' : ''} ${canClaim ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${commandToneClass(rank)}">${t(rank.billetKey)}</span>
+                    <h3>⚓ ${t(rank.rankKey)}</h3>
+                    <p>${t(rank.descKey)}</p>
+                  </div>
+                  <span class="tag ${rank.claimed ? 'success' : rank.unlocked ? 'gold' : 'warn'}">${rank.claimed ? t('commandAdvancement.claimed') : rank.unlocked ? t('commandAdvancement.available') : t('commandAdvancement.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('commandAdvancement.rankLevel')}: ${rank.rankIndex}</span>
+                  <span class="tag">${t('common.credits')}: +${reward.credits || 0}</span>
+                  <span class="tag">XP: +${reward.xp || 0}</span>
+                  <span class="tag gold">${t('strategy.commandPoints')}: +${reward.commandPoints || 0}</span>
+                </div>
+                <div class="operation-outcome-mini-effects">
+                  <span>${t('career.prestige')}: +${reward.prestige || 0}</span>
+                  <span>${t('strategy.intel')}: ${formatSigned(effect.intelBonus)}</span>
+                  <span>${t('strategy.decryption')}: ${formatSigned(effect.decryptionBonus)}</span>
+                  <span>${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canClaim ? '' : 'secondary'}" data-action="claim-command-promotion" data-rank="${rank.id}" ${canClaim ? '' : 'disabled'}>${rank.claimed ? t('commandAdvancement.promotionActive') : t('commandAdvancement.claimPromotion')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null, operationalHonors = null, commandAdvancement = null) {
   const strategy = save.strategy || {};
   const lanes = (strategyData.convoyLanes || []).filter((lane) => lane.nationId === nation.id);
   const network = (strategyData.intelNetworks || []).find((item) => item.nationId === nation.id) || {};
@@ -505,6 +573,7 @@ export function renderStrategy(t, save, nation, strategyData, theater, selectedL
       ${renderOperationChains(t, save, operationChains)}
       ${renderOperationOutcomes(t, save, operationOutcomes)}
       ${renderOperationalHonors(t, save, operationalHonors)}
+      ${renderCommandAdvancement(t, save, commandAdvancement)}
       ${renderHighCommandOrders(t, save, highCommandOrders)}
 
       <div class="phase13-grid">

@@ -80,6 +80,11 @@ function sanitizeCareer(value = {}) {
   const operationalHonorHistory = Array.isArray(operationalHonors.history)
     ? operationalHonors.history.filter((item) => item && typeof item === 'object').slice(0, 30)
     : [];
+  const commandAdvancement = value.commandAdvancement && typeof value.commandAdvancement === 'object' ? value.commandAdvancement : {};
+  const commandAdvancementLegacy = Array.isArray(value.promotionsClaimed) ? value.promotionsClaimed : [];
+  const commandAdvancementHistory = Array.isArray(commandAdvancement.history)
+    ? commandAdvancement.history.filter((item) => item && typeof item === 'object').slice(0, 30)
+    : [];
   return {
     rankIndex: Math.floor(clampNumber(value.rankIndex, 0, 12, 0)),
     reputation: Math.floor(clampNumber(value.reputation, 0, 999999, 0)),
@@ -95,6 +100,11 @@ function sanitizeCareer(value = {}) {
       awardedIds: uniqueStringArray([...(operationalHonors.awardedIds || []), ...operationalHonorLegacy]),
       availableIds: uniqueStringArray(operationalHonors.availableIds || []),
       history: operationalHonorHistory
+    },
+    commandAdvancement: {
+      claimedIds: uniqueStringArray([...(commandAdvancement.claimedIds || []), ...commandAdvancementLegacy]),
+      availableIds: uniqueStringArray(commandAdvancement.availableIds || []),
+      history: commandAdvancementHistory
     },
     serviceRecord
   };

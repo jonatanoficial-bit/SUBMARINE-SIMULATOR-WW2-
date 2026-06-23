@@ -1,22 +1,30 @@
-# Phase 21 Delivery Report — Internal Damage and Emergency Control
+# Phase 21 Delivery Report — Patentes e Carreira Naval
 
-Build: v2.0.0-alpha.21  
+Build: v2.0.0-alpha.36  
 Phase: 21  
-Focus: internal damage, flooding, smoke, pressure ingress and emergency-control posture.
+Focus: ranks, naval career advancement and commander authority progression.
 
-## Implemented
-- Pressure-ingress simulation tied to depth, breached compartment integrity and watertight posture.
-- Internal smoke load from fires/electrical damage.
-- Compartment stability index.
-- Emergency postures: normal, brace, silent and evacuate forward.
-- Emergency ventilation cycle.
-- UI readouts for pressure ingress, smoke load, stability and active posture.
-- Preserves Phase 20 mobile-scroll stabilization.
-- Preserves TDC, periscope, sonar, buoyancy, strategy, logistics and career systems.
+## Implementado
+- Novo arquivo de dados `data/command_advancement.json`.
+- Novo sistema `js/systems/commandAdvancement.js`.
+- Trilhas de promoção separadas para Alemanha, Reino Unido e Estados Unidos.
+- Cinco marcos de patente por nação, totalizando quinze promoções.
+- Requisitos por reputação, prestígio, missões, tonelagem, medalhas, cadeias de operações e desfechos estratégicos.
+- Função de consolidação de promoção com trava anti-duplicação.
+- Recompensas e efeitos persistentes no save.
+- Painel de carreira na Campanha e painel de autoridade no Comando Estratégico.
+- Exportação do resumo de carreira no dossiê/logbook.
+- Migração segura para save schema 15.
+- PWA/cache atualizado para a nova build.
 
-## Validation
-- Node tests passed.
-- Phase 21 targeted tests passed.
-- Phase 21 audit passed.
-- Manifest generated and verified.
-- ZIP integrity verified.
+## Integrações preservadas
+- Campanhas independentes, doutrinas nacionais, objetivos históricos, consequências estratégicas e Alto Comando.
+- Eventos dinâmicos, operações especiais, cadeias, desfechos e medalhas de campanha.
+- Sistemas de logística, carreira, estratégia, TDC, periscópio, sonar, comboios/escoltas e trilha sonora.
+
+## Validação
+- `npm test`: 212/212 PASS.
+- `npm run audit`: 364 checks PASS.
+- `npm run smoke`: 56/56 PASS.
+- `python3 tests/campaigns_smoke.py`: 16/16 PASS.
+- ZIP integrity: PASS.

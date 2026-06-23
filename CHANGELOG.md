@@ -1,3 +1,15 @@
+# Changelog
+
+## v2.0.0-alpha.36 — Fase 21 — Patentes e Carreira Naval
+
+- Adicionado sistema de patentes e carreira naval do comandante.
+- Adicionadas trilhas independentes de promoção para Alemanha, Reino Unido e Estados Unidos.
+- Adicionados requisitos por reputação, prestígio, missões, tonelagem, medalhas, cadeias e desfechos estratégicos.
+- Adicionados painéis de carreira na Campanha e autoridade no Comando Estratégico.
+- Efeitos de promoção agora impactam cálculo estratégico e dossiê/logbook.
+- Save schema atualizado para 15.
+- Build/PWA atualizados para v2.0.0-alpha.36.
+
 # v2.0.0-alpha.35 — Fase 20 — Reputação Operacional e Medalhas
 
 - Adicionado sistema de reputação operacional e condecorações de campanha.
