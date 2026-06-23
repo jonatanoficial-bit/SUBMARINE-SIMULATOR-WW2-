@@ -1,0 +1,11 @@
+{
+  "phase": 18,
+  "build": "v2.0.0-alpha.33",
+  "status": "PASS",
+  "checks": {
+    "npm_test": "197/197 PASS",
+    "audit": "227 checks PASS",
+    "smoke": "56/56 PASS",
+    "campaigns_smoke": "16/16 PASS"
+  }
+}

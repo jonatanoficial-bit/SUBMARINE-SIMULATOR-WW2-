@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.30';
+const CACHE_VERSION = '2.0.0-alpha.33';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -33,6 +33,9 @@ const APP_SHELL = [
   './css/phase13-campaign-objectives.css',
   './css/phase14-campaign-consequences.css',
   './css/phase15-high-command-orders.css',
+  './css/phase16-campaign-events.css',
+  './css/phase17-special-operations.css',
+  './css/phase18-operation-chains.css',
   './css/phase14-bridge-instruments.css',
   './css/phase15-command-room.css',
   './css/phase16-buoyancy-depth.css',
@@ -94,6 +97,9 @@ const APP_SHELL = [
   './js/systems/campaignObjectives.js',
   './js/systems/campaignConsequences.js',
   './js/systems/highCommandOrders.js',
+  './js/systems/campaignEvents.js',
+  './js/systems/specialOperations.js',
+  './js/systems/operationChains.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -103,6 +109,9 @@ const APP_SHELL = [
   './data/campaign_objectives.json',
   './data/campaign_consequences.json',
   './data/high_command_orders.json',
+  './data/campaign_events.json',
+  './data/special_operations.json',
+  './data/operation_chains.json',
   './data/logistics.json',
   './data/strategy.json',
   './data/upgrades.json',

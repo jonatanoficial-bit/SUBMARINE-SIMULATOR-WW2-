@@ -1,0 +1,341 @@
+[
+  {
+    "id": "operation_chain.de_atlantic_shadow",
+    "nationId": "de",
+    "titleKey": "operationChains.de.title",
+    "summaryKey": "operationChains.de.summary",
+    "frontKey": "operationChains.de.front",
+    "steps": [
+      {
+        "id": "de_chain_shadow_chart",
+        "nameKey": "operationChains.de.shadowChart.name",
+        "descKey": "operationChains.de.shadowChart.desc",
+        "stageKey": "operationChains.stage.intel",
+        "tone": "covert",
+        "requires": {
+          "completedMissions": 1,
+          "launchedOperationId": "de_operation_paukenschlag"
+        },
+        "cost": {
+          "credits": 700,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 2,
+          "pressureRelief": 0,
+          "riskDelta": 1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_chain_convoy_shadow",
+        "nameKey": "operationChains.de.convoyShadow.name",
+        "descKey": "operationChains.de.convoyShadow.desc",
+        "stageKey": "operationChains.stage.tracking",
+        "tone": "opportunity",
+        "requires": {
+          "completedMissions": 2,
+          "previousStepId": "de_chain_shadow_chart",
+          "launchedOperationId": "de_operation_bdienst_shadow",
+          "decryptionMin": 24
+        },
+        "cost": {
+          "credits": 950,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 5,
+          "pressureRelief": 1,
+          "riskDelta": 2,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 1,
+          "fatigueDelta": 1
+        }
+      },
+      {
+        "id": "de_chain_rendezvous_net",
+        "nameKey": "operationChains.de.rendezvousNet.name",
+        "descKey": "operationChains.de.rendezvousNet.desc",
+        "stageKey": "operationChains.stage.support",
+        "tone": "support",
+        "requires": {
+          "completedMissions": 4,
+          "previousStepId": "de_chain_convoy_shadow",
+          "launchedOperationId": "de_operation_milk_cow_rendezvous"
+        },
+        "cost": {
+          "credits": 1250,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 5,
+          "riskDelta": 1,
+          "readinessBonus": 6,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 3,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "de_chain_silent_exit",
+        "nameKey": "operationChains.de.silentExit.name",
+        "descKey": "operationChains.de.silentExit.desc",
+        "stageKey": "operationChains.stage.final",
+        "tone": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "previousStepId": "de_chain_rendezvous_net",
+          "pressureMin": 58
+        },
+        "cost": {
+          "credits": 1400,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 9,
+          "riskDelta": -6,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "operation_chain.uk_blackett_net",
+    "nationId": "uk",
+    "titleKey": "operationChains.uk.title",
+    "summaryKey": "operationChains.uk.summary",
+    "frontKey": "operationChains.uk.front",
+    "steps": [
+      {
+        "id": "uk_chain_hfdf_plot",
+        "nameKey": "operationChains.uk.hfdfPlot.name",
+        "descKey": "operationChains.uk.hfdfPlot.desc",
+        "stageKey": "operationChains.stage.intel",
+        "tone": "covert",
+        "requires": {
+          "completedMissions": 1,
+          "launchedOperationId": "uk_operation_hfdf_sweep"
+        },
+        "cost": {
+          "credits": 650,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 3,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "uk_chain_escort_lattice",
+        "nameKey": "operationChains.uk.escortLattice.name",
+        "descKey": "operationChains.uk.escortLattice.desc",
+        "stageKey": "operationChains.stage.defense",
+        "tone": "support",
+        "requires": {
+          "completedMissions": 2,
+          "previousStepId": "uk_chain_hfdf_plot",
+          "launchedOperationId": "uk_operation_close_escort_net"
+        },
+        "cost": {
+          "credits": 900,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 5,
+          "riskDelta": -4,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_chain_air_gap_net",
+        "nameKey": "operationChains.uk.airGapNet.name",
+        "descKey": "operationChains.uk.airGapNet.desc",
+        "stageKey": "operationChains.stage.aircover",
+        "tone": "opportunity",
+        "requires": {
+          "completedMissions": 4,
+          "previousStepId": "uk_chain_escort_lattice",
+          "launchedOperationId": "uk_operation_air_gap_closure"
+        },
+        "cost": {
+          "credits": 1150,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 1,
+          "pressureRelief": 7,
+          "riskDelta": -6,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_chain_decoy_trap",
+        "nameKey": "operationChains.uk.decoyTrap.name",
+        "descKey": "operationChains.uk.decoyTrap.desc",
+        "stageKey": "operationChains.stage.final",
+        "tone": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "previousStepId": "uk_chain_air_gap_net",
+          "launchedOperationId": "uk_operation_convoy_decoy",
+          "intelMin": 64
+        },
+        "cost": {
+          "credits": 1300,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 4,
+          "pressureRelief": 4,
+          "riskDelta": 2,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.07,
+          "moraleBonus": 1,
+          "fatigueDelta": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "operation_chain.us_pacific_stranglehold",
+    "nationId": "us",
+    "titleKey": "operationChains.us.title",
+    "summaryKey": "operationChains.us.summary",
+    "frontKey": "operationChains.us.front",
+    "steps": [
+      {
+        "id": "us_chain_magic_plot",
+        "nameKey": "operationChains.us.magicPlot.name",
+        "descKey": "operationChains.us.magicPlot.desc",
+        "stageKey": "operationChains.stage.intel",
+        "tone": "covert",
+        "requires": {
+          "completedMissions": 1,
+          "launchedOperationId": "us_operation_magic_intercept"
+        },
+        "cost": {
+          "credits": 700,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 7,
+          "decryptionBonus": 4,
+          "pressureRelief": 0,
+          "riskDelta": 1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "us_chain_torpedo_fix",
+        "nameKey": "operationChains.us.torpedoFix.name",
+        "descKey": "operationChains.us.torpedoFix.desc",
+        "stageKey": "operationChains.stage.refit",
+        "tone": "support",
+        "requires": {
+          "completedMissions": 2,
+          "previousStepId": "us_chain_magic_plot",
+          "launchedOperationId": "us_operation_torpedo_board"
+        },
+        "cost": {
+          "credits": 1000,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": 1,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.08,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_chain_lifeguard_screen",
+        "nameKey": "operationChains.us.lifeguardScreen.name",
+        "descKey": "operationChains.us.lifeguardScreen.desc",
+        "stageKey": "operationChains.stage.rescue",
+        "tone": "support",
+        "requires": {
+          "completedMissions": 4,
+          "previousStepId": "us_chain_torpedo_fix",
+          "launchedOperationId": "us_operation_lifeguard_station"
+        },
+        "cost": {
+          "credits": 1100,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 1,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 4,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "us_chain_inner_blockade",
+        "nameKey": "operationChains.us.innerBlockade.name",
+        "descKey": "operationChains.us.innerBlockade.desc",
+        "stageKey": "operationChains.stage.final",
+        "tone": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "previousStepId": "us_chain_lifeguard_screen",
+          "launchedOperationId": "us_operation_inner_empire_blockade",
+          "intelMin": 68
+        },
+        "cost": {
+          "credits": 1500,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 2,
+          "pressureRelief": 6,
+          "riskDelta": 5,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.12,
+          "moraleBonus": 2,
+          "fatigueDelta": 2
+        }
+      }
+    ]
+  }
+]

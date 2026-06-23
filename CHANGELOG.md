@@ -1,3 +1,21 @@
+# Changelog
+
+## v2.0.0-alpha.33 — Phase 18 — Cadeias de Operações Especiais
+
+- Added chained special operations for Germany, United Kingdom and United States campaigns.
+- Added chain progress panels to campaign and strategic command screens.
+- Added persistent execution, costs, prerequisites, strategy effects and anti-duplication locks.
+- Integrated chain effects into strategic posture, patrol modifiers and logbook/export payloads.
+- Added Phase 18 automated tests, audit tool and PWA cache updates.
+
+## v2.0.0-alpha.31 — Fase 16 — Eventos Dinâmicos de Guerra
+- Adicionados eventos dinâmicos por campanha para Alemanha, Reino Unido e Estados Unidos.
+- Eventos ativam por progresso, pressão, inteligência, decifração e ordens do Alto Comando.
+- Painéis novos na Campanha e no Comando Estratégico.
+- Efeitos estratégicos em risco ASW, pressão, inteligência, prontidão e tonelagem projetada.
+- Registro persistente no diário estratégico com proteção anti-duplicação.
+- Save schema 10, PWA/cache, traduções PT/EN/ES e auditoria atualizados.
+
 
 ## v2.0.0-alpha.30 — Fase 15 — Alto Comando Estratégico
 
@@ -366,3 +384,12 @@
 - Adicionado painel de doutrina de comboio e escoltas na estação de IA.
 - Adicionada análise de integridade, cortina de escoltas, zigue-zague e janela de interceptação.
 - Preservadas as fases 20–24.
+
+## v2.0.0-alpha.32 — Fase 17 — Operações Especiais de Campanha
+
+- Adicionadas operações especiais nacionais para Alemanha, Reino Unido e Estados Unidos.
+- Operações exigem progresso, eventos dinâmicos, ordens do Alto Comando ou métricas estratégicas.
+- Custos em créditos/CP e efeitos persistentes no teatro.
+- Painéis novos em Campanha e Comando Estratégico.
+- Save schema 11, PWA/cache, traduções e auditorias atualizados.
+

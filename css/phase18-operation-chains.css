@@ -1,0 +1,75 @@
+.phase18-operation-chains,
+.phase18-operation-chains-panel {
+  border: 1px solid rgba(110, 185, 255, 0.22);
+  background: linear-gradient(135deg, rgba(4, 19, 32, 0.92), rgba(9, 38, 60, 0.78));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.035), 0 18px 42px rgba(0,0,0,0.24);
+}
+.operation-chain-track {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.operation-chain-track > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(117, 201, 255, 0.92), rgba(243, 199, 96, 0.92));
+}
+.operation-chain-steps,
+.operation-chain-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+.operation-chain-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.operation-chain-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.18);
+}
+.operation-chain-step.complete,
+.operation-chain-card.active {
+  border-color: rgba(112, 221, 151, 0.42);
+  background: linear-gradient(135deg, rgba(28, 98, 68, 0.24), rgba(6, 28, 38, 0.46));
+}
+.operation-chain-step.available {
+  border-color: rgba(246, 203, 92, 0.42);
+}
+.operation-chain-step.locked,
+.operation-chain-card.locked {
+  opacity: 0.72;
+}
+.operation-chain-index {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 800;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.operation-chain-card {
+  position: relative;
+  overflow: hidden;
+}
+.operation-chain-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(117,201,255,0.88), rgba(243,199,96,0.88));
+  opacity: 0.85;
+}
+@media (max-width: 720px) {
+  .operation-chain-grid { grid-template-columns: 1fr; }
+  .operation-chain-step { grid-template-columns: 1fr; }
+  .operation-chain-index { width: auto; min-height: 1.8rem; }
+}

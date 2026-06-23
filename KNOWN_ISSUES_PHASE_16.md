@@ -1,4 +1,9 @@
-# Known Issues Phase 16
+# Known Issues — Phase 16 Dynamic War Events
 
-- A simulação já calcula envelope de profundidade e flutuabilidade, mas o controle manual avançado de válvulas individuais de tanque ainda fica para fase futura.
-- A representação visual dos tanques ainda é textual/digital; diagrama técnico por compartimento pode entrar depois.
+No blocking issues found in automated tests.
+
+Manual QA still recommended on:
+- Android Chrome PWA installed mode.
+- iPhone Safari standalone mode.
+- Very small devices below 360 px width.
+- Long campaigns with many acknowledged events.

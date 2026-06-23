@@ -178,6 +178,127 @@ function renderConsequenceDeck(t, deck = null) {
   `;
 }
 
+
+function eventToneClass(event) {
+  if (event?.tone === 'opportunity') return 'success';
+  if (event?.tone === 'danger' || event?.tone === 'crisis') return 'warn';
+  return 'gold';
+}
+
+function renderCampaignEventsDeck(t, deck = null) {
+  const events = Array.isArray(deck?.events) ? deck.events : [];
+  if (!events.length) return '';
+  const activeEvents = deck.activeEvents?.length ? deck.activeEvents : events.filter((event) => event.active);
+  const effect = deck.combinedEffect || {};
+  return `
+    <div class="campaign-events-deck phase16-campaign-events" aria-label="${t('campaignEvents.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('campaignEvents.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${deck.volatility >= 60 ? 'warn' : 'gold'}">${t('campaignEvents.volatility')}: ${deck.volatility}%</span>
+      </div>
+      <div class="campaign-event-effect-grid compact">
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('strategy.pressure')}</span><strong>${formatSigned(effect.pressureDelta)}</strong></div>
+        <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+      </div>
+      <div class="campaign-event-list">
+        ${activeEvents.length ? activeEvents.map((event) => `
+          <div class="campaign-event-pill ${event.tone || event.severity || 'warning'}">
+            <span class="tag ${eventToneClass(event)}">${t(`campaignEvents.severity.${event.tone || event.severity || 'warning'}`)}</span>
+            <strong>${t(event.nameKey)}</strong>
+            <small>${t(event.descKey)}</small>
+          </div>
+        `).join('') : `<div class="empty-state compact">${t('campaignEvents.noActive')}</div>`}
+      </div>
+    </div>
+  `;
+}
+
+
+function operationToneClass(operation) {
+  if (operation?.tone === 'covert' || operation?.severity === 'covert') return 'gold';
+  if (operation?.tone === 'danger' || operation?.severity === 'danger') return 'warn';
+  return 'success';
+}
+
+function renderSpecialOperationsDeck(t, deck = null) {
+  const operations = Array.isArray(deck?.operations) ? deck.operations : [];
+  if (!operations.length) return '';
+  const previewOperations = operations.filter((operation) => operation.unlocked || operation.launched).slice(0, 4);
+  const effect = deck.combinedEffect || {};
+  return `
+    <div class="campaign-special-operations-deck phase17-special-operations" aria-label="${t('specialOps.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('specialOps.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${deck.availableCount ? 'gold' : 'success'}">${deck.launchedCount}/${operations.length}</span>
+      </div>
+      <div class="special-operation-effect-grid compact">
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+        <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+      </div>
+      <div class="campaign-event-list">
+        ${previewOperations.length ? previewOperations.map((operation) => `
+          <div class="campaign-event-pill ${operation.launched ? 'opportunity' : operation.tone || operation.severity || 'support'}">
+            <span class="tag ${operationToneClass(operation)}">${operation.launched ? t('specialOps.launched') : t('specialOps.available')}</span>
+            <strong>${t(operation.nameKey)}</strong>
+            <small>${t(operation.descKey)}</small>
+          </div>
+        `).join('') : `<div class="empty-state compact">${t('specialOps.noAvailable')}</div>`}
+      </div>
+    </div>
+  `;
+}
+
+
+function renderOperationChainsDeck(t, deck = null) {
+  const steps = Array.isArray(deck?.steps) ? deck.steps : [];
+  if (!steps.length) return '';
+  const effect = deck.combinedEffect || {};
+  return `
+    <div class="campaign-operation-chains-deck phase18-operation-chains" aria-label="${t('operationChains.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('operationChains.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${deck.completedCount >= deck.totalSteps ? 'success' : 'gold'}">${deck.completedCount}/${deck.totalSteps}</span>
+      </div>
+      <div class="operation-chain-track" aria-label="${t('operationChains.progress')}"><i style="width:${deck.chainPercent || 0}%"></i></div>
+      <div class="special-operation-effect-grid compact">
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+        <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+      </div>
+      <div class="operation-chain-steps compact">
+        ${steps.map((step) => `
+          <div class="operation-chain-step ${step.completed ? 'complete' : step.unlocked ? 'available' : 'locked'}">
+            <span class="operation-chain-index">${String(step.index + 1).padStart(2, '0')}</span>
+            <div>
+              <span class="tag ${step.completed ? 'success' : step.unlocked ? 'gold' : 'warn'}">${step.completed ? t('operationChains.completed') : step.unlocked ? t('operationChains.available') : t('operationChains.locked')}</span>
+              <strong>${t(step.nameKey)}</strong>
+              <small>${t(step.stageKey)} • ${t(step.descKey)}</small>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      ${deck.nextStep && !deck.nextStep.completed ? `<div class="empty-state compact"><strong>${t('operationChains.nextStep')}</strong><br>${t(deck.nextStep.nameKey)}</div>` : ''}
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -212,6 +333,9 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const doctrineImpact = options.doctrineImpact || {};
   const campaignObjectives = options.campaignObjectives || null;
   const campaignConsequences = options.campaignConsequences || null;
+  const campaignEvents = options.campaignEvents || null;
+  const specialOperations = options.specialOperations || null;
+  const operationChains = options.operationChains || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -253,6 +377,9 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
             ${renderObjectiveDeck(t, campaignObjectives)}
             ${renderConsequenceDeck(t, campaignConsequences)}
+            ${renderCampaignEventsDeck(t, campaignEvents)}
+            ${renderSpecialOperationsDeck(t, specialOperations)}
+            ${renderOperationChainsDeck(t, operationChains)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

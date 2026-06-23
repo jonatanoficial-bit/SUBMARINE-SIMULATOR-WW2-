@@ -1,0 +1,99 @@
+.phase16-campaign-events-panel,
+.phase16-campaign-events {
+  border-color: rgba(120, 190, 255, 0.28);
+  background: linear-gradient(135deg, rgba(8, 18, 34, 0.92), rgba(20, 34, 52, 0.82));
+}
+
+.campaign-event-effect-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.campaign-event-effect-grid.compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.campaign-event-effect-grid > div {
+  min-width: 0;
+  padding: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.campaign-event-effect-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.campaign-event-effect-grid strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.05rem;
+}
+
+.campaign-event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.campaign-event-card {
+  border-left: 4px solid rgba(238, 188, 83, 0.78);
+}
+
+.campaign-event-card.opportunity { border-left-color: rgba(89, 207, 139, 0.9); }
+.campaign-event-card.danger,
+.campaign-event-card.crisis { border-left-color: rgba(255, 109, 109, 0.92); }
+.campaign-event-card.acknowledged { opacity: 0.78; }
+
+.campaign-events-deck {
+  padding: 0.9rem;
+  border: 1px solid rgba(120, 190, 255, 0.18);
+  border-radius: 1rem;
+  box-shadow: inset 0 0 28px rgba(43, 109, 186, 0.11);
+}
+
+.campaign-events-head {
+  margin-bottom: 0.75rem;
+}
+
+.campaign-event-list {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.campaign-event-pill {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.7rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.campaign-event-pill.opportunity { background: rgba(89, 207, 139, 0.08); }
+.campaign-event-pill.warning { background: rgba(238, 188, 83, 0.08); }
+.campaign-event-pill.danger,
+.campaign-event-pill.crisis { background: rgba(255, 109, 109, 0.08); }
+
+.campaign-event-pill small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+  .campaign-event-effect-grid,
+  .campaign-event-effect-grid.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campaign-event-grid {
+    grid-template-columns: 1fr;
+  }
+}

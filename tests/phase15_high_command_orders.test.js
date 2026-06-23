@@ -9,10 +9,10 @@ function readJson(path) {
 }
 
 test('phase 15 metadata identifies strategic high command order build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.30');
-  assert.equal(BUILD_INFO.phase, '15');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 9);
-  assert.match(BUILD_INFO.buildId, /F15-HIGH-COMMAND-ORDERS/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.33');
+  assert.equal(BUILD_INFO.phase, '18');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 12);
+  assert.match(BUILD_INFO.buildId, /F18-OPERATION-CHAINS/);
 });
 
 test('high command order decks cover every campaign nation with four orders', () => {

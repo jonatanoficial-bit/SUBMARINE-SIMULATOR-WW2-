@@ -1,0 +1,328 @@
+[
+  {
+    "id": "campaign_events.de",
+    "nationId": "de",
+    "titleKey": "campaignEvents.de.title",
+    "summaryKey": "campaignEvents.de.summary",
+    "events": [
+      {
+        "id": "de_happy_time_window",
+        "nameKey": "campaignEvents.de.happyTime.name",
+        "descKey": "campaignEvents.de.happyTime.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 0,
+          "pressureMax": 68,
+          "intelMin": 45
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureDelta": -2,
+          "riskDelta": -2,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.07,
+          "moraleDelta": 2,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_air_gap_closes",
+        "nameKey": "campaignEvents.de.airGap.name",
+        "descKey": "campaignEvents.de.airGap.desc",
+        "severity": "warning",
+        "trigger": {
+          "completedMissionsMin": 2,
+          "pressureMin": 55
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureDelta": 5,
+          "riskDelta": 8,
+          "readinessBonus": -2,
+          "tonnageMultiplier": 0.96,
+          "moraleDelta": -1,
+          "fatigueDelta": 2
+        }
+      },
+      {
+        "id": "de_bdienst_breakthrough",
+        "nameKey": "campaignEvents.de.bdienst.name",
+        "descKey": "campaignEvents.de.bdienst.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 1,
+          "activeOrderId": "de_b_dienst_push"
+        },
+        "effect": {
+          "intelBonus": 8,
+          "decryptionBonus": 10,
+          "pressureDelta": -1,
+          "riskDelta": 1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.03,
+          "moraleDelta": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_escort_carrier_response",
+        "nameKey": "campaignEvents.de.escortCarrier.name",
+        "descKey": "campaignEvents.de.escortCarrier.desc",
+        "severity": "danger",
+        "trigger": {
+          "completedMissionsMin": 4,
+          "pressureMin": 60,
+          "decryptionMin": 20
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureDelta": 6,
+          "riskDelta": 10,
+          "readinessBonus": -3,
+          "tonnageMultiplier": 0.94,
+          "moraleDelta": -2,
+          "fatigueDelta": 3
+        }
+      },
+      {
+        "id": "de_final_hunt",
+        "nameKey": "campaignEvents.de.finalHunt.name",
+        "descKey": "campaignEvents.de.finalHunt.desc",
+        "severity": "crisis",
+        "trigger": {
+          "completedMissionsMin": 6,
+          "pressureMin": 65
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureDelta": 8,
+          "riskDelta": 12,
+          "readinessBonus": -4,
+          "tonnageMultiplier": 1.02,
+          "moraleDelta": -3,
+          "fatigueDelta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "campaign_events.uk",
+    "nationId": "uk",
+    "titleKey": "campaignEvents.uk.title",
+    "summaryKey": "campaignEvents.uk.summary",
+    "events": [
+      {
+        "id": "uk_western_approaches_turn",
+        "nameKey": "campaignEvents.uk.turn.name",
+        "descKey": "campaignEvents.uk.turn.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 0,
+          "intelMin": 58
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 2,
+          "pressureDelta": -4,
+          "riskDelta": -5,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleDelta": 2,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_uboat_surge",
+        "nameKey": "campaignEvents.uk.surge.name",
+        "descKey": "campaignEvents.uk.surge.desc",
+        "severity": "warning",
+        "trigger": {
+          "completedMissionsMin": 2,
+          "pressureMin": 55
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureDelta": 5,
+          "riskDelta": 6,
+          "readinessBonus": -1,
+          "tonnageMultiplier": 1.0,
+          "moraleDelta": -1,
+          "fatigueDelta": 2
+        }
+      },
+      {
+        "id": "uk_hfdf_breakthrough",
+        "nameKey": "campaignEvents.uk.hfdf.name",
+        "descKey": "campaignEvents.uk.hfdf.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 1,
+          "activeOrderId": "uk_hfdf_net"
+        },
+        "effect": {
+          "intelBonus": 8,
+          "decryptionBonus": 8,
+          "pressureDelta": -3,
+          "riskDelta": -5,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.02,
+          "moraleDelta": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "uk_air_cover_window",
+        "nameKey": "campaignEvents.uk.airCover.name",
+        "descKey": "campaignEvents.uk.airCover.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 5,
+          "activeOrderId": "uk_air_cover_window"
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureDelta": -7,
+          "riskDelta": -9,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 0.99,
+          "moraleDelta": 2,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_exhausted_escorts",
+        "nameKey": "campaignEvents.uk.exhausted.name",
+        "descKey": "campaignEvents.uk.exhausted.desc",
+        "severity": "danger",
+        "trigger": {
+          "completedMissionsMin": 4,
+          "pressureMin": 70
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureDelta": 6,
+          "riskDelta": 5,
+          "readinessBonus": -4,
+          "tonnageMultiplier": 0.98,
+          "moraleDelta": -3,
+          "fatigueDelta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "campaign_events.us",
+    "nationId": "us",
+    "titleKey": "campaignEvents.us.title",
+    "summaryKey": "campaignEvents.us.summary",
+    "events": [
+      {
+        "id": "us_torpedo_crisis",
+        "nameKey": "campaignEvents.us.torpedo.name",
+        "descKey": "campaignEvents.us.torpedo.desc",
+        "severity": "warning",
+        "trigger": {
+          "completedMissionsMin": 0,
+          "completedMissionsMax": 2
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureDelta": 3,
+          "riskDelta": 3,
+          "readinessBonus": -3,
+          "tonnageMultiplier": 0.88,
+          "moraleDelta": -2,
+          "fatigueDelta": 1
+        }
+      },
+      {
+        "id": "us_magic_window",
+        "nameKey": "campaignEvents.us.magic.name",
+        "descKey": "campaignEvents.us.magic.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 0,
+          "decryptionMin": 24
+        },
+        "effect": {
+          "intelBonus": 7,
+          "decryptionBonus": 5,
+          "pressureDelta": -2,
+          "riskDelta": -3,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.02,
+          "moraleDelta": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "us_forward_tenders",
+        "nameKey": "campaignEvents.us.tenders.name",
+        "descKey": "campaignEvents.us.tenders.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 2,
+          "activeOrderId": "us_forward_tender_line"
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureDelta": -4,
+          "riskDelta": -4,
+          "readinessBonus": 7,
+          "tonnageMultiplier": 1.04,
+          "moraleDelta": 3,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "us_radar_refit_momentum",
+        "nameKey": "campaignEvents.us.radar.name",
+        "descKey": "campaignEvents.us.radar.desc",
+        "severity": "opportunity",
+        "trigger": {
+          "completedMissionsMin": 3,
+          "activeOrderId": "us_radar_refit_priority"
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 3,
+          "pressureDelta": -3,
+          "riskDelta": -6,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.03,
+          "moraleDelta": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "us_blockade_tightens",
+        "nameKey": "campaignEvents.us.blockade.name",
+        "descKey": "campaignEvents.us.blockade.desc",
+        "severity": "crisis",
+        "trigger": {
+          "completedMissionsMin": 6,
+          "pressureMin": 58
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 0,
+          "pressureDelta": 7,
+          "riskDelta": 8,
+          "readinessBonus": -2,
+          "tonnageMultiplier": 1.08,
+          "moraleDelta": -1,
+          "fatigueDelta": 3
+        }
+      }
+    ]
+  }
+]

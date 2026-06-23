@@ -147,6 +147,21 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
   const highCommandHistory = Array.isArray(highCommandOrders.history)
     ? highCommandOrders.history.filter((item) => item && typeof item === 'object').slice(0, 20)
     : [];
+  const campaignEvents = value.campaignEvents && typeof value.campaignEvents === 'object' ? value.campaignEvents : {};
+  const campaignEventLegacy = Array.isArray(value.campaignEventAcknowledged) ? value.campaignEventAcknowledged : [];
+  const campaignEventHistory = Array.isArray(campaignEvents.history)
+    ? campaignEvents.history.filter((item) => item && typeof item === 'object').slice(0, 24)
+    : [];
+  const specialOperations = value.specialOperations && typeof value.specialOperations === 'object' ? value.specialOperations : {};
+  const specialOperationLegacy = Array.isArray(value.specialOperationsLaunched) ? value.specialOperationsLaunched : [];
+  const specialOperationHistory = Array.isArray(specialOperations.history)
+    ? specialOperations.history.filter((item) => item && typeof item === 'object').slice(0, 24)
+    : [];
+  const operationChains = value.operationChains && typeof value.operationChains === 'object' ? value.operationChains : {};
+  const operationChainLegacy = Array.isArray(value.operationChainCompleted) ? value.operationChainCompleted : [];
+  const operationChainHistory = Array.isArray(operationChains.history)
+    ? operationChains.history.filter((item) => item && typeof item === 'object').slice(0, 24)
+    : [];
   return {
     theaterId: normalizeStringId(value.theaterId, defaults.theaterId) || defaults.theaterId,
     selectedLaneId: normalizeStringId(value.selectedLaneId || value.laneId, defaults.laneId) || defaults.laneId,
@@ -162,6 +177,21 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
     highCommandOrders: {
       appliedIds: uniqueStringArray([...(highCommandOrders.appliedIds || []), ...highCommandLegacy]),
       history: highCommandHistory
+    },
+    campaignEvents: {
+      acknowledgedIds: uniqueStringArray([...(campaignEvents.acknowledgedIds || []), ...campaignEventLegacy]),
+      currentIds: uniqueStringArray(campaignEvents.currentIds || []),
+      history: campaignEventHistory
+    },
+    specialOperations: {
+      launchedIds: uniqueStringArray([...(specialOperations.launchedIds || []), ...specialOperationLegacy]),
+      availableIds: uniqueStringArray(specialOperations.availableIds || []),
+      history: specialOperationHistory
+    },
+    operationChains: {
+      completedStepIds: uniqueStringArray([...(operationChains.completedStepIds || []), ...operationChainLegacy]),
+      availableStepIds: uniqueStringArray(operationChains.availableStepIds || []),
+      history: operationChainHistory
     }
   };
 }

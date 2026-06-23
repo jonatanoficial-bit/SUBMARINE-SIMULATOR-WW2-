@@ -1,0 +1,327 @@
+[
+  {
+    "id": "special_ops.de",
+    "nationId": "de",
+    "titleKey": "specialOps.de.title",
+    "summaryKey": "specialOps.de.summary",
+    "operations": [
+      {
+        "id": "de_operation_paukenschlag",
+        "nameKey": "specialOps.de.paukenschlag.name",
+        "descKey": "specialOps.de.paukenschlag.desc",
+        "typeKey": "specialOps.type.raid",
+        "severity": "opportunity",
+        "requires": {
+          "completedMissions": 1,
+          "activeEventId": "de_happy_time_window"
+        },
+        "cost": {
+          "credits": 1200,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 5,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.1,
+          "moraleBonus": 2,
+          "fatigueDelta": 2
+        }
+      },
+      {
+        "id": "de_operation_bdienst_shadow",
+        "nameKey": "specialOps.de.bdienstShadow.name",
+        "descKey": "specialOps.de.bdienstShadow.desc",
+        "typeKey": "specialOps.type.intel",
+        "severity": "covert",
+        "requires": {
+          "completedMissions": 2,
+          "activeOrderId": "de_b_dienst_push",
+          "decryptionMin": 20
+        },
+        "cost": {
+          "credits": 1450,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 10,
+          "decryptionBonus": 8,
+          "pressureRelief": 2,
+          "riskDelta": 1,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_operation_milk_cow_rendezvous",
+        "nameKey": "specialOps.de.milkCow.name",
+        "descKey": "specialOps.de.milkCow.desc",
+        "typeKey": "specialOps.type.support",
+        "severity": "support",
+        "requires": {
+          "completedMissions": 4,
+          "activeOrderId": "de_milk_cow_support"
+        },
+        "cost": {
+          "credits": 1750,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 6,
+          "riskDelta": 3,
+          "readinessBonus": 10,
+          "tonnageMultiplier": 1.06,
+          "moraleBonus": 4,
+          "fatigueDelta": -5
+        }
+      },
+      {
+        "id": "de_operation_blackout_transit",
+        "nameKey": "specialOps.de.blackout.name",
+        "descKey": "specialOps.de.blackout.desc",
+        "typeKey": "specialOps.type.evasion",
+        "severity": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "pressureMin": 62
+        },
+        "cost": {
+          "credits": 1600,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 10,
+          "riskDelta": -8,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 0.98,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "special_ops.uk",
+    "nationId": "uk",
+    "titleKey": "specialOps.uk.title",
+    "summaryKey": "specialOps.uk.summary",
+    "operations": [
+      {
+        "id": "uk_operation_hfdf_sweep",
+        "nameKey": "specialOps.uk.hfdfSweep.name",
+        "descKey": "specialOps.uk.hfdfSweep.desc",
+        "typeKey": "specialOps.type.intel",
+        "severity": "covert",
+        "requires": {
+          "completedMissions": 1,
+          "activeEventId": "uk_hfdf_breakthrough"
+        },
+        "cost": {
+          "credits": 1100,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 9,
+          "decryptionBonus": 6,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "uk_operation_close_escort_net",
+        "nameKey": "specialOps.uk.escortNet.name",
+        "descKey": "specialOps.uk.escortNet.desc",
+        "typeKey": "specialOps.type.defense",
+        "severity": "support",
+        "requires": {
+          "completedMissions": 2,
+          "pressureMin": 52
+        },
+        "cost": {
+          "credits": 1350,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 7,
+          "riskDelta": -5,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 0.99,
+          "moraleBonus": 3,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "uk_operation_air_gap_closure",
+        "nameKey": "specialOps.uk.airGap.name",
+        "descKey": "specialOps.uk.airGap.desc",
+        "typeKey": "specialOps.type.aircover",
+        "severity": "opportunity",
+        "requires": {
+          "completedMissions": 4,
+          "activeEventId": "uk_air_cover_window"
+        },
+        "cost": {
+          "credits": 1650,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 0,
+          "pressureRelief": 8,
+          "riskDelta": -7,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 2,
+          "fatigueDelta": -2
+        }
+      },
+      {
+        "id": "uk_operation_convoy_decoy",
+        "nameKey": "specialOps.uk.decoy.name",
+        "descKey": "specialOps.uk.decoy.desc",
+        "typeKey": "specialOps.type.deception",
+        "severity": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "intelMin": 64
+        },
+        "cost": {
+          "credits": 1500,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 3,
+          "pressureRelief": 5,
+          "riskDelta": 4,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.08,
+          "moraleBonus": 1,
+          "fatigueDelta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "special_ops.us",
+    "nationId": "us",
+    "titleKey": "specialOps.us.title",
+    "summaryKey": "specialOps.us.summary",
+    "operations": [
+      {
+        "id": "us_operation_magic_intercept",
+        "nameKey": "specialOps.us.magic.name",
+        "descKey": "specialOps.us.magic.desc",
+        "typeKey": "specialOps.type.intel",
+        "severity": "covert",
+        "requires": {
+          "completedMissions": 1,
+          "activeEventId": "us_magic_window"
+        },
+        "cost": {
+          "credits": 1200,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 10,
+          "decryptionBonus": 7,
+          "pressureRelief": 2,
+          "riskDelta": 0,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 1,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "us_operation_torpedo_board",
+        "nameKey": "specialOps.us.torpedoBoard.name",
+        "descKey": "specialOps.us.torpedoBoard.desc",
+        "typeKey": "specialOps.type.refit",
+        "severity": "support",
+        "requires": {
+          "completedMissions": 2,
+          "activeEventId": "us_torpedo_crisis"
+        },
+        "cost": {
+          "credits": 1450,
+          "commandPoints": 1
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 4,
+          "riskDelta": -2,
+          "readinessBonus": 6,
+          "tonnageMultiplier": 1.09,
+          "moraleBonus": 4,
+          "fatigueDelta": -1
+        }
+      },
+      {
+        "id": "us_operation_lifeguard_station",
+        "nameKey": "specialOps.us.lifeguard.name",
+        "descKey": "specialOps.us.lifeguard.desc",
+        "typeKey": "specialOps.type.rescue",
+        "severity": "support",
+        "requires": {
+          "completedMissions": 4,
+          "pressureMin": 48
+        },
+        "cost": {
+          "credits": 1300,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 3,
+          "riskDelta": -4,
+          "readinessBonus": 5,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 6,
+          "fatigueDelta": -3
+        }
+      },
+      {
+        "id": "us_operation_inner_empire_blockade",
+        "nameKey": "specialOps.us.blockade.name",
+        "descKey": "specialOps.us.blockade.desc",
+        "typeKey": "specialOps.type.blockade",
+        "severity": "danger",
+        "requires": {
+          "completedMissions": 6,
+          "activeEventId": "us_blockade_tightens"
+        },
+        "cost": {
+          "credits": 1800,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 2,
+          "pressureRelief": 0,
+          "riskDelta": 7,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.12,
+          "moraleBonus": 2,
+          "fatigueDelta": 3
+        }
+      }
+    ]
+  }
+]

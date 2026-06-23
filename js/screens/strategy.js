@@ -140,7 +140,192 @@ function renderConsequenceSummary(t, deck = null, assessment = {}) {
     </div>`;
 }
 
-export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null) {
+
+function eventToneClass(event) {
+  if (event?.tone === 'opportunity') return 'success';
+  if (event?.tone === 'crisis' || event?.tone === 'danger') return 'warn';
+  return 'gold';
+}
+
+function renderCampaignEventSummary(t, summary = null) {
+  if (!summary?.events?.length) return '';
+  const effect = summary.combinedEffect || {};
+  const activeEvents = summary.activeEvents?.length ? summary.activeEvents : summary.events.filter((event) => event.active).slice(0, 3);
+  return `
+    <div class="panel phase16-campaign-events-panel">
+      <div class="panel-header">${t('campaignEvents.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('campaignEvents.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.volatility >= 60 ? 'warn' : 'gold'}">${t('campaignEvents.volatility')}: ${summary.volatility}%</span>
+        </div>
+        <div class="campaign-event-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>${formatSigned(effect.pressureDelta)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+        </div>
+        <div class="campaign-event-grid">
+          ${activeEvents.length ? activeEvents.map((event) => `
+            <div class="mission-card campaign-event-card ${event.acknowledged ? 'acknowledged' : ''} ${event.tone || 'warning'}">
+              <div class="row space-between align-start">
+                <div><h3>${t(event.nameKey)}</h3><p>${t(event.descKey)}</p></div>
+                <span class="tag ${eventToneClass(event)}">${t(`campaignEvents.severity.${event.tone || event.severity || 'warning'}`)}</span>
+              </div>
+              <div class="mission-meta">
+                <span class="tag">${t('strategy.pressure')}: ${formatSigned(event.effect.pressureDelta)}</span>
+                <span class="tag ${Number(event.effect.riskDelta || 0) > 0 ? 'warn' : 'success'}">${t('campaignConsequences.risk')}: ${formatSigned(event.effect.riskDelta)}</span>
+                <span class="tag gold">${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((event.effect.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+              </div>
+              <button class="button block ${event.acknowledged ? 'secondary' : ''}" data-action="acknowledge-campaign-event" data-event="${event.id}" ${event.acknowledged ? 'disabled' : ''}>${event.acknowledged ? t('campaignEvents.acknowledged') : t('campaignEvents.acknowledge')}</button>
+            </div>`).join('') : `<div class="empty-state compact">${t('campaignEvents.noActive')}</div>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+
+function operationToneClass(operation) {
+  if (operation?.tone === 'covert' || operation?.severity === 'covert') return 'gold';
+  if (operation?.tone === 'danger' || operation?.severity === 'danger') return 'warn';
+  return 'success';
+}
+
+function renderSpecialOperations(t, save, summary = null) {
+  if (!summary?.operations?.length) return '';
+  const commandPoints = save.strategy?.commandPoints || 0;
+  const credits = save.progression?.credits || 0;
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase17-special-operations-panel">
+      <div class="panel-header">${t('specialOps.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('specialOps.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.availableCount ? 'gold' : 'success'}">${summary.launchedCount}/${summary.operations.length}</span>
+        </div>
+        <div class="special-operation-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+        </div>
+        <div class="special-operation-grid">
+          ${summary.operations.map((operation) => {
+            const cost = operation.cost || {};
+            const opEffect = operation.effect || {};
+            const affordable = credits >= (cost.credits || 0) && commandPoints >= (cost.commandPoints || 0);
+            const canLaunch = operation.unlocked && !operation.launched && affordable;
+            const lockText = operation.launched ? '' : (!operation.unlocked ? t(operation.lockedReason || 'specialOps.locked') : (!affordable ? t('specialOps.insufficientResources') : ''));
+            return `
+              <div class="mission-card special-operation-card ${operation.launched ? 'active' : ''} ${canLaunch ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${operationToneClass(operation)}">${t(operation.typeKey || 'specialOps.type.operation')}</span>
+                    <h3>${t(operation.nameKey)}</h3>
+                    <p>${t(operation.descKey)}</p>
+                  </div>
+                  <span class="tag ${operation.launched ? 'success' : operation.unlocked ? 'gold' : 'warn'}">${operation.launched ? t('specialOps.launched') : operation.unlocked ? t('specialOps.available') : t('specialOps.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('common.credits')}: ${cost.credits || 0}</span>
+                  <span class="tag">${t('strategy.commandPoints')}: ${cost.commandPoints || 0}</span>
+                  <span class="tag ${Number(opEffect.riskDelta || 0) > 0 ? 'warn' : 'success'}">${t('campaignConsequences.risk')}: ${formatSigned(opEffect.riskDelta)}</span>
+                  <span class="tag gold">${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((opEffect.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+                </div>
+                <div class="special-operation-mini-effects">
+                  <span>${t('strategy.intel')}: ${formatSigned(opEffect.intelBonus)}</span>
+                  <span>${t('strategy.decryption')}: ${formatSigned(opEffect.decryptionBonus)}</span>
+                  <span>${t('strategy.pressure')}: -${Number(opEffect.pressureRelief || 0)}</span>
+                  <span>${t('campaign.modifier.readiness')}: ${formatSigned(opEffect.readinessBonus)}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canLaunch ? '' : 'secondary'}" data-action="launch-special-operation" data-operation="${operation.id}" ${canLaunch ? '' : 'disabled'}>${operation.launched ? t('specialOps.operationActive') : t('specialOps.launch')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+
+function renderOperationChains(t, save, summary = null) {
+  if (!summary?.steps?.length) return '';
+  const commandPoints = save.strategy?.commandPoints || 0;
+  const credits = save.progression?.credits || 0;
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase18-operation-chains-panel">
+      <div class="panel-header">${t('operationChains.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('operationChains.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.completedCount >= summary.totalSteps ? 'success' : 'gold'}">${summary.completedCount}/${summary.totalSteps}</span>
+        </div>
+        <div class="operation-chain-track"><i style="width:${summary.chainPercent || 0}%"></i></div>
+        <div class="special-operation-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+        </div>
+        <div class="operation-chain-grid">
+          ${summary.steps.map((step) => {
+            const cost = step.cost || {};
+            const stepEffect = step.effect || {};
+            const affordable = credits >= (cost.credits || 0) && commandPoints >= (cost.commandPoints || 0);
+            const canExecute = step.unlocked && !step.completed && affordable;
+            const lockText = step.completed ? '' : (!step.unlocked ? t(step.lockedReason || 'operationChains.locked') : (!affordable ? t('operationChains.insufficientResources') : ''));
+            return `
+              <div class="mission-card operation-chain-card ${step.completed ? 'active' : ''} ${canExecute ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${step.completed ? 'success' : step.unlocked ? 'gold' : 'warn'}">${t(step.stageKey || 'operationChains.stage.operation')}</span>
+                    <h3>${String(step.index + 1).padStart(2, '0')} • ${t(step.nameKey)}</h3>
+                    <p>${t(step.descKey)}</p>
+                  </div>
+                  <span class="tag ${step.completed ? 'success' : step.unlocked ? 'gold' : 'warn'}">${step.completed ? t('operationChains.completed') : step.unlocked ? t('operationChains.available') : t('operationChains.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('common.credits')}: ${cost.credits || 0}</span>
+                  <span class="tag">${t('strategy.commandPoints')}: ${cost.commandPoints || 0}</span>
+                  <span class="tag ${Number(stepEffect.riskDelta || 0) > 0 ? 'warn' : 'success'}">${t('campaignConsequences.risk')}: ${formatSigned(stepEffect.riskDelta)}</span>
+                  <span class="tag gold">${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((stepEffect.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+                </div>
+                <div class="special-operation-mini-effects">
+                  <span>${t('strategy.intel')}: ${formatSigned(stepEffect.intelBonus)}</span>
+                  <span>${t('strategy.decryption')}: ${formatSigned(stepEffect.decryptionBonus)}</span>
+                  <span>${t('strategy.pressure')}: -${Number(stepEffect.pressureRelief || 0)}</span>
+                  <span>${t('campaign.modifier.readiness')}: ${formatSigned(stepEffect.readinessBonus)}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canExecute ? '' : 'secondary'}" data-action="execute-operation-chain-step" data-step="${step.id}" ${canExecute ? '' : 'disabled'}>${step.completed ? t('operationChains.stepActive') : t('operationChains.execute')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null) {
   const strategy = save.strategy || {};
   const lanes = (strategyData.convoyLanes || []).filter((lane) => lane.nationId === nation.id);
   const network = (strategyData.intelNetworks || []).find((item) => item.nationId === nation.id) || {};
@@ -177,6 +362,9 @@ export function renderStrategy(t, save, nation, strategyData, theater, selectedL
       </div>
 
       ${renderConsequenceSummary(t, campaignConsequences, assessment)}
+      ${renderCampaignEventSummary(t, campaignEvents)}
+      ${renderSpecialOperations(t, save, specialOperations)}
+      ${renderOperationChains(t, save, operationChains)}
       ${renderHighCommandOrders(t, save, highCommandOrders)}
 
       <div class="phase13-grid">

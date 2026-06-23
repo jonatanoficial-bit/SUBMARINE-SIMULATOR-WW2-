@@ -8,6 +8,9 @@ const DATA_FILES = {
   campaignObjectives: 'data/campaign_objectives.json',
   campaignConsequences: 'data/campaign_consequences.json',
   highCommandOrders: 'data/high_command_orders.json',
+  campaignEvents: 'data/campaign_events.json',
+  specialOperations: 'data/special_operations.json',
+  operationChains: 'data/operation_chains.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -104,6 +107,9 @@ function validateRelations(data) {
   const objectiveSetIds = assertUniqueIds('campaignObjectives', data.campaignObjectives || []);
   const consequenceSetIds = assertUniqueIds('campaignConsequences', data.campaignConsequences || []);
   const highCommandSetIds = assertUniqueIds('highCommandOrders', data.highCommandOrders || []);
+  const campaignEventSetIds = assertUniqueIds('campaignEvents', data.campaignEvents || []);
+  const specialOperationSetIds = assertUniqueIds('specialOperations', data.specialOperations || []);
+  const operationChainSetIds = assertUniqueIds('operationChains', data.operationChains || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -203,6 +209,86 @@ data.nations.forEach((nation) => {
     if (!data.highCommandOrders.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no high command deck`);
   });
 
+  if ((data.campaignEvents || []).length !== data.nations.length) throw new Error('Campaign dynamic events must cover every nation');
+  const validOrderIds = new Set((data.highCommandOrders || []).flatMap((deck) => (deck.orders || []).map((order) => order.id)));
+  data.campaignEvents.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Campaign event deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.events) || deck.events.length < 5) throw new Error(`Campaign event deck ${deck.id} needs at least five dynamic events`);
+    const nestedEventIds = new Set();
+    deck.events.forEach((event) => {
+      if (!event?.id || nestedEventIds.has(event.id)) throw new Error(`Campaign event deck ${deck.id} has invalid or duplicate event id`);
+      nestedEventIds.add(event.id);
+      const trigger = event.trigger || {};
+      ['completedMissionsMin','completedMissionsMax','pressureMin','pressureMax','intelMin','decryptionMin'].forEach((key) => {
+        if (key in trigger && !Number.isFinite(Number(trigger[key]))) throw new Error(`Campaign event ${event.id} has invalid trigger ${key}`);
+      });
+      if (trigger.activeOrderId && !validOrderIds.has(trigger.activeOrderId)) throw new Error(`Campaign event ${event.id} references missing high command order ${trigger.activeOrderId}`);
+      ['intelBonus','decryptionBonus','pressureDelta','riskDelta','readinessBonus','tonnageMultiplier','moraleDelta','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(event.effect?.[key]))) throw new Error(`Campaign event ${event.id} missing numeric effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.campaignEvents.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no dynamic event deck`);
+  });
+
+
+  if ((data.specialOperations || []).length !== data.nations.length) throw new Error('Special operations must cover every nation');
+  const validEventIds = new Set((data.campaignEvents || []).flatMap((deck) => (deck.events || []).map((event) => event.id)));
+  data.specialOperations.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Special operation deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.operations) || deck.operations.length < 4) throw new Error(`Special operation deck ${deck.id} needs at least four operations`);
+    const nestedOperationIds = new Set();
+    deck.operations.forEach((operation) => {
+      if (!operation?.id || nestedOperationIds.has(operation.id)) throw new Error(`Special operation deck ${deck.id} has invalid or duplicate operation id`);
+      nestedOperationIds.add(operation.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(operation.cost?.[key]))) throw new Error(`Special operation ${operation.id} missing cost ${key}`);
+      });
+      const requires = operation.requires || {};
+      ['completedMissions','pressureMin','intelMin','decryptionMin'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Special operation ${operation.id} has invalid requirement ${key}`);
+      });
+      if (requires.activeEventId && !validEventIds.has(requires.activeEventId)) throw new Error(`Special operation ${operation.id} references missing event ${requires.activeEventId}`);
+      if (requires.activeOrderId && !validOrderIds.has(requires.activeOrderId)) throw new Error(`Special operation ${operation.id} references missing order ${requires.activeOrderId}`);
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(operation.effect?.[key]))) throw new Error(`Special operation ${operation.id} missing numeric effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.specialOperations.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no special operation deck`);
+  });
+
+
+  if ((data.operationChains || []).length !== data.nations.length) throw new Error('Operation chains must cover every nation');
+  const validOperationIds = new Set((data.specialOperations || []).flatMap((deck) => (deck.operations || []).map((operation) => operation.id)));
+  data.operationChains.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Operation chain deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.steps) || deck.steps.length !== 4) throw new Error(`Operation chain deck ${deck.id} must have four chained steps`);
+    const nestedStepIds = new Set();
+    deck.steps.forEach((step) => {
+      if (!step?.id || nestedStepIds.has(step.id)) throw new Error(`Operation chain deck ${deck.id} has invalid or duplicate step id`);
+      nestedStepIds.add(step.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(step.cost?.[key]))) throw new Error(`Operation chain step ${step.id} missing cost ${key}`);
+      });
+      const requires = step.requires || {};
+      ['completedMissions','pressureMin','intelMin','decryptionMin'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Operation chain step ${step.id} has invalid requirement ${key}`);
+      });
+      if (requires.previousStepId && !nestedStepIds.has(requires.previousStepId)) throw new Error(`Operation chain step ${step.id} references a previous step that is not earlier in the same chain`);
+      if (requires.launchedOperationId && !validOperationIds.has(requires.launchedOperationId)) throw new Error(`Operation chain step ${step.id} references missing special operation ${requires.launchedOperationId}`);
+      if (requires.activeEventId && !validEventIds.has(requires.activeEventId)) throw new Error(`Operation chain step ${step.id} references missing event ${requires.activeEventId}`);
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(step.effect?.[key]))) throw new Error(`Operation chain step ${step.id} missing numeric effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.operationChains.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operation chain deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -242,7 +328,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -252,6 +338,9 @@ export async function loadGameData() {
   assertArray('campaignObjectives', campaignObjectives);
   assertArray('campaignConsequences', campaignConsequences);
   assertArray('highCommandOrders', highCommandOrders);
+  assertArray('campaignEvents', campaignEvents);
+  assertArray('specialOperations', specialOperations);
+  assertArray('operationChains', operationChains);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -260,7 +349,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

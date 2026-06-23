@@ -1,4 +1,7 @@
-# Known Issues Phase 18
+# Known Issues — Phase 18
 
-- A solução óptica é estimativa de simulador e será aprofundada nas próximas fases com TDC mais detalhado.
-- A câmera do periscópio ainda usa representação 2D/CSS, não renderização 3D.
+- Manual homologation is still recommended on real Android and iOS devices, especially for long campaign panels and touch scrolling.
+- Operation chain balancing may need tuning after longer play sessions because pressure, risk and tonnage effects now stack with high command, events and special operations.
+- Historical flavor is still presented as game design abstraction and should be refined with future mission briefings/cinematics.
+
+No blocking issue was found in automated tests.
