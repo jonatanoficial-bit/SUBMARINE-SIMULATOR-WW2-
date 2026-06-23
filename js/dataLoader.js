@@ -11,6 +11,7 @@ const DATA_FILES = {
   campaignEvents: 'data/campaign_events.json',
   specialOperations: 'data/special_operations.json',
   operationChains: 'data/operation_chains.json',
+  operationOutcomes: 'data/operation_outcomes.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -110,6 +111,7 @@ function validateRelations(data) {
   const campaignEventSetIds = assertUniqueIds('campaignEvents', data.campaignEvents || []);
   const specialOperationSetIds = assertUniqueIds('specialOperations', data.specialOperations || []);
   const operationChainSetIds = assertUniqueIds('operationChains', data.operationChains || []);
+  const operationOutcomeSetIds = assertUniqueIds('operationOutcomes', data.operationOutcomes || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -289,6 +291,36 @@ data.nations.forEach((nation) => {
     if (!data.operationChains.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operation chain deck`);
   });
 
+
+  if ((data.operationOutcomes || []).length !== data.nations.length) throw new Error('Operation outcomes must cover every nation');
+  const validChainStepIds = new Set((data.operationChains || []).flatMap((deck) => (deck.steps || []).map((step) => step.id)));
+  data.operationOutcomes.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Operation outcome deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.outcomes) || deck.outcomes.length !== 3) throw new Error(`Operation outcome deck ${deck.id} must have three strategic outcomes`);
+    const requires = deck.requires || {};
+    ['completedSteps','completedMissions'].forEach((key) => {
+      if (!Number.isFinite(Number(requires[key]))) throw new Error(`Operation outcome deck ${deck.id} missing numeric requirement ${key}`);
+    });
+    if (!Array.isArray(requires.stepIds) || requires.stepIds.length !== 4) throw new Error(`Operation outcome deck ${deck.id} must require four chain steps`);
+    requires.stepIds.forEach((stepId) => {
+      if (!validChainStepIds.has(stepId)) throw new Error(`Operation outcome deck ${deck.id} references missing chain step ${stepId}`);
+    });
+    const nestedOutcomeIds = new Set();
+    deck.outcomes.forEach((outcome) => {
+      if (!outcome?.id || nestedOutcomeIds.has(outcome.id)) throw new Error(`Operation outcome deck ${deck.id} has invalid or duplicate outcome id`);
+      nestedOutcomeIds.add(outcome.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(outcome.cost?.[key]))) throw new Error(`Operation outcome ${outcome.id} missing cost ${key}`);
+      });
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta'].forEach((key) => {
+        if (!Number.isFinite(Number(outcome.effect?.[key]))) throw new Error(`Operation outcome ${outcome.id} missing numeric effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.operationOutcomes.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no operation outcome deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -328,7 +360,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -341,6 +373,7 @@ export async function loadGameData() {
   assertArray('campaignEvents', campaignEvents);
   assertArray('specialOperations', specialOperations);
   assertArray('operationChains', operationChains);
+  assertArray('operationOutcomes', operationOutcomes);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -349,7 +382,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

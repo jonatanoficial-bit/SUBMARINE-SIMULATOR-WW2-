@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0.0-alpha.34 — Phase 19 — Desfechos Estratégicos das Cadeias
+
+- Added irreversible strategic outcome decks for Germany, United Kingdom and United States campaigns.
+- Added 9 total national outcomes unlocked after completing the four-step special-operation chain.
+- Added outcome panels to Campaign and Strategic Command screens with locked, available and chosen states.
+- Added persistent cost, history, mutual-exclusion and anti-duplication handling in save schema 13.
+- Integrated outcome effects into strategic posture, dossier export and theater metrics.
+- Added Phase 19 tests, audit tool, smoke support, translations and PWA cache updates.
+
 ## v2.0.0-alpha.33 — Phase 18 — Cadeias de Operações Especiais
 
 - Added chained special operations for Germany, United Kingdom and United States campaigns.

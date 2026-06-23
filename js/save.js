@@ -162,6 +162,11 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
   const operationChainHistory = Array.isArray(operationChains.history)
     ? operationChains.history.filter((item) => item && typeof item === 'object').slice(0, 24)
     : [];
+  const operationOutcomes = value.operationOutcomes && typeof value.operationOutcomes === 'object' ? value.operationOutcomes : {};
+  const operationOutcomeLegacy = Array.isArray(value.operationOutcomeChosen) ? value.operationOutcomeChosen : [];
+  const operationOutcomeHistory = Array.isArray(operationOutcomes.history)
+    ? operationOutcomes.history.filter((item) => item && typeof item === 'object').slice(0, 24)
+    : [];
   return {
     theaterId: normalizeStringId(value.theaterId, defaults.theaterId) || defaults.theaterId,
     selectedLaneId: normalizeStringId(value.selectedLaneId || value.laneId, defaults.laneId) || defaults.laneId,
@@ -192,6 +197,11 @@ function sanitizeStrategy(value = {}, nationId = 'de') {
       completedStepIds: uniqueStringArray([...(operationChains.completedStepIds || []), ...operationChainLegacy]),
       availableStepIds: uniqueStringArray(operationChains.availableStepIds || []),
       history: operationChainHistory
+    },
+    operationOutcomes: {
+      chosenIds: uniqueStringArray([...(operationOutcomes.chosenIds || []), ...operationOutcomeLegacy]),
+      availableIds: uniqueStringArray(operationOutcomes.availableIds || []),
+      history: operationOutcomeHistory
     }
   };
 }

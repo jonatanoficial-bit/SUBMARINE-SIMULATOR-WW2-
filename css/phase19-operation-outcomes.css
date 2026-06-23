@@ -1,0 +1,79 @@
+.phase19-operation-outcomes,
+.phase19-operation-outcomes-panel {
+  border-color: rgba(255, 213, 128, 0.32);
+  background: linear-gradient(180deg, rgba(21, 31, 45, 0.92), rgba(8, 14, 24, 0.95));
+}
+
+.operation-outcome-score {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.operation-outcome-score i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(122, 207, 255, 0.85), rgba(255, 213, 128, 0.95));
+  box-shadow: 0 0 18px rgba(255, 213, 128, 0.35);
+}
+
+.operation-outcome-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.operation-outcome-card {
+  position: relative;
+  overflow: hidden;
+}
+.operation-outcome-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -20% -45% auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 213, 128, 0.22), transparent 65%);
+  pointer-events: none;
+}
+.operation-outcome-card.chosen {
+  border-color: rgba(92, 255, 168, 0.45);
+  box-shadow: 0 0 0 1px rgba(92, 255, 168, 0.18), 0 16px 36px rgba(0,0,0,0.25);
+}
+.operation-outcome-card.locked {
+  opacity: 0.76;
+}
+
+.operation-outcome-mini-effects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+.operation-outcome-mini-effects span,
+.operation-outcome-effect-grid div {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 8px;
+  background: rgba(255,255,255,0.045);
+  font-size: 0.78rem;
+}
+.operation-outcome-effect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+.operation-outcome-effect-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.operation-outcome-effect-grid strong { color: var(--text); }
+
+@media (max-width: 640px) {
+  .operation-outcome-choice-grid { grid-template-columns: 1fr; }
+  .operation-outcome-mini-effects { grid-template-columns: 1fr; }
+}

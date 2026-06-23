@@ -299,6 +299,49 @@ function renderOperationChainsDeck(t, deck = null) {
   `;
 }
 
+
+function outcomeToneClass(outcome) {
+  if (outcome?.tone === 'danger') return 'warn';
+  if (outcome?.tone === 'covert') return 'gold';
+  return 'success';
+}
+
+function renderOperationOutcomesDeck(t, deck = null) {
+  const outcomes = Array.isArray(deck?.outcomes) ? deck.outcomes : [];
+  if (!outcomes.length) return '';
+  const effect = deck.combinedEffect || {};
+  const chosen = deck.chosenOutcome || null;
+  return `
+    <div class="campaign-operation-outcomes-deck phase19-operation-outcomes" aria-label="${t('operationOutcomes.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('operationOutcomes.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${chosen ? 'success' : deck.unlocked ? 'gold' : 'warn'}">${chosen ? t('operationOutcomes.chosen') : deck.unlocked ? t('operationOutcomes.available') : t('operationOutcomes.locked')}</span>
+      </div>
+      <div class="operation-outcome-score" aria-label="${t('operationOutcomes.progress')}"><i style="width:${deck.outcomeScore || 0}%"></i></div>
+      <div class="operation-outcome-effect-grid compact">
+        <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+        <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+        <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+        <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+      </div>
+      ${chosen ? `<div class="empty-state compact"><strong>${t(chosen.nameKey)}</strong><br>${t(chosen.descKey)}</div>` : `<div class="empty-state compact">${deck.unlocked ? t('operationOutcomes.heading') : t(deck.lockedReason || 'operationOutcomes.lockedChain', { count: deck.lockCount || deck.requires?.completedSteps || 4 })}</div>`}
+      <div class="campaign-event-list">
+        ${outcomes.map((outcome) => `
+          <div class="campaign-event-pill ${outcome.chosen ? 'opportunity' : outcome.tone || 'support'}">
+            <span class="tag ${outcomeToneClass(outcome)}">${outcome.chosen ? t('operationOutcomes.chosen') : t(outcome.doctrineKey || 'operationOutcomes.finalDoctrine')}</span>
+            <strong>${t(outcome.nameKey)}</strong>
+            <small>${t(outcome.descKey)}</small>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -336,6 +379,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const campaignEvents = options.campaignEvents || null;
   const specialOperations = options.specialOperations || null;
   const operationChains = options.operationChains || null;
+  const operationOutcomes = options.operationOutcomes || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -380,6 +424,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             ${renderCampaignEventsDeck(t, campaignEvents)}
             ${renderSpecialOperationsDeck(t, specialOperations)}
             ${renderOperationChainsDeck(t, operationChains)}
+            ${renderOperationOutcomesDeck(t, operationOutcomes)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

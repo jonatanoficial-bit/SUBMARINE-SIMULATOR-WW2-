@@ -1,0 +1,248 @@
+[
+  {
+    "id": "operation_outcome.de_atlantic_decision",
+    "nationId": "de",
+    "titleKey": "operationOutcomes.de.title",
+    "summaryKey": "operationOutcomes.de.summary",
+    "frontKey": "operationOutcomes.de.front",
+    "requires": {
+      "completedSteps": 4,
+      "completedMissions": 6,
+      "stepIds": [
+        "de_chain_shadow_chart",
+        "de_chain_convoy_shadow",
+        "de_chain_rendezvous_net",
+        "de_chain_silent_exit"
+      ]
+    },
+    "outcomes": [
+      {
+        "id": "de_outcome_tonnage_war",
+        "nameKey": "operationOutcomes.de.tonnageWar.name",
+        "descKey": "operationOutcomes.de.tonnageWar.desc",
+        "doctrineKey": "operationOutcomes.doctrine.aggressive",
+        "tone": "danger",
+        "cost": {
+          "credits": 1800,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 0,
+          "pressureRelief": 4,
+          "riskDelta": 5,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.12,
+          "moraleBonus": 4,
+          "fatigueDelta": 2
+        }
+      },
+      {
+        "id": "de_outcome_shadow_doctrine",
+        "nameKey": "operationOutcomes.de.shadowDoctrine.name",
+        "descKey": "operationOutcomes.de.shadowDoctrine.desc",
+        "doctrineKey": "operationOutcomes.doctrine.covert",
+        "tone": "covert",
+        "cost": {
+          "credits": 1700,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 8,
+          "decryptionBonus": 4,
+          "pressureRelief": 3,
+          "riskDelta": -2,
+          "readinessBonus": 1,
+          "tonnageMultiplier": 1.05,
+          "moraleBonus": 2,
+          "fatigueDelta": 0
+        }
+      },
+      {
+        "id": "de_outcome_survival_corridor",
+        "nameKey": "operationOutcomes.de.survivalCorridor.name",
+        "descKey": "operationOutcomes.de.survivalCorridor.desc",
+        "doctrineKey": "operationOutcomes.doctrine.defensive",
+        "tone": "support",
+        "cost": {
+          "credits": 1500,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 10,
+          "riskDelta": -8,
+          "readinessBonus": 7,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 3,
+          "fatigueDelta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "operation_outcome.uk_convoy_decision",
+    "nationId": "uk",
+    "titleKey": "operationOutcomes.uk.title",
+    "summaryKey": "operationOutcomes.uk.summary",
+    "frontKey": "operationOutcomes.uk.front",
+    "requires": {
+      "completedSteps": 4,
+      "completedMissions": 6,
+      "stepIds": [
+        "uk_chain_hfdf_plot",
+        "uk_chain_escort_lattice",
+        "uk_chain_air_gap_net",
+        "uk_chain_decoy_trap"
+      ]
+    },
+    "outcomes": [
+      {
+        "id": "uk_outcome_escort_supremacy",
+        "nameKey": "operationOutcomes.uk.escortSupremacy.name",
+        "descKey": "operationOutcomes.uk.escortSupremacy.desc",
+        "doctrineKey": "operationOutcomes.doctrine.defensive",
+        "tone": "support",
+        "cost": {
+          "credits": 1600,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 5,
+          "decryptionBonus": 3,
+          "pressureRelief": 8,
+          "riskDelta": -9,
+          "readinessBonus": 6,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 4,
+          "fatigueDelta": -4
+        }
+      },
+      {
+        "id": "uk_outcome_hunter_killer_grid",
+        "nameKey": "operationOutcomes.uk.hunterKillerGrid.name",
+        "descKey": "operationOutcomes.uk.hunterKillerGrid.desc",
+        "doctrineKey": "operationOutcomes.doctrine.aggressive",
+        "tone": "danger",
+        "cost": {
+          "credits": 1800,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 6,
+          "decryptionBonus": 4,
+          "pressureRelief": 5,
+          "riskDelta": 1,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.08,
+          "moraleBonus": 3,
+          "fatigueDelta": 1
+        }
+      },
+      {
+        "id": "uk_outcome_codebreakers_net",
+        "nameKey": "operationOutcomes.uk.codebreakersNet.name",
+        "descKey": "operationOutcomes.uk.codebreakersNet.desc",
+        "doctrineKey": "operationOutcomes.doctrine.intel",
+        "tone": "covert",
+        "cost": {
+          "credits": 1700,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 10,
+          "decryptionBonus": 8,
+          "pressureRelief": 4,
+          "riskDelta": -3,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "operation_outcome.us_pacific_decision",
+    "nationId": "us",
+    "titleKey": "operationOutcomes.us.title",
+    "summaryKey": "operationOutcomes.us.summary",
+    "frontKey": "operationOutcomes.us.front",
+    "requires": {
+      "completedSteps": 4,
+      "completedMissions": 6,
+      "stepIds": [
+        "us_chain_magic_plot",
+        "us_chain_torpedo_fix",
+        "us_chain_lifeguard_screen",
+        "us_chain_inner_blockade"
+      ]
+    },
+    "outcomes": [
+      {
+        "id": "us_outcome_total_blockade",
+        "nameKey": "operationOutcomes.us.totalBlockade.name",
+        "descKey": "operationOutcomes.us.totalBlockade.desc",
+        "doctrineKey": "operationOutcomes.doctrine.aggressive",
+        "tone": "danger",
+        "cost": {
+          "credits": 1900,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 4,
+          "decryptionBonus": 2,
+          "pressureRelief": 5,
+          "riskDelta": 3,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.14,
+          "moraleBonus": 5,
+          "fatigueDelta": 2
+        }
+      },
+      {
+        "id": "us_outcome_lifeguard_command",
+        "nameKey": "operationOutcomes.us.lifeguardCommand.name",
+        "descKey": "operationOutcomes.us.lifeguardCommand.desc",
+        "doctrineKey": "operationOutcomes.doctrine.support",
+        "tone": "support",
+        "cost": {
+          "credits": 1500,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 7,
+          "riskDelta": -6,
+          "readinessBonus": 7,
+          "tonnageMultiplier": 1.02,
+          "moraleBonus": 7,
+          "fatigueDelta": -5
+        }
+      },
+      {
+        "id": "us_outcome_magic_stranglehold",
+        "nameKey": "operationOutcomes.us.magicStranglehold.name",
+        "descKey": "operationOutcomes.us.magicStranglehold.desc",
+        "doctrineKey": "operationOutcomes.doctrine.intel",
+        "tone": "covert",
+        "cost": {
+          "credits": 1750,
+          "commandPoints": 2
+        },
+        "effect": {
+          "intelBonus": 9,
+          "decryptionBonus": 9,
+          "pressureRelief": 4,
+          "riskDelta": -2,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.07,
+          "moraleBonus": 3,
+          "fatigueDelta": 0
+        }
+      }
+    ]
+  }
+]

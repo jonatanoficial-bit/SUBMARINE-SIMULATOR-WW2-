@@ -325,7 +325,78 @@ function renderOperationChains(t, save, summary = null) {
     </div>`;
 }
 
-export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null) {
+
+function outcomeToneClass(outcome) {
+  if (outcome?.tone === 'danger') return 'warn';
+  if (outcome?.tone === 'covert') return 'gold';
+  return 'success';
+}
+
+function renderOperationOutcomes(t, save, summary = null) {
+  if (!summary?.outcomes?.length) return '';
+  const commandPoints = save.strategy?.commandPoints || 0;
+  const credits = save.progression?.credits || 0;
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase19-operation-outcomes-panel">
+      <div class="panel-header">${t('operationOutcomes.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('operationOutcomes.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.chosenOutcome ? 'success' : summary.unlocked ? 'gold' : 'warn'}">${summary.chosenOutcome ? t('operationOutcomes.chosen') : summary.unlocked ? t('operationOutcomes.available') : t('operationOutcomes.locked')}</span>
+        </div>
+        <div class="operation-outcome-score"><i style="width:${summary.outcomeScore || 0}%"></i></div>
+        <div class="operation-outcome-effect-grid">
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('strategy.decryption')}</span><strong>${formatSigned(effect.decryptionBonus)}</strong></div>
+          <div><span>${t('strategy.pressure')}</span><strong>-${Number(effect.pressureRelief || 0)}</strong></div>
+          <div><span>${t('campaignConsequences.risk')}</span><strong>${formatSigned(effect.riskDelta)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.tonnage')}</span><strong>${formatSigned(Math.round(((effect.tonnageMultiplier || 1) - 1) * 100), '%')}</strong></div>
+        </div>
+        <div class="operation-outcome-choice-grid">
+          ${summary.outcomes.map((outcome) => {
+            const cost = outcome.cost || {};
+            const outcomeEffect = outcome.effect || {};
+            const affordable = credits >= (cost.credits || 0) && commandPoints >= (cost.commandPoints || 0);
+            const canChoose = outcome.unlocked && !outcome.chosen && !summary.alreadyChosen && affordable;
+            const lockText = outcome.chosen ? '' : (!outcome.unlocked ? t(outcome.lockedReason || summary.lockedReason || 'operationOutcomes.lockedChain', { count: outcome.lockCount || summary.lockCount || 4 }) : (!affordable ? t('operationOutcomes.insufficientResources') : ''));
+            return `
+              <div class="mission-card operation-outcome-card ${outcome.chosen ? 'chosen' : ''} ${canChoose ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${outcomeToneClass(outcome)}">${t(outcome.doctrineKey || 'operationOutcomes.finalDoctrine')}</span>
+                    <h3>${t(outcome.nameKey)}</h3>
+                    <p>${t(outcome.descKey)}</p>
+                  </div>
+                  <span class="tag ${outcome.chosen ? 'success' : outcome.unlocked ? 'gold' : 'warn'}">${outcome.chosen ? t('operationOutcomes.chosen') : outcome.unlocked ? t('operationOutcomes.available') : t('operationOutcomes.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('common.credits')}: ${cost.credits || 0}</span>
+                  <span class="tag">${t('strategy.commandPoints')}: ${cost.commandPoints || 0}</span>
+                  <span class="tag ${Number(outcomeEffect.riskDelta || 0) > 0 ? 'warn' : 'success'}">${t('campaignConsequences.risk')}: ${formatSigned(outcomeEffect.riskDelta)}</span>
+                  <span class="tag gold">${t('campaign.modifier.tonnage')}: ${formatSigned(Math.round(((outcomeEffect.tonnageMultiplier || 1) - 1) * 100), '%')}</span>
+                </div>
+                <div class="operation-outcome-mini-effects">
+                  <span>${t('strategy.intel')}: ${formatSigned(outcomeEffect.intelBonus)}</span>
+                  <span>${t('strategy.decryption')}: ${formatSigned(outcomeEffect.decryptionBonus)}</span>
+                  <span>${t('strategy.pressure')}: -${Number(outcomeEffect.pressureRelief || 0)}</span>
+                  <span>${t('campaign.modifier.readiness')}: ${formatSigned(outcomeEffect.readinessBonus)}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canChoose ? '' : 'secondary'}" data-action="choose-operation-outcome" data-outcome="${outcome.id}" ${canChoose ? '' : 'disabled'}>${outcome.chosen ? t('operationOutcomes.outcomeActive') : t('operationOutcomes.choose')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null) {
   const strategy = save.strategy || {};
   const lanes = (strategyData.convoyLanes || []).filter((lane) => lane.nationId === nation.id);
   const network = (strategyData.intelNetworks || []).find((item) => item.nationId === nation.id) || {};
@@ -365,6 +436,7 @@ export function renderStrategy(t, save, nation, strategyData, theater, selectedL
       ${renderCampaignEventSummary(t, campaignEvents)}
       ${renderSpecialOperations(t, save, specialOperations)}
       ${renderOperationChains(t, save, operationChains)}
+      ${renderOperationOutcomes(t, save, operationOutcomes)}
       ${renderHighCommandOrders(t, save, highCommandOrders)}
 
       <div class="phase13-grid">
