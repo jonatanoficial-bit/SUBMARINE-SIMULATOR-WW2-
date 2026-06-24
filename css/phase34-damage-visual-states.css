@@ -1,0 +1,47 @@
+.phase34-damage-visual {
+  margin-top: 12px;
+  border: 1px solid rgba(185, 203, 174, .26);
+  border-radius: 18px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(238, 170, 83, .12), transparent 42%),
+    linear-gradient(145deg, rgba(10, 17, 18, .94), rgba(22, 27, 23, .9));
+  box-shadow: inset 0 0 28px rgba(0,0,0,.48), 0 18px 34px rgba(0,0,0,.28);
+  overflow: hidden;
+}
+.phase34-damage-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.phase34-damage-header span { color:rgba(233,236,214,.72); text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; }
+.phase34-damage-header strong { display:block; color:#ffe2a3; margin-top:4px; font-size:.95rem; }
+.phase34-damage-header b { padding:8px 10px; border-radius:999px; color:#0a1412; background:linear-gradient(135deg,#9de9be,#d9efa0); min-width:96px; text-align:center; }
+.phase34-damage-visual[data-severity="damaged"] .phase34-damage-header b { background:linear-gradient(135deg,#ffe087,#f3ad52); }
+.phase34-damage-visual[data-severity="emergency"] .phase34-damage-header b,
+.phase34-damage-visual[data-severity="critical"] .phase34-damage-header b { background:linear-gradient(135deg,#ff816d,#ffd077); animation:phase34Alarm 1s infinite ease-in-out; }
+.phase34-hull-cutaway { position:relative; height:136px; border-radius:22px; overflow:hidden; background:linear-gradient(180deg,#081113,#142025 55%,#071012); border:1px solid rgba(255,255,255,.12); box-shadow:inset 0 0 34px rgba(0,0,0,.55); }
+.phase34-hull-shell { position:absolute; inset:24px 12px 22px; border-radius:50% / 44%; background:linear-gradient(180deg,#26383b,#121d20); border:3px solid rgba(202,188,135,.7); box-shadow:inset 0 -14px 22px rgba(0,0,0,.55); }
+.phase34-waterline { position:absolute; left:0; right:0; bottom:0; height:var(--phase34-flood,0%); min-height:10px; background:linear-gradient(180deg,rgba(70,170,188,.12),rgba(56,126,150,.56)); opacity:.8; transition:height .35s ease; }
+.phase34-smoke { position:absolute; inset:0; background:radial-gradient(circle at 30% 40%,rgba(210,210,185,.2),transparent 28%), radial-gradient(circle at 72% 30%,rgba(210,210,185,.16),transparent 25%); opacity:calc(var(--phase34-smoke, 0%) / 100%); filter:blur(2px); }
+.phase34-sparks { position:absolute; inset:12px; opacity:0; background:radial-gradient(circle at 54% 46%,#fff3a1 0 1px,transparent 2px), radial-gradient(circle at 64% 62%,#ff9b6a 0 1px,transparent 2px), radial-gradient(circle at 37% 57%,#ffe27a 0 1px,transparent 2px); }
+.phase34-damage-visual[data-sparks="true"] .phase34-sparks { opacity:.9; animation:phase34Spark .55s steps(2) infinite; }
+.phase34-room-strip { position:absolute; inset:43px 28px 38px; display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.phase34-room { position:relative; overflow:hidden; border-radius:8px; border:1px solid rgba(240,220,160,.34); background:rgba(8,13,15,.52); display:flex; align-items:center; justify-content:center; min-width:0; }
+.phase34-room b { position:relative; z-index:2; writing-mode:vertical-rl; text-orientation:mixed; font-size:.58rem; color:rgba(255,245,210,.86); white-space:nowrap; max-height:100%; overflow:hidden; }
+.phase34-room i { position:absolute; left:0; right:0; bottom:0; background:linear-gradient(180deg,rgba(255,170,90,.5),rgba(76,158,180,.55)); opacity:.65; }
+.phase34-room[data-state="secure"] i { background:rgba(100,220,160,.3); }
+.phase34-room[data-state="fire"] i { background:linear-gradient(180deg,#ffca6b,#d74732); }
+.phase34-room[data-state="flooded"] i { background:linear-gradient(180deg,#72e0f0,#246c8a); }
+.phase34-room[data-state="breached"] i { background:linear-gradient(180deg,#f8e3a4,#8f4b3b); }
+.phase34-damage-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:12px; }
+.phase34-damage-grid>div { padding:10px; border-radius:14px; background:rgba(0,0,0,.22); border:1px solid rgba(255,255,255,.08); }
+.phase34-damage-grid span { color:rgba(236,238,218,.72); font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; }
+.phase34-damage-grid strong { display:block; color:#fff1bb; margin:4px 0 7px; }
+.phase34-damage-grid i { display:block; height:6px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; }
+.phase34-damage-grid em { display:block; height:100%; background:linear-gradient(90deg,#6de6aa,#f5d66c,#ff7b66); border-radius:inherit; transition:width .35s ease; }
+.phase34-crew-line { display:flex; justify-content:space-between; gap:10px; margin-top:12px; padding:10px; border-radius:14px; background:rgba(4,8,10,.46); color:#e9ead2; }
+.phase34-crew-line strong { color:#ffd18a; text-align:right; }
+.phase34-damage-escalated { animation:phase34PanelShock .85s ease; }
+.phase34-damage-visual[data-lights="red"], .gameplay-screen[data-alert-level="emergency"] .phase34-damage-visual { box-shadow:inset 0 0 28px rgba(255,60,45,.24),0 0 28px rgba(255,60,45,.18); }
+@keyframes phase34Alarm { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+@keyframes phase34Spark { 0%{filter:brightness(.7)} 100%{filter:brightness(1.7)} }
+@keyframes phase34PanelShock { 0%,100%{transform:translateX(0)} 30%{transform:translateX(-3px)} 60%{transform:translateX(3px)} }
+@media (max-width:760px){ .phase34-damage-header{flex-direction:column;align-items:stretch}.phase34-damage-header b{width:100%}.phase34-damage-grid{grid-template-columns:1fr}.phase34-hull-cutaway{height:124px}.phase34-crew-line{flex-direction:column}.phase34-crew-line strong{text-align:left} }
+@media (max-width:420px){ .phase34-damage-visual{padding:11px;border-radius:16px}.phase34-room-strip{inset:42px 20px 36px;gap:3px}.phase34-room b{font-size:.52rem} }

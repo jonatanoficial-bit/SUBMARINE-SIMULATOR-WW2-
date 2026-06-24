@@ -14,6 +14,7 @@ import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
 import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
+import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 
 let cleanupFns = [];
 
@@ -138,7 +139,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -1109,6 +1110,21 @@ export function mountGameplay({
     damagePumpsToggle: app.querySelector('#damage-pumps-toggle'),
     damageEmergencyPower: app.querySelector('#damage-emergency-power'),
     damageMessage: app.querySelector('#damage-message'),
+    phase34DamageVisual: app.querySelector('#phase34-damage-visual'),
+    phase34HullCutaway: app.querySelector('#phase34-hull-cutaway'),
+    phase34RoomStrip: app.querySelector('#phase34-room-strip'),
+    phase34DamageOrder: app.querySelector('#phase34-damage-order'),
+    phase34DamageSeverity: app.querySelector('#phase34-damage-severity'),
+    phase34HullState: app.querySelector('#phase34-hull-state'),
+    phase34StabilityState: app.querySelector('#phase34-stability-state'),
+    phase34SmokeState: app.querySelector('#phase34-smoke-state'),
+    phase34FloodState: app.querySelector('#phase34-flood-state'),
+    phase34HullBar: app.querySelector('#phase34-hull-bar'),
+    phase34StabilityBar: app.querySelector('#phase34-stability-bar'),
+    phase34SmokeBar: app.querySelector('#phase34-smoke-bar'),
+    phase34FloodBar: app.querySelector('#phase34-flood-bar'),
+    phase34CrewReaction: app.querySelector('#phase34-crew-reaction'),
+    phase34WorstRoom: app.querySelector('#phase34-worst-room'),
     damageTeamSelect: app.querySelector('#damage-team-select'),
     damageTaskSelect: app.querySelector('#damage-task-select'),
     damageTeamList: app.querySelector('#damage-team-list'),
@@ -1398,6 +1414,7 @@ export function mountGameplay({
   let subOfficerTypingTimer = null;
   let alertAtmosphereCurrent = null;
   let airAttackCurrent = null;
+  let damageVisualCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -2180,9 +2197,49 @@ export function mountGameplay({
     if (els.tdcSync) els.tdcSync.disabled = snapshot.missionFailed || snapshot.repairTicks > 0;
   }
 
+  function updateDamageVisuals(snapshot) {
+    const view = buildSubmarineDamageVisualView({ snapshot });
+    if (!els.phase34DamageVisual) return view;
+    const previous = damageVisualCurrent;
+    damageVisualCurrent = view;
+    els.phase34DamageVisual.dataset.severity = view.severity;
+    els.phase34DamageVisual.dataset.lights = view.lights;
+    els.phase34DamageVisual.dataset.smoke = String(view.effects.smoke);
+    els.phase34DamageVisual.dataset.flooding = String(view.effects.flooding);
+    els.phase34DamageVisual.dataset.sparks = String(view.effects.sparks);
+    Object.entries(view.cssVars || {}).forEach(([key, value]) => els.phase34DamageVisual.style.setProperty(key, value));
+    if (els.phase34HullCutaway) els.phase34HullCutaway.dataset.severity = view.severity;
+    if (els.phase34DamageOrder) els.phase34DamageOrder.textContent = t(view.orderKey);
+    if (els.phase34DamageSeverity) els.phase34DamageSeverity.textContent = t(`damageVisual.severity.${view.severity}`);
+    if (els.phase34HullState) els.phase34HullState.textContent = view.hullLabel;
+    if (els.phase34StabilityState) els.phase34StabilityState.textContent = view.stabilityLabel;
+    if (els.phase34SmokeState) els.phase34SmokeState.textContent = view.smokeLabel;
+    if (els.phase34FloodState) els.phase34FloodState.textContent = view.floodingLabel;
+    if (els.phase34HullBar) els.phase34HullBar.style.width = view.hullLabel;
+    if (els.phase34StabilityBar) els.phase34StabilityBar.style.width = view.stabilityLabel;
+    if (els.phase34SmokeBar) els.phase34SmokeBar.style.width = view.smokeLabel;
+    if (els.phase34FloodBar) els.phase34FloodBar.style.width = view.floodingLabel;
+    if (els.phase34CrewReaction) els.phase34CrewReaction.textContent = t(view.crewKey);
+    if (els.phase34WorstRoom) els.phase34WorstRoom.textContent = `${view.worstCompartmentName} · ${t(view.worstCompartmentState)}`;
+    if (els.phase34RoomStrip) {
+      els.phase34RoomStrip.innerHTML = view.compartments.map((room) => `
+        <span class="phase34-room" data-state="${room.state}" title="${room.name}">
+          <b>${room.name}</b><i style="height:${Math.max(room.flooding, room.fire, 8)}%"></i>
+        </span>
+      `).join('');
+    }
+    if (shouldDamageVisualEscalate({ previous, next: view })) {
+      els.phase34DamageVisual.classList.add('phase34-damage-escalated');
+      schedule(() => els.phase34DamageVisual?.classList.remove('phase34-damage-escalated'), 850);
+      if (['emergency','critical'].includes(view.severity)) playSfx('alert');
+    }
+    return view;
+  }
+
   function updateDamageControl(snapshot) {
     const damage = snapshot.damageControl;
     if (!damage) return;
+    updateDamageVisuals(snapshot);
     const flooding = clamp(Number(damage.totalFlooding || 0), 0, 100);
     const fire = clamp(Number(damage.totalFire || 0), 0, 100);
     const power = clamp(Number(damage.busVoltage || 0), 0, 100);

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.48';
+const CACHE_VERSION = '2.0.0-alpha.49';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -61,6 +61,7 @@ const APP_SHELL = [
   './css/phase31-visual-horizon-contacts.css',
   './css/phase32-torpedo-attack-director.css',
   './css/phase33-naval-ai-tactics.css',
+  './css/phase34-damage-visual-states.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -129,6 +130,7 @@ const APP_SHELL = [
   './js/systems/visualHorizonContacts.js',
   './js/systems/torpedoAttackDirector.js',
   './js/systems/navalAITacticalCoordinator.js',
+  './js/systems/submarineDamageVisuals.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',

@@ -12,9 +12,9 @@ const index = read('index.html');
 const sw = read('service-worker.js');
 
 test('phase 20 metadata and mobile scroll stylesheet are active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.48');
-  assert.equal(build.phase, '33');
-  assert.equal(packageJson.version, '2.0.0-alpha.48');
+  assert.equal(build.semver, '2.0.0-alpha.49');
+  assert.equal(build.phase, '34');
+  assert.equal(packageJson.version, '2.0.0-alpha.49');
   assert.match(index, /phase20-mobile-scroll\.css/);
   assert.match(sw, /phase20-mobile-scroll\.css/);
 });

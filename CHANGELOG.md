@@ -1,3 +1,10 @@
+# v2.0.0-alpha.49 — Fase 34 — Danos Visuais e Estados do Submarino
+
+- Adicionado sistema visual de dano do submarino com casco em corte, compartimentos, fumaça, alagamento, faíscas e iluminação de emergência.
+- Estação de dano ganhou leitura imersiva e mobile-first das avarias.
+- Reações da tripulação agora acompanham o tipo dominante de dano.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.48 — Fase 33 — IA Naval Melhorada
 
 - Adicionada IA naval tática com zig-zag defensivo, tela de escoltas, busca em quadrado expansivo e pinça ASW.
