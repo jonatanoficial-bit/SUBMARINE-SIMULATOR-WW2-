@@ -11,6 +11,7 @@ import { buildAlertAtmosphereView, shouldAlertEscalate } from '../systems/alertA
 import { buildAirAttackView, shouldAirThreatInterrupt } from '../systems/airAttackEvasion.js';
 import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
 import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
+import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 
 let cleanupFns = [];
 
@@ -135,7 +136,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -829,6 +830,7 @@ export function renderGameplay(t, mission, settings = {}) {
             <div id="periscope-horizon" class="periscope-horizon"></div>
             <div id="periscope-weather" class="periscope-weather">${periscopeWeatherMarkup()}</div>
             <div id="periscope-visibility-layer" class="periscope-visibility-layer"></div>
+            <div id="phase31-horizon-contact-layer" class="phase31-horizon-contact-layer" data-fog="light" aria-hidden="true"></div>
             <img id="target-ship" class="periscope-entity target-ship" src="assets/ships/merchant_ship_01.png" alt="merchant">
             <img id="escort-ship" class="periscope-entity escort-ship" src="assets/ships/destroyer_01.png" alt="destroyer">
             <img id="torpedo-shot" class="periscope-effect torpedo-shot hidden" src="assets/effects/torpedo_moving_01.png" alt="torpedo">
@@ -865,6 +867,7 @@ export function renderGameplay(t, mission, settings = {}) {
           <div class="periscope-glass-css"></div>
           <div id="periscope-lock" class="periscope-lock">${t('gameplay.lockSearching')}</div>
           <div id="periscope-sensor-readout" class="periscope-sensor-readout">${t('sensors.visualAwaiting')}</div>
+          <div id="phase31-horizon-report" class="phase31-horizon-report" data-priority="clear"><strong>${t('horizonContacts.kicker')}</strong><span>${t('horizonContacts.reportClear')}</span></div>
         </div>
         <div class="phase24-axis-cue">${t('periscope.mobileAxisCue')}</div>
         <div class="periscope-controls periscope-controls-grid">
@@ -1178,6 +1181,8 @@ export function mountGameplay({
     periscopeHorizon: app.querySelector('#periscope-horizon'),
     periscopeWeather: app.querySelector('#periscope-weather'),
     periscopeVisibilityLayer: app.querySelector('#periscope-visibility-layer'),
+    horizonContactLayer: app.querySelector('#phase31-horizon-contact-layer'),
+    horizonReport: app.querySelector('#phase31-horizon-report'),
     targetShip: app.querySelector('#target-ship'),
     escortShip: app.querySelector('#escort-ship'),
     torpedoShot: app.querySelector('#torpedo-shot'),
@@ -2254,6 +2259,30 @@ export function mountGameplay({
     });
   }
 
+
+  function horizonContactMarkup(contact) {
+    const hidden = contact.visible ? '' : ' hidden';
+    const smoke = contact.hasSmoke ? '<span class="phase31-smoke"></span>' : '';
+    const masts = contact.hasMasts ? '<span class="phase31-masts"></span>' : '';
+    return `<i class="phase31-horizon-contact phase31-horizon-contact--${contact.role}${hidden}" data-state="${contact.state}" data-role="${contact.role}" style="${contact.style}" aria-label="${t(contact.labelKey)} ${contact.bearingLabel}">${smoke}${masts}<span class="phase31-superstructure"></span><span class="phase31-hull"></span></i>`;
+  }
+
+  function updateHorizonContacts(snapshot) {
+    const view = buildHorizonContactView({ snapshot, periscopeZoom });
+    if (els.horizonContactLayer) {
+      els.horizonContactLayer.dataset.fog = view.fogBand;
+      els.horizonContactLayer.dataset.visibleCount = String(view.visibleCount);
+      els.horizonContactLayer.innerHTML = view.contacts.map((contact) => horizonContactMarkup(contact)).join('');
+    }
+    if (els.horizonReport) {
+      els.horizonReport.dataset.priority = view.priority;
+      const span = els.horizonReport.querySelector('span');
+      if (span) span.textContent = t(view.reportKey);
+      const strong = els.horizonReport.querySelector('strong');
+      if (strong) strong.textContent = t('horizonContacts.kicker');
+    }
+  }
+
   function updatePeriscope(snapshot) {
     const environment = snapshot.environment || {};
     const roll = Number(environment.rollDegrees || 0);
@@ -2278,6 +2307,7 @@ export function mountGameplay({
     if (els.periscopeVisibilityLayer) {
       els.periscopeVisibilityLayer.style.opacity = `${clamp(1 - visualFactor, 0, 0.74)}`;
     }
+    updateHorizonContacts(snapshot);
 
     const escortPosition = worldToViewPosition(snapshot.escort, snapshot.view);
     const targetPosition = worldToViewPosition(snapshot.target, snapshot.view);

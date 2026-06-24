@@ -1,3 +1,11 @@
+
+## v2.0.0-alpha.46 — Fase 31 — Contatos Visuais no Horizonte
+
+- Adicionada camada visual de horizonte no periscópio com silhuetas, fumaça, mastros e aeronave.
+- Adicionado relatório ótico contextual para contato claro, alvo, escolta, comboio provável ou ameaça aérea.
+- Adicionadas traduções PT-BR/EN/ES, teste e auditoria da Fase 31.
+- Atualizados build, manifest, service worker, smoke harness e save schema.
+
 # v2.0.0-alpha.43 — Fase 28 — Ataque Aéreo e Evasão / Operação Silent Depth
 
 - Adicionado sistema visual de ameaça aérea ASW.

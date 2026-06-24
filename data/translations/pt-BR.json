@@ -2254,5 +2254,17 @@
   "waypointNav.wpPatrolEntry": "Entrada do setor",
   "waypointNav.wpPatrolNorth": "Varredura norte",
   "waypointNav.wpPatrolSouth": "Varredura sul",
-  "waypointNav.wpPatrolExit": "Saída do setor"
+  "waypointNav.wpPatrolExit": "Saída do setor",
+  "horizonContacts.kicker": "RELATÓRIO ÓTICO",
+  "horizonContacts.title": "Contatos no horizonte",
+  "horizonContacts.reportClear": "Horizonte limpo. Sem fumaça, mastros ou aeronave visível.",
+  "horizonContacts.reportTarget": "Fumaça mercante no horizonte. Possível alvo à vista.",
+  "horizonContacts.reportEscort": "Silhueta de escolta no horizonte. Recomendo cautela.",
+  "horizonContacts.reportMultiple": "Múltiplas silhuetas no horizonte. Comboio provável.",
+  "horizonContacts.reportAircraft": "Aeronave hostil cruzando o horizonte. Preparar evasão.",
+  "horizonContacts.contactMerchant": "mercante",
+  "horizonContacts.contactEscort": "escolta",
+  "horizonContacts.contactAircraft": "aeronave",
+  "horizonContacts.smoke": "fumaça",
+  "horizonContacts.masts": "mastros"
 }

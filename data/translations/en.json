@@ -2254,5 +2254,17 @@
   "waypointNav.wpPatrolEntry": "Sector entry",
   "waypointNav.wpPatrolNorth": "Northern sweep",
   "waypointNav.wpPatrolSouth": "Southern sweep",
-  "waypointNav.wpPatrolExit": "Sector exit"
+  "waypointNav.wpPatrolExit": "Sector exit",
+  "horizonContacts.kicker": "OPTICAL REPORT",
+  "horizonContacts.title": "Horizon contacts",
+  "horizonContacts.reportClear": "Horizon clear. No visible smoke, masts or aircraft.",
+  "horizonContacts.reportTarget": "Merchant smoke on the horizon. Possible target in sight.",
+  "horizonContacts.reportEscort": "Escort silhouette on the horizon. Recommend caution.",
+  "horizonContacts.reportMultiple": "Multiple silhouettes on the horizon. Probable convoy.",
+  "horizonContacts.reportAircraft": "Hostile aircraft crossing the horizon. Prepare evasion.",
+  "horizonContacts.contactMerchant": "merchant",
+  "horizonContacts.contactEscort": "escort",
+  "horizonContacts.contactAircraft": "aircraft",
+  "horizonContacts.smoke": "smoke",
+  "horizonContacts.masts": "masts"
 }

@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.45",
-  "semver": "2.0.0-alpha.45",
-  "buildId": "SCWW2-20260624-1945-BRT-F30-WAYPOINT-NAVIGATION",
+  "version": "v2.0.0-alpha.46",
+  "semver": "2.0.0-alpha.46",
+  "buildId": "SCWW2-20260624-2015-BRT-F31-HORIZON-CONTACTS",
   "date": "2026-06-24",
-  "time": "19:45",
+  "time": "20:15",
   "timezone": "America/Sao_Paulo",
-  "phase": "30",
-  "phaseName": "Silent Depth Waypoint Navigation and Patrol Route Planning",
+  "phase": "31",
+  "phaseName": "Silent Depth Visual Horizon Contacts",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 24,
-  "notes": "Phase 30 turns the tactical naval chart into a true waypoint navigation planner: numbered route legs, bearing labels, distance/ETA calculations, autonomy checks, patrol-sector route plotting and mobile-first route order presentation while preserving phases 24 to 29."
+  "saveSchemaVersion": 25,
+  "notes": "Phase 31 makes the periscope horizon feel alive with CSS-rendered ship silhouettes, smoke plumes, mast lines, aircraft shadows, fog bands and an optical report layer while preserving all Silent Depth phases 24 to 30."
 }

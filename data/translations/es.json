@@ -2254,5 +2254,17 @@
   "waypointNav.wpPatrolEntry": "Entrada del sector",
   "waypointNav.wpPatrolNorth": "Barrido norte",
   "waypointNav.wpPatrolSouth": "Barrido sur",
-  "waypointNav.wpPatrolExit": "Salida del sector"
+  "waypointNav.wpPatrolExit": "Salida del sector",
+  "horizonContacts.kicker": "INFORME ÓPTICO",
+  "horizonContacts.title": "Contactos en el horizonte",
+  "horizonContacts.reportClear": "Horizonte limpio. Sin humo, mástiles ni aeronave visible.",
+  "horizonContacts.reportTarget": "Humo mercante en el horizonte. Posible objetivo a la vista.",
+  "horizonContacts.reportEscort": "Silueta de escolta en el horizonte. Recomiendo cautela.",
+  "horizonContacts.reportMultiple": "Múltiples siluetas en el horizonte. Convoy probable.",
+  "horizonContacts.reportAircraft": "Aeronave hostil cruzando el horizonte. Preparar evasión.",
+  "horizonContacts.contactMerchant": "mercante",
+  "horizonContacts.contactEscort": "escolta",
+  "horizonContacts.contactAircraft": "aeronave",
+  "horizonContacts.smoke": "humo",
+  "horizonContacts.masts": "mástiles"
 }

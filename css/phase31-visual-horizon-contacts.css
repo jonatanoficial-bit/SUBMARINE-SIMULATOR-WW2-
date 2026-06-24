@@ -1,0 +1,216 @@
+.phase31-visual-horizon-ready .periscope-window {
+  isolation: isolate;
+}
+
+.phase31-horizon-contact-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 12;
+  overflow: hidden;
+}
+
+.phase31-horizon-contact-layer[data-fog="medium"]::before,
+.phase31-horizon-contact-layer[data-fog="heavy"]::before {
+  content: "";
+  position: absolute;
+  inset: 18% 0 28%;
+  background:
+    radial-gradient(ellipse at 38% 56%, rgba(188,205,210,.22), transparent 46%),
+    linear-gradient(90deg, transparent, rgba(207,222,224,.16), transparent);
+  opacity: .78;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+}
+
+.phase31-horizon-contact-layer[data-fog="heavy"]::before {
+  opacity: 1;
+  filter: blur(13px);
+}
+
+.phase31-horizon-contact {
+  position: absolute;
+  left: var(--h-left, 50%);
+  bottom: var(--h-bottom, 36%);
+  transform: translate(-50%, 0) scale(var(--h-scale, .7));
+  width: 108px;
+  height: 54px;
+  opacity: var(--h-opacity, .75);
+  filter: blur(var(--h-blur, 0px)) drop-shadow(0 8px 7px rgba(0,0,0,.68));
+  transition: left .16s linear, bottom .16s linear, opacity .18s ease, filter .18s ease;
+}
+
+.phase31-horizon-contact.hidden {
+  opacity: 0;
+}
+
+.phase31-horizon-contact .phase31-smoke {
+  position: absolute;
+  left: 48%;
+  bottom: 42px;
+  width: 34px;
+  height: 52px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 82%, rgba(34,36,33,.72), transparent 47%),
+    radial-gradient(circle at 42% 48%, rgba(78,82,77,.44), transparent 56%),
+    radial-gradient(circle at 62% 24%, rgba(150,153,145,.22), transparent 52%);
+  opacity: .74;
+  transform: rotate(-8deg);
+  animation: phase31SmokeDrift 5.4s ease-in-out infinite;
+}
+
+.phase31-horizon-contact .phase31-masts {
+  position: absolute;
+  left: 42%;
+  bottom: 14px;
+  width: 20px;
+  height: 34px;
+  border-left: 2px solid rgba(16,18,18,.92);
+  border-right: 1px solid rgba(16,18,18,.66);
+}
+
+.phase31-horizon-contact .phase31-masts::before,
+.phase31-horizon-contact .phase31-masts::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  right: -8px;
+  height: 1px;
+  background: rgba(16,18,18,.72);
+}
+.phase31-horizon-contact .phase31-masts::before { top: 10px; }
+.phase31-horizon-contact .phase31-masts::after { top: 21px; }
+
+.phase31-horizon-contact .phase31-hull {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  height: 18px;
+  background: linear-gradient(180deg, #171b1b 0%, #070909 100%);
+  clip-path: polygon(0 52%, 9% 32%, 54% 22%, 88% 34%, 100% 54%, 88% 75%, 19% 80%);
+  box-shadow: inset 0 6px 6px rgba(255,255,255,.05), 0 4px 6px rgba(0,0,0,.48);
+}
+
+.phase31-horizon-contact .phase31-superstructure {
+  position: absolute;
+  left: 46%;
+  bottom: 21px;
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(180deg, #1e2423, #090c0c);
+  clip-path: polygon(0 100%, 14% 26%, 72% 8%, 100% 100%);
+}
+
+.phase31-horizon-contact--escort .phase31-hull {
+  height: 15px;
+  clip-path: polygon(0 56%, 18% 34%, 60% 26%, 92% 36%, 100% 58%, 78% 76%, 12% 76%);
+}
+.phase31-horizon-contact--escort .phase31-superstructure {
+  left: 34%;
+  width: 44px;
+  height: 13px;
+  clip-path: polygon(0 100%, 8% 36%, 34% 8%, 72% 26%, 100% 100%);
+}
+
+.phase31-horizon-contact--aircraft {
+  top: var(--h-top, 20%);
+  bottom: auto;
+  width: 68px;
+  height: 38px;
+}
+.phase31-horizon-contact--aircraft .phase31-hull {
+  left: 8px;
+  right: 8px;
+  bottom: 16px;
+  height: 6px;
+  border-radius: 999px;
+  clip-path: none;
+}
+.phase31-horizon-contact--aircraft .phase31-superstructure {
+  left: 16px;
+  bottom: 15px;
+  width: 36px;
+  height: 8px;
+  background: #080909;
+  clip-path: polygon(0 52%, 44% 0, 100% 52%, 44% 70%);
+}
+.phase31-horizon-contact--aircraft .phase31-masts,
+.phase31-horizon-contact--aircraft .phase31-smoke { display: none; }
+
+.phase31-horizon-contact[data-state="ghost"] {
+  opacity: calc(var(--h-opacity, .7) * .72);
+}
+
+.phase31-horizon-report {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(66px, 13vh, 118px);
+  transform: translateX(-50%);
+  z-index: 23;
+  min-width: min(460px, calc(100vw - 28px));
+  max-width: min(620px, calc(100vw - 28px));
+  padding: 8px 12px;
+  border: 1px solid rgba(149,199,205,.36);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(6,16,18,.84), rgba(5,11,14,.72));
+  color: #d7fbff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.38), inset 0 0 18px rgba(50,180,190,.08);
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.phase31-horizon-report strong {
+  display: block;
+  color: #fff8c8;
+  font-size: .82rem;
+  margin-bottom: 2px;
+}
+
+.phase31-horizon-report[data-priority="danger"] {
+  border-color: rgba(255,102,72,.72);
+  color: #ffd4ca;
+}
+.phase31-horizon-report[data-priority="warning"] {
+  border-color: rgba(255,207,105,.66);
+  color: #fff3c8;
+}
+.phase31-horizon-report[data-priority="clear"] {
+  opacity: .72;
+}
+
+@keyframes phase31SmokeDrift {
+  0%, 100% { transform: translate(-2px, 0) rotate(-8deg) scale(.92); opacity: .52; }
+  45% { transform: translate(8px, -8px) rotate(4deg) scale(1.08); opacity: .78; }
+}
+
+@media (max-width: 760px) {
+  .phase31-horizon-contact {
+    width: 82px;
+    height: 46px;
+  }
+  .phase31-horizon-report {
+    bottom: 72px;
+    font-size: .68rem;
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .phase31-horizon-contact {
+    width: 70px;
+    height: 40px;
+  }
+  .phase31-horizon-contact .phase31-smoke {
+    width: 24px;
+    height: 40px;
+    bottom: 32px;
+  }
+  .phase31-horizon-report {
+    bottom: 64px;
+    min-width: calc(100vw - 22px);
+  }
+}
