@@ -1,3 +1,11 @@
+# v2.0.0-alpha.42 — Fase 27 — Sistema de Alertas e Atmosfera
+
+- Adicionado sistema cinematográfico de alerta com estados calmo, suspeita, evasão, combate e emergência.
+- Adicionado painel visual mobile-first de alerta no gameplay.
+- HUD, lâmpadas, red wash e vibração respondem ao perigo real da simulação.
+- Integrado com F24/F25/F26 da Operação Silent Depth.
+- Save schema atualizado para 21.
+
 # v2.0.0-alpha.41 — Fase 26 — Suboficial/Copiloto Imersivo
 
 - Adicionado suboficial/copiloto com avatar, fala contextual e confirmação OK / RECEBIDO.

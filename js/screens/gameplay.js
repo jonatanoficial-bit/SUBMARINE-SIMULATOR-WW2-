@@ -7,6 +7,7 @@ import { classifyOceanWeather } from '../oceanWeather.js';
 import { analyzeConvoyDoctrine } from '../systems/convoyDoctrine.js';
 import { computeSilentDepthOceanTransform, normalizePeriscopeDragDelta } from '../systems/silentDepthPeriscope.js';
 import { buildSubOfficerDialogue, renderSubOfficerLine, shouldSubOfficerInterrupt } from '../systems/subOfficerCopilot.js';
+import { buildAlertAtmosphereView, shouldAlertEscalate } from '../systems/alertAtmosphere.js';
 
 let cleanupFns = [];
 
@@ -123,7 +124,7 @@ function navigationGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -835,6 +836,18 @@ export function renderGameplay(t, mission, settings = {}) {
 
 
 
+
+      <div id="phase27-alert-atmosphere" class="phase27-alert-atmosphere" data-alert-level="calm" aria-live="polite">
+        <div class="phase27-alert-header">
+          <span class="phase27-alert-kicker">${t('alert.atmosphere.title')}</span>
+          <strong id="phase27-alert-label">${t('alert.level.calm')}</strong>
+          <b id="phase27-alert-score">00%</b>
+        </div>
+        <div class="phase27-alert-lamps" id="phase27-alert-lamps" aria-hidden="true"><i data-lamp="dim"></i><i data-lamp="dim"></i><i data-lamp="dim"></i><i data-lamp="off"></i><i data-lamp="off"></i></div>
+        <p id="phase27-alert-message">${t('alert.message.calm')}</p>
+        <small id="phase27-alert-order">${t('alert.order.calm')}</small>
+      </div>
+
       <aside id="subofficer-copilot" class="phase26-subofficer-panel hidden" data-tone="calm" data-complete="true" aria-live="polite" aria-hidden="true">
         <div class="phase26-subofficer-avatar-wrap">
           <img class="phase26-subofficer-avatar" src="assets/avatars/subofficer_ww2.svg" alt="${t('subofficer.avatarAlt')}">
@@ -1159,6 +1172,12 @@ export function mountGameplay({
     trainingChecklist: app.querySelector('#training-checklist'),
     trainingGoStation: app.querySelector('#training-go-station'),
     trainingDismiss: app.querySelector('#training-dismiss'),
+    alertAtmosphere: app.querySelector('#phase27-alert-atmosphere'),
+    alertLabel: app.querySelector('#phase27-alert-label'),
+    alertScore: app.querySelector('#phase27-alert-score'),
+    alertMessage: app.querySelector('#phase27-alert-message'),
+    alertOrder: app.querySelector('#phase27-alert-order'),
+    alertLamps: app.querySelector('#phase27-alert-lamps'),
     subOfficerPanel: app.querySelector('#subofficer-copilot'),
     subOfficerTitle: app.querySelector('#subofficer-title'),
     subOfficerLine: app.querySelector('#subofficer-line'),
@@ -1180,6 +1199,7 @@ export function mountGameplay({
   let lastAutosaveElapsed = Number(initialSnapshot?.elapsedMs || 0);
   let subOfficerCurrent = null;
   let subOfficerTypingTimer = null;
+  let alertAtmosphereCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -2163,6 +2183,32 @@ export function mountGameplay({
   }
 
 
+  function updateAlertAtmosphere(snapshot) {
+    const view = buildAlertAtmosphereView({ snapshot, mission: mission || {}, station: activeStation });
+    if (!view || !els.alertAtmosphere) return;
+    const previous = alertAtmosphereCurrent;
+    alertAtmosphereCurrent = view;
+    const root = els.alertAtmosphere;
+    root.dataset.alertLevel = view.level;
+    root.dataset.scanRate = view.scanRate;
+    root.dataset.pulse = String(view.shouldPulse);
+    Object.entries(view.cssVars || {}).forEach(([key, value]) => root.style.setProperty(key, value));
+    app.querySelector('.gameplay-screen')?.setAttribute('data-alert-level', view.level);
+    if (els.hudAlert) els.hudAlert.dataset.alertLevel = view.level;
+    if (els.alertLabel) els.alertLabel.textContent = t(view.labelKey);
+    if (els.alertScore) els.alertScore.textContent = `${Math.round(view.score)}%`;
+    if (els.alertMessage) els.alertMessage.textContent = t(view.messageKey);
+    if (els.alertOrder) els.alertOrder.textContent = t(view.orderKey);
+    if (els.alertLamps) els.alertLamps.innerHTML = view.lampsMarkup;
+    if (shouldAlertEscalate({ previous, next: view })) {
+      root.classList.add('phase27-alert-escalated');
+      schedule(() => root.classList.remove('phase27-alert-escalated'), 720);
+      if (['combat', 'emergency'].includes(view.level)) playSfx('alert');
+      else if (view.level === 'evasion') playSfx('sonar');
+    }
+  }
+
+
   function typeSubOfficerLine(text, speed = 18) {
     if (!els.subOfficerLine) return;
     if (subOfficerTypingTimer) clearInterval(subOfficerTypingTimer);
@@ -2232,6 +2278,7 @@ export function mountGameplay({
     updateNavalAI(snapshot);
     updateEncounter(snapshot);
     updateHUD(snapshot);
+    updateAlertAtmosphere(snapshot);
     updateNavigation(snapshot);
     updatePeriscope(snapshot);
     updateSubOfficer(snapshot);

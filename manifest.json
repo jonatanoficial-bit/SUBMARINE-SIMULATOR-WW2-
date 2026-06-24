@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 — Silent Depth F26",
-  "short_name": "SCWW2 F26",
+  "name": "Submarine Commander WW2 — Silent Depth F27",
+  "short_name": "SCWW2 F27",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Fase 26: Suboficial/Copiloto Imersivo com avatar, diálogo em máquina de escrever e confirmação OK/RECEBIDO.",
+  "description": "Fase 27: Sistema de alertas e atmosfera com estados calmo, suspeita, evasão, combate e emergência.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.41",
+  "version": "2.0.0-alpha.42",
   "id": "./"
 }

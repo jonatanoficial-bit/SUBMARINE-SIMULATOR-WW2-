@@ -1,0 +1,178 @@
+/* Phase 27 — Silent Depth Alert Atmosphere */
+.gameplay-screen.phase27-alert-atmosphere-ready {
+  position: relative;
+  isolation: isolate;
+}
+
+.gameplay-screen.phase27-alert-atmosphere-ready::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 196, 95, calc(var(--phase27-red-wash, 0) * .18)), transparent 38%),
+    linear-gradient(180deg, rgba(15, 27, 36, .08), rgba(2, 7, 10, calc(var(--phase27-dimming, .12))));
+  mix-blend-mode: screen;
+  opacity: .92;
+}
+
+.gameplay-screen[data-alert-level="emergency"]::before,
+.gameplay-screen[data-alert-level="combat"]::before {
+  animation: phase27-red-wash-pulse 1.15s ease-in-out infinite;
+}
+
+.phase27-alert-atmosphere {
+  position: fixed;
+  left: max(12px, env(safe-area-inset-left));
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(96px, calc(env(safe-area-inset-bottom) + 88px));
+  z-index: 48;
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: 8px;
+  padding: 13px 15px 13px 15px;
+  color: #f4ecd2;
+  background:
+    linear-gradient(135deg, rgba(8, 22, 28, .94), rgba(10, 15, 18, .91)),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 16px);
+  border: 1px solid rgba(216, 185, 118, .34);
+  border-left: 5px solid rgba(104, 198, 144, .75);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.52), inset 0 0 32px rgba(255,255,255,.04);
+  backdrop-filter: blur(14px) saturate(1.08);
+  transform: translateZ(0);
+}
+
+.phase27-alert-atmosphere[data-alert-level="suspicion"] { border-left-color: #e3bd66; }
+.phase27-alert-atmosphere[data-alert-level="evasion"] { border-left-color: #ff9a4b; }
+.phase27-alert-atmosphere[data-alert-level="combat"] { border-left-color: #ff654f; }
+.phase27-alert-atmosphere[data-alert-level="emergency"] { border-left-color: #ff2f2f; }
+.phase27-alert-atmosphere[data-pulse="true"] { animation: phase27-panel-vibration .72s steps(2, end) infinite; }
+.phase27-alert-atmosphere.phase27-alert-escalated { animation: phase27-escalate .72s ease-out both; }
+
+.phase27-alert-header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.phase27-alert-kicker {
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(239, 218, 170, .72);
+}
+
+#phase27-alert-label {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .86rem;
+  color: #ffe6ac;
+}
+
+#phase27-alert-score {
+  min-width: 52px;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.36);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff9dd;
+}
+
+.phase27-alert-lamps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  min-height: 8px;
+}
+
+.phase27-alert-lamps i {
+  display: block;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255,255,255,.08);
+  box-shadow: inset 0 0 8px rgba(0,0,0,.35);
+}
+.phase27-alert-lamps i[data-lamp="green"] { background: #62d98f; box-shadow: 0 0 12px rgba(98,217,143,.8); }
+.phase27-alert-lamps i[data-lamp="amber"] { background: #f4b95b; box-shadow: 0 0 12px rgba(244,185,91,.75); }
+.phase27-alert-lamps i[data-lamp="red"] { background: #ff5148; box-shadow: 0 0 14px rgba(255,81,72,.9); }
+.phase27-alert-lamps i[data-lamp="dim"] { background: rgba(153,184,160,.38); }
+.phase27-alert-lamps i[data-lamp="off"] { background: rgba(255,255,255,.055); }
+
+#phase27-alert-message {
+  margin: 0;
+  font-size: .94rem;
+  line-height: 1.35;
+  color: rgba(255, 248, 220, .93);
+}
+
+#phase27-alert-order {
+  color: rgba(177, 224, 232, .82);
+  letter-spacing: .03em;
+}
+
+.gameplay-screen[data-alert-level="evasion"] .phase25-command-room-shell,
+.gameplay-screen[data-alert-level="combat"] .phase25-command-room-shell,
+.gameplay-screen[data-alert-level="emergency"] .phase25-command-room-shell {
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.gameplay-screen[data-alert-level="emergency"] .phase26-subofficer-panel,
+.gameplay-screen[data-alert-level="combat"] .phase26-subofficer-panel {
+  box-shadow: 0 0 0 1px rgba(255, 93, 79, .42), 0 24px 60px rgba(0,0,0,.62);
+}
+
+#hud-alert[data-alert-level="calm"] { color: #9af0c1; }
+#hud-alert[data-alert-level="suspicion"] { color: #ffd37a; }
+#hud-alert[data-alert-level="evasion"] { color: #ffa461; }
+#hud-alert[data-alert-level="combat"] { color: #ff7566; }
+#hud-alert[data-alert-level="emergency"] { color: #ff4545; text-shadow: 0 0 12px rgba(255,69,69,.65); }
+
+@media (min-width: 900px) {
+  .phase27-alert-atmosphere {
+    left: auto;
+    right: 26px;
+    bottom: 26px;
+    width: min(420px, calc(100vw - 52px));
+    margin: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .phase27-alert-atmosphere {
+    bottom: max(82px, calc(env(safe-area-inset-bottom) + 76px));
+    padding: 11px 12px;
+    border-radius: 14px;
+  }
+  .phase27-alert-header { grid-template-columns: 1fr auto; }
+  .phase27-alert-kicker { grid-column: 1 / -1; }
+  #phase27-alert-message { font-size: .87rem; }
+}
+
+@media (max-width: 420px) {
+  .phase27-alert-atmosphere {
+    bottom: max(72px, calc(env(safe-area-inset-bottom) + 68px));
+    gap: 6px;
+  }
+  #phase27-alert-order { display: none; }
+}
+
+@keyframes phase27-red-wash-pulse {
+  0%, 100% { opacity: .74; }
+  50% { opacity: 1; }
+}
+
+@keyframes phase27-panel-vibration {
+  0%, 100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(calc(var(--phase27-vibration, .3) * 1px), 0, 0); }
+}
+
+@keyframes phase27-escalate {
+  0% { transform: translate3d(0, 18px, 0) scale(.98); opacity: .1; }
+  45% { transform: translate3d(0, -2px, 0) scale(1.01); opacity: 1; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+}
