@@ -1,0 +1,184 @@
+.phase33-naval-ai-ready .phase33-ai-tactics-panel {
+  border: 1px solid rgba(132, 190, 170, .32);
+  border-radius: 18px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(105, 185, 155, .18), transparent 38%),
+    linear-gradient(145deg, rgba(6, 17, 20, .92), rgba(12, 23, 27, .86));
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, .38), 0 18px 36px rgba(0, 0, 0, .24);
+}
+
+.phase33-ai-tactics-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.phase33-ai-tactics-header span,
+.phase33-ai-grid span,
+.phase33-ai-meta span {
+  color: rgba(218, 244, 230, .72);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.phase33-ai-tactics-header strong {
+  display: block;
+  margin-top: 4px;
+  color: #f4e1a6;
+  font-size: .95rem;
+}
+
+.phase33-ai-tactics-header b {
+  min-width: 96px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  text-align: center;
+  color: #081315;
+  background: linear-gradient(135deg, #9be7c5, #d7f6a3);
+  box-shadow: 0 0 22px rgba(155, 231, 197, .28);
+}
+
+.phase33-ai-tactics-panel[data-threat="danger"] .phase33-ai-tactics-header b {
+  background: linear-gradient(135deg, #ffd36d, #ff9d59);
+}
+
+.phase33-ai-tactics-panel[data-threat="critical"] .phase33-ai-tactics-header b {
+  background: linear-gradient(135deg, #ff7b6d, #ffcf7a);
+  animation: phase33ThreatPulse 1.2s ease-in-out infinite;
+}
+
+.phase33-ai-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.phase33-ai-grid > div {
+  padding: 11px;
+  border-radius: 14px;
+  background: rgba(5, 12, 15, .55);
+  border: 1px solid rgba(214, 230, 190, .14);
+}
+
+.phase33-ai-grid strong {
+  display: block;
+  margin: 5px 0 8px;
+  min-height: 1.35em;
+  color: #eef7da;
+}
+
+.phase33-ai-grid i {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+}
+
+.phase33-ai-grid em {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(98, 224, 184, .9), rgba(244, 213, 119, .95), rgba(255, 110, 92, .9));
+  box-shadow: 0 0 16px rgba(244, 213, 119, .24);
+}
+
+.phase33-ai-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.phase33-ai-meta span {
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.045);
+}
+
+.phase33-ai-meta b {
+  color: #ffffff;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.phase33-escort-rows {
+  display: grid;
+  gap: 6px;
+}
+
+.phase33-escort-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(8, 18, 22, .7);
+  border: 1px solid rgba(141, 188, 198, .12);
+}
+
+.phase33-escort-row span {
+  color: #dbe8e4;
+  font-weight: 700;
+}
+
+.phase33-escort-row b {
+  color: #9be7c5;
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.phase33-escort-row strong {
+  color: #f6dda0;
+}
+
+.phase33-escort-row.destroyed {
+  opacity: .48;
+  filter: grayscale(.6);
+}
+
+@keyframes phase33ThreatPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 14px rgba(255, 110, 92, .28); }
+  50% { transform: scale(1.04); box-shadow: 0 0 30px rgba(255, 110, 92, .48); }
+}
+
+@media (max-width: 760px) {
+  .phase33-ai-tactics-panel {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .phase33-ai-tactics-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .phase33-ai-tactics-header b {
+    min-width: 0;
+    width: 100%;
+  }
+  .phase33-ai-grid {
+    grid-template-columns: 1fr;
+  }
+  .phase33-ai-meta {
+    grid-template-columns: 1fr;
+  }
+  .phase33-escort-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .phase33-ai-tactics-panel {
+    margin-inline: -2px;
+  }
+  .phase33-ai-grid > div,
+  .phase33-escort-row {
+    padding: 9px;
+  }
+}

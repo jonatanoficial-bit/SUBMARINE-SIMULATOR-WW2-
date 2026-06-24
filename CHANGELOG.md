@@ -1,3 +1,10 @@
+# v2.0.0-alpha.48 — Fase 33 — IA Naval Melhorada
+
+- Adicionada IA naval tática com zig-zag defensivo, tela de escoltas, busca em quadrado expansivo e pinça ASW.
+- Comboios reagem melhor a detecção, torpedo e perdas de navios.
+- Estação de ameaça ganhou painel mobile-first de leitura da doutrina inimiga.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 
 ## v2.0.0-alpha.46 — Fase 31 — Contatos Visuais no Horizonte
 

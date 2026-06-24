@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.47",
-  "semver": "2.0.0-alpha.47",
-  "buildId": "SCWW2-20260624-2030-BRT-F32-TORPEDO-ATTACK-DIRECTOR",
+  "version": "v2.0.0-alpha.48",
+  "semver": "2.0.0-alpha.48",
+  "buildId": "SCWW2-20260624-2055-BRT-F33-NAVAL-AI-TACTICS",
   "date": "2026-06-24",
-  "time": "20:30",
+  "time": "20:55",
   "timezone": "America/Sao_Paulo",
-  "phase": "32",
-  "phaseName": "Silent Depth Torpedo Attack Director",
+  "phase": "33",
+  "phaseName": "Silent Depth Advanced Naval AI",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 26,
-  "notes": "Phase 32 rebuilds the torpedo attack flow with a mobile-first attack director, visual attack triangle, acquisition ladder, gyro track, salvo discipline, impact timing and shot feedback while preserving all Silent Depth phases 24 to 31."
+  "saveSchemaVersion": 27,
+  "notes": "Phase 33 upgrades enemy naval AI with defensive convoy zig-zag, escort screen doctrines, expanding-square search, pincer ASW hunting, torpedo wake reaction and a mobile-first tactical AI readout while preserving all Silent Depth phases 24 to 32."
 }

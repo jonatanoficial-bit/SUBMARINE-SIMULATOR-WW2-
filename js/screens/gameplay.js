@@ -13,6 +13,7 @@ import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
 import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
 import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
+import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 
 let cleanupFns = [];
 
@@ -137,7 +138,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -517,6 +518,27 @@ export function renderGameplay(t, mission, settings = {}) {
               </div>
               <div class="convoy-doctrine-status"><span id="convoy-doctrine">${t('convoy.doctrine.formation')}</span><strong id="convoy-risk">0%</strong></div>
               <div id="convoy-recommendation" class="convoy-recommendation">${t('convoy.recommend.shadow')}</div>
+            </section>
+            <section class="phase33-ai-tactics-panel" id="phase33-ai-tactics-panel" aria-live="polite">
+              <div class="phase33-ai-tactics-header">
+                <div>
+                  <span>${t('navalAITactics.kicker')}</span>
+                  <strong id="phase33-ai-directive">${t('ai.tactics.directiveFormation')}</strong>
+                </div>
+                <b id="phase33-ai-threat">${t('navalAITactics.threat.clear')}</b>
+              </div>
+              <div class="phase33-ai-grid">
+                <div><span>${t('navalAITactics.convoyManeuver')}</span><strong id="phase33-convoy-maneuver">${t('navalAITactics.maneuver.steady')}</strong><i><em id="phase33-zigzag-bar" style="width:0%"></em></i></div>
+                <div><span>${t('navalAITactics.escortScreen')}</span><strong id="phase33-escort-screen">${t('navalAITactics.screen.loose')}</strong><i><em id="phase33-pincer-bar" style="width:0%"></em></i></div>
+                <div><span>${t('navalAITactics.searchPattern')}</span><strong id="phase33-search-pattern">${t('navalAITactics.search.none')}</strong><i><em id="phase33-confidence-bar" style="width:0%"></em></i></div>
+                <div><span>${t('navalAITactics.attackPressure')}</span><strong id="phase33-attack-pressure">0%</strong><i><em id="phase33-attack-bar" style="width:0%"></em></i></div>
+              </div>
+              <div class="phase33-ai-meta">
+                <span>${t('navalAITactics.reaction')}: <b id="phase33-reaction">${t('navalAITactics.reaction.routine')}</b></span>
+                <span>${t('navalAITactics.nextPattern')}: <b id="phase33-next-pattern">--</b></span>
+                <span>${t('navalAITactics.lastKnown')}: <b id="phase33-last-known">--</b></span>
+              </div>
+              <div class="phase33-escort-rows" id="phase33-escort-rows"></div>
             </section>
             <div id="ai-depth-charge-alert" class="ai-depth-charge-alert clear">${t('ai.noDepthCharges')}</div>
             <div id="ai-message" class="ai-message">${t('ai.formationHolding')}</div>
@@ -1033,6 +1055,21 @@ export function mountGameplay({
     aiAttackSolution: app.querySelector('#ai-attack-solution'),
     aiDepthChargeAlert: app.querySelector('#ai-depth-charge-alert'),
     aiMessage: app.querySelector('#ai-message'),
+    phase33AiPanel: app.querySelector('#phase33-ai-tactics-panel'),
+    phase33AiDirective: app.querySelector('#phase33-ai-directive'),
+    phase33AiThreat: app.querySelector('#phase33-ai-threat'),
+    phase33ConvoyManeuver: app.querySelector('#phase33-convoy-maneuver'),
+    phase33EscortScreen: app.querySelector('#phase33-escort-screen'),
+    phase33SearchPattern: app.querySelector('#phase33-search-pattern'),
+    phase33AttackPressure: app.querySelector('#phase33-attack-pressure'),
+    phase33Reaction: app.querySelector('#phase33-reaction'),
+    phase33NextPattern: app.querySelector('#phase33-next-pattern'),
+    phase33LastKnown: app.querySelector('#phase33-last-known'),
+    phase33ZigzagBar: app.querySelector('#phase33-zigzag-bar'),
+    phase33PincerBar: app.querySelector('#phase33-pincer-bar'),
+    phase33ConfidenceBar: app.querySelector('#phase33-confidence-bar'),
+    phase33AttackBar: app.querySelector('#phase33-attack-bar'),
+    phase33EscortRows: app.querySelector('#phase33-escort-rows'),
     convoyDoctrinePanel: app.querySelector('#convoy-doctrine-panel'),
     convoyIntegrity: app.querySelector('#convoy-integrity'),
     convoyIntegrityBar: app.querySelector('#convoy-integrity-bar'),
@@ -2255,6 +2292,37 @@ export function mountGameplay({
       els.aiDepthChargeAlert.className = `ai-depth-charge-alert ${nextPattern ? 'critical' : threat}`;
     }
     if (els.aiMessage) els.aiMessage.textContent = t(ai.lastMessageKey || 'ai.formationHolding');
+    const phase33 = buildNavalAITacticalView({ snapshot });
+    if (els.phase33AiPanel) {
+      els.phase33AiPanel.dataset.threat = phase33.threat.band;
+      els.phase33AiPanel.dataset.reaction = phase33.tactics.reactionState;
+      Object.entries(phase33.cssVars || {}).forEach(([key, value]) => els.phase33AiPanel.style.setProperty(key, value));
+      if (els.phase33AiDirective) els.phase33AiDirective.textContent = t(phase33.tactics.directiveKey);
+      if (els.phase33AiThreat) els.phase33AiThreat.textContent = t(phase33.threat.labelKey);
+      if (els.phase33ConvoyManeuver) els.phase33ConvoyManeuver.textContent = t(phase33.keys.convoyManeuver);
+      if (els.phase33EscortScreen) els.phase33EscortScreen.textContent = t(phase33.keys.escortScreen);
+      if (els.phase33SearchPattern) els.phase33SearchPattern.textContent = t(phase33.keys.searchPattern);
+      if (els.phase33AttackPressure) els.phase33AttackPressure.textContent = phase33.labels.attack;
+      if (els.phase33Reaction) els.phase33Reaction.textContent = t(phase33.keys.reactionState);
+      if (els.phase33NextPattern) els.phase33NextPattern.textContent = phase33.labels.nextPattern;
+      if (els.phase33LastKnown) els.phase33LastKnown.textContent = phase33.predictedSubmarine.ageLabel;
+      const barPairs = [
+        [els.phase33ZigzagBar, phase33.bars.zigzag],
+        [els.phase33PincerBar, phase33.bars.pincer],
+        [els.phase33ConfidenceBar, phase33.bars.confidence],
+        [els.phase33AttackBar, phase33.bars.attack],
+      ];
+      barPairs.forEach(([bar, value]) => { if (bar) bar.style.width = `${value}%`; });
+      if (els.phase33EscortRows) {
+        els.phase33EscortRows.innerHTML = phase33.escortRows.map((row) => `
+          <div class="phase33-escort-row${row.destroyed ? ' destroyed' : ''}">
+            <span>${row.label}</span>
+            <b>${t(row.roleKey)}</b>
+            <strong>${row.rangeLabel}</strong>
+          </div>
+        `).join('');
+      }
+    }
     const convoy = analyzeConvoyDoctrine({
       navalAI: ai,
       environment: snapshot.environment || {},

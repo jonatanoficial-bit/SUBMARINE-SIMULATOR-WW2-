@@ -3,6 +3,7 @@ import { clamp } from '../simulation/simulationMath.js';
 
 const ROMAN_DIFFICULTY = Object.freeze({ I: 1, II: 2, III: 3, IV: 4, V: 5 });
 const AI_STATES = Object.freeze(['formation', 'alert', 'search', 'hunt', 'regroup']);
+const PHASE33_TACTICAL_VERSION = 1;
 const SYSTEMS = Object.freeze(['engines', 'sonar', 'periscope', 'weapons']);
 
 function deterministicRoll(seed = '') {
@@ -88,11 +89,24 @@ export class NavalAISystem {
         detectionConfidence: 0,
         passes: 0,
       },
+      tactics: {
+        tacticalVersion: PHASE33_TACTICAL_VERSION,
+        convoyManeuver: 'steady',
+        zigzagIntensity: 0,
+        escortScreen: 'loose',
+        searchPattern: 'none',
+        reactionState: 'routine',
+        pincerPressure: 0,
+        predictedSubmarine: { x: 0, y: 0, ageMs: 0 },
+        lastDirectiveKey: 'ai.tactics.directiveFormation',
+      },
       metrics: {
         patternsDropped: 0,
         aircraftAttacks: 0,
         nearMisses: 0,
         coordinatedSearches: 0,
+        torpedoEvasionTurns: 0,
+        escortPincerRuns: 0,
       },
     };
     this.damageEvents = [];
@@ -219,6 +233,8 @@ export class NavalAISystem {
     this.state.attackSolution = Math.max(this.state.attackSolution, 22);
     this.setGlobalState('hunt', { force: true });
     this.state.evasivePhase += 1.4;
+    this.state.metrics.torpedoEvasionTurns += 1;
+    this.updateTacticalDoctrine({ detectionScore: this.state.contactConfidence, torpedoActive: true });
     this.state.lastMessageKey = 'ai.torpedoWakeDetected';
     this.threatEvents.push({ type: 'torpedoWake', key: 'ai.torpedoWakeDetected', count: shots.length });
   }
@@ -240,18 +256,81 @@ export class NavalAISystem {
     if (this.primaryEscort.destroyed) this.primaryEscort.active = false;
   }
 
+  updateTacticalDoctrine(context = {}) {
+    const detection = clamp(Number(context.detectionScore) || 0, 0, 100);
+    const torpedoWake = Boolean(context.torpedoActive) || this.state.hostileActionAgeMs < 18000;
+    const aircraftPressure = this.state.aircraft?.active ? (this.state.aircraft.state === 'attack' ? 28 : 14) : 0;
+    const missingMerchants = this.profile.merchantCount - this.activeMerchants().length;
+    const missingEscorts = this.profile.escortCount - this.activeEscorts().length;
+    const state = this.state.globalState;
+    const baseZigzag = state === 'formation' ? 12 : state === 'regroup' ? 28 : state === 'alert' ? 48 : state === 'search' ? 56 : 72;
+    const zigzagIntensity = clamp(baseZigzag + detection * 0.22 + (torpedoWake ? 26 : 0) + missingMerchants * 8 - missingEscorts * 5, 0, 100);
+    const escortScreen = state === 'hunt'
+      ? 'pincer'
+      : state === 'search'
+        ? 'barrier'
+        : state === 'alert'
+          ? 'screening'
+          : state === 'regroup' ? 'close' : 'loose';
+    const searchPattern = state === 'hunt'
+      ? 'closing-pincer'
+      : state === 'search'
+        ? 'expanding-square'
+        : state === 'alert'
+          ? 'bearing-sweep'
+          : 'none';
+    const reactionState = torpedoWake
+      ? 'torpedo-evasion'
+      : aircraftPressure >= 28
+        ? 'air-pressure'
+        : detection >= 58
+          ? 'asw-hunt'
+          : detection >= 28 ? 'investigating' : 'routine';
+    const confidence = clamp(this.state.contactConfidence, 0, 100);
+    const pincerPressure = clamp((state === 'hunt' ? 36 : 0) + confidence * 0.52 + aircraftPressure + (torpedoWake ? 18 : 0), 0, 100);
+    this.state.tactics = {
+      tacticalVersion: PHASE33_TACTICAL_VERSION,
+      convoyManeuver: zigzagIntensity >= 70 ? 'violent-zigzag' : zigzagIntensity >= 45 ? 'defensive-zigzag' : zigzagIntensity >= 22 ? 'course-weave' : 'steady',
+      zigzagIntensity,
+      escortScreen,
+      searchPattern,
+      reactionState,
+      pincerPressure,
+      predictedSubmarine: {
+        x: this.state.lastKnown.x,
+        y: this.state.lastKnown.y,
+        ageMs: this.state.lastKnown.ageMs,
+      },
+      lastDirectiveKey: reactionState === 'torpedo-evasion'
+        ? 'ai.tactics.directiveTorpedoEvasion'
+        : reactionState === 'air-pressure'
+          ? 'ai.tactics.directiveAirPressure'
+          : state === 'hunt'
+            ? 'ai.tactics.directivePincer'
+            : state === 'search'
+              ? 'ai.tactics.directiveSearch'
+              : state === 'alert'
+                ? 'ai.tactics.directiveInvestigate'
+                : 'ai.tactics.directiveFormation',
+    };
+    return this.state.tactics;
+  }
+
   updateFormation(deltaMs, context) {
     const compression = clamp(Number(context.timeCompression) || 1, 1, 16);
     const tacticalScale = deltaMs * compression / 1000;
-    const evasion = this.state.globalState === 'formation' ? 0 : Math.sin(this.state.evasivePhase) * 0.42;
-    this.state.evasivePhase += tacticalScale * (this.state.globalState === 'hunt' ? 0.9 : 0.25);
+    const tactics = this.state.tactics || {};
+    const zigzagStrength = clamp(Number(tactics.zigzagIntensity || 0) / 100, 0, 1);
+    const evasion = Math.sin(this.state.evasivePhase) * (this.state.globalState === 'formation' ? 0.12 : 0.42 + zigzagStrength * 0.46);
+    this.state.evasivePhase += tacticalScale * (0.25 + zigzagStrength * 0.85 + (this.state.globalState === 'hunt' ? 0.45 : 0));
     this.state.formationAnchor.x -= (0.7 + this.profile.difficulty * 0.06) * tacticalScale;
-    this.state.formationAnchor.y += evasion * tacticalScale * 5;
+    this.state.formationAnchor.y += evasion * tacticalScale * (5 + zigzagStrength * 11);
     const merchants = this.merchantShips();
     merchants.forEach((ship, index) => {
       if (ship.destroyed) return;
       const slot = ship.metadata.formationSlot || formationSlot(index);
-      const zigzag = this.state.globalState === 'formation' ? 0 : Math.sin(this.state.evasivePhase + index * 0.8) * (14 + this.profile.difficulty * 3);
+      const maneuverPhase = this.state.evasivePhase + index * 0.8 + (tactics.convoyManeuver === 'violent-zigzag' ? index * 0.35 : 0);
+      const zigzag = Math.sin(maneuverPhase) * (6 + zigzagStrength * (28 + this.profile.difficulty * 5));
       const desiredX = this.state.formationAnchor.x + slot.x;
       const desiredY = this.state.formationAnchor.y + slot.y + zigzag;
       const catchup = this.state.globalState === 'regroup' ? 0.12 : 0.075;
@@ -264,6 +343,8 @@ export class NavalAISystem {
   updateEscorts(deltaMs, context) {
     const active = this.activeEscorts();
     const anchor = this.state.formationAnchor;
+    const tactics = this.state.tactics || {};
+    const pincer = clamp(Number(tactics.pincerPressure || 0) / 100, 0, 1);
     active.forEach((ship, index) => {
       let desiredX = anchor.x;
       let desiredY = anchor.y;
@@ -281,17 +362,20 @@ export class NavalAISystem {
         ship.setState('alert');
       } else if (this.state.globalState === 'search') {
         const legAngle = ((this.state.searchLeg + index * 2) % 8) * Math.PI / 4;
-        desiredX = this.state.lastKnown.x + Math.cos(legAngle) * (this.state.searchRadius + index * 28);
-        desiredY = this.state.lastKnown.y + Math.sin(legAngle) * (this.state.searchRadius + index * 28);
+        const barrier = tactics.searchPattern === 'expanding-square' ? 1.18 : 1;
+        desiredX = this.state.lastKnown.x + Math.cos(legAngle) * (this.state.searchRadius * barrier + index * 34);
+        desiredY = this.state.lastKnown.y + Math.sin(legAngle) * (this.state.searchRadius * barrier + index * 34);
         ship.setState('search');
       } else {
-        const offset = (index - (active.length - 1) / 2) * 58;
-        desiredX = offset;
-        desiredY = index % 2 ? 34 : -26;
+        const side = index % 2 === 0 ? -1 : 1;
+        const offset = (index - (active.length - 1) / 2) * (54 + pincer * 36);
+        const closing = 1 - pincer * 0.48;
+        desiredX = this.state.lastKnown.x * 0.25 + offset;
+        desiredY = (index % 2 ? 34 : -26) * closing + side * Math.sin(this.state.evasivePhase + index) * 18;
         ship.setState('hunt');
       }
-      const aggression = this.profile.escortAggression;
-      const factor = clamp((deltaMs / 1000) * 0.06 * aggression, 0.002, 0.06);
+      const aggression = this.profile.escortAggression + pincer * 0.32;
+      const factor = clamp((deltaMs / 1000) * 0.06 * aggression, 0.002, 0.075);
       ship.position.x += (desiredX - ship.position.x) * factor;
       ship.position.y += (desiredY - ship.position.y) * factor;
     });
@@ -463,6 +547,7 @@ export class NavalAISystem {
     } else if (this.state.globalState === 'regroup' && this.state.stateAgeMs > 12000) {
       this.setGlobalState('formation', { force: true });
     }
+    this.updateTacticalDoctrine(context);
   }
 
   update(deltaMs = 80, context = {}) {
@@ -487,6 +572,7 @@ export class NavalAISystem {
     if (this.state.globalState === 'hunt' && this.state.stateAgeMs >= 27000 && nearest < 135 && this.state.contactConfidence >= 48 && this.state.attackSolution >= 72 && this.state.attackCooldownMs <= 0) {
       const attacker = this.chooseAttackEscort();
       if (attacker && this.launchDepthChargePattern(attacker, context, false)) {
+        this.state.metrics.escortPincerRuns += 1;
         this.state.attackCooldownMs = Math.max(26000, 34000 - this.profile.difficulty * 1100);
       }
     }
@@ -529,6 +615,8 @@ export class NavalAISystem {
       ? state.depthChargePatterns.slice(-8).map((pattern) => ({ ...pattern, remainingMs: Math.max(0, Number(pattern.remainingMs) || 0), resolved: Boolean(pattern.resolved) }))
       : [];
     this.state.aircraft = { ...this.state.aircraft, ...(state.aircraft || {}) };
+    this.state.tactics = { ...this.state.tactics, ...(state.tactics || {}) };
+    this.state.tactics.tacticalVersion = PHASE33_TACTICAL_VERSION;
     this.state.metrics = { ...this.state.metrics, ...(state.metrics || {}) };
     this.patternCounter = Math.max(this.patternCounter, ...this.state.depthChargePatterns.map((pattern) => Number(String(pattern.id || '').split('-').pop()) || 0), 0);
     this.syncPrimaryState();
@@ -579,6 +667,7 @@ export class NavalAISystem {
         lastMessageKey: this.state.lastMessageKey,
         depthChargePatterns: this.state.depthChargePatterns.map((pattern) => ({ ...pattern })),
         aircraft: { ...this.state.aircraft },
+        tactics: { ...this.state.tactics },
         metrics: { ...this.state.metrics },
       },
       globalState: this.state.globalState,
@@ -593,6 +682,8 @@ export class NavalAISystem {
       nearestEscortRange: Number.isFinite(nearest) ? nearest : null,
       depthChargePatterns: this.state.depthChargePatterns.map((pattern) => ({ ...pattern })),
       aircraft: { ...this.state.aircraft },
+      tactics: { ...this.state.tactics },
+      tacticalVersion: PHASE33_TACTICAL_VERSION,
       threatLevel,
       lastMessageKey: this.state.lastMessageKey,
       metrics: { ...this.state.metrics },
