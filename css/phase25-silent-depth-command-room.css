@@ -1,0 +1,262 @@
+/* Phase 25 — Operation Silent Depth: immersive submarine command room */
+.phase25-command-room {
+  --phase25-red-opacity: .16;
+  --phase25-condensation-opacity: .18;
+  --phase25-vibration: .12;
+  --phase25-lamp-phase: .2;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(190, 164, 92, .22);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(216, 174, 83, .18), transparent 24%),
+    radial-gradient(circle at 82% 3%, rgba(117, 172, 187, .13), transparent 26%),
+    linear-gradient(180deg, rgba(5, 8, 11, .96), rgba(2, 5, 8, .98)),
+    url('../assets/backgrounds/submarine_control_room.png') center/cover no-repeat !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.035),
+    inset 0 -90px 140px rgba(0,0,0,.72),
+    0 32px 80px rgba(0,0,0,.38);
+}
+.phase25-command-room::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: calc(.28 + var(--phase25-red-opacity) * .32);
+  background:
+    linear-gradient(90deg, transparent 0 7%, rgba(255,255,255,.035) 7.5% 8.2%, transparent 8.6% 20%, rgba(255,255,255,.028) 20.4% 21%, transparent 21.4% 80%, rgba(255,255,255,.028) 80.4% 81.1%, transparent 81.5%),
+    radial-gradient(circle at 50% 10%, rgba(255,80,48,var(--phase25-red-opacity)), transparent 44%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 10px);
+  mix-blend-mode: screen;
+}
+.phase25-command-room::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--phase25-condensation-opacity);
+  background:
+    radial-gradient(ellipse at 20% 78%, rgba(210,240,255,.13), transparent 22%),
+    radial-gradient(ellipse at 75% 30%, rgba(180,225,255,.11), transparent 30%),
+    repeating-linear-gradient(96deg, rgba(255,255,255,.035) 0 1px, transparent 1px 16px);
+  filter: blur(.1px);
+}
+.phase25-command-room > * { position: relative; z-index: 2; }
+.phase25-cabin-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.phase25-cabin-rib,
+.phase25-cabin-rib::before,
+.phase25-cabin-rib::after {
+  position: absolute;
+  top: -16%;
+  bottom: -16%;
+  width: 22px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(8,10,11,.92), rgba(86,78,59,.38), rgba(4,6,8,.98));
+  box-shadow: inset 4px 0 8px rgba(255,255,255,.035), 0 0 26px rgba(0,0,0,.6);
+}
+.phase25-cabin-rib { left: 4%; transform: rotate(-7deg); }
+.phase25-cabin-rib::before { content: ''; left: 44vw; transform: rotate(8deg); }
+.phase25-cabin-rib::after { content: ''; left: 88vw; transform: rotate(9deg); }
+.phase25-cabin-pipe {
+  position: absolute;
+  left: -4%; right: -4%; height: 18px;
+  top: 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(118,91,44,.78), rgba(32,28,23,.92));
+  box-shadow: 0 12px 22px rgba(0,0,0,.44), inset 0 2px 1px rgba(255,255,255,.07);
+}
+.phase25-cabin-valve {
+  position: absolute;
+  right: 18px;
+  top: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 6px solid rgba(165,133,72,.88);
+  box-shadow: inset 0 0 0 5px rgba(21,18,14,.9), 0 12px 26px rgba(0,0,0,.5);
+}
+.phase25-cabin-valve::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 58px; height: 7px;
+  border-radius: 999px;
+  background: rgba(165,133,72,.88);
+  transform: translate(-50%, -50%) rotate(26deg);
+}
+.phase25-cabin-bulkhead {
+  position: absolute;
+  inset: auto -10% 0 -10%;
+  height: 52px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 2px, transparent 2px 36px),
+    linear-gradient(180deg, rgba(31,34,34,.82), rgba(5,7,8,.94));
+  border-top: 1px solid rgba(232,193,92,.13);
+  box-shadow: 0 -20px 60px rgba(0,0,0,.55);
+}
+.phase25-command-room .bridge-canopy {
+  min-height: 176px;
+  border-radius: 24px 24px 16px 16px;
+  border: 1px solid rgba(213,180,106,.16);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245,199,108,.12), transparent 34%),
+    linear-gradient(180deg, rgba(7,10,13,.68), rgba(3,6,9,.94)),
+    url('../assets/backgrounds/submarine_control_room.png') center 18%/cover no-repeat !important;
+  box-shadow: inset 0 -52px 110px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.phase25-command-room .bridge-window-grid span {
+  border: 1px solid rgba(130,170,180,.18);
+  box-shadow: inset 0 0 34px rgba(0,0,0,.68), 0 12px 24px rgba(0,0,0,.32);
+}
+.phase25-crew-watch {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.phase25-watch-rail,
+.phase25-watch-mood {
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(220,187,107,.14);
+  background: linear-gradient(180deg, rgba(12,18,22,.70), rgba(4,7,10,.88));
+}
+.phase25-watch-rail {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  min-height: 72px;
+  overflow: hidden;
+}
+.phase25-crew-silhouette {
+  width: 36px;
+  height: 54px;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(180deg, rgba(65,76,78,.72), rgba(6,9,11,.92));
+  box-shadow: 0 10px 22px rgba(0,0,0,.38);
+  position: relative;
+  transform: translateY(calc(var(--phase25-vibration) * -3px));
+}
+.phase25-crew-silhouette::before {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  top: -12px; left: 7px;
+  background: linear-gradient(180deg, rgba(88,95,92,.92), rgba(25,25,22,.95));
+}
+.phase25-watch-mood { display: grid; gap: 6px; }
+.phase25-watch-mood span,
+.phase25-ambience-console span { color: rgba(225,238,240,.66); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
+.phase25-watch-mood strong { color: #f4e0a8; font-size: 14px; }
+.phase25-ambience-console {
+  margin: 14px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.phase25-ambience-console > div {
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(210,178,95,.13);
+  background: linear-gradient(180deg, rgba(9,15,20,.72), rgba(4,8,12,.90));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+.phase25-ambience-console strong { display:block; margin-top:5px; color:#eefbff; font-size:13px; }
+.phase25-command-room .bridge-primary-panel,
+.phase25-command-room .bridge-secondary-panel,
+.phase25-command-room .bridge-command-room-strip,
+.phase25-command-room .bridge-note-panel {
+  border-color: rgba(219,184,101,.16) !important;
+  background: linear-gradient(180deg, rgba(9,15,18,.84), rgba(2,6,9,.95)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 20px 44px rgba(0,0,0,.28);
+}
+.phase25-command-room .bridge-dial-face {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(68,93,82,.34), transparent 40%),
+    linear-gradient(180deg, rgba(34,27,18,.94), rgba(5,8,8,.98));
+  border-color: rgba(218,184,101,.56);
+}
+.phase25-command-room .bridge-dial .needle { filter: drop-shadow(0 0 8px rgba(255,109,84,.38)); }
+.phase25-station-card {
+  position: relative;
+  min-height: 104px;
+  border-color: rgba(196,172,97,.16) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(235,195,105,.10), transparent 42%),
+    linear-gradient(180deg, rgba(13,20,23,.86), rgba(3,7,10,.94)) !important;
+}
+.phase25-station-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.035);
+  pointer-events: none;
+}
+.phase25-station-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7fffb1;
+  box-shadow: 0 0 12px rgba(127,255,177,.65);
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+.phase25-station-card[data-severity="alert"] .phase25-station-led { background: #ffd26a; box-shadow: 0 0 14px rgba(255,210,106,.8); }
+.phase25-station-card[data-severity="critical"] .phase25-station-led { background: #ff705e; box-shadow: 0 0 18px rgba(255,112,94,.95); }
+.phase25-station-value {
+  height: 5px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.08);
+  margin-top: 7px;
+}
+.phase25-station-value i { display: block; height: 100%; width: var(--station-value, 50%); background: linear-gradient(90deg, rgba(98,217,255,.8), rgba(244,208,126,.9)); }
+.phase25-command-room[data-phase25-alert="emergency"] {
+  animation: phase25-cabin-vibration .42s linear infinite;
+}
+.phase25-command-room[data-phase25-alert="action-stations"] .bridge-red-light,
+.phase25-command-room[data-phase25-alert="emergency"] .bridge-red-light {
+  opacity: calc(.48 + var(--phase25-red-opacity));
+  box-shadow: 0 0 70px rgba(255,69,52,.48);
+}
+@keyframes phase25-cabin-vibration {
+  0%,100% { transform: translate3d(0,0,0); }
+  25% { transform: translate3d(calc(var(--phase25-vibration) * 1px), 0, 0); }
+  50% { transform: translate3d(0, calc(var(--phase25-vibration) * -1px), 0); }
+  75% { transform: translate3d(calc(var(--phase25-vibration) * -1px), 0, 0); }
+}
+.gameplay-screen.phase25-command-room-shell .gameplay-status-panel,
+.gameplay-screen.phase25-command-room-shell .action-panel[data-station-panel="command"] {
+  border-color: rgba(219,184,101,.18);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(208,163,72,.10), transparent 28%),
+    linear-gradient(180deg, rgba(8,14,18,.88), rgba(3,7,10,.96)),
+    url('../assets/backgrounds/submarine_control_room.png') center/cover no-repeat;
+}
+@media (max-width: 760px) {
+  .phase25-command-room { border-radius: 18px; }
+  .phase25-command-room .bridge-canopy { min-height: 132px; border-radius: 18px 18px 14px 14px; }
+  .phase25-cabin-valve { width: 34px; height: 34px; right: 12px; top: 8px; border-width: 4px; }
+  .phase25-crew-watch { grid-template-columns: 1fr; }
+  .phase25-watch-rail { min-height: 54px; justify-content: center; }
+  .phase25-crew-silhouette { width: 28px; height: 38px; }
+  .phase25-crew-silhouette::before { width: 17px; height: 17px; left: 5px; top: -9px; }
+  .phase25-ambience-console { grid-template-columns: 1fr; }
+  .phase25-station-card { min-height: 82px; }
+}
+@media (max-width: 420px), (max-height: 620px) {
+  .phase25-cabin-frame { opacity: .62; }
+  .phase25-watch-rail { display: none; }
+  .phase25-ambience-console > div:nth-child(2) { display: none; }
+  .phase25-command-room .bridge-status-line { font-size: 11px; }
+}

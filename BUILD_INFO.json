@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.39",
-  "semver": "2.0.0-alpha.39",
-  "buildId": "SCWW2-20260624-1055-BRT-F24-SILENT-DEPTH-PERISCOPE",
+  "version": "v2.0.0-alpha.40",
+  "semver": "2.0.0-alpha.40",
+  "buildId": "SCWW2-20260624-1135-BRT-F25-IMMERSIVE-COMMAND-ROOM",
   "date": "2026-06-24",
-  "time": "10:55",
+  "time": "11:35",
   "timezone": "America/Sao_Paulo",
-  "phase": "24",
-  "phaseName": "Silent Depth Mobile Periscope Rework",
+  "phase": "25",
+  "phaseName": "Silent Depth Immersive Command Room",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 18,
-  "notes": "Phase 24 starts Operation Silent Depth with a total mobile periscope rework: natural touch axes, clean ocean-first mobile view, improved optical horizon, safer HUD placement, responsive fullscreen behavior and a dedicated validation layer while preserving every previous campaign, crew, command and progression system."
+  "saveSchemaVersion": 19,
+  "notes": "Phase 25 deepens Operation Silent Depth with an immersive submarine command room: metal cabin frame, naval lighting states, watch crew silhouettes, upgraded station cards, visual threat board and mobile-safe cinematic cockpit treatment while preserving the Phase 24 mobile periscope rework and all campaign systems."
 }

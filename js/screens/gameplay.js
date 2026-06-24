@@ -122,7 +122,7 @@ function navigationGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>

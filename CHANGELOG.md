@@ -1,3 +1,11 @@
+## v2.0.0-alpha.40 — Fase 25 — Sala de Comando Imersiva / Operação Silent Depth
+
+- Rework visual da sala de comando do submarino com frame metálico, tubulação, válvula, anteparas, silhuetas de tripulação e iluminação naval dinâmica.
+- Novo módulo `commandRoomImmersion.js` para calcular alerta de cabine, iluminação, condensação, vibração, soundscape e estado das estações.
+- Ponte/bridge recebeu painéis cinematográficos, cartões de estação com LED de severidade e quadro visual de ameaça.
+- Gameplay recebeu classe de cabine imersiva para comandos principais sem remover sistemas anteriores.
+- Atualização de build, PWA/cache, traduções PT-BR/EN/ES, teste automatizado e auditoria específica.
+
 ## v2.0.0-alpha.39 — Fase 24 — Periscópio Mobile Imersivo / Operação Silent Depth
 
 - Iniciada a macrofase Operação Silent Depth.

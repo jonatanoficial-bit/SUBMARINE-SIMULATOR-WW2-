@@ -1,4 +1,5 @@
 import { renderBottomNav, renderStatBar } from '../components/ui.js';
+import { buildCommandRoomStations, commandRoomCssVars, computeCommandRoomAmbience, PHASE25_COMMAND_ROOM } from '../systems/commandRoomImmersion.js';
 
 let bridgeTimer = null;
 let bridgeMode = 'cruise';
@@ -89,9 +90,36 @@ function stationCardMarkup(t, { icon, labelKey, statusKey }) {
     </div>`;
 }
 
+function immersiveStationCardMarkup(t, station) {
+  return `
+    <div class="command-room-card phase25-station-card" data-phase25-station="${station.id}" data-severity="${station.severity}" style="--station-value:${Math.round(station.value)}%">
+      <span class="phase25-station-led" aria-hidden="true"></span>
+      <img src="${station.icon}" alt="" class="command-room-icon">
+      <div class="command-room-meta">
+        <span>${t(station.labelKey)}</span>
+        <strong>${t(station.statusKey)}</strong>
+        <div class="phase25-station-value" aria-hidden="true"><i></i></div>
+      </div>
+    </div>`;
+}
+
+function commandRoomFrameMarkup() {
+  return `
+    <div class="phase25-cabin-frame" aria-hidden="true">
+      <span class="phase25-cabin-pipe"></span>
+      <span class="phase25-cabin-rib"></span>
+      <span class="phase25-cabin-valve"></span>
+      <span class="phase25-cabin-bulkhead"></span>
+    </div>`;
+}
+
 export function renderBridge(t, save, nation, submarine, mission, readiness, strategicAssessment) {
   const telemetry = createBridgeTelemetry({ save, submarine, readiness, strategicAssessment, mission, mode: bridgeMode, tick: bridgeTick });
   const plan = save?.logistics?.activePlan;
+  const ambience = computeCommandRoomAmbience({ telemetry, readiness, strategicAssessment, mission, tick: bridgeTick });
+  const cssVars = commandRoomCssVars(ambience);
+  const cssVarStyle = Object.entries(cssVars).map(([key, value]) => `${key}:${value}`).join(';');
+  const stationDeck = buildCommandRoomStations({ telemetry, readiness, strategicAssessment });
   return `
     <section class="screen screen-shell phase14-bridge-screen">
       <div class="screen-header bridge-header">
@@ -102,7 +130,8 @@ export function renderBridge(t, save, nation, submarine, mission, readiness, str
         <span class="top-badge bridge-watch-badge">${t(nation.nameKey)} • ${submarine.name}</span>
       </div>
 
-      <div class="bridge-shell" data-bridge-root>
+      <div class="bridge-shell phase25-command-room" data-bridge-root data-phase25-alert="${ambience.alertLevel}" data-phase25-profile="${PHASE25_COMMAND_ROOM.visualProfile}" style="${cssVarStyle}">
+        ${commandRoomFrameMarkup()}
         <div class="bridge-canopy">
           <div class="bridge-red-light"></div>
           <div class="bridge-window-grid"><span></span><span></span><span></span></div>
@@ -110,6 +139,13 @@ export function renderBridge(t, save, nation, submarine, mission, readiness, str
             <strong data-readout="status">${t(telemetry.statusKey)}</strong>
             <span>${t('bridge.watchOfficer')}: ${save.commander.name}</span>
             <span>${t('bridge.activePlan')}: ${plan ? t(`logistics.plan.${plan.profileId}`) : t('bridge.noPlan')}</span>
+          </div>
+          <div class="phase25-crew-watch">
+            <div class="phase25-watch-rail" aria-hidden="true"><i class="phase25-crew-silhouette"></i><i class="phase25-crew-silhouette"></i><i class="phase25-crew-silhouette"></i><i class="phase25-crew-silhouette"></i></div>
+            <div class="phase25-watch-mood">
+              <span>${t('phase25.commandMood')}</span>
+              <strong data-readout="phase25OrderPrompt">${t(ambience.orderPromptKey)}</strong>
+            </div>
           </div>
         </div>
 
@@ -159,11 +195,12 @@ export function renderBridge(t, save, nation, submarine, mission, readiness, str
         <div class="bridge-command-room-strip">
           <div class="bridge-panel-title">${t('bridge.commandRoom')}</div>
           <div class="command-room-grid">
-            ${stationCardMarkup(t, { icon: 'assets/ui/instruments/helm_icon.png', labelKey: 'stabilization.stationCommand', statusKey: 'bridge.station.manned' })}
-            ${stationCardMarkup(t, { icon: 'assets/ui/instruments/sonar_icon.png', labelKey: 'stabilization.stationSensors', statusKey: 'bridge.station.monitoring' })}
-            ${stationCardMarkup(t, { icon: 'assets/ui/instruments/periscope_icon.png', labelKey: 'bridge.station.periscope', statusKey: 'bridge.station.standby' })}
-            ${stationCardMarkup(t, { icon: 'assets/ui/instruments/torpedo_icon.png', labelKey: 'stabilization.stationWeapons', statusKey: 'bridge.station.armed' })}
-            ${stationCardMarkup(t, { icon: 'assets/ui/instruments/speed_telegraph_icon.png', labelKey: 'bridge.station.engines', statusKey: 'bridge.station.nominal' })}
+            ${stationDeck.map((station) => immersiveStationCardMarkup(t, station)).join('')}
+          </div>
+          <div class="phase25-ambience-console" aria-label="${t('phase25.title')}">
+            <div><span>${t('phase25.watchLighting')}</span><strong data-readout="phase25Lighting">${t(`phase25.light.${ambience.lightMode}`)}</strong></div>
+            <div><span>${t('phase25.soundscape')}</span><strong data-readout="phase25Soundscape">${t(`phase25.sound.${ambience.soundscape}`)}</strong></div>
+            <div><span>${t('phase25.threatBoard')}</span><strong><span data-readout="phase25Threat">${ambience.threatScore}</span>%</strong></div>
           </div>
         </div>
 
@@ -217,7 +254,14 @@ export function mountBridge({ app, t, save, nation, submarine, mission, readines
   const update = () => {
     bridgeTick += 1;
     const telemetry = createBridgeTelemetry({ save, submarine, readiness, strategicAssessment, mission, mode: bridgeMode, tick: bridgeTick });
+    const ambience = computeCommandRoomAmbience({ telemetry, readiness, strategicAssessment, mission, tick: bridgeTick });
     root.dataset.bridgeStatus = telemetry.statusKey.includes('critical') ? 'critical' : telemetry.statusKey.includes('alert') ? 'alert' : 'normal';
+    root.dataset.phase25Alert = ambience.alertLevel;
+    Object.entries(commandRoomCssVars(ambience)).forEach(([key, value]) => root.style.setProperty(key, value));
+    writeText(root, 'phase25OrderPrompt', t(ambience.orderPromptKey));
+    writeText(root, 'phase25Lighting', t(`phase25.light.${ambience.lightMode}`));
+    writeText(root, 'phase25Soundscape', t(`phase25.sound.${ambience.soundscape}`));
+    writeText(root, 'phase25Threat', ambience.threatScore);
     writeText(root, 'status', t(telemetry.statusKey));
     writeText(root, 'depth', telemetry.depth);
     writeText(root, 'speed', telemetry.speed);

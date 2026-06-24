@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2",
-  "short_name": "SC WW2",
+  "name": "Submarine Commander WW2 — Silent Depth F25",
+  "short_name": "SCWW2 F25",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — v2.0.0-alpha.39 F24 Periscópio Mobile Imersivo by Vale Games",
+  "description": "Fase 25: Sala de Comando Imersiva da Operação Silent Depth, com cockpit naval premium para mobile e PC.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.39",
+  "version": "2.0.0-alpha.40",
   "id": "./"
 }
