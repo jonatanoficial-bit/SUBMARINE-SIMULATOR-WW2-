@@ -1,3 +1,10 @@
+# v2.0.0-alpha.50 — Fase 35 — Profundidade, Camadas e Furtividade Realista
+
+- Adicionado modelo de furtividade por profundidade, camada térmica, cavitação e pressão.
+- Painel mobile-first de furtividade na estação de instrumentos.
+- Recomendações de profundidade silenciosa e alerta de assinatura acústica.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.49 — Fase 34 — Danos Visuais e Estados do Submarino
 
 - Adicionado sistema visual de dano do submarino com casco em corte, compartimentos, fumaça, alagamento, faíscas e iluminação de emergência.

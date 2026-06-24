@@ -10,9 +10,9 @@ const build = readJson('BUILD_INFO.json');
 const translations = ['pt-BR','en','es'].map((lang)=>readJson(`data/translations/${lang}.json`));
 
 test('phase 18 metadata is active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.49');
-  assert.equal(build.phase, '34');
-  assert.equal(build.saveSchemaVersion, 28);
+  assert.equal(build.semver, '2.0.0-alpha.50');
+  assert.equal(build.phase, '35');
+  assert.equal(build.saveSchemaVersion, 29);
 });
 
 test('periscope optics solution rewards correct periscope depth and good visibility', () => {

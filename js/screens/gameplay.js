@@ -15,6 +15,7 @@ import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
+import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
 
 let cleanupFns = [];
 
@@ -139,7 +140,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -361,6 +362,30 @@ export function renderGameplay(t, mission, settings = {}) {
             </div>
             <button class="button warn block" id="emergency-blow-btn">${t('physics.emergencyBlow')}</button>
           </div>
+          <section class="phase35-depth-stealth-panel" id="phase35-depth-stealth" data-level="quiet" aria-live="polite">
+            <div class="phase35-depth-stealth-header">
+              <div><span>${t('depthStealth.kicker')}</span><strong id="phase35-depth-level">${t('depthStealth.level.quiet')}</strong></div>
+              <b id="phase35-stealth-score">100%</b>
+            </div>
+            <div class="phase35-depth-map">
+              <i class="phase35-depth-scale"></i>
+              <i class="phase35-thermal-layer" id="phase35-thermal-layer-line"></i>
+              <i class="phase35-sub-depth" id="phase35-sub-depth-line"></i>
+              <span class="phase35-layer-label" id="phase35-layer-label">--</span>
+              <span class="phase35-depth-label" id="phase35-depth-label">--</span>
+            </div>
+            <div class="phase35-stealth-grid">
+              <div><span>${t('depthStealth.layerState')}</span><strong id="phase35-layer-state">${t('depthStealth.layer.above')}</strong><i><em id="phase35-layer-shield-bar" style="width:0%"></em></i></div>
+              <div><span>${t('depthStealth.acousticLeak')}</span><strong id="phase35-acoustic-leak">0%</strong><i><em id="phase35-acoustic-leak-bar" style="width:0%"></em></i></div>
+              <div><span>${t('depthStealth.cavitation')}</span><strong id="phase35-cavitation-state">${t('depthStealth.cavitation.quiet')}</strong><i><em id="phase35-cavitation-bar" style="width:0%"></em></i></div>
+              <div><span>${t('depthStealth.pressureRisk')}</span><strong id="phase35-pressure-risk">0%</strong><i><em id="phase35-pressure-risk-bar" style="width:0%"></em></i></div>
+            </div>
+            <div class="phase35-stealth-advice">
+              <span>${t('depthStealth.recommendedDepth')}</span>
+              <strong id="phase35-recommended-depth">--</strong>
+              <p id="phase35-stealth-advice">${t('depthStealth.adviceSilent')}</p>
+            </div>
+          </section>
           <div id="physics-interlock" class="physics-interlock">${t('physics.interlockReady')}</div>
         </div>
       </div>
@@ -1162,6 +1187,23 @@ export function mountGameplay({
     physicsNoiseBar: app.querySelector('#physics-noise-bar'),
     physicsCavitationBar: app.querySelector('#physics-cavitation-bar'),
     physicsInterlock: app.querySelector('#physics-interlock'),
+    phase35DepthStealth: app.querySelector('#phase35-depth-stealth'),
+    phase35DepthLevel: app.querySelector('#phase35-depth-level'),
+    phase35StealthScore: app.querySelector('#phase35-stealth-score'),
+    phase35ThermalLayerLine: app.querySelector('#phase35-thermal-layer-line'),
+    phase35SubDepthLine: app.querySelector('#phase35-sub-depth-line'),
+    phase35LayerLabel: app.querySelector('#phase35-layer-label'),
+    phase35DepthLabel: app.querySelector('#phase35-depth-label'),
+    phase35LayerState: app.querySelector('#phase35-layer-state'),
+    phase35AcousticLeak: app.querySelector('#phase35-acoustic-leak'),
+    phase35CavitationState: app.querySelector('#phase35-cavitation-state'),
+    phase35PressureRisk: app.querySelector('#phase35-pressure-risk'),
+    phase35LayerShieldBar: app.querySelector('#phase35-layer-shield-bar'),
+    phase35AcousticLeakBar: app.querySelector('#phase35-acoustic-leak-bar'),
+    phase35CavitationBar: app.querySelector('#phase35-cavitation-bar'),
+    phase35PressureRiskBar: app.querySelector('#phase35-pressure-risk-bar'),
+    phase35RecommendedDepth: app.querySelector('#phase35-recommended-depth'),
+    phase35StealthAdvice: app.querySelector('#phase35-stealth-advice'),
     trimLevel: app.querySelector('#trim-level'),
     emergencyBlow: app.querySelector('#emergency-blow-btn'),
     radarScan: app.querySelector('#radar-scan'),
@@ -1415,6 +1457,7 @@ export function mountGameplay({
   let alertAtmosphereCurrent = null;
   let airAttackCurrent = null;
   let damageVisualCurrent = null;
+  let depthStealthCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -1584,9 +1627,42 @@ export function mountGameplay({
     if (els.speedCommandDigital) els.speedCommandDigital.textContent = t(`speed.${snapshot.speed}`).toUpperCase();
   }
 
+  function updateDepthStealth(snapshot) {
+    const view = buildDepthStealthView({ snapshot, mission: mission || {} });
+    if (!els.phase35DepthStealth) return view;
+    const previous = depthStealthCurrent;
+    depthStealthCurrent = view;
+    els.phase35DepthStealth.dataset.level = view.band;
+    els.phase35DepthStealth.dataset.layer = view.layerState;
+    Object.entries(view.cssVars || {}).forEach(([key, value]) => els.phase35DepthStealth.style.setProperty(key, value));
+    if (els.phase35DepthLevel) els.phase35DepthLevel.textContent = t(view.levelKey);
+    if (els.phase35StealthScore) els.phase35StealthScore.textContent = view.labels.stealth;
+    if (els.phase35ThermalLayerLine) els.phase35ThermalLayerLine.style.top = view.cssVars['--phase35-layer'];
+    if (els.phase35SubDepthLine) els.phase35SubDepthLine.style.top = view.cssVars['--phase35-depth'];
+    if (els.phase35LayerLabel) els.phase35LayerLabel.textContent = view.thermalLayerLabel;
+    if (els.phase35DepthLabel) els.phase35DepthLabel.textContent = view.depthLabel;
+    if (els.phase35LayerState) els.phase35LayerState.textContent = t(view.layerKey);
+    if (els.phase35AcousticLeak) els.phase35AcousticLeak.textContent = view.labels.acousticLeak;
+    if (els.phase35CavitationState) els.phase35CavitationState.textContent = t(view.cavitationKey);
+    if (els.phase35PressureRisk) els.phase35PressureRisk.textContent = view.labels.pressureRisk;
+    if (els.phase35LayerShieldBar) els.phase35LayerShieldBar.style.width = view.labels.layerShield;
+    if (els.phase35AcousticLeakBar) els.phase35AcousticLeakBar.style.width = view.labels.acousticLeak;
+    if (els.phase35CavitationBar) els.phase35CavitationBar.style.width = `${Math.round((snapshot.physics?.cavitation || 0))}%`;
+    if (els.phase35PressureRiskBar) els.phase35PressureRiskBar.style.width = view.labels.pressureRisk;
+    if (els.phase35RecommendedDepth) els.phase35RecommendedDepth.textContent = `${view.recommendedLabel} · ${view.targetDepthLabel}`;
+    if (els.phase35StealthAdvice) els.phase35StealthAdvice.textContent = t(view.adviceKey);
+    if (shouldDepthStealthEscalate({ previous, next: view })) {
+      els.phase35DepthStealth.classList.add('phase35-stealth-escalated');
+      schedule(() => els.phase35DepthStealth?.classList.remove('phase35-stealth-escalated'), 820);
+      if (['danger','critical'].includes(view.band)) playSfx('sonar');
+    }
+    return view;
+  }
+
   function updatePhysics(snapshot) {
     const physics = snapshot.physics;
     if (!physics) return;
+    updateDepthStealth(snapshot);
     if (els.physicsDepth) els.physicsDepth.textContent = `${Number(physics.depth).toFixed(1)} m`;
     if (els.physicsOrderedDepth) els.physicsOrderedDepth.textContent = `${Math.round(physics.orderedDepth)} m`;
     if (els.physicsVerticalSpeed) {

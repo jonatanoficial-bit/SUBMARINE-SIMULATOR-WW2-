@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.49",
-  "short_name": "SCWW2 2.0.0-alpha.49",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.50",
+  "short_name": "SCWW2 2.0.0-alpha.50",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 34 Danos Visuais e Estados do Submarino, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 35 Profundidade, Camadas e Furtividade Realista, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.49",
+  "version": "2.0.0-alpha.50",
   "id": "./"
 }
