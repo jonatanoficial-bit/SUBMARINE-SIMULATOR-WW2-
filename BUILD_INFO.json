@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.43",
-  "semver": "2.0.0-alpha.43",
-  "buildId": "SCWW2-20260624-1348-BRT-F28-AIR-ATTACK-EVASION",
+  "version": "v2.0.0-alpha.44",
+  "semver": "2.0.0-alpha.44",
+  "buildId": "SCWW2-20260624-1416-BRT-F29-TACTICAL-NAVAL-CHART",
   "date": "2026-06-24",
-  "time": "13:48",
+  "time": "14:16",
   "timezone": "America/Sao_Paulo",
-  "phase": "28",
-  "phaseName": "Silent Depth Air Attack and Evasion",
+  "phase": "29",
+  "phaseName": "Silent Depth Tactical Naval Chart and Waypoints",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 22,
-  "notes": "Phase 28 adds a cinematic air-attack and evasion layer: ASW aircraft threat classification, mobile quick decision panel, dive/silent/hold actions, aircraft countdown, danger rings, aircraft state telemetry and subofficer escalation while preserving the Silent Depth periscope, command room, subofficer and alert atmosphere systems."
+  "saveSchemaVersion": 23,
+  "notes": "Phase 29 replaces the arcade-feeling navigation view with a cinematic tactical naval chart: war-room chart paper, convoy lanes, danger zones, patrol-sector overlays, coordinate bounds, quadrant labels, player ring and mobile-first waypoint plotting while preserving phases 24 to 28."
 }

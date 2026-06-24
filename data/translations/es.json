@@ -2226,5 +2226,13 @@
   "weapons.tubeReloaded": "Un tubo completó la recarga.",
   "weapons.tubesReloading": "Todos los tubos compatibles están recargando.",
   "weapons.typeElectric": "Eléctrico — lento/discreto",
-  "weapons.typeSteam": "Vapor — rápido/con estela"
+  "weapons.typeSteam": "Vapor — rápido/con estela",
+  "navalChart.kicker": "CARTA NAVAL TÁCTICA",
+  "navalChart.title": "Carta Naval NA-29",
+  "navalChart.scale": "Escala operacional",
+  "navalChart.bounds": "Límites de carta",
+  "navalChart.status.plotting": "Trazando ruta",
+  "navalChart.status.controlled": "Sector controlado",
+  "navalChart.status.warning": "Zona peligrosa",
+  "navalChart.status.danger": "Contacto hostil"
 }

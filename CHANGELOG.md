@@ -478,3 +478,13 @@
 - Integração com oficiais veteranos, prontidão, recursos e estratégia.
 - Painel novo na tela Tripulação.
 - Save schema 17, cache PWA, traduções e auditoria atualizados.
+
+
+## v2.0.0-alpha.44 — Fase 29 — Mapa Tático Realista / Carta Naval de Waypoints
+
+- Adicionada carta naval tática estilo Silent Depth na estação de navegação.
+- Adicionadas rotas de comboio HX, SC e ON no mapa.
+- Adicionadas zonas de perigo dinâmicas para patrulha, escolta e ameaça aérea.
+- Adicionados quadrantes, grade hidrográfica, escala, limites e anel do submarino.
+- Preservados waypoints, rota, clique/toque no mapa e sistemas F24–F28.
+- Build atualizada para `v2.0.0-alpha.44`; save schema 23.

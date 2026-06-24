@@ -1,0 +1,145 @@
+/* Phase 29 — Tactical Naval Chart / Silent Depth */
+.phase29-tactical-chart-ready .navigation-map-wrap {
+  position: relative;
+  border-color: rgba(197, 169, 102, .42);
+  background: #0b1717;
+  box-shadow: inset 0 0 0 1px rgba(255, 226, 152, .08), inset 0 0 64px rgba(0,0,0,.62), 0 18px 48px rgba(0,0,0,.32);
+}
+.phase29-tactical-chart-ready .navigation-map {
+  min-height: 300px;
+  background: #101c1a;
+  border-bottom: 1px solid rgba(228, 198, 129, .18);
+}
+.phase29-tactical-chart-ready .navigation-ocean { fill: url(#phase29ChartPaper); }
+.phase29-chart-graticule line {
+  stroke: rgba(230, 211, 154, .18);
+  stroke-width: 1;
+  stroke-dasharray: 2 7;
+}
+.phase29-chart-graticule line.major {
+  stroke: rgba(230, 211, 154, .28);
+  stroke-width: 1.6;
+  stroke-dasharray: 7 9;
+}
+.phase29-chart-coast path {
+  fill: rgba(93, 76, 48, .34);
+  stroke: rgba(224, 184, 103, .32);
+  stroke-width: 1.8;
+}
+.phase29-chart-lane {
+  fill: none;
+  stroke: rgba(120, 211, 226, .46);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 18 12;
+}
+.phase29-chart-lane.high { stroke: rgba(255, 174, 85, .68); }
+.phase29-chart-lane.medium { stroke: rgba(245, 215, 107, .54); }
+.phase29-chart-lane.low { stroke: rgba(113, 220, 190, .45); }
+.phase29-chart-lane-label,
+.phase29-chart-quadrant-label,
+.phase29-chart-zone-label {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .12em;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+.phase29-chart-lane-label { fill: rgba(222, 241, 226, .82); font-size: 16px; font-weight: 900; }
+.phase29-chart-quadrant-label { fill: rgba(236, 211, 146, .42); font-size: 24px; font-weight: 900; }
+.phase29-chart-zone-label { fill: rgba(255, 225, 169, .88); font-size: 13px; font-weight: 900; }
+.phase29-chart-danger rect,
+.phase29-chart-danger circle {
+  fill: rgba(240, 158, 62, .10);
+  stroke: rgba(255, 202, 91, .78);
+  stroke-width: 2.4;
+  stroke-dasharray: 12 8;
+}
+.phase29-chart-danger .danger {
+  fill: rgba(207, 60, 47, .14);
+  stroke: rgba(255, 95, 79, .84);
+  animation: phase29DangerPulse 1.4s ease-in-out infinite;
+}
+.phase29-chart-danger .controlled {
+  fill: rgba(82, 222, 161, .10);
+  stroke: rgba(114, 241, 183, .72);
+}
+.phase29-chart-player-ring {
+  fill: rgba(58, 173, 197, .12);
+  stroke: rgba(178, 244, 255, .42);
+  stroke-width: 2;
+  stroke-dasharray: 7 10;
+}
+.phase29-chart-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  padding: 10px 12px 8px;
+  background: linear-gradient(90deg, rgba(35, 29, 16, .78), rgba(8, 25, 28, .72));
+  border-top: 1px solid rgba(222, 192, 126, .20);
+}
+.phase29-chart-strip small,
+.phase29-chart-strip span {
+  display: block;
+  color: rgba(223, 234, 216, .62);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+.phase29-chart-strip strong {
+  color: #ffe3a7;
+  font-size: .82rem;
+  line-height: 1.2;
+}
+.phase29-chart-strip b {
+  align-self: center;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 214, 128, .28);
+  border-radius: 999px;
+  background: rgba(0,0,0,.22);
+  color: #efffff;
+  font-size: .72rem;
+}
+.phase29-chart-strip[data-chart-status='danger'] b { color: #ffd1c8; border-color: rgba(255, 98, 77, .54); }
+.phase29-chart-strip[data-chart-status='warning'] b { color: #ffe4ac; border-color: rgba(255, 202, 91, .48); }
+.phase29-chart-strip[data-chart-status='controlled'] b { color: #bafbd4; border-color: rgba(103, 255, 181, .42); }
+.phase29-tactical-chart-ready .navigation-map-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(8, 17, 17, .88);
+  color: rgba(236, 227, 196, .70);
+}
+.phase29-tactical-chart-ready .navigation-route-line {
+  stroke: #fff3b0;
+  stroke-width: 4.6;
+  stroke-dasharray: 11 8;
+}
+.phase29-tactical-chart-ready .navigation-waypoint circle {
+  fill: #1c2016;
+  stroke: #ffe29a;
+}
+.phase29-tactical-chart-ready .navigation-waypoint.active circle {
+  fill: #74521c;
+  stroke: #ffffff;
+}
+.phase29-tactical-chart-ready .navigation-player circle { fill: rgba(22, 69, 68, .92); stroke: #e6fbff; }
+@keyframes phase29DangerPulse { 0%, 100% { opacity:.72; } 50% { opacity:1; filter: drop-shadow(0 0 12px rgba(255, 70, 46, .45)); } }
+@media (min-width: 960px) {
+  .phase29-tactical-chart-ready .navigation-layout { grid-template-columns: minmax(520px, 1.25fr) minmax(300px, .75fr); }
+}
+@media (max-width: 760px) {
+  .phase29-tactical-chart-ready .navigation-map { min-height: 330px; max-height: 72vh; aspect-ratio: 5 / 4; }
+  .phase29-chart-strip { grid-template-columns: 1fr; }
+  .phase29-chart-strip b { width: 100%; text-align: center; }
+  .phase29-tactical-chart-ready .navigation-map-note { font-size: .7rem; }
+  .phase29-chart-lane-label { font-size: 13px; }
+  .phase29-chart-quadrant-label { font-size: 18px; }
+}
+@media (max-width: 420px) {
+  .phase29-tactical-chart-ready .navigation-map { min-height: 300px; }
+  .phase29-chart-strip strong { font-size: .76rem; }
+}

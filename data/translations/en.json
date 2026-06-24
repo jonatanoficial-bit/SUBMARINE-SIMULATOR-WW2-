@@ -2226,5 +2226,13 @@
   "weapons.tubeReloaded": "A tube has completed reloading.",
   "weapons.tubesReloading": "All compatible tubes are reloading.",
   "weapons.typeElectric": "Electric — slow/stealthy",
-  "weapons.typeSteam": "Steam — fast/wake"
+  "weapons.typeSteam": "Steam — fast/wake",
+  "navalChart.kicker": "TACTICAL NAVAL CHART",
+  "navalChart.title": "Naval Chart NA-29",
+  "navalChart.scale": "Operational scale",
+  "navalChart.bounds": "Chart bounds",
+  "navalChart.status.plotting": "Plotting route",
+  "navalChart.status.controlled": "Sector controlled",
+  "navalChart.status.warning": "Danger area",
+  "navalChart.status.danger": "Hostile contact"
 }

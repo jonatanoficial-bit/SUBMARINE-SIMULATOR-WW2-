@@ -9,6 +9,7 @@ import { computeSilentDepthOceanTransform, normalizePeriscopeDragDelta } from '.
 import { buildSubOfficerDialogue, renderSubOfficerLine, shouldSubOfficerInterrupt } from '../systems/subOfficerCopilot.js';
 import { buildAlertAtmosphereView, shouldAlertEscalate } from '../systems/alertAtmosphere.js';
 import { buildAirAttackView, shouldAirThreatInterrupt } from '../systems/airAttackEvasion.js';
+import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
 
 let cleanupFns = [];
 
@@ -123,9 +124,17 @@ function navigationGridMarkup() {
   return `${vertical}${horizontal}`;
 }
 
+function phase29ChartGridMarkup() {
+  const majorV = [250, 500, 750].map((x) => `<line class="major" x1="${x}" y1="0" x2="${x}" y2="560"></line>`).join('');
+  const majorH = [186, 373].map((y) => `<line class="major" x1="0" y1="${y}" x2="1000" y2="${y}"></line>`).join('');
+  const minorV = Array.from({ length: 19 }, (_, index) => (index + 1) * 50).filter((x) => ![250, 500, 750].includes(x)).map((x) => `<line x1="${x}" y1="0" x2="${x}" y2="560"></line>`).join('');
+  const minorH = Array.from({ length: 10 }, (_, index) => (index + 1) * 56).filter((y) => ![168, 224, 280, 336, 392].includes(y)).map((y) => `<line x1="0" y1="${y}" x2="1000" y2="${y}"></line>`).join('');
+  return `${minorV}${minorH}${majorV}${majorH}`;
+}
+
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -714,9 +723,19 @@ export function renderGameplay(t, mission, settings = {}) {
                   <stop offset="0%" stop-color="#0b3040"></stop>
                   <stop offset="100%" stop-color="#071b27"></stop>
                 </linearGradient>
+                <linearGradient id="phase29ChartPaper" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#1a251f"></stop>
+                  <stop offset="42%" stop-color="#14241f"></stop>
+                  <stop offset="100%" stop-color="#071717"></stop>
+                </linearGradient>
                 <filter id="navigationGlow"><feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur><feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter>
               </defs>
               <rect class="navigation-ocean" x="0" y="0" width="1000" height="560"></rect>
+              <g class="phase29-chart-coast" aria-hidden="true"><path d="M-20 28 C86 44 138 84 176 141 C213 196 171 241 230 286 C283 326 345 320 382 374 C421 432 382 502 436 585 L-20 585 Z"></path><path d="M1030 -20 C954 28 911 79 887 141 C858 216 911 279 862 346 C823 399 743 410 721 486 C708 531 728 560 742 590 L1030 590 Z"></path></g>
+              <g class="phase29-chart-graticule">${phase29ChartGridMarkup()}</g>
+              <g id="nav-chart-lanes" class="phase29-chart-lanes"></g>
+              <g id="nav-chart-danger-zones" class="phase29-chart-danger"></g>
+              <g id="nav-chart-labels" class="phase29-chart-labels"></g>
               <g class="navigation-grid-lines">${navigationGridMarkup()}</g>
               <rect id="nav-sector" class="navigation-sector" x="0" y="0" width="0" height="0"></rect>
               <polyline id="nav-route-line" class="navigation-route-line" points=""></polyline>
@@ -726,7 +745,13 @@ export function renderGameplay(t, mission, settings = {}) {
               </g>
               <g id="nav-heading-vector" class="navigation-heading-vector"><line x1="0" y1="0" x2="0" y2="0"></line></g>
             </svg>
-            <div class="navigation-map-note">${t('navigation.mapTap')}</div>
+            <div id="phase29-chart-strip" class="phase29-chart-strip" data-chart-status="plotting">
+              <div><small>${t('navalChart.kicker')}</small><strong id="nav-chart-title">${t('navalChart.title')}</strong></div>
+              <b id="nav-chart-threat">00%</b>
+              <div><span>${t('navalChart.scale')}</span><strong id="nav-chart-scale">1:--</strong></div>
+              <div><span>${t('navalChart.bounds')}</span><strong id="nav-chart-bounds">--</strong></div>
+            </div>
+            <div class="navigation-map-note"><span id="nav-chart-position">--</span><span>${t('navigation.mapTap')}</span></div>
           </div>
           <div class="navigation-console">
             <div class="navigation-readout-grid">
@@ -1172,6 +1197,15 @@ export function mountGameplay({
     hudHeading: app.querySelector('#hud-heading'),
     hudCompression: app.querySelector('#hud-compression'),
     navigationMap: app.querySelector('#navigation-map'),
+    navChartStrip: app.querySelector('#phase29-chart-strip'),
+    navChartTitle: app.querySelector('#nav-chart-title'),
+    navChartScale: app.querySelector('#nav-chart-scale'),
+    navChartBounds: app.querySelector('#nav-chart-bounds'),
+    navChartThreat: app.querySelector('#nav-chart-threat'),
+    navChartPosition: app.querySelector('#nav-chart-position'),
+    navChartLanes: app.querySelector('#nav-chart-lanes'),
+    navChartDangerZones: app.querySelector('#nav-chart-danger-zones'),
+    navChartLabels: app.querySelector('#nav-chart-labels'),
     navSector: app.querySelector('#nav-sector'),
     navRouteLine: app.querySelector('#nav-route-line'),
     navWaypoints: app.querySelector('#nav-waypoints'),
@@ -1725,6 +1759,72 @@ export function mountGameplay({
     };
   }
 
+  function replaceSvgChildren(container, builders = []) {
+    if (!container) return;
+    container.replaceChildren(...builders.filter(Boolean));
+  }
+
+  function svgElement(tag, attrs = {}, text = '') {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) node.setAttribute(key, String(value));
+    });
+    if (text !== '') node.textContent = String(text);
+    return node;
+  }
+
+  function updateTacticalNavalChart(snapshot, bounds) {
+    const chart = buildTacticalNavalChartView({ snapshot, mission: mission || {} });
+    if (els.navChartStrip) els.navChartStrip.dataset.chartStatus = chart.status;
+    if (els.navChartTitle) els.navChartTitle.textContent = chart.title;
+    if (els.navChartScale) els.navChartScale.textContent = chart.scale;
+    if (els.navChartBounds) els.navChartBounds.textContent = chart.boundsLabel;
+    if (els.navChartThreat) els.navChartThreat.textContent = `${String(chart.threatScore).padStart(2, '0')}%`;
+    if (els.navChartPosition) els.navChartPosition.textContent = `${t('navigation.position')}: ${chart.positionLabel}`;
+
+    const laneNodes = [];
+    chart.convoyLanes.forEach((lane) => {
+      const points = lane.points.map((point) => mapPoint(point, bounds));
+      laneNodes.push(svgElement('polyline', {
+        class: `phase29-chart-lane ${lane.threat}`,
+        points: points.map((point) => `${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(' '),
+      }));
+      const mid = points[Math.floor(points.length / 2)] || points[0];
+      laneNodes.push(svgElement('text', {
+        class: 'phase29-chart-lane-label', x: mid.x.toFixed(1), y: (mid.y - 12).toFixed(1),
+      }, lane.label));
+    });
+    replaceSvgChildren(els.navChartLanes, laneNodes);
+
+    const dangerNodes = [];
+    chart.dangerZones.forEach((zone) => {
+      if (zone.type === 'rect') {
+        const topLeft = mapPoint({ lat: zone.north, lon: zone.west }, bounds);
+        const bottomRight = mapPoint({ lat: zone.south, lon: zone.east }, bounds);
+        dangerNodes.push(svgElement('rect', {
+          class: zone.level,
+          x: topLeft.x.toFixed(1), y: topLeft.y.toFixed(1),
+          width: Math.max(0, bottomRight.x - topLeft.x).toFixed(1),
+          height: Math.max(0, bottomRight.y - topLeft.y).toFixed(1), rx: 8,
+        }));
+        dangerNodes.push(svgElement('text', { class: 'phase29-chart-zone-label', x: ((topLeft.x + bottomRight.x) / 2).toFixed(1), y: (topLeft.y + 18).toFixed(1) }, zone.label));
+      } else if (zone.type === 'circle') {
+        const center = mapPoint(zone.center, bounds);
+        dangerNodes.push(svgElement('circle', { class: zone.level, cx: center.x.toFixed(1), cy: center.y.toFixed(1), r: zone.radius }));
+        dangerNodes.push(svgElement('text', { class: 'phase29-chart-zone-label', x: center.x.toFixed(1), y: (center.y - Number(zone.radius || 0) - 8).toFixed(1) }, zone.label));
+      }
+    });
+    const player = mapPoint(chart.position, bounds);
+    dangerNodes.push(svgElement('circle', { class: 'phase29-chart-player-ring', cx: player.x.toFixed(1), cy: player.y.toFixed(1), r: 34 }));
+    replaceSvgChildren(els.navChartDangerZones, dangerNodes);
+
+    const labelNodes = chart.quadrants.map((quadrant) => {
+      const point = mapPoint(quadrant.point, bounds);
+      return svgElement('text', { class: 'phase29-chart-quadrant-label', x: point.x.toFixed(1), y: point.y.toFixed(1) }, quadrant.label);
+    });
+    replaceSvgChildren(els.navChartLabels, labelNodes);
+  }
+
   function updateNavigation(snapshot) {
     const navigation = snapshot.navigation;
     if (!navigation) return;
@@ -1783,6 +1883,7 @@ export function mountGameplay({
 
     const bounds = navigation.mapBounds;
     if (!bounds) return;
+    updateTacticalNavalChart(snapshot, bounds);
     const playerPoint = mapPoint(navigation.position, bounds);
     if (els.navPlayer) els.navPlayer.setAttribute('transform', `translate(${playerPoint.x.toFixed(2)} ${playerPoint.y.toFixed(2)}) rotate(${navigation.heading.toFixed(2)})`);
     if (els.navHeadingVector) {
