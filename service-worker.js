@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.40';
+const CACHE_VERSION = '2.0.0-alpha.41';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -53,6 +53,7 @@ const APP_SHELL = [
   './css/phase24-silent-depth-periscope.css',
   './css/phase25-convoy-doctrine.css',
   './css/phase25-silent-depth-command-room.css',
+  './css/phase26-subofficer-copilot.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -113,6 +114,7 @@ const APP_SHELL = [
   './js/systems/crewDrills.js',
   './js/systems/silentDepthPeriscope.js',
   './js/systems/commandRoomImmersion.js',
+  './js/systems/subOfficerCopilot.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -137,6 +139,7 @@ const APP_SHELL = [
   './data/translations/en.json',
   './data/translations/es.json',
   './assets/logos/submarine_commander_logo.png',
+  './assets/avatars/subofficer_ww2.svg',
   './assets/meta/icons/icon-192.png',
   './assets/meta/icons/icon-512.png',
   './assets/backgrounds/naval_base_lobby.png',

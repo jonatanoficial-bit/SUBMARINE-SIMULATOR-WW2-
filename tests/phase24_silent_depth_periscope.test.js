@@ -11,11 +11,11 @@ const pkg = readJson('package.json');
 const translations = ['pt-BR','en','es'].map((lang)=>readJson(`data/translations/${lang}.json`));
 
 test('phase 24 silent depth metadata is active', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.40');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.40');
-  assert.equal(BUILD_INFO.phase, '25');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 19);
-  assert.equal(pkg.version, '2.0.0-alpha.40');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.41');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.41');
+  assert.equal(BUILD_INFO.phase, '26');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 20);
+  assert.equal(pkg.version, '2.0.0-alpha.41');
   assert.equal(SILENT_DEPTH_PERISCOPE_PHASE.axisMode, 'natural-camera');
 });
 

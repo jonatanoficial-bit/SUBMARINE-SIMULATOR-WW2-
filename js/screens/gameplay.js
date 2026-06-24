@@ -6,6 +6,7 @@ import { OperationalTraining } from '../engine/training/OperationalTraining.js';
 import { classifyOceanWeather } from '../oceanWeather.js';
 import { analyzeConvoyDoctrine } from '../systems/convoyDoctrine.js';
 import { computeSilentDepthOceanTransform, normalizePeriscopeDragDelta } from '../systems/silentDepthPeriscope.js';
+import { buildSubOfficerDialogue, renderSubOfficerLine, shouldSubOfficerInterrupt } from '../systems/subOfficerCopilot.js';
 
 let cleanupFns = [];
 
@@ -122,7 +123,7 @@ function navigationGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -832,6 +833,24 @@ export function renderGameplay(t, mission, settings = {}) {
         </div>
       </div>
 
+
+
+      <aside id="subofficer-copilot" class="phase26-subofficer-panel hidden" data-tone="calm" data-complete="true" aria-live="polite" aria-hidden="true">
+        <div class="phase26-subofficer-avatar-wrap">
+          <img class="phase26-subofficer-avatar" src="assets/avatars/subofficer_ww2.svg" alt="${t('subofficer.avatarAlt')}">
+          <i class="phase26-subofficer-lamp"></i>
+        </div>
+        <div class="phase26-subofficer-body">
+          <div class="phase26-subofficer-kicker"><span class="phase26-subofficer-rank">${t('subofficer.rank')}</span><span id="subofficer-status" class="phase26-subofficer-status">${t('subofficer.status.ready')}</span></div>
+          <div id="subofficer-title" class="phase26-subofficer-title">${t('subofficer.title.standby')}</div>
+          <div id="subofficer-line" class="phase26-subofficer-line">${t('subofficer.msg.standby')}</div>
+        </div>
+        <div class="phase26-subofficer-actions">
+          <button id="subofficer-ack" class="button primary phase26-subofficer-ack">${t('subofficer.ack')}</button>
+          <span id="subofficer-station" class="phase26-subofficer-station">${t('subofficer.station.command')}</span>
+        </div>
+      </aside>
+
       <aside class="station-help-drawer hidden" id="station-help-drawer" aria-hidden="true">
         <div class="station-help-card">
           <div class="station-help-header"><strong id="station-help-title">${t('training.help')}</strong><button class="chip" id="station-help-close">×</button></div>
@@ -1140,6 +1159,12 @@ export function mountGameplay({
     trainingChecklist: app.querySelector('#training-checklist'),
     trainingGoStation: app.querySelector('#training-go-station'),
     trainingDismiss: app.querySelector('#training-dismiss'),
+    subOfficerPanel: app.querySelector('#subofficer-copilot'),
+    subOfficerTitle: app.querySelector('#subofficer-title'),
+    subOfficerLine: app.querySelector('#subofficer-line'),
+    subOfficerStatus: app.querySelector('#subofficer-status'),
+    subOfficerAck: app.querySelector('#subofficer-ack'),
+    subOfficerStation: app.querySelector('#subofficer-station'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1153,6 +1178,10 @@ export function mountGameplay({
   app.__simulationEngine = engine;
   let operationResolved = false;
   let lastAutosaveElapsed = Number(initialSnapshot?.elapsedMs || 0);
+  let subOfficerCurrent = null;
+  let subOfficerTypingTimer = null;
+  const subOfficerAcknowledged = new Set();
+
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
     if (!force && snapshot.elapsedMs - lastAutosaveElapsed < 10000) return false;
@@ -1177,6 +1206,7 @@ export function mountGameplay({
   }
 
   const addCleanup = (fn) => cleanupFns.push(fn);
+  addCleanup(() => { if (subOfficerTypingTimer) clearInterval(subOfficerTypingTimer); });
   const bind = (element, eventName, handler) => {
     if (!element) return;
     element.addEventListener(eventName, handler);
@@ -2132,6 +2162,64 @@ export function mountGameplay({
     updateObjectives(snapshot);
   }
 
+
+  function typeSubOfficerLine(text, speed = 18) {
+    if (!els.subOfficerLine) return;
+    if (subOfficerTypingTimer) clearInterval(subOfficerTypingTimer);
+    const safeText = renderSubOfficerLine({ text });
+    let index = 0;
+    els.subOfficerPanel?.setAttribute('data-complete', 'false');
+    els.subOfficerLine.textContent = '';
+    subOfficerTypingTimer = setInterval(() => {
+      index += 1;
+      els.subOfficerLine.textContent = safeText.slice(0, index);
+      if (index >= safeText.length) {
+        clearInterval(subOfficerTypingTimer);
+        subOfficerTypingTimer = null;
+        els.subOfficerPanel?.setAttribute('data-complete', 'true');
+      }
+    }, Math.max(8, Number(speed) || 18));
+  }
+
+  function openSubOfficerDialogue(dialogue) {
+    if (!dialogue || !els.subOfficerPanel) return;
+    subOfficerCurrent = dialogue;
+    els.subOfficerPanel.dataset.tone = dialogue.tone || 'calm';
+    els.subOfficerPanel.classList.remove('hidden');
+    els.subOfficerPanel.setAttribute('aria-hidden', 'false');
+    if (els.subOfficerTitle) els.subOfficerTitle.textContent = t(dialogue.titleKey);
+    if (els.subOfficerStatus) els.subOfficerStatus.textContent = t(`subofficer.status.${dialogue.tone || 'calm'}`);
+    if (els.subOfficerAck) els.subOfficerAck.textContent = t(dialogue.ackLabelKey || 'subofficer.ack');
+    if (els.subOfficerStation) els.subOfficerStation.textContent = t(`subofficer.station.${dialogue.stationHint || 'command'}`);
+    typeSubOfficerLine(t(dialogue.textKey), dialogue.typewriterMs);
+  }
+
+  function closeSubOfficerDialogue() {
+    if (subOfficerCurrent) {
+      subOfficerAcknowledged.add(subOfficerCurrent.key);
+      subOfficerAcknowledged.add(subOfficerCurrent.id);
+    }
+    if (subOfficerTypingTimer) clearInterval(subOfficerTypingTimer);
+    subOfficerTypingTimer = null;
+    els.subOfficerPanel?.classList.add('hidden');
+    els.subOfficerPanel?.setAttribute('aria-hidden', 'true');
+    els.subOfficerPanel?.setAttribute('data-complete', 'true');
+  }
+
+  function updateSubOfficer(snapshot) {
+    const dialogue = buildSubOfficerDialogue({ snapshot, station: activeStation, commanderName: mission?.commanderName || '' });
+    if (!dialogue || !els.subOfficerPanel) return;
+    const hidden = els.subOfficerPanel.classList.contains('hidden');
+    const interrupt = shouldSubOfficerInterrupt({
+      current: subOfficerCurrent,
+      next: dialogue,
+      acknowledged: Array.from(subOfficerAcknowledged),
+    });
+    if ((hidden && interrupt) || (!hidden && subOfficerCurrent?.id !== dialogue.id && dialogue.priority >= (subOfficerCurrent?.priority || 0))) {
+      openSubOfficerDialogue(dialogue);
+    }
+  }
+
   function updateAll(snapshot = engine.snapshot()) {
     updateTraining(snapshot);
     persistOperation(snapshot);
@@ -2146,6 +2234,7 @@ export function mountGameplay({
     updateHUD(snapshot);
     updateNavigation(snapshot);
     updatePeriscope(snapshot);
+    updateSubOfficer(snapshot);
   }
 
   function showMissionFailure(snapshot) {
@@ -2239,6 +2328,7 @@ export function mountGameplay({
     }, 1400);
   }));
 
+  bind(els.subOfficerAck, 'click', closeSubOfficerDialogue);
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);

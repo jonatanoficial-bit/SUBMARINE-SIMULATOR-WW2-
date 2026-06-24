@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 21 metadata identifies command advancement build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.40');
-  assert.equal(BUILD_INFO.phase, '25');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 19);
-  assert.match(BUILD_INFO.buildId, /F25-IMMERSIVE-COMMAND-ROOM/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.41');
+  assert.equal(BUILD_INFO.phase, '26');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 20);
+  assert.match(BUILD_INFO.buildId, /F26-SUBOFFICER-COPILOT/);
 });
 
 test('command advancement decks cover every nation and use valid dependencies', () => {

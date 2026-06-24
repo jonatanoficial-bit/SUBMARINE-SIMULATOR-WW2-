@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 — Silent Depth F25",
-  "short_name": "SCWW2 F25",
+  "name": "Submarine Commander WW2 — Silent Depth F26",
+  "short_name": "SCWW2 F26",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Fase 25: Sala de Comando Imersiva da Operação Silent Depth, com cockpit naval premium para mobile e PC.",
+  "description": "Fase 26: Suboficial/Copiloto Imersivo com avatar, diálogo em máquina de escrever e confirmação OK/RECEBIDO.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.40",
+  "version": "2.0.0-alpha.41",
   "id": "./"
 }

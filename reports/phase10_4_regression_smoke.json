@@ -13,7 +13,7 @@
     {
       "name": "Build metadata and final QA status visible",
       "status": "PASS",
-      "details": "Build v2.0.0-alpha.40 • 2026-06-24 11:35 BRT • F25 • QA PASS"
+      "details": "Build v2.0.0-alpha.41 • 2026-06-24 12:18 BRT • F26 • QA PASS"
     },
     {
       "name": "Phone menu has no horizontal overflow",
@@ -48,12 +48,12 @@
     {
       "name": "Simulation engine mounted",
       "status": "PASS",
-      "details": "{'engine': 'SimulationEngine', 'version': 10, 'missionId': 'de1', 'entityCount': 5, 'aiVersion': 2, 'encounterVersion': 1, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 2, 'environmentVersion': 1, 'weaponVersion': 1, 'damageControlVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+      "details": "{'engine': 'SimulationEngine', 'version': 10, 'missionId': 'de1', 'entityCount': 5, 'aiVersion': 2, 'encounterVersion': 1, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 2, 'environmentVersion': 1, 'weaponVersion': 1, 'damageControlVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 1, 'elapsedMs': 80}}"
     },
     {
       "name": "Navigation, physics, sensors, weapons, naval AI and damage control mounted",
       "status": "PASS",
-      "details": "{'engine': 'SimulationEngine', 'version': 10, 'missionId': 'de1', 'entityCount': 5, 'aiVersion': 2, 'encounterVersion': 1, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 2, 'environmentVersion': 1, 'weaponVersion': 1, 'damageControlVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 0, 'elapsedMs': 0}}"
+      "details": "{'engine': 'SimulationEngine', 'version': 10, 'missionId': 'de1', 'entityCount': 5, 'aiVersion': 2, 'encounterVersion': 1, 'navigationVersion': 1, 'physicsVersion': 1, 'sensorVersion': 2, 'environmentVersion': 1, 'weaponVersion': 1, 'damageControlVersion': 1, 'eventBusListeners': 8, 'clock': {'running': True, 'paused': False, 'fixedStepMs': 80, 'tickCount': 1, 'elapsedMs': 80}}"
     },
     {
       "name": "Physics station is visible",

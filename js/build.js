@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.40",
-  "semver": "2.0.0-alpha.40",
-  "buildId": "SCWW2-20260624-1135-BRT-F25-IMMERSIVE-COMMAND-ROOM",
+  "version": "v2.0.0-alpha.41",
+  "semver": "2.0.0-alpha.41",
+  "buildId": "SCWW2-20260624-1218-BRT-F26-SUBOFFICER-COPILOT",
   "date": "2026-06-24",
-  "time": "11:35",
+  "time": "12:18",
   "timezone": "America/Sao_Paulo",
-  "phase": "25",
-  "phaseName": "Silent Depth Immersive Command Room",
+  "phase": "26",
+  "phaseName": "Silent Depth Subofficer Copilot",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 19,
-  "notes": "Phase 25 deepens Operation Silent Depth with an immersive submarine command room: metal cabin frame, naval lighting states, watch crew silhouettes, upgraded station cards, visual threat board and mobile-safe cinematic cockpit treatment while preserving the Phase 24 mobile periscope rework and all campaign systems."
+  "saveSchemaVersion": 20,
+  "notes": "Phase 26 adds an immersive subofficer/copilot with avatar, typewriter dialogue, contextual tactical interruptions, emergency acknowledgement and mobile-first OK/RECEBIDO confirmation while preserving the Silent Depth periscope and command room reworks."
 };

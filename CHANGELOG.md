@@ -1,3 +1,10 @@
+# v2.0.0-alpha.41 — Fase 26 — Suboficial/Copiloto Imersivo
+
+- Adicionado suboficial/copiloto com avatar, fala contextual e confirmação OK / RECEBIDO.
+- Criado efeito de máquina de escrever para mensagens de bordo.
+- Adicionadas mensagens imersivas para aguardando ordens, inimigo detectado, aeronave hostil, avarias, pressão do casco, solução de tiro e missão cumprida.
+- Atualizado PWA/cache, manifest, testes e auditoria da Fase 26.
+
 ## v2.0.0-alpha.40 — Fase 25 — Sala de Comando Imersiva / Operação Silent Depth
 
 - Rework visual da sala de comando do submarino com frame metálico, tubulação, válvula, anteparas, silhuetas de tripulação e iluminação naval dinâmica.
