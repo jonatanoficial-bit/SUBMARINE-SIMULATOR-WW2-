@@ -1,0 +1,250 @@
+/* Phase 24 — Silent Depth mobile periscope rework.
+   Goal: keep the ocean clean on phones, correct natural touch axes and make the scope feel like a premium submarine optic. */
+.periscope-modal.phase24-silent-depth {
+  --scope-safe-bottom: max(10px, env(safe-area-inset-bottom));
+  --scope-safe-top: max(10px, env(safe-area-inset-top));
+  background:
+    radial-gradient(circle at 50% 42%, rgba(20, 58, 71, .18), transparent 38%),
+    linear-gradient(180deg, rgba(1, 7, 11, .98), rgba(0, 0, 0, .96));
+  min-height: 100svh;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  align-content: stretch;
+  overflow: hidden;
+  touch-action: none;
+}
+.phase24-silent-depth .periscope-actions {
+  position: relative;
+  z-index: 40;
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: 2px 0;
+}
+.phase24-silent-depth .periscope-actions .button,
+.phase24-silent-depth .periscope-controls .button {
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.phase24-silent-depth .periscope-shell.css-periscope {
+  align-self: center;
+  justify-self: center;
+  width: min(96vw, 620px, calc(100svh - 190px));
+  max-height: calc(100svh - 190px);
+  filter: drop-shadow(0 24px 46px rgba(0,0,0,.55));
+}
+.phase24-silent-depth .periscope-window {
+  inset: 9.8%;
+  background:
+    linear-gradient(180deg, #7c9bb2 0%, #526c83 32%, #263f56 47%, #0f3147 48%, #0b273e 100%);
+  border: 1px solid rgba(188, 230, 236, .18);
+  box-shadow:
+    inset 0 0 60px rgba(2, 8, 14, .44),
+    inset 0 0 0 2px rgba(255,255,255,.035);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+.phase24-silent-depth .periscope-window.dragging {
+  cursor: grabbing;
+}
+.phase24-silent-depth .css-periscope-ocean {
+  left: 0;
+  top: 0;
+  width: 220%;
+  height: 160%;
+  max-width: none;
+  background-image:
+    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.13), transparent 24%),
+    linear-gradient(180deg, rgba(183, 213, 228, .96) 0%, rgba(93, 126, 151, .92) 35%, rgba(40, 70, 92, .96) 47%, rgba(12, 49, 73, .98) 48%, rgba(5, 33, 54, 1) 100%),
+    url('../assets/periscope/ocean_panorama_day.png');
+  background-size: 100% 100%, 100% 100%, cover;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light, normal, multiply;
+  will-change: transform, filter, background-position;
+  transform-origin: center center;
+  image-rendering: auto;
+}
+.phase24-silent-depth .periscope-horizon {
+  z-index: 4;
+  top: 49.25%;
+  height: 3px;
+  background:
+    linear-gradient(90deg, transparent, rgba(229, 244, 238, .44) 16%, rgba(249, 252, 242, .9) 50%, rgba(229, 244, 238, .44) 84%, transparent),
+    linear-gradient(180deg, transparent, rgba(255,255,255,.42), transparent);
+  filter: blur(.18px) drop-shadow(0 0 8px rgba(255,255,255,.22));
+}
+.phase24-silent-depth .periscope-window::before {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  left: -20%;
+  right: -20%;
+  top: 48%;
+  height: 54%;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(178deg, rgba(255,255,255,.08) 0 1px, transparent 1px 18px),
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.12), transparent 42%);
+  opacity: .34;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: phase24-ocean-swell 8s ease-in-out infinite alternate;
+}
+.phase24-silent-depth .periscope-window::after {
+  z-index: 15;
+  inset: 8%;
+  opacity: .66;
+}
+.phase24-silent-depth .periscope-vignette {
+  background: radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, .22) 61%, rgba(0, 0, 0, .78) 100%);
+}
+.phase24-silent-depth .periscope-rim {
+  border-width: clamp(12px, 3.8vw, 24px);
+  border-color: rgba(68, 61, 47, .98);
+  box-shadow:
+    inset 0 0 0 6px rgba(188, 144, 63, .72),
+    inset 0 0 36px rgba(0,0,0,.86),
+    0 28px 50px rgba(0,0,0,.58);
+}
+.phase24-silent-depth .periscope-glass-css {
+  inset: 11.5%;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255,255,255,.18), transparent 18%),
+    radial-gradient(circle at 62% 70%, rgba(120,190,210,.07), transparent 22%),
+    linear-gradient(140deg, rgba(255,255,255,.05), transparent 44%, rgba(0,0,0,.11));
+  box-shadow:
+    inset 32px 32px 54px rgba(255,255,255,.08),
+    inset -28px -30px 44px rgba(0,0,0,.32);
+}
+.phase24-silent-depth .periscope-crosshair-css .line,
+.phase24-silent-depth .periscope-crosshair-css .ring,
+.phase24-silent-depth .periscope-crosshair-css .range-mark {
+  background-color: rgba(178, 255, 211, .68);
+  border-color: rgba(178, 255, 211, .8);
+  box-shadow: 0 0 12px rgba(90, 255, 166, .22);
+}
+.phase24-silent-depth .periscope-compass,
+.phase24-silent-depth .periscope-data-ribbon,
+.phase24-silent-depth .phase18-periscope-solution {
+  backdrop-filter: blur(6px);
+}
+.phase24-axis-cue {
+  width: min(100%, 720px);
+  margin: -2px auto 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(141, 217, 232, .14);
+  border-radius: 12px;
+  background: rgba(2, 13, 19, .72);
+  color: rgba(224, 244, 249, .76);
+  text-align: center;
+  font-size: .72rem;
+  letter-spacing: .05em;
+}
+.phase24-silent-depth .periscope-controls-grid {
+  width: min(100%, 720px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-bottom: var(--scope-safe-bottom);
+}
+.phase24-silent-depth .periscope-sensor-readout,
+.phase24-silent-depth .periscope-lock {
+  border-radius: 12px;
+}
+@keyframes phase24-ocean-swell {
+  from { transform: translateY(-1.2%) rotate(-.2deg); }
+  to { transform: translateY(1.4%) rotate(.25deg); }
+}
+@media (max-width: 720px), (orientation: landscape) and (max-height: 540px) {
+  .phase24-silent-depth .periscope-shell.css-periscope {
+    width: min(96vw, calc(100svh - 210px));
+    max-height: calc(100svh - 210px);
+    margin-top: 0;
+  }
+  .phase24-silent-depth .periscope-window {
+    inset: 8.5%;
+  }
+  .phase24-silent-depth .periscope-compass,
+  .phase24-silent-depth .periscope-data-ribbon,
+  .phase24-silent-depth .phase18-periscope-solution {
+    display: none !important;
+  }
+  .phase24-silent-depth .periscope-sensor-readout {
+    left: 50%;
+    bottom: -42px;
+    width: min(92vw, 420px);
+    max-width: none;
+    padding: 8px 10px;
+    font-size: .7rem;
+    background: rgba(3, 15, 22, .95);
+  }
+  .phase24-silent-depth .periscope-lock {
+    position: absolute;
+    left: 50%;
+    bottom: -82px;
+    transform: translateX(-50%);
+    width: min(92vw, 420px);
+    padding: 7px 10px;
+    background: rgba(6, 24, 28, .92);
+    border: 1px solid rgba(151, 255, 184, .18);
+    font-size: .68rem;
+  }
+  .phase24-axis-cue {
+    margin-top: 72px;
+    font-size: .66rem;
+  }
+  .phase24-silent-depth .periscope-controls-grid {
+    position: relative;
+    z-index: 44;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+@media (max-width: 420px) {
+  .phase24-silent-depth .periscope-actions {
+    gap: 8px;
+  }
+  .phase24-silent-depth .periscope-actions .button {
+    min-height: 46px;
+    padding-inline: 10px;
+    font-size: .74rem;
+  }
+  .phase24-silent-depth .periscope-controls-grid .button {
+    min-height: 46px;
+    font-size: .72rem;
+  }
+  .phase24-axis-cue { display: none; }
+  .phase24-silent-depth .periscope-shell.css-periscope {
+    width: min(96vw, calc(100svh - 178px));
+    max-height: calc(100svh - 178px);
+  }
+  .phase24-silent-depth .periscope-sensor-readout { bottom: -38px; }
+  .phase24-silent-depth .periscope-lock { bottom: -74px; }
+}
+@media (orientation: landscape) and (max-height: 540px) {
+  .phase24-silent-depth {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    column-gap: 10px;
+  }
+  .phase24-silent-depth .periscope-actions { grid-column: 1 / -1; }
+  .phase24-silent-depth .periscope-shell.css-periscope {
+    width: min(72svh, 58vw);
+    max-height: calc(100svh - 70px);
+  }
+  .phase24-axis-cue {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    margin-top: 0;
+  }
+  .phase24-silent-depth .periscope-controls-grid {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: end;
+    grid-template-columns: 1fr;
+    padding-bottom: var(--scope-safe-bottom);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phase24-silent-depth .periscope-window::before { animation: none; }
+}

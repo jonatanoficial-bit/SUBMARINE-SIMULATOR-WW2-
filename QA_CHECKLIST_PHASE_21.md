@@ -1,7 +1,7 @@
 # QA Checklist — Phase 21 — Patentes e Carreira Naval
 
 ## Testes obrigatórios
-- [x] Build visível atualizada para v2.0.0-alpha.36.
+- [x] Build visível atualizada para v2.0.0-alpha.37.
 - [x] Save schema atualizado para 15.
 - [x] Dados de patentes carregam para as três nações.
 - [x] Cada nação possui cinco marcos de promoção.

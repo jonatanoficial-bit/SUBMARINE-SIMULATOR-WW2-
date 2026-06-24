@@ -1,3 +1,5 @@
-# Phase 22 Delivery Report
+# Phase 22 Delivery Report — Veteran Crew and Specialist Officers
 
-Integrated six user-created MP3 tracks as the official game soundtrack. The music system now plays the playlist sequentially, advances when each song ends and loops back to the first track after the sixth. Existing music volume settings are respected.
+Build: v2.0.0-alpha.37  
+Fase: 22  
+Status: QA PASS após auditoria, testes JavaScript, smoke mobile e validação de campanhas.

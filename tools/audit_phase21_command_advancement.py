@@ -17,7 +17,7 @@ def read_json(rel):
         return json.load(fh)
 
 build = read_json('BUILD_INFO.json')
-ok('build version', build.get('version') == 'v2.0.0-alpha.36')
+ok('build version', build.get('version') == 'v2.0.0-alpha.37')
 ok('phase id', str(build.get('phase')) == '21')
 ok('schema 15', int(build.get('saveSchemaVersion')) == 15)
 

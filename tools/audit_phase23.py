@@ -18,7 +18,7 @@ crew_js = read('js/screens/crew.js')
 module = read('js/systems/crewReadiness.js')
 css = read('css/phase23-crew-readiness.css')
 
-add('phase metadata', build.get('semver') == '2.0.0-alpha.23' and build.get('phase') == '23')
+add('phase metadata', build.get('semver') == '2.0.0-alpha.23' and build.get('phase') == '24')
 add('package version', pkg.get('version') == '2.0.0-alpha.23')
 add('audit script active', pkg.get('scripts', {}).get('audit') == 'python3 tools/audit_phase23.py')
 add('manifest version', manifest.get('version') == '2.0.0-alpha.23')

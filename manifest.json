@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — v2.0.0-alpha.35 by Vale Games",
+  "description": "Submarine Commander WW2 — v2.0.0-alpha.39 F24 Periscópio Mobile Imersivo by Vale Games",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.36",
+  "version": "2.0.0-alpha.39",
   "id": "./"
 }

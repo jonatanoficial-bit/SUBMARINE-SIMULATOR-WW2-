@@ -424,6 +424,41 @@ function renderCommandAdvancementDeck(t, deck = null) {
   `;
 }
 
+
+function renderVeteranOfficersDeck(t, deck = null) {
+  const officers = Array.isArray(deck?.officers) ? deck.officers : [];
+  if (!officers.length) return '';
+  const effect = deck.combinedEffect || {};
+  return `
+    <div class="campaign-command-advancement-deck phase22-veteran-officers" aria-label="${t('veteranOfficers.title')}">
+      <div class="row space-between align-start campaign-events-head">
+        <div>
+          <div class="mini-title">${t('veteranOfficers.title')}</div>
+          <strong>${t(deck.titleKey)}</strong>
+          <p class="muted compact-text">${t(deck.summaryKey)}</p>
+        </div>
+        <span class="tag ${deck.availableCount ? 'gold' : deck.assignedCount ? 'success' : 'warn'}">${deck.assignedCount}/${deck.totalOfficers}</span>
+      </div>
+      <div class="command-authority-score" aria-label="${t('veteranOfficers.veteranScore')}"><i style="width:${deck.veteranScore || 0}%"></i></div>
+      <div class="command-advancement-effect-grid compact">
+        <div><span>${t('veteranOfficers.sonar')}</span><strong>${formatSigned(effect.sonarBonus)}</strong></div>
+        <div><span>${t('veteranOfficers.engineering')}</span><strong>${formatSigned(effect.engineeringBonus)}</strong></div>
+        <div><span>${t('veteranOfficers.torpedoes')}</span><strong>${formatSigned(effect.torpedoBonus)}</strong></div>
+        <div><span>${t('veteranOfficers.stealth')}</span><strong>${formatSigned(effect.stealthBonus)}</strong></div>
+      </div>
+      <div class="campaign-event-list">
+        ${officers.map((officer) => `
+          <div class="campaign-event-pill ${officer.assigned ? 'opportunity' : officer.unlocked ? 'support' : 'danger'}">
+            <span class="tag ${officer.assigned ? 'success' : officer.unlocked ? 'gold' : 'warn'}">${officer.assigned ? t('veteranOfficers.assigned') : officer.unlocked ? t('veteranOfficers.available') : t('veteranOfficers.locked')}</span>
+            <strong>★ ${t(officer.nameKey)}</strong>
+            <small>${t(officer.roleKey)} • ${t(officer.descKey)}</small>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -464,6 +499,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const operationOutcomes = options.operationOutcomes || null;
   const operationalHonors = options.operationalHonors || null;
   const commandAdvancement = options.commandAdvancement || null;
+  const veteranOfficers = options.veteranOfficers || null;
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -511,6 +547,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
             ${renderOperationOutcomesDeck(t, operationOutcomes)}
             ${renderOperationalHonorsDeck(t, operationalHonors)}
             ${renderCommandAdvancementDeck(t, commandAdvancement)}
+            ${renderVeteranOfficersDeck(t, veteranOfficers)}
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.36",
-  "semver": "2.0.0-alpha.36",
-  "buildId": "SCWW2-20260623-1221-BRT-F21-COMMAND-ADVANCEMENT",
-  "date": "2026-06-23",
-  "time": "12:21",
+  "version": "v2.0.0-alpha.39",
+  "semver": "2.0.0-alpha.39",
+  "buildId": "SCWW2-20260624-1055-BRT-F24-SILENT-DEPTH-PERISCOPE",
+  "date": "2026-06-24",
+  "time": "10:55",
   "timezone": "America/Sao_Paulo",
-  "phase": "21",
-  "phaseName": "Ranks and Naval Career Advancement",
+  "phase": "24",
+  "phaseName": "Silent Depth Mobile Periscope Rework",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 15,
-  "notes": "Phase 21 adds national rank and naval career advancement for Germany, United Kingdom and United States. Commander promotions are tied to reputation, prestige, completed missions, tonnage, operational honors, chain steps and strategic outcomes. Consolidated promotions grant persistent rewards, theater modifiers, dossier export, campaign and strategy panels, save migration and automated validation while preserving all previous systems."
+  "saveSchemaVersion": 18,
+  "notes": "Phase 24 starts Operation Silent Depth with a total mobile periscope rework: natural touch axes, clean ocean-first mobile view, improved optical horizon, safer HUD placement, responsive fullscreen behavior and a dedicated validation layer while preserving every previous campaign, crew, command and progression system."
 }

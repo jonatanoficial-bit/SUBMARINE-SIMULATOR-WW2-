@@ -5,6 +5,7 @@ import { clamp, depthToAngle, worldToViewPosition } from '../engine/simulation/s
 import { OperationalTraining } from '../engine/training/OperationalTraining.js';
 import { classifyOceanWeather } from '../oceanWeather.js';
 import { analyzeConvoyDoctrine } from '../systems/convoyDoctrine.js';
+import { computeSilentDepthOceanTransform, normalizePeriscopeDragDelta } from '../systems/silentDepthPeriscope.js';
 
 let cleanupFns = [];
 
@@ -772,7 +773,7 @@ export function renderGameplay(t, mission, settings = {}) {
       </div>
 
 
-      <div id="periscope-modal" class="periscope-modal hidden" aria-hidden="true">
+      <div id="periscope-modal" class="periscope-modal phase24-silent-depth hidden" aria-hidden="true">
         <div class="periscope-actions">
           <button class="button ghost" id="close-periscope">${t('common.back')}</button>
           <button class="button warn" id="fire-torpedo">${t('gameplay.fireTorpedo')}</button>
@@ -820,6 +821,7 @@ export function renderGameplay(t, mission, settings = {}) {
           <div id="periscope-lock" class="periscope-lock">${t('gameplay.lockSearching')}</div>
           <div id="periscope-sensor-readout" class="periscope-sensor-readout">${t('sensors.visualAwaiting')}</div>
         </div>
+        <div class="phase24-axis-cue">${t('periscope.mobileAxisCue')}</div>
         <div class="periscope-controls periscope-controls-grid">
           <button class="button secondary" id="view-left">${t('gameplay.left')}</button>
           <button class="button secondary" id="view-up">${t('gameplay.up')}</button>
@@ -1997,10 +1999,10 @@ export function mountGameplay({
     const visualFactor = clamp(Number(environment.visualFactor || 1), 0.16, 1.12);
     const precipitation = clamp(Number(environment.precipitation || 0), 0, 100);
     if (els.periscopeOcean) {
-      const oceanX = -220 - (snapshot.view.x * 0.72);
-      const oceanY = -18 - (snapshot.view.y * 0.52) + horizonOffset;
-      els.periscopeOcean.style.transform = `translate(${oceanX}px, ${oceanY}px) rotate(${(roll * 0.42).toFixed(2)}deg)`;
-      els.periscopeOcean.style.filter = `brightness(${(0.46 + clamp(environment.daylight, 0, 100) / 180).toFixed(2)}) saturate(${(0.62 + visualFactor * 0.38).toFixed(2)}) contrast(${(1.12 + precipitation / 500).toFixed(2)})`;
+      const ocean = computeSilentDepthOceanTransform({ view: snapshot.view || {}, environment, zoom: periscopeZoom });
+      els.periscopeOcean.style.transform = ocean.transform;
+      els.periscopeOcean.style.filter = ocean.filter;
+      els.periscopeOcean.style.backgroundPosition = `center, center, ${ocean.backgroundPosition}`;
     }
     if (els.periscopeHorizon) {
       els.periscopeHorizon.style.transform = `translateY(${horizonOffset.toFixed(2)}px) rotate(${roll.toFixed(2)}deg)`;
@@ -2357,8 +2359,8 @@ export function mountGameplay({
       onMissionComplete(engine.snapshot().missionId, report);
     }
   });
-  bind(els.viewLeft, 'click', () => engine.moveView(VIEW_STEP_X, 0));
-  bind(els.viewRight, 'click', () => engine.moveView(-VIEW_STEP_X, 0));
+  bind(els.viewLeft, 'click', () => engine.moveView(-VIEW_STEP_X, 0));
+  bind(els.viewRight, 'click', () => engine.moveView(VIEW_STEP_X, 0));
   bind(els.viewUp, 'click', () => engine.moveView(0, -VIEW_STEP_Y));
   bind(els.viewDown, 'click', () => engine.moveView(0, VIEW_STEP_Y));
   bind(els.periscopeZoomOut, 'click', () => setPeriscopeZoom(periscopeZoom - 0.5));
@@ -2378,7 +2380,13 @@ export function mountGameplay({
     const deltaY = event.clientY - periscopeDrag.y;
     periscopeDrag.x = event.clientX;
     periscopeDrag.y = event.clientY;
-    engine.moveView((-deltaX * 0.9) / periscopeZoom, (-deltaY * 0.45) / periscopeZoom);
+    const movement = normalizePeriscopeDragDelta({
+      deltaX,
+      deltaY,
+      zoom: periscopeZoom,
+      input: event.pointerType === 'mouse' ? 'mouse' : 'touch',
+    });
+    engine.moveView(movement.dx, movement.dy);
     event.preventDefault();
   });
   const finishPeriscopeDrag = (event) => {

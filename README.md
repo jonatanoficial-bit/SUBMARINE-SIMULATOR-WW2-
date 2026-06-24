@@ -147,3 +147,7 @@ A build adiciona prontidão operacional da tripulação, moral, fadiga, cobertur
 
 ### Fase 25
 Convoy and Escort Tactical Intelligence: análise tática de comboio, escoltas e recomendação de ataque/evasão dentro da estação de IA.
+
+
+## Fase 23 — Treinamentos de Prontidão da Tripulação
+Sistema de rotinas de prontidão por nação, com custos, requisitos, efeitos persistentes e painel funcional na tela Tripulação.

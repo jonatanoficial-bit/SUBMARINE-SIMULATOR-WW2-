@@ -37,7 +37,71 @@ function recommendationsMarkup(t, readiness) {
     </div>`).join('');
 }
 
-export function renderCrew(t, crewMembers, hiredIds, credits, save = {}) {
+
+function formatSigned(value = 0, suffix = '') {
+  const numeric = Math.round(Number(value || 0));
+  return `${numeric > 0 ? '+' : ''}${numeric}${suffix}`;
+}
+
+function renderCrewDrills(t, save = {}, summary = null) {
+  if (!summary?.drills?.length) return '';
+  const credits = save?.progression?.credits || 0;
+  const commandPoints = save?.strategy?.commandPoints || 0;
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel crew-drills-panel phase23-crew-drills">
+      <div class="panel-header">${t('crewDrills.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('crewDrills.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.availableCount ? 'gold' : 'success'}">${summary.completedCount}/${summary.totalDrills}</span>
+        </div>
+        <div class="crew-mini-metrics">
+          <div class="crew-mini-metric"><span>${t('crewDrills.disciplineScore')}</span><strong>${summary.disciplineScore}%</strong></div>
+          <div class="crew-mini-metric"><span>${t('crew.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+          <div class="crew-mini-metric"><span>${t('crew.morale')}</span><strong>${formatSigned(effect.moraleBonus)}</strong></div>
+          <div class="crew-mini-metric"><span>${t('crew.fatigue')}</span><strong>${formatSigned(effect.fatigueDelta)}</strong></div>
+        </div>
+        <div class="crew-station-grid">
+          ${summary.drills.map((drill) => {
+            const cost = drill.cost || {};
+            const drillEffect = drill.effect || {};
+            const affordable = credits >= (cost.credits || 0) && commandPoints >= (cost.commandPoints || 0);
+            const canRun = drill.unlocked && !drill.completed && affordable;
+            const lockText = drill.completed ? '' : (!drill.unlocked ? t(drill.lockedReason || 'crewDrills.locked', { count: drill.lockCount || 0 }) : (!affordable ? t('crewDrills.insufficientResources') : ''));
+            return `
+              <div class="crew-station-card crew-drill-card ${drill.completed ? 'covered' : canRun ? '' : 'uncovered'}">
+                <div class="row space-between align-start">
+                  <span>${t(drill.stationKey)}</span>
+                  <span class="tag ${drill.completed ? 'success' : drill.unlocked ? 'gold' : 'warn'}">${drill.completed ? t('crewDrills.completed') : drill.unlocked ? t('crewDrills.available') : t('crewDrills.locked')}</span>
+                </div>
+                <strong>${t(drill.nameKey)}</strong>
+                <small>${t(drill.descKey)}</small>
+                <div class="mission-meta">
+                  <span class="tag">${t('common.credits')}: ${cost.credits || 0}</span>
+                  <span class="tag">${t('strategy.commandPoints')}: ${cost.commandPoints || 0}</span>
+                  <span class="tag gold">${t('crewDrills.tier')}: ${drill.tier}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('crew.readiness')}: ${formatSigned(drillEffect.readinessBonus)}</span>
+                  <span class="tag">${t('veteranOfficers.sonar')}: ${formatSigned(drillEffect.sonarBonus)}</span>
+                  <span class="tag">${t('veteranOfficers.torpedoes')}: ${formatSigned(drillEffect.torpedoBonus)}</span>
+                  <span class="tag">${t('veteranOfficers.stealth')}: ${formatSigned(drillEffect.stealthBonus)}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canRun ? '' : 'secondary'}" data-action="run-crew-drill" data-drill="${drill.id}" ${canRun ? '' : 'disabled'}>${drill.completed ? t('crewDrills.drillActive') : t('crewDrills.run')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null) {
   const readiness = assessCrewReadiness(crewMembers, hiredIds, save || {});
   return `
     <section class="screen screen-shell crew-screen">
@@ -77,6 +141,8 @@ export function renderCrew(t, crewMembers, hiredIds, credits, save = {}) {
           </div>
         </div>
       </div>
+
+      ${renderCrewDrills(t, save, crewDrills)}
 
       <div class="stack crew-list">
         ${crewMembers.map((crew) => {

@@ -39,6 +39,8 @@ import { canExecuteOperationChainStep, findOperationChainDeckForNation, getOpera
 import { canChooseOperationOutcome, findOperationOutcomeDeckForNation, getOperationOutcomeChosenIds, summarizeOperationOutcomes } from './systems/operationOutcomes.js';
 import { canAwardOperationalHonor, findOperationalHonorDeckForNation, getOperationalHonorAwardedIds, summarizeOperationalHonors } from './systems/operationalHonors.js';
 import { canClaimCommandPromotion, findCommandAdvancementDeckForNation, getCommandAdvancementClaimedIds, summarizeCommandAdvancement } from './systems/commandAdvancement.js';
+import { canAssignVeteranOfficer, findVeteranOfficerDeckForNation, getVeteranOfficerAssignedIds, summarizeVeteranOfficers } from './systems/veteranOfficers.js';
+import { canRunCrewDrill, findCrewDrillDeckForNation, getCrewDrillCompletedIds, summarizeCrewDrills } from './systems/crewDrills.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
@@ -251,6 +253,43 @@ function getCommandAdvancementEffect(nationId = getCurrentNationId()) {
   return getCommandAdvancementSummaryForNation(nationId)?.combinedEffect || { riskDelta: 0, intelBonus: 0, decryptionBonus: 0, pressureRelief: 0, readinessBonus: 0, tonnageMultiplier: 1, moraleBonus: 0, fatigueDelta: 0 };
 }
 
+
+function getVeteranOfficerDeckForNation(nationId = getCurrentNationId()) {
+  return findVeteranOfficerDeckForNation(state.data?.veteranOfficers || [], nationId);
+}
+function getVeteranOfficerSummaryForNation(nationId = getCurrentNationId()) {
+  return summarizeVeteranOfficers({
+    deck: getVeteranOfficerDeckForNation(nationId),
+    campaign: getCampaignForNation(nationId),
+    completedMissionIds: state.save?.progression?.completedMissions || [],
+    assignedIds: getVeteranOfficerAssignedIds(state.save || {}),
+    career: state.save?.career || {},
+    awardedHonorIds: getOperationalHonorAwardedIds(state.save || {}),
+    claimedPromotionIds: getCommandAdvancementClaimedIds(state.save || {}),
+  });
+}
+function getVeteranOfficerEffect(nationId = getCurrentNationId()) {
+  return getVeteranOfficerSummaryForNation(nationId)?.combinedEffect || { riskDelta: 0, intelBonus: 0, decryptionBonus: 0, pressureRelief: 0, readinessBonus: 0, tonnageMultiplier: 1, moraleBonus: 0, fatigueDelta: 0, sonarBonus: 0, engineeringBonus: 0, torpedoBonus: 0, stealthBonus: 0 };
+}
+
+
+function getCrewDrillDeckForNation(nationId = getCurrentNationId()) {
+  return findCrewDrillDeckForNation(state.data?.crewDrills || [], nationId);
+}
+function getCrewDrillSummaryForNation(nationId = getCurrentNationId()) {
+  return summarizeCrewDrills({
+    deck: getCrewDrillDeckForNation(nationId),
+    campaign: getCampaignForNation(nationId),
+    completedMissionIds: state.save?.progression?.completedMissions || [],
+    completedIds: getCrewDrillCompletedIds(state.save || {}),
+    assignedOfficerIds: getVeteranOfficerAssignedIds(state.save || {}),
+    readiness: getReadiness(),
+  });
+}
+function getCrewDrillEffect(nationId = getCurrentNationId()) {
+  return getCrewDrillSummaryForNation(nationId)?.combinedEffect || { riskDelta: 0, intelBonus: 0, decryptionBonus: 0, pressureRelief: 0, readinessBonus: 0, tonnageMultiplier: 1, moraleBonus: 0, fatigueDelta: 0, sonarBonus: 0, engineeringBonus: 0, torpedoBonus: 0, stealthBonus: 0 };
+}
+
 function missionsForNation(nationId = getCurrentNationId()) {
   const campaign = getCampaignForNation(nationId);
   const source = state.data.missions.filter((mission) => mission.nationId === nationId);
@@ -309,13 +348,15 @@ function assessStrategicPosture() {
   const operationOutcomeEffect = getOperationOutcomeEffect();
   const operationalHonorEffect = getOperationalHonorEffect();
   const commandAdvancementEffect = getCommandAdvancementEffect();
-  const combinedTonnageMultiplier = (consequenceEffect.tonnageMultiplier || 1) * (highCommandEffect.tonnageMultiplier || 1) * (campaignEventEffect.tonnageMultiplier || 1) * (specialOperationEffect.tonnageMultiplier || 1) * (operationChainEffect.tonnageMultiplier || 1) * (operationOutcomeEffect.tonnageMultiplier || 1) * (operationalHonorEffect.tonnageMultiplier || 1) * (commandAdvancementEffect.tonnageMultiplier || 1);
-  const intel = Math.max(0, Math.min(100, (snapshot.intelLevel ?? theater?.baselineIntel ?? 50) + (directive?.intelDelta || 0) + consequenceEffect.intelBonus + highCommandEffect.intelBonus + campaignEventEffect.intelBonus + specialOperationEffect.intelBonus + operationChainEffect.intelBonus + operationOutcomeEffect.intelBonus + operationalHonorEffect.intelBonus + commandAdvancementEffect.intelBonus));
-  const decryptionBonus = (highCommandEffect.decryptionBonus || 0) + (campaignEventEffect.decryptionBonus || 0) + (specialOperationEffect.decryptionBonus || 0) + (operationChainEffect.decryptionBonus || 0) + (operationOutcomeEffect.decryptionBonus || 0) + (commandAdvancementEffect.decryptionBonus || 0);
-  const risk = Math.max(0, Math.min(100, (lane?.risk ?? theater?.baselineAsw ?? 50) + (directive?.riskDelta || 0) + consequenceEffect.riskDelta + highCommandEffect.riskDelta + campaignEventEffect.riskDelta + specialOperationEffect.riskDelta + operationChainEffect.riskDelta + operationOutcomeEffect.riskDelta + operationalHonorEffect.riskDelta + commandAdvancementEffect.riskDelta + Math.round((snapshot.falseContactRisk || 0) * 0.2) - Math.round((snapshot.decryption + decryptionBonus) / 12)));
-  const pressure = Math.max(0, Math.min(100, (snapshot.pressure ?? theater?.baselinePressure ?? 50) + Math.round((consequenceEffect.riskDelta + highCommandEffect.riskDelta + campaignEventEffect.riskDelta + specialOperationEffect.riskDelta + operationChainEffect.riskDelta + operationOutcomeEffect.riskDelta + operationalHonorEffect.riskDelta + commandAdvancementEffect.riskDelta) * 0.45) - Math.round((consequenceEffect.intelBonus + highCommandEffect.intelBonus + campaignEventEffect.intelBonus + specialOperationEffect.intelBonus + operationChainEffect.intelBonus + operationOutcomeEffect.intelBonus + operationalHonorEffect.intelBonus + commandAdvancementEffect.intelBonus) * 0.35) - Math.round(highCommandEffect.pressureRelief || 0) - Math.round(specialOperationEffect.pressureRelief || 0) - Math.round(operationChainEffect.pressureRelief || 0) - Math.round(operationOutcomeEffect.pressureRelief || 0) - Math.round(operationalHonorEffect.pressureRelief || 0) - Math.round(commandAdvancementEffect.pressureRelief || 0) + Math.round(campaignEventEffect.pressureDelta || 0)));
+  const veteranOfficerEffect = getVeteranOfficerEffect();
+  const crewDrillEffect = getCrewDrillEffect();
+  const combinedTonnageMultiplier = (consequenceEffect.tonnageMultiplier || 1) * (highCommandEffect.tonnageMultiplier || 1) * (campaignEventEffect.tonnageMultiplier || 1) * (specialOperationEffect.tonnageMultiplier || 1) * (operationChainEffect.tonnageMultiplier || 1) * (operationOutcomeEffect.tonnageMultiplier || 1) * (operationalHonorEffect.tonnageMultiplier || 1) * (commandAdvancementEffect.tonnageMultiplier || 1) * (veteranOfficerEffect.tonnageMultiplier || 1) * (crewDrillEffect.tonnageMultiplier || 1);
+  const intel = Math.max(0, Math.min(100, (snapshot.intelLevel ?? theater?.baselineIntel ?? 50) + (directive?.intelDelta || 0) + consequenceEffect.intelBonus + highCommandEffect.intelBonus + campaignEventEffect.intelBonus + specialOperationEffect.intelBonus + operationChainEffect.intelBonus + operationOutcomeEffect.intelBonus + operationalHonorEffect.intelBonus + commandAdvancementEffect.intelBonus + veteranOfficerEffect.intelBonus + crewDrillEffect.intelBonus));
+  const decryptionBonus = (highCommandEffect.decryptionBonus || 0) + (campaignEventEffect.decryptionBonus || 0) + (specialOperationEffect.decryptionBonus || 0) + (operationChainEffect.decryptionBonus || 0) + (operationOutcomeEffect.decryptionBonus || 0) + (commandAdvancementEffect.decryptionBonus || 0) + (veteranOfficerEffect.decryptionBonus || 0) + (crewDrillEffect.decryptionBonus || 0);
+  const risk = Math.max(0, Math.min(100, (lane?.risk ?? theater?.baselineAsw ?? 50) + (directive?.riskDelta || 0) + consequenceEffect.riskDelta + highCommandEffect.riskDelta + campaignEventEffect.riskDelta + specialOperationEffect.riskDelta + operationChainEffect.riskDelta + operationOutcomeEffect.riskDelta + operationalHonorEffect.riskDelta + commandAdvancementEffect.riskDelta + veteranOfficerEffect.riskDelta + crewDrillEffect.riskDelta + Math.round((snapshot.falseContactRisk || 0) * 0.2) - Math.round((snapshot.decryption + decryptionBonus) / 12)));
+  const pressure = Math.max(0, Math.min(100, (snapshot.pressure ?? theater?.baselinePressure ?? 50) + Math.round((consequenceEffect.riskDelta + highCommandEffect.riskDelta + campaignEventEffect.riskDelta + specialOperationEffect.riskDelta + operationChainEffect.riskDelta + operationOutcomeEffect.riskDelta + operationalHonorEffect.riskDelta + commandAdvancementEffect.riskDelta + veteranOfficerEffect.riskDelta + crewDrillEffect.riskDelta) * 0.45) - Math.round((consequenceEffect.intelBonus + highCommandEffect.intelBonus + campaignEventEffect.intelBonus + specialOperationEffect.intelBonus + operationChainEffect.intelBonus + operationOutcomeEffect.intelBonus + operationalHonorEffect.intelBonus + commandAdvancementEffect.intelBonus + veteranOfficerEffect.intelBonus + crewDrillEffect.intelBonus) * 0.35) - Math.round(highCommandEffect.pressureRelief || 0) - Math.round(specialOperationEffect.pressureRelief || 0) - Math.round(operationChainEffect.pressureRelief || 0) - Math.round(operationOutcomeEffect.pressureRelief || 0) - Math.round(operationalHonorEffect.pressureRelief || 0) - Math.round(commandAdvancementEffect.pressureRelief || 0) - Math.round(veteranOfficerEffect.pressureRelief || 0) - Math.round(crewDrillEffect.pressureRelief || 0) + Math.round(campaignEventEffect.pressureDelta || 0)));
   const opportunity = Math.max(0, Math.min(100, Math.round(((lane?.traffic || theater?.baselineTraffic || 50) * 0.55 * combinedTonnageMultiplier) + (intel * 0.45) - (risk * 0.18))));
-  return { intel, risk, pressure, opportunity, lane, directive, consequenceEffect, highCommandEffect, campaignEventEffect, specialOperationEffect, operationChainEffect, operationOutcomeEffect, operationalHonorEffect, commandAdvancementEffect };
+  return { intel, risk, pressure, opportunity, lane, directive, consequenceEffect, highCommandEffect, campaignEventEffect, specialOperationEffect, operationChainEffect, operationOutcomeEffect, operationalHonorEffect, commandAdvancementEffect, veteranOfficerEffect, crewDrillEffect };
 }
 function strategicPatrolModifier() {
   const lane = getSelectedLane();
@@ -323,8 +364,8 @@ function strategicPatrolModifier() {
   const assessment = assessStrategicPosture();
   return {
     fuelMultiplier: Math.max(0.75, Math.min(1.35, (lane?.fuelMultiplier || 1) * (directive?.fuelMultiplier || 1))),
-    readinessBonus: Math.round((lane?.readinessBonus || 0) + (directive?.readinessBonus || 0) + (assessment.consequenceEffect?.readinessBonus || 0) + (assessment.highCommandEffect?.readinessBonus || 0) + (assessment.campaignEventEffect?.readinessBonus || 0) + (assessment.specialOperationEffect?.readinessBonus || 0) + (assessment.operationChainEffect?.readinessBonus || 0) + (assessment.operationOutcomeEffect?.readinessBonus || 0) + (assessment.operationalHonorEffect?.readinessBonus || 0) + (assessment.commandAdvancementEffect?.readinessBonus || 0) + Math.max(-4, Math.min(6, (assessment.intel - 55) / 10))),
-    tonnageMultiplier: Math.max(0.75, Math.min(1.75, (lane?.tonnageBonus || 1) * (directive?.tonnageMultiplier || 1) * (assessment.consequenceEffect?.tonnageMultiplier || 1) * (assessment.highCommandEffect?.tonnageMultiplier || 1) * (assessment.campaignEventEffect?.tonnageMultiplier || 1) * (assessment.specialOperationEffect?.tonnageMultiplier || 1) * (assessment.operationChainEffect?.tonnageMultiplier || 1) * (assessment.operationOutcomeEffect?.tonnageMultiplier || 1) * (assessment.operationalHonorEffect?.tonnageMultiplier || 1) * (assessment.commandAdvancementEffect?.tonnageMultiplier || 1))),
+    readinessBonus: Math.round((lane?.readinessBonus || 0) + (directive?.readinessBonus || 0) + (assessment.consequenceEffect?.readinessBonus || 0) + (assessment.highCommandEffect?.readinessBonus || 0) + (assessment.campaignEventEffect?.readinessBonus || 0) + (assessment.specialOperationEffect?.readinessBonus || 0) + (assessment.operationChainEffect?.readinessBonus || 0) + (assessment.operationOutcomeEffect?.readinessBonus || 0) + (assessment.operationalHonorEffect?.readinessBonus || 0) + (assessment.commandAdvancementEffect?.readinessBonus || 0) + (assessment.veteranOfficerEffect?.readinessBonus || 0) + (assessment.crewDrillEffect?.readinessBonus || 0) + Math.max(-4, Math.min(6, (assessment.intel - 55) / 10))),
+    tonnageMultiplier: Math.max(0.75, Math.min(1.75, (lane?.tonnageBonus || 1) * (directive?.tonnageMultiplier || 1) * (assessment.consequenceEffect?.tonnageMultiplier || 1) * (assessment.highCommandEffect?.tonnageMultiplier || 1) * (assessment.campaignEventEffect?.tonnageMultiplier || 1) * (assessment.specialOperationEffect?.tonnageMultiplier || 1) * (assessment.operationChainEffect?.tonnageMultiplier || 1) * (assessment.operationOutcomeEffect?.tonnageMultiplier || 1) * (assessment.operationalHonorEffect?.tonnageMultiplier || 1) * (assessment.commandAdvancementEffect?.tonnageMultiplier || 1) * (assessment.veteranOfficerEffect?.tonnageMultiplier || 1) * (assessment.crewDrillEffect?.tonnageMultiplier || 1))),
     risk: assessment.risk,
     opportunity: assessment.opportunity,
     laneId: lane?.id || null,
@@ -360,6 +401,8 @@ function exportIntelDossier() {
     operationOutcomes: getOperationOutcomeSummaryForNation(),
     operationalHonors: getOperationalHonorSummaryForNation(),
     commandAdvancement: getCommandAdvancementSummaryForNation(),
+    veteranOfficers: getVeteranOfficerSummaryForNation(),
+    crewDrills: getCrewDrillSummaryForNation(),
     assessment: assessStrategicPosture(),
     exportedAt: new Date().toISOString()
   };
@@ -632,6 +675,43 @@ function claimCommandPromotion(rankId) {
   render();
 }
 
+
+function assignVeteranOfficer(officerId) {
+  if (!state.save?.career) return;
+  applyRankAndMedals();
+  const nationId = getCurrentNationId();
+  const summary = getVeteranOfficerSummaryForNation(nationId);
+  const officer = summary?.officers?.find((item) => item.id === officerId);
+  const verdict = canAssignVeteranOfficer({ save: state.save, officer, summary });
+  if (!verdict.ok) { showToast(t(verdict.reason, { count: officer?.lockCount || 0 })); return; }
+  const cost = officer.cost || {};
+  if (!spendCredits(cost.credits || 0)) { showToast(t('toast.notEnoughCredits')); return; }
+  state.save.strategy.commandPoints = Math.max(0, (state.save.strategy.commandPoints || 0) - (cost.commandPoints || 0));
+  const effect = officer.effect || {};
+  state.save.strategy.intelLevel = Math.max(0, Math.min(100, (state.save.strategy.intelLevel || 0) + (effect.intelBonus || 0)));
+  state.save.strategy.decryption = Math.max(0, Math.min(100, (state.save.strategy.decryption || 0) + (effect.decryptionBonus || 0)));
+  state.save.strategy.pressure = Math.max(0, Math.min(100, (state.save.strategy.pressure || 0) - (effect.pressureRelief || 0)));
+  state.save.strategy.falseContactRisk = Math.max(0, Math.min(100, (state.save.strategy.falseContactRisk || 0) + (effect.riskDelta || 0)));
+  if (state.save.logistics) {
+    state.save.logistics.morale = Math.max(0, Math.min(100, (state.save.logistics.morale || 0) + (effect.moraleBonus || 0)));
+    state.save.logistics.fatigue = Math.max(0, Math.min(100, (state.save.logistics.fatigue || 0) + (effect.fatigueDelta || 0)));
+    state.save.logistics.readiness = getReadiness().overall;
+  }
+  state.save.career.veteranOfficers = state.save.career.veteranOfficers && typeof state.save.career.veteranOfficers === 'object'
+    ? state.save.career.veteranOfficers
+    : { assignedIds: [], availableIds: [], history: [] };
+  const assigned = new Set(state.save.career.veteranOfficers.assignedIds || []);
+  assigned.add(officer.id);
+  state.save.career.veteranOfficers.assignedIds = [...assigned];
+  state.save.career.veteranOfficers.availableIds = (summary.officers || []).filter((item) => item.unlocked && !item.assigned && item.id !== officer.id).map((item) => item.id);
+  const record = { at: new Date().toISOString(), id: officer.id, title: t(officer.nameKey), role: t(officer.roleKey), detail: t(officer.descKey), cost, effect };
+  state.save.career.veteranOfficers.history = [record, ...(state.save.career.veteranOfficers.history || [])].slice(0, 30);
+  pushStrategyHistory({ type: 'veteran-officer', title: t('veteranOfficers.historyTitle'), detail: t('veteranOfficers.historyDetail', { officer: t(officer.nameKey) }) });
+  pushIntelReport({ title: t('veteranOfficers.reportTitle'), detail: t('veteranOfficers.reportDetail', { officer: t(officer.nameKey) }) });
+  commitSave('toast.veteranOfficerAssigned');
+  render();
+}
+
 function getLogisticsBase(nationId = getCurrentNationId()) {
   const fallback = { nationId, homePortKey: 'logistics.port.generic', dockNameKey: 'logistics.dock.generic', staffKey: 'logistics.staff.generic', fuelMax: 10000, torpedoMax: 24, deckAmmoMax: 400, rationMax: 60, sparePartsMax: 30 };
   return state.data?.logistics?.bases?.find((item) => item.nationId === nationId) || fallback;
@@ -715,6 +795,42 @@ function applyRankAndMedals() {
   });
   return added;
 }
+
+function runCrewDrill(drillId) {
+  if (!state.save?.career) return;
+  const nationId = getCurrentNationId();
+  const summary = getCrewDrillSummaryForNation(nationId);
+  const drill = summary?.drills?.find((item) => item.id === drillId);
+  const verdict = canRunCrewDrill({ save: state.save, drill, summary });
+  if (!verdict.ok) { showToast(t(verdict.reason, { count: drill?.lockCount || 0 })); return; }
+  const cost = drill.cost || {};
+  const effect = drill.effect || {};
+  state.save.progression.credits = Math.max(0, (state.save.progression.credits || 0) - (cost.credits || 0));
+  state.save.strategy.commandPoints = Math.max(0, (state.save.strategy.commandPoints || 0) - (cost.commandPoints || 0));
+  state.save.strategy.intelLevel = Math.max(0, Math.min(100, (state.save.strategy.intelLevel || 0) + (effect.intelBonus || 0)));
+  state.save.strategy.decryption = Math.max(0, Math.min(100, (state.save.strategy.decryption || 0) + (effect.decryptionBonus || 0)));
+  state.save.strategy.pressure = Math.max(0, Math.min(100, (state.save.strategy.pressure || 0) - (effect.pressureRelief || 0)));
+  state.save.strategy.falseContactRisk = Math.max(0, Math.min(100, (state.save.strategy.falseContactRisk || 0) + (effect.riskDelta || 0)));
+  if (state.save.logistics) {
+    state.save.logistics.morale = Math.max(0, Math.min(100, (state.save.logistics.morale || 0) + (effect.moraleBonus || 0)));
+    state.save.logistics.fatigue = Math.max(0, Math.min(100, (state.save.logistics.fatigue || 0) + (effect.fatigueDelta || 0)));
+    state.save.logistics.readiness = Math.max(0, Math.min(100, getReadiness().overall + (effect.readinessBonus || 0)));
+  }
+  state.save.career.crewDrills = state.save.career.crewDrills && typeof state.save.career.crewDrills === 'object'
+    ? state.save.career.crewDrills
+    : { completedIds: [], availableIds: [], history: [] };
+  const completed = new Set(state.save.career.crewDrills.completedIds || []);
+  completed.add(drill.id);
+  state.save.career.crewDrills.completedIds = [...completed];
+  state.save.career.crewDrills.availableIds = (summary.drills || []).filter((item) => item.unlocked && !item.completed && item.id !== drill.id).map((item) => item.id);
+  const record = { id: drill.id, at: new Date().toISOString(), nationId, titleKey: drill.nameKey, effect };
+  state.save.career.crewDrills.history = [record, ...(state.save.career.crewDrills.history || [])].slice(0, 30);
+  pushStrategyHistory({ type: 'crew-drill', title: t('crewDrills.historyTitle'), detail: t('crewDrills.historyDetail', { drill: t(drill.nameKey) }) });
+  pushIntelReport({ title: t('crewDrills.reportTitle'), detail: t('crewDrills.reportDetail', { drill: t(drill.nameKey) }) });
+  commitSave('toast.crewDrillCompleted');
+  render();
+}
+
 function applyPatrolPlan(profileId = 'balanced', options = {}) {
   if (!state.save) return false;
   const mission = getSelectedMission();
@@ -1300,6 +1416,8 @@ function initEvents() {
       case 'choose-operation-outcome': chooseOperationOutcome(target.dataset.outcome); break;
       case 'award-operational-honor': awardOperationalHonor(target.dataset.honor); break;
       case 'claim-command-promotion': claimCommandPromotion(target.dataset.rank); break;
+      case 'assign-veteran-officer': assignVeteranOfficer(target.dataset.officer); break;
+      case 'run-crew-drill': runCrewDrill(target.dataset.drill); break;
       case 'export-intel-dossier': exportIntelDossier(); break;
       case 'export-logbook': exportCareerLogbook(); break;
       default: break;
@@ -1355,6 +1473,8 @@ function createSceneContext() {
     campaignViewOperationOutcomes: getOperationOutcomeSummaryForNation(campaignViewNationId),
     campaignViewOperationalHonors: getOperationalHonorSummaryForNation(campaignViewNationId),
     campaignViewCommandAdvancement: getCommandAdvancementSummaryForNation(campaignViewNationId),
+    campaignViewVeteranOfficers: getVeteranOfficerSummaryForNation(campaignViewNationId),
+    campaignViewCrewDrills: getCrewDrillSummaryForNation(campaignViewNationId),
     campaignProgressByNation: getCampaignProgressByNation(),
     logisticsBase: getLogisticsBase(nationId),
     logisticsData: state.data.logistics,
@@ -1373,6 +1493,8 @@ function createSceneContext() {
     operationOutcomes: getOperationOutcomeSummaryForNation(nationId),
     operationalHonors: getOperationalHonorSummaryForNation(nationId),
     commandAdvancement: getCommandAdvancementSummaryForNation(nationId),
+    veteranOfficers: getVeteranOfficerSummaryForNation(nationId),
+    crewDrills: getCrewDrillSummaryForNation(nationId),
     highCommandOrders: getHighCommandSummaryForNation(nationId),
     submarines: submarinesByNation(nationId),
     nationCrew: crewByNation(nationId),
@@ -1389,9 +1511,9 @@ sceneManager
   .register('mainMenu', { render: ({ t: translate }) => renderMainMenu(translate, Boolean(state.save), state.settings.language, activeProfile(), Boolean(state.operationAutosave)) })
   .register('commander', { render: ({ t: translate, nationId, avatarsByNation }) => renderCommanderScreen(translate, state.data.nations, state.commanderDraft, avatarsByNation[nationId]) })
   .register('lobby', { render: ({ t: translate, nation, submarine, crew }) => renderLobby(translate, state.save, nation, submarine, crew) })
-  .register('campaign', { render: ({ t: translate, campaignViewNation, campaignViewNationId, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewProgress, campaignViewDoctrine, campaignViewDoctrineStage, campaignViewDoctrineImpact, campaignViewObjectives, campaignViewConsequences, campaignViewEvents, campaignViewSpecialOperations, campaignViewOperationChains, campaignViewOperationOutcomes, campaignViewOperationalHonors, campaignViewCommandAdvancement, campaignProgressByNation }) => renderCampaign(translate, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewNation, campaignViewProgress, { allNations: state.data.nations, allCampaigns: state.data.campaigns, currentNationId: getCurrentNationId(), viewNationId: campaignViewNationId, progressByNation: campaignProgressByNation, completedMissions: state.save?.progression?.completedMissions || [], campaignObjectives: campaignViewObjectives, campaignConsequences: campaignViewConsequences, campaignEvents: campaignViewEvents, specialOperations: campaignViewSpecialOperations, operationChains: campaignViewOperationChains, operationOutcomes: campaignViewOperationOutcomes, operationalHonors: campaignViewOperationalHonors, commandAdvancement: campaignViewCommandAdvancement, doctrine: campaignViewDoctrine, doctrineStage: campaignViewDoctrineStage, doctrineImpact: campaignViewDoctrineImpact }) })
+  .register('campaign', { render: ({ t: translate, campaignViewNation, campaignViewNationId, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewProgress, campaignViewDoctrine, campaignViewDoctrineStage, campaignViewDoctrineImpact, campaignViewObjectives, campaignViewConsequences, campaignViewEvents, campaignViewSpecialOperations, campaignViewOperationChains, campaignViewOperationOutcomes, campaignViewOperationalHonors, campaignViewCommandAdvancement, campaignViewVeteranOfficers, campaignViewCrewDrills, campaignProgressByNation }) => renderCampaign(translate, campaignViewMissions, campaignViewMission, campaignViewCampaign, campaignViewNation, campaignViewProgress, { allNations: state.data.nations, allCampaigns: state.data.campaigns, currentNationId: getCurrentNationId(), viewNationId: campaignViewNationId, progressByNation: campaignProgressByNation, completedMissions: state.save?.progression?.completedMissions || [], campaignObjectives: campaignViewObjectives, campaignConsequences: campaignViewConsequences, campaignEvents: campaignViewEvents, specialOperations: campaignViewSpecialOperations, operationChains: campaignViewOperationChains, operationOutcomes: campaignViewOperationOutcomes, operationalHonors: campaignViewOperationalHonors, commandAdvancement: campaignViewCommandAdvancement, veteranOfficers: campaignViewVeteranOfficers, crewDrills: campaignViewCrewDrills, doctrine: campaignViewDoctrine, doctrineStage: campaignViewDoctrineStage, doctrineImpact: campaignViewDoctrineImpact }) })
   .register('career', { render: ({ t: translate, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans }) => renderCareer(translate, state.save, nation, campaign, mission, logisticsBase, logisticsData, careerRank, readiness, previewPlans) })
-  .register('strategy', { render: ({ t: translate, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment, campaignConsequences, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, highCommandOrders }) => renderStrategy(translate, state.save, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement) })
+  .register('strategy', { render: ({ t: translate, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment, campaignConsequences, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers, highCommandOrders }) => renderStrategy(translate, state.save, nation, strategyData, strategyTheater, selectedLane, selectedDirective, strategicAssessment, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers) })
   .register('bridge', {
     render: ({ t: translate, nation, submarine, mission, readiness, strategicAssessment }) => renderBridge(translate, state.save, nation, submarine, mission, readiness, strategicAssessment),
     enter: ({ app: root, t: translate, nation, submarine, mission, readiness, strategicAssessment }) => mountBridge({ app: root, t: translate, save: state.save, nation, submarine, mission, readiness, strategicAssessment }),
@@ -1422,7 +1544,7 @@ sceneManager
     exit: cleanupGameplay,
   })
   .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null) })
-  .register('crew', { render: ({ t: translate, nationCrew }) => renderCrew(translate, nationCrew, state.save?.crew.hiredIds || [], state.save?.progression.credits || 0, state.save || {}) })
+  .register('crew', { render: ({ t: translate, nationCrew, crewDrills }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills) })
   .register('settings', { render: ({ t: translate }) => renderSettings(translate, state.settings) })
   .register('profiles', { render: ({ t: translate }) => renderProfiles(translate, state.profiles, state.language, state.operationAutosave) });
 

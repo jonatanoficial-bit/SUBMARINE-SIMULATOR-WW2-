@@ -1,6 +1,6 @@
 # Phase 21 Delivery Report — Patentes e Carreira Naval
 
-Build: v2.0.0-alpha.36  
+Build: v2.0.0-alpha.37  
 Phase: 21  
 Focus: ranks, naval career advancement and commander authority progression.
 

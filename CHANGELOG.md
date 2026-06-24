@@ -1,6 +1,24 @@
+## v2.0.0-alpha.39 — Fase 24 — Periscópio Mobile Imersivo / Operação Silent Depth
+
+- Iniciada a macrofase Operação Silent Depth.
+- Rework visual e responsivo do periscópio mobile.
+- Corrigido eixo natural do toque e botões horizontais.
+- Removida telemetria técnica da área do oceano em telas pequenas.
+- Adicionado módulo `silentDepthPeriscope.js`.
+- Adicionado CSS `phase24-silent-depth-periscope.css`.
+- Adicionados teste e auditoria específicos da fase.
+- Build, schema, PWA/cache, package e manifest atualizados.
+
+## v2.0.0-alpha.37 — Fase 22 — Tripulação Veterana e Oficiais Especialistas
+
+- Adicionado sistema de oficiais especialistas para Alemanha, Reino Unido e Estados Unidos.
+- Adicionados 12 especialistas totais com requisitos, custos, efeitos persistentes e trava anti-duplicação.
+- Painéis novos na Campanha e no Comando Estratégico.
+- Save schema 16, PWA/cache e testes atualizados.
+
 # Changelog
 
-## v2.0.0-alpha.36 — Fase 21 — Patentes e Carreira Naval
+## v2.0.0-alpha.37 — Fase 21 — Patentes e Carreira Naval
 
 - Adicionado sistema de patentes e carreira naval do comandante.
 - Adicionadas trilhas independentes de promoção para Alemanha, Reino Unido e Estados Unidos.
@@ -8,7 +26,7 @@
 - Adicionados painéis de carreira na Campanha e autoridade no Comando Estratégico.
 - Efeitos de promoção agora impactam cálculo estratégico e dossiê/logbook.
 - Save schema atualizado para 15.
-- Build/PWA atualizados para v2.0.0-alpha.36.
+- Build/PWA atualizados para v2.0.0-alpha.37.
 
 # v2.0.0-alpha.35 — Fase 20 — Reputação Operacional e Medalhas
 
@@ -423,3 +441,10 @@
 - Painéis novos em Campanha e Comando Estratégico.
 - Save schema 11, PWA/cache, traduções e auditorias atualizados.
 
+
+
+## v2.0.0-alpha.38 — Fase 23 — Treinamentos de Prontidão da Tripulação
+- Adicionados 12 treinamentos de tripulação por campanha.
+- Integração com oficiais veteranos, prontidão, recursos e estratégia.
+- Painel novo na tela Tripulação.
+- Save schema 17, cache PWA, traduções e auditoria atualizados.

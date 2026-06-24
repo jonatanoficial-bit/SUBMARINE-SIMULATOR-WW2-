@@ -1,0 +1,425 @@
+[
+  {
+    "id": "veteran_officers.de",
+    "nationId": "de",
+    "titleKey": "veteranOfficers.de.title",
+    "summaryKey": "veteranOfficers.de.summary",
+    "frontKey": "veteranOfficers.de.front",
+    "officers": [
+      {
+        "id": "de_veteran_wolfChief",
+        "tier": 1,
+        "roleKey": "veteranOfficers.de.wolfChief.role",
+        "nameKey": "veteranOfficers.de.wolfChief.name",
+        "descKey": "veteranOfficers.de.wolfChief.desc",
+        "specialtyKey": "veteranOfficers.specialty.sonar",
+        "tone": "watch",
+        "cost": {
+          "credits": 620,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 1,
+          "reputationMin": 35,
+          "rankIndexMin": 1,
+          "awardedHonors": 0
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": -1,
+          "sonarBonus": 4,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 2
+        }
+      },
+      {
+        "id": "de_veteran_engineRoom",
+        "tier": 2,
+        "roleKey": "veteranOfficers.de.engineRoom.role",
+        "nameKey": "veteranOfficers.de.engineRoom.name",
+        "descKey": "veteranOfficers.de.engineRoom.desc",
+        "specialtyKey": "veteranOfficers.specialty.engineering",
+        "tone": "engineering",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "reputationMin": 70,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 1,
+          "fatigueDelta": -3,
+          "sonarBonus": 0,
+          "engineeringBonus": 5,
+          "torpedoBonus": 0,
+          "stealthBonus": 1
+        }
+      },
+      {
+        "id": "de_veteran_torpedoOfficer",
+        "tier": 3,
+        "roleKey": "veteranOfficers.de.torpedoOfficer.role",
+        "nameKey": "veteranOfficers.de.torpedoOfficer.name",
+        "descKey": "veteranOfficers.de.torpedoOfficer.desc",
+        "specialtyKey": "veteranOfficers.specialty.torpedoes",
+        "tone": "weapons",
+        "cost": {
+          "credits": 940,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 3,
+          "reputationMin": 115,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 0,
+          "engineeringBonus": 0,
+          "torpedoBonus": 5,
+          "stealthBonus": 0
+        }
+      },
+      {
+        "id": "de_veteran_radioPlotter",
+        "tier": 4,
+        "roleKey": "veteranOfficers.de.radioPlotter.role",
+        "nameKey": "veteranOfficers.de.radioPlotter.name",
+        "descKey": "veteranOfficers.de.radioPlotter.desc",
+        "specialtyKey": "veteranOfficers.specialty.intelligence",
+        "tone": "intelligence",
+        "cost": {
+          "credits": 1220,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 5,
+          "reputationMin": 175,
+          "rankIndexMin": 3,
+          "awardedHonors": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -1,
+          "sonarBonus": 2,
+          "engineeringBonus": 1,
+          "torpedoBonus": 1,
+          "stealthBonus": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "veteran_officers.uk",
+    "nationId": "uk",
+    "titleKey": "veteranOfficers.uk.title",
+    "summaryKey": "veteranOfficers.uk.summary",
+    "frontKey": "veteranOfficers.uk.front",
+    "officers": [
+      {
+        "id": "uk_veteran_asdicsChief",
+        "tier": 1,
+        "roleKey": "veteranOfficers.uk.asdicsChief.role",
+        "nameKey": "veteranOfficers.uk.asdicsChief.name",
+        "descKey": "veteranOfficers.uk.asdicsChief.desc",
+        "specialtyKey": "veteranOfficers.specialty.sonar",
+        "tone": "watch",
+        "cost": {
+          "credits": 620,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 1,
+          "reputationMin": 35,
+          "rankIndexMin": 1,
+          "awardedHonors": 0
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": -1,
+          "sonarBonus": 4,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 2
+        }
+      },
+      {
+        "id": "uk_veteran_dieselArtificer",
+        "tier": 2,
+        "roleKey": "veteranOfficers.uk.dieselArtificer.role",
+        "nameKey": "veteranOfficers.uk.dieselArtificer.name",
+        "descKey": "veteranOfficers.uk.dieselArtificer.desc",
+        "specialtyKey": "veteranOfficers.specialty.engineering",
+        "tone": "engineering",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "reputationMin": 70,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 1,
+          "fatigueDelta": -3,
+          "sonarBonus": 0,
+          "engineeringBonus": 5,
+          "torpedoBonus": 0,
+          "stealthBonus": 1
+        }
+      },
+      {
+        "id": "uk_veteran_torpedoGunner",
+        "tier": 3,
+        "roleKey": "veteranOfficers.uk.torpedoGunner.role",
+        "nameKey": "veteranOfficers.uk.torpedoGunner.name",
+        "descKey": "veteranOfficers.uk.torpedoGunner.desc",
+        "specialtyKey": "veteranOfficers.specialty.torpedoes",
+        "tone": "weapons",
+        "cost": {
+          "credits": 940,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 3,
+          "reputationMin": 115,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 0,
+          "engineeringBonus": 0,
+          "torpedoBonus": 5,
+          "stealthBonus": 0
+        }
+      },
+      {
+        "id": "uk_veteran_navIntelligence",
+        "tier": 4,
+        "roleKey": "veteranOfficers.uk.navIntelligence.role",
+        "nameKey": "veteranOfficers.uk.navIntelligence.name",
+        "descKey": "veteranOfficers.uk.navIntelligence.desc",
+        "specialtyKey": "veteranOfficers.specialty.intelligence",
+        "tone": "intelligence",
+        "cost": {
+          "credits": 1220,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 5,
+          "reputationMin": 175,
+          "rankIndexMin": 3,
+          "awardedHonors": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -1,
+          "sonarBonus": 2,
+          "engineeringBonus": 1,
+          "torpedoBonus": 1,
+          "stealthBonus": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "veteran_officers.us",
+    "nationId": "us",
+    "titleKey": "veteranOfficers.us.title",
+    "summaryKey": "veteranOfficers.us.summary",
+    "frontKey": "veteranOfficers.us.front",
+    "officers": [
+      {
+        "id": "us_veteran_radarChief",
+        "tier": 1,
+        "roleKey": "veteranOfficers.us.radarChief.role",
+        "nameKey": "veteranOfficers.us.radarChief.name",
+        "descKey": "veteranOfficers.us.radarChief.desc",
+        "specialtyKey": "veteranOfficers.specialty.sonar",
+        "tone": "watch",
+        "cost": {
+          "credits": 620,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 1,
+          "reputationMin": 35,
+          "rankIndexMin": 1,
+          "awardedHonors": 0
+        },
+        "effect": {
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.01,
+          "moraleBonus": 1,
+          "fatigueDelta": -1,
+          "sonarBonus": 4,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 2
+        }
+      },
+      {
+        "id": "us_veteran_fleetEngineer",
+        "tier": 2,
+        "roleKey": "veteranOfficers.us.fleetEngineer.role",
+        "nameKey": "veteranOfficers.us.fleetEngineer.name",
+        "descKey": "veteranOfficers.us.fleetEngineer.desc",
+        "specialtyKey": "veteranOfficers.specialty.engineering",
+        "tone": "engineering",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "reputationMin": 70,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "readinessBonus": 4,
+          "tonnageMultiplier": 1.0,
+          "moraleBonus": 1,
+          "fatigueDelta": -3,
+          "sonarBonus": 0,
+          "engineeringBonus": 5,
+          "torpedoBonus": 0,
+          "stealthBonus": 1
+        }
+      },
+      {
+        "id": "us_veteran_torpedoData",
+        "tier": 3,
+        "roleKey": "veteranOfficers.us.torpedoData.role",
+        "nameKey": "veteranOfficers.us.torpedoData.name",
+        "descKey": "veteranOfficers.us.torpedoData.desc",
+        "specialtyKey": "veteranOfficers.specialty.torpedoes",
+        "tone": "weapons",
+        "cost": {
+          "credits": 940,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 3,
+          "reputationMin": 115,
+          "rankIndexMin": 2,
+          "awardedHonors": 1
+        },
+        "effect": {
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "readinessBonus": 2,
+          "tonnageMultiplier": 1.04,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 0,
+          "engineeringBonus": 0,
+          "torpedoBonus": 5,
+          "stealthBonus": 0
+        }
+      },
+      {
+        "id": "us_veteran_combatQuartermaster",
+        "tier": 4,
+        "roleKey": "veteranOfficers.us.combatQuartermaster.role",
+        "nameKey": "veteranOfficers.us.combatQuartermaster.name",
+        "descKey": "veteranOfficers.us.combatQuartermaster.desc",
+        "specialtyKey": "veteranOfficers.specialty.intelligence",
+        "tone": "intelligence",
+        "cost": {
+          "credits": 1220,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 5,
+          "reputationMin": 175,
+          "rankIndexMin": 3,
+          "awardedHonors": 2
+        },
+        "effect": {
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "readinessBonus": 3,
+          "tonnageMultiplier": 1.03,
+          "moraleBonus": 2,
+          "fatigueDelta": -1,
+          "sonarBonus": 2,
+          "engineeringBonus": 1,
+          "torpedoBonus": 1,
+          "stealthBonus": 3
+        }
+      }
+    ]
+  }
+]

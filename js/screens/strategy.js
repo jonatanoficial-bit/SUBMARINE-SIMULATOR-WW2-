@@ -531,7 +531,75 @@ function renderCommandAdvancement(t, save, summary = null) {
     </div>`;
 }
 
-export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null, operationalHonors = null, commandAdvancement = null) {
+
+
+function veteranOfficerToneClass(officer) {
+  if (officer?.tone === 'intelligence') return 'gold';
+  if (officer?.tone === 'weapons') return 'warn';
+  return officer?.assigned ? 'success' : 'combat';
+}
+
+function renderVeteranOfficers(t, save, summary = null) {
+  if (!summary?.officers?.length) return '';
+  const effect = summary.combinedEffect || {};
+  return `
+    <div class="panel phase22-veteran-officers-panel">
+      <div class="panel-header">${t('veteranOfficers.title')}</div>
+      <div class="panel-body stack">
+        <div class="row space-between align-start">
+          <div>
+            <div class="kicker">${t(summary.titleKey)}</div>
+            <h3>${t('veteranOfficers.heading')}</h3>
+            <p class="muted compact-text">${t(summary.summaryKey)}</p>
+          </div>
+          <span class="tag ${summary.availableCount ? 'gold' : summary.assignedCount ? 'success' : 'warn'}">${summary.assignedCount}/${summary.totalOfficers}</span>
+        </div>
+        <div class="command-authority-score"><i style="width:${summary.veteranScore || 0}%"></i></div>
+        <div class="command-advancement-effect-grid">
+          <div><span>${t('veteranOfficers.sonar')}</span><strong>${formatSigned(effect.sonarBonus)}</strong></div>
+          <div><span>${t('veteranOfficers.engineering')}</span><strong>${formatSigned(effect.engineeringBonus)}</strong></div>
+          <div><span>${t('veteranOfficers.torpedoes')}</span><strong>${formatSigned(effect.torpedoBonus)}</strong></div>
+          <div><span>${t('veteranOfficers.stealth')}</span><strong>${formatSigned(effect.stealthBonus)}</strong></div>
+          <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
+          <div><span>${t('campaign.modifier.readiness')}</span><strong>${formatSigned(effect.readinessBonus)}</strong></div>
+        </div>
+        <div class="command-advancement-grid">
+          ${summary.officers.map((officer) => {
+            const cost = officer.cost || {};
+            const opEffect = officer.effect || {};
+            const canAssign = officer.unlocked && !officer.assigned && (save.progression?.credits || 0) >= (cost.credits || 0) && (save.strategy?.commandPoints || 0) >= (cost.commandPoints || 0);
+            const lockText = officer.assigned ? '' : (!officer.unlocked ? t(officer.lockedReason || 'veteranOfficers.locked', { count: officer.lockCount || 0 }) : (!canAssign ? t('veteranOfficers.insufficientResources') : ''));
+            return `
+              <div class="mission-card command-advancement-card ${officer.assigned ? 'claimed' : ''} ${canAssign ? '' : 'locked'}">
+                <div class="row space-between align-start">
+                  <div>
+                    <span class="tag ${veteranOfficerToneClass(officer)}">${t(officer.specialtyKey)}</span>
+                    <h3>★ ${t(officer.nameKey)}</h3>
+                    <p>${t(officer.descKey)}</p>
+                  </div>
+                  <span class="tag ${officer.assigned ? 'success' : officer.unlocked ? 'gold' : 'warn'}">${officer.assigned ? t('veteranOfficers.assigned') : officer.unlocked ? t('veteranOfficers.available') : t('veteranOfficers.locked')}</span>
+                </div>
+                <div class="mission-meta">
+                  <span class="tag">${t('common.credits')}: ${cost.credits || 0}</span>
+                  <span class="tag">${t('strategy.commandPoints')}: ${cost.commandPoints || 0}</span>
+                  <span class="tag gold">${t('veteranOfficers.tier')}: ${officer.tier || 1}</span>
+                </div>
+                <div class="operation-outcome-mini-effects">
+                  <span>${t('veteranOfficers.sonar')}: ${formatSigned(opEffect.sonarBonus)}</span>
+                  <span>${t('veteranOfficers.engineering')}: ${formatSigned(opEffect.engineeringBonus)}</span>
+                  <span>${t('veteranOfficers.torpedoes')}: ${formatSigned(opEffect.torpedoBonus)}</span>
+                  <span>${t('veteranOfficers.stealth')}: ${formatSigned(opEffect.stealthBonus)}</span>
+                </div>
+                ${lockText ? `<small class="muted">${lockText}</small>` : ''}
+                <button class="button block ${canAssign ? '' : 'secondary'}" data-action="assign-veteran-officer" data-officer="${officer.id}" ${canAssign ? '' : 'disabled'}>${officer.assigned ? t('veteranOfficers.officerActive') : t('veteranOfficers.assign')}</button>
+              </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+export function renderStrategy(t, save, nation, strategyData, theater, selectedLane, selectedDirective, assessment, campaignConsequences = null, highCommandOrders = null, campaignEvents = null, specialOperations = null, operationChains = null, operationOutcomes = null, operationalHonors = null, commandAdvancement = null, veteranOfficers = null) {
   const strategy = save.strategy || {};
   const lanes = (strategyData.convoyLanes || []).filter((lane) => lane.nationId === nation.id);
   const network = (strategyData.intelNetworks || []).find((item) => item.nationId === nation.id) || {};
@@ -574,6 +642,7 @@ export function renderStrategy(t, save, nation, strategyData, theater, selectedL
       ${renderOperationOutcomes(t, save, operationOutcomes)}
       ${renderOperationalHonors(t, save, operationalHonors)}
       ${renderCommandAdvancement(t, save, commandAdvancement)}
+      ${renderVeteranOfficers(t, save, veteranOfficers)}
       ${renderHighCommandOrders(t, save, highCommandOrders)}
 
       <div class="phase13-grid">

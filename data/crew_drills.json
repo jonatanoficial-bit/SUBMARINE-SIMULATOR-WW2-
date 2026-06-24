@@ -1,0 +1,401 @@
+[
+  {
+    "id": "crew_drills.de",
+    "nationId": "de",
+    "titleKey": "crewDrills.de.title",
+    "summaryKey": "crewDrills.de.summary",
+    "frontKey": "crewDrills.de.front",
+    "drills": [
+      {
+        "id": "de_drill_silent_watch",
+        "tier": 1,
+        "nameKey": "crewDrills.de.silentWatch.name",
+        "descKey": "crewDrills.de.silentWatch.desc",
+        "stationKey": "crew.station.watch",
+        "tone": "stealth",
+        "cost": {
+          "credits": 420,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 0,
+          "assignedOfficers": 0,
+          "readinessMin": 45
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": -2,
+          "sonarBonus": 1,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 3,
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "de_drill_crash_dive",
+        "tier": 2,
+        "nameKey": "crewDrills.de.crashDive.name",
+        "descKey": "crewDrills.de.crashDive.desc",
+        "stationKey": "crew.station.damage",
+        "tone": "danger",
+        "cost": {
+          "credits": 560,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 1,
+          "assignedOfficers": 1,
+          "readinessMin": 50
+        },
+        "effect": {
+          "readinessBonus": 4,
+          "moraleBonus": 1,
+          "fatigueDelta": -1,
+          "sonarBonus": 0,
+          "engineeringBonus": 3,
+          "torpedoBonus": 0,
+          "stealthBonus": 2,
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": -2,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "de_drill_convoy_solution",
+        "tier": 3,
+        "nameKey": "crewDrills.de.convoySolution.name",
+        "descKey": "crewDrills.de.convoySolution.desc",
+        "stationKey": "veteranOfficers.specialty.torpedoes",
+        "tone": "weapons",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "assignedOfficers": 2,
+          "readinessMin": 55
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 1,
+          "engineeringBonus": 0,
+          "torpedoBonus": 4,
+          "stealthBonus": 1,
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "tonnageMultiplier": 1.03
+        }
+      },
+      {
+        "id": "de_drill_wolfpack_command",
+        "tier": 4,
+        "nameKey": "crewDrills.de.wolfpackCommand.name",
+        "descKey": "crewDrills.de.wolfpackCommand.desc",
+        "stationKey": "veteranOfficers.specialty.intelligence",
+        "tone": "command",
+        "cost": {
+          "credits": 980,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 4,
+          "assignedOfficers": 3,
+          "readinessMin": 62
+        },
+        "effect": {
+          "readinessBonus": 5,
+          "moraleBonus": 2,
+          "fatigueDelta": -1,
+          "sonarBonus": 2,
+          "engineeringBonus": 1,
+          "torpedoBonus": 2,
+          "stealthBonus": 3,
+          "intelBonus": 3,
+          "decryptionBonus": 1,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "tonnageMultiplier": 1.02
+        }
+      }
+    ]
+  },
+  {
+    "id": "crew_drills.uk",
+    "nationId": "uk",
+    "titleKey": "crewDrills.uk.title",
+    "summaryKey": "crewDrills.uk.summary",
+    "frontKey": "crewDrills.uk.front",
+    "drills": [
+      {
+        "id": "uk_drill_asdic_rotation",
+        "tier": 1,
+        "nameKey": "crewDrills.uk.asdicRotation.name",
+        "descKey": "crewDrills.uk.asdicRotation.desc",
+        "stationKey": "veteranOfficers.specialty.sonar",
+        "tone": "watch",
+        "cost": {
+          "credits": 420,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 0,
+          "assignedOfficers": 0,
+          "readinessMin": 45
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": -2,
+          "sonarBonus": 4,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 1,
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "uk_drill_damage_party",
+        "tier": 2,
+        "nameKey": "crewDrills.uk.damageParty.name",
+        "descKey": "crewDrills.uk.damageParty.desc",
+        "stationKey": "crew.station.damage",
+        "tone": "engineering",
+        "cost": {
+          "credits": 560,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 1,
+          "assignedOfficers": 1,
+          "readinessMin": 50
+        },
+        "effect": {
+          "readinessBonus": 4,
+          "moraleBonus": 1,
+          "fatigueDelta": -1,
+          "sonarBonus": 0,
+          "engineeringBonus": 4,
+          "torpedoBonus": 0,
+          "stealthBonus": 0,
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 2,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "uk_drill_convoy_intercept",
+        "tier": 3,
+        "nameKey": "crewDrills.uk.convoyIntercept.name",
+        "descKey": "crewDrills.uk.convoyIntercept.desc",
+        "stationKey": "veteranOfficers.specialty.intelligence",
+        "tone": "intelligence",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "assignedOfficers": 2,
+          "readinessMin": 55
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 1,
+          "engineeringBonus": 0,
+          "torpedoBonus": 1,
+          "stealthBonus": 2,
+          "intelBonus": 3,
+          "decryptionBonus": 2,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.01
+        }
+      },
+      {
+        "id": "uk_drill_night_approach",
+        "tier": 4,
+        "nameKey": "crewDrills.uk.nightApproach.name",
+        "descKey": "crewDrills.uk.nightApproach.desc",
+        "stationKey": "crew.station.navigation",
+        "tone": "stealth",
+        "cost": {
+          "credits": 980,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 4,
+          "assignedOfficers": 3,
+          "readinessMin": 62
+        },
+        "effect": {
+          "readinessBonus": 5,
+          "moraleBonus": 2,
+          "fatigueDelta": -1,
+          "sonarBonus": 2,
+          "engineeringBonus": 1,
+          "torpedoBonus": 2,
+          "stealthBonus": 4,
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "tonnageMultiplier": 1.02
+        }
+      }
+    ]
+  },
+  {
+    "id": "crew_drills.us",
+    "nationId": "us",
+    "titleKey": "crewDrills.us.title",
+    "summaryKey": "crewDrills.us.summary",
+    "frontKey": "crewDrills.us.front",
+    "drills": [
+      {
+        "id": "us_drill_radar_watch",
+        "tier": 1,
+        "nameKey": "crewDrills.us.radarWatch.name",
+        "descKey": "crewDrills.us.radarWatch.desc",
+        "stationKey": "crew.station.watch",
+        "tone": "watch",
+        "cost": {
+          "credits": 420,
+          "commandPoints": 0
+        },
+        "requires": {
+          "completedMissions": 0,
+          "assignedOfficers": 0,
+          "readinessMin": 45
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": -2,
+          "sonarBonus": 2,
+          "engineeringBonus": 0,
+          "torpedoBonus": 0,
+          "stealthBonus": 1,
+          "intelBonus": 2,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "us_drill_battery_discipline",
+        "tier": 2,
+        "nameKey": "crewDrills.us.batteryDiscipline.name",
+        "descKey": "crewDrills.us.batteryDiscipline.desc",
+        "stationKey": "veteranOfficers.specialty.engineering",
+        "tone": "engineering",
+        "cost": {
+          "credits": 560,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 1,
+          "assignedOfficers": 1,
+          "readinessMin": 50
+        },
+        "effect": {
+          "readinessBonus": 4,
+          "moraleBonus": 1,
+          "fatigueDelta": -2,
+          "sonarBonus": 0,
+          "engineeringBonus": 4,
+          "torpedoBonus": 0,
+          "stealthBonus": 2,
+          "intelBonus": 0,
+          "decryptionBonus": 0,
+          "pressureRelief": 1,
+          "riskDelta": -1,
+          "tonnageMultiplier": 1.0
+        }
+      },
+      {
+        "id": "us_drill_tdc_attack",
+        "tier": 3,
+        "nameKey": "crewDrills.us.tdcAttack.name",
+        "descKey": "crewDrills.us.tdcAttack.desc",
+        "stationKey": "veteranOfficers.specialty.torpedoes",
+        "tone": "weapons",
+        "cost": {
+          "credits": 760,
+          "commandPoints": 1
+        },
+        "requires": {
+          "completedMissions": 2,
+          "assignedOfficers": 2,
+          "readinessMin": 55
+        },
+        "effect": {
+          "readinessBonus": 3,
+          "moraleBonus": 1,
+          "fatigueDelta": 0,
+          "sonarBonus": 0,
+          "engineeringBonus": 0,
+          "torpedoBonus": 5,
+          "stealthBonus": 1,
+          "intelBonus": 1,
+          "decryptionBonus": 0,
+          "pressureRelief": 0,
+          "riskDelta": 0,
+          "tonnageMultiplier": 1.04
+        }
+      },
+      {
+        "id": "us_drill_pacific_endurance",
+        "tier": 4,
+        "nameKey": "crewDrills.us.pacificEndurance.name",
+        "descKey": "crewDrills.us.pacificEndurance.desc",
+        "stationKey": "crew.station.navigation",
+        "tone": "command",
+        "cost": {
+          "credits": 980,
+          "commandPoints": 2
+        },
+        "requires": {
+          "completedMissions": 4,
+          "assignedOfficers": 3,
+          "readinessMin": 62
+        },
+        "effect": {
+          "readinessBonus": 6,
+          "moraleBonus": 2,
+          "fatigueDelta": -2,
+          "sonarBonus": 2,
+          "engineeringBonus": 2,
+          "torpedoBonus": 2,
+          "stealthBonus": 3,
+          "intelBonus": 2,
+          "decryptionBonus": 1,
+          "pressureRelief": 2,
+          "riskDelta": -2,
+          "tonnageMultiplier": 1.02
+        }
+      }
+    ]
+  }
+]

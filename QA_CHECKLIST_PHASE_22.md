@@ -1,10 +1,6 @@
-# QA Checklist Phase 22
+# QA Checklist — Phase 22
 
-- [x] Six MP3 tracks copied into assets/audio/music
-- [x] Playlist order fixed and deterministic
-- [x] Ended event advances to next track
-- [x] Final track loops back to first track
-- [x] Music slider controls soundtrack volume
-- [x] Browser autoplay restriction handled by unlock-on-interaction
-- [x] Service worker caches soundtrack files
-- [x] Phase 21 systems preserved
+- [x] Build visível atualizada para v2.0.0-alpha.37.
+- [x] Data deck de oficiais veteranos cobre Alemanha, Reino Unido e Estados Unidos.
+- [x] Save schema atualizado para 16.
+- [x] Testes automatizados e auditoria específica adicionados.

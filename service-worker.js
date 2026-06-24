@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.36';
+const CACHE_VERSION = '2.0.0-alpha.39';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -45,9 +45,12 @@ const APP_SHELL = [
   './css/phase19-tdc-fire-control.css',
   './css/phase20-mobile-scroll.css',
   './css/phase21-command-advancement.css',
+  './css/phase22-veteran-officers.css',
   './css/phase21-damage-emergency.css',
   './css/phase23-crew-readiness.css',
+  './css/phase23-crew-drills.css',
   './css/phase24-ocean-weather.css',
+  './css/phase24-silent-depth-periscope.css',
   './css/phase25-convoy-doctrine.css',
   './js/app.js',
   './js/build.js',
@@ -105,6 +108,8 @@ const APP_SHELL = [
   './js/systems/operationOutcomes.js',
   './js/systems/operationalHonors.js',
   './js/systems/commandAdvancement.js',
+  './js/systems/veteranOfficers.js',
+  './js/systems/silentDepthPeriscope.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -120,6 +125,8 @@ const APP_SHELL = [
   './data/operation_outcomes.json',
   './data/operational_honors.json',
   './data/command_advancement.json',
+  './data/veteran_officers.json',
+  './data/crew_drills.json',
   './data/logistics.json',
   './data/strategy.json',
   './data/upgrades.json',

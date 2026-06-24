@@ -1,4 +1,5 @@
-# Known Issues Phase 23
+# Known Issues — Fase 23
 
-- Crew readiness is currently calculated from specialists, logistics morale and emergency context; full per-sailor persistent fatigue is planned for a later evolution.
-- Watch rotation is advisory and does not yet create individual shift timers inside missions.
+Nenhum bloqueio crítico encontrado na auditoria automatizada.
+
+Observação: ainda é recomendada homologação manual em Android real, iPhone/Safari, desktop Chrome e PWA instalado, especialmente testando rolagem na tela Tripulação com muitos cards ativos.

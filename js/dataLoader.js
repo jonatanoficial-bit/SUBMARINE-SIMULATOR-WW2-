@@ -14,6 +14,8 @@ const DATA_FILES = {
   operationOutcomes: 'data/operation_outcomes.json',
   operationalHonors: 'data/operational_honors.json',
   commandAdvancement: 'data/command_advancement.json',
+  veteranOfficers: 'data/veteran_officers.json',
+  crewDrills: 'data/crew_drills.json',
   logistics: 'data/logistics.json',
   strategy: 'data/strategy.json',
   upgrades: 'data/upgrades.json',
@@ -116,6 +118,8 @@ function validateRelations(data) {
   const operationOutcomeSetIds = assertUniqueIds('operationOutcomes', data.operationOutcomes || []);
   const operationalHonorSetIds = assertUniqueIds('operationalHonors', data.operationalHonors || []);
   const commandAdvancementSetIds = assertUniqueIds('commandAdvancement', data.commandAdvancement || []);
+  const veteranOfficerSetIds = assertUniqueIds('veteranOfficers', data.veteranOfficers || []);
+  const crewDrillSetIds = assertUniqueIds('crewDrills', data.crewDrills || []);
   assertUniqueIds('upgrades', data.upgrades);
   assertUniqueIds('logistics.bases', data.logistics.bases);
 
@@ -383,6 +387,57 @@ data.nations.forEach((nation) => {
     if (!data.commandAdvancement.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no command advancement deck`);
   });
 
+
+  if ((data.veteranOfficers || []).length !== data.nations.length) throw new Error('Veteran officers must cover every nation');
+  data.veteranOfficers.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Veteran officer deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.officers) || deck.officers.length !== 4) throw new Error(`Veteran officer deck ${deck.id} must have four specialists`);
+    const nestedOfficerIds = new Set();
+    deck.officers.forEach((officer) => {
+      if (!officer?.id || nestedOfficerIds.has(officer.id)) throw new Error(`Veteran officer deck ${deck.id} has invalid or duplicate officer id`);
+      nestedOfficerIds.add(officer.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(officer.cost?.[key]))) throw new Error(`Veteran officer ${officer.id} missing cost ${key}`);
+      });
+      const requires = officer.requires || {};
+      ['completedMissions','reputationMin','rankIndexMin','awardedHonors','claimedPromotions'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Veteran officer ${officer.id} has invalid requirement ${key}`);
+      });
+      ['intelBonus','decryptionBonus','pressureRelief','riskDelta','readinessBonus','tonnageMultiplier','moraleBonus','fatigueDelta','sonarBonus','engineeringBonus','torpedoBonus','stealthBonus'].forEach((key) => {
+        if (!Number.isFinite(Number(officer.effect?.[key]))) throw new Error(`Veteran officer ${officer.id} missing effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.veteranOfficers.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no veteran officer deck`);
+  });
+
+
+
+  if ((data.crewDrills || []).length !== data.nations.length) throw new Error('Crew drills must cover every nation');
+  data.crewDrills.forEach((deck) => {
+    if (!nationIds.has(deck.nationId)) throw new Error(`Crew drill deck ${deck.id} has invalid nation ${deck.nationId}`);
+    if (!Array.isArray(deck.drills) || deck.drills.length !== 4) throw new Error(`Crew drill deck ${deck.id} must have four drills`);
+    const nestedDrillIds = new Set();
+    deck.drills.forEach((drill) => {
+      if (!drill?.id || nestedDrillIds.has(drill.id)) throw new Error(`Crew drill deck ${deck.id} has invalid or duplicate drill id`);
+      nestedDrillIds.add(drill.id);
+      ['credits','commandPoints'].forEach((key) => {
+        if (!Number.isFinite(Number(drill.cost?.[key]))) throw new Error(`Crew drill ${drill.id} missing cost ${key}`);
+      });
+      const requires = drill.requires || {};
+      ['completedMissions','assignedOfficers','readinessMin'].forEach((key) => {
+        if (key in requires && !Number.isFinite(Number(requires[key]))) throw new Error(`Crew drill ${drill.id} has invalid requirement ${key}`);
+      });
+      ['readinessBonus','moraleBonus','fatigueDelta','sonarBonus','engineeringBonus','torpedoBonus','stealthBonus','intelBonus','decryptionBonus','pressureRelief','riskDelta','tonnageMultiplier'].forEach((key) => {
+        if (!Number.isFinite(Number(drill.effect?.[key]))) throw new Error(`Crew drill ${drill.id} missing effect ${key}`);
+      });
+    });
+  });
+  data.nations.forEach((nation) => {
+    if (!data.crewDrills.some((deck) => deck.nationId === nation.id)) throw new Error(`Nation ${nation.id} has no crew drill deck`);
+  });
+
   data.campaigns.forEach((campaign) => {
     if (!nationIds.has(campaign.nationId)) throw new Error(`Campaign ${campaign.id} has invalid nation ${campaign.nationId}`);
     if (!Array.isArray(campaign.missionIds) || !campaign.missionIds.length) throw new Error(`Campaign ${campaign.id} has no mission ids`);
@@ -422,7 +477,7 @@ data.nations.forEach((nation) => {
 
 export async function loadGameData() {
   const values = await Promise.all(Object.values(DATA_FILES).map(fetchJson));
-  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, logistics, strategy, upgrades, ptBR, en, es] = values;
+  const [nations, submarines, crew, missionsRaw, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers, crewDrills, logistics, strategy, upgrades, ptBR, en, es] = values;
   assertArray('nations', nations);
   assertArray('submarines', submarines);
   assertArray('crew', crew);
@@ -438,6 +493,8 @@ export async function loadGameData() {
   assertArray('operationOutcomes', operationOutcomes);
   assertArray('operationalHonors', operationalHonors);
   assertArray('commandAdvancement', commandAdvancement);
+  assertArray('veteranOfficers', veteranOfficers);
+  assertArray('crewDrills', crewDrills);
   assertArray('upgrades', upgrades);
   if (!logistics || typeof logistics !== 'object') throw new Error('logistics must be an object');
   if (!strategy || typeof strategy !== 'object') throw new Error('strategy must be an object');
@@ -446,7 +503,7 @@ export async function loadGameData() {
   const translations = { 'pt-BR': ptBR, en, es };
   validateTranslations(translations);
 
-  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, logistics, strategy, upgrades, translations };
+  const data = { nations, submarines, crew, missions, campaigns, campaignDoctrines, campaignObjectives, campaignConsequences, highCommandOrders, campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers, crewDrills, logistics, strategy, upgrades, translations };
   validateRelations(data);
   return data;
 }

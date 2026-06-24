@@ -1,0 +1,12 @@
+/* Phase 22 — Veteran officers and specialist crew */
+.phase22-veteran-officers, .phase22-veteran-officers-panel {
+  border-color: rgba(142, 202, 230, 0.28);
+  background: linear-gradient(145deg, rgba(12, 28, 42, 0.92), rgba(21, 38, 58, 0.86));
+}
+.phase22-veteran-officers .campaign-event-pill strong,
+.phase22-veteran-officers-panel h3 {
+  letter-spacing: 0.01em;
+}
+.phase22-veteran-officers-panel .command-advancement-card.claimed {
+  box-shadow: inset 0 0 0 1px rgba(70, 190, 145, 0.36), 0 12px 28px rgba(0,0,0,0.22);
+}

@@ -1,4 +1,4 @@
-# Release Notes — v2.0.0-alpha.36 — Fase 21
+# Release Notes — v2.0.0-alpha.37 — Fase 21
 
 Fase 21 adiciona patentes e carreira naval ao comandante, conectando reputação operacional, medalhas de campanha, operações especiais, cadeias e desfechos estratégicos a promoções permanentes. Alemanha, Reino Unido e Estados Unidos possuem trilhas próprias de carreira com cinco marcos cada.
 

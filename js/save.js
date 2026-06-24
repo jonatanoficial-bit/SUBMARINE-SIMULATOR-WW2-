@@ -85,6 +85,16 @@ function sanitizeCareer(value = {}) {
   const commandAdvancementHistory = Array.isArray(commandAdvancement.history)
     ? commandAdvancement.history.filter((item) => item && typeof item === 'object').slice(0, 30)
     : [];
+  const veteranOfficers = value.veteranOfficers && typeof value.veteranOfficers === 'object' ? value.veteranOfficers : {};
+  const veteranOfficerLegacy = Array.isArray(value.officersAssigned) ? value.officersAssigned : [];
+  const veteranOfficerHistory = Array.isArray(veteranOfficers.history)
+    ? veteranOfficers.history.filter((item) => item && typeof item === 'object').slice(0, 30)
+    : [];
+  const crewDrills = value.crewDrills && typeof value.crewDrills === 'object' ? value.crewDrills : {};
+  const crewDrillLegacy = Array.isArray(value.completedCrewDrills) ? value.completedCrewDrills : [];
+  const crewDrillHistory = Array.isArray(crewDrills.history)
+    ? crewDrills.history.filter((item) => item && typeof item === 'object').slice(0, 30)
+    : [];
   return {
     rankIndex: Math.floor(clampNumber(value.rankIndex, 0, 12, 0)),
     reputation: Math.floor(clampNumber(value.reputation, 0, 999999, 0)),
@@ -105,6 +115,16 @@ function sanitizeCareer(value = {}) {
       claimedIds: uniqueStringArray([...(commandAdvancement.claimedIds || []), ...commandAdvancementLegacy]),
       availableIds: uniqueStringArray(commandAdvancement.availableIds || []),
       history: commandAdvancementHistory
+    },
+    veteranOfficers: {
+      assignedIds: uniqueStringArray([...(veteranOfficers.assignedIds || []), ...veteranOfficerLegacy]),
+      availableIds: uniqueStringArray(veteranOfficers.availableIds || []),
+      history: veteranOfficerHistory
+    },
+    crewDrills: {
+      completedIds: uniqueStringArray([...(crewDrills.completedIds || []), ...crewDrillLegacy]),
+      availableIds: uniqueStringArray(crewDrills.availableIds || []),
+      history: crewDrillHistory
     },
     serviceRecord
   };

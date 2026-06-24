@@ -1,0 +1,22 @@
+.phase23-crew-drills .crew-drill-card {
+  min-height: 260px;
+  align-items: stretch;
+}
+.phase23-crew-drills .crew-drill-card strong {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.phase23-crew-drills .mission-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.phase23-crew-drills .button.block {
+  margin-top: auto;
+}
+@media (max-width: 720px) {
+  .phase23-crew-drills .crew-station-grid {
+    grid-template-columns: 1fr;
+  }
+}
