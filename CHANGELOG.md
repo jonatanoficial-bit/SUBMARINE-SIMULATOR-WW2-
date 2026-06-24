@@ -1,3 +1,10 @@
+# v2.0.0-alpha.51 — Fase 36 — Interface Cinemática Premium
+
+- Adicionada camada cinematográfica premium com letterbox, vinheta, grão de filme e scanline leve.
+- Adicionado diretor de cena no gameplay com mood, cue e intensidade visual.
+- Interface reage a patrulha, tensão, ação, emergência, vitória e derrota.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.50 — Fase 35 — Profundidade, Camadas e Furtividade Realista
 
 - Adicionado modelo de furtividade por profundidade, camada térmica, cavitação e pressão.

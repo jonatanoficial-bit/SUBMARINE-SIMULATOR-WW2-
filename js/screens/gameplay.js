@@ -16,6 +16,7 @@ import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
+import { buildCinematicInterfaceView, shouldCinematicTransition } from '../systems/cinematicInterface.js';
 
 let cleanupFns = [];
 
@@ -140,7 +141,14 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready">
+      <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
+        <i class="phase36-letterbox top"></i>
+        <i class="phase36-letterbox bottom"></i>
+        <i class="phase36-vignette"></i>
+        <i class="phase36-grain"></i>
+        <i class="phase36-scanline"></i>
+      </div>
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -151,6 +159,22 @@ export function renderGameplay(t, mission, settings = {}) {
           <button class="button ghost immersive-button" data-action="request-fullscreen">${t('viewport.immersive')}</button>
           <div class="top-badge difficulty-badge" data-difficulty="${settings.difficulty || 'officer'}"><span>${t(`training.difficulty.${settings.difficulty || 'officer'}`)}</span></div>
           <div class="top-badge"><span>${t('gameplay.phase')}</span></div>
+        </div>
+      </div>
+
+      <div class="phase36-premium-director" id="phase36-premium-director" data-mood="calm" aria-live="polite">
+        <div>
+          <span>${t('cinematic.kicker')}</span>
+          <strong id="phase36-scene">${t('cinematic.sceneSilentPatrol')}</strong>
+        </div>
+        <div>
+          <span>${t('cinematic.directorCue')}</span>
+          <strong id="phase36-cue">${t('cinematic.cueCalm')}</strong>
+        </div>
+        <div>
+          <span>${t('cinematic.intensity')}</span>
+          <strong id="phase36-intensity">0%</strong>
+          <i><em id="phase36-intensity-bar" style="width:0%"></em></i>
         </div>
       </div>
 
@@ -1058,6 +1082,12 @@ export function mountGameplay({
     hudConvoy: app.querySelector('#hud-convoy'),
     hudAsw: app.querySelector('#hud-asw'),
     hudEnvironment: app.querySelector('#hud-environment'),
+    phase36CinematicLayer: app.querySelector('#phase36-cinematic-layer'),
+    phase36PremiumDirector: app.querySelector('#phase36-premium-director'),
+    phase36Scene: app.querySelector('#phase36-scene'),
+    phase36Cue: app.querySelector('#phase36-cue'),
+    phase36Intensity: app.querySelector('#phase36-intensity'),
+    phase36IntensityBar: app.querySelector('#phase36-intensity-bar'),
     encounterPhase: app.querySelector('#encounter-phase'),
     encounterContactState: app.querySelector('#encounter-contact-state'),
     encounterContactQuality: app.querySelector('#encounter-contact-quality'),
@@ -1458,6 +1488,7 @@ export function mountGameplay({
   let airAttackCurrent = null;
   let damageVisualCurrent = null;
   let depthStealthCurrent = null;
+  let cinematicInterfaceCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -1625,6 +1656,37 @@ export function mountGameplay({
     if (els.speedLever) els.speedLever.style.transform = `translate(-50%, -88%) rotate(${SPEED_ANGLES[snapshot.speed]}deg)`;
     if (els.speedActualDigital) els.speedActualDigital.textContent = `${actualSpeed.toFixed(1)} kn`;
     if (els.speedCommandDigital) els.speedCommandDigital.textContent = t(`speed.${snapshot.speed}`).toUpperCase();
+  }
+
+  function updateCinematicInterface(snapshot) {
+    const view = buildCinematicInterfaceView({ snapshot, mission: mission || {}, station: activeStation });
+    const previous = cinematicInterfaceCurrent;
+    cinematicInterfaceCurrent = view;
+    const screen = app.querySelector('.gameplay-screen');
+    if (screen) {
+      screen.dataset.cinematicMood = view.mood;
+      screen.dataset.cinematicTransition = view.transition;
+      Object.entries(view.cssVars || {}).forEach(([key, value]) => screen.style.setProperty(key, value));
+    }
+    if (els.phase36CinematicLayer) {
+      els.phase36CinematicLayer.dataset.mood = view.mood;
+      els.phase36CinematicLayer.dataset.transition = view.transition;
+      els.phase36CinematicLayer.dataset.pulse = String(view.shouldPulse);
+    }
+    if (els.phase36PremiumDirector) {
+      els.phase36PremiumDirector.dataset.mood = view.mood;
+      els.phase36PremiumDirector.dataset.transition = view.transition;
+    }
+    if (els.phase36Scene) els.phase36Scene.textContent = t(view.sceneKey);
+    if (els.phase36Cue) els.phase36Cue.textContent = t(view.cueKey);
+    if (els.phase36Intensity) els.phase36Intensity.textContent = view.labels.intensity;
+    if (els.phase36IntensityBar) els.phase36IntensityBar.style.width = view.labels.intensity;
+    if (shouldCinematicTransition({ previous, next: view })) {
+      screen?.classList.add('phase36-cinematic-cut');
+      schedule(() => screen?.classList.remove('phase36-cinematic-cut'), 680);
+      if (['action', 'emergency', 'lost'].includes(view.mood)) playSfx('alert');
+    }
+    return view;
   }
 
   function updateDepthStealth(snapshot) {
@@ -2829,6 +2891,7 @@ export function mountGameplay({
   }
 
   function updateAll(snapshot = engine.snapshot()) {
+    updateCinematicInterface(snapshot);
     updateTraining(snapshot);
     persistOperation(snapshot);
     updateInstruments(snapshot);

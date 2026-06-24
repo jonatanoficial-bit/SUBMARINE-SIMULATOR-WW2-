@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 19 metadata identifies strategic outcomes build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.50');
-  assert.equal(BUILD_INFO.phase, '35');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 29);
-  assert.match(BUILD_INFO.buildId, /F35-DEPTH-STEALTH-REALISM/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.51');
+  assert.equal(BUILD_INFO.phase, '36');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 30);
+  assert.match(BUILD_INFO.buildId, /F36-CINEMATIC-PREMIUM-INTERFACE/);
 });
 
 test('operation outcome decks cover every nation and require valid chain steps', () => {
