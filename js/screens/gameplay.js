@@ -12,6 +12,7 @@ import { buildAirAttackView, shouldAirThreatInterrupt } from '../systems/airAtta
 import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
 import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
 import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
+import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
 
 let cleanupFns = [];
 
@@ -136,7 +137,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -693,6 +694,40 @@ export function renderGameplay(t, mission, settings = {}) {
                 <div><span>${t('tdc.fireDiscipline')}</span><strong id="tdc-fire-discipline">--</strong></div>
               </div>
             </div>
+
+            <section class="phase32-attack-director" id="phase32-attack-director" data-state="hold" aria-live="polite">
+              <header class="phase32-director-header">
+                <span>${t('torpedoDirector.kicker')}</span>
+                <strong id="phase32-attack-phase">${t('torpedoDirector.phaseAcquire')}</strong>
+              </header>
+              <div class="phase32-attack-plot" id="phase32-attack-plot" style="--phase32-bearing:0deg;--phase32-gyro:0deg;--phase32-lead:0deg;--phase32-run:0%;--phase32-dispersion:6px;">
+                <span class="phase32-bearing-ring"></span>
+                <span class="phase32-target-vector"></span>
+                <span class="phase32-lead-vector"></span>
+                <span class="phase32-gyro-vector"></span>
+                <span class="phase32-torpedo-run"></span>
+                <span class="phase32-target-silhouette"></span>
+                <span class="phase32-ownship"></span>
+              </div>
+              <div class="phase32-readout-grid">
+                <div class="phase32-readout"><span>${t('torpedoDirector.bearing')}</span><strong id="phase32-bearing">--</strong></div>
+                <div class="phase32-readout"><span>${t('torpedoDirector.range')}</span><strong id="phase32-range">--</strong></div>
+                <div class="phase32-readout"><span>${t('torpedoDirector.lead')}</span><strong id="phase32-lead">--</strong></div>
+                <div class="phase32-readout"><span>${t('torpedoDirector.impact')}</span><strong id="phase32-impact">--</strong></div>
+                <div class="phase32-readout"><span>${t('torpedoDirector.aspect')}</span><strong id="phase32-aspect">--</strong></div>
+                <div class="phase32-readout"><span>${t('torpedoDirector.dispersion')}</span><strong id="phase32-dispersion">--</strong></div>
+              </div>
+              <div class="phase32-bars">
+                <div class="phase32-bar"><span>${t('torpedoDirector.acquisition')}</span><strong id="phase32-acquisition">0%</strong><i><em id="phase32-acquisition-bar" style="width:0%"></em></i></div>
+                <div class="phase32-bar"><span>${t('torpedoDirector.motion')}</span><strong id="phase32-motion">0%</strong><i><em id="phase32-motion-bar" style="width:0%"></em></i></div>
+                <div class="phase32-bar"><span>${t('torpedoDirector.gyro')}</span><strong id="phase32-gyro">0%</strong><i><em id="phase32-gyro-bar" style="width:0%"></em></i></div>
+                <div class="phase32-bar"><span>${t('torpedoDirector.firing')}</span><strong id="phase32-firing">0%</strong><i><em id="phase32-firing-bar" style="width:0%"></em></i></div>
+              </div>
+              <div class="phase32-director-order">
+                <span id="phase32-shot-feedback">${t('torpedoDirector.shotNone')}</span>
+                <strong id="phase32-fire-order">${t('torpedoDirector.recommendAcquire')}</strong>
+              </div>
+            </section>
             <div class="navigation-control-title">${t('weapons.torpedoType')}</div>
             <div class="chip-grid weapon-type-grid">
               <button class="chip torpedo-type-chip" data-torpedo-type="steam">${t('weapons.typeSteam')}</button>
@@ -1157,6 +1192,25 @@ export function mountGameplay({
     tdcFireDiscipline: app.querySelector('#tdc-fire-discipline'),
     tdcPlotTorpedo: app.querySelector('#tdc-plot-torpedo'),
     tdcSolutionPanel: app.querySelector('.phase19-tdc-solution'),
+    torpedoAttackDirector: app.querySelector('#phase32-attack-director'),
+    torpedoAttackPlot: app.querySelector('#phase32-attack-plot'),
+    phase32AttackPhase: app.querySelector('#phase32-attack-phase'),
+    phase32Bearing: app.querySelector('#phase32-bearing'),
+    phase32Range: app.querySelector('#phase32-range'),
+    phase32Lead: app.querySelector('#phase32-lead'),
+    phase32Impact: app.querySelector('#phase32-impact'),
+    phase32Aspect: app.querySelector('#phase32-aspect'),
+    phase32Dispersion: app.querySelector('#phase32-dispersion'),
+    phase32Acquisition: app.querySelector('#phase32-acquisition'),
+    phase32AcquisitionBar: app.querySelector('#phase32-acquisition-bar'),
+    phase32Motion: app.querySelector('#phase32-motion'),
+    phase32MotionBar: app.querySelector('#phase32-motion-bar'),
+    phase32Gyro: app.querySelector('#phase32-gyro'),
+    phase32GyroBar: app.querySelector('#phase32-gyro-bar'),
+    phase32Firing: app.querySelector('#phase32-firing'),
+    phase32FiringBar: app.querySelector('#phase32-firing-bar'),
+    phase32ShotFeedback: app.querySelector('#phase32-shot-feedback'),
+    phase32FireOrder: app.querySelector('#phase32-fire-order'),
     tdcSync: app.querySelector('#tdc-sync'),
     weaponsFire: app.querySelector('#weapons-fire'),
     weaponsMessage: app.querySelector('#weapons-message'),
@@ -2009,9 +2063,42 @@ export function mountGameplay({
     return map[status] || 'weapons.statusNoContact';
   }
 
+
+  function updateTorpedoAttackDirector(snapshot) {
+    const view = buildTorpedoAttackDirectorView({ snapshot });
+    if (!els.torpedoAttackDirector) return view;
+    els.torpedoAttackDirector.dataset.state = view.state;
+    els.torpedoAttackDirector.dataset.phase = view.attackPhase;
+    if (els.torpedoAttackPlot) els.torpedoAttackPlot.setAttribute('style', view.style);
+    if (els.phase32AttackPhase) els.phase32AttackPhase.textContent = t(view.attackPhaseKey);
+    if (els.phase32Bearing) els.phase32Bearing.textContent = view.bearingLabel;
+    if (els.phase32Range) els.phase32Range.textContent = view.rangeLabel;
+    if (els.phase32Lead) els.phase32Lead.textContent = view.leadLabel;
+    if (els.phase32Impact) els.phase32Impact.textContent = view.impactLabel;
+    if (els.phase32Aspect) els.phase32Aspect.textContent = t(view.aspect.key);
+    if (els.phase32Dispersion) els.phase32Dispersion.textContent = view.dispersionLabel;
+    const bars = [
+      [els.phase32Acquisition, els.phase32AcquisitionBar, view.bars.acquisition],
+      [els.phase32Motion, els.phase32MotionBar, view.bars.motion],
+      [els.phase32Gyro, els.phase32GyroBar, view.bars.gyro],
+      [els.phase32Firing, els.phase32FiringBar, view.bars.firing],
+    ];
+    bars.forEach(([label, bar, value]) => {
+      if (label) label.textContent = `${value}%`;
+      if (bar) {
+        bar.style.width = `${value}%`;
+        bar.style.setProperty('--phase32-value', `${value}%`);
+      }
+    });
+    if (els.phase32ShotFeedback) els.phase32ShotFeedback.textContent = t(view.shotFeedbackKey);
+    if (els.phase32FireOrder) els.phase32FireOrder.textContent = t(view.recommendationKey);
+    return view;
+  }
+
   function updateWeapons(snapshot) {
     const weapons = snapshot.weapons;
     if (!weapons) return;
+    updateTorpedoAttackDirector(snapshot);
     const tdc = weapons.tdc || {};
     const quality = clamp(Number(tdc.solutionQuality || 0), 0, 100);
     if (els.weaponsStatus) {

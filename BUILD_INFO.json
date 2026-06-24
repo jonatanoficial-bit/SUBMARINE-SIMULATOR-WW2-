@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.46",
-  "semver": "2.0.0-alpha.46",
-  "buildId": "SCWW2-20260624-2015-BRT-F31-HORIZON-CONTACTS",
+  "version": "v2.0.0-alpha.47",
+  "semver": "2.0.0-alpha.47",
+  "buildId": "SCWW2-20260624-2030-BRT-F32-TORPEDO-ATTACK-DIRECTOR",
   "date": "2026-06-24",
-  "time": "20:15",
+  "time": "20:30",
   "timezone": "America/Sao_Paulo",
-  "phase": "31",
-  "phaseName": "Silent Depth Visual Horizon Contacts",
+  "phase": "32",
+  "phaseName": "Silent Depth Torpedo Attack Director",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 25,
-  "notes": "Phase 31 makes the periscope horizon feel alive with CSS-rendered ship silhouettes, smoke plumes, mast lines, aircraft shadows, fog bands and an optical report layer while preserving all Silent Depth phases 24 to 30."
+  "saveSchemaVersion": 26,
+  "notes": "Phase 32 rebuilds the torpedo attack flow with a mobile-first attack director, visual attack triangle, acquisition ladder, gyro track, salvo discipline, impact timing and shot feedback while preserving all Silent Depth phases 24 to 31."
 }

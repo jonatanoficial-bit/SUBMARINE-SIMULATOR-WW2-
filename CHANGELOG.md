@@ -507,3 +507,13 @@
 - Adicionado botão funcional para traçar patrulha automática no setor da missão.
 - Atualizado `NavigationSystem` com substituição segura de rota, rota de patrulha e `navigationVersion: 2`.
 - Preservados F24–F29, incluindo periscópio mobile, sala de comando, suboficial, alertas, ataque aéreo e mapa tático realista.
+
+
+## v2.0.0-alpha.47 — Fase 32 — Rework de Ataque Torpédico / Diretor de Tiro
+
+- Adicionado sistema `torpedoAttackDirector.js` com fluxo visual de ataque por torpedo.
+- Adicionado diretor mobile-first na estação de armas com aquisição, movimento do alvo, giro, prontidão de disparo e feedback de corrida do torpedo.
+- Adicionado ataque-triângulo visual com vetor do alvo, vetor de avanço, trilha de giro e corrida do torpedo.
+- Adicionadas recomendações contextuais: adquirir contato, fechar distância, corrigir profundidade, aguardar solução, fogo autorizado ou observar corrida.
+- Preservados F24–F31 da Operação Silent Depth, incluindo periscópio, sala de comando, suboficial, alertas, ataque aéreo, carta naval, waypoints e contatos no horizonte.
+- Build atualizada para `v2.0.0-alpha.47`; save schema 26.

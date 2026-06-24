@@ -1,0 +1,183 @@
+.phase32-torpedo-attack-ready .weapons-panel {
+  position: relative;
+}
+
+.phase32-attack-director {
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid rgba(108, 186, 201, .28);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(101, 187, 206, .13), transparent 34%),
+    linear-gradient(180deg, rgba(8, 20, 28, .96), rgba(4, 11, 17, .96));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035), 0 12px 34px rgba(0,0,0,.34);
+  overflow: hidden;
+}
+
+.phase32-attack-director[data-state="fire"] { border-color: rgba(255, 214, 114, .62); box-shadow: 0 0 24px rgba(255, 170, 56, .14), inset 0 0 0 1px rgba(255,255,255,.04); }
+.phase32-attack-director[data-state="observe"] { border-color: rgba(98, 217, 255, .52); }
+.phase32-attack-director[data-state="hold"] { border-color: rgba(255, 116, 108, .38); }
+
+.phase32-director-header,
+.phase32-director-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.phase32-director-header span,
+.phase32-director-order span,
+.phase32-readout span,
+.phase32-bar span {
+  color: rgba(210,230,234,.72);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.phase32-director-header strong,
+.phase32-director-order strong {
+  color: #f7e7ba;
+  font-size: .9rem;
+  text-align: right;
+}
+
+.phase32-attack-plot {
+  position: relative;
+  height: 142px;
+  margin: 14px 0;
+  border: 1px solid rgba(152, 202, 212, .14);
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(110, 166, 178, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 166, 178, .06) 1px, transparent 1px),
+    radial-gradient(circle at 50% 105%, rgba(50, 120, 140, .24), transparent 58%),
+    rgba(3, 12, 18, .76);
+  background-size: 100% 24px, 32px 100%, auto, auto;
+  overflow: hidden;
+}
+
+.phase32-bearing-ring {
+  position: absolute;
+  left: 50%;
+  bottom: -42px;
+  width: 160px;
+  height: 160px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(146,205,215,.22);
+  border-radius: 50%;
+  box-shadow: inset 0 0 28px rgba(111, 197, 218, .06);
+}
+
+.phase32-ownship {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  width: 34px;
+  height: 62px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #8fb2b6, #23383d 72%, #0b1519);
+  clip-path: polygon(50% 0, 67% 15%, 78% 70%, 50% 100%, 22% 70%, 33% 15%);
+  filter: drop-shadow(0 8px 8px rgba(0,0,0,.55));
+}
+
+.phase32-target-vector,
+.phase32-gyro-vector,
+.phase32-lead-vector {
+  position: absolute;
+  left: 50%;
+  bottom: 45px;
+  width: 2px;
+  height: 92px;
+  transform-origin: 50% 100%;
+  opacity: .9;
+}
+.phase32-target-vector { transform: rotate(var(--phase32-bearing,0deg)); background: linear-gradient(0deg, rgba(255,255,255,.2), rgba(255,255,255,.7)); }
+.phase32-gyro-vector { transform: rotate(var(--phase32-gyro,0deg)); background: linear-gradient(0deg, rgba(255,219,120,.1), rgba(255,219,120,.92)); box-shadow: 0 0 12px rgba(255,210,88,.28); }
+.phase32-lead-vector { transform: rotate(var(--phase32-lead,0deg)); background: linear-gradient(0deg, rgba(91,211,255,.1), rgba(91,211,255,.8)); }
+
+.phase32-torpedo-run {
+  position: absolute;
+  left: 50%;
+  bottom: 43px;
+  width: 5px;
+  height: var(--phase32-run,0%);
+  min-height: 8px;
+  max-height: 95px;
+  transform: translateX(-50%) rotate(var(--phase32-gyro,0deg));
+  transform-origin: 50% 100%;
+  background: linear-gradient(0deg, rgba(255,255,255,.16), rgba(255,226,142,.98));
+  box-shadow: 0 0 var(--phase32-dispersion,8px) rgba(255,220,122,.52);
+  border-radius: 999px;
+}
+
+.phase32-target-silhouette {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 98px;
+  height: 23px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #1a2425, #050808);
+  clip-path: polygon(0 54%, 12% 28%, 58% 18%, 88% 34%, 100% 56%, 82% 78%, 18% 78%);
+  opacity: .76;
+}
+
+.phase32-readout-grid,
+.phase32-bars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.phase32-readout,
+.phase32-bar {
+  padding: 9px;
+  border: 1px solid rgba(150,202,212,.13);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .22);
+}
+
+.phase32-readout strong { display: block; color: #e8f8ff; margin-top: 4px; }
+.phase32-bar strong { color: #fff1bd; float: right; }
+.phase32-bar i {
+  display: block;
+  clear: both;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+  overflow: hidden;
+}
+.phase32-bar em {
+  display: block;
+  height: 100%;
+  width: var(--phase32-value,0%);
+  background: linear-gradient(90deg, rgba(74,163,186,.8), rgba(255,218,116,.95));
+  border-radius: inherit;
+}
+
+.phase32-director-order {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.055);
+}
+
+@media (max-width: 760px) {
+  .phase32-attack-director { padding: 12px; margin: 12px 0; }
+  .phase32-attack-plot { height: 126px; }
+  .phase32-readout-grid,
+  .phase32-bars { grid-template-columns: repeat(2, 1fr); }
+  .phase32-director-header,
+  .phase32-director-order { align-items: flex-start; flex-direction: column; }
+  .phase32-director-header strong,
+  .phase32-director-order strong { text-align: left; }
+}
+
+@media (max-width: 420px) {
+  .phase32-readout-grid,
+  .phase32-bars { grid-template-columns: 1fr; }
+  .phase32-attack-plot { height: 118px; }
+}
