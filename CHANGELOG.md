@@ -488,3 +488,14 @@
 - Adicionados quadrantes, grade hidrográfica, escala, limites e anel do submarino.
 - Preservados waypoints, rota, clique/toque no mapa e sistemas F24–F28.
 - Build atualizada para `v2.0.0-alpha.44`; save schema 23.
+
+
+## v2.0.0-alpha.45 — Fase 30 — Navegação por Waypoints e Planejamento de Patrulha
+
+- Adicionado sistema `waypointNavigation.js` com cálculo de pernas de rota, rumo, distância, ETA, consumo estimado e autonomia.
+- Adicionado painel mobile-first de planejador de rota na estação de navegação.
+- Adicionados rótulos de rumo/distância diretamente na carta naval da F29.
+- Adicionada ordem de rota contextual: trânsito, patrulha, silêncio, evasão ou aguardando waypoint.
+- Adicionado botão funcional para traçar patrulha automática no setor da missão.
+- Atualizado `NavigationSystem` com substituição segura de rota, rota de patrulha e `navigationVersion: 2`.
+- Preservados F24–F29, incluindo periscópio mobile, sala de comando, suboficial, alertas, ataque aéreo e mapa tático realista.

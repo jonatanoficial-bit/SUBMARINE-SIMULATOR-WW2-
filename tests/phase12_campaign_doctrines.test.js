@@ -12,10 +12,10 @@ test('phase 12 metadata and package identify national doctrine build', () => {
   const build = readJson('BUILD_INFO.json');
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(build.semver, '2.0.0-alpha.44');
-  assert.equal(build.phase, '29');
-  assert.equal(pkg.version, '2.0.0-alpha.44');
-  assert.equal(manifest.version, '2.0.0-alpha.44');
+  assert.equal(build.semver, '2.0.0-alpha.45');
+  assert.equal(build.phase, '30');
+  assert.equal(pkg.version, '2.0.0-alpha.45');
+  assert.equal(manifest.version, '2.0.0-alpha.45');
 });
 
 test('campaign doctrines cover Germany United Kingdom and United States', () => {

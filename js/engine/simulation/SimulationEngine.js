@@ -384,6 +384,12 @@ export class SimulationEngine {
     return { ok: true };
   }
 
+  planPatrolSectorRoute() {
+    const result = this.navigation.planPatrolSectorRoute();
+    if (result.ok) this.emitNavigation();
+    return result;
+  }
+
   advanceWaypoint() {
     const result = this.navigation.advanceWaypoint();
     if (result.ok) this.emitNavigation();
@@ -909,7 +915,7 @@ export class SimulationEngine {
       entityCount: 1 + this.navalAI.ships.length + (this.navalAI.state.aircraft.active ? 1 : 0),
       aiVersion: 2,
       encounterVersion: 1,
-      navigationVersion: 1,
+      navigationVersion: 2,
       physicsVersion: 1,
       sensorVersion: 2,
       environmentVersion: 1,

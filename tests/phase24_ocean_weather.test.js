@@ -11,9 +11,9 @@ const build = readJson('BUILD_INFO.json');
 const pkg = readJson('package.json');
 
 test('phase 24 metadata identifies ocean weather patrol build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.44');
-  assert.equal(build.phase, '29');
-  assert.equal(pkg.version, '2.0.0-alpha.44');
+  assert.equal(build.semver, '2.0.0-alpha.45');
+  assert.equal(build.phase, '30');
+  assert.equal(pkg.version, '2.0.0-alpha.45');
 });
 
 test('ocean weather classifier is bounded and deterministic', () => {

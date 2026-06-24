@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 18 metadata identifies special operation chains build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.44');
-  assert.equal(BUILD_INFO.phase, '29');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 23);
-  assert.match(BUILD_INFO.buildId, /F29-TACTICAL-NAVAL-CHART/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.45');
+  assert.equal(BUILD_INFO.phase, '30');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 24);
+  assert.match(BUILD_INFO.buildId, /F30-WAYPOINT-NAVIGATION/);
 });
 
 test('operation chain decks cover every nation and reference valid operations/events', () => {

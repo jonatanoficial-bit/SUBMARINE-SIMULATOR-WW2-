@@ -1,3 +1,4 @@
+import { buildPatrolRouteFromSector } from '../../systems/waypointNavigation.js';
 const EARTH_NM_PER_DEGREE = 60;
 const VALID_COMPRESSIONS = Object.freeze([1, 2, 4, 8, 16]);
 const SPEED_KNOTS = Object.freeze({ stop: 0, slow: 3, half: 6, full: 10, flank: 14 });
@@ -191,6 +192,30 @@ export class NavigationSystem {
     return { ok: true, waypoint: removed };
   }
 
+
+  replaceRoute(route = [], { preserveOriginal = false } = {}) {
+    const nextRoute = Array.isArray(route) ? route.slice(0, MAX_ROUTE_POINTS).map(cloneWaypoint) : [];
+    this.route = nextRoute;
+    if (!preserveOriginal) this.originalRoute = this.route.map(cloneWaypoint);
+    this.activeWaypointIndex = 0;
+    this.routeComplete = this.route.length === 0;
+    this.autopilot = this.route.length > 0;
+    this.rudder = 0;
+    return this.snapshot();
+  }
+
+  planPatrolSectorRoute() {
+    if (!this.config.patrolSector) return { ok: false, reason: 'noPatrolSector' };
+    const route = buildPatrolRouteFromSector({
+      sector: this.config.patrolSector,
+      bounds: this.config.mapBounds || {},
+      currentPosition: this.position,
+    });
+    if (!route.length) return { ok: false, reason: 'noPatrolSector' };
+    this.replaceRoute(route);
+    return { ok: true, route: this.route.map(cloneWaypoint) };
+  }
+
   resetRoute() {
     this.route = this.originalRoute.map(cloneWaypoint);
     this.activeWaypointIndex = 0;
@@ -292,7 +317,7 @@ export class NavigationSystem {
       mapBounds: this.config.mapBounds ? { ...this.config.mapBounds } : null,
       patrolEntered: this.patrolEntered,
       customWaypointSerial: this.customWaypointSerial,
-      navigationVersion: 1,
+      navigationVersion: 2,
     };
   }
 }

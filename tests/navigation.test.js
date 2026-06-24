@@ -99,7 +99,7 @@ test('SimulationEngine exports navigation in deterministic operation autosaves',
   for (let index = 0; index < 50; index += 1) engine.step(80);
   const snapshot = engine.snapshot();
   assert.equal(snapshot.snapshotVersion, 10);
-  assert.equal(snapshot.navigation.navigationVersion, 1);
+  assert.equal(snapshot.navigation.navigationVersion, 2);
   assert.ok(snapshot.navigation.distanceTravelledNm > 0);
   const restored = new SimulationEngine({ mission, initialSnapshot: snapshot });
   assert.deepEqual(restored.snapshot().navigation.position, snapshot.navigation.position);

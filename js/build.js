@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.44",
-  "semver": "2.0.0-alpha.44",
-  "buildId": "SCWW2-20260624-1416-BRT-F29-TACTICAL-NAVAL-CHART",
+  "version": "v2.0.0-alpha.45",
+  "semver": "2.0.0-alpha.45",
+  "buildId": "SCWW2-20260624-1945-BRT-F30-WAYPOINT-NAVIGATION",
   "date": "2026-06-24",
-  "time": "14:16",
+  "time": "19:45",
   "timezone": "America/Sao_Paulo",
-  "phase": "29",
-  "phaseName": "Silent Depth Tactical Naval Chart and Waypoints",
+  "phase": "30",
+  "phaseName": "Silent Depth Waypoint Navigation and Patrol Route Planning",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 23,
-  "notes": "Phase 29 replaces the arcade-feeling navigation view with a cinematic tactical naval chart: war-room chart paper, convoy lanes, danger zones, patrol-sector overlays, coordinate bounds, quadrant labels, player ring and mobile-first waypoint plotting while preserving phases 24 to 28."
+  "saveSchemaVersion": 24,
+  "notes": "Phase 30 turns the tactical naval chart into a true waypoint navigation planner: numbered route legs, bearing labels, distance/ETA calculations, autonomy checks, patrol-sector route plotting and mobile-first route order presentation while preserving phases 24 to 29."
 };

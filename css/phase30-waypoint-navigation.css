@@ -1,0 +1,115 @@
+/* Phase 30 — Waypoint Navigation Planner / Silent Depth */
+.phase30-waypoint-navigation-ready .navigation-route-line {
+  stroke: #fff0a6;
+  stroke-width: 5.2;
+  stroke-dasharray: 18 10 4 10;
+  filter: drop-shadow(0 0 8px rgba(255, 235, 140, .25));
+}
+.phase30-waypoint-navigation-ready .phase30-route-leg-label {
+  fill: rgba(255, 241, 181, .82);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(4, 11, 12, .94);
+  stroke-width: 4px;
+  pointer-events: none;
+}
+.phase30-waypoint-navigation-ready .phase30-route-leg-label.active {
+  fill: #ffffff;
+  font-size: 13px;
+  filter: drop-shadow(0 0 7px rgba(255, 238, 151, .55));
+}
+.phase30-route-planner {
+  border: 1px solid rgba(230, 198, 126, .28);
+  border-radius: 18px;
+  padding: 12px;
+  background: linear-gradient(145deg, rgba(15, 29, 28, .92), rgba(6, 15, 17, .92));
+  box-shadow: inset 0 0 0 1px rgba(255, 232, 162, .06), 0 12px 30px rgba(0, 0, 0, .24);
+}
+.phase30-route-planner-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.phase30-route-planner-head span,
+.phase30-route-metrics span {
+  color: rgba(229, 232, 209, .62);
+  font-size: .66rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+.phase30-route-planner-head strong {
+  color: #ffe2a2;
+  text-align: right;
+  font-size: .86rem;
+}
+.phase30-route-planner[data-order-state='evasion'] .phase30-route-planner-head strong,
+.phase30-route-planner[data-order-state='silent'] .phase30-route-planner-head strong {
+  color: #ffd0bd;
+}
+.phase30-route-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.phase30-route-metrics div {
+  padding: 8px;
+  border: 1px solid rgba(226, 197, 127, .16);
+  border-radius: 12px;
+  background: rgba(255, 242, 191, .045);
+}
+.phase30-route-metrics b {
+  display: block;
+  margin-top: 4px;
+  color: #f5fff7;
+  font-size: .9rem;
+}
+.phase30-route-planner[data-autonomy-state='caution'] #nav-route-autonomy { color: #ffe3a0; }
+.phase30-route-planner[data-autonomy-state='critical'] #nav-route-autonomy { color: #ffb4a4; }
+.phase30-route-leg-list {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.phase30-route-leg-list li {
+  display: grid;
+  grid-template-columns: 52px 58px 1fr 52px;
+  gap: 7px;
+  align-items: center;
+  padding: 7px 8px;
+  border-radius: 12px;
+  background: rgba(2, 9, 12, .42);
+  color: rgba(231, 238, 215, .72);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .72rem;
+}
+.phase30-route-leg-list li.active {
+  border: 1px solid rgba(255, 232, 145, .34);
+  background: rgba(115, 83, 30, .26);
+  color: #fff9d8;
+}
+.phase30-route-leg-list strong,
+.phase30-route-leg-list b,
+.phase30-route-leg-list em { font-style: normal; text-align: right; }
+.phase30-route-leg-list .empty { grid-template-columns: 1fr auto auto auto; opacity: .72; }
+.phase30-waypoint-navigation-ready .navigation-route-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 760px) {
+  .phase30-route-metrics { grid-template-columns: 1fr 1fr; }
+  .phase30-route-leg-list li { grid-template-columns: 46px 52px 1fr 46px; font-size: .66rem; }
+  .phase30-waypoint-navigation-ready .navigation-route-actions { grid-template-columns: 1fr; }
+  .phase30-waypoint-navigation-ready .phase30-route-leg-label { font-size: 10px; }
+}
+@media (max-width: 420px) {
+  .phase30-route-metrics { grid-template-columns: 1fr; }
+  .phase30-route-planner { padding: 10px; }
+}

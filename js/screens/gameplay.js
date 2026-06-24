@@ -10,6 +10,7 @@ import { buildSubOfficerDialogue, renderSubOfficerLine, shouldSubOfficerInterrup
 import { buildAlertAtmosphereView, shouldAlertEscalate } from '../systems/alertAtmosphere.js';
 import { buildAirAttackView, shouldAirThreatInterrupt } from '../systems/airAttackEvasion.js';
 import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
+import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
 
 let cleanupFns = [];
 
@@ -134,7 +135,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -739,6 +740,7 @@ export function renderGameplay(t, mission, settings = {}) {
               <g class="navigation-grid-lines">${navigationGridMarkup()}</g>
               <rect id="nav-sector" class="navigation-sector" x="0" y="0" width="0" height="0"></rect>
               <polyline id="nav-route-line" class="navigation-route-line" points=""></polyline>
+              <g id="nav-route-leg-labels" class="phase30-route-leg-labels"></g>
               <g id="nav-waypoints" class="navigation-waypoints"></g>
               <g id="nav-player" class="navigation-player" transform="translate(0 0) rotate(0)">
                 <circle r="18"></circle><path d="M0 -27 L12 18 L0 11 L-12 18 Z"></path>
@@ -764,6 +766,20 @@ export function renderGameplay(t, mission, settings = {}) {
               <div><span>${t('navigation.routeDistance')}</span><strong id="nav-distance">--</strong></div>
               <div><span>${t('navigation.eta')}</span><strong id="nav-eta">--</strong></div>
             </div>
+
+            <section class="phase30-route-planner" id="phase30-route-planner" data-order-state="transit" data-autonomy-state="safe" aria-live="polite">
+              <div class="phase30-route-planner-head">
+                <span>${t('waypointNav.kicker')}</span>
+                <strong id="nav-route-order">${t('waypointNav.orderTransit')}</strong>
+              </div>
+              <div class="phase30-route-metrics">
+                <div><span>${t('waypointNav.totalDistance')}</span><b id="nav-route-total-distance">--</b></div>
+                <div><span>${t('waypointNav.totalEta')}</span><b id="nav-route-total-eta">--</b></div>
+                <div><span>${t('waypointNav.fuelEstimate')}</span><b id="nav-route-fuel">--</b></div>
+                <div><span>${t('waypointNav.autonomy')}</span><b id="nav-route-autonomy">--</b></div>
+              </div>
+              <ol class="phase30-route-leg-list" id="nav-route-leg-list"></ol>
+            </section>
             <div class="navigation-control-block">
               <div class="navigation-control-title">${t('navigation.rudderControl')}</div>
               <div class="chip-grid navigation-rudder-grid">
@@ -787,6 +803,7 @@ export function renderGameplay(t, mission, settings = {}) {
                 <button class="button secondary" id="nav-next-waypoint">${t('navigation.skipWaypoint')}</button>
                 <button class="button secondary" id="nav-remove-waypoint">${t('navigation.removeLast')}</button>
                 <button class="button ghost" id="nav-reset-route">${t('navigation.resetRoute')}</button>
+                <button class="button primary" id="nav-plan-patrol">${t('waypointNav.planPatrol')}</button>
               </div>
             </div>
             <div class="navigation-control-block">
@@ -1203,6 +1220,14 @@ export function mountGameplay({
     navChartBounds: app.querySelector('#nav-chart-bounds'),
     navChartThreat: app.querySelector('#nav-chart-threat'),
     navChartPosition: app.querySelector('#nav-chart-position'),
+    navRouteLegLabels: app.querySelector('#nav-route-leg-labels'),
+    navRoutePlanner: app.querySelector('#phase30-route-planner'),
+    navRouteOrder: app.querySelector('#nav-route-order'),
+    navRouteTotalDistance: app.querySelector('#nav-route-total-distance'),
+    navRouteTotalEta: app.querySelector('#nav-route-total-eta'),
+    navRouteFuel: app.querySelector('#nav-route-fuel'),
+    navRouteAutonomy: app.querySelector('#nav-route-autonomy'),
+    navRouteLegList: app.querySelector('#nav-route-leg-list'),
     navChartLanes: app.querySelector('#nav-chart-lanes'),
     navChartDangerZones: app.querySelector('#nav-chart-danger-zones'),
     navChartLabels: app.querySelector('#nav-chart-labels'),
@@ -1223,6 +1248,7 @@ export function mountGameplay({
     navNextWaypoint: app.querySelector('#nav-next-waypoint'),
     navRemoveWaypoint: app.querySelector('#nav-remove-waypoint'),
     navResetRoute: app.querySelector('#nav-reset-route'),
+    navPlanPatrol: app.querySelector('#nav-plan-patrol'),
     navCompressionStatus: app.querySelector('#nav-compression-status'),
     navSectorBadge: app.querySelector('#nav-sector-badge'),
     openNavigationStation: app.querySelector('#open-navigation-station'),
@@ -1773,6 +1799,49 @@ export function mountGameplay({
     return node;
   }
 
+
+  function updateWaypointNavigation(snapshot, bounds) {
+    const plan = buildWaypointNavigationView({ snapshot, mission: mission || {} });
+    if (els.navRoutePlanner) {
+      els.navRoutePlanner.dataset.orderState = plan.order.state;
+      els.navRoutePlanner.dataset.autonomyState = plan.autonomy.state;
+    }
+    if (els.navRouteOrder) els.navRouteOrder.textContent = t(plan.order.labelKey);
+    if (els.navRouteTotalDistance) els.navRouteTotalDistance.textContent = plan.totalDistanceLabel;
+    if (els.navRouteTotalEta) els.navRouteTotalEta.textContent = plan.totalEtaLabel;
+    if (els.navRouteFuel) els.navRouteFuel.textContent = plan.fuelEstimateLabel;
+    if (els.navRouteAutonomy) els.navRouteAutonomy.textContent = t(plan.autonomy.labelKey);
+    if (els.navRouteLegList) {
+      const legs = plan.legs.slice(0, 5);
+      els.navRouteLegList.innerHTML = legs.length ? legs.map((leg) => `
+        <li class="${leg.active ? 'active' : ''}">
+          <span>${leg.label}</span>
+          <strong>${leg.bearingLabel}</strong>
+          <b>${leg.distanceLabel}</b>
+          <em>${leg.etaLabel}</em>
+        </li>
+      `).join('') : `<li class="empty"><span>${t('waypointNav.routeComplete')}</span><strong>---</strong><b>0 NM</b><em>--</em></li>`;
+    }
+    if (els.navPlanPatrol) {
+      els.navPlanPatrol.disabled = !plan.canPlotPatrol || snapshot.missionFailed || snapshot.repairTicks > 0;
+    }
+    if (els.navRouteLegLabels) {
+      const nodes = [];
+      plan.legs.slice(0, 6).forEach((leg) => {
+        const from = mapPoint(leg.from, bounds);
+        const to = mapPoint(leg.to, bounds);
+        const midX = (from.x + to.x) / 2;
+        const midY = (from.y + to.y) / 2;
+        nodes.push(svgElement('text', {
+          class: `phase30-route-leg-label${leg.active ? ' active' : ''}`,
+          x: midX.toFixed(1),
+          y: (midY - 10).toFixed(1),
+        }, `${leg.bearingLabel} · ${leg.distanceLabel}`));
+      });
+      replaceSvgChildren(els.navRouteLegLabels, nodes);
+    }
+  }
+
   function updateTacticalNavalChart(snapshot, bounds) {
     const chart = buildTacticalNavalChartView({ snapshot, mission: mission || {} });
     if (els.navChartStrip) els.navChartStrip.dataset.chartStatus = chart.status;
@@ -1884,6 +1953,7 @@ export function mountGameplay({
     const bounds = navigation.mapBounds;
     if (!bounds) return;
     updateTacticalNavalChart(snapshot, bounds);
+    updateWaypointNavigation(snapshot, bounds);
     const playerPoint = mapPoint(navigation.position, bounds);
     if (els.navPlayer) els.navPlayer.setAttribute('transform', `translate(${playerPoint.x.toFixed(2)} ${playerPoint.y.toFixed(2)}) rotate(${navigation.heading.toFixed(2)})`);
     if (els.navHeadingVector) {
@@ -2481,6 +2551,7 @@ export function mountGameplay({
       failed: 'gameplay.hintMissionFailed',
       routeFull: 'navigation.routeFull',
       emptyRoute: 'navigation.routeEmpty',
+      noPatrolSector: 'waypointNav.noPatrolSector',
       invalidCompression: 'navigation.compressionInvalid',
       invalidBallast: 'physics.invalidBallast',
       cooldown: 'physics.emergencyBlowCooldown',
@@ -2601,6 +2672,7 @@ export function mountGameplay({
   bind(els.navNextWaypoint, 'click', () => commandHint(engine.advanceWaypoint()));
   bind(els.navRemoveWaypoint, 'click', () => commandHint(engine.removeLastWaypoint()));
   bind(els.navResetRoute, 'click', () => commandHint(engine.resetRoute()));
+  bind(els.navPlanPatrol, 'click', () => commandHint(engine.planPatrolSectorRoute()));
   bind(els.navigationMap, 'click', (event) => {
     const bounds = engine.snapshot().navigation?.mapBounds;
     if (!bounds) return;

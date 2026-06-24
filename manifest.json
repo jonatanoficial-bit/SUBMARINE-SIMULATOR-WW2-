@@ -1,5 +1,5 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.44",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.45",
   "short_name": "SubCmd WW2",
   "start_url": "./index.html",
   "display": "fullscreen",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 29 Mapa Tático Realista e Carta Naval de Waypoints, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 30 Navegação por Waypoints e Planejamento de Patrulha, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.44",
+  "version": "2.0.0-alpha.45",
   "id": "./"
 }
