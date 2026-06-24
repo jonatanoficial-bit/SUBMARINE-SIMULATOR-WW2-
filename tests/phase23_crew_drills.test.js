@@ -10,11 +10,11 @@ const translations = ['pt-BR', 'en', 'es'].map((lang) => JSON.parse(fs.readFileS
 const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 test('phase 23 build metadata is synchronized', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.51');
-  assert.equal(BUILD_INFO.phase, '36');
-  assert.match(BUILD_INFO.buildId, /F36-CINEMATIC-PREMIUM-INTERFACE/);
-  assert.equal(BUILD_INFO.saveSchemaVersion, 30);
-  assert.equal(pkg.version, '2.0.0-alpha.51');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.52');
+  assert.equal(BUILD_INFO.phase, '37');
+  assert.match(BUILD_INFO.buildId, /F37-IMMERSIVE-AUDIO-CREW/);
+  assert.equal(BUILD_INFO.saveSchemaVersion, 31);
+  assert.equal(pkg.version, '2.0.0-alpha.52');
 });
 
 test('crew drill decks cover all playable nations', () => {

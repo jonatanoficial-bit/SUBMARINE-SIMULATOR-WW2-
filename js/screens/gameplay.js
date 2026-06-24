@@ -17,6 +17,7 @@ import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
 import { buildCinematicInterfaceView, shouldCinematicTransition } from '../systems/cinematicInterface.js';
+import { buildImmersiveAudioDirectorView, shouldAudioCueTrigger } from '../systems/immersiveAudioDirector.js';
 
 let cleanupFns = [];
 
@@ -141,7 +142,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -175,6 +176,22 @@ export function renderGameplay(t, mission, settings = {}) {
           <span>${t('cinematic.intensity')}</span>
           <strong id="phase36-intensity">0%</strong>
           <i><em id="phase36-intensity-bar" style="width:0%"></em></i>
+        </div>
+      </div>
+
+      <div class="phase37-audio-director" id="phase37-audio-director" data-state="silent" aria-live="polite">
+        <div>
+          <span>${t('immersiveAudio.kicker')}</span>
+          <strong id="phase37-audio-state">${t('immersiveAudio.state.silent')}</strong>
+        </div>
+        <div>
+          <span>${t('immersiveAudio.crewStation')}</span>
+          <strong id="phase37-crew-line">${t('immersiveAudio.crew.silent')}</strong>
+        </div>
+        <div>
+          <span>${t('immersiveAudio.mix')}</span>
+          <strong id="phase37-audio-mix">${t('immersiveAudio.mixSilent')}</strong>
+          <i><em id="phase37-audio-intensity-bar" style="width:0%"></em></i>
         </div>
       </div>
 
@@ -1088,6 +1105,11 @@ export function mountGameplay({
     phase36Cue: app.querySelector('#phase36-cue'),
     phase36Intensity: app.querySelector('#phase36-intensity'),
     phase36IntensityBar: app.querySelector('#phase36-intensity-bar'),
+    phase37AudioDirector: app.querySelector('#phase37-audio-director'),
+    phase37AudioState: app.querySelector('#phase37-audio-state'),
+    phase37CrewLine: app.querySelector('#phase37-crew-line'),
+    phase37AudioMix: app.querySelector('#phase37-audio-mix'),
+    phase37AudioIntensityBar: app.querySelector('#phase37-audio-intensity-bar'),
     encounterPhase: app.querySelector('#encounter-phase'),
     encounterContactState: app.querySelector('#encounter-contact-state'),
     encounterContactQuality: app.querySelector('#encounter-contact-quality'),
@@ -1489,6 +1511,7 @@ export function mountGameplay({
   let damageVisualCurrent = null;
   let depthStealthCurrent = null;
   let cinematicInterfaceCurrent = null;
+  let immersiveAudioCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -1686,6 +1709,25 @@ export function mountGameplay({
       schedule(() => screen?.classList.remove('phase36-cinematic-cut'), 680);
       if (['action', 'emergency', 'lost'].includes(view.mood)) playSfx('alert');
     }
+    return view;
+  }
+
+
+  function updateImmersiveAudioDirector(snapshot) {
+    const view = buildImmersiveAudioDirectorView({ snapshot, station: activeStation });
+    const previous = immersiveAudioCurrent;
+    immersiveAudioCurrent = view;
+    if (els.phase37AudioDirector) {
+      els.phase37AudioDirector.dataset.state = view.state;
+      els.phase37AudioDirector.dataset.cue = view.cue;
+      els.phase37AudioDirector.dataset.pulse = String(view.shouldPulse);
+      Object.entries(view.cssVars || {}).forEach(([key, value]) => els.phase37AudioDirector.style.setProperty(key, value));
+    }
+    if (els.phase37AudioState) els.phase37AudioState.textContent = t(view.levelKey);
+    if (els.phase37CrewLine) els.phase37CrewLine.textContent = t(view.crewKey);
+    if (els.phase37AudioMix) els.phase37AudioMix.textContent = t(view.mixKey);
+    if (els.phase37AudioIntensityBar) els.phase37AudioIntensityBar.style.width = view.labels.intensity;
+    if (shouldAudioCueTrigger({ previous, next: view })) playSfx(view.cue);
     return view;
   }
 
@@ -2892,6 +2934,7 @@ export function mountGameplay({
 
   function updateAll(snapshot = engine.snapshot()) {
     updateCinematicInterface(snapshot);
+    updateImmersiveAudioDirector(snapshot);
     updateTraining(snapshot);
     persistOperation(snapshot);
     updateInstruments(snapshot);

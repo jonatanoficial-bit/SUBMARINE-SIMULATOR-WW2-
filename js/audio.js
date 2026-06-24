@@ -185,6 +185,16 @@ export function playSfx(name) {
     case 'damage': noise(0.25, 0.08); tone(92, 0.24, 'square', 0.04); break;
     case 'success': tone(520, 0.12, 'triangle', 0.035); tone(720, 0.14, 'triangle', 0.035, 0.12); break;
     case 'alert': tone(300, 0.16, 'sawtooth', 0.045); tone(300, 0.16, 'sawtooth', 0.045, 0.22); break;
+    case 'klaxon': tone(220, 0.22, 'sawtooth', 0.055); tone(220, 0.22, 'sawtooth', 0.055, 0.3); tone(165, 0.28, 'square', 0.035, 0.62); break;
+    case 'hullCreak': noise(0.42, 0.035); tone(54, 0.5, 'sawtooth', 0.026, 0.05); break;
+    case 'pressureCreak': noise(0.52, 0.045); tone(48, 0.7, 'sawtooth', 0.032, 0.02); break;
+    case 'sonarClose': tone(960, 0.12, 'sine', 0.05); tone(1480, 0.08, 'sine', 0.025, 0.11); break;
+    case 'radioStatic': noise(0.26, 0.024); tone(620, 0.045, 'triangle', 0.012, 0.08); break;
+    case 'crewDive': tone(340, 0.08, 'triangle', 0.026); tone(250, 0.11, 'triangle', 0.024, 0.12); break;
+    case 'torpedoRun': tone(118, 0.28, 'sawtooth', 0.035); tone(184, 0.18, 'triangle', 0.022, 0.18); break;
+    case 'engineDrone': tone(62, 0.45, 'sawtooth', 0.022); break;
+    case 'periscopeWatch': tone(520, 0.05, 'triangle', 0.018); tone(760, 0.04, 'triangle', 0.014, 0.09); break;
+    case 'subtleSonar': tone(720, 0.05, 'sine', 0.012); break;
     case 'hydrophoneMerchant': tone(74, 0.16, 'triangle', 0.025); tone(74, 0.12, 'triangle', 0.018, 0.32); tone(74, 0.1, 'triangle', 0.014, 0.64); break;
     case 'hydrophoneEscort': tone(118, 0.08, 'square', 0.024); tone(118, 0.08, 'square', 0.021, 0.18); tone(118, 0.08, 'square', 0.018, 0.36); tone(164, 0.06, 'triangle', 0.012, 0.54); break;
     case 'hydrophoneUnknown': noise(0.42, 0.018); tone(92, 0.18, 'sine', 0.014, 0.08); break;
@@ -201,8 +211,10 @@ export function updateOperationalAmbience(snapshot = {}) {
   const seaState = Math.max(0, Math.min(6, Number(environment.seaState) || 0));
   const depth = Math.max(0, Number(snapshot.depth) || 0);
   const noiseLevel = Math.max(0, Math.min(100, Number(physics.noise) || 0));
-  const targetFrequency = 38 + seaState * 1.8 + Math.min(10, depth / 28);
-  const targetGain = (0.008 + seaState * 0.0012 + noiseLevel * 0.000045) * musicLevel;
+  const pressure = Math.max(0, Math.min(120, Number(physics.pressurePercent) || 0));
+  const detection = Math.max(0, Math.min(100, Number(snapshot.detectionScore) || 0));
+  const targetFrequency = 38 + seaState * 1.8 + Math.min(10, depth / 28) - Math.min(6, pressure / 18);
+  const targetGain = (0.008 + seaState * 0.0012 + noiseLevel * 0.000045 + pressure * 0.000018 + detection * 0.000012) * musicLevel;
   ambientOsc.frequency.setTargetAtTime(targetFrequency, c.currentTime, 0.45);
   ambientGain.gain.setTargetAtTime(targetGain, c.currentTime, 0.55);
 }

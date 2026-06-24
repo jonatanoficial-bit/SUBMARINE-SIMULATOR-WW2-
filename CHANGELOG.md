@@ -1,3 +1,10 @@
+# v2.0.0-alpha.52 — Fase 37 — Áudio Imersivo e Tripulação Viva
+
+- Adicionado diretor sonoro procedural com estados de silêncio, vigia, combate, profundidade e emergência.
+- Novos cues WebAudio: klaxon, casco rangendo, sonar próximo, rádio estático, ordem de mergulho e torpedo em corrida.
+- Ambiência reage a pressão do casco, ruído, detecção, mar e profundidade.
+- Painel mobile-first de direção sonora e fala da tripulação.
+
 # v2.0.0-alpha.51 — Fase 36 — Interface Cinemática Premium
 
 - Adicionada camada cinematográfica premium com letterbox, vinheta, grão de filme e scanline leve.
