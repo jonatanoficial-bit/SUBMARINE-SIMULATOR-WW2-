@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 — Silent Depth F27",
-  "short_name": "SCWW2 F27",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.43",
+  "short_name": "SubCmd WW2",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Fase 27: Sistema de alertas e atmosfera com estados calmo, suspeita, evasão, combate e emergência.",
+  "description": "Submarine Commander WW2 — Fase 28 Ataque Aéreo e Evasão, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.42",
+  "version": "2.0.0-alpha.43",
   "id": "./"
 }

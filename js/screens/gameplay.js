@@ -8,6 +8,7 @@ import { analyzeConvoyDoctrine } from '../systems/convoyDoctrine.js';
 import { computeSilentDepthOceanTransform, normalizePeriscopeDragDelta } from '../systems/silentDepthPeriscope.js';
 import { buildSubOfficerDialogue, renderSubOfficerLine, shouldSubOfficerInterrupt } from '../systems/subOfficerCopilot.js';
 import { buildAlertAtmosphereView, shouldAlertEscalate } from '../systems/alertAtmosphere.js';
+import { buildAirAttackView, shouldAirThreatInterrupt } from '../systems/airAttackEvasion.js';
 
 let cleanupFns = [];
 
@@ -124,7 +125,7 @@ function navigationGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <button class="button ghost" data-nav="briefing">${t('common.back')}</button>
@@ -848,6 +849,33 @@ export function renderGameplay(t, mission, settings = {}) {
         <small id="phase27-alert-order">${t('alert.order.calm')}</small>
       </div>
 
+
+      <div id="phase28-air-attack-panel" class="phase28-air-attack-panel" data-air-level="standby" data-air-active="false" aria-live="polite">
+        <div class="phase28-air-head">
+          <div><span class="phase28-air-kicker">${t('airAttack.kicker')}</span><strong id="phase28-air-title" class="phase28-air-title">${t('airAttack.title.standby')}</strong></div>
+          <b id="phase28-air-danger" class="phase28-air-danger">00%</b>
+        </div>
+        <div class="phase28-air-grid">
+          <div class="phase28-air-radar" aria-hidden="true">
+            <i class="phase28-air-cross"></i>
+            <span id="phase28-air-marker" class="phase28-air-marker"></span>
+          </div>
+          <div class="phase28-air-readouts">
+            <div><span>${t('airAttack.state')}</span><strong id="phase28-air-state">${t('airAttack.level.standby')}</strong></div>
+            <div><span>${t('airAttack.confidence')}</span><strong id="phase28-air-confidence">0%</strong></div>
+            <div><span>${t('airAttack.cooldown')}</span><strong id="phase28-air-cooldown">--</strong></div>
+            <div><span>${t('airAttack.pattern')}</span><strong id="phase28-air-pattern">--</strong></div>
+          </div>
+        </div>
+        <p id="phase28-air-message" class="phase28-air-message">${t('airAttack.message.standby')}</p>
+        <small id="phase28-air-recommendation" class="phase28-air-recommendation">${t('airAttack.recommend.watch')}</small>
+        <div class="phase28-air-actions">
+          <button class="button air-dive" id="air-evasion-dive">${t('airAttack.action.dive')}</button>
+          <button class="button air-silent" id="air-evasion-silent">${t('airAttack.action.silent')}</button>
+          <button class="button air-hold" id="air-evasion-hold">${t('airAttack.action.hold')}</button>
+        </div>
+      </div>
+
       <aside id="subofficer-copilot" class="phase26-subofficer-panel hidden" data-tone="calm" data-complete="true" aria-live="polite" aria-hidden="true">
         <div class="phase26-subofficer-avatar-wrap">
           <img class="phase26-subofficer-avatar" src="assets/avatars/subofficer_ww2.svg" alt="${t('subofficer.avatarAlt')}">
@@ -1178,6 +1206,19 @@ export function mountGameplay({
     alertMessage: app.querySelector('#phase27-alert-message'),
     alertOrder: app.querySelector('#phase27-alert-order'),
     alertLamps: app.querySelector('#phase27-alert-lamps'),
+    airAttackPanel: app.querySelector('#phase28-air-attack-panel'),
+    airAttackTitle: app.querySelector('#phase28-air-title'),
+    airAttackDanger: app.querySelector('#phase28-air-danger'),
+    airAttackState: app.querySelector('#phase28-air-state'),
+    airAttackConfidence: app.querySelector('#phase28-air-confidence'),
+    airAttackCooldown: app.querySelector('#phase28-air-cooldown'),
+    airAttackPattern: app.querySelector('#phase28-air-pattern'),
+    airAttackMessage: app.querySelector('#phase28-air-message'),
+    airAttackRecommendation: app.querySelector('#phase28-air-recommendation'),
+    airAttackMarker: app.querySelector('#phase28-air-marker'),
+    airEvasionDive: app.querySelector('#air-evasion-dive'),
+    airEvasionSilent: app.querySelector('#air-evasion-silent'),
+    airEvasionHold: app.querySelector('#air-evasion-hold'),
     subOfficerPanel: app.querySelector('#subofficer-copilot'),
     subOfficerTitle: app.querySelector('#subofficer-title'),
     subOfficerLine: app.querySelector('#subofficer-line'),
@@ -1200,6 +1241,7 @@ export function mountGameplay({
   let subOfficerCurrent = null;
   let subOfficerTypingTimer = null;
   let alertAtmosphereCurrent = null;
+  let airAttackCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -2266,6 +2308,37 @@ export function mountGameplay({
     }
   }
 
+
+  function updateAirAttackEvasion(snapshot) {
+    const view = buildAirAttackView({ snapshot, mission: mission || {} });
+    if (!view || !els.airAttackPanel) return;
+    const previous = airAttackCurrent;
+    airAttackCurrent = view;
+    const root = els.airAttackPanel;
+    root.dataset.airLevel = view.level;
+    root.dataset.airActive = String(Boolean(view.active));
+    root.dataset.threatRing = view.threatRing;
+    Object.entries(view.cssVars || {}).forEach(([key, value]) => root.style.setProperty(key, value));
+    if (els.airAttackTitle) els.airAttackTitle.textContent = t(view.titleKey);
+    if (els.airAttackDanger) els.airAttackDanger.textContent = `${Math.round(view.danger)}%`;
+    if (els.airAttackState) els.airAttackState.textContent = t(view.labelKey);
+    if (els.airAttackConfidence) els.airAttackConfidence.textContent = `${Math.round(view.confidence)}%`;
+    if (els.airAttackCooldown) els.airAttackCooldown.textContent = view.active ? `${view.attackCooldownSeconds}s` : '--';
+    if (els.airAttackPattern) els.airAttackPattern.textContent = view.secondsToPattern ? `${view.secondsToPattern}s` : '--';
+    if (els.airAttackMessage) els.airAttackMessage.textContent = t(view.messageKey);
+    if (els.airAttackRecommendation) els.airAttackRecommendation.textContent = t(view.recommendation.key);
+    if (els.airAttackMarker) els.airAttackMarker.setAttribute('style', view.markerStyle || 'left:50%;top:50%');
+    const disabled = snapshot.missionFailed || snapshot.repairTicks > 0;
+    if (els.airEvasionDive) els.airEvasionDive.disabled = disabled || snapshot.emergencyDiveCooldown > 0;
+    if (els.airEvasionSilent) els.airEvasionSilent.disabled = disabled || snapshot.silentTicks > 0;
+    if (els.airEvasionHold) els.airEvasionHold.disabled = disabled;
+    if (shouldAirThreatInterrupt({ previous, next: view })) {
+      root.classList.add('phase28-air-escalated');
+      schedule(() => root.classList.remove('phase28-air-escalated'), 900);
+      playSfx(view.level === 'attack' ? 'alert' : 'sonar');
+    }
+  }
+
   function updateAll(snapshot = engine.snapshot()) {
     updateTraining(snapshot);
     persistOperation(snapshot);
@@ -2279,6 +2352,7 @@ export function mountGameplay({
     updateEncounter(snapshot);
     updateHUD(snapshot);
     updateAlertAtmosphere(snapshot);
+    updateAirAttackEvasion(snapshot);
     updateNavigation(snapshot);
     updatePeriscope(snapshot);
     updateSubOfficer(snapshot);
@@ -2374,6 +2448,24 @@ export function mountGameplay({
       els.impactSplash?.classList.add('hidden');
     }, 1400);
   }));
+
+
+  bind(els.airEvasionDive, 'click', () => {
+    const result = engine.activateEmergencyDive();
+    if (result.ok) { playSfx('alert'); if (els.missionHint) els.missionHint.textContent = t('airAttack.hint.dive'); }
+    else commandHint(result);
+  });
+  bind(els.airEvasionSilent, 'click', () => {
+    const result = engine.activateSilentRunning();
+    if (result.ok) { playSfx('sonar'); if (els.missionHint) els.missionHint.textContent = t('airAttack.hint.silent'); }
+    else commandHint(result);
+  });
+  bind(els.airEvasionHold, 'click', () => {
+    engine.setSpeed('slow');
+    engine.closePeriscope();
+    if (els.missionHint) els.missionHint.textContent = t('airAttack.hint.hold');
+    playSfx('sonar');
+  });
 
   bind(els.subOfficerAck, 'click', closeSubOfficerDialogue);
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));

@@ -1,3 +1,10 @@
+# v2.0.0-alpha.43 — Fase 28 — Ataque Aéreo e Evasão / Operação Silent Depth
+
+- Adicionado sistema visual de ameaça aérea ASW.
+- Adicionado painel mobile-first de ataque aéreo com radar, estado, fixação e contagem de cargas.
+- Adicionadas decisões rápidas: mergulhar, silêncio total e manter curso.
+- Integrado com suboficial, alerta atmosférico, PWA/cache, smoke test e auditoria.
+
 # v2.0.0-alpha.42 — Fase 27 — Sistema de Alertas e Atmosfera
 
 - Adicionado sistema cinematográfico de alerta com estados calmo, suspeita, evasão, combate e emergência.

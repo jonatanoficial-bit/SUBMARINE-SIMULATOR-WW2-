@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 16 metadata identifies dynamic war events build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.42');
-  assert.equal(BUILD_INFO.phase, '27');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 21);
-  assert.match(BUILD_INFO.buildId, /F27-ALERT-ATMOSPHERE/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.43');
+  assert.equal(BUILD_INFO.phase, '28');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 22);
+  assert.match(BUILD_INFO.buildId, /F28-AIR-ATTACK-EVASION/);
 });
 
 test('dynamic event decks cover every campaign nation with validated event definitions', () => {

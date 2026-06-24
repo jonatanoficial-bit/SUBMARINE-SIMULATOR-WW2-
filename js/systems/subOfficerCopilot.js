@@ -29,7 +29,8 @@ export function classifySubOfficerSituation({ snapshot = {}, station = 'command'
   const escortThreat = snapshot.escortState === 'hunt' || snapshot.escortState === 'alert' || Number(escort.confidence || 0) >= 58;
 
   if (snapshot.missionFailed || hull <= 0) return { id: 'mission-lost', tone: 'critical', priority: 10, titleKey: 'subofficer.title.damage', textKey: 'subofficer.msg.missionLost', stationHint: 'damage' };
-  if (aircraft.active || aircraft.state === 'attack' || aircraft.state === 'tracking') return { id: 'aircraft-inbound', tone: 'critical', priority: 9, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraft', stationHint: 'command' };
+  if (aircraft.state === 'attack' || aircraft.state === 'attack-run') return { id: 'aircraft-attack-run', tone: 'critical', priority: 10, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraftAttack', stationHint: 'command' };
+  if (aircraft.active || aircraft.state === 'tracking') return { id: 'aircraft-inbound', tone: 'critical', priority: 9, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraft', stationHint: 'command' };
   if (snapshot.damageFlashTicks > 0 || hull < 45 || damageCritical > 0) return { id: 'damage-critical', tone: 'critical', priority: 8, titleKey: 'subofficer.title.damage', textKey: 'subofficer.msg.damage', stationHint: 'damage' };
   if (snapshot.depth > 220 || pressure > 86 || physics.depthZone === 'collapse' || physics.depthZone === 'overdepth') return { id: 'deep-pressure', tone: 'critical', priority: 8, titleKey: 'subofficer.title.depth', textKey: 'subofficer.msg.deepPressure', stationHint: 'command' };
   if (escortThreat) return { id: 'enemy-hunt', tone: 'danger', priority: 7, titleKey: 'subofficer.title.contact', textKey: 'subofficer.msg.enemyDetected', stationHint: 'sensors' };
