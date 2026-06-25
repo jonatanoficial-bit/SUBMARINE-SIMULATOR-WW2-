@@ -1,4 +1,5 @@
 import { renderBottomNav } from '../components/ui.js';
+import { buildLivingCampaignFront } from '../systems/livingCampaignFront.js';
 
 function missionStatusLabel(t, mission) {
   if (mission.status === 'available') return t('campaign.status.available');
@@ -459,6 +460,37 @@ function renderVeteranOfficersDeck(t, deck = null) {
   `;
 }
 
+
+function renderLivingCampaignFront(t, front = null) {
+  if (!front) return '';
+  return `
+    <div class="phase40-living-campaign" data-status="${front.status.state}" style="${Object.entries(front.cssVars || {}).map(([key, value]) => `${key}:${value}`).join(';')}">
+      <div class="phase40-front-header">
+        <div>
+          <span>${t('livingCampaign.kicker')}</span>
+          <strong>${t(front.frontKey)}</strong>
+          <p>${t(front.directiveKey)}</p>
+        </div>
+        <b class="phase40-front-status">${t(front.status.key)}</b>
+      </div>
+      <div class="phase40-front-grid">
+        ${front.cards.map((card) => `
+          <div class="phase40-front-card" data-card="${card.id}">
+            <span>${t(card.labelKey)}</span>
+            <strong>${card.valueLabel}</strong>
+            <small>${t(card.descKey)}</small>
+            <i><em style="--phase40-card-value:${card.valueLabel}"></em></i>
+          </div>
+        `).join('')}
+      </div>
+      <div class="phase40-front-pulse">
+        <span>${t('livingCampaign.nextPulse')}</span>
+        <strong>${t(front.nextPulseKey)}</strong>
+      </div>
+    </div>
+  `;
+}
+
 function renderChapters(t, campaign, completedSet = new Set()) {
   const chapters = Array.isArray(campaign?.chapters) ? campaign.chapters : [];
   if (!chapters.length) return '';
@@ -500,6 +532,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const operationalHonors = options.operationalHonors || null;
   const commandAdvancement = options.commandAdvancement || null;
   const veteranOfficers = options.veteranOfficers || null;
+  const livingCampaignFront = buildLivingCampaignFront({ campaign, missions, progress, nation, consequenceDeck: campaignConsequences, eventDeck: campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers });
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -538,6 +571,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
               <div><span>${t('campaign.tone')}</span><strong>${campaign?.toneKey ? t(campaign.toneKey) : '--'}</strong></div>
             </div>
             <div class="empty-state compact"><strong>${t('campaign.goal')}</strong><br>${campaign ? t(campaign.strategicGoalKey) : ''}</div>
+            ${renderLivingCampaignFront(t, livingCampaignFront)}
             ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
             ${renderObjectiveDeck(t, campaignObjectives)}
             ${renderConsequenceDeck(t, campaignConsequences)}

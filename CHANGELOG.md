@@ -1,3 +1,18 @@
+# v2.0.0-alpha.55 — Fase 40 — Campanha Viva e Guerra Reativa
+
+- Adicionada frente viva da campanha com pressão do teatro, adaptação inimiga, estabilidade, moral, iniciativa e ritmo de comboios.
+- Tela de campanha ganhou painel estratégico mobile-first.
+- Novo sistema `livingCampaignFront`.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
+# v2.0.0-alpha.54 — Fase 39 — Tripulação Viva e Funções Expandidas
+
+- Adicionado sistema de tripulação viva com seis funções operacionais.
+- Novo painel no comando com prontidão, moral, stress e setor dominante.
+- Diretivas contextuais para comandante, imediato, sonar, máquinas, armas e navegação.
+- Integração com dano, pressão, IA naval, armas, rota e furtividade.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.53 — Fase 38 — Briefings Cinematográficos
 
 - Adicionado dossiê cinematográfico de missão na tela de briefing.

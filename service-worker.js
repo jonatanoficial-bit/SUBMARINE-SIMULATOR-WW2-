@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.53';
+const CACHE_VERSION = '2.0.0-alpha.55';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -66,6 +66,8 @@ const APP_SHELL = [
   './css/phase36-cinematic-interface.css',
   './css/phase37-immersive-audio.css',
   './css/phase38-cinematic-briefing.css',
+  './css/phase39-crew-roles.css',
+  './css/phase40-living-campaign.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -139,6 +141,8 @@ const APP_SHELL = [
   './js/systems/cinematicInterface.js',
   './js/systems/immersiveAudioDirector.js',
   './js/systems/cinematicBriefing.js',
+  './js/systems/livingCrewRoles.js',
+  './js/systems/livingCampaignFront.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',

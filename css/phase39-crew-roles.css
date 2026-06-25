@@ -1,0 +1,178 @@
+.phase39-crew-roles-ready .phase39-crew-roles-panel {
+  border: 1px solid rgba(239, 204, 132, .28);
+  border-radius: 20px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(236, 176, 86, .18), transparent 42%),
+    linear-gradient(145deg, rgba(12, 16, 18, .94), rgba(19, 24, 28, .88));
+  box-shadow: inset 0 0 32px rgba(0,0,0,.35), 0 18px 40px rgba(0,0,0,.24);
+}
+
+.phase39-crew-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.phase39-crew-header span,
+.phase39-crew-readout span,
+.phase39-crew-card small {
+  color: rgba(239, 232, 203, .7);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.phase39-crew-header strong {
+  display: block;
+  color: #ffe0a3;
+  margin-top: 4px;
+}
+
+.phase39-crew-state {
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(131, 231, 177, .95), rgba(237, 231, 140, .95));
+  color: #081513;
+  font-weight: 900;
+  text-align: center;
+  min-width: 110px;
+}
+
+.phase39-crew-roles-panel[data-command-state="strained"] .phase39-crew-state {
+  background: linear-gradient(135deg, #ffd16d, #ff9b5f);
+}
+
+.phase39-crew-roles-panel[data-command-state="critical"] .phase39-crew-state {
+  background: linear-gradient(135deg, #ff6e62, #ffd16d);
+  animation: phase39CrewPulse 1.25s ease-in-out infinite;
+}
+
+.phase39-crew-readouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.phase39-crew-readout {
+  border-radius: 14px;
+  padding: 10px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.phase39-crew-readout strong {
+  display: block;
+  color: #ffffff;
+  margin: 5px 0 7px;
+}
+
+.phase39-crew-readout i,
+.phase39-crew-card i {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+}
+
+.phase39-crew-readout em,
+.phase39-crew-card em {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(110, 222, 185, .94), rgba(249, 213, 121, .94), rgba(255, 111, 88, .92));
+  box-shadow: 0 0 16px rgba(249, 213, 121, .2);
+}
+
+.phase39-crew-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.phase39-crew-card {
+  border-radius: 15px;
+  padding: 10px;
+  background: linear-gradient(160deg, rgba(8, 15, 18, .78), rgba(17, 27, 29, .7));
+  border: 1px solid rgba(214, 192, 145, .14);
+}
+
+.phase39-crew-card[data-state="sharp"] { border-color: rgba(122, 226, 178, .36); }
+.phase39-crew-card[data-state="strained"] { border-color: rgba(255, 191, 100, .42); }
+.phase39-crew-card[data-state="critical"] {
+  border-color: rgba(255, 108, 91, .55);
+  box-shadow: inset 0 0 20px rgba(255, 84, 72, .13);
+}
+
+.phase39-crew-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: start;
+  margin-bottom: 7px;
+}
+
+.phase39-crew-card b {
+  color: #fff2c2;
+  font-size: .95rem;
+}
+
+.phase39-crew-card strong {
+  color: #9be7c5;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.phase39-crew-card p {
+  margin: 7px 0;
+  color: rgba(255,255,255,.84);
+  font-size: .82rem;
+}
+
+.phase39-crew-card footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.phase39-crew-card footer span {
+  color: rgba(255,255,255,.66);
+  font-size: .75rem;
+}
+
+@keyframes phase39CrewPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 14px rgba(255, 100, 85, .25); }
+  50% { transform: scale(1.04); box-shadow: 0 0 30px rgba(255, 100, 85, .46); }
+}
+
+@media (max-width: 760px) {
+  .phase39-crew-roles-panel {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .phase39-crew-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .phase39-crew-readouts,
+  .phase39-crew-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .phase39-crew-roles-panel {
+    margin-inline: -2px;
+  }
+  .phase39-crew-card,
+  .phase39-crew-readout {
+    padding: 9px;
+  }
+}

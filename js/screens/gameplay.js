@@ -18,6 +18,7 @@ import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../s
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
 import { buildCinematicInterfaceView, shouldCinematicTransition } from '../systems/cinematicInterface.js';
 import { buildImmersiveAudioDirectorView, shouldAudioCueTrigger } from '../systems/immersiveAudioDirector.js';
+import { buildLivingCrewRolesView, shouldCrewRoleInterrupt } from '../systems/livingCrewRoles.js';
 
 let cleanupFns = [];
 
@@ -142,7 +143,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -257,6 +258,21 @@ export function renderGameplay(t, mission, settings = {}) {
           <div class="objective-line"><span id="obj-survive" class="objective-dot"></span><b>${t('gameplay.objSurvive')}</b><small>${t('gameplay.objSurviveDesc')}</small></div>
           <div class="objective-line"><span id="obj-stealth" class="objective-dot"></span><b>${t('gameplay.objStealth')}</b><small>${t('gameplay.objStealthDesc')}</small></div>
           <div class="objective-line"><span id="obj-navigation" class="objective-dot"></span><b>${t('navigation.objectivePatrol')}</b><small>${t('navigation.objectivePatrolDesc')}</small></div>
+          <section class="phase39-crew-roles-panel" id="phase39-crew-roles-panel" data-command-state="steady" aria-live="polite">
+            <div class="phase39-crew-header">
+              <div>
+                <span>${t('crewRoles.kicker')}</span>
+                <strong id="phase39-crew-summary">${t('crewRoles.directive.commanderPatrol')}</strong>
+              </div>
+              <b id="phase39-command-state" class="phase39-crew-state">${t('crewRoles.commandState.steady')}</b>
+            </div>
+            <div class="phase39-crew-readouts">
+              <div class="phase39-crew-readout"><span>${t('crewRoles.readiness')}</span><strong id="phase39-readiness">0%</strong><i><em id="phase39-readiness-bar" style="width:0%"></em></i></div>
+              <div class="phase39-crew-readout"><span>${t('crewRoles.morale')}</span><strong id="phase39-morale">0%</strong><i><em id="phase39-morale-bar" style="width:0%"></em></i></div>
+              <div class="phase39-crew-readout"><span>${t('crewRoles.dominant')}</span><strong id="phase39-dominant-role">${t('crewRoles.role.commander')}</strong><i><em id="phase39-stress-bar" style="width:0%"></em></i></div>
+            </div>
+            <div class="phase39-crew-grid" id="phase39-crew-grid"></div>
+          </section>
           <div class="tutorial-strip">${t('gameplay.tutorialTip')}</div>
           <section class="operational-guide ${settings.tutorials === false ? 'hidden' : ''}" id="operational-guide" aria-live="polite">
             <div class="operational-guide-header">
@@ -1110,6 +1126,16 @@ export function mountGameplay({
     phase37CrewLine: app.querySelector('#phase37-crew-line'),
     phase37AudioMix: app.querySelector('#phase37-audio-mix'),
     phase37AudioIntensityBar: app.querySelector('#phase37-audio-intensity-bar'),
+    phase39CrewPanel: app.querySelector('#phase39-crew-roles-panel'),
+    phase39CrewSummary: app.querySelector('#phase39-crew-summary'),
+    phase39CommandState: app.querySelector('#phase39-command-state'),
+    phase39Readiness: app.querySelector('#phase39-readiness'),
+    phase39ReadinessBar: app.querySelector('#phase39-readiness-bar'),
+    phase39Morale: app.querySelector('#phase39-morale'),
+    phase39MoraleBar: app.querySelector('#phase39-morale-bar'),
+    phase39DominantRole: app.querySelector('#phase39-dominant-role'),
+    phase39StressBar: app.querySelector('#phase39-stress-bar'),
+    phase39CrewGrid: app.querySelector('#phase39-crew-grid'),
     encounterPhase: app.querySelector('#encounter-phase'),
     encounterContactState: app.querySelector('#encounter-contact-state'),
     encounterContactQuality: app.querySelector('#encounter-contact-quality'),
@@ -1512,6 +1538,7 @@ export function mountGameplay({
   let depthStealthCurrent = null;
   let cinematicInterfaceCurrent = null;
   let immersiveAudioCurrent = null;
+  let crewRolesCurrent = null;
   const subOfficerAcknowledged = new Set();
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
@@ -1728,6 +1755,46 @@ export function mountGameplay({
     if (els.phase37AudioMix) els.phase37AudioMix.textContent = t(view.mixKey);
     if (els.phase37AudioIntensityBar) els.phase37AudioIntensityBar.style.width = view.labels.intensity;
     if (shouldAudioCueTrigger({ previous, next: view })) playSfx(view.cue);
+    return view;
+  }
+
+  function crewRoleCardMarkup(role) {
+    return `
+      <article class="phase39-crew-card" data-role="${role.id}" data-state="${role.state}">
+        <header>
+          <div><small>${t(role.stationKey)}</small><b>${t(role.titleKey)}</b></div>
+          <strong>${t(role.stateKey)}</strong>
+        </header>
+        <p>${t(role.directiveKey)}</p>
+        <footer>
+          <span>${t(role.focusKey)} · ${role.readinessLabel}</span>
+          <i><em style="width:${role.stressLabel}"></em></i>
+        </footer>
+      </article>
+    `;
+  }
+
+  function updateLivingCrewRoles(snapshot) {
+    const view = buildLivingCrewRolesView({ snapshot, station: activeStation });
+    const previous = crewRolesCurrent;
+    crewRolesCurrent = view;
+    if (els.phase39CrewPanel) {
+      els.phase39CrewPanel.dataset.commandState = view.commandState;
+      Object.entries(view.cssVars || {}).forEach(([key, value]) => els.phase39CrewPanel.style.setProperty(key, value));
+      if (shouldCrewRoleInterrupt({ previous, next: view })) {
+        els.phase39CrewPanel.classList.add('phase39-crew-pulse');
+        schedule(() => els.phase39CrewPanel?.classList.remove('phase39-crew-pulse'), 720);
+      }
+    }
+    if (els.phase39CrewSummary) els.phase39CrewSummary.textContent = t(view.summaryKey);
+    if (els.phase39CommandState) els.phase39CommandState.textContent = t(view.commandStateKey);
+    if (els.phase39Readiness) els.phase39Readiness.textContent = view.labels.readiness;
+    if (els.phase39ReadinessBar) els.phase39ReadinessBar.style.width = view.labels.readiness;
+    if (els.phase39Morale) els.phase39Morale.textContent = view.labels.morale;
+    if (els.phase39MoraleBar) els.phase39MoraleBar.style.width = view.labels.morale;
+    if (els.phase39DominantRole) els.phase39DominantRole.textContent = t(view.dominantRole.titleKey);
+    if (els.phase39StressBar) els.phase39StressBar.style.width = view.labels.stress;
+    if (els.phase39CrewGrid) els.phase39CrewGrid.innerHTML = view.roles.map((role) => crewRoleCardMarkup(role)).join('');
     return view;
   }
 
@@ -2935,6 +3002,7 @@ export function mountGameplay({
   function updateAll(snapshot = engine.snapshot()) {
     updateCinematicInterface(snapshot);
     updateImmersiveAudioDirector(snapshot);
+    updateLivingCrewRoles(snapshot);
     updateTraining(snapshot);
     persistOperation(snapshot);
     updateInstruments(snapshot);

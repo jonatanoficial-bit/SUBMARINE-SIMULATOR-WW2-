@@ -27,12 +27,12 @@ function mission(overrides = {}) {
 test('phase 38 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.53');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.53');
-  assert.equal(BUILD_INFO.phase, '38');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 32);
-  assert.equal(pkg.version, '2.0.0-alpha.53');
-  assert.equal(manifest.version, '2.0.0-alpha.53');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.55');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.55');
+  assert.equal(BUILD_INFO.phase, '40');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 34);
+  assert.equal(pkg.version, '2.0.0-alpha.55');
+  assert.equal(manifest.version, '2.0.0-alpha.55');
   assert.equal(PHASE38_CINEMATIC_BRIEFING.system, 'cinematic-mission-briefing');
   assert.ok(PHASE38_CINEMATIC_BRIEFING.layers.includes('mission-dossier'));
 });
