@@ -1,9 +1,11 @@
 import { renderBottomNav } from '../components/ui.js';
+import { buildCinematicBriefing, renderCinematicBriefing } from '../systems/cinematicBriefing.js';
 
 export function renderBriefing(t, mission, operationAutosave = null, campaign = null, logisticsPlan = null, readiness = null) {
   const objectiveKeys = mission.objectiveKeys || ['briefing.objectiveSilent', 'briefing.objectiveStrike', 'briefing.objectiveReturn'];
+  const cinematicBriefing = buildCinematicBriefing({ mission, campaign, readiness, logisticsPlan });
   return `
-    <section class="screen screen-shell briefing-screen">
+    <section class="screen screen-shell briefing-screen phase38-briefing-ready">
       <div class="screen-header">
         <div class="screen-title-group">
           <div class="screen-title">${t('briefing.title')}</div>
@@ -20,6 +22,7 @@ export function renderBriefing(t, mission, operationAutosave = null, campaign = 
             <span class="tag">${t(mission.operationKey)}</span>
           </div>
           <p>${t(mission.summaryKey)}</p>
+          ${renderCinematicBriefing({ view: cinematicBriefing, t })}
           <div class="briefing-campaign-intel">
             <div><span>${t('campaign.base')}</span><strong>${mission.baseKey ? t(mission.baseKey) : (campaign ? t(campaign.baseKey) : '--')}</strong></div>
             <div><span>${t('campaign.goal')}</span><strong>${mission.strategicGoalKey ? t(mission.strategicGoalKey) : (campaign ? t(campaign.strategicGoalKey) : '--')}</strong></div>

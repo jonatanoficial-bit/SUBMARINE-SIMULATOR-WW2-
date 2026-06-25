@@ -58,7 +58,7 @@ test('save schema tracks campaign objective rewards for anti-duplication', () =>
   assert.deepEqual(save.progression.campaignObjectiveRewards, []);
   const migrated = migrateSave({ ...save, progression: { ...save.progression, campaignObjectiveRewards: ['us_obj_pearl_response'] } });
   assert.deepEqual(migrated.progression.campaignObjectiveRewards, ['us_obj_pearl_response']);
-  assert.equal(migrated.meta.schemaVersion, 31);
+  assert.equal(migrated.meta.schemaVersion, 32);
 });
 
 test('phase 13 objective translation keys exist in all languages', () => {

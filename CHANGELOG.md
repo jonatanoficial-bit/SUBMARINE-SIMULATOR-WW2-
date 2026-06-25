@@ -1,3 +1,11 @@
+# v2.0.0-alpha.53 — Fase 38 — Briefings Cinematográficos
+
+- Adicionado dossiê cinematográfico de missão na tela de briefing.
+- Novo mapa de guerra visual com base, patrulha e ameaça.
+- Cálculo de risco operacional por dificuldade, clima, teatro, prontidão e logística.
+- Ordem do alto comando contextual antes de iniciar a missão.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.52 — Fase 37 — Áudio Imersivo e Tripulação Viva
 
 - Adicionado diretor sonoro procedural com estados de silêncio, vigia, combate, profundidade e emergência.
