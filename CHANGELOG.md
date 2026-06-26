@@ -1,3 +1,12 @@
+# v2.0.0-alpha.63 — Fase 48 — Quadro Vivo de Execução das Ordens do Capitão
+
+- Adicionado quadro vivo de execução das ordens do capitão na gameplay.
+- Cada ordem agora mostra estação responsável, status, progresso, ETA, efeito prático, risco e checklist operacional.
+- Ataque, evasão, silêncio, reparo, patrulha e comandos manuais registram execução clara da tripulação.
+- Modo Manual preservado sem ficar preso no fluxo automático da tripulação.
+- Smoke mobile 320x568 estabilizado sem reduzir cobertura.
+- Save schema mantido em 40.
+
 # v2.0.0-alpha.61 — Fase 46 — Doutrina de Ordens do Capitão
 
 ## v2.0.0-alpha.62 — Fase 47: Realismo Capitão/Tripulação

@@ -30,12 +30,12 @@ function attackSnapshot(overrides = {}) {
 test('phase 47 metadata and static wiring are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.62');
-  assert.equal(BUILD_INFO.phase, '47');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.63');
+  assert.equal(BUILD_INFO.phase, '48');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.62');
-  assert.equal(manifest.version, '2.0.0-alpha.62');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase47_captain_crew_realism.py');
+  assert.equal(pkg.version, '2.0.0-alpha.63');
+  assert.equal(manifest.version, '2.0.0-alpha.63');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase48_captain_order_execution.py');
   assert.equal(PHASE47_CAPTAIN_CREW_REALISM.system, 'captain-crew-realism');
 });
 

@@ -15,6 +15,7 @@ import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
 import { buildCaptainOrderDoctrineView } from '../systems/captainOrderDoctrine.js';
 import { beginCaptainCrewOrder, buildCaptainCrewOrderPanel, createCaptainCrewOrderFlow, normalizeCaptainCrewOrderFlow } from '../systems/captainCrewRealism.js';
+import { buildCaptainExecutionBoard, createCaptainExecutionFromCommand, createCaptainExecutionState, normalizeCaptainExecutionState } from '../systems/captainOrderExecution.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -145,7 +146,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -719,6 +720,23 @@ export function renderGameplay(t, mission, settings = {}) {
               </header>
               <p id="captain-flow-detail">${t('captainCrew.flow.idle')}</p>
               <div class="phase47-flow-steps" id="captain-flow-steps"></div>
+            </section>
+            <section class="phase48-order-board" id="phase48-order-board" data-risk="calm" aria-live="polite">
+              <header>
+                <span>${t('captainExecution.panel.kicker')}</span>
+                <strong id="captain-execution-order">${t('captainExecution.order.standby')}</strong>
+              </header>
+              <div class="phase48-order-effect">
+                <span>${t('captainExecution.panel.effect')}</span>
+                <p id="captain-execution-effect">${t('captainExecution.effect.awaiting')}</p>
+              </div>
+              <div class="phase48-order-meta">
+                <div><span>${t('captainExecution.panel.station')}</span><strong id="captain-execution-station">${t('captainExecution.station.command')}</strong></div>
+                <div><span>${t('captainExecution.panel.status')}</span><strong id="captain-execution-status">${t('captainExecution.status.standby')}</strong></div>
+                <div><span>${t('captainExecution.panel.eta')}</span><strong id="captain-execution-eta">--</strong></div>
+              </div>
+              <div class="phase48-order-progress"><em id="captain-execution-progress" style="width:0%"></em></div>
+              <div class="phase48-order-tasks" id="captain-execution-tasks"></div>
             </section>
             <section class="encounter-console" aria-live="polite">
               <header>
@@ -1556,6 +1574,14 @@ export function mountGameplay({
     captainFlowStage: app.querySelector('#captain-flow-stage'),
     captainFlowDetail: app.querySelector('#captain-flow-detail'),
     captainFlowSteps: app.querySelector('#captain-flow-steps'),
+    captainExecutionBoard: app.querySelector('#phase48-order-board'),
+    captainExecutionOrder: app.querySelector('#captain-execution-order'),
+    captainExecutionEffect: app.querySelector('#captain-execution-effect'),
+    captainExecutionStation: app.querySelector('#captain-execution-station'),
+    captainExecutionStatus: app.querySelector('#captain-execution-status'),
+    captainExecutionEta: app.querySelector('#captain-execution-eta'),
+    captainExecutionProgress: app.querySelector('#captain-execution-progress'),
+    captainExecutionTasks: app.querySelector('#captain-execution-tasks'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1581,6 +1607,7 @@ export function mountGameplay({
   const subOfficerAcknowledged = new Set();
   let captainCommandMode = 'captain';
   let captainCrewFlow = createCaptainCrewOrderFlow(engine.snapshot());
+  let captainExecutionState = createCaptainExecutionState(engine.snapshot());
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -2962,6 +2989,7 @@ export function mountGameplay({
     els.captainModeManual?.classList.toggle('active', captainCommandMode === 'manual');
     if (captainCommandMode === 'manual') closeSubOfficerDialogue();
     updateCaptainCrewFlow(engine.snapshot());
+    updateCaptainExecutionBoard(engine.snapshot());
   }
 
   function snapshotWithCaptainCrewFlow(snapshot = engine.snapshot()) {
@@ -2976,6 +3004,29 @@ export function mountGameplay({
     if (els.captainFlowDetail) els.captainFlowDetail.textContent = t(view.detailKey || 'captainCrew.flow.idle');
     if (els.captainFlowSteps) {
       els.captainFlowSteps.innerHTML = (view.steps || []).map((step) => `<span data-state="${step.state || 'waiting'}">${t(step.key)}</span>`).join('');
+    }
+    return view;
+  }
+
+
+  function registerCaptainExecution(command, result = null) {
+    captainExecutionState = createCaptainExecutionFromCommand(command, engine.snapshot(), { result, flow: captainCrewFlow });
+    updateCaptainExecutionBoard(engine.snapshot());
+  }
+
+  function updateCaptainExecutionBoard(snapshot = engine.snapshot()) {
+    captainExecutionState = normalizeCaptainExecutionState(captainExecutionState, snapshot, captainCrewFlow, captainCommandMode);
+    const view = buildCaptainExecutionBoard({ snapshot, execution: captainExecutionState, flow: captainCrewFlow, commandMode: captainCommandMode });
+    captainExecutionState = view.state;
+    if (els.captainExecutionBoard) els.captainExecutionBoard.dataset.risk = view.risk || 'calm';
+    if (els.captainExecutionOrder) els.captainExecutionOrder.textContent = t(view.orderKey || 'captainExecution.order.standby');
+    if (els.captainExecutionEffect) els.captainExecutionEffect.textContent = t(view.effectKey || 'captainExecution.effect.awaiting');
+    if (els.captainExecutionStation) els.captainExecutionStation.textContent = t(view.stationKey || 'captainExecution.station.command');
+    if (els.captainExecutionStatus) els.captainExecutionStatus.textContent = t(view.statusKey || 'captainExecution.status.standby');
+    if (els.captainExecutionEta) els.captainExecutionEta.textContent = view.etaSeconds > 0 ? `${view.etaSeconds}s` : '--';
+    if (els.captainExecutionProgress) els.captainExecutionProgress.style.width = `${view.progress || 0}%`;
+    if (els.captainExecutionTasks) {
+      els.captainExecutionTasks.innerHTML = (view.rows || []).map((row) => `<span data-state="${row.state || 'waiting'}">${t(row.key)}</span>`).join('');
     }
     return view;
   }
@@ -3013,11 +3064,13 @@ export function mountGameplay({
       const result = engine.openPeriscope();
       if (!result.ok) commandHint(result);
       else playSfx('sonar');
+      registerCaptainExecution('open-periscope', result);
     } else if (command === 'emergency-dive') {
       captainCrewFlow = beginCaptainCrewOrder('emergency-dive', engine.snapshot(), captainCrewFlow);
       const result = engine.activateEmergencyDive();
       if (!result.ok) commandHint(result);
       else playSfx('alert');
+      registerCaptainExecution('emergency-dive', result);
     } else if (command === 'evade-now') {
       captainCrewFlow = beginCaptainCrewOrder('evade-now', engine.snapshot(), captainCrewFlow);
       const dive = engine.activateEmergencyDive();
@@ -3026,11 +3079,13 @@ export function mountGameplay({
       if (!silent.ok && dive.ok) commandHint(silent);
       playSfx('alert');
       setStation('instruments');
+      registerCaptainExecution('evade-now', dive.ok ? silent : dive);
     } else if (command === 'silent-running') {
       captainCrewFlow = beginCaptainCrewOrder('silent-running', engine.snapshot(), captainCrewFlow);
       const result = engine.activateSilentRunning();
       if (!result.ok) commandHint(result);
       else playSfx('sonar');
+      registerCaptainExecution('silent-running', result);
     } else if (command === 'prepare-silent-approach') {
       captainCrewFlow = beginCaptainCrewOrder('prepare-silent-approach', engine.snapshot(), captainCrewFlow);
       engine.setSpeed('slow');
@@ -3038,6 +3093,7 @@ export function mountGameplay({
       if (!result.ok) commandHint(result);
       setStation('sensors');
       playSfx('sonar');
+      registerCaptainExecution('prepare-silent-approach', result);
     } else if (command === 'prepare-attack') {
       captainCrewFlow = beginCaptainCrewOrder('prepare-attack', engine.snapshot(), captainCrewFlow);
       engine.setWeaponTarget('target');
@@ -3054,6 +3110,7 @@ export function mountGameplay({
         setStation(scope.ok ? 'periscope' : 'weapons');
       }
       playSfx('sonar');
+      registerCaptainExecution('prepare-attack', solution.ok ? { ok: true } : solution);
     } else if (command === 'fire-confirm') {
       const fire = engine.fireTorpedo();
       if (!fire.ok) commandHint(fire);
@@ -3062,12 +3119,14 @@ export function mountGameplay({
         playSfx('torpedo');
         setStation('periscope');
       }
+      registerCaptainExecution('fire-confirm', fire);
     } else if (command === 'order-periscope-depth') {
       const snapshot = engine.snapshot();
       if (Number(snapshot.depth || 0) > PERISCOPE_MAX_DEPTH) commandHint(engine.adjustDepth(PERISCOPE_MAX_DEPTH - Number(snapshot.depth || 0)));
       else commandHint(engine.openPeriscope());
       setStation('instruments');
       playSfx('sonar');
+      registerCaptainExecution('order-periscope-depth', { ok: true });
     } else if (command === 'cancel-attack') {
       captainCrewFlow = beginCaptainCrewOrder('cancel-attack', engine.snapshot(), captainCrewFlow);
       engine.closePeriscope();
@@ -3075,36 +3134,46 @@ export function mountGameplay({
       engine.setSpeed('slow');
       setStation('sensors');
       playSfx('sonar');
+      registerCaptainExecution('cancel-attack', { ok: true });
     } else if (command === 'hold-shadow') {
       captainCrewFlow = beginCaptainCrewOrder('hold-shadow', engine.snapshot(), captainCrewFlow);
       engine.setTacticalDoctrine?.('shadow');
       engine.setSpeed('slow');
       setStation('sensors');
       playSfx('sonar');
+      registerCaptainExecution('hold-shadow', { ok: true });
     } else if (command === 'authorize-repair') {
       captainCrewFlow = beginCaptainCrewOrder('authorize-repair', engine.snapshot(), captainCrewFlow);
       const result = engine.startEmergencyRepair();
       if (!result.ok) commandHint(result);
       setStation('damage');
       playSfx('damage');
+      registerCaptainExecution('authorize-repair', result);
     } else if (command === 'plan-patrol') {
       captainCrewFlow = beginCaptainCrewOrder('plan-patrol', engine.snapshot(), captainCrewFlow);
       const result = engine.planPatrolSectorRoute();
       if (!result.ok) commandHint(result);
       setStation('navigation');
       playSfx('sonar');
+      registerCaptainExecution('plan-patrol', result);
     } else if (command === 'stop-boat') {
       engine.setSpeed('stop');
       setStation('damage');
       playSfx('sonar');
+      registerCaptainExecution('stop-boat', { ok: true });
     } else if (command === 'slow-speed') {
       engine.setSpeed('slow');
       playSfx('sonar');
+      registerCaptainExecution('slow-speed', { ok: true });
     } else if (command === 'shallow-up') {
-      commandHint(engine.adjustDepth(-20));
+      const result = engine.adjustDepth(-20);
+      commandHint(result);
       setStation('instruments');
+      registerCaptainExecution('shallow-up', result);
     } else if (command === 'level-trim') {
-      commandHint(engine.levelTrim());
+      const result = engine.levelTrim();
+      commandHint(result);
+      registerCaptainExecution('level-trim', result);
     }
     updateCaptainCrewFlow(engine.snapshot());
     closeSubOfficerDialogue();
@@ -3239,6 +3308,7 @@ export function mountGameplay({
     updateNavigation(snapshot);
     updatePeriscope(snapshot);
     updateCaptainCrewFlow(snapshot);
+    updateCaptainExecutionBoard(snapshot);
     updateSubOfficer(snapshot);
   }
 
@@ -3377,6 +3447,7 @@ export function mountGameplay({
   setStation('command', { focus: false });
   setPeriscopeZoom(1);
   updateTraining(engine.snapshot());
+  updateCaptainExecutionBoard(engine.snapshot());
   app.querySelectorAll('.speed-chip').forEach((button) => bind(button, 'click', () => engine.setSpeed(button.dataset.speed)));
   bind(app.querySelector('#depth-up'), 'click', () => engine.adjustDepth(-15));
   bind(app.querySelector('#depth-down'), 'click', () => engine.adjustDepth(15));
@@ -3447,7 +3518,7 @@ export function mountGameplay({
   app.querySelectorAll('.torpedo-type-chip').forEach((button) => bind(button, 'click', () => commandHint(engine.setTorpedoType(button.dataset.torpedoType))));
   [[els.tdcTargetSpeed, 'targetSpeedKnots'], [els.tdcTargetCourse, 'targetCourse'], [els.tdcAob, 'aobDegrees'], [els.tdcRunDepth, 'runDepthMeters']].forEach(([input, key]) => bind(input, 'change', () => commandHint(engine.setTdcValue(key, Number(input.value)))));
   bind(els.tdcSync, 'click', () => commandHint(engine.syncTdcSolution()));
-  bind(els.weaponsFire, 'click', () => commandHint(engine.fireTorpedo()));
+  bind(els.weaponsFire, 'click', () => { const result = engine.fireTorpedo(); commandHint(result); registerCaptainExecution('fire-confirm', result); });
   bind(els.openWeaponsStation, 'click', () => setStation('weapons'));
   bind(els.openDamageControl, 'click', () => setStation('damage'));
   app.querySelectorAll('.damage-posture-chip').forEach((button) => bind(button, 'click', () => commandHint(engine.setDamageEmergencyPosture(button.dataset.damagePosture))));
@@ -3460,20 +3531,22 @@ export function mountGameplay({
     if (button && !button.disabled) commandHint(engine.recallDamageControlTeam(button.dataset.teamId));
   });
   app.querySelectorAll('.damage-compartment-card').forEach((button) => bind(button, 'click', () => commandHint(engine.assignDamageControlTeam(els.damageTeamSelect?.value || 'dc-team-1', button.dataset.compartmentId, els.damageTaskSelect?.value || 'repair'))));
-  bind(els.openPeriscope, 'click', () => commandHint(engine.openPeriscope()));
-  bind(els.openPeriscopeSecondary, 'click', () => commandHint(engine.openPeriscope()));
+  bind(els.openPeriscope, 'click', () => { const result = engine.openPeriscope(); commandHint(result); registerCaptainExecution('open-periscope', result); });
+  bind(els.openPeriscopeSecondary, 'click', () => { const result = engine.openPeriscope(); commandHint(result); registerCaptainExecution('open-periscope', result); });
   bind(els.closePeriscope, 'click', () => engine.closePeriscope());
-  bind(els.fireTorpedo, 'click', () => commandHint(engine.fireTorpedo()));
-  bind(els.emergencyRepair, 'click', () => commandHint(engine.startEmergencyRepair()));
+  bind(els.fireTorpedo, 'click', () => { const result = engine.fireTorpedo(); commandHint(result); registerCaptainExecution('fire-confirm', result); });
+  bind(els.emergencyRepair, 'click', () => { const result = engine.startEmergencyRepair(); commandHint(result); registerCaptainExecution('authorize-repair', result); });
   bind(els.silentRunning, 'click', () => {
     const result = engine.activateSilentRunning();
     if (result.ok) playSfx('sonar');
     else commandHint(result);
+    registerCaptainExecution('silent-running', result);
   });
   bind(els.emergencyDive, 'click', () => {
     const result = engine.activateEmergencyDive();
     if (result.ok) playSfx('alert');
     else commandHint(result);
+    registerCaptainExecution('emergency-dive', result);
   });
   bind(els.decoy, 'click', () => {
     const result = engine.launchDecoy();
