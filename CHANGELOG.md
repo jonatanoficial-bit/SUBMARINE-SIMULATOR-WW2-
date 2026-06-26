@@ -1,3 +1,10 @@
+# v2.0.0-alpha.58 — Fase 43 — Sandbox / Patrulha Livre Completa
+
+- Adicionada entrada de Patrulha Livre dentro de Missão.
+- Criados cenários sandbox com teatro, clima, horário, ameaça e navegação próprios.
+- Missão dinâmica abre briefing e gameplay sem alterar progressão da campanha.
+- Build, PWA, traduções, testes e auditoria atualizados.
+
 # v2.0.0-alpha.57 — Fase 42 — Base/Oficina e Melhorias com Impacto Real
 
 - Oficina agora exibe impacto real das melhorias na missão.

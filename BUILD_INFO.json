@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.57",
-  "semver": "2.0.0-alpha.57",
-  "buildId": "SCWW2-20260626-1105-BRT-F42-BASE-WORKSHOP-INTEGRATION",
+  "version": "v2.0.0-alpha.58",
+  "semver": "2.0.0-alpha.58",
+  "buildId": "SCWW2-20260626-1215-BRT-F43-SANDBOX-PATROL",
   "date": "2026-06-26",
-  "time": "11:05",
+  "time": "12:15",
   "timezone": "America/Sao_Paulo",
-  "phase": "42",
-  "phaseName": "Silent Depth Base Workshop Integration",
+  "phase": "43",
+  "phaseName": "Silent Depth Sandbox Patrol",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 36,
-  "notes": "Phase 42 links the Base/Workshop with real mission impact: upgrades now generate operational effects for sonar, batteries, engines, hull pressure, torpedo handling, stealth and readiness, with a clearer workshop panel and preserved F41 mission flow/subofficer/periscope improvements."
+  "saveSchemaVersion": 37,
+  "notes": "Phase 43 adds a real free patrol/sandbox entry inside Mission: scenario selection, theaters, weather/time/threat presets, dynamically generated mission briefing and campaign-safe patrol launch while preserving F41/F42 flow, subofficer, audio and workshop systems."
 }

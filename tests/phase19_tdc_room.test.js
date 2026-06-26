@@ -10,9 +10,9 @@ const build = readJson('BUILD_INFO.json');
 const translations = ['pt-BR','en','es'].map((lang)=>readJson(`data/translations/${lang}.json`));
 
 test('phase 19 metadata is active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.57');
-  assert.equal(build.phase, '42');
-  assert.equal(build.saveSchemaVersion, 36);
+  assert.equal(build.semver, '2.0.0-alpha.58');
+  assert.equal(build.phase, '43');
+  assert.equal(build.saveSchemaVersion, 37);
 });
 
 test('TDC fire-control authorizes good periscope/sonar solution', () => {

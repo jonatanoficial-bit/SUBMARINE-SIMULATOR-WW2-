@@ -1,5 +1,6 @@
 import { renderBottomNav } from '../components/ui.js';
 import { buildLivingCampaignFront } from '../systems/livingCampaignFront.js';
+import { renderSandboxPatrolPanel } from '../systems/sandboxPatrolPlanner.js';
 
 function missionStatusLabel(t, mission) {
   if (mission.status === 'available') return t('campaign.status.available');
@@ -545,6 +546,8 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
       </div>
 
       ${renderCampaignSelector(t, options.allNations || [], options.allCampaigns || [], options.progressByNation || {}, currentNationId, viewNationId)}
+
+      ${renderSandboxPatrolPanel(t, { isCurrentNation })}
 
       <div class="campaign-command-grid">
         <div class="panel campaign-overview phase11-campaign-overview">

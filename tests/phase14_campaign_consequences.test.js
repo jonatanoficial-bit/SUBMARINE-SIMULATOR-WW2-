@@ -9,9 +9,9 @@ function readJson(path) {
 }
 
 test('phase 14 metadata identifies strategic campaign consequence build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.57');
-  assert.equal(BUILD_INFO.phase, '42');
-  assert.match(BUILD_INFO.buildId, /F42-BASE-WORKSHOP-INTEGRATION/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.58');
+  assert.equal(BUILD_INFO.phase, '43');
+  assert.match(BUILD_INFO.buildId, /F43-SANDBOX-PATROL/);
 });
 
 test('campaign consequences cover every independent campaign nation', () => {

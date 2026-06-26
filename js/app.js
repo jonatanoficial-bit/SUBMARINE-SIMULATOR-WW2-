@@ -41,6 +41,7 @@ import { canAwardOperationalHonor, findOperationalHonorDeckForNation, getOperati
 import { canClaimCommandPromotion, findCommandAdvancementDeckForNation, getCommandAdvancementClaimedIds, summarizeCommandAdvancement } from './systems/commandAdvancement.js';
 import { canAssignVeteranOfficer, findVeteranOfficerDeckForNation, getVeteranOfficerAssignedIds, summarizeVeteranOfficers } from './systems/veteranOfficers.js';
 import { canRunCrewDrill, findCrewDrillDeckForNation, getCrewDrillCompletedIds, summarizeCrewDrills } from './systems/crewDrills.js';
+import { buildSandboxMission } from './systems/sandboxPatrolPlanner.js';
 import { applyUpgradeStats, buildWorkshopImpactReport, calculateUpgradeBonus } from './systems/baseWorkshopIntegration.js';
 
 const app = document.getElementById('app');
@@ -861,6 +862,8 @@ function ensurePatrolReadyForLaunch() {
   return true;
 }
 function getSelectedMission(nationId = getCurrentNationId()) {
+  const selected = state.data?.missions?.find((item) => item.id === state.selectedMissionId && item.nationId === nationId);
+  if (selected?.sandbox || selected?.missionMode === 'sandbox') return selected;
   const missions = missionsForNation(nationId);
   return missions.find((item) => item.id === state.selectedMissionId) || missions.find((item) => item.status === 'available') || missions[0] || state.data.missions[0];
 }
@@ -1299,6 +1302,14 @@ function initEvents() {
       case 'open-briefing': {
         if (getCampaignViewNationId() !== getCurrentNationId()) { showToast(t('toast.campaignCreateCommander')); break; }
         ensureSelectedMissionForNation(getCurrentNationId());
+        setScreen('briefing'); render(); break;
+      }
+      case 'launch-sandbox': {
+        const mission = buildSandboxMission({ scenarioId: target.dataset.sandbox, nationId: getCurrentNationId(), campaigns: state.data?.campaigns || [] });
+        state.data.missions = [mission, ...(state.data.missions || []).filter((item) => item.id !== mission.id)];
+        setMission(mission.id);
+        clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); setResumeOperation(false);
+        showToast(t('toast.sandboxReady'));
         setScreen('briefing'); render(); break;
       }
       case 'start-mission': {
