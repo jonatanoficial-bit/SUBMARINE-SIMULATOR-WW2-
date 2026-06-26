@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.55';
+const CACHE_VERSION = '2.0.0-alpha.56';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -68,6 +68,7 @@ const APP_SHELL = [
   './css/phase38-cinematic-briefing.css',
   './css/phase39-crew-roles.css',
   './css/phase40-living-campaign.css',
+  './css/phase41-flow-subofficer-periscope.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',

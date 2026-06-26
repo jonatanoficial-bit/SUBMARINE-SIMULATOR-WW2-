@@ -19,13 +19,10 @@ export function renderBuildFooter(t) {
 
 export function renderBottomNav(active, t) {
   const items = [
-    { id: 'lobby', label: t('nav.lobby'), icon: 'assets/ui/icons/icon_submarine.png' },
-    { id: 'campaign', label: t('nav.campaign'), icon: 'assets/ui/icons/icon_navigation.png' },
-    { id: 'career', label: t('nav.career'), icon: 'assets/ui/icons/icon_navigation.png' },
-    { id: 'strategy', label: t('nav.strategy'), icon: 'assets/ui/icons/icon_navigation.png' },
-    { id: 'bridge', label: t('nav.bridge'), icon: 'assets/ui/icons/icon_submarine.png' },
-    { id: 'arsenal', label: t('nav.arsenal'), icon: 'assets/ui/icons/icon_submarine.png' },
+    { id: 'campaign', label: t('nav.mission'), icon: 'assets/ui/icons/icon_navigation.png' },
+    { id: 'bridge', label: t('nav.submarine'), icon: 'assets/ui/icons/icon_submarine.png' },
     { id: 'crew', label: t('nav.crew'), icon: 'assets/ui/icons/icon_crew.png' },
+    { id: 'arsenal', label: t('nav.baseWorkshop'), icon: 'assets/ui/icons/icon_submarine.png' },
     { id: 'settings', label: t('nav.settings'), icon: 'assets/ui/icons/icon_settings.png' }
   ];
 

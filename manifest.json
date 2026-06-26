@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.55",
-  "short_name": "SCWW2 2.0.0-alpha.55",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.56",
+  "short_name": "SCWW2 2.0.0-alpha.56",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 40 Campanha Viva e Guerra Reativa, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 41 Fluxo unificado, suboficial inteligente e periscópio mobile limpo.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.55",
+  "version": "2.0.0-alpha.56",
   "id": "./"
 }

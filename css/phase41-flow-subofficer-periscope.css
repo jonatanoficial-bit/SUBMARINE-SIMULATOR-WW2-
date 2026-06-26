@@ -1,0 +1,171 @@
+/* Fase 41 — Fluxo principal unificado, suboficial inteligente e periscópio mobile limpo */
+.phase41-flow-hub .action-card.primary-flow {
+  border-color: rgba(236, 184, 87, .64);
+  background: linear-gradient(135deg, rgba(67, 44, 10, .86), rgba(12, 27, 34, .78));
+  box-shadow: inset 0 0 24px rgba(235, 174, 82, .12), 0 18px 34px rgba(0,0,0,.24);
+}
+
+.phase41-mission-flow-ready .station-tabs {
+  --station-gap: 7px;
+}
+
+.phase41-mission-flow-ready .station-tab[data-station="command"]::after { content: " / Ponte"; opacity: .62; }
+.phase41-mission-flow-ready .station-tab[data-station="sensors"]::after { content: " / Sonar"; opacity: .62; }
+.phase41-mission-flow-ready .station-tab[data-station="navigation"]::after { content: " / Mapa"; opacity: .62; }
+.phase41-mission-flow-ready .station-tab[data-station="damage"]::after { content: " / Máquinas"; opacity: .62; }
+
+.phase41-subofficer-guide-ready .phase26-subofficer-panel {
+  max-width: min(680px, calc(100vw - 20px));
+  border-color: rgba(237, 199, 117, .42);
+  box-shadow: 0 22px 54px rgba(0,0,0,.52), inset 0 0 36px rgba(245, 188, 83, .08);
+}
+
+.phase41-subofficer-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.phase41-subofficer-quick-actions .button {
+  min-height: 34px;
+  padding: 7px 10px;
+  font-size: .72rem;
+  border-color: rgba(255, 215, 142, .28);
+}
+
+.phase41-subofficer-toggle {
+  position: fixed;
+  z-index: 81;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-areas: "avatar title" "avatar action";
+  gap: 2px 10px;
+  align-items: center;
+  width: min(280px, calc(100vw - 28px));
+  padding: 9px 11px;
+  border-radius: 18px;
+  border: 1px solid rgba(229, 193, 118, .42);
+  background: linear-gradient(135deg, rgba(9, 19, 24, .94), rgba(24, 27, 24, .92));
+  color: #fff6cf;
+  box-shadow: 0 16px 40px rgba(0,0,0,.42), inset 0 0 24px rgba(255, 205, 118, .07);
+  cursor: pointer;
+}
+
+.phase41-subofficer-toggle img {
+  grid-area: avatar;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255,255,255,.06);
+}
+
+.phase41-subofficer-toggle span {
+  grid-area: title;
+  font-size: .76rem;
+  font-weight: 900;
+  text-align: left;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.phase41-subofficer-toggle b {
+  grid-area: action;
+  overflow: hidden;
+  text-align: left;
+  color: rgba(224, 244, 235, .78);
+  font-size: .68rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phase41-subofficer-toggle[data-priority="7"],
+.phase41-subofficer-toggle[data-priority="8"],
+.phase41-subofficer-toggle[data-priority="9"],
+.phase41-subofficer-toggle[data-priority="10"] {
+  border-color: rgba(255, 92, 72, .7);
+  animation: phase41SubOfficerPulse 1.1s ease-in-out infinite;
+}
+
+@keyframes phase41SubOfficerPulse {
+  0%, 100% { transform: translateY(0); box-shadow: 0 16px 40px rgba(0,0,0,.42), 0 0 0 rgba(255,90,70,0); }
+  50% { transform: translateY(-2px); box-shadow: 0 16px 42px rgba(0,0,0,.5), 0 0 24px rgba(255,90,70,.28); }
+}
+
+@media (max-width: 760px) {
+  .phase41-subofficer-guide-ready .phase26-subofficer-panel {
+    left: 10px;
+    right: 10px;
+    bottom: 78px;
+    max-width: none;
+  }
+  .phase41-subofficer-toggle {
+    left: 10px;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: auto;
+  }
+  .phase41-subofficer-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Correção direta do problema relatado: no celular o periscópio deve mostrar água e inimigo, não texto. */
+@media (max-width: 760px), (orientation: landscape) and (max-height: 560px) {
+  .periscope-modal.phase24-silent-depth {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto minmax(0, 1fr) auto !important;
+    padding: 6px !important;
+  }
+  .phase24-silent-depth .periscope-shell.css-periscope {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    width: min(98vw, calc(100svh - 42px)) !important;
+    max-height: calc(100svh - 42px) !important;
+    margin: 0 auto !important;
+  }
+  .phase24-silent-depth .periscope-window {
+    inset: 7.4% !important;
+  }
+  .phase24-silent-depth .periscope-compass,
+  .phase24-silent-depth .periscope-data-ribbon,
+  .phase24-silent-depth .phase18-periscope-solution,
+  .phase24-silent-depth .periscope-sensor-readout,
+  .phase24-silent-depth .periscope-lock,
+  .phase31-horizon-report,
+  .phase24-axis-cue {
+    display: none !important;
+  }
+  .phase24-silent-depth .periscope-controls-grid {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: min(98vw, 560px) !important;
+    padding-bottom: max(5px, env(safe-area-inset-bottom)) !important;
+  }
+  .phase24-silent-depth .periscope-controls-grid .button {
+    min-height: 34px !important;
+    padding: 6px 8px !important;
+    font-size: .64rem !important;
+  }
+  .phase24-silent-depth .periscope-actions {
+    grid-column: 1 !important;
+    padding: 0 !important;
+  }
+  .phase24-silent-depth .periscope-actions .button {
+    min-height: 34px !important;
+    padding: 6px 10px !important;
+    font-size: .68rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .phase24-silent-depth .periscope-controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

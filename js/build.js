@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.55",
-  "semver": "2.0.0-alpha.55",
-  "buildId": "SCWW2-20260625-1115-BRT-F40-LIVING-CAMPAIGN-FRONT",
-  "date": "2026-06-25",
-  "time": "11:15",
+  "version": "v2.0.0-alpha.56",
+  "semver": "2.0.0-alpha.56",
+  "buildId": "SCWW2-20260626-1055-BRT-F41-FLUXO-SUBOFICIAL-PERISCOPIO",
+  "date": "2026-06-26",
+  "time": "10:55",
   "timezone": "America/Sao_Paulo",
-  "phase": "40",
-  "phaseName": "Silent Depth Living Campaign Front",
+  "phase": "41",
+  "phaseName": "Unified Mission Flow and Intelligent Subofficer",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 34,
-  "notes": "Phase 40 adds a living campaign war front with theater pressure, enemy adaptation, fleet morale, convoy tempo, initiative and next war pulse readouts while preserving all Silent Depth phases 24 to 39."
+  "saveSchemaVersion": 35,
+  "notes": "Phase 41 simplifies the main flow around mission/submarine/crew/base/settings, upgrades the subofficer into a fixed intelligent captain assistant with contextual actions, and applies a mobile periscope cleanup that hides text overlays so the ocean and targets remain visible on phones. All previous Silent Depth systems and immersive audio are preserved."
 };

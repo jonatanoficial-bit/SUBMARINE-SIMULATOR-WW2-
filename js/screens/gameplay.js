@@ -143,7 +143,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -1070,12 +1070,18 @@ export function renderGameplay(t, mission, settings = {}) {
           <div class="phase26-subofficer-kicker"><span class="phase26-subofficer-rank">${t('subofficer.rank')}</span><span id="subofficer-status" class="phase26-subofficer-status">${t('subofficer.status.ready')}</span></div>
           <div id="subofficer-title" class="phase26-subofficer-title">${t('subofficer.title.standby')}</div>
           <div id="subofficer-line" class="phase26-subofficer-line">${t('subofficer.msg.standby')}</div>
+          <div id="subofficer-quick-actions" class="phase41-subofficer-quick-actions"></div>
         </div>
         <div class="phase26-subofficer-actions">
           <button id="subofficer-ack" class="button primary phase26-subofficer-ack">${t('subofficer.ack')}</button>
           <span id="subofficer-station" class="phase26-subofficer-station">${t('subofficer.station.command')}</span>
         </div>
       </aside>
+      <button id="subofficer-toggle" class="phase41-subofficer-toggle" type="button" aria-label="${t('subofficer.toggle')}">
+        <img src="assets/avatars/subofficer_ww2.svg" alt="">
+        <span>${t('subofficer.toggle')}</span>
+        <b id="subofficer-next-action">${t('subofficer.nextAction.ready')}</b>
+      </button>
 
       <aside class="station-help-drawer hidden" id="station-help-drawer" aria-hidden="true">
         <div class="station-help-card">
@@ -1517,6 +1523,9 @@ export function mountGameplay({
     subOfficerStatus: app.querySelector('#subofficer-status'),
     subOfficerAck: app.querySelector('#subofficer-ack'),
     subOfficerStation: app.querySelector('#subofficer-station'),
+    subOfficerQuickActions: app.querySelector('#subofficer-quick-actions'),
+    subOfficerToggle: app.querySelector('#subofficer-toggle'),
+    subOfficerNextAction: app.querySelector('#subofficer-next-action'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -2911,6 +2920,42 @@ export function mountGameplay({
   }
 
 
+  function renderSubOfficerActions(dialogue) {
+    if (!els.subOfficerQuickActions) return;
+    const actions = Array.isArray(dialogue?.actions) ? dialogue.actions : [];
+    els.subOfficerQuickActions.innerHTML = actions.map((item) => `
+      <button class="button secondary phase41-subofficer-action" data-subofficer-action="${item.command || item.id}" data-station="${item.station || ''}">${t(item.labelKey || 'subofficer.action.command')}</button>
+    `).join('');
+  }
+
+  function runSubOfficerAction(command, station) {
+    if (station) setStation(station);
+    if (command === 'open-periscope') {
+      const result = engine.openPeriscope();
+      if (!result.ok) commandHint(result);
+      else playSfx('sonar');
+    } else if (command === 'emergency-dive') {
+      const result = engine.activateEmergencyDive();
+      if (!result.ok) commandHint(result);
+      else playSfx('alert');
+    } else if (command === 'silent-running') {
+      const result = engine.activateSilentRunning();
+      if (!result.ok) commandHint(result);
+      else playSfx('sonar');
+    } else if (command === 'slow-speed') {
+      engine.setSpeed('slow');
+      playSfx('sonar');
+    } else if (command === 'level-trim') {
+      commandHint(engine.levelTrim());
+    }
+    closeSubOfficerDialogue();
+  }
+
+  function openSubOfficerFromToggle() {
+    const dialogue = subOfficerCurrent || buildSubOfficerDialogue({ snapshot: engine.snapshot(), station: activeStation, commanderName: mission?.commanderName || '' });
+    openSubOfficerDialogue(dialogue);
+  }
+
   function typeSubOfficerLine(text, speed = 18) {
     if (!els.subOfficerLine) return;
     if (subOfficerTypingTimer) clearInterval(subOfficerTypingTimer);
@@ -2939,6 +2984,8 @@ export function mountGameplay({
     if (els.subOfficerStatus) els.subOfficerStatus.textContent = t(`subofficer.status.${dialogue.tone || 'calm'}`);
     if (els.subOfficerAck) els.subOfficerAck.textContent = t(dialogue.ackLabelKey || 'subofficer.ack');
     if (els.subOfficerStation) els.subOfficerStation.textContent = t(`subofficer.station.${dialogue.stationHint || 'command'}`);
+    if (els.subOfficerNextAction) els.subOfficerNextAction.textContent = t(dialogue.actions?.[0]?.labelKey || 'subofficer.nextAction.ready');
+    renderSubOfficerActions(dialogue);
     typeSubOfficerLine(t(dialogue.textKey), dialogue.typewriterMs);
   }
 
@@ -2957,6 +3004,12 @@ export function mountGameplay({
   function updateSubOfficer(snapshot) {
     const dialogue = buildSubOfficerDialogue({ snapshot, station: activeStation, commanderName: mission?.commanderName || '' });
     if (!dialogue || !els.subOfficerPanel) return;
+    if (!subOfficerCurrent || subOfficerCurrent.id !== dialogue.id || dialogue.priority >= (subOfficerCurrent?.priority || 0)) subOfficerCurrent = dialogue;
+    if (els.subOfficerToggle) {
+      els.subOfficerToggle.dataset.tone = dialogue.tone || 'calm';
+      els.subOfficerToggle.dataset.priority = String(dialogue.priority || 0);
+    }
+    if (els.subOfficerNextAction) els.subOfficerNextAction.textContent = t(dialogue.actions?.[0]?.labelKey || 'subofficer.nextAction.ready');
     const hidden = els.subOfficerPanel.classList.contains('hidden');
     const interrupt = shouldSubOfficerInterrupt({
       current: subOfficerCurrent,
@@ -3132,6 +3185,12 @@ export function mountGameplay({
   });
 
   bind(els.subOfficerAck, 'click', closeSubOfficerDialogue);
+  bind(els.subOfficerToggle, 'click', openSubOfficerFromToggle);
+  bind(els.subOfficerQuickActions, 'click', (event) => {
+    const button = event.target?.closest?.('[data-subofficer-action]');
+    if (!button) return;
+    runSubOfficerAction(button.dataset.subofficerAction, button.dataset.station);
+  });
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);

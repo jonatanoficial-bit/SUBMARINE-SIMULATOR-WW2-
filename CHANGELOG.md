@@ -1,3 +1,11 @@
+# v2.0.0-alpha.56 — Fase 41 — Fluxo Unificado, Suboficial Inteligente e Periscópio Mobile Limpo
+
+- Menu inferior simplificado para Missão, Submarino, Tripulação, Base/Oficina e Ajustes.
+- Suboficial passa a ser auxiliar fixo do capitão com pop-up, avatar, texto e ações diretas.
+- Mensagem inicial de tripulação pronta e aguardando ordem do capitão.
+- Correção de periscópio no celular: textos técnicos ficam ocultos para mostrar água, horizonte e inimigo.
+- Áudio imersivo e sistemas anteriores preservados.
+
 # v2.0.0-alpha.55 — Fase 40 — Campanha Viva e Guerra Reativa
 
 - Adicionada frente viva da campanha com pressão do teatro, adaptação inimiga, estabilidade, moral, iniciativa e ritmo de comboios.

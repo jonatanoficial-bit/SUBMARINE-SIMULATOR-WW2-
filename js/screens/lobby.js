@@ -8,8 +8,8 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
     <section class="screen screen-shell lobby-screen">
       <div class="screen-header">
         <div class="screen-title-group">
-          <div class="screen-title">${t('nav.lobby')}</div>
-          <div class="screen-subtitle">${t('lobby.overview')}</div>
+          <div class="screen-title">${t('flow.commandCenter')}</div>
+          <div class="screen-subtitle">${t('flow.commandCenterSubtitle')}</div>
         </div>
         <span class="top-badge">${t(nation.nameKey)} • ${t(nation.factionKey)}</span>
       </div>
@@ -59,32 +59,28 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
         </div>
       </div>
 
-      <div class="panel quick-actions-panel">
-        <div class="panel-header">${t('lobby.quickActions')}</div>
+      <div class="panel quick-actions-panel phase41-flow-hub">
+        <div class="panel-header">${t('flow.mainActions')}</div>
         <div class="panel-body stack">
-          <button class="action-card" data-nav="campaign">
+          <button class="action-card primary-flow" data-nav="campaign">
             <img class="action-icon" src="assets/ui/icons/icon_navigation.png" alt="">
-            <div><div class="action-title">${t('nav.campaign')}</div><div class="action-subtitle">${t('campaign.subtitle')}</div></div>
-          </button>
-          <button class="action-card" data-nav="career">
-            <img class="action-icon" src="assets/ui/icons/icon_navigation.png" alt="">
-            <div><div class="action-title">${t('nav.career')}</div><div class="action-subtitle">${t('career.subtitle')}</div></div>
-          </button>
-          <button class="action-card" data-nav="strategy">
-            <img class="action-icon" src="assets/ui/icons/icon_navigation.png" alt="">
-            <div><div class="action-title">${t('nav.strategy')}</div><div class="action-subtitle">${t('strategy.subtitle')}</div></div>
+            <div><div class="action-title">${t('flow.mission')}</div><div class="action-subtitle">${t('flow.missionDesc')}</div></div>
           </button>
           <button class="action-card" data-nav="bridge">
             <img class="action-icon" src="assets/ui/icons/icon_submarine.png" alt="">
-            <div><div class="action-title">${t('nav.bridge')}</div><div class="action-subtitle">${t('bridge.subtitle')}</div></div>
-          </button>
-          <button class="action-card" data-nav="arsenal">
-            <img class="action-icon" src="assets/ui/icons/icon_submarine.png" alt="">
-            <div><div class="action-title">${t('nav.arsenal')}</div><div class="action-subtitle">${t('arsenal.subtitle')}</div></div>
+            <div><div class="action-title">${t('flow.submarine')}</div><div class="action-subtitle">${t('flow.submarineDesc')}</div></div>
           </button>
           <button class="action-card" data-nav="crew">
             <img class="action-icon" src="assets/ui/icons/icon_crew.png" alt="">
-            <div><div class="action-title">${t('nav.crew')}</div><div class="action-subtitle">${t('crew.subtitle')}</div></div>
+            <div><div class="action-title">${t('flow.crew')}</div><div class="action-subtitle">${t('flow.crewDesc')}</div></div>
+          </button>
+          <button class="action-card" data-nav="arsenal">
+            <img class="action-icon" src="assets/ui/icons/icon_submarine.png" alt="">
+            <div><div class="action-title">${t('flow.baseWorkshop')}</div><div class="action-subtitle">${t('flow.baseWorkshopDesc')}</div></div>
+          </button>
+          <button class="action-card" data-nav="settings">
+            <img class="action-icon" src="assets/ui/icons/icon_settings.png" alt="">
+            <div><div class="action-title">${t('flow.settings')}</div><div class="action-subtitle">${t('flow.settingsDesc')}</div></div>
           </button>
         </div>
       </div>
