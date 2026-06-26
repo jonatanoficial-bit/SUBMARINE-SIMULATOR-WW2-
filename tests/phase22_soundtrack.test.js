@@ -10,9 +10,9 @@ const serviceWorker = fs.readFileSync(path.join(ROOT, 'service-worker.js'), 'utf
 const audioSource = fs.readFileSync(path.join(ROOT, 'js/audio.js'), 'utf8');
 
 test('phase 22 metadata identifies official soundtrack integration', () => {
-  assert.equal(build.semver, '2.0.0-alpha.64');
-  assert.equal(build.phase, '49');
-  assert.equal(pkg.version, '2.0.0-alpha.64');
+  assert.equal(build.semver, '2.0.0-alpha.65');
+  assert.equal(build.phase, '50');
+  assert.equal(pkg.version, '2.0.0-alpha.65');
 });
 
 test('official soundtrack playlist includes six sequential mp3 assets', async () => {

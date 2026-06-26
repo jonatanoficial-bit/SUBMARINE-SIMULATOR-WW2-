@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.64",
-  "semver": "2.0.0-alpha.64",
-  "buildId": "SCWW2-20260626-1749-BRT-F49-CAPTAIN-COMMAND-CHAIN",
+  "version": "v2.0.0-alpha.65",
+  "semver": "2.0.0-alpha.65",
+  "buildId": "SCWW2-20260626-1758-BRT-F50-CAPTAIN-COMBAT-CYCLE",
   "date": "2026-06-26",
-  "time": "17:49",
+  "time": "17:58",
   "timezone": "America/Sao_Paulo",
-  "phase": "49",
-  "phaseName": "Silent Depth Reactive Captain Command Chain",
+  "phase": "50",
+  "phaseName": "Silent Depth Captain Combat Cycle",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 49 adds a reactive captain command chain: the executive officer, mechanic and stations acknowledge orders, detect conflicts such as damage, depth, escorts and poor TDC solution, then recommend the next order while preserving manual control and the save schema."
+  "notes": "Phase 50 adds a full captain combat cycle: contact, classification, fire solution, captain order, crew execution and consequence, while keeping manual control and save schema stable."
 };

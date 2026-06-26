@@ -17,6 +17,7 @@ import { buildCaptainOrderDoctrineView } from '../systems/captainOrderDoctrine.j
 import { beginCaptainCrewOrder, buildCaptainCrewOrderPanel, createCaptainCrewOrderFlow, normalizeCaptainCrewOrderFlow } from '../systems/captainCrewRealism.js';
 import { buildCaptainExecutionBoard, createCaptainExecutionFromCommand, createCaptainExecutionState, normalizeCaptainExecutionState } from '../systems/captainOrderExecution.js';
 import { buildCaptainCommandChainView } from '../systems/captainCommandChain.js';
+import { buildCaptainCombatCycleView } from '../systems/captainCombatCycle.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -147,7 +148,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -754,6 +755,23 @@ export function renderGameplay(t, mission, settings = {}) {
                 <div><span>${t('captainChain.panel.confidence')}</span><strong id="captain-chain-confidence">--</strong></div>
               </div>
               <button class="button secondary phase49-chain-action" id="captain-chain-action" type="button" data-chain-action="" data-chain-station="">${t('captainChain.action.await')}</button>
+            </section>
+            <section class="phase50-combat-cycle" id="phase50-combat-cycle" data-tone="calm" aria-live="polite">
+              <header>
+                <span>${t('combatCycle.panel.kicker')}</span>
+                <strong id="combat-cycle-state">${t('combatCycle.state.patrol')}</strong>
+              </header>
+              <div class="phase50-cycle-question">
+                <span>${t('combatCycle.panel.question')}</span>
+                <p id="combat-cycle-question">${t('combatCycle.question.patrol')}</p>
+              </div>
+              <div class="phase50-cycle-steps" id="combat-cycle-steps"></div>
+              <div class="phase50-cycle-meta">
+                <div><span>${t('combatCycle.panel.readiness')}</span><strong id="combat-cycle-readiness">--</strong></div>
+                <div><span>${t('combatCycle.panel.risk')}</span><strong id="combat-cycle-risk">--</strong></div>
+                <div><span>${t('combatCycle.panel.reason')}</span><strong id="combat-cycle-reason">${t('combatCycle.reason.none')}</strong></div>
+              </div>
+              <button class="button secondary phase50-cycle-action" id="combat-cycle-action" type="button" data-cycle-action="" data-cycle-station="">${t('combatCycle.action.await')}</button>
             </section>
             <section class="encounter-console" aria-live="polite">
               <header>
@@ -1606,6 +1624,14 @@ export function mountGameplay({
     captainChainRecommendation: app.querySelector('#captain-chain-recommendation'),
     captainChainConfidence: app.querySelector('#captain-chain-confidence'),
     captainChainAction: app.querySelector('#captain-chain-action'),
+    combatCycle: app.querySelector('#phase50-combat-cycle'),
+    combatCycleState: app.querySelector('#combat-cycle-state'),
+    combatCycleQuestion: app.querySelector('#combat-cycle-question'),
+    combatCycleSteps: app.querySelector('#combat-cycle-steps'),
+    combatCycleReadiness: app.querySelector('#combat-cycle-readiness'),
+    combatCycleRisk: app.querySelector('#combat-cycle-risk'),
+    combatCycleReason: app.querySelector('#combat-cycle-reason'),
+    combatCycleAction: app.querySelector('#combat-cycle-action'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1633,6 +1659,7 @@ export function mountGameplay({
   let captainCrewFlow = createCaptainCrewOrderFlow(engine.snapshot());
   let captainExecutionState = createCaptainExecutionState(engine.snapshot());
   let captainCommandChainCurrent = null;
+  let captainCombatCycleCurrent = null;
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -3016,6 +3043,7 @@ export function mountGameplay({
     updateCaptainCrewFlow(engine.snapshot());
     updateCaptainExecutionBoard(engine.snapshot());
   updateCaptainCommandChain(engine.snapshot());
+  updateCaptainCombatCycle(engine.snapshot());
     updateCaptainCommandChain(engine.snapshot());
   }
 
@@ -3037,9 +3065,11 @@ export function mountGameplay({
 
 
   function registerCaptainExecution(command, result = null) {
-    captainExecutionState = createCaptainExecutionFromCommand(command, engine.snapshot(), { result, flow: captainCrewFlow });
-    updateCaptainExecutionBoard(engine.snapshot());
-  updateCaptainCommandChain(engine.snapshot());
+    const snapshot = engine.snapshot();
+    captainExecutionState = createCaptainExecutionFromCommand(command, snapshot, { result, flow: captainCrewFlow });
+    updateCaptainExecutionBoard(snapshot);
+    const chain = updateCaptainCommandChain(snapshot);
+    updateCaptainCombatCycle(snapshot, chain);
   }
 
   function updateCaptainExecutionBoard(snapshot = engine.snapshot()) {
@@ -3076,6 +3106,33 @@ export function mountGameplay({
       els.captainChainAction.dataset.chainStation = view.actionStation || view.station || '';
       els.captainChainAction.textContent = view.nextCommand ? t('captainChain.action.executeRecommendation') : t('captainChain.action.await');
       els.captainChainAction.disabled = !view.nextCommand || captainCommandMode === 'manual';
+    }
+    return view;
+  }
+
+
+  function updateCaptainCombatCycle(snapshot = engine.snapshot(), chainView = captainCommandChainCurrent) {
+    const view = buildCaptainCombatCycleView({ snapshot, execution: captainExecutionState, flow: captainCrewFlow, chain: chainView, commandMode: captainCommandMode });
+    captainCombatCycleCurrent = view;
+    if (els.combatCycle) els.combatCycle.dataset.tone = view.tone || 'calm';
+    if (els.combatCycleState) els.combatCycleState.textContent = t(view.stateKey || 'combatCycle.state.patrol');
+    if (els.combatCycleQuestion) els.combatCycleQuestion.textContent = t(view.questionKey || 'combatCycle.question.patrol');
+    if (els.combatCycleReadiness) els.combatCycleReadiness.textContent = Number(view.readiness || 0) > 0 ? `${Math.round(view.readiness)}%` : '--';
+    if (els.combatCycleRisk) els.combatCycleRisk.textContent = Number(view.risk || 0) > 0 ? `${Math.round(view.risk)}%` : '--';
+    if (els.combatCycleReason) els.combatCycleReason.textContent = t(view.reasonKey || 'combatCycle.reason.none');
+    if (els.combatCycleSteps) {
+      els.combatCycleSteps.innerHTML = (view.steps || []).map((step) => `
+        <span data-state="${step.state || 'waiting'}">
+          <b>${t(step.labelKey)}</b>
+          <em>${t(step.detailKey || 'combatCycle.detail.empty')}</em>
+        </span>
+      `).join('');
+    }
+    if (els.combatCycleAction) {
+      els.combatCycleAction.dataset.cycleAction = view.nextCommand || '';
+      els.combatCycleAction.dataset.cycleStation = view.nextStation || '';
+      els.combatCycleAction.textContent = view.nextCommand ? t(view.nextActionKey || 'combatCycle.action.execute') : t('combatCycle.action.await');
+      els.combatCycleAction.disabled = !view.nextCommand || captainCommandMode === 'manual';
     }
     return view;
   }
@@ -3358,7 +3415,8 @@ export function mountGameplay({
     updatePeriscope(snapshot);
     updateCaptainCrewFlow(snapshot);
     updateCaptainExecutionBoard(snapshot);
-    updateCaptainCommandChain(snapshot);
+    const chain = updateCaptainCommandChain(snapshot);
+    updateCaptainCombatCycle(snapshot, chain);
     updateSubOfficer(snapshot);
   }
 
@@ -3491,6 +3549,11 @@ export function mountGameplay({
     const station = els.captainChainAction?.dataset.chainStation || captainCommandChainCurrent?.actionStation || '';
     if (command) runSubOfficerAction(command, station);
   });
+  bind(els.combatCycleAction, 'click', () => {
+    const command = els.combatCycleAction?.dataset.cycleAction || captainCombatCycleCurrent?.nextCommand || '';
+    const station = els.combatCycleAction?.dataset.cycleStation || captainCombatCycleCurrent?.nextStation || '';
+    if (command) runSubOfficerAction(command, station);
+  });
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);
@@ -3504,6 +3567,7 @@ export function mountGameplay({
   updateTraining(engine.snapshot());
   updateCaptainExecutionBoard(engine.snapshot());
   updateCaptainCommandChain(engine.snapshot());
+  updateCaptainCombatCycle(engine.snapshot());
   app.querySelectorAll('.speed-chip').forEach((button) => bind(button, 'click', () => engine.setSpeed(button.dataset.speed)));
   bind(app.querySelector('#depth-up'), 'click', () => engine.adjustDepth(-15));
   bind(app.querySelector('#depth-down'), 'click', () => engine.adjustDepth(15));

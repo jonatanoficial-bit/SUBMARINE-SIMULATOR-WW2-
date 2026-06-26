@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 21 metadata identifies command advancement build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.64');
-  assert.equal(BUILD_INFO.phase, '49');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.65');
+  assert.equal(BUILD_INFO.phase, '50');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.match(BUILD_INFO.buildId, /F49-CAPTAIN-COMMAND-CHAIN/);
+  assert.match(BUILD_INFO.buildId, /F50-CAPTAIN-COMBAT-CYCLE/);
 });
 
 test('command advancement decks cover every nation and use valid dependencies', () => {

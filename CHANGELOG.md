@@ -1,3 +1,12 @@
+# v2.0.0-alpha.65 — Fase 50 — Ciclo Realista de Combate do Capitão
+
+- Adicionado painel de ciclo completo: contato, classificação, solução de tiro, ordem do capitão, execução e consequência.
+- O suboficial agora transforma a situação em uma pergunta clara ao capitão, sem tirar o controle do jogador.
+- O ciclo prioriza sobrevivência: avaria crítica, contato aéreo, escolta fechando solução e pós-disparo podem mudar a recomendação.
+- Ataque realista preservado: preparar ataque, profundidade de periscópio, confirmação visual e autorização final de disparo.
+- Modo manual permanece separado para quem quer pilotar/operar tudo sozinho.
+- Save schema mantido em 40.
+
 # v2.0.0-alpha.64 — Fase 49 — Cadeia Reativa de Comando do Capitão
 
 - Adicionado painel de cadeia de comando: suboficial, mecânico e estações respondem à ordem do capitão com recomendação objetiva.

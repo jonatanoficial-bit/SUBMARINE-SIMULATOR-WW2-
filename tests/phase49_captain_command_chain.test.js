@@ -39,12 +39,12 @@ function snapshot(overrides = {}) {
 test('phase 49 metadata keeps saves stable and updates build wiring', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.64');
-  assert.equal(BUILD_INFO.phase, '49');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.65');
+  assert.equal(BUILD_INFO.phase, '50');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.64');
-  assert.equal(manifest.version, '2.0.0-alpha.64');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase49_captain_command_chain.py');
+  assert.equal(pkg.version, '2.0.0-alpha.65');
+  assert.equal(manifest.version, '2.0.0-alpha.65');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase50_captain_combat_cycle.py');
   assert.equal(PHASE49_CAPTAIN_COMMAND_CHAIN.system, 'reactive-captain-command-chain');
 });
 
