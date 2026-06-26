@@ -30,8 +30,8 @@ function commander(nationId = 'de') {
 test.beforeEach(() => localStorage.clear());
 
 test('phase 12 career/logistics systems remain active in current build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.61');
-  assert.equal(build.phase, '46');
+  assert.equal(build.semver, '2.0.0-alpha.62');
+  assert.equal(build.phase, '47');
   assert.equal(build.saveSchemaVersion, 40);
 });
 

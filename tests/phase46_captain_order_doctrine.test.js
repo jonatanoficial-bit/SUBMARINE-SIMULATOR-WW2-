@@ -13,12 +13,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 46 captain order metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
-  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.62');
+  assert.equal(BUILD_INFO.phase, '47');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.61');
-  assert.equal(manifest.version, '2.0.0-alpha.61');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase46_captain_order_doctrine.py');
+  assert.equal(pkg.version, '2.0.0-alpha.62');
+  assert.equal(manifest.version, '2.0.0-alpha.62');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase47_captain_crew_realism.py');
   assert.equal(PHASE46_CAPTAIN_ORDER_DOCTRINE.system, 'captain-order-doctrine');
 });
 
@@ -71,6 +71,7 @@ test('phase 46 assets are wired into app, cache and translations', () => {
   assert.match(index, /phase46-captain-order-doctrine\.css/);
   assert.match(sw, /captainOrderDoctrine\.js/);
   assert.match(smoke, /captainOrderDoctrine\.js/);
+  assert.match(smoke, /captainCrewRealism\.js/);
   for (const language of ['pt-BR', 'en', 'es']) {
     const dictionary = readJson(`data/translations/${language}.json`);
     for (const key of ['captainOrder.question.attackReady', 'captainOrder.action.prepareAttack', 'captainOrder.mode.manual']) {

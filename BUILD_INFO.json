@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.61",
-  "semver": "2.0.0-alpha.61",
-  "buildId": "SCWW2-20260626-1625-BRT-F46-CAPTAIN-ORDER-DOCTRINE",
+  "version": "v2.0.0-alpha.62",
+  "semver": "2.0.0-alpha.62",
+  "buildId": "SCWW2-20260626-1705-BRT-F47-CAPTAIN-CREW-REALISM",
   "date": "2026-06-26",
-  "time": "16:25",
+  "time": "17:05",
   "timezone": "America/Sao_Paulo",
-  "phase": "46",
-  "phaseName": "Silent Depth Captain Order Doctrine",
+  "phase": "47",
+  "phaseName": "Silent Depth Captain Crew Realism",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 46 improves gameplay realism by making the captain receive situations and issue orders while the crew operates systems, with manual-control override preserved, decision-based subofficer options, attack preparation flow, evasion orders, repair authorization and captain/manual command mode."
+  "notes": "Phase 47 upgrades gameplay into a realistic captain/crew chain: the subofficer reports situations, the captain chooses orders, crew executes navigation/evasion/repair/attack, attack requires torpedo preparation then periscope confirmation before firing, while full manual control remains available."
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.61",
-  "short_name": "SCWW2 2.0.0-alpha.61",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.62",
+  "short_name": "SCWW2 2.0.0-alpha.62",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 46 Doutrina de Ordens do Capitão, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 47 Realismo Capitão/Tripulação, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.61",
+  "version": "2.0.0-alpha.62",
   "id": "./"
 }

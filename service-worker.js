@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.61';
+const CACHE_VERSION = '2.0.0-alpha.62';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -73,6 +73,7 @@ const APP_SHELL = [
   './css/phase43-sandbox-patrol.css',
   './css/phase44-story-campaign.css',
   './css/phase46-captain-order-doctrine.css',
+  './css/phase47-captain-crew-realism.css',
   './js/app.js',
   './js/build.js',
   './js/state.js',
@@ -152,6 +153,7 @@ const APP_SHELL = [
   './js/systems/sandboxPatrolPlanner.js',
   './js/systems/storyCampaignDirector.js',
   './js/systems/captainOrderDoctrine.js',
+  './js/systems/captainCrewRealism.js',
   './data/nations.json',
   './data/submarines.json',
   './data/crew.json',
@@ -178,6 +180,9 @@ const APP_SHELL = [
   './assets/logos/submarine_commander_logo.png',
   './assets/avatars/subofficer_ww2.svg',
   './assets/avatars/de/officer_01.png',
+  './assets/avatars/de/sonar_01.png',
+  './assets/avatars/uk/sailor_01.png',
+  './assets/avatars/us/sailor_01.png',
   './assets/meta/icons/icon-192.png',
   './assets/meta/icons/icon-512.png',
   './assets/backgrounds/naval_base_lobby.png',

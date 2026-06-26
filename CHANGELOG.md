@@ -1,5 +1,14 @@
 # v2.0.0-alpha.61 — Fase 46 — Doutrina de Ordens do Capitão
 
+## v2.0.0-alpha.62 — Fase 47: Realismo Capitão/Tripulação
+
+- Adicionado fluxo realista de comando: capitão decide, tripulação executa.
+- Ataque agora exige preparar torpedo/TDC, periscópio e confirmação de disparo.
+- Suboficial consolida ameaças, falhas e avarias com ações claras.
+- Modo Manual preservado.
+- Save schema mantido em 40.
+
+
 - Gameplay reorganizada para capitão receber situação e dar ordens.
 - Suboficial agora oferece decisões com efeitos: preparar ataque, evadir, silêncio, reparar, traçar patrulha ou assumir manual.
 - Ordem de ataque prepara torpedo/TDC/periscópio sem disparo automático.

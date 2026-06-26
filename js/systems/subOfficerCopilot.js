@@ -1,4 +1,5 @@
 import { buildCaptainOrderDoctrineView } from './captainOrderDoctrine.js';
+import { buildCaptainCrewFlowDialogue } from './captainCrewRealism.js';
 const phase26Clamp = (value, min, max) => Math.max(min, Math.min(max, Number(value) || 0));
 
 export const PHASE26_SUBOFFICER = Object.freeze({
@@ -62,6 +63,8 @@ export function classifySubOfficerSituation({ snapshot = {}, station = 'command'
 
   if (snapshot.missionFailed || hull <= 0) return { id: 'mission-lost', tone: 'critical', priority: 10, titleKey: 'subofficer.title.damage', textKey: 'subofficer.msg.missionLost', stationHint: 'damage', actions: stationActions('damage', [action('go-command', 'subofficer.action.command', 'command')]) };
   if (aircraft.state === 'attack' || aircraft.state === 'attack-run') return { id: 'aircraft-attack-run', tone: 'critical', priority: 10, titleKey: 'subofficer.title.air', textKey: 'captainOrder.question.airAttack', stationHint: 'command', actions: [action('evade-now', 'captainOrder.action.evadeNow', 'command', 'evade-now'), action('silent-running', 'subofficer.action.silent', 'command', 'silent-running'), action('manual-control', 'captainOrder.action.manual', 'command', 'manual-control')] };
+  const captainCrewFlowDialogue = buildCaptainCrewFlowDialogue({ snapshot, flow: snapshot.captainCrewFlow });
+  if (captainCrewFlowDialogue) return captainCrewFlowDialogue;
   if (aircraft.active || aircraft.state === 'tracking') return { id: 'aircraft-inbound', tone: 'critical', priority: 9, titleKey: 'subofficer.title.air', textKey: 'captainOrder.question.airWarning', stationHint: 'command', actions: [action('emergency-dive', 'subofficer.action.dive', 'command', 'emergency-dive'), action('prepare-silent-approach', 'captainOrder.action.silentApproach', 'sensors', 'prepare-silent-approach'), action('manual-control', 'captainOrder.action.manual', 'command', 'manual-control')] };
   if (snapshot.damageFlashTicks > 0 || hull < 45 || damageCritical > 0) return { id: 'damage-critical', tone: 'critical', priority: 8, titleKey: 'subofficer.title.damage', textKey: 'captainOrder.question.damage', stationHint: 'damage', actions: [action('authorize-repair', 'captainOrder.action.authorizeRepair', 'damage', 'authorize-repair'), action('stop-boat', 'captainOrder.action.stopBoat', 'command', 'stop-boat'), action('manual-control', 'captainOrder.action.manual', 'command', 'manual-control')] };
   if (snapshot.depth > 220 || pressure > 86 || physics.depthZone === 'collapse' || physics.depthZone === 'overdepth') return { id: 'deep-pressure', tone: 'critical', priority: 8, titleKey: 'subofficer.title.depth', textKey: 'captainOrder.question.pressure', stationHint: 'instruments', actions: [action('level-trim', 'subofficer.action.trim', 'instruments', 'level-trim'), action('shallow-up', 'captainOrder.action.shallowUp', 'instruments', 'shallow-up'), action('manual-control', 'captainOrder.action.manual', 'command', 'manual-control')] };

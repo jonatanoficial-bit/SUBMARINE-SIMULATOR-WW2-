@@ -19,8 +19,8 @@ function commander(nationId='de'){ return { name:`Strategy ${nationId}`, nationI
 test.beforeEach(() => localStorage.clear());
 
 test('phase 13 metadata and schema are active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.61');
-  assert.equal(build.phase, '46');
+  assert.equal(build.semver, '2.0.0-alpha.62');
+  assert.equal(build.phase, '47');
   assert.equal(build.saveSchemaVersion, 40);
 });
 

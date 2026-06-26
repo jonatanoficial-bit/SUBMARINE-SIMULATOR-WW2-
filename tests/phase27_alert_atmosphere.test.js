@@ -11,12 +11,12 @@ const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relati
 test('phase 27 alert metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.61');
-  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.62');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.62');
+  assert.equal(BUILD_INFO.phase, '47');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.61');
-  assert.equal(manifest.version, '2.0.0-alpha.61');
+  assert.equal(pkg.version, '2.0.0-alpha.62');
+  assert.equal(manifest.version, '2.0.0-alpha.62');
   assert.equal(PHASE27_ALERT_ATMOSPHERE.system, 'alert-atmosphere');
   assert.deepEqual(PHASE27_ALERT_ATMOSPHERE.levels, ['calm', 'suspicion', 'combat', 'evasion', 'emergency']);
 });

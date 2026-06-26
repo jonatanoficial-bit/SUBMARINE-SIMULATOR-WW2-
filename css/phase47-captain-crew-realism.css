@@ -1,0 +1,90 @@
+.phase47-captain-crew-ready .phase47-captain-flow-panel {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(158, 215, 183, .24);
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(5, 13, 17, .88), rgba(13, 29, 31, .78)),
+    radial-gradient(circle at 90% 0%, rgba(158, 215, 183, .14), transparent 34%);
+  box-shadow: inset 0 0 22px rgba(0,0,0,.32), 0 10px 24px rgba(0,0,0,.18);
+}
+.phase47-captain-flow-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.phase47-captain-flow-panel header span {
+  color: rgba(232,236,218,.64);
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+.phase47-captain-flow-panel header strong {
+  color: #9ed7b7;
+  font-size: .9rem;
+  text-align: right;
+}
+.phase47-captain-flow-panel p {
+  margin: 0;
+  color: rgba(255,255,255,.8);
+  font-size: .84rem;
+  line-height: 1.4;
+}
+.phase47-flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.phase47-flow-steps span {
+  min-height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.045);
+  color: rgba(255,255,255,.68);
+  font-size: .68rem;
+  text-align: center;
+  line-height: 1.15;
+}
+.phase47-flow-steps span[data-state="done"] {
+  color: #071014;
+  background: linear-gradient(135deg, #9ed7b7, #e6c16b);
+  border-color: transparent;
+}
+.phase47-flow-steps span[data-state="active"] {
+  color: #f4d98a;
+  border-color: rgba(244,217,138,.42);
+  background: rgba(244,217,138,.12);
+  box-shadow: 0 0 16px rgba(244,217,138,.12);
+}
+.phase47-captain-flow-panel[data-state="awaitingFireOrder"],
+.phase47-captain-flow-panel[data-state="attackNeedPeriscope"],
+.phase47-captain-flow-panel[data-state="attackTooDeep"] {
+  border-color: rgba(244, 217, 138, .5);
+}
+.phase47-captain-flow-panel[data-state="awaitingFireOrder"] header strong {
+  color: #f4d98a;
+}
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="fire-confirm"] {
+  border-color: rgba(244, 103, 82, .72);
+  background: linear-gradient(135deg, rgba(244, 103, 82, .28), rgba(244, 217, 138, .17));
+  box-shadow: 0 0 18px rgba(244, 103, 82, .18);
+}
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="cancel-attack"] {
+  border-color: rgba(158, 215, 183, .36);
+}
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="order-periscope-depth"] {
+  border-color: rgba(95, 178, 230, .46);
+  background: linear-gradient(135deg, rgba(95,178,230,.16), rgba(31,62,61,.62));
+}
+@media (max-width: 760px) {
+  .phase47-flow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .phase47-captain-flow-panel { padding: 10px; border-radius: 14px; }
+  .phase47-flow-steps span { font-size: .64rem; }
+}
