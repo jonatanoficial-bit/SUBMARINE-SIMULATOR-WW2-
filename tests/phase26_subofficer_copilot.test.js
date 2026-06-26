@@ -11,12 +11,12 @@ const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relati
 test('phase 26 subofficer metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.phase, '44');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
-  assert.equal(pkg.version, '2.0.0-alpha.59');
-  assert.equal(manifest.version, '2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.phase, '45');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
+  assert.equal(pkg.version, '2.0.0-alpha.60');
+  assert.equal(manifest.version, '2.0.0-alpha.60');
   assert.equal(PHASE26_SUBOFFICER.role, 'subofficer-copilot');
   assert.equal(PHASE26_SUBOFFICER.typewriter, true);
 });
@@ -40,7 +40,7 @@ test('dialogue interrupts emergencies and respects acknowledgements', () => {
   const danger = buildSubOfficerDialogue({ snapshot: { escortState: 'hunt', physics: { depth: 20 }, worldTime: 10 } });
   assert.equal(calm.shouldAutoOpen, true);
   assert.equal(danger.mustInterrupt, true);
-  assert.equal(shouldSubOfficerInterrupt({ next: danger, acknowledged: [danger.key, danger.id] }), true);
+  assert.equal(shouldSubOfficerInterrupt({ next: danger, acknowledged: [danger.key, danger.id] }), false);
   assert.equal(shouldSubOfficerInterrupt({ next: calm, acknowledged: [calm.key] }), false);
 });
 
@@ -51,7 +51,7 @@ test('typewriter line renderer keeps dialogue compact', () => {
 });
 
 test('phase 26 files, cache, gameplay hooks and translations are present', () => {
-  for (const relative of ['js/systems/subOfficerCopilot.js', 'css/phase26-subofficer-copilot.css', 'assets/avatars/subofficer_ww2.svg', 'tests/phase26_subofficer_copilot.test.js']) {
+  for (const relative of ['js/systems/subOfficerCopilot.js', 'css/phase26-subofficer-copilot.css', 'assets/avatars/de/officer_01.png', 'tests/phase26_subofficer_copilot.test.js']) {
     assert.ok(fs.existsSync(path.join(ROOT, relative)), `${relative} missing`);
   }
   const index = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -63,7 +63,7 @@ test('phase 26 files, cache, gameplay hooks and translations are present', () =>
   assert.match(gameplay, /typeSubOfficerLine/);
   assert.match(gameplay, /OK \/ RECEBIDO|subofficer\.ack/);
   assert.match(sw, /subOfficerCopilot\.js/);
-  assert.match(sw, /subofficer_ww2\.svg/);
+  assert.match(sw, /officer_01\.png/);
   assert.match(smoke, /subOfficerCopilot\.js/);
   for (const lang of ['pt-BR','en','es']) {
     const dictionary = readJson(`data/translations/${lang}.json`);

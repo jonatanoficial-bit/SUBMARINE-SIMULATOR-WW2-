@@ -169,3 +169,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+
+/* F45 hotfix: suboficial como auxiliar de ação, não modal persistente */
+.phase26-subofficer-avatar { object-fit: cover; border-radius: 14px; background: rgba(0,0,0,.35); }
+.phase26-subofficer-ack { min-width: 148px; }
+.phase41-subofficer-toggle img { object-fit: cover; border-radius: 50%; }
+.phase41-flow-hub .action-card[data-nav="bridge"] { display: none !important; }
+@media (max-width: 760px) {
+  .phase26-subofficer-panel { max-height: 42vh; overflow: auto; }
+  .phase26-subofficer-line { max-height: 5.5em; overflow: hidden; }
+  .phase26-subofficer-actions { gap: 8px; }
+  .phase26-subofficer-ack { width: 100%; }
+}

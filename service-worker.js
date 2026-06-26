@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'submarine-commander-';
-const CACHE_VERSION = '2.0.0-alpha.59';
+const CACHE_VERSION = '2.0.0-alpha.60';
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
 const APP_SHELL = [
   './',
@@ -175,6 +175,7 @@ const APP_SHELL = [
   './data/translations/es.json',
   './assets/logos/submarine_commander_logo.png',
   './assets/avatars/subofficer_ww2.svg',
+  './assets/avatars/de/officer_01.png',
   './assets/meta/icons/icon-192.png',
   './assets/meta/icons/icon-512.png',
   './assets/backgrounds/naval_base_lobby.png',

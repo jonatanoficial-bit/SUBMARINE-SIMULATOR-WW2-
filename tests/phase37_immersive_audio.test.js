@@ -12,12 +12,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 37 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.phase, '44');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
-  assert.equal(pkg.version, '2.0.0-alpha.59');
-  assert.equal(manifest.version, '2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.phase, '45');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
+  assert.equal(pkg.version, '2.0.0-alpha.60');
+  assert.equal(manifest.version, '2.0.0-alpha.60');
   assert.equal(PHASE37_IMMERSIVE_AUDIO.system, 'immersive-audio-director');
   assert.ok(PHASE37_IMMERSIVE_AUDIO.layers.includes('crew-callouts'));
 });

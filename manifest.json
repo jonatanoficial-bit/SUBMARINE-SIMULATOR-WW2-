@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.59",
-  "short_name": "SCWW2 2.0.0-alpha.59",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.60",
+  "short_name": "SCWW2 2.0.0-alpha.60",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 44 Campanha com História Clara e Progressão Guiada, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 45 Hotfix de fluxo, suboficial e menu principal.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.59",
+  "version": "2.0.0-alpha.60",
   "id": "./"
 }

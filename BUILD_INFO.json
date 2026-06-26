@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.59",
-  "semver": "2.0.0-alpha.59",
-  "buildId": "SCWW2-20260626-1245-BRT-F44-STORY-CAMPAIGN",
+  "version": "v2.0.0-alpha.60",
+  "semver": "2.0.0-alpha.60",
+  "buildId": "SCWW2-20260626-1515-BRT-F45-FLOW-SUBOFFICER-HOTFIX",
   "date": "2026-06-26",
-  "time": "12:45",
+  "time": "15:15",
   "timezone": "America/Sao_Paulo",
-  "phase": "44",
-  "phaseName": "Silent Depth Story Campaign",
+  "phase": "45",
+  "phaseName": "Silent Depth Flow and Subofficer Hotfix",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 38,
-  "notes": "Phase 44 clarifies campaign structure with story acts, mission rail, next operation guidance, subofficer campaign guidance and a stronger link between campaign, briefing, base and patrol launch while preserving sandbox, audio, subofficer and all existing technical systems."
+  "saveSchemaVersion": 39,
+  "notes": "Phase 45 hotfix removes the disconnected bridge button from the main flow, makes the subofficer action-first instead of OK-only, stops repeated blocking popups during persistent threats and switches the assistant avatar to the existing sailor/officer avatar while preserving audio and all simulator systems."
 }

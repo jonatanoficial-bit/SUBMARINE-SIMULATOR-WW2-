@@ -4,10 +4,10 @@ export const PHASE26_SUBOFFICER = Object.freeze({
   phase: 26,
   operation: 'Silent Depth',
   role: 'subofficer-copilot',
-  avatar: 'assets/avatars/subofficer_ww2.svg',
+  avatar: 'assets/avatars/de/officer_01.png',
   typewriter: true,
   mobileFirst: true,
-  confirmButton: 'OK / RECEBIDO'
+  confirmButton: 'AÇÃO RECOMENDADA'
 });
 
 function action(id, labelKey, station = 'command', command = null) {
@@ -60,8 +60,8 @@ export function classifySubOfficerSituation({ snapshot = {}, station = 'command'
   const missionJustStarted = hasRuntimeClock && hasNavigationPlan && elapsedMs < 12000 && !snapshot.torpedoActive && !snapshot.targetDestroyed && !snapshot.playerDetected;
 
   if (snapshot.missionFailed || hull <= 0) return { id: 'mission-lost', tone: 'critical', priority: 10, titleKey: 'subofficer.title.damage', textKey: 'subofficer.msg.missionLost', stationHint: 'damage', actions: stationActions('damage', [action('go-command', 'subofficer.action.command', 'command')]) };
-  if (aircraft.state === 'attack' || aircraft.state === 'attack-run') return { id: 'aircraft-attack-run', tone: 'critical', priority: 10, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraftAttack', stationHint: 'command', actions: stationActions('command', [action('emergency-dive', 'subofficer.action.dive', 'command', 'emergency-dive'), action('silent-running', 'subofficer.action.silent', 'command', 'silent-running')]) };
-  if (aircraft.active || aircraft.state === 'tracking') return { id: 'aircraft-inbound', tone: 'critical', priority: 9, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraft', stationHint: 'command', actions: stationActions('command', [action('emergency-dive', 'subofficer.action.dive', 'command', 'emergency-dive'), action('silent-running', 'subofficer.action.silent', 'command', 'silent-running')]) };
+  if (aircraft.state === 'attack' || aircraft.state === 'attack-run') return { id: 'aircraft-attack-run', tone: 'critical', priority: 10, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraftAttack', stationHint: 'command', actions: [action('emergency-dive', 'subofficer.action.dive', 'command', 'emergency-dive'), action('silent-running', 'subofficer.action.silent', 'command', 'silent-running'), action('go-command', 'subofficer.action.command', 'command')] };
+  if (aircraft.active || aircraft.state === 'tracking') return { id: 'aircraft-inbound', tone: 'critical', priority: 9, titleKey: 'subofficer.title.air', textKey: 'subofficer.msg.aircraft', stationHint: 'command', actions: [action('emergency-dive', 'subofficer.action.dive', 'command', 'emergency-dive'), action('silent-running', 'subofficer.action.silent', 'command', 'silent-running'), action('go-command', 'subofficer.action.command', 'command')] };
   if (snapshot.damageFlashTicks > 0 || hull < 45 || damageCritical > 0) return { id: 'damage-critical', tone: 'critical', priority: 8, titleKey: 'subofficer.title.damage', textKey: 'subofficer.msg.damage', stationHint: 'damage', actions: stationActions('damage', [action('slow-speed', 'subofficer.action.slow', 'command', 'slow-speed')]) };
   if (snapshot.depth > 220 || pressure > 86 || physics.depthZone === 'collapse' || physics.depthZone === 'overdepth') return { id: 'deep-pressure', tone: 'critical', priority: 8, titleKey: 'subofficer.title.depth', textKey: 'subofficer.msg.deepPressure', stationHint: 'instruments', actions: stationActions('instruments', [action('level-trim', 'subofficer.action.trim', 'instruments', 'level-trim')]) };
   if (escortThreat) return { id: 'enemy-hunt', tone: 'danger', priority: 7, titleKey: 'subofficer.title.contact', textKey: 'subofficer.msg.enemyDetected', stationHint: 'sensors', actions: stationActions('sensors', [action('silent-running', 'subofficer.action.silent', 'command', 'silent-running'), action('go-threat', 'subofficer.action.threat', 'ai')]) };
@@ -88,14 +88,15 @@ export function buildSubOfficerDialogue({ snapshot = {}, station = 'command', co
     shouldAutoOpen: situation.priority >= 5 || ['crew-ready-awaiting-orders', 'route-needed', 'standing-by', 'mission-success'].includes(situation.id),
     typewriterMs: situation.priority >= 7 ? 12 : situation.priority >= 5 ? 16 : 20,
     actions: Array.isArray(situation.actions) ? situation.actions : stationActions(situation.stationHint || 'command'),
-    ackLabelKey: situation.priority >= 7 ? 'subofficer.ackEmergency' : 'subofficer.ack'
+    ackLabelKey: situation.actions?.[0]?.labelKey || (situation.priority >= 7 ? 'subofficer.ackEmergency' : 'subofficer.ack')
   };
 }
 
 export function shouldSubOfficerInterrupt({ current = null, next = null, acknowledged = [] } = {}) {
   if (!next) return false;
+  const acknowledgedSet = new Set(acknowledged);
+  if (acknowledgedSet.has(next.id) || acknowledgedSet.has(next.key)) return false;
   if (next.mustInterrupt) return true;
-  if (acknowledged.includes(next.key) || acknowledged.includes(next.id)) return false;
   if (!current) return Boolean(next.shouldAutoOpen);
   if (next.id !== current.id && next.priority >= current.priority) return true;
   return false;

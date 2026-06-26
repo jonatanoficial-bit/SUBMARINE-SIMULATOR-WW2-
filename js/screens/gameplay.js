@@ -1063,7 +1063,7 @@ export function renderGameplay(t, mission, settings = {}) {
 
       <aside id="subofficer-copilot" class="phase26-subofficer-panel hidden" data-tone="calm" data-complete="true" aria-live="polite" aria-hidden="true">
         <div class="phase26-subofficer-avatar-wrap">
-          <img class="phase26-subofficer-avatar" src="assets/avatars/subofficer_ww2.svg" alt="${t('subofficer.avatarAlt')}">
+          <img class="phase26-subofficer-avatar" src="assets/avatars/de/officer_01.png" alt="${t('subofficer.avatarAlt')}">
           <i class="phase26-subofficer-lamp"></i>
         </div>
         <div class="phase26-subofficer-body">
@@ -1078,7 +1078,7 @@ export function renderGameplay(t, mission, settings = {}) {
         </div>
       </aside>
       <button id="subofficer-toggle" class="phase41-subofficer-toggle" type="button" aria-label="${t('subofficer.toggle')}">
-        <img src="assets/avatars/subofficer_ww2.svg" alt="">
+        <img src="assets/avatars/de/officer_01.png" alt="">
         <span>${t('subofficer.toggle')}</span>
         <b id="subofficer-next-action">${t('subofficer.nextAction.ready')}</b>
       </button>
@@ -2982,7 +2982,12 @@ export function mountGameplay({
     els.subOfficerPanel.setAttribute('aria-hidden', 'false');
     if (els.subOfficerTitle) els.subOfficerTitle.textContent = t(dialogue.titleKey);
     if (els.subOfficerStatus) els.subOfficerStatus.textContent = t(`subofficer.status.${dialogue.tone || 'calm'}`);
-    if (els.subOfficerAck) els.subOfficerAck.textContent = t(dialogue.ackLabelKey || 'subofficer.ack');
+    if (els.subOfficerAck) {
+      const primaryAction = Array.isArray(dialogue.actions) ? dialogue.actions[0] : null;
+      els.subOfficerAck.textContent = t(primaryAction?.labelKey || dialogue.ackLabelKey || 'subofficer.ack');
+      els.subOfficerAck.dataset.subofficerAction = primaryAction?.command || primaryAction?.id || '';
+      els.subOfficerAck.dataset.station = primaryAction?.station || '';
+    }
     if (els.subOfficerStation) els.subOfficerStation.textContent = t(`subofficer.station.${dialogue.stationHint || 'command'}`);
     if (els.subOfficerNextAction) els.subOfficerNextAction.textContent = t(dialogue.actions?.[0]?.labelKey || 'subofficer.nextAction.ready');
     renderSubOfficerActions(dialogue);
@@ -3184,7 +3189,12 @@ export function mountGameplay({
     playSfx('sonar');
   });
 
-  bind(els.subOfficerAck, 'click', closeSubOfficerDialogue);
+  bind(els.subOfficerAck, 'click', () => {
+    const command = els.subOfficerAck?.dataset.subofficerAction || '';
+    const station = els.subOfficerAck?.dataset.station || '';
+    if (command || station) runSubOfficerAction(command, station);
+    else closeSubOfficerDialogue();
+  });
   bind(els.subOfficerToggle, 'click', openSubOfficerFromToggle);
   bind(els.subOfficerQuickActions, 'click', (event) => {
     const button = event.target?.closest?.('[data-subofficer-action]');

@@ -102,7 +102,7 @@ export function renderStoryCampaignPanel(t, flow = {}) {
       </div>
       <div class="phase44-story-progress"><i style="width:${clamp(flow.completionPercent, 0, 100)}%"></i></div>
       <div class="phase44-story-subofficer">
-        <img src="assets/avatars/subofficer_ww2.svg" alt="" loading="lazy">
+        <img src="assets/avatars/de/officer_01.png" alt="" loading="lazy">
         <div>
           <span>${t('storyCampaign.subofficerLabel')}</span>
           <strong>${t(flow.subofficerKey || 'storyCampaign.subofficer.initial')}</strong>

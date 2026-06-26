@@ -23,12 +23,12 @@ const missions = Array.from({ length: 8 }, (_, index) => ({
 test('phase 44 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.59');
-  assert.equal(BUILD_INFO.phase, '44');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
-  assert.equal(pkg.version, '2.0.0-alpha.59');
-  assert.equal(manifest.version, '2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.phase, '45');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
+  assert.equal(pkg.version, '2.0.0-alpha.60');
+  assert.equal(manifest.version, '2.0.0-alpha.60');
   assert.equal(PHASE44_STORY_CAMPAIGN_DIRECTOR.system, 'story-campaign-director');
   assert.ok(PHASE44_STORY_CAMPAIGN_DIRECTOR.layers.includes('mission-rail'));
 });
@@ -49,7 +49,7 @@ test('story campaign panel renders subofficer guidance and selectable mission ra
   const flow = buildStoryCampaignFlow({ campaign: { id: 'campaign.de' }, missions, progress: { completed: 0, total: 8 }, selectedMission: missions[0] });
   const html = renderStoryCampaignPanel(fakeT, flow);
   assert.match(html, /phase44-story-campaign-panel/);
-  assert.match(html, /assets\/avatars\/subofficer_ww2\.svg/);
+  assert.match(html, /assets\/avatars\/de\/officer_01\.png/);
   assert.match(html, /data-action="select-mission"/);
   assert.match(html, /storyCampaign\.nextOperation/);
 });
