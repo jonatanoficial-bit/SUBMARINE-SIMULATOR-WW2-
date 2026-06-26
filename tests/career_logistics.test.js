@@ -30,9 +30,9 @@ function commander(nationId = 'de') {
 test.beforeEach(() => localStorage.clear());
 
 test('phase 12 career/logistics systems remain active in current build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.58');
-  assert.equal(build.phase, '43');
-  assert.equal(build.saveSchemaVersion, 37);
+  assert.equal(build.semver, '2.0.0-alpha.59');
+  assert.equal(build.phase, '44');
+  assert.equal(build.saveSchemaVersion, 38);
 });
 
 test('logistics data covers all independent campaign nations', () => {
@@ -43,7 +43,7 @@ test('logistics data covers all independent campaign nations', () => {
 
 test('new saves include career and logistics blocks without breaking profile slots', () => {
   const save = saveModule.createInitialSave({ commander: commander('uk'), starterSubmarineId: 't_class', credits: 5000 });
-  assert.equal(save.meta.schemaVersion, 37);
+  assert.equal(save.meta.schemaVersion, 38);
   assert.equal(save.career.rankIndex, 0);
   assert.equal(save.career.patrols, 0);
   assert.ok(save.logistics.fuel > 0);
@@ -64,7 +64,7 @@ test('legacy phase 11 save migrates with career/logistics into current schema', 
     meta: { schemaVersion: 3, revision: 0 }
   };
   const migrated = saveModule.migrateSave(legacy);
-  assert.equal(migrated.meta.schemaVersion, 37);
+  assert.equal(migrated.meta.schemaVersion, 38);
   assert.equal(migrated.career.reputation, 0);
   assert.ok(migrated.logistics.spareParts > 0);
 });

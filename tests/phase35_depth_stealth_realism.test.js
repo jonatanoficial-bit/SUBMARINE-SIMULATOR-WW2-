@@ -34,12 +34,12 @@ function snapshot(overrides = {}) {
 test('phase 35 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.58');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.58');
-  assert.equal(BUILD_INFO.phase, '43');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 37);
-  assert.equal(pkg.version, '2.0.0-alpha.58');
-  assert.equal(manifest.version, '2.0.0-alpha.58');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.phase, '44');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
+  assert.equal(pkg.version, '2.0.0-alpha.59');
+  assert.equal(manifest.version, '2.0.0-alpha.59');
   assert.equal(PHASE35_DEPTH_STEALTH.system, 'depth-stealth-realism');
   assert.ok(PHASE35_DEPTH_STEALTH.layers.includes('thermal-layer'));
 });

@@ -10,11 +10,11 @@ const translations = ['pt-BR', 'en', 'es'].map((lang) => JSON.parse(fs.readFileS
 const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 test('phase 23 build metadata is synchronized', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.58');
-  assert.equal(BUILD_INFO.phase, '43');
-  assert.match(BUILD_INFO.buildId, /F43-SANDBOX-PATROL/);
-  assert.equal(BUILD_INFO.saveSchemaVersion, 37);
-  assert.equal(pkg.version, '2.0.0-alpha.58');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.phase, '44');
+  assert.match(BUILD_INFO.buildId, /F44-STORY-CAMPAIGN/);
+  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
+  assert.equal(pkg.version, '2.0.0-alpha.59');
 });
 
 test('crew drill decks cover all playable nations', () => {

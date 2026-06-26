@@ -1,3 +1,10 @@
+# v2.0.0-alpha.59 — Fase 44 — Campanha com História Clara e Progressão Guiada
+
+- Adicionada linha narrativa por atos na tela de campanha.
+- Adicionado trilho de missões com orientação do suboficial.
+- Melhorada ligação entre campanha, briefing, base e próxima patrulha.
+- Sandbox, áudio, suboficial inteligente e sistemas técnicos preservados.
+
 # v2.0.0-alpha.58 — Fase 43 — Sandbox / Patrulha Livre Completa
 
 - Adicionada entrada de Patrulha Livre dentro de Missão.

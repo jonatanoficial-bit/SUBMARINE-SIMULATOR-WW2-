@@ -11,12 +11,12 @@ const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relati
 test('phase 28 air attack metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.58');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.58');
-  assert.equal(BUILD_INFO.phase, '43');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 37);
-  assert.equal(pkg.version, '2.0.0-alpha.58');
-  assert.equal(manifest.version, '2.0.0-alpha.58');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.59');
+  assert.equal(BUILD_INFO.phase, '44');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 38);
+  assert.equal(pkg.version, '2.0.0-alpha.59');
+  assert.equal(manifest.version, '2.0.0-alpha.59');
   assert.equal(PHASE28_AIR_ATTACK_EVASION.system, 'air-attack-evasion');
   assert.deepEqual(PHASE28_AIR_ATTACK_EVASION.decisions, ['dive', 'silent', 'hold']);
 });

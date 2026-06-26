@@ -12,10 +12,10 @@ const translations = ['pt-BR', 'en', 'es'].map((lang) => JSON.parse(fs.readFileS
 const { assessCrewReadiness, createCrewStationCoverage, CREW_STATIONS } = await import('../js/systems/crewReadiness.js');
 
 test('phase 23 metadata identifies living crew readiness build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.58');
-  assert.equal(build.phase, '43');
-  assert.equal(pkg.version, '2.0.0-alpha.58');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase43_sandbox_patrol.py');
+  assert.equal(build.semver, '2.0.0-alpha.59');
+  assert.equal(build.phase, '44');
+  assert.equal(pkg.version, '2.0.0-alpha.59');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase44_story_campaign.py');
 });
 
 test('crew readiness detects coverage, morale, fatigue and station readiness', () => {

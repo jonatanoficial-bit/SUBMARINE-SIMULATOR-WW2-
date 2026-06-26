@@ -1,6 +1,7 @@
 import { renderBottomNav } from '../components/ui.js';
 import { buildLivingCampaignFront } from '../systems/livingCampaignFront.js';
 import { renderSandboxPatrolPanel } from '../systems/sandboxPatrolPlanner.js';
+import { buildStoryCampaignFlow, renderStoryCampaignPanel } from '../systems/storyCampaignDirector.js';
 
 function missionStatusLabel(t, mission) {
   if (mission.status === 'available') return t('campaign.status.available');
@@ -534,6 +535,7 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
   const commandAdvancement = options.commandAdvancement || null;
   const veteranOfficers = options.veteranOfficers || null;
   const livingCampaignFront = buildLivingCampaignFront({ campaign, missions, progress, nation, consequenceDeck: campaignConsequences, eventDeck: campaignEvents, specialOperations, operationChains, operationOutcomes, operationalHonors, commandAdvancement, veteranOfficers });
+  const storyCampaignFlow = buildStoryCampaignFlow({ campaign, missions, progress, completedMissions: options.completedMissions || [], selectedMission, livingFront: livingCampaignFront });
   const launchAllowed = selectedMission?.status === 'available' && isCurrentNation;
 
   return `
@@ -548,6 +550,10 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
       ${renderCampaignSelector(t, options.allNations || [], options.allCampaigns || [], options.progressByNation || {}, currentNationId, viewNationId)}
 
       ${renderSandboxPatrolPanel(t, { isCurrentNation })}
+
+      <div class="phase44-story-shell">
+        ${renderStoryCampaignPanel(t, storyCampaignFlow)}
+      </div>
 
       <div class="campaign-command-grid">
         <div class="panel campaign-overview phase11-campaign-overview">

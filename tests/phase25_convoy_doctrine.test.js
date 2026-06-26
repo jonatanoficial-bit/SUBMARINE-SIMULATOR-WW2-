@@ -11,9 +11,9 @@ const build = readJson('BUILD_INFO.json');
 const pkg = readJson('package.json');
 
 test('phase 25 metadata identifies convoy doctrine build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.58');
-  assert.equal(build.phase, '43');
-  assert.equal(pkg.version, '2.0.0-alpha.58');
+  assert.equal(build.semver, '2.0.0-alpha.59');
+  assert.equal(build.phase, '44');
+  assert.equal(pkg.version, '2.0.0-alpha.59');
 });
 
 test('convoy doctrine analysis is bounded and deterministic', () => {

@@ -19,9 +19,9 @@ function commander(nationId='de'){ return { name:`Strategy ${nationId}`, nationI
 test.beforeEach(() => localStorage.clear());
 
 test('phase 13 metadata and schema are active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.58');
-  assert.equal(build.phase, '43');
-  assert.equal(build.saveSchemaVersion, 37);
+  assert.equal(build.semver, '2.0.0-alpha.59');
+  assert.equal(build.phase, '44');
+  assert.equal(build.saveSchemaVersion, 38);
 });
 
 test('strategy data covers each campaign nation', () => {
@@ -37,7 +37,7 @@ test('strategy data covers each campaign nation', () => {
 
 test('new saves include strategy block without breaking career and logistics', () => {
   const save = saveModule.createInitialSave({ commander: commander('us'), starterSubmarineId: 'gato_class', credits: 7000 });
-  assert.equal(save.meta.schemaVersion, 37);
+  assert.equal(save.meta.schemaVersion, 38);
   assert.equal(save.commander.nationId, 'us');
   assert.ok(save.logistics.fuel > 0);
   assert.equal(save.career.patrols, 0);
@@ -56,7 +56,7 @@ test('legacy phase 12 save migrates to current schema 10', () => {
     career: { patrols: 1, reputation: 30 }, logistics: { fuel: 6000, torpedoes: 12 },
     meta: { schemaVersion: 4, revision: 0 }
   });
-  assert.equal(migrated.meta.schemaVersion, 37);
+  assert.equal(migrated.meta.schemaVersion, 38);
   assert.equal(migrated.strategy.theaterId, 'uk_western_approaches');
   assert.equal(migrated.strategy.selectedLaneId, 'lane_bay_biscay');
 });
