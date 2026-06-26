@@ -12,12 +12,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 41 metadata and schema are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.phase, '45');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
-  assert.equal(pkg.version, '2.0.0-alpha.60');
-  assert.equal(manifest.version, '2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 40);
+  assert.equal(pkg.version, '2.0.0-alpha.61');
+  assert.equal(manifest.version, '2.0.0-alpha.61');
 });
 
 test('subofficer opens with captain-ready guidance and actionable buttons', () => {
@@ -35,7 +35,7 @@ test('subofficer opens with captain-ready guidance and actionable buttons', () =
     damage: {},
   }, station: 'command' });
   assert.equal(dialogue.id, 'crew-ready-awaiting-orders');
-  assert.equal(dialogue.textKey, 'subofficer.msg.crewReadyCaptain');
+  assert.equal(dialogue.textKey, 'captainOrder.question.crewReady');
   assert.equal(dialogue.shouldAutoOpen, true);
   assert.ok(dialogue.actions.some((item) => item.command === 'open-periscope'));
   assert.ok(dialogue.actions.some((item) => item.station === 'navigation'));
@@ -85,7 +85,7 @@ test('phase 41 simplified flow, subofficer popup and mobile periscope cleanup ar
 test('translations include phase 41 flow and subofficer action keys', () => {
   for (const language of ['pt-BR', 'en', 'es']) {
     const dictionary = readJson(`data/translations/${language}.json`);
-    for (const key of ['nav.mission', 'nav.submarine', 'nav.baseWorkshop', 'subofficer.msg.crewReadyCaptain', 'subofficer.action.map', 'subofficer.action.periscope']) {
+    for (const key of ['nav.mission', 'nav.submarine', 'nav.baseWorkshop', 'captainOrder.question.crewReady', 'subofficer.action.map', 'subofficer.action.periscope']) {
       assert.ok(key in dictionary, `${language} missing ${key}`);
     }
   }

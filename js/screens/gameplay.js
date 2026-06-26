@@ -13,6 +13,7 @@ import { buildTacticalNavalChartView } from '../systems/tacticalNavalChart.js';
 import { buildWaypointNavigationView } from '../systems/waypointNavigation.js';
 import { buildHorizonContactView } from '../systems/visualHorizonContacts.js';
 import { buildTorpedoAttackDirectorView } from '../systems/torpedoAttackDirector.js';
+import { buildCaptainOrderDoctrineView } from '../systems/captainOrderDoctrine.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -143,7 +144,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -699,6 +700,17 @@ export function renderGameplay(t, mission, settings = {}) {
         <div class="panel-body combat-station-layout">
           <div class="combat-controls stack">
             <button class="button block primary-command" id="open-periscope-secondary">${t('gameplay.openPeriscope')}</button>
+            <section class="phase46-command-mode-card" id="phase46-command-mode-card" data-mode="captain">
+              <div>
+                <span>${t('captainOrder.mode.kicker')}</span>
+                <strong id="captain-mode-label">${t('captainOrder.mode.captain')}</strong>
+                <small id="captain-order-summary">${t('captainOrder.decision.start')}</small>
+              </div>
+              <div class="phase46-mode-buttons">
+                <button class="chip active" id="captain-mode-captain" type="button">${t('captainOrder.mode.captain')}</button>
+                <button class="chip" id="captain-mode-manual" type="button">${t('captainOrder.mode.manual')}</button>
+              </div>
+            </section>
             <section class="encounter-console" aria-live="polite">
               <header>
                 <div><span>${t('encounter.station')}</span><strong id="encounter-phase">${t('encounter.phase.patrol')}</strong></div>
@@ -1526,6 +1538,11 @@ export function mountGameplay({
     subOfficerQuickActions: app.querySelector('#subofficer-quick-actions'),
     subOfficerToggle: app.querySelector('#subofficer-toggle'),
     subOfficerNextAction: app.querySelector('#subofficer-next-action'),
+    captainModeCard: app.querySelector('#phase46-command-mode-card'),
+    captainModeLabel: app.querySelector('#captain-mode-label'),
+    captainOrderSummary: app.querySelector('#captain-order-summary'),
+    captainModeCaptain: app.querySelector('#captain-mode-captain'),
+    captainModeManual: app.querySelector('#captain-mode-manual'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1549,6 +1566,7 @@ export function mountGameplay({
   let immersiveAudioCurrent = null;
   let crewRolesCurrent = null;
   const subOfficerAcknowledged = new Set();
+  let captainCommandMode = 'captain';
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -2929,6 +2947,16 @@ export function mountGameplay({
   }
 
   function runSubOfficerAction(command, station) {
+    if (command === 'manual-control') {
+      setCaptainCommandMode('manual');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'captain-command') {
+      setCaptainCommandMode('captain');
+      closeSubOfficerDialogue();
+      return;
+    }
     if (station) setStation(station);
     if (command === 'open-periscope') {
       const result = engine.openPeriscope();
@@ -2938,13 +2966,56 @@ export function mountGameplay({
       const result = engine.activateEmergencyDive();
       if (!result.ok) commandHint(result);
       else playSfx('alert');
+    } else if (command === 'evade-now') {
+      const dive = engine.activateEmergencyDive();
+      if (!dive.ok) commandHint(dive);
+      const silent = engine.activateSilentRunning();
+      if (!silent.ok && dive.ok) commandHint(silent);
+      playSfx('alert');
+      setStation('instruments');
     } else if (command === 'silent-running') {
       const result = engine.activateSilentRunning();
       if (!result.ok) commandHint(result);
       else playSfx('sonar');
+    } else if (command === 'prepare-silent-approach') {
+      engine.setSpeed('slow');
+      const result = engine.activateSilentRunning();
+      if (!result.ok) commandHint(result);
+      setStation('sensors');
+      playSfx('sonar');
+    } else if (command === 'prepare-attack') {
+      engine.setWeaponTarget('target');
+      const solution = engine.syncTdcSolution();
+      if (!solution.ok) commandHint(solution);
+      const scope = engine.openPeriscope();
+      if (!scope.ok && scope.reason !== 'tooDeep') commandHint(scope);
+      setStation('weapons');
+      playSfx('sonar');
+    } else if (command === 'hold-shadow') {
+      engine.setTacticalDoctrine?.('shadow');
+      engine.setSpeed('slow');
+      setStation('sensors');
+      playSfx('sonar');
+    } else if (command === 'authorize-repair') {
+      const result = engine.startEmergencyRepair();
+      if (!result.ok) commandHint(result);
+      setStation('damage');
+      playSfx('damage');
+    } else if (command === 'plan-patrol') {
+      const result = engine.planPatrolSectorRoute();
+      if (!result.ok) commandHint(result);
+      setStation('navigation');
+      playSfx('sonar');
+    } else if (command === 'stop-boat') {
+      engine.setSpeed('stop');
+      setStation('damage');
+      playSfx('sonar');
     } else if (command === 'slow-speed') {
       engine.setSpeed('slow');
       playSfx('sonar');
+    } else if (command === 'shallow-up') {
+      commandHint(engine.adjustDepth(-20));
+      setStation('instruments');
     } else if (command === 'level-trim') {
       commandHint(engine.levelTrim());
     }
@@ -2952,7 +3023,7 @@ export function mountGameplay({
   }
 
   function openSubOfficerFromToggle() {
-    const dialogue = subOfficerCurrent || buildSubOfficerDialogue({ snapshot: engine.snapshot(), station: activeStation, commanderName: mission?.commanderName || '' });
+    const dialogue = subOfficerCurrent || buildSubOfficerDialogue({ snapshot: engine.snapshot(), station: activeStation, commanderName: mission?.commanderName || '', commandMode: captainCommandMode });
     openSubOfficerDialogue(dialogue);
   }
 
@@ -3007,7 +3078,7 @@ export function mountGameplay({
   }
 
   function updateSubOfficer(snapshot) {
-    const dialogue = buildSubOfficerDialogue({ snapshot, station: activeStation, commanderName: mission?.commanderName || '' });
+    const dialogue = buildSubOfficerDialogue({ snapshot, station: activeStation, commanderName: mission?.commanderName || '', commandMode: captainCommandMode });
     if (!dialogue || !els.subOfficerPanel) return;
     if (!subOfficerCurrent || subOfficerCurrent.id !== dialogue.id || dialogue.priority >= (subOfficerCurrent?.priority || 0)) subOfficerCurrent = dialogue;
     if (els.subOfficerToggle) {
@@ -3015,13 +3086,16 @@ export function mountGameplay({
       els.subOfficerToggle.dataset.priority = String(dialogue.priority || 0);
     }
     if (els.subOfficerNextAction) els.subOfficerNextAction.textContent = t(dialogue.actions?.[0]?.labelKey || 'subofficer.nextAction.ready');
+    const captainView = buildCaptainOrderDoctrineView({ snapshot, station: activeStation, commandMode: captainCommandMode });
+    if (els.captainOrderSummary) els.captainOrderSummary.textContent = t(captainView.decisionKey || 'captainOrder.decision.patrol');
     const hidden = els.subOfficerPanel.classList.contains('hidden');
     const interrupt = shouldSubOfficerInterrupt({
       current: subOfficerCurrent,
       next: dialogue,
       acknowledged: Array.from(subOfficerAcknowledged),
     });
-    if ((hidden && interrupt) || (!hidden && subOfficerCurrent?.id !== dialogue.id && dialogue.priority >= (subOfficerCurrent?.priority || 0))) {
+    const captainAllowsPopup = captainCommandMode === 'captain' || dialogue.priority >= 8;
+    if ((hidden && interrupt && captainAllowsPopup) || (!hidden && subOfficerCurrent?.id !== dialogue.id && dialogue.priority >= (subOfficerCurrent?.priority || 0))) {
       openSubOfficerDialogue(dialogue);
     }
   }
@@ -3196,6 +3270,8 @@ export function mountGameplay({
     else closeSubOfficerDialogue();
   });
   bind(els.subOfficerToggle, 'click', openSubOfficerFromToggle);
+  bind(els.captainModeCaptain, 'click', () => setCaptainCommandMode('captain'));
+  bind(els.captainModeManual, 'click', () => setCaptainCommandMode('manual'));
   bind(els.subOfficerQuickActions, 'click', (event) => {
     const button = event.target?.closest?.('[data-subofficer-action]');
     if (!button) return;
@@ -3365,6 +3441,7 @@ export function mountGameplay({
     setPeriscopeZoom(periscopeZoom + (event.deltaY < 0 ? 0.5 : -0.5));
   });
 
+  setCaptainCommandMode(captainCommandMode);
   updateAll();
   if (initialSnapshot) onOperationAutosave(engine.snapshot());
   if (initialHull <= 0 && !initialSnapshot) engine.failMission();

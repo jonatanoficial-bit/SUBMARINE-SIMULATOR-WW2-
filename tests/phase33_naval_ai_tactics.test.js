@@ -45,12 +45,12 @@ function context(overrides = {}) {
 test('phase 33 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.phase, '45');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
-  assert.equal(pkg.version, '2.0.0-alpha.60');
-  assert.equal(manifest.version, '2.0.0-alpha.60');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 40);
+  assert.equal(pkg.version, '2.0.0-alpha.61');
+  assert.equal(manifest.version, '2.0.0-alpha.61');
   assert.equal(PHASE33_NAVAL_AI_TACTICS.system, 'naval-ai-tactical-coordinator');
   assert.ok(PHASE33_NAVAL_AI_TACTICS.layers.includes('escort-pincer'));
 });

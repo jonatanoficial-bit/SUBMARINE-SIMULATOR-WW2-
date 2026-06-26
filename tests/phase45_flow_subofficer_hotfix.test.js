@@ -14,12 +14,12 @@ const t = (key) => key;
 test('phase 45 hotfix metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.phase, '45');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
-  assert.equal(pkg.version, '2.0.0-alpha.60');
-  assert.equal(manifest.version, '2.0.0-alpha.60');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase45_flow_subofficer_hotfix.py');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 40);
+  assert.equal(pkg.version, '2.0.0-alpha.61');
+  assert.equal(manifest.version, '2.0.0-alpha.61');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase46_captain_order_doctrine.py');
 });
 
 test('main flow no longer exposes disconnected bridge button', () => {
@@ -69,6 +69,6 @@ test('aircraft warning primary action is direct dive, not passive OK', () => {
     worldTime: 12000,
   } });
   assert.equal(air.id, 'aircraft-attack-run');
-  assert.equal(air.actions[0].command, 'emergency-dive');
-  assert.equal(air.ackLabelKey, 'subofficer.action.dive');
+  assert.equal(air.actions[0].command, 'evade-now');
+  assert.equal(air.ackLabelKey, 'captainOrder.action.evadeNow');
 });

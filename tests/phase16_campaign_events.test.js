@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 16 metadata identifies dynamic war events build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.60');
-  assert.equal(BUILD_INFO.phase, '45');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 39);
-  assert.match(BUILD_INFO.buildId, /F45-FLOW-SUBOFFICER-HOTFIX/);
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.61');
+  assert.equal(BUILD_INFO.phase, '46');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 40);
+  assert.match(BUILD_INFO.buildId, /F46-CAPTAIN-ORDER-DOCTRINE/);
 });
 
 test('dynamic event decks cover every campaign nation with validated event definitions', () => {

@@ -1,0 +1,73 @@
+.phase46-captain-order-ready .phase46-command-mode-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(224, 197, 122, .28);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(240, 210, 126, .14), transparent 38%),
+    linear-gradient(145deg, rgba(14, 22, 24, .92), rgba(5, 12, 16, .88));
+  box-shadow: inset 0 0 22px rgba(0,0,0,.34), 0 12px 28px rgba(0,0,0,.22);
+}
+.phase46-command-mode-card span {
+  display: block;
+  color: rgba(232, 236, 218, .7);
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.phase46-command-mode-card strong {
+  display: block;
+  margin-top: 3px;
+  color: #f4d98a;
+  font-size: .95rem;
+}
+.phase46-command-mode-card small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.35;
+}
+.phase46-mode-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.phase46-mode-buttons .chip.active {
+  background: linear-gradient(135deg, #e6c16b, #9ed7b7);
+  color: #071014;
+  border-color: transparent;
+  box-shadow: 0 0 18px rgba(230, 193, 107, .28);
+}
+.gameplay-screen[data-command-mode="manual"] .phase26-subofficer-panel:not([data-tone="critical"]) {
+  opacity: .96;
+}
+.gameplay-screen[data-command-mode="manual"] .phase41-subofficer-toggle b::after {
+  content: ' · manual';
+  opacity: .72;
+}
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="prepare-attack"],
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="evade-now"],
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="authorize-repair"] {
+  border-color: rgba(244, 217, 138, .55);
+  background: linear-gradient(135deg, rgba(244,217,138,.2), rgba(31,62,61,.72));
+}
+.phase26-subofficer-panel .phase41-subofficer-action[data-subofficer-action="manual-control"] {
+  opacity: .82;
+}
+@media (max-width: 760px) {
+  .phase46-captain-order-ready .phase46-command-mode-card {
+    grid-template-columns: 1fr;
+  }
+  .phase46-mode-buttons { justify-content: stretch; }
+  .phase46-mode-buttons .chip { flex: 1; }
+}
+@media (max-width: 420px) {
+  .phase46-captain-order-ready .phase46-command-mode-card {
+    padding: 10px;
+    border-radius: 14px;
+  }
+}

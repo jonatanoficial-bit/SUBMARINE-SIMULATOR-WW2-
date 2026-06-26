@@ -1,3 +1,10 @@
+# v2.0.0-alpha.61 — Fase 46 — Doutrina de Ordens do Capitão
+
+- Gameplay reorganizada para capitão receber situação e dar ordens.
+- Suboficial agora oferece decisões com efeitos: preparar ataque, evadir, silêncio, reparar, traçar patrulha ou assumir manual.
+- Ordem de ataque prepara torpedo/TDC/periscópio sem disparo automático.
+- Controle manual total preservado para quem quiser operar tudo sozinho.
+
 # v2.0.0-alpha.59 — Fase 44 — Campanha com História Clara e Progressão Guiada
 
 - Adicionada linha narrativa por atos na tela de campanha.
