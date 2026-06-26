@@ -1,3 +1,10 @@
+# v2.0.0-alpha.64 — Fase 49 — Cadeia Reativa de Comando do Capitão
+
+- Adicionado painel de cadeia de comando: suboficial, mecânico e estações respondem à ordem do capitão com recomendação objetiva.
+- O sistema detecta conflitos realistas antes da execução: avaria crítica, cota inadequada, periscópio fechado, TDC fraco, torpedo na água, escolta e ameaça aérea.
+- A recomendação vira botão de ação, mantendo o capitão como decisor e preservando o modo manual para controle total.
+- Save schema mantido em 40.
+
 # v2.0.0-alpha.63 — Fase 48 — Quadro Vivo de Execução das Ordens do Capitão
 
 - Adicionado quadro vivo de execução das ordens do capitão na gameplay.

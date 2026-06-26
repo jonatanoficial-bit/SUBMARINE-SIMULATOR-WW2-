@@ -1,7 +1,7 @@
 export const PHASE48_CAPTAIN_ORDER_EXECUTION = Object.freeze({
   phase: 48,
   system: 'captain-order-execution-board',
-  version: 'v2.0.0-alpha.63',
+  version: 'v2.0.0-alpha.64',
   doctrine: 'captain-order-enters-execution-board-with-station-progress-and-effect',
   manualOverride: true,
   saveSchemaStable: true,

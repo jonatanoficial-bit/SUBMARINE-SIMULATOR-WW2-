@@ -13,12 +13,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 46 captain order metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.63');
-  assert.equal(BUILD_INFO.phase, '48');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.64');
+  assert.equal(BUILD_INFO.phase, '49');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.63');
-  assert.equal(manifest.version, '2.0.0-alpha.63');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase48_captain_order_execution.py');
+  assert.equal(pkg.version, '2.0.0-alpha.64');
+  assert.equal(manifest.version, '2.0.0-alpha.64');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase49_captain_command_chain.py');
   assert.equal(PHASE46_CAPTAIN_ORDER_DOCTRINE.system, 'captain-order-doctrine');
 });
 

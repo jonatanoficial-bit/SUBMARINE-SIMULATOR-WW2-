@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.63",
-  "semver": "2.0.0-alpha.63",
-  "buildId": "SCWW2-20260626-1730-BRT-F48-CAPTAIN-ORDER-EXECUTION",
+  "version": "v2.0.0-alpha.64",
+  "semver": "2.0.0-alpha.64",
+  "buildId": "SCWW2-20260626-1749-BRT-F49-CAPTAIN-COMMAND-CHAIN",
   "date": "2026-06-26",
-  "time": "17:30",
+  "time": "17:49",
   "timezone": "America/Sao_Paulo",
-  "phase": "48",
-  "phaseName": "Silent Depth Captain Order Execution",
+  "phase": "49",
+  "phaseName": "Silent Depth Reactive Captain Command Chain",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 48 adds a living captain order execution board: every order has a responsible station, progress, ETA, task checklist and practical effect, while realistic captain mode and full manual control remain separated without changing the save schema."
+  "notes": "Phase 49 adds a reactive captain command chain: the executive officer, mechanic and stations acknowledge orders, detect conflicts such as damage, depth, escorts and poor TDC solution, then recommend the next order while preserving manual control and the save schema."
 }

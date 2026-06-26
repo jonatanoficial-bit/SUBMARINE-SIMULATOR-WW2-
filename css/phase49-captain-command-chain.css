@@ -1,0 +1,80 @@
+.phase49-command-chain-ready .phase49-command-chain {
+  display: grid;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid rgba(158, 215, 183, .24);
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(8, 16, 22, .94), rgba(20, 28, 32, .78)),
+    radial-gradient(circle at 100% 0%, rgba(230,193,107,.16), transparent 36%);
+  box-shadow: inset 0 0 22px rgba(0,0,0,.32), 0 10px 24px rgba(0,0,0,.16);
+}
+.phase49-command-chain header,
+.phase49-chain-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+}
+.phase49-command-chain header span,
+.phase49-chain-line span,
+.phase49-chain-meta span {
+  color: rgba(232,236,218,.62);
+  font-size: .64rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+.phase49-command-chain header strong,
+.phase49-chain-meta strong {
+  color: #9ed7b7;
+  font-size: .84rem;
+  text-align: right;
+}
+.phase49-command-chain[data-tone="attack"] header strong,
+.phase49-command-chain[data-tone="warning"] header strong { color: #f4d98a; }
+.phase49-command-chain[data-tone="danger"] header strong,
+.phase49-command-chain[data-tone="critical"] header strong,
+.phase49-command-chain[data-tone="blocked"] header strong { color: #ffb1a0; }
+.phase49-chain-line {
+  display: grid;
+  gap: 4px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.phase49-chain-line p {
+  margin: 0;
+  color: rgba(255,255,255,.84);
+  font-size: .82rem;
+  line-height: 1.34;
+}
+.phase49-chain-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.phase49-chain-meta div {
+  display: grid;
+  gap: 3px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 11px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.phase49-chain-action {
+  justify-self: stretch;
+  min-height: 34px;
+}
+.phase49-command-chain[data-tone="manual"] .phase49-chain-action,
+.phase49-command-chain[data-tone="calm"] .phase49-chain-action:disabled {
+  opacity: .68;
+}
+@media (max-width: 760px) {
+  .phase49-chain-meta { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .phase49-command-chain { padding: 10px; border-radius: 14px; }
+  .phase49-command-chain header { align-items: flex-start; flex-direction: column; }
+  .phase49-command-chain header strong { text-align: left; }
+}

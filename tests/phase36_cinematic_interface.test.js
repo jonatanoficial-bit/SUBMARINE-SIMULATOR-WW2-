@@ -12,12 +12,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 36 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.63');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.63');
-  assert.equal(BUILD_INFO.phase, '48');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.64');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.64');
+  assert.equal(BUILD_INFO.phase, '49');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.63');
-  assert.equal(manifest.version, '2.0.0-alpha.63');
+  assert.equal(pkg.version, '2.0.0-alpha.64');
+  assert.equal(manifest.version, '2.0.0-alpha.64');
   assert.equal(PHASE36_CINEMATIC_INTERFACE.system, 'premium-cinematic-interface');
   assert.ok(PHASE36_CINEMATIC_INTERFACE.layers.includes('letterbox'));
 });
