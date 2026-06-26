@@ -13,7 +13,7 @@
     {
       "name": "Build metadata and final QA status visible",
       "status": "PASS",
-      "details": "Build v2.0.0-alpha.56 • 2026-06-26 10:55 BRT • F41 • QA PASS"
+      "details": "Build v2.0.0-alpha.57 • 2026-06-26 11:05 BRT • F42 • QA PASS"
     },
     {
       "name": "Phone menu has no horizontal overflow",

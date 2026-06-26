@@ -1,6 +1,6 @@
 import { renderBottomNav, renderStatBar } from '../components/ui.js';
 
-export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades, submarineState = null) {
+export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades, submarineState = null, workshopImpact = null) {
   const hull = submarineState?.hull ?? 100;
   const systems = submarineState?.systems || { engines: 100, sonar: 100, periscope: 100, weapons: 100 };
   const damagedSystems = Object.values(systems).some((value) => value < 100);
@@ -47,6 +47,35 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
         }).join('')}
       </div>
 
+      ${workshopImpact ? `
+      <div class="panel phase42-workshop-impact">
+        <div class="panel-header">${t('workshop.title')}</div>
+        <div class="panel-body stack">
+          <div class="phase42-workshop-top">
+            <div class="phase42-readiness-dial" data-state="${workshopImpact.readiness.state}">
+              <strong>${workshopImpact.readiness.score}%</strong>
+              <span>${t(workshopImpact.readiness.key)}</span>
+            </div>
+            <div>
+              <div class="phase42-impact-grid">
+                ${workshopImpact.cards.map((card) => `
+                  <div class="phase42-impact-card" data-category="${card.category}">
+                    <span>${t(card.titleKey)}</span>
+                    <strong>${card.value}</strong>
+                    <p>${t(card.detailKey)}</p>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="phase42-directive">${t(workshopImpact.directiveKey)}</div>
+            </div>
+          </div>
+          <div class="phase42-workshop-actions">
+            <button class="button secondary" data-action="restock-logistics">${t('logistics.restock')}</button>
+            <button class="button secondary" data-action="dock-maintenance">${t('workshop.dockMaintenance')}</button>
+            <button class="button secondary" data-action="rest-crew">${t('workshop.restCrew')}</button>
+          </div>
+        </div>
+      </div>` : ''}
 
       <div class="panel repair-panel">
         <div class="panel-header">${t('repair.title')}</div>
@@ -81,7 +110,10 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
                   <span class="tag">${t('arsenal.category.' + upgrade.category)}</span>
                   <span class="tag">Lv ${upgrade.levelRequired}</span>
                 </div>
-                ${owned ? '' : `<button class="button secondary block" data-action="buy-upgrade" data-upgrade="${upgrade.id}">${t('arsenal.buyUpgrade')}</button>`}
+                <div class="phase42-upgrade-effect-tags">
+                  ${Object.entries(upgrade.effect || {}).map(([key, value]) => `<span class="tag">${t('workshop.effect.' + key)} ${Number(value) >= 0 ? '+' : ''}${value}</span>`).join('')}
+                </div>
+                ${owned ? `<div class="phase42-directive">${t('workshop.installedImpact')}</div>` : `<button class="button secondary block" data-action="buy-upgrade" data-upgrade="${upgrade.id}">${t('arsenal.buyUpgrade')}</button>`}
               </div>
             `;
           }).join('')}

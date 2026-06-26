@@ -1,0 +1,65 @@
+.phase42-workshop-impact {
+  border: 1px solid rgba(221, 183, 95, .34);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(14, 22, 25, .96), rgba(5, 13, 17, .92));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .28), inset 0 0 34px rgba(221, 183, 95, .06);
+}
+.phase42-workshop-impact .panel-header { color: #f6d98e; }
+.phase42-workshop-top {
+  display: grid;
+  grid-template-columns: minmax(180px, .85fr) 1.4fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.phase42-readiness-dial {
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 18px;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 15%, rgba(246, 217, 142, .16), transparent 44%), rgba(255,255,255,.04);
+  text-align: center;
+}
+.phase42-readiness-dial strong { display: block; font-size: clamp(2rem, 7vw, 4rem); color: #fff1b9; line-height: 1; }
+.phase42-readiness-dial span { display: block; margin-top: 8px; color: rgba(232, 242, 235, .72); text-transform: uppercase; letter-spacing: .08em; font-size: .74rem; }
+.phase42-readiness-dial[data-state="critical"] strong { color: #ff8d77; }
+.phase42-readiness-dial[data-state="caution"] strong { color: #ffd06d; }
+.phase42-readiness-dial[data-state="excellent"] strong { color: #b6ffd6; }
+.phase42-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.phase42-impact-card {
+  min-height: 116px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.phase42-impact-card span { color: rgba(229, 238, 230, .66); text-transform: uppercase; font-size: .68rem; letter-spacing: .08em; }
+.phase42-impact-card strong { display: block; margin: 8px 0 5px; color: #f4d78a; font-size: 1.25rem; }
+.phase42-impact-card p { margin: 0; color: rgba(236, 244, 235, .78); font-size: .78rem; line-height: 1.35; }
+.phase42-directive {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(12, 28, 31, .74);
+  border: 1px dashed rgba(246, 217, 142, .32);
+  color: #f3eed8;
+}
+.phase42-workshop-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.phase42-upgrade-effect-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.phase42-upgrade-effect-tags .tag { font-size: .7rem; }
+@media (max-width: 920px) {
+  .phase42-workshop-top { grid-template-columns: 1fr; }
+  .phase42-impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phase42-workshop-actions { grid-template-columns: 1fr; }
+}
+@media (max-width: 460px) {
+  .phase42-impact-grid { grid-template-columns: 1fr; }
+  .phase42-impact-card { min-height: auto; }
+}

@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.56",
-  "semver": "2.0.0-alpha.56",
-  "buildId": "SCWW2-20260626-1055-BRT-F41-FLUXO-SUBOFICIAL-PERISCOPIO",
+  "version": "v2.0.0-alpha.57",
+  "semver": "2.0.0-alpha.57",
+  "buildId": "SCWW2-20260626-1105-BRT-F42-BASE-WORKSHOP-INTEGRATION",
   "date": "2026-06-26",
-  "time": "10:55",
+  "time": "11:05",
   "timezone": "America/Sao_Paulo",
-  "phase": "41",
-  "phaseName": "Unified Mission Flow and Intelligent Subofficer",
+  "phase": "42",
+  "phaseName": "Silent Depth Base Workshop Integration",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
-  "saveSchemaVersion": 35,
-  "notes": "Phase 41 simplifies the main flow around mission/submarine/crew/base/settings, upgrades the subofficer into a fixed intelligent captain assistant with contextual actions, and applies a mobile periscope cleanup that hides text overlays so the ocean and targets remain visible on phones. All previous Silent Depth systems and immersive audio are preserved."
+  "saveSchemaVersion": 36,
+  "notes": "Phase 42 links the Base/Workshop with real mission impact: upgrades now generate operational effects for sonar, batteries, engines, hull pressure, torpedo handling, stealth and readiness, with a clearer workshop panel and preserved F41 mission flow/subofficer/periscope improvements."
 }

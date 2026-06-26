@@ -41,6 +41,7 @@ import { canAwardOperationalHonor, findOperationalHonorDeckForNation, getOperati
 import { canClaimCommandPromotion, findCommandAdvancementDeckForNation, getCommandAdvancementClaimedIds, summarizeCommandAdvancement } from './systems/commandAdvancement.js';
 import { canAssignVeteranOfficer, findVeteranOfficerDeckForNation, getVeteranOfficerAssignedIds, summarizeVeteranOfficers } from './systems/veteranOfficers.js';
 import { canRunCrewDrill, findCrewDrillDeckForNation, getCrewDrillCompletedIds, summarizeCrewDrills } from './systems/crewDrills.js';
+import { applyUpgradeStats, buildWorkshopImpactReport, calculateUpgradeBonus } from './systems/baseWorkshopIntegration.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
@@ -873,19 +874,23 @@ function ensureSelectedMissionForNation(nationId = getCurrentNationId()) {
 
 
 function getUpgradeBonus() {
-  const bonus = { speed: 0, range: 0, stealth: 0, depth: 0, torpedoes: 0 };
-  (state.save?.submarine?.upgrades || []).forEach((id) => {
-    const upgrade = state.data.upgrades.find((item) => item.id === id);
-    if (!upgrade) return;
-    Object.entries(upgrade.effect).forEach(([key, value]) => { bonus[key] = (bonus[key] || 0) + value; });
-  });
-  return bonus;
+  return calculateUpgradeBonus(state.data?.upgrades || [], state.save?.submarine?.upgrades || []);
 }
 
 function applyStatsBonus(stats, bonus) {
-  const merged = { ...stats };
-  Object.keys(merged).forEach((key) => { merged[key] += bonus[key] || 0; });
-  return merged;
+  return applyUpgradeStats(stats, bonus);
+}
+
+function getWorkshopImpactReport() {
+  const current = getCurrentSubmarine();
+  return buildWorkshopImpactReport({
+    upgrades: state.data?.upgrades || [],
+    ownedIds: state.save?.submarine?.upgrades || [],
+    submarine: current || {},
+    logistics: state.save?.logistics || {},
+    hull: state.save?.submarine?.hull ?? 100,
+    systems: state.save?.submarine?.systems || {},
+  });
 }
 
 function showToast(message) {
@@ -1543,7 +1548,7 @@ sceneManager
     }),
     exit: cleanupGameplay,
   })
-  .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null) })
+  .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null, getWorkshopImpactReport()) })
   .register('crew', { render: ({ t: translate, nationCrew, crewDrills }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills) })
   .register('settings', { render: ({ t: translate }) => renderSettings(translate, state.settings) })
   .register('profiles', { render: ({ t: translate }) => renderProfiles(translate, state.profiles, state.language, state.operationAutosave) });

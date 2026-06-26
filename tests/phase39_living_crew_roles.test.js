@@ -12,12 +12,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 39 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.56');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.56');
-  assert.equal(BUILD_INFO.phase, '41');
-  assert.equal(BUILD_INFO.saveSchemaVersion, 35);
-  assert.equal(pkg.version, '2.0.0-alpha.56');
-  assert.equal(manifest.version, '2.0.0-alpha.56');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.57');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.57');
+  assert.equal(BUILD_INFO.phase, '42');
+  assert.equal(BUILD_INFO.saveSchemaVersion, 36);
+  assert.equal(pkg.version, '2.0.0-alpha.57');
+  assert.equal(manifest.version, '2.0.0-alpha.57');
   assert.equal(PHASE39_LIVING_CREW_ROLES.system, 'living-crew-roles');
   assert.ok(PHASE39_LIVING_CREW_ROLES.roles.includes('engineer'));
 });

@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.56",
-  "short_name": "SCWW2 2.0.0-alpha.56",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.57",
+  "short_name": "SCWW2 2.0.0-alpha.57",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 41 Fluxo unificado, suboficial inteligente e periscópio mobile limpo.",
+  "description": "Submarine Commander WW2 — Fase 42 Base/Oficina e Melhorias com Impacto Real, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.56",
+  "version": "2.0.0-alpha.57",
   "id": "./"
 }

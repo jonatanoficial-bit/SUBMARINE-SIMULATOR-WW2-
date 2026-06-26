@@ -1,3 +1,9 @@
+# v2.0.0-alpha.57 — Fase 42 — Base/Oficina e Melhorias com Impacto Real
+
+- Oficina agora exibe impacto real das melhorias na missão.
+- Upgrades integram sonar, baterias, motores, casco, armas, furtividade, autonomia e prontidão.
+- Painel de Base/Oficina recebeu diretiva do suboficial e ações rápidas.
+
 # v2.0.0-alpha.56 — Fase 41 — Fluxo Unificado, Suboficial Inteligente e Periscópio Mobile Limpo
 
 - Menu inferior simplificado para Missão, Submarino, Tripulação, Base/Oficina e Ajustes.
