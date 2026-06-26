@@ -18,6 +18,7 @@ import { beginCaptainCrewOrder, buildCaptainCrewOrderPanel, createCaptainCrewOrd
 import { buildCaptainExecutionBoard, createCaptainExecutionFromCommand, createCaptainExecutionState, normalizeCaptainExecutionState } from '../systems/captainOrderExecution.js';
 import { buildCaptainCommandChainView } from '../systems/captainCommandChain.js';
 import { buildCaptainCombatCycleView } from '../systems/captainCombatCycle.js';
+import { buildCaptainCommandRoomView } from '../systems/captainCommandRoom.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -148,7 +149,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -704,6 +705,25 @@ export function renderGameplay(t, mission, settings = {}) {
         <div class="panel-body combat-station-layout">
           <div class="combat-controls stack">
             <button class="button block primary-command" id="open-periscope-secondary">${t('gameplay.openPeriscope')}</button>
+
+            <section class="phase51-command-room-definitive" id="phase51-command-room" data-tone="calm" data-mode="captain" aria-live="polite">
+              <div class="phase51-room-main">
+                <div class="phase51-room-brief">
+                  <span>${t('commandRoom.panel.kicker')}</span>
+                  <strong id="command-room-headline">${t('commandRoom.headline.patrol')}</strong>
+                  <p id="command-room-situation">${t('commandRoom.situation.patrol')}</p>
+                </div>
+                <div class="phase51-room-decision">
+                  <span>${t('commandRoom.panel.decision')}</span>
+                  <p id="command-room-decision">${t('commandRoom.decision.patrol')}</p>
+                  <div class="phase51-room-actions">
+                    <button class="button primary phase51-primary-action" id="command-room-primary" type="button" data-command-room-action="" data-command-room-station="navigation">${t('commandRoom.action.planPatrol')}</button>
+                    <button class="button secondary phase51-secondary-action" id="command-room-secondary" type="button" data-command-room-action="silent-running" data-command-room-station="sensors">${t('commandRoom.action.silence')}</button>
+                  </div>
+                </div>
+              </div>
+              <div class="phase51-room-grid" id="command-room-stations"></div>
+            </section>
             <section class="phase46-command-mode-card" id="phase46-command-mode-card" data-mode="captain">
               <div>
                 <span>${t('captainOrder.mode.kicker')}</span>
@@ -1632,6 +1652,13 @@ export function mountGameplay({
     combatCycleRisk: app.querySelector('#combat-cycle-risk'),
     combatCycleReason: app.querySelector('#combat-cycle-reason'),
     combatCycleAction: app.querySelector('#combat-cycle-action'),
+    commandRoom: app.querySelector('#phase51-command-room'),
+    commandRoomHeadline: app.querySelector('#command-room-headline'),
+    commandRoomSituation: app.querySelector('#command-room-situation'),
+    commandRoomDecision: app.querySelector('#command-room-decision'),
+    commandRoomStations: app.querySelector('#command-room-stations'),
+    commandRoomPrimary: app.querySelector('#command-room-primary'),
+    commandRoomSecondary: app.querySelector('#command-room-secondary'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1660,6 +1687,7 @@ export function mountGameplay({
   let captainExecutionState = createCaptainExecutionState(engine.snapshot());
   let captainCommandChainCurrent = null;
   let captainCombatCycleCurrent = null;
+  let captainCommandRoomCurrent = null;
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -3042,9 +3070,9 @@ export function mountGameplay({
     if (captainCommandMode === 'manual') closeSubOfficerDialogue();
     updateCaptainCrewFlow(engine.snapshot());
     updateCaptainExecutionBoard(engine.snapshot());
-  updateCaptainCommandChain(engine.snapshot());
-  updateCaptainCombatCycle(engine.snapshot());
-    updateCaptainCommandChain(engine.snapshot());
+    const chain = updateCaptainCommandChain(engine.snapshot());
+    const combat = updateCaptainCombatCycle(engine.snapshot(), chain);
+    updateCaptainCommandRoom(engine.snapshot(), chain, combat);
   }
 
   function snapshotWithCaptainCrewFlow(snapshot = engine.snapshot()) {
@@ -3069,7 +3097,8 @@ export function mountGameplay({
     captainExecutionState = createCaptainExecutionFromCommand(command, snapshot, { result, flow: captainCrewFlow });
     updateCaptainExecutionBoard(snapshot);
     const chain = updateCaptainCommandChain(snapshot);
-    updateCaptainCombatCycle(snapshot, chain);
+    const combat = updateCaptainCombatCycle(snapshot, chain);
+    updateCaptainCommandRoom(snapshot, chain, combat);
   }
 
   function updateCaptainExecutionBoard(snapshot = engine.snapshot()) {
@@ -3133,6 +3162,56 @@ export function mountGameplay({
       els.combatCycleAction.dataset.cycleStation = view.nextStation || '';
       els.combatCycleAction.textContent = view.nextCommand ? t(view.nextActionKey || 'combatCycle.action.execute') : t('combatCycle.action.await');
       els.combatCycleAction.disabled = !view.nextCommand || captainCommandMode === 'manual';
+    }
+    return view;
+  }
+
+
+
+  function updateCaptainCommandRoom(snapshot = engine.snapshot(), chainView = captainCommandChainCurrent, combatView = captainCombatCycleCurrent) {
+    const nation = mission?.nationId || submarine?.nation || 'de';
+    const view = buildCaptainCommandRoomView({
+      snapshot,
+      execution: captainExecutionState,
+      flow: captainCrewFlow,
+      chain: chainView,
+      combat: combatView,
+      commandMode: captainCommandMode,
+      nation,
+    });
+    captainCommandRoomCurrent = view;
+    if (els.commandRoom) {
+      els.commandRoom.dataset.tone = view.tone || 'calm';
+      els.commandRoom.dataset.mode = view.mode || 'captain';
+    }
+    if (els.commandRoomHeadline) els.commandRoomHeadline.textContent = t(view.headlineKey || 'commandRoom.headline.patrol');
+    if (els.commandRoomSituation) els.commandRoomSituation.textContent = t(view.situationKey || 'commandRoom.situation.patrol');
+    if (els.commandRoomDecision) els.commandRoomDecision.textContent = t(view.decisionKey || 'commandRoom.decision.patrol');
+    if (els.commandRoomPrimary) {
+      els.commandRoomPrimary.dataset.commandRoomAction = view.primaryCommand || '';
+      els.commandRoomPrimary.dataset.commandRoomStation = view.primaryStation || 'command';
+      els.commandRoomPrimary.textContent = t(view.primaryActionKey || 'commandRoom.action.standby');
+      els.commandRoomPrimary.disabled = !view.primaryCommand || captainCommandMode === 'manual';
+    }
+    if (els.commandRoomSecondary) {
+      els.commandRoomSecondary.dataset.commandRoomAction = view.secondaryCommand || '';
+      els.commandRoomSecondary.dataset.commandRoomStation = view.secondaryStation || 'command';
+      els.commandRoomSecondary.textContent = t(view.secondaryActionKey || 'commandRoom.action.none');
+      els.commandRoomSecondary.disabled = !view.secondaryCommand;
+    }
+    if (els.commandRoomStations) {
+      els.commandRoomStations.innerHTML = (view.cards || []).map((card) => `
+        <button class="phase51-room-card" type="button" data-command-room-card="${card.command || ''}" data-command-room-station="${card.station || 'command'}" data-urgency="${card.urgency || 'normal'}">
+          <img class="phase51-avatar" src="${card.asset}" alt="">
+          <img class="phase51-icon" src="${card.icon}" alt="">
+          <div>
+            <span>${t(card.roleKey)}</span>
+            <strong>${t(card.statusKey)}</strong>
+            <p>${t(card.detailKey)}</p>
+            <i><em style="width:${Number(card.progress || 0)}%"></em></i>
+          </div>
+        </button>
+      `).join('');
     }
     return view;
   }
@@ -3416,7 +3495,8 @@ export function mountGameplay({
     updateCaptainCrewFlow(snapshot);
     updateCaptainExecutionBoard(snapshot);
     const chain = updateCaptainCommandChain(snapshot);
-    updateCaptainCombatCycle(snapshot, chain);
+    const combat = updateCaptainCombatCycle(snapshot, chain);
+    updateCaptainCommandRoom(snapshot, chain, combat);
     updateSubOfficer(snapshot);
   }
 
@@ -3554,6 +3634,25 @@ export function mountGameplay({
     const station = els.combatCycleAction?.dataset.cycleStation || captainCombatCycleCurrent?.nextStation || '';
     if (command) runSubOfficerAction(command, station);
   });
+  bind(els.commandRoomPrimary, 'click', () => {
+    const command = els.commandRoomPrimary?.dataset.commandRoomAction || captainCommandRoomCurrent?.primaryCommand || '';
+    const station = els.commandRoomPrimary?.dataset.commandRoomStation || captainCommandRoomCurrent?.primaryStation || '';
+    if (command) runSubOfficerAction(command, station);
+  });
+  bind(els.commandRoomSecondary, 'click', () => {
+    const command = els.commandRoomSecondary?.dataset.commandRoomAction || captainCommandRoomCurrent?.secondaryCommand || '';
+    const station = els.commandRoomSecondary?.dataset.commandRoomStation || captainCommandRoomCurrent?.secondaryStation || '';
+    if (command) runSubOfficerAction(command, station);
+  });
+  bind(els.commandRoomStations, 'click', (event) => {
+    const button = event.target?.closest?.('[data-command-room-card]');
+    if (!button) return;
+    const command = button.dataset.commandRoomCard || '';
+    const station = button.dataset.commandRoomStation || '';
+    if (captainCommandMode === 'manual') { if (station) setStation(station); return; }
+    if (command) runSubOfficerAction(command, station);
+    else if (station) setStation(station);
+  });
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);
@@ -3566,8 +3665,9 @@ export function mountGameplay({
   setPeriscopeZoom(1);
   updateTraining(engine.snapshot());
   updateCaptainExecutionBoard(engine.snapshot());
-  updateCaptainCommandChain(engine.snapshot());
-  updateCaptainCombatCycle(engine.snapshot());
+  const initialChain = updateCaptainCommandChain(engine.snapshot());
+  const initialCombat = updateCaptainCombatCycle(engine.snapshot(), initialChain);
+  updateCaptainCommandRoom(engine.snapshot(), initialChain, initialCombat);
   app.querySelectorAll('.speed-chip').forEach((button) => bind(button, 'click', () => engine.setSpeed(button.dataset.speed)));
   bind(app.querySelector('#depth-up'), 'click', () => engine.adjustDepth(-15));
   bind(app.querySelector('#depth-down'), 'click', () => engine.adjustDepth(15));

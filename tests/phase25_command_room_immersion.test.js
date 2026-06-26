@@ -12,12 +12,12 @@ const manifest = readJson('manifest.json');
 const dictionaries = ['pt-BR','en','es'].map((lang) => readJson(`data/translations/${lang}.json`));
 
 test('phase 25 immersive command room metadata is active', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.65');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.65');
-  assert.equal(BUILD_INFO.phase, '50');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.66');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.66');
+  assert.equal(BUILD_INFO.phase, '51');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.65');
-  assert.equal(manifest.version, '2.0.0-alpha.65');
+  assert.equal(pkg.version, '2.0.0-alpha.66');
+  assert.equal(manifest.version, '2.0.0-alpha.66');
   assert.equal(PHASE25_COMMAND_ROOM.visualProfile, 'immersive-submarine-command-room');
 });
 

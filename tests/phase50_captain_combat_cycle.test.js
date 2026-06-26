@@ -39,13 +39,13 @@ test('phase 50 metadata keeps save schema stable and updates build wiring', () =
   assert.equal(PHASE50_CAPTAIN_COMBAT_CYCLE.phase, 50);
   assert.equal(PHASE50_CAPTAIN_COMBAT_CYCLE.version, 'v2.0.0-alpha.65');
   assert.equal(PHASE50_CAPTAIN_COMBAT_CYCLE.saveSchemaStable, true);
-  assert.equal(build.version, 'v2.0.0-alpha.65');
-  assert.equal(build.semver, '2.0.0-alpha.65');
-  assert.equal(build.phase, '50');
+  assert.equal(build.version, 'v2.0.0-alpha.66');
+  assert.equal(build.semver, '2.0.0-alpha.66');
+  assert.equal(build.phase, '51');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.65');
-  assert.equal(manifest.version, '2.0.0-alpha.65');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase50_captain_combat_cycle.py');
+  assert.equal(pkg.version, '2.0.0-alpha.66');
+  assert.equal(manifest.version, '2.0.0-alpha.66');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase51_captain_command_room.py');
 });
 
 test('captain combat cycle asks for attack preparation after a firm classified contact', () => {

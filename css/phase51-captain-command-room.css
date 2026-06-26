@@ -1,0 +1,191 @@
+.phase51-command-room-ready {
+  --phase51-panel: rgba(7, 15, 24, .92);
+  --phase51-line: rgba(137, 209, 255, .22);
+  --phase51-gold: #f2d184;
+}
+.phase51-command-room-definitive {
+  display: grid;
+  gap: 12px;
+  padding: 13px;
+  border-radius: 18px;
+  border: 1px solid var(--phase51-line);
+  background:
+    linear-gradient(145deg, rgba(5,12,19,.96), rgba(13,27,38,.9)),
+    radial-gradient(circle at 12% 0%, rgba(74,164,255,.18), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(242,209,132,.16), transparent 35%);
+  box-shadow: inset 0 0 32px rgba(0,0,0,.36), 0 14px 30px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+.phase51-command-room-definitive[data-tone="attack"],
+.phase51-command-room-definitive[data-tone="watch"] { --phase51-line: rgba(242, 209, 132, .34); }
+.phase51-command-room-definitive[data-tone="danger"],
+.phase51-command-room-definitive[data-tone="critical"] { --phase51-line: rgba(255, 134, 105, .42); }
+.phase51-command-room-definitive[data-tone="manual"] { --phase51-line: rgba(255, 255, 255, .2); }
+.phase51-room-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(190px, .9fr);
+  gap: 11px;
+  align-items: stretch;
+}
+.phase51-room-brief {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.phase51-room-brief span,
+.phase51-room-decision span,
+.phase51-room-card span {
+  color: rgba(232,236,218,.64);
+  font-size: .64rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.phase51-room-brief strong {
+  color: #9ed7ff;
+  font-size: .98rem;
+  line-height: 1.08;
+}
+.phase51-command-room-definitive[data-tone="attack"] .phase51-room-brief strong,
+.phase51-command-room-definitive[data-tone="watch"] .phase51-room-brief strong,
+.phase51-command-room-definitive[data-tone="warning"] .phase51-room-brief strong { color: var(--phase51-gold); }
+.phase51-command-room-definitive[data-tone="danger"] .phase51-room-brief strong,
+.phase51-command-room-definitive[data-tone="critical"] .phase51-room-brief strong { color: #ffb09f; }
+.phase51-room-brief p,
+.phase51-room-decision p {
+  margin: 0;
+  color: rgba(255,255,255,.86);
+  font-size: .84rem;
+  line-height: 1.35;
+}
+.phase51-room-decision {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+}
+.phase51-room-actions {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 8px;
+}
+.phase51-primary-action,
+.phase51-secondary-action {
+  min-height: 38px;
+  white-space: normal;
+  line-height: 1.08;
+}
+.phase51-room-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.phase51-room-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  min-height: 72px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  position: relative;
+  overflow: hidden;
+}
+.phase51-room-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: rgba(158,215,255,.46);
+}
+.phase51-room-card[data-urgency="watch"]::before,
+.phase51-room-card[data-urgency="attack"]::before,
+.phase51-room-card[data-urgency="warning"]::before { background: var(--phase51-gold); }
+.phase51-room-card[data-urgency="danger"]::before,
+.phase51-room-card[data-urgency="critical"]::before { background: #ff8e75; }
+.phase51-room-card img.phase51-avatar {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.24);
+}
+.phase51-room-card img.phase51-icon {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: .58;
+}
+.phase51-room-card strong {
+  display: block;
+  padding-right: 18px;
+  color: rgba(255,255,255,.9);
+  font-size: .76rem;
+  line-height: 1.12;
+}
+.phase51-room-card p {
+  margin: 2px 0 0;
+  color: rgba(232,236,218,.6);
+  font-size: .66rem;
+  line-height: 1.18;
+}
+.phase51-room-card i {
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+}
+.phase51-room-card i em {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: rgba(158,215,255,.76);
+}
+.phase51-room-card[data-urgency="watch"] i em,
+.phase51-room-card[data-urgency="attack"] i em,
+.phase51-room-card[data-urgency="warning"] i em { background: rgba(242,209,132,.8); }
+.phase51-room-card[data-urgency="danger"] i em,
+.phase51-room-card[data-urgency="critical"] i em { background: rgba(255,142,117,.82); }
+@media (max-width: 980px) {
+  .phase51-room-main { grid-template-columns: 1fr; }
+  .phase51-room-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  body:has(.phase51-command-room-ready) .app-shell { min-height: 100dvh; }
+  .phase51-command-room-definitive {
+    position: relative;
+    margin-inline: -2px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .phase51-room-actions { grid-template-columns: 1fr; }
+  .phase51-primary-action,
+  .phase51-secondary-action { min-height: 44px; }
+  .phase51-room-grid {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    padding-bottom: 2px;
+  }
+  .phase51-room-card {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 420px) {
+  .phase51-room-card { flex-basis: 86%; }
+  .phase51-room-brief strong { font-size: .91rem; }
+  .phase51-room-brief p,
+  .phase51-room-decision p { font-size: .8rem; }
+}

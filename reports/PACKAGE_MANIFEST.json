@@ -1,14 +1,14 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.27",
-  "phase": "12",
-  "phaseName": "National Campaign Doctrines",
-  "buildId": "SCWW2-20260622-1548-BRT-F12-NATIONAL-DOCTRINES",
+  "version": "v2.0.0-alpha.66",
+  "phase": "51",
+  "phaseName": "Silent Depth Definitive Captain Command Room",
+  "buildId": "SCWW2-20260626-1814-BRT-F51-CAPTAIN-COMMAND-ROOM",
   "qaStatus": "PASS",
-  "generatedAt": "2026-06-22T18:49:34.687863+00:00",
-  "fileCount": 567,
-  "totalBytes": 68704382,
+  "generatedAt": "2026-06-26T21:18:35.323986+00:00",
+  "fileCount": 876,
+  "totalBytes": 70667387,
   "hashAlgorithm": "SHA-256",
   "files": [
     {
@@ -38,13 +38,13 @@
     },
     {
       "path": "BUILD_INFO.json",
-      "bytes": 716,
-      "sha256": "0267c2589f152c477200e2bfe357b58342260f65fde3ea10988e742561def0ec"
+      "bytes": 679,
+      "sha256": "b1e888c0d6179d331bb0ac1ebaf87a6d5479d70c4d05fac5b3ba14d281996c8c"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 18309,
-      "sha256": "0254e7a2df2c3c132600476431942ea333c19fd644bf07563e80a9200705af0f"
+      "bytes": 35326,
+      "sha256": "fa5bf34848b76639613ac2cd58a5b00c6b13c86842cfae843106a47fd2a4adb6"
     },
     {
       "path": "DEPLOY_GITHUB_PAGES.md",
@@ -107,19 +107,24 @@
       "sha256": "14c17207496655e3cb2c44f0d3a403fab7c6fc2d9a892027312d51dcdffb3047"
     },
     {
+      "path": "KNOWN_ISSUES_PHASE_13_CAMPAIGN_OBJECTIVES.md",
+      "bytes": 251,
+      "sha256": "a270419607f3879bbf127445d68c45a7603e7e3c3f15314b9a432d52328496e8"
+    },
+    {
       "path": "KNOWN_ISSUES_PHASE_14.md",
       "bytes": 409,
       "sha256": "2cc712dea3658dc7d485fb7d0f80415182a19077c5fe697f87ce2f04a2b83288"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_15.md",
-      "bytes": 177,
-      "sha256": "617c21518f7f46f22cdc1f0f91961062d97443040c8c9ccf4faf84fdb86ec427"
+      "bytes": 406,
+      "sha256": "9297a25ad73d616a715177200a8bb6f5f39988c800e4e51c24adc284c343c0a8"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_16.md",
-      "bytes": 313,
-      "sha256": "46be1eebe10c360f1bf7248ea1ea21c0260c2e27d81aff449a7c2fa438bc9abf"
+      "bytes": 285,
+      "sha256": "dfc2b5077e24cb77e0df936e5c939f0a9c781525c50fc39b445e5a977338853f"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_17.md",
@@ -127,14 +132,19 @@
       "sha256": "d8363a2bdba79fc8c56df80920dd02d6dec60b5cafe6a037f8064b9b58aac1e9"
     },
     {
+      "path": "KNOWN_ISSUES_PHASE_17_SPECIAL_OPERATIONS.md",
+      "bytes": 300,
+      "sha256": "43a8ecf2402ccfd9796ded3496f3f22cdd70a199a26fc0d295113aa7a0535ac4"
+    },
+    {
       "path": "KNOWN_ISSUES_PHASE_18.md",
-      "bytes": 223,
-      "sha256": "b40bd3ada4621a2f37087d56622af0fd6d37d2763e929bbe2ac7185792562838"
+      "bytes": 515,
+      "sha256": "8d2d9840d446ea1dcf5b39b939875da738d5c78c7d937c7a14e7fdc0c22e7e93"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_19.md",
-      "bytes": 157,
-      "sha256": "801e5a65e8d6f1ce2f698501a38834e61a647096010e866c2841bbc6487bab33"
+      "bytes": 485,
+      "sha256": "5f59883e5df8fa8df9a6dd6c3f7598a0225c7cf73275cba027ac146552dae334"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_2.md",
@@ -143,33 +153,53 @@
     },
     {
       "path": "KNOWN_ISSUES_PHASE_20.md",
-      "bytes": 141,
-      "sha256": "1313d40bd5a00549e16f80c8ee78f8d3585f66305ed32e275f23b00f5c703a9f"
+      "bytes": 178,
+      "sha256": "1aff58d006f6b6196dff001608e2d998697d95ba8bb3c6d3cff77e2f0eb230ca"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_21.md",
-      "bytes": 392,
-      "sha256": "08d757c44944885e99f09d3f5ba3653acebfefc81db418e4a1c572fb13ece5d6"
+      "bytes": 426,
+      "sha256": "0d7be874f4c35d1fe0a032da4722280cd1420eb04e53438032c5b087f5c4487d"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_22.md",
-      "bytes": 182,
-      "sha256": "fc82515a7288f730765ba6c2a077b625cf99d685807c578f625fe6b3d97571a8"
+      "bytes": 145,
+      "sha256": "d43a422b9d1d82928795565e10c33fe84e68bae39e7b00e389c8bda1ea26e820"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_23.md",
-      "bytes": 287,
-      "sha256": "4178397f20e319fc0178a6b2f3ba45d44bcdc6a8b0b259fcf664ba7ba0419ee3"
+      "bytes": 289,
+      "sha256": "642924dddfc592f01cd5785be9a7c8cce2a95a44c6f0f0633150b1a2e539d745"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_24.md",
-      "bytes": 145,
-      "sha256": "3fdd41d1ab1e9e97409fca5e97b36bd9c117a6f3de35648ae90d3ae399c1a2fc"
+      "bytes": 784,
+      "sha256": "97c9d0fad275c664b8026346007e7ac52294d720c50a757886d98ee23d5badfe"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_25.md",
-      "bytes": 121,
-      "sha256": "bfc8e3e7d7c89205e9b267961e61628c509893f096beaa56f2d9e5c78b570204"
+      "bytes": 339,
+      "sha256": "a6fd38875bfbf657f06ae1def78b1aaae0e49dfb9d38059fe622744da9d90197"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_26.md",
+      "bytes": 705,
+      "sha256": "3d7e6482d2f65e548d2e386f9df7a45d367d78602c613353151c123997254f4c"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_27.md",
+      "bytes": 391,
+      "sha256": "16079646e4841115bd06fea4ea9610ea44063a3e84df1d7c3f60a3023cc1e894"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_28.md",
+      "bytes": 282,
+      "sha256": "4656296f623d93cea4408a0928523a57356a62ad61856b44d6503ea33831792e"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_29.md",
+      "bytes": 408,
+      "sha256": "c69ccd887201e08e13c273a8c4f1860a5644f64acb251d2db070920fb1f62aab"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_3.md",
@@ -177,14 +207,119 @@
       "sha256": "4f9991567a8ba79976c63a8c08b09b7e3449c821cc29b973b2fbe3f56e5374c5"
     },
     {
+      "path": "KNOWN_ISSUES_PHASE_30.md",
+      "bytes": 297,
+      "sha256": "5d85b508749d36d5b1fb463f264d963e7cfacce28c70a8ccf1cc6fcc36f73fb5"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_31.md",
+      "bytes": 301,
+      "sha256": "3828e00d2f99ed9e84cb254d516bfd7799df1ed70f0183e779343b39c5dbd01a"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_32.md",
+      "bytes": 293,
+      "sha256": "323bbe093a536049ef8b45235d9a1f3392bc1db91b5a3b9187b2e67089804a4d"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_33.md",
+      "bytes": 273,
+      "sha256": "7185ec98809e5f2537b5284b5346329c9499139525a3e2bf7a923902c62fceb3"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_34.md",
+      "bytes": 293,
+      "sha256": "db76643e1dec828d9d5d18b4b50e1b3770bc4eb37e837bf24bac612d94d7cb5e"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_35.md",
+      "bytes": 294,
+      "sha256": "96dc8ac868a36ee0e263d64f4e86631994efb1eb8df762380cf2d38ae1193dce"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_36.md",
+      "bytes": 240,
+      "sha256": "274719c5ec925d45eea8bc53c76ff486c5cf2d0a7df7b9bc4e7940ca66e71b98"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_37.md",
+      "bytes": 233,
+      "sha256": "da7642aca5ac86bb07c79d24e890fa0e9f1543d16b5dca5b1fc49f60424ad951"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_38.md",
+      "bytes": 342,
+      "sha256": "4c6a5b01835be0d93a758363d53df782672cb26b3ab37d0c9b3d67ca36bd955f"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_39.md",
+      "bytes": 351,
+      "sha256": "b0deac414cbb81fb08f8527bf26dd30255a8352830e303e47a3dc8e6377bdf62"
+    },
+    {
       "path": "KNOWN_ISSUES_PHASE_4.md",
       "bytes": 1042,
       "sha256": "594d9d9fcfb20ff0db3629147588f224c495a462ec4c761d60a4439911cd8716"
     },
     {
+      "path": "KNOWN_ISSUES_PHASE_40.md",
+      "bytes": 312,
+      "sha256": "47906ada6eb04991b875c7a62d228e37d434a7ce08fc55d2b1fbac5cbe2d2dbc"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_41.md",
+      "bytes": 459,
+      "sha256": "02faa147a91d5729379021447352218b637faebf8a87ee8ce2207065464ad0e1"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_42.md",
+      "bytes": 167,
+      "sha256": "78e11747e89eaa0e7c53acb7ec198b7b6126e10e7b3a357d89a63043b9a22c3b"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_43.md",
+      "bytes": 237,
+      "sha256": "3dffff7132e1480a5776baaeb0b7878e11982b402d1f1cfe6104e8eff7ddaea3"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_44.md",
+      "bytes": 248,
+      "sha256": "12ea9f6dcf2b410decbc7ae10be22877abe3fbfb8d46c610ca3478c15cfa749b"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_46.md",
+      "bytes": 326,
+      "sha256": "073e9a9e9fc05e07642448db9a42b53ef2d7e2cceef62aecd3026ca64934a922"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_47.md",
+      "bytes": 471,
+      "sha256": "85916bd37ba6cbde546f60df2dce82322f04ac6430351630e47230371c110313"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_48.md",
+      "bytes": 591,
+      "sha256": "d88076a8d1f7f600866294b205e118f3e33dffd72113aed890bc2a50f66d3d90"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_49.md",
+      "bytes": 80,
+      "sha256": "add831dc1880e9f61ca787b86472ddeb5a5a46dceba17a3e46081a352500c279"
+    },
+    {
       "path": "KNOWN_ISSUES_PHASE_5.md",
       "bytes": 597,
       "sha256": "580567d33039e850ae01f7a975755fda2f18f5ba469a172475f9ac1005d1601b"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_50.md",
+      "bytes": 256,
+      "sha256": "770b1f29c43117a2a69b0254c61872367aa72876a078fc7eaeae5e738aba8a21"
+    },
+    {
+      "path": "KNOWN_ISSUES_PHASE_51.md",
+      "bytes": 413,
+      "sha256": "ab0f17cee4f5060d1cb417ac3b6256755d557422534cdaab4ae9f5841e43fbb2"
     },
     {
       "path": "KNOWN_ISSUES_PHASE_6.md",
@@ -252,6 +387,11 @@
       "sha256": "61a78489e9e63b53b0b822d4250e4999c0f1c084d2c04ffc661e2bb2ab4536ed"
     },
     {
+      "path": "PHASE_13_CAMPAIGN_OBJECTIVES_DELIVERY_REPORT.md",
+      "bytes": 1251,
+      "sha256": "55686382ce7047b978c4bd47786b080305970f5f73e01b4eb0287cabdf175093"
+    },
+    {
       "path": "PHASE_13_DELIVERY_REPORT.md",
       "bytes": 652,
       "sha256": "ac38d0646ae2a5b6c11c9d84520be62e6fb8c5d7a6cf4a83333fd384504489ac"
@@ -263,13 +403,13 @@
     },
     {
       "path": "PHASE_15_DELIVERY_REPORT.md",
-      "bytes": 182,
-      "sha256": "2a42fa5f78765d83bcd4c63d9db60f9fa2561e3cabc5f904d7c2ba9264bbf372"
+      "bytes": 1163,
+      "sha256": "d8fde112c6f05af96cfda3bea4002322a19ccb1abded70dd1fbd8694807f1218"
     },
     {
       "path": "PHASE_16_DELIVERY_REPORT.md",
-      "bytes": 539,
-      "sha256": "6730f6b928801119bf7e91d28924f574de140b2ada2fbe603e1e7dcf63bde257"
+      "bytes": 1069,
+      "sha256": "536c197661b04cfce590d91e2bdd39e1ada74be0106d429905450de354a42fac"
     },
     {
       "path": "PHASE_17_DELIVERY_REPORT.md",
@@ -277,14 +417,19 @@
       "sha256": "e3d757ad0ed8a639f4fa961d6b31738aa4d4696543d370ee24ab9a6ab57e8d43"
     },
     {
+      "path": "PHASE_17_SPECIAL_OPERATIONS_DELIVERY_REPORT.md",
+      "bytes": 1166,
+      "sha256": "87f0a52bdaa2ea276c8e6d776b09be04d5394e4dbb9a195b60b4a9fe864425aa"
+    },
+    {
       "path": "PHASE_18_DELIVERY_REPORT.md",
-      "bytes": 413,
-      "sha256": "4c9143090f8d4b357d18ab9380ea75dce27741129b753f85771beed6af4e7378"
+      "bytes": 1358,
+      "sha256": "de8f4685c083dbc3910a3806a34c38a317ecf4945e2d3e14cb987820ba1742f8"
     },
     {
       "path": "PHASE_19_DELIVERY_REPORT.md",
-      "bytes": 244,
-      "sha256": "883bf07e31f2df0efe20a5a2c9362859c7f330fb35fa9046a6d9f771ffe4162b"
+      "bytes": 1781,
+      "sha256": "c2796e5abb1be57770edbffaca13b67ad828926ece04cc15c5027a24ee19a7f1"
     },
     {
       "path": "PHASE_1_DELIVERY_REPORT.md",
@@ -293,33 +438,53 @@
     },
     {
       "path": "PHASE_20_DELIVERY_REPORT.md",
-      "bytes": 187,
-      "sha256": "0569fa660bf057e51c3a93bad2ed25b1dba4df6ec30d8e23ce15514ab47fa9e6"
+      "bytes": 357,
+      "sha256": "1ef8395ba82f1896e0c80c523faaba02271ddb1080f03f0c3ff0ab21e26addb0"
     },
     {
       "path": "PHASE_21_DELIVERY_REPORT.md",
-      "bytes": 861,
-      "sha256": "f281ed3ff4801b0bc64aa22d7c3a0cdb0a9083c22035662973d7c144d1283ed9"
+      "bytes": 1435,
+      "sha256": "b654101664eb8cbb36a75dea855812df0d5567a99486fc2a9a32d3e92eb65a28"
     },
     {
       "path": "PHASE_22_DELIVERY_REPORT.md",
-      "bytes": 280,
-      "sha256": "e7103dc6a4766bfb87c7760365f6c24d2098b5189bf4a6323f8112daced1ece1"
+      "bytes": 198,
+      "sha256": "3f848132e94a6c27179039e95dd379af72cb8da6d4713cb9ba3123c5ba68910e"
     },
     {
       "path": "PHASE_23_DELIVERY_REPORT.md",
-      "bytes": 482,
-      "sha256": "9d1195abe336a2ad4b0daef115e4e15722d1b814be9995e7e2251afed720f721"
+      "bytes": 1006,
+      "sha256": "54b0df3ac8558b9f29e1c89879c48a51e6d15a3fd05d2f8cfa391ae4a4fc33c5"
     },
     {
       "path": "PHASE_24_DELIVERY_REPORT.md",
-      "bytes": 220,
-      "sha256": "b3e42689c1dd8ccf969e777eca10642b7811693dca941f06cb6adb9e82a1550a"
+      "bytes": 1185,
+      "sha256": "52407751e45d6c46f564b2d513a94b506f4936d16dc97ec335517a8ce3584987"
     },
     {
       "path": "PHASE_25_DELIVERY_REPORT.md",
-      "bytes": 252,
-      "sha256": "933d1ff9aa6a8773116102a0f427ab56321ecfa07a7d616598d7a90d8e7a567c"
+      "bytes": 841,
+      "sha256": "16f5b5a96e43571cde29fbe175689d4ab8581a198febee1528dbaeceb5414461"
+    },
+    {
+      "path": "PHASE_26_DELIVERY_REPORT.md",
+      "bytes": 943,
+      "sha256": "e875a5e0242db355aca2c9ba2841cb2eceb1bd8b8d5a02c16a319a8b4701a2b1"
+    },
+    {
+      "path": "PHASE_27_DELIVERY_REPORT.md",
+      "bytes": 733,
+      "sha256": "33a6b130fb83a4c0b4cb4b1c9052d05b751ca0cc8f56ea53e6e8d7cb6b219cbf"
+    },
+    {
+      "path": "PHASE_28_DELIVERY_REPORT.md",
+      "bytes": 530,
+      "sha256": "5fbf698631b11e3ad5ea58b9b769f597aa35d61e1b19c6819e5616c7a287f1ac"
+    },
+    {
+      "path": "PHASE_29_DELIVERY_REPORT.md",
+      "bytes": 1044,
+      "sha256": "de3a7a5cfc5f7abc6ba9c09799eaf98c17d67a9d4bbb9be0d771023c121e1f92"
     },
     {
       "path": "PHASE_2_DELIVERY_REPORT.md",
@@ -327,14 +492,119 @@
       "sha256": "fab55825b7a4fe2eeac716faa8e05e3076e86fc83659bbaecd584692126dcd2e"
     },
     {
+      "path": "PHASE_30_DELIVERY_REPORT.md",
+      "bytes": 609,
+      "sha256": "18745b9e7542170169a09ed688d5481bb02e257ec203ecee34f59adbb2aa37ff"
+    },
+    {
+      "path": "PHASE_31_DELIVERY_REPORT.md",
+      "bytes": 553,
+      "sha256": "418e95c5af4a87f2d94f3f5219f192439225383a583d8994d604b1bdf5319124"
+    },
+    {
+      "path": "PHASE_32_DELIVERY_REPORT.md",
+      "bytes": 867,
+      "sha256": "ef55fc1542c2e1a424c6d237c8e14b87fd1e5c5046bd931532750a2dfa1e4a02"
+    },
+    {
+      "path": "PHASE_33_DELIVERY_REPORT.md",
+      "bytes": 766,
+      "sha256": "44cdb85318bf233bf68dc47a60385329c82b2d13027c38815954701201afdca6"
+    },
+    {
+      "path": "PHASE_34_DELIVERY_REPORT.md",
+      "bytes": 460,
+      "sha256": "3e690419436c33042265ca66443667ca2df76411a322c804a317b505a6b87c4c"
+    },
+    {
+      "path": "PHASE_35_DELIVERY_REPORT.md",
+      "bytes": 533,
+      "sha256": "86b415eb6b4efcb36ee423ba6bcb60356d6962de66bf73a7257ba9c7ab7a036c"
+    },
+    {
+      "path": "PHASE_36_DELIVERY_REPORT.md",
+      "bytes": 734,
+      "sha256": "5d9ef1f0a165a3fc4585213261fa180d9fa092c7eb14e896050d4b0440943252"
+    },
+    {
+      "path": "PHASE_37_DELIVERY_REPORT.md",
+      "bytes": 362,
+      "sha256": "5f141cdba17cc2894835a3ff242cefaf7035abb1709483d17fa284c4fcdb43af"
+    },
+    {
+      "path": "PHASE_38_DELIVERY_REPORT.md",
+      "bytes": 544,
+      "sha256": "9b78a5c0aa412fb7dbe71f9c529745fd5ffcfd1dea1a4d519c39843c4e8676d2"
+    },
+    {
+      "path": "PHASE_39_DELIVERY_REPORT.md",
+      "bytes": 563,
+      "sha256": "8ce4e1651b4dc5058f9e2d74d6aa92d4a6b7a4e3aa385c6ac9ac6878c45d5701"
+    },
+    {
       "path": "PHASE_3_DELIVERY_REPORT.md",
       "bytes": 1655,
       "sha256": "89ca07828df10e1b26b2ec7d9945d5269115cc63ba3e031c8d2325710b62286a"
     },
     {
+      "path": "PHASE_40_DELIVERY_REPORT.md",
+      "bytes": 560,
+      "sha256": "6d054c8168afaf05bc4f7024ef00e111ef605b3f8112d90cca5f6f25919318fa"
+    },
+    {
+      "path": "PHASE_41_DELIVERY_REPORT.md",
+      "bytes": 590,
+      "sha256": "7969c55ae63dc4225b527e40da3832b460378034a415a3fe6f0867b3c00a6f81"
+    },
+    {
+      "path": "PHASE_42_DELIVERY_REPORT.md",
+      "bytes": 190,
+      "sha256": "e28d5d4fb73fc7a3bb947b1dd7d65e363cfcda73fb60aca4409ffe7d815f0e5a"
+    },
+    {
+      "path": "PHASE_43_DELIVERY_REPORT.md",
+      "bytes": 425,
+      "sha256": "06bd88b2cb76ca6aed1deec542b3b0e633385a843f73229570652ca4603a32d5"
+    },
+    {
+      "path": "PHASE_44_DELIVERY_REPORT.md",
+      "bytes": 452,
+      "sha256": "83b18b988231b333caa91eaf54772aca11527276d6dfbdf4e7a8ccdb85e58bf1"
+    },
+    {
+      "path": "PHASE_46_DELIVERY_REPORT.md",
+      "bytes": 711,
+      "sha256": "44972c6ef4d244b201fcb67a5ee111e803ad9b41b14ee9450517c220932dc56c"
+    },
+    {
+      "path": "PHASE_47_DELIVERY_REPORT.md",
+      "bytes": 1267,
+      "sha256": "773f916605fc1e275395be45b38eb86de0ada3fc88bb9fae350e388f96724da0"
+    },
+    {
+      "path": "PHASE_48_DELIVERY_REPORT.md",
+      "bytes": 1639,
+      "sha256": "711a4131e3bb1ec1575b8375996cb9e505e5bcbd299634cd01cfd4446b006641"
+    },
+    {
+      "path": "PHASE_49_DELIVERY_REPORT.md",
+      "bytes": 425,
+      "sha256": "3bde48a9c6ac655ab26b0b863db0bbcb0b8a4b30a8b7ae3a8b192389b074426a"
+    },
+    {
       "path": "PHASE_4_DELIVERY_REPORT.md",
       "bytes": 1788,
       "sha256": "2c87ae287957f14387c29abe354a52bc76002fff35632d7e814b0ada92e26e9f"
+    },
+    {
+      "path": "PHASE_50_DELIVERY_REPORT.md",
+      "bytes": 1035,
+      "sha256": "4216932b9ee1d4fc19f4bfe226f66d9ec09d76cc5e2c87920db000c6f5d7fe8c"
+    },
+    {
+      "path": "PHASE_51_DELIVERY_REPORT.md",
+      "bytes": 2204,
+      "sha256": "f11b6b9bde5e248450161519f6d1ebb1c07f9c7d43167e0076086beb211dcca5"
     },
     {
       "path": "PHASE_5_DELIVERY_REPORT.md",
@@ -417,19 +687,24 @@
       "sha256": "e74fe150f3911e11d8d0a5d06e7fecd8a30c8d96d3d018b23c0e6ada05ba7c21"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_13_CAMPAIGN_OBJECTIVES.md",
+      "bytes": 506,
+      "sha256": "a189b14798458939a617e7964b3ea526437d4db6b5387001436d280a877f5bd2"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_14.md",
       "bytes": 654,
       "sha256": "842a5bb3744acd2858f6466d49895648ee1bd598f83f74180e6dbc5a5dd40dc7"
     },
     {
       "path": "QA_CHECKLIST_PHASE_15.md",
-      "bytes": 263,
-      "sha256": "e0bdac99d4356fa1f734429c7ed20a4feba8d210231065e0767982e465e808e1"
+      "bytes": 655,
+      "sha256": "3dc078ed873a1c3e34f324a50b8c6f1aad0bf983c0fc149a6efaa6eb212f3fdd"
     },
     {
       "path": "QA_CHECKLIST_PHASE_16.md",
-      "bytes": 398,
-      "sha256": "31d9b1a6c109ac081b0e1a65e2df98ed78930f6bfc589747b385f65a94d79745"
+      "bytes": 645,
+      "sha256": "4d7f9956871ee1e4432ed0addf6a56f3d5d52904686ef38ceefa91b495a4777e"
     },
     {
       "path": "QA_CHECKLIST_PHASE_17.md",
@@ -437,14 +712,19 @@
       "sha256": "312a89f90fce05af21bc8b30afb5d4cde0051919bf1e8e741956a24151a7a1db"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_17_SPECIAL_OPERATIONS.md",
+      "bytes": 662,
+      "sha256": "8cc9108a613aaa13942196eb2afa12524bb33f1142cd52ed7b4eb21cb4209260"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_18.md",
-      "bytes": 245,
-      "sha256": "2ef5ee26c463c467622d0d2dd2f7397d1affba20b11efbd3b2f311661e4f933d"
+      "bytes": 640,
+      "sha256": "52de16c5dd9af385cface7874c175af01174819bda277af998f1f217e3a463f3"
     },
     {
       "path": "QA_CHECKLIST_PHASE_19.md",
-      "bytes": 219,
-      "sha256": "4cba88daae5c020e33788c315068444205343ce99dc7a685c5b20e11da10dfb6"
+      "bytes": 967,
+      "sha256": "68ba479dcd28d359cc927afd2fdf8dac2471fe00439dfbe7beb76190eb7cdf92"
     },
     {
       "path": "QA_CHECKLIST_PHASE_2.md",
@@ -453,33 +733,53 @@
     },
     {
       "path": "QA_CHECKLIST_PHASE_20.md",
-      "bytes": 255,
-      "sha256": "931d7a6cd16ed2fbf01ce04548a95ea02a2a7ba6b6aa4a0425b95819106b15d8"
+      "bytes": 267,
+      "sha256": "400cf083422bd15fd10ad83023207ace7b09e0ee207070ace59101972ece2a5d"
     },
     {
       "path": "QA_CHECKLIST_PHASE_21.md",
-      "bytes": 553,
-      "sha256": "add1e63e80ef8610469bbb700b0c2fa6ad4714225de06994b246af0d34d66216"
+      "bytes": 906,
+      "sha256": "d6cb07a48cddd3064e412ab6b93102944b3c0677c5f8effdf4e2955509062ed6"
     },
     {
       "path": "QA_CHECKLIST_PHASE_22.md",
-      "bytes": 399,
-      "sha256": "00c86ef1d16671829bf423b6158c261a7da3edb39e38456ee8d22f211f2bf977"
+      "bytes": 269,
+      "sha256": "d6cf094ad4feacd0e5efd398c7a63ec06fd909fa6b30a6e90590eb1e173b4453"
     },
     {
       "path": "QA_CHECKLIST_PHASE_23.md",
-      "bytes": 362,
-      "sha256": "13a954e6c8d22cd5eb3248ba288bfee3dbf04b9246735058f6737879e852b233"
+      "bytes": 532,
+      "sha256": "a08e5147658dece776f519145abdd3ebb6c4069b93a30fa12b88b1d6c25a201c"
     },
     {
       "path": "QA_CHECKLIST_PHASE_24.md",
-      "bytes": 241,
-      "sha256": "3e8a72ffcaea18976523877e89fa777abbf5fe1cbc94518581c9f33de91d9403"
+      "bytes": 747,
+      "sha256": "322c750ae77814cf1831adc1bea9d05c06b3d32be4f6d6cc3b82d086c4707da7"
     },
     {
       "path": "QA_CHECKLIST_PHASE_25.md",
-      "bytes": 282,
-      "sha256": "771f901d95c09ad96e8dcb9c76a52b3856be0a17b42cdfec9bfbdcf669b38bef"
+      "bytes": 485,
+      "sha256": "b3e3d80d3c5861a21c295ac6b4a9990ff243179d59fbab2d6981b5d6ba0ac0b8"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_26.md",
+      "bytes": 934,
+      "sha256": "865e04be965dd7c994d39793aafb51cd38a6906c4b8ed35fc90e65983fb42cbc"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_27.md",
+      "bytes": 627,
+      "sha256": "4abf1142d9767ca6d96f24382b0d1202d42823ce77334573e4bd2c12b85fe5fa"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_28.md",
+      "bytes": 414,
+      "sha256": "ccb72502f8a5e5c2f276d327be95b0d029b403b23175569b9ecedcfc98796559"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_29.md",
+      "bytes": 541,
+      "sha256": "02a0b6fb02ade01bd358475f10255afd40769e2d3ea6535c5c6a4123276873dd"
     },
     {
       "path": "QA_CHECKLIST_PHASE_3.md",
@@ -487,14 +787,114 @@
       "sha256": "18ccc80a8fadbb3f528aea9cee6ea8ec2cf649dc0c1aecc517703943e7415047"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_30.md",
+      "bytes": 384,
+      "sha256": "1f45fe762bddc58d497646b630df0c248f541c0e102d1a0a6ceba6b065e7937a"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_31.md",
+      "bytes": 466,
+      "sha256": "59d28ad32fdb53fc6eb7c602431d55506e218523a54dae7d4f5a93ce145550fb"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_32.md",
+      "bytes": 432,
+      "sha256": "5be851661fdcbc41bcd9dfa5e6f34f806f4f28579ec50ab6a5aac603dbea7cf7"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_33.md",
+      "bytes": 414,
+      "sha256": "b522f9601be46ca2e4b897f7302904da41ce1f211e53e948c1fd4bc721f3f252"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_34.md",
+      "bytes": 324,
+      "sha256": "1a548d3bf2c8dba137efe9a575142a245a22d9940a9fa5d584a9ae58e5367d16"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_35.md",
+      "bytes": 407,
+      "sha256": "4e75d9e8474941398d036385cc4cc039c0b744e804eaa9bec564562728d2eb27"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_36.md",
+      "bytes": 415,
+      "sha256": "b6665c7242fc80736177b8d672b96e9a90950d743c32ec42493b29328345fbb4"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_37.md",
+      "bytes": 206,
+      "sha256": "7762c39bbb8e5be1009f11033090c5cd5bf499c40fb5bb2488772e3cce7f07c9"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_38.md",
+      "bytes": 434,
+      "sha256": "49f0c38dd9b062cb18789fd32e84bcffedf1729fe3376dd63cba8c4730dff860"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_39.md",
+      "bytes": 453,
+      "sha256": "5532855adaea79b1d23390eefe86128bf6ad587bd87226d4f5fa0bcfda5b22aa"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_4.md",
       "bytes": 1188,
       "sha256": "67cd6fa2c101b066337ad5826dd7c8cb2ca617af403069742cba1ca23b0d0cfc"
     },
     {
+      "path": "QA_CHECKLIST_PHASE_40.md",
+      "bytes": 354,
+      "sha256": "58d9d0cc09abda3ff3d25c5fe87ee2ed395ea1bfcccd0dddfd7784f241c88cf0"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_41.md",
+      "bytes": 487,
+      "sha256": "e1f7397faf4410758515e394855f60f91b9de8da8274afdfb558aa45582062fb"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_42.md",
+      "bytes": 172,
+      "sha256": "59ff5faaec04e774525bdb18c2d977d7a10b76d82b1bb00a6b08105f1beb0a8c"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_43.md",
+      "bytes": 348,
+      "sha256": "62462cbfd183c986fd4e8f3ab316ae68e6b7794e3b55b45ea5fc2209562ff1bf"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_44.md",
+      "bytes": 319,
+      "sha256": "6915bdd3404d828f371a17ba298872dc09d94920473ac696808476e189cb3b4e"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_46.md",
+      "bytes": 423,
+      "sha256": "04271e9f6e1494e64940c00cf8c7d9fff63a9f555aca4faef2147f91cecc2389"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_47.md",
+      "bytes": 997,
+      "sha256": "a6ec7aa2725bf124b0fad0e3a55f894f81917b77febb51d641b7573ada9b749c"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_48.md",
+      "bytes": 1441,
+      "sha256": "c8c1e1743c60320a4cc9f168d96dad825deecf6701a90ae1b241b27811e13583"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_49.md",
+      "bytes": 276,
+      "sha256": "0856b4797d1077ba7cb73b342603ca448d3ad97cc702a5671c6669c93af94873"
+    },
+    {
       "path": "QA_CHECKLIST_PHASE_5.md",
       "bytes": 972,
       "sha256": "2d45eb9d1099cf0c669ebf998c3d0f528cb02636a2f89014aec0874052d36924"
+    },
+    {
+      "path": "QA_CHECKLIST_PHASE_50.md",
+      "bytes": 650,
+      "sha256": "9e69b5f854c4aea03544550a07fd4e1255859001e3459054b8efbeda62758362"
     },
     {
       "path": "QA_CHECKLIST_PHASE_6.md",
@@ -518,8 +918,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6605,
-      "sha256": "bb4c4f23f37b05581d7e190f2d977eb86e1c661d685a2e46626a1371afcfe6d1"
+      "bytes": 6797,
+      "sha256": "83ad08a61c532885afdacaa2a5dbff82ee4f6b582588142984f1e2cd8a80f268"
     },
     {
       "path": "RELEASE_NOTES_v2.0.0-alpha.01.md",
@@ -677,6 +1077,186 @@
       "sha256": "5decbab29d35421686c6d1a17029ef053cfe2c28e50525d169f0b38e75f2243b"
     },
     {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.28.md",
+      "bytes": 500,
+      "sha256": "fdea72df6cad65d8318afd37d3bc0b68af4b238fbebe7d5745b5d0a62f83784c"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.30.md",
+      "bytes": 1202,
+      "sha256": "57b4a208ced03c68b719ab22288caf44efa07d7b4bf7f8496bed0b4812a33068"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.31.md",
+      "bytes": 775,
+      "sha256": "995ca84297bced4df75aa047a0c6fa0ad900958fe8c252778ac73d235ba915dd"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.32.md",
+      "bytes": 1143,
+      "sha256": "e28db4d618e3e0ecb70cea541b206445def2ce04453793d3602efe995d46e211"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.33.md",
+      "bytes": 839,
+      "sha256": "8689e8a3135a91d19886356e1e7242ddb1de8a85a5d8bcbb17228f7c88cf7b97"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.34.md",
+      "bytes": 988,
+      "sha256": "0598f83117e8084194683190a7bce21d4f159517c135a8124b307b499401ecbf"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.35.md",
+      "bytes": 498,
+      "sha256": "9f6a3e267e86ea4183304224eb88bd956f789614e09ea0336fe769783b7f89ca"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.36.md",
+      "bytes": 1248,
+      "sha256": "e3bbe0bca3499f016c70ae101f169cb62931b4c68c48afb20c30e524d1af9566"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.37.md",
+      "bytes": 268,
+      "sha256": "56a4fc8e9a48ff3d16f61271cb6c2c1855fc0a70896bb4320233192e29d5a03d"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.38.md",
+      "bytes": 517,
+      "sha256": "7c0306aca03e83a8ec8567d9b0de03e29668b46a8d024e1c2c1bd9e1332126c1"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.39.md",
+      "bytes": 1389,
+      "sha256": "f29658ae3d986d70b1fe22b0c4dd994a126ae079559bf45eeb8392d07dd57687"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.40.md",
+      "bytes": 847,
+      "sha256": "c1ba6530509e9e45c592c3689c214c4b44e3c66371ff886d54460841401b3a22"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.41.md",
+      "bytes": 951,
+      "sha256": "01e5ce8f6fba3a19cd490d8e1a245f8765b6e3650e333a62abd328220c6e1f14"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.42.md",
+      "bytes": 1031,
+      "sha256": "420ec049f2daeebaa06ba25b3efa2c084094957076e881f57be466f205d4dc50"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.43.md",
+      "bytes": 686,
+      "sha256": "3303ee7491ac9c6823697150bccae7c58b766bd2d5b4629d4a1838e1512495f4"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.44.md",
+      "bytes": 1247,
+      "sha256": "fc0492417448ad9cb9b7f6306b0405016bad8a57fbd47912c39a10d5c4e3e805"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.45.md",
+      "bytes": 783,
+      "sha256": "1ba10134939f58292d5d3a0f5041e58390427723cfaec8179b5f1a1506f0128a"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.46.md",
+      "bytes": 911,
+      "sha256": "3d43a9abe798fc2033b06b97eeeae4d408295807141190da14e742bd2692275b"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.47.md",
+      "bytes": 417,
+      "sha256": "d4cc78ee8e24ce9e03bfda8c94fa5cf9c43c3ccab207a28a2229855a31499a57"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.48.md",
+      "bytes": 900,
+      "sha256": "b57b1f57c7f6d3d0fffff86b979c638de0bbbe52a159ab7ebb944ec80888b7ed"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.49.md",
+      "bytes": 800,
+      "sha256": "e53b50513b793468ff43652f8efbf3117f36f8703eb6a3fc12008b3c5a4b1130"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.50.md",
+      "bytes": 821,
+      "sha256": "3e612dfbe9ae660315a13b01cceba53138e42722e620c07080e6914351718c0a"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.51.md",
+      "bytes": 853,
+      "sha256": "303d53fecf207d4fe89de4939cbc58781832c405d6fd178c43e33d8de99719e6"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.52.md",
+      "bytes": 587,
+      "sha256": "d0037253b6fbadee060ed4f4fa86803acbdf3d0a45eeebe2e2abc215f4abc60f"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.53.md",
+      "bytes": 848,
+      "sha256": "191396ecd6664769bfe00de9f8bebe327a9a5439060a3797ff56375b0dbbe8b1"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.54.md",
+      "bytes": 866,
+      "sha256": "857aac35de3e25b3f7ceb3eb4760a1534f40560031070153797b02acf4ac61de"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.55.md",
+      "bytes": 945,
+      "sha256": "6cca86fff7cf92d0e78384d9f53dceb74edc0f0a8e3ccd65fd724af2fc06e84d"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.56.md",
+      "bytes": 1060,
+      "sha256": "321bc9522908a39bd4768d7a88561cc68d76b59745cf08d826ae7eaf687b9cf3"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.57.md",
+      "bytes": 261,
+      "sha256": "b50ae9a4fc7ecbab5380bad14373f830018d75a2f404d69dbc85cca67bc4118e"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.58.md",
+      "bytes": 637,
+      "sha256": "f2ba2db37e970157a19cc301f6003b2c0d860ca969d69ba7df62863f97f57542"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.59.md",
+      "bytes": 576,
+      "sha256": "f5af81cfe5e443b0235ae23a99fabc6443717af798f3ac3d7a7d79a32098b7ef"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.61.md",
+      "bytes": 765,
+      "sha256": "dfa0db2467df068e236e1462adbe91bc1b3f2061a2ba443bc166771d3b0c4b30"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.62.md",
+      "bytes": 1513,
+      "sha256": "89b1af0ddcf052abf73d16205fc8350bd547babf44d6997f3ff68d631c93e88f"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.63.md",
+      "bytes": 1313,
+      "sha256": "6a54d4db59e710b40a383180835f5db350b2d28b0f4b2e82c2c7810a287b3a27"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.64.md",
+      "bytes": 179,
+      "sha256": "f3844751bbc80b0a3fa1152f87b2b80356ad247fd962441807e2ed96850584a6"
+    },
+    {
+      "path": "RELEASE_NOTES_v2.0.0-alpha.65.md",
+      "bytes": 729,
+      "sha256": "6243d50b972d656d4fe3f4489e17321931fbf38d5d6af79951addc37866aa4e8"
+    },
+    {
       "path": "ROLLBACK_PHASE_1.md",
       "bytes": 808,
       "sha256": "d77a3375a4d5ef616665ada2e2f450a684e7968863a8cdad257703494f3d3197"
@@ -732,19 +1312,24 @@
       "sha256": "afbc78b2927fa5127d9386bb4a0041783623ad0c5069ca8d23f03db9f59c9c8e"
     },
     {
+      "path": "ROLLBACK_PHASE_13_CAMPAIGN_OBJECTIVES.md",
+      "bytes": 473,
+      "sha256": "7ff7d01814117d6dd34dc63bf32f8516789694fb1212ca123a631b9a9a19856a"
+    },
+    {
       "path": "ROLLBACK_PHASE_14.md",
       "bytes": 489,
       "sha256": "e87f7e566c59be5221435aa95ce71a8ee9acd0d3d6a6d81c6fb7b7210e308c83"
     },
     {
       "path": "ROLLBACK_PHASE_15.md",
-      "bytes": 91,
-      "sha256": "86a66ecff2f6349b9ca3557eb3768370467a41aa5d2fb67e3b55b4a1f5071347"
+      "bytes": 558,
+      "sha256": "10846a97b5680094652b43f7674c8b83382711b8ffaf49647a117beaef5d4719"
     },
     {
       "path": "ROLLBACK_PHASE_16.md",
-      "bytes": 88,
-      "sha256": "ee957e19aa8cdf65e82bb9258003c5a912ae13773498639952fc02d855753426"
+      "bytes": 610,
+      "sha256": "2f88df25923cb0e710dbf1fc2e3008b32cca08c2e6b9ad2d0c60f39a410a9458"
     },
     {
       "path": "ROLLBACK_PHASE_17.md",
@@ -752,14 +1337,19 @@
       "sha256": "1514b25c767f45de93a0256a99c86a49840782e6c684e03093fc5edc089d7095"
     },
     {
+      "path": "ROLLBACK_PHASE_17_SPECIAL_OPERATIONS.md",
+      "bytes": 590,
+      "sha256": "564298c1446af420b4b8df076b4188c18845fe1d2889f5ca9068dab964af67b7"
+    },
+    {
       "path": "ROLLBACK_PHASE_18.md",
-      "bytes": 86,
-      "sha256": "da58b6cbb6bf6916b35ea7cbceab173175ac439dd3555a6ab9e4ecde1e539d1a"
+      "bytes": 543,
+      "sha256": "3e7ebd25d1c7394683c2b363f52c1f54b4627c743634414c03c0a893c9153993"
     },
     {
       "path": "ROLLBACK_PHASE_19.md",
-      "bytes": 84,
-      "sha256": "5b8aadd6f822aebdec93c48927d069280fae12d55a7dd3b1032e2713380a8dd9"
+      "bytes": 1029,
+      "sha256": "e8cdae81f1884d1a7dac89cfa43d7c9b26a33cf67e6664ab4573efbadf93b638"
     },
     {
       "path": "ROLLBACK_PHASE_2.md",
@@ -768,33 +1358,53 @@
     },
     {
       "path": "ROLLBACK_PHASE_20.md",
-      "bytes": 125,
-      "sha256": "edcec34aec01f20d2a168b05623a927a3c8d29c72973575335311f46f4d5b0ff"
+      "bytes": 280,
+      "sha256": "85cf97daa4c3efc7911ce816282ac0e32706fe24e0939cd05d6f6a4329c7b960"
     },
     {
       "path": "ROLLBACK_PHASE_21.md",
-      "bytes": 208,
-      "sha256": "528fffd3fc3d4119dcf6c9df672a7ccaae8e698aafc23290e123c61195e1e378"
+      "bytes": 820,
+      "sha256": "05d94cca606dbe559d900655e51442526b242614c04bab3d8701c6e1380f882b"
     },
     {
       "path": "ROLLBACK_PHASE_22.md",
-      "bytes": 89,
-      "sha256": "9c8b6a83a414abe6ada7860e4dece5471f2b0f160cae517bc6a225e7a5abbd51"
+      "bytes": 220,
+      "sha256": "fb71af2268f8ad4ebfdf6884ba555350deefcf2d88cc80ca3531d0027160308e"
     },
     {
       "path": "ROLLBACK_PHASE_23.md",
-      "bytes": 159,
-      "sha256": "3f9fb5c8b1966339124c719519290f1ce7e96b3ba39f6358b42284f49680cf21"
+      "bytes": 530,
+      "sha256": "99295b6ad3c30e78f5dfacdee378a54d25e9a315d3385fab233e1c7d74108cc0"
     },
     {
       "path": "ROLLBACK_PHASE_24.md",
-      "bytes": 108,
-      "sha256": "c3fe30c35794b26e3be1bcd3547e25102cce5b473b43f00559fd1fac532e3796"
+      "bytes": 656,
+      "sha256": "e5283d14d1265a440fcffc978eca95f007d452c0eaa5591b21ebfe6339b4e5de"
     },
     {
       "path": "ROLLBACK_PHASE_25.md",
-      "bytes": 116,
-      "sha256": "356558f6fe30054ac7a303130f74f853c3c5df6f666e0da2f47ea9df283e02cc"
+      "bytes": 454,
+      "sha256": "beed33558a9ae1ccfc2a52083ed85c5f09db162aa2656ad7b278447c7cb85892"
+    },
+    {
+      "path": "ROLLBACK_PHASE_26.md",
+      "bytes": 701,
+      "sha256": "58ef2bcdba47c9fe17d017e074ba14e1ef0c0a7aba9a948f5c6332ed24996926"
+    },
+    {
+      "path": "ROLLBACK_PHASE_27.md",
+      "bytes": 475,
+      "sha256": "fbe7687685d9f593b8416310638deb5995fea23c6e9b362d2ba66651e39a62d6"
+    },
+    {
+      "path": "ROLLBACK_PHASE_28.md",
+      "bytes": 306,
+      "sha256": "9dd7883e2235a79d538f501c09b1bcc4cf20626f03c10474caaf6c89f80d7550"
+    },
+    {
+      "path": "ROLLBACK_PHASE_29.md",
+      "bytes": 531,
+      "sha256": "e206f135dd2eb4e36ee567b15ff3ac4dfb699315086b6095a459108c8851d939"
     },
     {
       "path": "ROLLBACK_PHASE_3.md",
@@ -802,14 +1412,109 @@
       "sha256": "34cc9bfa3131c1671ab88e8297972bbce7b8d924f1068bbd647f1a23e9a6b969"
     },
     {
+      "path": "ROLLBACK_PHASE_30.md",
+      "bytes": 436,
+      "sha256": "1e6ac53af6e322cf6d25c8f7bf53fde7ff82329b63fae3dd9dad2646c291f6f6"
+    },
+    {
+      "path": "ROLLBACK_PHASE_31.md",
+      "bytes": 399,
+      "sha256": "729bb08c71b784f7f7a446e510f77909b21e6c7da6d74a4a996d7dab8b85bcc6"
+    },
+    {
+      "path": "ROLLBACK_PHASE_32.md",
+      "bytes": 299,
+      "sha256": "adb76459f4b06f74e66c9175fe035e980ada4d9d1163f65179e8b5071dfd3c01"
+    },
+    {
+      "path": "ROLLBACK_PHASE_33.md",
+      "bytes": 402,
+      "sha256": "741336434edad28b4a351dacc6abce18bf8ea515938aef54d7be7289c4bb246f"
+    },
+    {
+      "path": "ROLLBACK_PHASE_34.md",
+      "bytes": 251,
+      "sha256": "0f9c76d7b80427f7b0880a55cefec84015af01e9daea881c7903fdfbb8b4e79a"
+    },
+    {
+      "path": "ROLLBACK_PHASE_35.md",
+      "bytes": 341,
+      "sha256": "ae107566fc01d13da6fd6b3b47327c89e35adf8a8a9c2c9fabed88389d2cff13"
+    },
+    {
+      "path": "ROLLBACK_PHASE_36.md",
+      "bytes": 365,
+      "sha256": "515e3d92858f793ba31d007d65862c2617415eb711c21c762f70623fc716b912"
+    },
+    {
+      "path": "ROLLBACK_PHASE_37.md",
+      "bytes": 248,
+      "sha256": "05d7642a311fe2a15383e50f2ce6c0f28bcc1061345c74ac1295cdd37aebfd19"
+    },
+    {
+      "path": "ROLLBACK_PHASE_38.md",
+      "bytes": 361,
+      "sha256": "28eaf9a8e5fcec398b9a87638eb0c9d037566c07e6da704e76a77ba6a0a49979"
+    },
+    {
+      "path": "ROLLBACK_PHASE_39.md",
+      "bytes": 351,
+      "sha256": "01b8316d2e516983697cd83624a53b862eeb114c9cc9c0a0e362b7a6bf2b36e2"
+    },
+    {
       "path": "ROLLBACK_PHASE_4.md",
       "bytes": 898,
       "sha256": "0c05de7e2b72cae513e8a2c0f59554135975490879ffd0c2cddbd8b2d04bf50b"
     },
     {
+      "path": "ROLLBACK_PHASE_40.md",
+      "bytes": 298,
+      "sha256": "7e30a0d64a185ffec640ac34598fb2c8addb83d69aa0d2fa05480297f18e6d6e"
+    },
+    {
+      "path": "ROLLBACK_PHASE_41.md",
+      "bytes": 382,
+      "sha256": "e920660b124e6881b37b63a0b27f29075f7ad957bce7f0e940557659f790dafb"
+    },
+    {
+      "path": "ROLLBACK_PHASE_42.md",
+      "bytes": 128,
+      "sha256": "807bebfe793389a4bc09121de3750e6805ca0025c17cef2dddb941b041357b86"
+    },
+    {
+      "path": "ROLLBACK_PHASE_43.md",
+      "bytes": 232,
+      "sha256": "0f11a2ad4eee70c94436efe2f0c63a6b244a08429db9f5079021776a24997fa5"
+    },
+    {
+      "path": "ROLLBACK_PHASE_44.md",
+      "bytes": 172,
+      "sha256": "8a9e33db9479cb57c5003b4002aec8cdc9ad3f003d73d1cf5be20dc0ce75b28f"
+    },
+    {
+      "path": "ROLLBACK_PHASE_46.md",
+      "bytes": 366,
+      "sha256": "eb9fd8ce82f8823a614192e42ca7d8ec36f31b52ef1669d620173f86a94dd4ef"
+    },
+    {
+      "path": "ROLLBACK_PHASE_47.md",
+      "bytes": 788,
+      "sha256": "1123bec2021534f58dfbbc112a4868db6e567c1e2b248c3d06cd005adeac480c"
+    },
+    {
+      "path": "ROLLBACK_PHASE_48.md",
+      "bytes": 997,
+      "sha256": "addc7e1dce10859e29d225bf604ec2eeb23871f8b98f108f06e3b5dc2cb8c1ae"
+    },
+    {
       "path": "ROLLBACK_PHASE_5.md",
       "bytes": 721,
       "sha256": "2d040a0b969928bdf2f2646016f355b497221464e104f32d4b40cfe3c40604d2"
+    },
+    {
+      "path": "ROLLBACK_PHASE_50.md",
+      "bytes": 469,
+      "sha256": "06cead5a6b980dcf98c549451757ecd6190d5bdf4afb78f25cd90f71c6085832"
     },
     {
       "path": "ROLLBACK_PHASE_6.md",
@@ -880,6 +1585,11 @@
       "path": "assets/avatars/de/sonar_01.png",
       "bytes": 376749,
       "sha256": "fe437ad997f9272a970971b9ccf121ba5deae2e6ebd8bba6e6886ab3057c9094"
+    },
+    {
+      "path": "assets/avatars/subofficer_ww2.svg",
+      "bytes": 1877,
+      "sha256": "ac5fd0aa8203de3714281e1c6b3aa2fdd517c87c63fdb9bd47baef68e8fe6b27"
     },
     {
       "path": "assets/avatars/uk/captain_01.png",
@@ -1242,6 +1952,11 @@
       "sha256": "74d858f16b3e53226ea385f583c013928bf4ab52263d06001b1adf1266dc1050"
     },
     {
+      "path": "css/phase13-campaign-objectives.css",
+      "bytes": 1915,
+      "sha256": "f9bdc3e5d927e2c7ed7e538536e8425bb3352331a41552a16b47eccd23dec68c"
+    },
+    {
       "path": "css/phase13-strategic-command.css",
       "bytes": 2644,
       "sha256": "f84e1bd78a21845aa04c296caaa9f376d9c7d6ffbd319f0e20b74990581b97bc"
@@ -1252,9 +1967,19 @@
       "sha256": "5e422d7e338e3c3f655cafd5251abf85c5a29b645080f20cc1480616f2232a8f"
     },
     {
+      "path": "css/phase14-campaign-consequences.css",
+      "bytes": 1971,
+      "sha256": "05e626b234d5734c27441b4cd537623d0d83536046149a57913fa9a254cc0acc"
+    },
+    {
       "path": "css/phase15-command-room.css",
       "bytes": 4890,
       "sha256": "14196e1b3cc30df1cb0e6b0389f9d06a4001e6c4dc6b93f34758e286fdae370e"
+    },
+    {
+      "path": "css/phase15-high-command-orders.css",
+      "bytes": 1751,
+      "sha256": "6278cf3de1f53118b832f87ad04ec6bf203eb1dfc344ee8e86d8085cd4d9e148"
     },
     {
       "path": "css/phase16-buoyancy-depth.css",
@@ -1262,14 +1987,34 @@
       "sha256": "bd4c1c2fe4751ca43514cc3a41ed1437cc76854bba1aad5db04b5c8a660e25fd"
     },
     {
+      "path": "css/phase16-campaign-events.css",
+      "bytes": 2331,
+      "sha256": "43de576af2954f91febe5f832542d1636ba524673a0cb39ec11611cbd39ca1cb"
+    },
+    {
       "path": "css/phase17-sonar-room.css",
       "bytes": 3251,
       "sha256": "bcefbb4ec82e34ecd8cc73d1eef9ed5b2fbb1692feda5bbf61806c44bb9af745"
     },
     {
+      "path": "css/phase17-special-operations.css",
+      "bytes": 2361,
+      "sha256": "ccee20b1f3a657bc88a2476eb6c46faa21dc3b0ce995fe5906bb67f5eb2253a9"
+    },
+    {
+      "path": "css/phase18-operation-chains.css",
+      "bytes": 2080,
+      "sha256": "6dc1ca8aa4317392bae3127f46b07d00f0b6eee8001521d21fdc225de1d9b3fb"
+    },
+    {
       "path": "css/phase18-periscope-optics.css",
       "bytes": 2728,
       "sha256": "1132f008062bfbb877c56dfd1e64db426d075703011fd49918a0d670fd845922"
+    },
+    {
+      "path": "css/phase19-operation-outcomes.css",
+      "bytes": 2073,
+      "sha256": "e6649d053a9d57705b88e1621e3adf6d222df7a9ae1ebc76178f88eec4a9b88e"
     },
     {
       "path": "css/phase19-tdc-fire-control.css",
@@ -1287,9 +2032,29 @@
       "sha256": "b7f74f62bc9051be2572b1032565a788526f3b4a9a7234f38ee13192b4c0be25"
     },
     {
+      "path": "css/phase20-operational-honors.css",
+      "bytes": 1670,
+      "sha256": "9374d7eae96b787490bf97f50611bbd2c8e2b6901bf5316f1b2ce3ce61d9bdf7"
+    },
+    {
+      "path": "css/phase21-command-advancement.css",
+      "bytes": 2398,
+      "sha256": "31fcde77fdb7dd9e5adab5cbac34845ab1a1bf56a1d5890faa6dce34545113be"
+    },
+    {
       "path": "css/phase21-damage-emergency.css",
       "bytes": 2623,
       "sha256": "d9b726ca3b4d4bfbdcc37e7c52d0577d710cd0238f30220037bb7b93b4f33f5d"
+    },
+    {
+      "path": "css/phase22-veteran-officers.css",
+      "bytes": 525,
+      "sha256": "bb99fd47c2c8ef56b40d0b992871441d1d070e7574ea6824dd4d3aef8363f571"
+    },
+    {
+      "path": "css/phase23-crew-drills.css",
+      "bytes": 451,
+      "sha256": "63febca2483b3d17132709a291f7a03e91a4c134b41388887c370cc3abeb9450"
     },
     {
       "path": "css/phase23-crew-readiness.css",
@@ -1302,9 +2067,39 @@
       "sha256": "5eea0ee05928c9b108b15a2c9be52fcdfb089de48663a7a4ed5d0edc8c662717"
     },
     {
+      "path": "css/phase24-silent-depth-periscope.css",
+      "bytes": 8189,
+      "sha256": "7cff7eb9325e588a6de09ca8ae957da51b99473415ec83bed6535038b5cd8850"
+    },
+    {
       "path": "css/phase25-convoy-doctrine.css",
       "bytes": 2249,
       "sha256": "9e363cfdff0dfdf19db78b60b06544bb3d6bf694a0e385ccee858e793bde2402"
+    },
+    {
+      "path": "css/phase25-silent-depth-command-room.css",
+      "bytes": 10091,
+      "sha256": "4840726e05976ed13697004a926631d73ffda7adf5995228dc480adb121ec4f0"
+    },
+    {
+      "path": "css/phase26-subofficer-copilot.css",
+      "bytes": 5099,
+      "sha256": "b4740a57a4b856e5612a58154e800d383eb22f6faa54eed173d7f5b5c03a4758"
+    },
+    {
+      "path": "css/phase27-alert-atmosphere.css",
+      "bytes": 5669,
+      "sha256": "d4d318290374856bbcd0369104a514caf7d31e956bc785368170ea5da05a60a3"
+    },
+    {
+      "path": "css/phase28-air-attack-evasion.css",
+      "bytes": 5110,
+      "sha256": "2080bea2c086de84a984970609455ce0390837c6ce86d5b16c5b75faf0913ccb"
+    },
+    {
+      "path": "css/phase29-tactical-naval-chart.css",
+      "bytes": 5006,
+      "sha256": "2ff35856880dd745008824f0ce170f2a8476317856f47b71cb3b1c411287288c"
     },
     {
       "path": "css/phase3-engine.css",
@@ -1312,14 +2107,119 @@
       "sha256": "fbcd4c3bf1d40af15d120e45c66c0cd3c2b211e5e9c907df9d869800f2049f24"
     },
     {
+      "path": "css/phase30-waypoint-navigation.css",
+      "bytes": 3654,
+      "sha256": "747db4e40e1bdc0672fd7c27db54a8b8562f59a2801f0080b72efae1069d413b"
+    },
+    {
+      "path": "css/phase31-visual-horizon-contacts.css",
+      "bytes": 5508,
+      "sha256": "7f68edf29539f522094273425eadd37f4fdda48c142f742477615b63c11cc899"
+    },
+    {
+      "path": "css/phase32-torpedo-attack-director.css",
+      "bytes": 5275,
+      "sha256": "5c61c45c0a1235908ac097cc9b31649048637f2baeff34f16400ae5f20434299"
+    },
+    {
+      "path": "css/phase33-naval-ai-tactics.css",
+      "bytes": 3910,
+      "sha256": "7136384e9258bc98b9752ddc710d4797b83eb033652e495da3eb605c39e34767"
+    },
+    {
+      "path": "css/phase34-damage-visual-states.css",
+      "bytes": 5712,
+      "sha256": "835e20ba7cef38d3aa7266ab14669c2e1bd50c5255edc096213f46ef91e4e688"
+    },
+    {
+      "path": "css/phase35-depth-stealth-realism.css",
+      "bytes": 5214,
+      "sha256": "9b0f15623060f0bda62357e1d3098c7c1143dfbec65c4b7dc1fcbe36186ce8bc"
+    },
+    {
+      "path": "css/phase36-cinematic-interface.css",
+      "bytes": 6189,
+      "sha256": "9f8f5fc78a38b4a617de89d4c9d824cea3d2d74e12b345b1732dc80744897bf3"
+    },
+    {
+      "path": "css/phase37-immersive-audio.css",
+      "bytes": 3426,
+      "sha256": "bfee892b78a9f5d5d227823bcfb080bc1d989e1ffa621261b9d0d45c2d76eb1f"
+    },
+    {
+      "path": "css/phase38-cinematic-briefing.css",
+      "bytes": 5749,
+      "sha256": "3a497470b60f4bf0f48f195bc9fff1077ed2b38c3f2526708de4831b9504f353"
+    },
+    {
+      "path": "css/phase39-crew-roles.css",
+      "bytes": 4077,
+      "sha256": "3f0bdd1a660e0f8f48d3b0f73de31727641fa01902504a49e5a949fc2ff8100c"
+    },
+    {
       "path": "css/phase4-save.css",
       "bytes": 2338,
       "sha256": "498bdcf520e64776143414c734ead3b7e739deca13bf5b3950a9332c2946299d"
     },
     {
+      "path": "css/phase40-living-campaign.css",
+      "bytes": 3428,
+      "sha256": "89311c1877f6e0c931b947c8b6b46a11f7064371920db1f38c19d960ae4425fa"
+    },
+    {
+      "path": "css/phase41-flow-subofficer-periscope.css",
+      "bytes": 6076,
+      "sha256": "0ec7a3c964dbb8ac0d5d58bcef841b6d82c14b8af857145246a477f822b658ff"
+    },
+    {
+      "path": "css/phase42-base-workshop.css",
+      "bytes": 2656,
+      "sha256": "392218d063133e9f998dea5dec5f6c810ac5620cec5268ee7fc8fe61bdd984e1"
+    },
+    {
+      "path": "css/phase43-sandbox-patrol.css",
+      "bytes": 1941,
+      "sha256": "5f47ab4586af0afebb00b0d033d070e4b3967f788b8f1808c371d986bd4846ba"
+    },
+    {
+      "path": "css/phase44-story-campaign.css",
+      "bytes": 3584,
+      "sha256": "73ee7236f362df55f36e81889ee99ba860f40b54753ed91974f10c96ba64d144"
+    },
+    {
+      "path": "css/phase46-captain-order-doctrine.css",
+      "bytes": 2304,
+      "sha256": "35daa2addab4225f7c5ef6114a1ad41db6a9c4397bd8af05c32e2869daa0b9eb"
+    },
+    {
+      "path": "css/phase47-captain-crew-realism.css",
+      "bytes": 2890,
+      "sha256": "c91616337b116d5efdf16b317855a8528f2d1de3dad0c8b1f988a8bd56b08201"
+    },
+    {
+      "path": "css/phase48-captain-order-execution.css",
+      "bytes": 3338,
+      "sha256": "a4db44c131a2672dc2bf4e7703f76735989a67d3973773ce6e3c4bec47f3aba2"
+    },
+    {
+      "path": "css/phase49-captain-command-chain.css",
+      "bytes": 2349,
+      "sha256": "3685703889712bdfb6afb982f6e8b5dac0e36c0561fd303319d35eed57a2c90a"
+    },
+    {
       "path": "css/phase5-navigation.css",
       "bytes": 6906,
       "sha256": "6e3b05c669bdc143da32decf8e119c790485d215cfdfbd5056b6361b1944b789"
+    },
+    {
+      "path": "css/phase50-captain-combat-cycle.css",
+      "bytes": 3523,
+      "sha256": "ac0d7b9d1a8a918edd8b349566ec18d6a8109b38345bb268508e7b628b77711a"
+    },
+    {
+      "path": "css/phase51-captain-command-room.css",
+      "bytes": 5557,
+      "sha256": "9b5ec74af1ff418c7101a7b25a5d4146b738ff919d6c5d654bb77511ac040454"
     },
     {
       "path": "css/phase6-physics.css",
@@ -1362,9 +2262,24 @@
       "sha256": "7fb81815e80eb8206537b32119d648e291b4acb4f72a3049590e5e8030ccadd2"
     },
     {
+      "path": "data/campaign_consequences.json",
+      "bytes": 5139,
+      "sha256": "778d136db9147c6f398d8d97ce62d97394efe3183467627e84581e76e891de23"
+    },
+    {
       "path": "data/campaign_doctrines.json",
       "bytes": 3321,
       "sha256": "790a6666de30850bf8c51558279c646dbfccb56708926c59667edc097d8686d9"
+    },
+    {
+      "path": "data/campaign_events.json",
+      "bytes": 9115,
+      "sha256": "2748f3e72a0c2d4035e4bc8e450332888978898e8304eb72038a3d2b160e6c0b"
+    },
+    {
+      "path": "data/campaign_objectives.json",
+      "bytes": 6864,
+      "sha256": "1121363c8a85e70c4447515d73d0b3ffbead02fae7ed776e4b6334b141688e4a"
     },
     {
       "path": "data/campaigns.json",
@@ -1372,9 +2287,24 @@
       "sha256": "be909273886f54f7747d39ef75603a25b3252d41bac0d846833b453221ab8e04"
     },
     {
+      "path": "data/command_advancement.json",
+      "bytes": 13516,
+      "sha256": "fdb61485221c91e83bc937c34eeca1056e3e3813986feead2bfa38b775ddeaa6"
+    },
+    {
       "path": "data/crew.json",
       "bytes": 3280,
       "sha256": "7e6c71d19cbf421666ab820c2dc2490d2b477ad944aa12ac00131aa3762b906c"
+    },
+    {
+      "path": "data/crew_drills.json",
+      "bytes": 11044,
+      "sha256": "cba51b55c2c6a29a0d8a157edd9783bdd4a58bbd8372cc6714011b3a857f22eb"
+    },
+    {
+      "path": "data/high_command_orders.json",
+      "bytes": 7402,
+      "sha256": "8b01fc3281cfa5f65e497e0d23354bfaec5f1696e347e4990cb492f6378d902a"
     },
     {
       "path": "data/logistics.json",
@@ -1392,6 +2322,26 @@
       "sha256": "016993d0957c4ea23b96b0c4d1009e33fd6733b7b548a8126983440c739c17fb"
     },
     {
+      "path": "data/operation_chains.json",
+      "bytes": 10086,
+      "sha256": "2651fe4cd24c98f7476720fc2b82b4e3d82cfd6262f478dcabb955d8da906538"
+    },
+    {
+      "path": "data/operation_outcomes.json",
+      "bytes": 7166,
+      "sha256": "aa5d85a3f78f0c6e4b66c264fad00c23d7f7ff31343d0b0eebc9a6881ecdf00c"
+    },
+    {
+      "path": "data/operational_honors.json",
+      "bytes": 12879,
+      "sha256": "366e83840f77fa01cbc58723d2f32b6a1b4b720c110f66c4f1420ac768f89019"
+    },
+    {
+      "path": "data/special_operations.json",
+      "bytes": 8994,
+      "sha256": "252b473dae0e276c24908cbb3664b7d11c30c9697d740628c8ea9d30c3383444"
+    },
+    {
       "path": "data/strategy.json",
       "bytes": 6457,
       "sha256": "f80244913cb8c776e429b881f2e91b9fafa4fd9908658b094d6d10dc4768e9b7"
@@ -1403,23 +2353,28 @@
     },
     {
       "path": "data/translations/en.json",
-      "bytes": 85481,
-      "sha256": "c115dc32f4785c77aef2c115caa00f7c00af587240129423eacf57fc82ae877a"
+      "bytes": 203322,
+      "sha256": "68b08e76300e01c185f7b56675c48b29557de0c1b9962522e9fe90779ccb5f49"
     },
     {
       "path": "data/translations/es.json",
-      "bytes": 91211,
-      "sha256": "fc35d69f864409917cfb7e1fdf1919a06596ca6d077bb545bd323cb6da0b828b"
+      "bytes": 215713,
+      "sha256": "fd63cfe7a5066fe8676923960b90e27cde600d6163f23dbdb8e5e03dcb37d59a"
     },
     {
       "path": "data/translations/pt-BR.json",
-      "bytes": 89688,
-      "sha256": "0fb7b95ffc6de84ecc4fde525ff69c7799f4c6ce2ce87ec84ad557d57ca6731f"
+      "bytes": 214635,
+      "sha256": "7197c0cd29d31fa4716f706e1f517bdd2c577971f5ce8c58387fe62adf29c50e"
     },
     {
       "path": "data/upgrades.json",
       "bytes": 1241,
       "sha256": "37d1915dab058e72b40a23ac67bde6cfd6f8fd474802f6d21589a4396d4ec69c"
+    },
+    {
+      "path": "data/veteran_officers.json",
+      "bytes": 12416,
+      "sha256": "ff93a8efb10f07e681fcd52f8d512f5a42d4c556a43455aeeff40c9778351a35"
     },
     {
       "path": "docs/BRIDGE_INSTRUMENTS_ARCHITECTURE_V1.md",
@@ -1518,13 +2473,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 3332,
-      "sha256": "e3a2fcb95fa358567ec57d6f9883a1a5b3d514222c66a15493b00a364809cae3"
+      "bytes": 5941,
+      "sha256": "4c1a90aec35602fa3729b1c40d9144f102864abf72c2686bbe41b935f27c0408"
     },
     {
       "path": "js/app.js",
-      "bytes": 56820,
-      "sha256": "fc29d17e0bf6baa1caf4f2263377625c9d244df824a19362b3bc4ba7d208097d"
+      "bytes": 107220,
+      "sha256": "83ecc2d1bbcafbc06a2d1b2c13e6956261e4e0580d9061371630a57d76882147"
     },
     {
       "path": "js/assets.js",
@@ -1533,23 +2488,23 @@
     },
     {
       "path": "js/audio.js",
-      "bytes": 8208,
-      "sha256": "092efff1f6fba617e59c7eba918a005651d8c88a18506770c2ec138264127dee"
+      "bytes": 9427,
+      "sha256": "df5f1858a783acb97b51894e77608f7c70e621907fe62934e23339559386a281"
     },
     {
       "path": "js/build.js",
-      "bytes": 822,
-      "sha256": "ec7d577ff3ff21ea4d020582f2311a00582dfa5bc5aeda05c8afe165e73799bd"
+      "bytes": 706,
+      "sha256": "006add005c333ccf58e3d42ff0ca6b884b3d16daab0e326c7087b3ab09cfad32"
     },
     {
       "path": "js/components/ui.js",
-      "bytes": 3292,
-      "sha256": "8f1a4f85e71ab2960c6e4535ccb04ccecfe5d0602c69f1bedb3693dc687e9925"
+      "bytes": 2932,
+      "sha256": "d71695473d3390a29267a8441e819058a5ead14437ff1fd67247aba599b697e7"
     },
     {
       "path": "js/dataLoader.js",
-      "bytes": 11012,
-      "sha256": "b9e2f6132fdbd9c499310a01cebf0edac8a04ee7726ca1e241e4e4dcf08eceec"
+      "bytes": 35840,
+      "sha256": "8214db0c3ecdc3c3809ee0101fffd9642b193625d3966fd2ebd06776e7d5ba6a"
     },
     {
       "path": "js/engine/ARCHITECTURE.md",
@@ -1558,8 +2513,8 @@
     },
     {
       "path": "js/engine/ai/NavalAISystem.js",
-      "bytes": 27795,
-      "sha256": "da4bf5d61abf7c406d3a1e540fb7c3dd5485ebee83556e90f66c98579751de89"
+      "bytes": 32219,
+      "sha256": "d0b0b6f4a2310fb25ebd55cbe388e885f8dcd6d1ce65910b04e8817c377c9f30"
     },
     {
       "path": "js/engine/core/EventBus.js",
@@ -1598,8 +2553,8 @@
     },
     {
       "path": "js/engine/navigation/NavigationSystem.js",
-      "bytes": 13140,
-      "sha256": "5bd445b00cf1ab90b328701254d120130ea10f0daa4fb5e74fe34defe5730a4f"
+      "bytes": 14135,
+      "sha256": "11d7bac1d68210bacbbbe3d3197fa28fb76e6e554001cdbc223fd60aebc02ee9"
     },
     {
       "path": "js/engine/physics/SubmarinePhysicsSystem.js",
@@ -1618,8 +2573,8 @@
     },
     {
       "path": "js/engine/simulation/SimulationEngine.js",
-      "bytes": 42100,
-      "sha256": "2d8e433875d17d37b6be81810761088c4fdb398b24826b7e82ded7a340dccf5b"
+      "bytes": 42254,
+      "sha256": "359d1656f4c2fefa216ad568e65ccccec16a22574b6bd98c7364c40e1d940394"
     },
     {
       "path": "js/engine/simulation/constants.js",
@@ -1668,28 +2623,28 @@
     },
     {
       "path": "js/save.js",
-      "bytes": 25159,
-      "sha256": "8650cea8e83b5977247d887ece1f969d878ca299c376d53eb2193da523bb7814"
+      "bytes": 31161,
+      "sha256": "08b827b9897dfea989ab50bd57c1121da0d16ecfcbe08ad5e0b900f7cf4f3ce1"
     },
     {
       "path": "js/screens/arsenal.js",
-      "bytes": 5137,
-      "sha256": "d0893c460717d50b3c183404933feb27881bb3c11d25cb0980235e393442cff5"
+      "bytes": 6955,
+      "sha256": "7c4b4758fd793eeb36f08bd45b58729ca8fd4fe99f11e608b6534a17d3654f68"
     },
     {
       "path": "js/screens/bridge.js",
-      "bytes": 15631,
-      "sha256": "2834f51c33b9c3e611bbab677bd11383b0edc1a3cd83b8539f7e5ba6b94f0ee4"
+      "bytes": 18165,
+      "sha256": "5023f1586facfaa8a403e4d54b001b961ab2f8981537cdd5966d644ded1d726e"
     },
     {
       "path": "js/screens/briefing.js",
-      "bytes": 4035,
-      "sha256": "5b68ee8338f28ce7566700e18dbb2cdfd4c70b35ea5994f4987a0a3987d32af2"
+      "bytes": 4327,
+      "sha256": "6f6bb082f49e4c260ec8ed2e364b7287c593c30b14bbe84d867439e22cbef6e4"
     },
     {
       "path": "js/screens/campaign.js",
-      "bytes": 11877,
-      "sha256": "93f46e8b457bca31d44cb733e64520ee73a7af6831663b4e9e88e1b7d1a0648d"
+      "bytes": 35401,
+      "sha256": "e808a9132a5fdbd0c9082990104ad033f0536967d825fd52f8ea26c5dde1a324"
     },
     {
       "path": "js/screens/career.js",
@@ -1703,18 +2658,18 @@
     },
     {
       "path": "js/screens/crew.js",
-      "bytes": 5370,
-      "sha256": "5cc61be069853e074d39184490a69641a5f73a44995d35290af3d36158fa179c"
+      "bytes": 9495,
+      "sha256": "cdbf6a20504084aa537ee4647002df31b093d3cf2ef8e5fc66627d162d1211c3"
     },
     {
       "path": "js/screens/gameplay.js",
-      "bytes": 160307,
-      "sha256": "5125b82dba102197caba032a14ab797bcd67d9822be3d433968ddcac9753f0f8"
+      "bytes": 249381,
+      "sha256": "7442d1be29f1a2ebc5a139647853c2cf0a845ad36987793c88e1004e23b9e6ed"
     },
     {
       "path": "js/screens/lobby.js",
-      "bytes": 6214,
-      "sha256": "3dbf08280f255d517469d80ffcc18f2777538d4b60ba5bb99accf756e9d54439"
+      "bytes": 5682,
+      "sha256": "4d5a6955d26078dad0e525e25d9999ae36061c64da1ccec3000416eabc121736"
     },
     {
       "path": "js/screens/mainMenu.js",
@@ -1738,8 +2693,8 @@
     },
     {
       "path": "js/screens/strategy.js",
-      "bytes": 7327,
-      "sha256": "b5557b2ef5fca61c940a3ef9a92deb8e5f6c61621d3ae81f50375e1841886d20"
+      "bytes": 45699,
+      "sha256": "d02d1892f532ecc6c972758d9cc61c5be12b2e1ed35d0156d10c82f994ba9d2f"
     },
     {
       "path": "js/state.js",
@@ -1747,9 +2702,89 @@
       "sha256": "3b1a9c081dde150e1d22fe71e68b09471c666ec86b6a1e89e518788cd90d22fe"
     },
     {
+      "path": "js/systems/airAttackEvasion.js",
+      "bytes": 6045,
+      "sha256": "9dd779594cb77555c087681b73962da08dee94aa597b7a29040d1a5e0dac207d"
+    },
+    {
+      "path": "js/systems/alertAtmosphere.js",
+      "bytes": 6741,
+      "sha256": "2f52383c363239dcd7a688024672658a1a327ee726769f3643ad1b8787c555f4"
+    },
+    {
+      "path": "js/systems/baseWorkshopIntegration.js",
+      "bytes": 6200,
+      "sha256": "329b8777132f6c7c2ab334d47f7736ff6efbafa69074979b812de93540f461d7"
+    },
+    {
+      "path": "js/systems/campaignConsequences.js",
+      "bytes": 3033,
+      "sha256": "f5f3e377cd9a623d66f5763685c0fd90730a865af95a0eb965be71cd2c44863a"
+    },
+    {
       "path": "js/systems/campaignDoctrine.js",
       "bytes": 3684,
       "sha256": "b4eb4a0e57b00d5c7ee4af716c952372087a2da97f6f2349f39f9863e95c4784"
+    },
+    {
+      "path": "js/systems/campaignEvents.js",
+      "bytes": 5323,
+      "sha256": "21f0daaf8d21dca5b1452894024daf3eb69c432739ae49749ae65cd4e2aa2eda"
+    },
+    {
+      "path": "js/systems/campaignObjectives.js",
+      "bytes": 3004,
+      "sha256": "d529376b81da92399c46e47edc6ed535233873eb821a1764802345534e5a6b77"
+    },
+    {
+      "path": "js/systems/captainCombatCycle.js",
+      "bytes": 12524,
+      "sha256": "116531c31fff015ae40a4c366787f41f08f443942753a48da9e01e7936774986"
+    },
+    {
+      "path": "js/systems/captainCommandChain.js",
+      "bytes": 12840,
+      "sha256": "bffd682f8be5eaf401519daabf7640e2bdaf817f3245ca04e5e9b8f94762e798"
+    },
+    {
+      "path": "js/systems/captainCommandRoom.js",
+      "bytes": 14033,
+      "sha256": "0e321f1a29944922735b6d8309bd67cb2776cf81bb3bf015da67e9eb0e8099bc"
+    },
+    {
+      "path": "js/systems/captainCrewRealism.js",
+      "bytes": 8861,
+      "sha256": "485d4b889e4074eb7f6f7aa7c36d08f331569159a1f10ca786841048d3c2d48a"
+    },
+    {
+      "path": "js/systems/captainOrderDoctrine.js",
+      "bytes": 10157,
+      "sha256": "912382cc6fcbec9464c3cca116ca0dbb89affdfe96002f4dd976a374c17ba3cb"
+    },
+    {
+      "path": "js/systems/captainOrderExecution.js",
+      "bytes": 11676,
+      "sha256": "632c487c0f3011ec6f98b0a88e3d3e9448c53080e79d1d927dd3b46ffb03ba68"
+    },
+    {
+      "path": "js/systems/cinematicBriefing.js",
+      "bytes": 6795,
+      "sha256": "420a2df9c7644c87467d55c4e8700b5d9fb9de182ddea2a6a2209276ef96edc7"
+    },
+    {
+      "path": "js/systems/cinematicInterface.js",
+      "bytes": 5315,
+      "sha256": "a7a9e885cb46c332b64f36c2b9043f7fb651c501111eed5d30fb48edcbd1a0d4"
+    },
+    {
+      "path": "js/systems/commandAdvancement.js",
+      "bytes": 7358,
+      "sha256": "8154a098ab6e70cad6e291dc03544091d883e3418c15179f3b5c13ad712d37b5"
+    },
+    {
+      "path": "js/systems/commandRoomImmersion.js",
+      "bytes": 6207,
+      "sha256": "082f78035f6544dab3360f0932a0da32639dd47e55d2cccda74ffffe00c4d2e0"
     },
     {
       "path": "js/systems/convoyDoctrine.js",
@@ -1757,9 +2792,114 @@
       "sha256": "39373299e971ff76e447d4aacdae32f193e025b4953c747bfd6314e5b1c1ab71"
     },
     {
+      "path": "js/systems/crewDrills.js",
+      "bytes": 6610,
+      "sha256": "7abe9b45e1f748976f879f516747dbd184f83a8c9be88b70ac7b310dc355b452"
+    },
+    {
       "path": "js/systems/crewReadiness.js",
       "bytes": 5508,
       "sha256": "7bee26fa813ee50a570098a12c2889ce3be83fefb5cd2913609f50643cf90201"
+    },
+    {
+      "path": "js/systems/depthStealthRealism.js",
+      "bytes": 6712,
+      "sha256": "4c1ba445541cd885509b8e91d3256475ffca1674d1a9a5c96dde144047177daf"
+    },
+    {
+      "path": "js/systems/highCommandOrders.js",
+      "bytes": 4656,
+      "sha256": "cc4994fb40f3ad74f5397d68475fcca63651b128f58b341f708dd3e1f02dada3"
+    },
+    {
+      "path": "js/systems/immersiveAudioDirector.js",
+      "bytes": 5167,
+      "sha256": "ce629657e3a85688a0d8f3a62c359a9f5648de314ccbe82c24867e06578197d7"
+    },
+    {
+      "path": "js/systems/livingCampaignFront.js",
+      "bytes": 6788,
+      "sha256": "15a0831df37c1c68bcba7857dfd353a1da4452212fe0ea30fc8fc99cb8a22e15"
+    },
+    {
+      "path": "js/systems/livingCrewRoles.js",
+      "bytes": 9318,
+      "sha256": "08c68f52b41085b21eb2912230a487fc22ed5b21e4829c9ac80f91bef784a205"
+    },
+    {
+      "path": "js/systems/navalAITacticalCoordinator.js",
+      "bytes": 5457,
+      "sha256": "ca8d7835b819814ffc102c4d50be2905c645f629c1b43ae705812639aefd1fca"
+    },
+    {
+      "path": "js/systems/operationChains.js",
+      "bytes": 7492,
+      "sha256": "89f4014be2496c363548279e3f19a364b44bbccfb2e4ee267e09bf65d99f812b"
+    },
+    {
+      "path": "js/systems/operationOutcomes.js",
+      "bytes": 7427,
+      "sha256": "0c827e4f094e37d3526162dabe23df2e0edba88efd6a02b092074daff7dbf857"
+    },
+    {
+      "path": "js/systems/operationalHonors.js",
+      "bytes": 7194,
+      "sha256": "1fed35a1b6872bff04f44cbc727f390c1c0bff864db23046859e13008e918b9f"
+    },
+    {
+      "path": "js/systems/sandboxPatrolPlanner.js",
+      "bytes": 8269,
+      "sha256": "261f834215e02a3ccde98c957cadd939e943636f0923d729ff3a5ba6f8d3e439"
+    },
+    {
+      "path": "js/systems/silentDepthPeriscope.js",
+      "bytes": 2753,
+      "sha256": "8fefb9f7a64bb63433e89b42b30fae332fc6732d10f724454214c217527c4bd8"
+    },
+    {
+      "path": "js/systems/specialOperations.js",
+      "bytes": 6918,
+      "sha256": "d2de1950fe3d96554abaaf13a0481dc072ce26f7e0c125218c818b4ff43a73b1"
+    },
+    {
+      "path": "js/systems/storyCampaignDirector.js",
+      "bytes": 6468,
+      "sha256": "38ba1eb6d38bcc2cbf78a6c9403c4e73fa58c6f0bc8103a6a2568705165907a3"
+    },
+    {
+      "path": "js/systems/subOfficerCopilot.js",
+      "bytes": 11538,
+      "sha256": "6abc72205483dc8b4de41ffe880e82f541cd6b0bb985a525a20117cb2edf9a00"
+    },
+    {
+      "path": "js/systems/submarineDamageVisuals.js",
+      "bytes": 5916,
+      "sha256": "e360620789e15c783dd6c1eb3ef101f90f844079954c114c764b1b919dad8033"
+    },
+    {
+      "path": "js/systems/tacticalNavalChart.js",
+      "bytes": 7543,
+      "sha256": "557d0568c9c58d6db036617c10ae86894ab11d377be4ee71f21759db902220b1"
+    },
+    {
+      "path": "js/systems/torpedoAttackDirector.js",
+      "bytes": 8977,
+      "sha256": "9f307b0e6e64b8825996564bc84dbda535d39bcc5d6dc380e4fe75552b1c602b"
+    },
+    {
+      "path": "js/systems/veteranOfficers.js",
+      "bytes": 7074,
+      "sha256": "98e9ae79c465e33542ccb46aad019547cefee4820385d0c8592b9f83eaf71130"
+    },
+    {
+      "path": "js/systems/visualHorizonContacts.js",
+      "bytes": 8200,
+      "sha256": "411216005b2215f847fdfa98f6cf7881f97a8c73649bf281e27cff90c81d5fdf"
+    },
+    {
+      "path": "js/systems/waypointNavigation.js",
+      "bytes": 7968,
+      "sha256": "9893c9eefe060116abf8e5f768a9f3e4eca837a36fc8b1125226a406849a16d1"
     },
     {
       "path": "js/utils/sanitize.js",
@@ -1768,13 +2908,13 @@
     },
     {
       "path": "manifest.json",
-      "bytes": 765,
-      "sha256": "2a047680374a3c3409a91a8a2375b72c272bd34c1f661dc08062cddff23c86d2"
+      "bytes": 803,
+      "sha256": "603bb8c0fd105bbcb87adb7f056b6ac16f118ae39df4908017f8770e0b7c8ea2"
     },
     {
       "path": "package.json",
-      "bytes": 3373,
-      "sha256": "ba6861c4afedcf61a3264e643557d30d999bdf606986ea64778eb98a6b9571c3"
+      "bytes": 7604,
+      "sha256": "bf0b1e1bb06aee0bc95606bcc17b5b2d245d2dc85168720f5e00d2b765c1e6f7"
     },
     {
       "path": "reports/PHASE_10_1_AUDIT.md",
@@ -1835,6 +2975,11 @@
       "path": "reports/PHASE_13_AUDIT.md",
       "bytes": 4988,
       "sha256": "5e3b11da6d904c418aa92e6211fce739cfab30b09841bd14f356ecd0b5301509"
+    },
+    {
+      "path": "reports/PHASE_13_CAMPAIGN_OBJECTIVES_AUDIT.md",
+      "bytes": 4912,
+      "sha256": "80961ceb6f0437fb9a34ae0acf31553ab8da07891d6e62bb1a12361fee94b2b4"
     },
     {
       "path": "reports/PHASE_1_AUDIT.md",
@@ -2023,8 +3168,8 @@
     },
     {
       "path": "reports/phase10_4_regression_smoke.json",
-      "bytes": 78160,
-      "sha256": "1c50a8db8bcd85ddf2efb3c74fc577c65c7a2136a34e4a5521d3d672e61967f3"
+      "bytes": 82302,
+      "sha256": "8f3f29cfca02bf3c70d9b3461f5748822372e7f15e25e38b8f4b077e1abb1b70"
     },
     {
       "path": "reports/phase10_4_stabilization_smoke.json",
@@ -2102,9 +3247,19 @@
       "sha256": "31e2e6a6879adcb4fdbf853446199aaaa2a01dd994ba9f8637f63686116165e1"
     },
     {
+      "path": "reports/phase13_campaign_objectives_audit.json",
+      "bytes": 7088,
+      "sha256": "94c84ebde74500bcf6c0927096ad4bc444c7a1574d11324b686d6ec58ffdaf7f"
+    },
+    {
       "path": "reports/phase14_audit.json",
       "bytes": 5580,
       "sha256": "0b566d7daa1b757bdc0825f9308ab473efdbc7b44fbb6e3f92e4507c25a81307"
+    },
+    {
+      "path": "reports/phase18_operation_chains_audit.json",
+      "bytes": 214,
+      "sha256": "7ae4b9d03d8930a8a909bede3d21dfe28dfbaf9601c073b22ee25f5464b6164f"
     },
     {
       "path": "reports/phase1_audit.json",
@@ -2258,13 +3413,13 @@
     },
     {
       "path": "reports/screenshots/phase10_3_desktop_damage.png",
-      "bytes": 268203,
-      "sha256": "22ca53effe18a94c1113e7c0dcdbe9d15cdcb37b3ad8a85fc5f856566669c02e"
+      "bytes": 261949,
+      "sha256": "33881c15ee5c888eafd47cce236347b8c9407adb1f5f3ec50b886ea3e1b12233"
     },
     {
       "path": "reports/screenshots/phase10_3_desktop_sensors.png",
-      "bytes": 372202,
-      "sha256": "95d7d2cbcdbddfa1c03d79537330fb9e36f7bc8687e12cbe3ceb707d254e5717"
+      "bytes": 372366,
+      "sha256": "8843db65b56caff5931838a2e86c218b1301b07a7344d0e9ef8dcc0364cc9741"
     },
     {
       "path": "reports/screenshots/phase10_3_mobile_periscope.png",
@@ -2293,28 +3448,28 @@
     },
     {
       "path": "reports/screenshots/phase10_phone_ai.png",
-      "bytes": 227732,
-      "sha256": "b92da47e5983318b2c0cf7d8c14f963b41089bcf59a0686a8b968cc23008c8c9"
+      "bytes": 344158,
+      "sha256": "e5425216feef468df077f3c63f36c8ed1462c7e2010feca088d57dba99c323fa"
     },
     {
       "path": "reports/screenshots/phase10_phone_damage.png",
-      "bytes": 353784,
-      "sha256": "b54421c0108942dea81728649cd6e5eb036fca0db649441fe8d3d13b00d82979"
+      "bytes": 338911,
+      "sha256": "6a1dbdd720f50f1e36abb3011875be57164aa6de45d6a096134e8c0198f95762"
     },
     {
       "path": "reports/screenshots/phase10_phone_physics.png",
-      "bytes": 132661,
-      "sha256": "a558e746af9a34e650d7400da58c3fe3d45a922771051a80f78dca975c36c922"
+      "bytes": 336684,
+      "sha256": "e2a43faa5e543c1ec73f570a05c97fcaf43c896bc359886e20849e9cf5f1efc5"
     },
     {
       "path": "reports/screenshots/phase10_phone_sensors.png",
-      "bytes": 334145,
-      "sha256": "9feff4ee7e34e637c5803a0cd96c6c8acf3f53145f3a3f1bbdf295437a0a0f01"
+      "bytes": 400736,
+      "sha256": "d6d528861a7fd397837a6cc3b36d2436267c7d4a2b345e863ad8f7ae8174c0dd"
     },
     {
       "path": "reports/screenshots/phase11_mobile_campaigns.png",
-      "bytes": 58202,
-      "sha256": "b5a9f1ef8e8aea3ad9b0bbebbee316185941d457952b5ec56e7f4eddfbda7c81"
+      "bytes": 58419,
+      "sha256": "b52eaa4e3a962b975048a1c2a93cefc367ec8af8980cbe34523bbf6dde81b920"
     },
     {
       "path": "reports/screenshots/phase2_desktop_menu.png",
@@ -2533,8 +3688,8 @@
     },
     {
       "path": "service-worker.js",
-      "bytes": 6452,
-      "sha256": "942ce1f34681441a66de782c6e37fada67e483e77317a942e2c0bc9186206902"
+      "bytes": 10101,
+      "sha256": "b22c1d85b4b11fbca5095b740441cf316ad2c365d2e772b8b884f57691ee4efc"
     },
     {
       "path": "tests/bridge_instruments.test.js",
@@ -2553,8 +3708,8 @@
     },
     {
       "path": "tests/career_logistics.test.js",
-      "bytes": 3613,
-      "sha256": "7cc2d924631d64cf501ac7ba7713119f2d2181753a7bbff2bd6edf636857cab0"
+      "bytes": 3616,
+      "sha256": "f0ecfcb2ee2741843ee69bddaf29f7ff8474fb44c30e91d64371d92b87d7e664"
     },
     {
       "path": "tests/damage_control.test.js",
@@ -2584,7 +3739,7 @@
     {
       "path": "tests/navigation.test.js",
       "bytes": 5732,
-      "sha256": "a6536d3f4d615ecea8331a52a165abcc9415ee0a96f47c44d5fa8f5c939a9814"
+      "sha256": "fbe9aed526f96ec21e780d0408479befe541a56298bc6eb24dbe68f71becbeda"
     },
     {
       "path": "tests/operational_realism_smoke.py",
@@ -2593,13 +3748,28 @@
     },
     {
       "path": "tests/periscope_room.test.js",
-      "bytes": 2578,
-      "sha256": "1ef728c40ecc47ae8a7842c2ab2f1a306d9643d82fa22270c95ff3df66cf2e09"
+      "bytes": 2579,
+      "sha256": "6f020960d1c98da47f4505edac533ea294405e5b97aa918f4b238bd69989d8aa"
     },
     {
       "path": "tests/phase12_campaign_doctrines.test.js",
       "bytes": 3380,
-      "sha256": "d784623ac6cc4c3794aeb313fd56087860026628661e33e71b061f9185c8519f"
+      "sha256": "84b62c909848ef30c4c3ba166fa9ea921b83b5cebf764f5c2289534daf145723"
+    },
+    {
+      "path": "tests/phase13_campaign_objectives.test.js",
+      "bytes": 4111,
+      "sha256": "bf50c154d237511b37e977d47c8cbc212425c135997eb886f72d2abc620444e3"
+    },
+    {
+      "path": "tests/phase14_campaign_consequences.test.js",
+      "bytes": 3569,
+      "sha256": "3f70676176ec71cd6556f724b75c051ced99841d6d9f7d187a180d4cd9570be7"
+    },
+    {
+      "path": "tests/phase15_high_command_orders.test.js",
+      "bytes": 4879,
+      "sha256": "95039f116222bf78fee036aee342b39d0bcd2e93a62c7c7bb92cfc3ae956e1bd"
     },
     {
       "path": "tests/phase16_buoyancy.test.js",
@@ -2607,39 +3777,219 @@
       "sha256": "2ab7fc556423f5087fcafab8afcd01025979d3359f6739c8de430342e3ca5fe6"
     },
     {
+      "path": "tests/phase16_campaign_events.test.js",
+      "bytes": 5553,
+      "sha256": "b9d7bc45175e34242ad0cfd0aefaf403ed8e431524d83c3157d892ace4cd582c"
+    },
+    {
       "path": "tests/phase17_sonar_room.test.js",
       "bytes": 1622,
-      "sha256": "adb26cf867932caef94ecc7aaefb8a14cd675dd5fd64210628267bf44f60c5ac"
+      "sha256": "229c2da5811015fdb88034775084cfa2d060e3cc99d53bc9e70122514fdbce31"
+    },
+    {
+      "path": "tests/phase17_special_operations.test.js",
+      "bytes": 6361,
+      "sha256": "7115939b36807c4154e95fa7e17d4c76707bf3d05f79e84b089faa0f831b4972"
+    },
+    {
+      "path": "tests/phase18_operation_chains.test.js",
+      "bytes": 6643,
+      "sha256": "9c1369c2dabc0074bac7640c8c1771a26ffcdff104cda9d91f2c374cfe436770"
+    },
+    {
+      "path": "tests/phase19_operation_outcomes.test.js",
+      "bytes": 6232,
+      "sha256": "03952908b3ec43cbf1530b2aadaea21daaabddae06d20a90c0e722b1e74bbce6"
     },
     {
       "path": "tests/phase19_tdc_room.test.js",
-      "bytes": 2910,
-      "sha256": "a3467ef04acda068f50dcce1ecd27435f98234b1938121995550a5e2ceaf3001"
+      "bytes": 2911,
+      "sha256": "1078a4d6aab84284593221fd045d3cd8f431e7f30156ae03d2b63cdf02ac7353"
     },
     {
       "path": "tests/phase20_mobile_scroll.test.js",
       "bytes": 1803,
-      "sha256": "05a09f977045e7df79d57748fd41dd52319f0db0716f191e3e9888ba8ce60620"
+      "sha256": "a07ec722cfaf962e960d5a6a1db65678bf1cbbc6c3bfc0dcaa07ddd12b9f3064"
+    },
+    {
+      "path": "tests/phase20_operational_honors.test.js",
+      "bytes": 6586,
+      "sha256": "efc254e0bce7c06079e5560cac6fd432dc39e7f76477848722446f477821c170"
+    },
+    {
+      "path": "tests/phase21_command_advancement.test.js",
+      "bytes": 6679,
+      "sha256": "a429281c3ad8bf30b819c249f40a86aac3367cc690e06a301b025ada62ed8f05"
     },
     {
       "path": "tests/phase22_soundtrack.test.js",
       "bytes": 1932,
-      "sha256": "6c5327f3ea9d6bb194f762b86724ce63c97fbbfad854dbac273bbc1b64ed4327"
+      "sha256": "a21c1c6e04a1800473c3522d572cbfc9bc49814254657fb42d7ca8e5c73d9677"
+    },
+    {
+      "path": "tests/phase22_veteran_officers.test.js",
+      "bytes": 3643,
+      "sha256": "c4446a93481fae3d7b5d37170ba991ad776a0f092d7824bef3bc063572900340"
+    },
+    {
+      "path": "tests/phase23_crew_drills.test.js",
+      "bytes": 4872,
+      "sha256": "436be87441a0adb55dd31dc32b4d631deab7250367fb51f06832bd04d6b74b5b"
     },
     {
       "path": "tests/phase23_crew_readiness.test.js",
-      "bytes": 3003,
-      "sha256": "a05ddc2c1c887704d8f6896d9a5b675e1af2f613de8a775750ded2e8cc0591bc"
+      "bytes": 3005,
+      "sha256": "a4ceb1b9b5406797eef882d436fe644a99d46711c50ff1c43b39d854f82d8f2a"
     },
     {
       "path": "tests/phase24_ocean_weather.test.js",
       "bytes": 2529,
-      "sha256": "91c00e028c058299e99062f0930b4d60cddc50bac9829a3cea8f525adf12e8df"
+      "sha256": "208c929f7c696b7459cd5449106fb09a889f03db9202fe23477d73dff68bc106"
+    },
+    {
+      "path": "tests/phase24_silent_depth_periscope.test.js",
+      "bytes": 4061,
+      "sha256": "9cbda78f3880f23db32051af5fbbb4044f07a90be6300803f534de79a07c37de"
+    },
+    {
+      "path": "tests/phase25_command_room_immersion.test.js",
+      "bytes": 5040,
+      "sha256": "aad533851d9ea8f7278970b8c7ed68a7acadc16ac5b685c8225f0b4f6589a473"
     },
     {
       "path": "tests/phase25_convoy_doctrine.test.js",
       "bytes": 2838,
-      "sha256": "ff1afc92ae8065906808ea1e3c3c7b1f482b9a4925326334d061fca94c7a64be"
+      "sha256": "499c84d9f8cbc4a446fe316685801c43af40b21c84dc14abd4f0403429b82614"
+    },
+    {
+      "path": "tests/phase26_subofficer_copilot.test.js",
+      "bytes": 4400,
+      "sha256": "c99baa9668d5e630ae99b4795234fa917d425095472e868e03d91a06a8f50c28"
+    },
+    {
+      "path": "tests/phase27_alert_atmosphere.test.js",
+      "bytes": 4607,
+      "sha256": "2b8759900c0328bd53fd675da3963c3f002252432718e1a51be987e1a98483b5"
+    },
+    {
+      "path": "tests/phase28_air_attack_evasion.test.js",
+      "bytes": 4739,
+      "sha256": "7f3439a019cb9677c958bc6fa17c047a26278ae89ea102d15d1ac572907759fc"
+    },
+    {
+      "path": "tests/phase29_tactical_naval_chart.test.js",
+      "bytes": 4201,
+      "sha256": "dcb6d464a53161df4f15c245f1a31d95d6066f7fba9a2c33dcd2aeaa036cbe63"
+    },
+    {
+      "path": "tests/phase30_waypoint_navigation.test.js",
+      "bytes": 4891,
+      "sha256": "4391cffac18f2cc5c73c8dcdbd5a3a8a8c254e0d45578cec295173f3364bb93f"
+    },
+    {
+      "path": "tests/phase31_visual_horizon_contacts.test.js",
+      "bytes": 4069,
+      "sha256": "ac7b720844392340202e7edca7c11b527409388ff2d6cbeacd81d58e1785f757"
+    },
+    {
+      "path": "tests/phase32_torpedo_attack_director.test.js",
+      "bytes": 5510,
+      "sha256": "cf9776092b02b55f80ea33ec5f9ac5784bf1691e35545df74e64af3d999e1d75"
+    },
+    {
+      "path": "tests/phase33_naval_ai_tactics.test.js",
+      "bytes": 5255,
+      "sha256": "fe3bf72990e72a8afa54e1b5c2411060f43cdda2a62d5371068a186566395e19"
+    },
+    {
+      "path": "tests/phase34_damage_visual_states.test.js",
+      "bytes": 5262,
+      "sha256": "6c004f71749909c4925e44589eabb7985ade13b42d607746e7c891137a343a7a"
+    },
+    {
+      "path": "tests/phase35_depth_stealth_realism.test.js",
+      "bytes": 4643,
+      "sha256": "5ef0fde0f24e8a6e2cf7feb1297a44e5da2ba7d86830e0d1711e3557cb25daab"
+    },
+    {
+      "path": "tests/phase36_cinematic_interface.test.js",
+      "bytes": 3935,
+      "sha256": "4d78e94650d81febd6ee105612038eacf23b83115e6146e6ac1086bc65bc3026"
+    },
+    {
+      "path": "tests/phase37_immersive_audio.test.js",
+      "bytes": 4192,
+      "sha256": "e4ea6e0e941fa8b9627d0f9c552cdea4ebfd9351d8e96c6b003479e5a5e845bc"
+    },
+    {
+      "path": "tests/phase38_cinematic_briefings.test.js",
+      "bytes": 3798,
+      "sha256": "8cd8cd3434b8f909c3511471ad9354141b19558c9e6ff9e01a8f750b157b615b"
+    },
+    {
+      "path": "tests/phase39_living_crew_roles.test.js",
+      "bytes": 5306,
+      "sha256": "3cfdcc663e7da15d622fef4763fd7a7616157e1e0290c48a0b187f1a1cebe50c"
+    },
+    {
+      "path": "tests/phase40_living_campaign_front.test.js",
+      "bytes": 5029,
+      "sha256": "39d41b59dd190a3e91fe9c0b85c14725e111e3ac7aef071c3aa08a954eada806"
+    },
+    {
+      "path": "tests/phase41_flow_subofficer_periscope.test.js",
+      "bytes": 4011,
+      "sha256": "860dcca963e72e14a57bff5536e8a5e93fe3c7bf5b38b6213949ed84deb8a33e"
+    },
+    {
+      "path": "tests/phase42_base_workshop_integration.test.js",
+      "bytes": 3801,
+      "sha256": "1d18b9c20baacfb7f669db317b5249b9f08ed45a69f6787f309c5f8d46b109b8"
+    },
+    {
+      "path": "tests/phase43_sandbox_patrol.test.js",
+      "bytes": 3218,
+      "sha256": "c0d25a9cc5be49ecd375fb65f8391a7f754585af213f25446f83f280dd99bc12"
+    },
+    {
+      "path": "tests/phase44_story_campaign.test.js",
+      "bytes": 3634,
+      "sha256": "43a127d841414016fc503f81ddf28b1fc96d5b395211e85de90f9ab44723adea"
+    },
+    {
+      "path": "tests/phase45_flow_subofficer_hotfix.test.js",
+      "bytes": 3184,
+      "sha256": "959f34b9f54f5e67e598cf667303e34c722001aa4f197c200bf656ea4c09314e"
+    },
+    {
+      "path": "tests/phase46_captain_order_doctrine.test.js",
+      "bytes": 4756,
+      "sha256": "f9e2a2b95f27a24fed6474d4771b12f1da6f5c8f2659d0e58941ddee018cdb1d"
+    },
+    {
+      "path": "tests/phase47_captain_crew_realism.test.js",
+      "bytes": 5265,
+      "sha256": "de0d4d2f14056f0bc26bc309f0a0351e78422d047de67a7d07c9cf681aea16a5"
+    },
+    {
+      "path": "tests/phase48_captain_order_execution.test.js",
+      "bytes": 5404,
+      "sha256": "561d150f9c1edef6eec4cc675a1f3003d3de39de401ba972fdb24adec2192bd6"
+    },
+    {
+      "path": "tests/phase49_captain_command_chain.test.js",
+      "bytes": 6169,
+      "sha256": "120934c664eeb89fd5fc921c762b0f16093afaba2f9aa0c081b88e47178cc429"
+    },
+    {
+      "path": "tests/phase50_captain_combat_cycle.test.js",
+      "bytes": 5517,
+      "sha256": "624b6aa03b6d0ecba53fda56bf0c0b261d30d9a12ec67f50bd216c6093bcaa78"
+    },
+    {
+      "path": "tests/phase51_captain_command_room.test.js",
+      "bytes": 5158,
+      "sha256": "295e403b5d6341302d9bdd81e78ca4f3b28931eec5258d51273500c906a3dbe8"
     },
     {
       "path": "tests/physics.test.js",
@@ -2658,8 +4008,8 @@
     },
     {
       "path": "tests/smoke_test.py",
-      "bytes": 35070,
-      "sha256": "70dc606f2a4e41be4a0d2306d6908ec5177ad38931694a966f0d3eaf000d524e"
+      "bytes": 35988,
+      "sha256": "ef185d441080d284761e5b31fb47de178a88873a4486926255a8394bcca06a8b"
     },
     {
       "path": "tests/stabilization.test.js",
@@ -2673,8 +4023,8 @@
     },
     {
       "path": "tests/strategic_command.test.js",
-      "bytes": 3734,
-      "sha256": "c6acb836177d018b805cb87b60d8eda92dc3e0db6d20078e4b784628c57eb42e"
+      "bytes": 3738,
+      "sha256": "84010ca05c6693e096bccaa0cf9a404eeae89a7eae9978925f5c09099056b779"
     },
     {
       "path": "tests/tactical_encounter.test.js",
@@ -2737,9 +4087,19 @@
       "sha256": "bf7c4e26e8a1901e1f2bd4e0b0967f080a6cc565d2164a9e1ba37b1a56c1a7da"
     },
     {
+      "path": "tools/audit_phase13_campaign_objectives.py",
+      "bytes": 5427,
+      "sha256": "7b47c7816c184ef4999bfe8e7693d33931e61f7cae35b9d0158deed75d729851"
+    },
+    {
       "path": "tools/audit_phase14.py",
       "bytes": 3236,
       "sha256": "777f4f30235776e41ddf05ebf5cd211f0c401f8fb6bac2bec78993455178fee7"
+    },
+    {
+      "path": "tools/audit_phase14_campaign_consequences.py",
+      "bytes": 2053,
+      "sha256": "3da7bda548ab7fd89ed66bf71530d2467f8e6d5274af41824c7167c06db154f6"
     },
     {
       "path": "tools/audit_phase15.py",
@@ -2747,9 +4107,19 @@
       "sha256": "10c4423508d5700b60eb0cfaf75634cc1c366ecfc58c86c44992f5a784c225a7"
     },
     {
+      "path": "tools/audit_phase15_high_command_orders.py",
+      "bytes": 3606,
+      "sha256": "dc145ca6222b282c2068f27b929b00e5de9531f33e4433e4785c9dcbf66459f8"
+    },
+    {
       "path": "tools/audit_phase16.py",
       "bytes": 1053,
       "sha256": "2352221a7b5f237f5ad2dc8cb6fac0d8e1b51cd8bd4c32e5fb3608a27009bfa9"
+    },
+    {
+      "path": "tools/audit_phase16_campaign_events.py",
+      "bytes": 4617,
+      "sha256": "aa0b2451b78aa32aa7be0f13be4af6e397aa04db321c36f815c9041195b7c8f1"
     },
     {
       "path": "tools/audit_phase17.py",
@@ -2757,9 +4127,19 @@
       "sha256": "24d65c35d9de5e43ffb5ecf5b01850953f30dbde4b3aa3a489cf81a72419284f"
     },
     {
+      "path": "tools/audit_phase17_special_operations.py",
+      "bytes": 5420,
+      "sha256": "c5dcc3162ba3011032cb79edf8d96e4a5329cfeb39d6051f1948679ce85e16bc"
+    },
+    {
       "path": "tools/audit_phase18.py",
       "bytes": 1896,
       "sha256": "4fce445fdc627737019b509b45ac70a64a9d711cab8d4c2a913a4ef873462f9c"
+    },
+    {
+      "path": "tools/audit_phase18_operation_chains.py",
+      "bytes": 5553,
+      "sha256": "b5d9e1fa82233376d20958a5114bb4c7ca7335203e15d0d3622874d8fac453c7"
     },
     {
       "path": "tools/audit_phase19.py",
@@ -2767,9 +4147,19 @@
       "sha256": "efab570608d8781bcb9a1a4a0323d5d7ba7c0bc909c7592916f61bf3ab95fc8d"
     },
     {
+      "path": "tools/audit_phase19_operation_outcomes.py",
+      "bytes": 5039,
+      "sha256": "f3a3f29f28b8bbef8d7b6069c3bf58a5415115d0bf3b0888859447080ec14547"
+    },
+    {
       "path": "tools/audit_phase20.py",
       "bytes": 1711,
       "sha256": "afb9f7eac0632523efec7e1bf7834a4b65a85bca52e514d622f0c017c36ff232"
+    },
+    {
+      "path": "tools/audit_phase20_operational_honors.py",
+      "bytes": 2990,
+      "sha256": "13c2876819889ad5a878fd8a26ea4fab742c7dc12cf4d853ab86d51b64b89a52"
     },
     {
       "path": "tools/audit_phase21.py",
@@ -2777,14 +4167,29 @@
       "sha256": "98579d774c98611648c131fd13078cb253cc26aa84d8f6f34996806f35f90902"
     },
     {
+      "path": "tools/audit_phase21_command_advancement.py",
+      "bytes": 3008,
+      "sha256": "ca584d3cc8841ebb2adb2151a363c33989f08d0eb3158973203d9df0fe22f0dd"
+    },
+    {
       "path": "tools/audit_phase22.py",
       "bytes": 1735,
       "sha256": "63ffe3d939eafe3ed73ed8c960c1d7dfc301edfe9c2319683c453be28d87044f"
     },
     {
+      "path": "tools/audit_phase22_veteran_officers.py",
+      "bytes": 2353,
+      "sha256": "e9f06019d466de14e6b85535045b16dad9ac414e36fbd01cfeb99b72053f10f8"
+    },
+    {
       "path": "tools/audit_phase23.py",
       "bytes": 2238,
-      "sha256": "a3214c171e39c43564d055fa8b85a1f2104917b39dc50225f00981c85bb2a0e6"
+      "sha256": "b45f7d546e49145a870506f0714d0d1955c497365b6d1f199df38e69c3b696db"
+    },
+    {
+      "path": "tools/audit_phase23_crew_drills.py",
+      "bytes": 2642,
+      "sha256": "d4d62b38d12fc1f364c7203694dfd850a1899490fbae7934711d18b3bf36a20e"
     },
     {
       "path": "tools/audit_phase24.py",
@@ -2792,9 +4197,149 @@
       "sha256": "13a80eba98304010d426b8810f6ac956ef648aec80ac5538e0b07d923888322c"
     },
     {
+      "path": "tools/audit_phase24_silent_depth_periscope.py",
+      "bytes": 2995,
+      "sha256": "568c29dc8a5c208f8d7646b2dcdf23de64e08d5736fc3e29cc424933d0d71e04"
+    },
+    {
       "path": "tools/audit_phase25.py",
       "bytes": 2353,
       "sha256": "4b7fc2eb118d28c8bca460ff76a32a2c266eae463ae90feeeec8a1d45e8a2647"
+    },
+    {
+      "path": "tools/audit_phase25_command_room_immersion.py",
+      "bytes": 3580,
+      "sha256": "517419167ca657072f96ce1018285a808c1b630047b39ad3bff744ef3d005911"
+    },
+    {
+      "path": "tools/audit_phase26_subofficer_copilot.py",
+      "bytes": 3270,
+      "sha256": "2be3f6ad67eb1eac8a8b5835b8af986c7b7b020e5dbb2d595793f8c2355647b7"
+    },
+    {
+      "path": "tools/audit_phase27_alert_atmosphere.py",
+      "bytes": 3274,
+      "sha256": "f2285f574c1356bb354bd5a7202d89fe1d9214bf605d40be7536c70289d9dacc"
+    },
+    {
+      "path": "tools/audit_phase28_air_attack_evasion.py",
+      "bytes": 3538,
+      "sha256": "cd3340b0b7164ac6c481f8ac2e5ce4eace4c2a70e810866576b17b0a6aa190fd"
+    },
+    {
+      "path": "tools/audit_phase29_tactical_naval_chart.py",
+      "bytes": 3331,
+      "sha256": "4642e801876d56fee12f1bfdcb4ac136b74a91812d5b205e0442ff51c5f8399e"
+    },
+    {
+      "path": "tools/audit_phase30_waypoint_navigation.py",
+      "bytes": 3466,
+      "sha256": "df62c56a45f5d7798d628f8dd1313d2817b9811701187168d16c5748f8e7cf25"
+    },
+    {
+      "path": "tools/audit_phase31_visual_horizon_contacts.py",
+      "bytes": 2986,
+      "sha256": "35c81f50c5de3c90370f2629249be5d60512f947cae8f46105f8358edd3ceaaa"
+    },
+    {
+      "path": "tools/audit_phase32_torpedo_attack_director.py",
+      "bytes": 3063,
+      "sha256": "664284e27881ffbd1d1b93ac549aab03d0d671e2bf170e25b909f858f3663d70"
+    },
+    {
+      "path": "tools/audit_phase33_naval_ai_tactics.py",
+      "bytes": 3261,
+      "sha256": "4312f1d0e4b94cb90f696f228154168ced098eeb25592d5ab385d9cbf9785948"
+    },
+    {
+      "path": "tools/audit_phase34_damage_visual_states.py",
+      "bytes": 2797,
+      "sha256": "a8da5e0761a257ca926fa8d67138fd84eebfa66d379fd215a7260c09049e11fd"
+    },
+    {
+      "path": "tools/audit_phase35_depth_stealth_realism.py",
+      "bytes": 2810,
+      "sha256": "efa9185342d992c96fd157c533648feb0012e6f4068c8c79d2cac85685bf67b2"
+    },
+    {
+      "path": "tools/audit_phase36_cinematic_interface.py",
+      "bytes": 3025,
+      "sha256": "3017aebb9dae6f40e00ddad7f5d0abe7f05634c2ac5010efcb9e2ebcfee5f55d"
+    },
+    {
+      "path": "tools/audit_phase37_immersive_audio.py",
+      "bytes": 3027,
+      "sha256": "a0d5d7aae5199062e8fd74bbd5ed0607d3afb64c69422444df1a9e0b4b02862b"
+    },
+    {
+      "path": "tools/audit_phase38_cinematic_briefings.py",
+      "bytes": 2943,
+      "sha256": "62a4dcb129fe2c310f443c6cfa8c3646cb367c6a8fc65c8697d6211eb9972207"
+    },
+    {
+      "path": "tools/audit_phase39_living_crew_roles.py",
+      "bytes": 3045,
+      "sha256": "53242a9dba0043b901ed9c0d55cdeaf43dcfc8f56515c4c03c621d5aece2fe7b"
+    },
+    {
+      "path": "tools/audit_phase40_living_campaign_front.py",
+      "bytes": 2839,
+      "sha256": "19f0de7f8ec14e05105a902be563e7bed1ba6fe206913219c670de6c33e0d796"
+    },
+    {
+      "path": "tools/audit_phase41_flow_subofficer_periscope.py",
+      "bytes": 2925,
+      "sha256": "61d1a7a8d7fae74f0672f84e0774615a6746b40f234b052106cc03ab30b6e467"
+    },
+    {
+      "path": "tools/audit_phase42_base_workshop.py",
+      "bytes": 2376,
+      "sha256": "ec4c1eb372ca83e30252f0651be98e13c810420721b993dd79acba5b62cd3a3a"
+    },
+    {
+      "path": "tools/audit_phase43_sandbox_patrol.py",
+      "bytes": 2476,
+      "sha256": "60c8487ceca37dc76d89b439426758ff893ec77343c8f91f4088fee29cdf85d4"
+    },
+    {
+      "path": "tools/audit_phase44_story_campaign.py",
+      "bytes": 2425,
+      "sha256": "fcca673c3e696f7d05cd4711c2b7e83bccd8c76cfc9b111a87ac6b0b4c072308"
+    },
+    {
+      "path": "tools/audit_phase45_flow_subofficer_hotfix.py",
+      "bytes": 2537,
+      "sha256": "fda69c5b88a78df90c2537038141d531b3654cd616a95733795219adba2616ef"
+    },
+    {
+      "path": "tools/audit_phase46_captain_order_doctrine.py",
+      "bytes": 2947,
+      "sha256": "eeca0627490c84af03764a4b86f264d480efe3ef209dda628fb4bc7b9b09ec43"
+    },
+    {
+      "path": "tools/audit_phase47_captain_crew_realism.py",
+      "bytes": 2250,
+      "sha256": "dce04fef842195c2bef478e27fb90fd11b4b640ee07e10cccfdab6be4e70ee53"
+    },
+    {
+      "path": "tools/audit_phase48_captain_order_execution.py",
+      "bytes": 2256,
+      "sha256": "b9a9976f897de00802e1ec6fab6b518050f35082b63e25155f7e0175fcef1bd0"
+    },
+    {
+      "path": "tools/audit_phase49_captain_command_chain.py",
+      "bytes": 2186,
+      "sha256": "f09f844da80b8408116e511f02ca6098df0511a6e30e434d06dd39ba0f0503af"
+    },
+    {
+      "path": "tools/audit_phase50_captain_combat_cycle.py",
+      "bytes": 2692,
+      "sha256": "d4f6bb7a279a5859d931857f418e948b794ca8c5781d253c4ea753e81f7dd65f"
+    },
+    {
+      "path": "tools/audit_phase51_captain_command_room.py",
+      "bytes": 3169,
+      "sha256": "aeaef10fb507d05f358704be8ca5d04417a63d387195c2dab707891399bfccdb"
     },
     {
       "path": "tools/audit_project.py",

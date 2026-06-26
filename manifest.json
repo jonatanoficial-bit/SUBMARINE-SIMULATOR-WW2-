@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.65",
-  "short_name": "SCWW2 2.0.0-alpha.65",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.66",
+  "short_name": "SCWW2 2.0.0-alpha.66",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 50 Ciclo Realista de Combate do Capitão, Operação Silent Depth.",
+  "description": "Submarine Commander WW2 — Fase 51 Sala de Comando Definitiva, Operação Silent Depth.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.65",
+  "version": "2.0.0-alpha.66",
   "id": "./"
 }
