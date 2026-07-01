@@ -19,6 +19,7 @@ import { buildCaptainExecutionBoard, createCaptainExecutionFromCommand, createCa
 import { buildCaptainCommandChainView } from '../systems/captainCommandChain.js';
 import { buildCaptainCombatCycleView } from '../systems/captainCombatCycle.js';
 import { buildCaptainCommandRoomView } from '../systems/captainCommandRoom.js';
+import { buildCaptainDelegationAdvisorView } from '../systems/captainDelegationAdvisor.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -149,7 +150,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase52-delegation-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -723,6 +724,32 @@ export function renderGameplay(t, mission, settings = {}) {
                 </div>
               </div>
               <div class="phase51-room-grid" id="command-room-stations"></div>
+
+              <section class="phase52-delegation-advisor" id="phase52-delegation-advisor" data-scenario="route" data-tone="calm" aria-live="polite">
+                <div class="phase52-officer-line">
+                  <img id="delegation-officer-avatar" src="assets/avatars/de/officer_01.png" alt="">
+                  <div>
+                    <span id="delegation-officer-role">${t('delegation.officer.subofficer')}</span>
+                    <strong id="delegation-title">${t('delegation.title.route')}</strong>
+                    <p id="delegation-question">${t('delegation.question.route')}</p>
+                  </div>
+                  <img class="phase52-station-icon" id="delegation-station-icon" src="assets/ui/instruments/helm_icon.png" alt="">
+                </div>
+                <div class="phase52-radio-report">
+                  <img src="assets/avatars/de/sonar_01.png" alt="">
+                  <div>
+                    <span>${t('delegation.radio.operator')}</span>
+                    <strong id="delegation-radio-title">${t('delegation.radio.title.clear')}</strong>
+                    <p id="delegation-radio-text">${t('delegation.radio.text.clear')}</p>
+                    <div class="phase52-contact-chips" id="delegation-contact-chips"></div>
+                  </div>
+                </div>
+                <div class="phase52-delegation-actions">
+                  <button class="button primary" id="delegation-auto" type="button" data-delegation-command="auto-route" data-delegation-station="navigation">${t('delegation.action.autoRoute')}</button>
+                  <button class="button secondary" id="delegation-manual" type="button" data-delegation-command="manual-route" data-delegation-station="navigation">${t('delegation.action.manualRoute')}</button>
+                  <button class="button ghost" id="delegation-info" type="button" data-delegation-command="radio-report" data-delegation-station="sensors">${t('delegation.action.radioInfo')}</button>
+                </div>
+              </section>
             </section>
             <section class="phase46-command-mode-card" id="phase46-command-mode-card" data-mode="captain">
               <div>
@@ -1659,6 +1686,18 @@ export function mountGameplay({
     commandRoomStations: app.querySelector('#command-room-stations'),
     commandRoomPrimary: app.querySelector('#command-room-primary'),
     commandRoomSecondary: app.querySelector('#command-room-secondary'),
+    delegationAdvisor: app.querySelector('#phase52-delegation-advisor'),
+    delegationOfficerAvatar: app.querySelector('#delegation-officer-avatar'),
+    delegationOfficerRole: app.querySelector('#delegation-officer-role'),
+    delegationStationIcon: app.querySelector('#delegation-station-icon'),
+    delegationTitle: app.querySelector('#delegation-title'),
+    delegationQuestion: app.querySelector('#delegation-question'),
+    delegationRadioTitle: app.querySelector('#delegation-radio-title'),
+    delegationRadioText: app.querySelector('#delegation-radio-text'),
+    delegationContactChips: app.querySelector('#delegation-contact-chips'),
+    delegationAuto: app.querySelector('#delegation-auto'),
+    delegationManual: app.querySelector('#delegation-manual'),
+    delegationInfo: app.querySelector('#delegation-info'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1688,6 +1727,7 @@ export function mountGameplay({
   let captainCommandChainCurrent = null;
   let captainCombatCycleCurrent = null;
   let captainCommandRoomCurrent = null;
+  let captainDelegationAdvisorCurrent = null;
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -3073,6 +3113,7 @@ export function mountGameplay({
     const chain = updateCaptainCommandChain(engine.snapshot());
     const combat = updateCaptainCombatCycle(engine.snapshot(), chain);
     updateCaptainCommandRoom(engine.snapshot(), chain, combat);
+    updateCaptainDelegationAdvisor(engine.snapshot());
   }
 
   function snapshotWithCaptainCrewFlow(snapshot = engine.snapshot()) {
@@ -3099,6 +3140,7 @@ export function mountGameplay({
     const chain = updateCaptainCommandChain(snapshot);
     const combat = updateCaptainCombatCycle(snapshot, chain);
     updateCaptainCommandRoom(snapshot, chain, combat);
+    updateCaptainDelegationAdvisor(snapshot);
   }
 
   function updateCaptainExecutionBoard(snapshot = engine.snapshot()) {
@@ -3216,6 +3258,53 @@ export function mountGameplay({
     return view;
   }
 
+
+  function radioTypeLabel(item = {}) {
+    const count = Number(item.count || 0);
+    const label = t(item.key || 'delegation.radio.type.unknown');
+    return `${count}× ${label}`;
+  }
+
+  function updateCaptainDelegationAdvisor(snapshot = engine.snapshot()) {
+    const nation = mission?.nationId || submarine?.nation || 'de';
+    const view = buildCaptainDelegationAdvisorView({ snapshot, commandMode: captainCommandMode, nation });
+    captainDelegationAdvisorCurrent = view;
+    if (els.delegationAdvisor) {
+      els.delegationAdvisor.dataset.scenario = view.scenario || 'patrol';
+      els.delegationAdvisor.dataset.tone = view.tone || 'calm';
+      els.delegationAdvisor.dataset.mode = view.mode || 'captain';
+    }
+    if (els.delegationOfficerAvatar) els.delegationOfficerAvatar.src = view.officerAsset || 'assets/avatars/de/officer_01.png';
+    if (els.delegationStationIcon) els.delegationStationIcon.src = view.icon || 'assets/ui/instruments/sonar_icon.png';
+    if (els.delegationOfficerRole) els.delegationOfficerRole.textContent = t(view.officerKey || 'delegation.officer.subofficer');
+    if (els.delegationTitle) els.delegationTitle.textContent = t(view.titleKey || 'delegation.title.patrol');
+    if (els.delegationQuestion) els.delegationQuestion.textContent = t(view.questionKey || 'delegation.question.patrol');
+    if (els.delegationRadioTitle) els.delegationRadioTitle.textContent = t(view.radio?.titleKey || 'delegation.radio.title.clear');
+    if (els.delegationRadioText) els.delegationRadioText.textContent = t(view.radio?.textKey || 'delegation.radio.text.clear', { count: view.radio?.total || 0, hostile: view.radio?.hostileTotal || 0, confidence: view.radio?.confidence || 0 });
+    if (els.delegationContactChips) {
+      const chips = view.radio?.typeKeys?.length ? view.radio.typeKeys.map((item) => `<span>${radioTypeLabel(item)}</span>`).join('') : `<span>${t('delegation.radio.noContacts')}</span>`;
+      els.delegationContactChips.innerHTML = chips;
+    }
+    if (els.delegationAuto) {
+      els.delegationAuto.dataset.delegationCommand = view.autoCommand || '';
+      els.delegationAuto.dataset.delegationStation = view.autoStation || 'command';
+      els.delegationAuto.textContent = t(view.autoLabelKey || 'delegation.action.noAuto');
+      els.delegationAuto.disabled = !view.autoCommand;
+    }
+    if (els.delegationManual) {
+      els.delegationManual.dataset.delegationCommand = view.manualCommand || '';
+      els.delegationManual.dataset.delegationStation = view.manualStation || 'command';
+      els.delegationManual.textContent = t(view.manualLabelKey || 'delegation.action.manualActive');
+      els.delegationManual.disabled = !view.manualCommand;
+    }
+    if (els.delegationInfo) {
+      els.delegationInfo.dataset.delegationCommand = view.infoCommand || 'radio-report';
+      els.delegationInfo.dataset.delegationStation = view.infoStation || 'sensors';
+      els.delegationInfo.textContent = t(view.infoLabelKey || 'delegation.action.radioInfo');
+    }
+    return view;
+  }
+
   function updateSubOfficerAvatar() {
     const nation = mission?.nationId || submarine?.nation || 'de';
     const candidates = nation === 'de'
@@ -3241,6 +3330,43 @@ export function mountGameplay({
     }
     if (command === 'captain-command') {
       setCaptainCommandMode('captain');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'manual-route') {
+      setCaptainCommandMode('manual');
+      setStation('navigation');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'manual-attack') {
+      setCaptainCommandMode('manual');
+      setStation(engine.snapshot().periscopeOpen ? 'periscope' : 'weapons');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'manual-evasion') {
+      setCaptainCommandMode('manual');
+      setStation('instruments');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'manual-sensors') {
+      setCaptainCommandMode('manual');
+      setStation('sensors');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'manual-damage') {
+      setCaptainCommandMode('manual');
+      setStation('damage');
+      closeSubOfficerDialogue();
+      return;
+    }
+    if (command === 'radio-report') {
+      setStation('sensors');
+      playSfx('sonar');
+      updateCaptainDelegationAdvisor(engine.snapshot());
       closeSubOfficerDialogue();
       return;
     }
@@ -3279,6 +3405,36 @@ export function mountGameplay({
       setStation('sensors');
       playSfx('sonar');
       registerCaptainExecution('prepare-silent-approach', result);
+    } else if (command === 'auto-attack') {
+      captainCrewFlow = beginCaptainCrewOrder('prepare-attack', engine.snapshot(), captainCrewFlow);
+      engine.setWeaponTarget('target');
+      engine.setSpeed('slow');
+      const solution = engine.syncTdcSolution();
+      if (!solution.ok) commandHint(solution);
+      let snapshotAfterPrep = engine.snapshot();
+      if (Number(snapshotAfterPrep.depth || 0) > PERISCOPE_MAX_DEPTH) {
+        const depthResult = engine.adjustDepth(PERISCOPE_MAX_DEPTH - Number(snapshotAfterPrep.depth || 0));
+        if (!depthResult.ok) commandHint(depthResult);
+        setStation('instruments');
+      } else if (!snapshotAfterPrep.periscopeOpen) {
+        const scope = engine.openPeriscope();
+        if (!scope.ok) commandHint(scope);
+        setStation(scope.ok ? 'periscope' : 'weapons');
+      }
+      snapshotAfterPrep = engine.snapshot();
+      if (snapshotAfterPrep.weapons?.canFire && snapshotAfterPrep.periscopeOpen) {
+        const fire = engine.fireTorpedo();
+        if (!fire.ok) commandHint(fire);
+        else {
+          captainCrewFlow = beginCaptainCrewOrder('fire-confirm', engine.snapshot(), captainCrewFlow);
+          playSfx('torpedo');
+          setStation('periscope');
+        }
+        registerCaptainExecution('fire-confirm', fire);
+      } else {
+        playSfx('sonar');
+        registerCaptainExecution('prepare-attack', solution.ok ? { ok: true } : solution);
+      }
     } else if (command === 'prepare-attack') {
       captainCrewFlow = beginCaptainCrewOrder('prepare-attack', engine.snapshot(), captainCrewFlow);
       engine.setWeaponTarget('target');
@@ -3334,7 +3490,7 @@ export function mountGameplay({
       setStation('damage');
       playSfx('damage');
       registerCaptainExecution('authorize-repair', result);
-    } else if (command === 'plan-patrol') {
+    } else if (command === 'auto-route' || command === 'plan-patrol') {
       captainCrewFlow = beginCaptainCrewOrder('plan-patrol', engine.snapshot(), captainCrewFlow);
       const result = engine.planPatrolSectorRoute();
       if (!result.ok) commandHint(result);
@@ -3497,6 +3653,7 @@ export function mountGameplay({
     const chain = updateCaptainCommandChain(snapshot);
     const combat = updateCaptainCombatCycle(snapshot, chain);
     updateCaptainCommandRoom(snapshot, chain, combat);
+    updateCaptainDelegationAdvisor(snapshot);
     updateSubOfficer(snapshot);
   }
 
@@ -3653,6 +3810,14 @@ export function mountGameplay({
     if (command) runSubOfficerAction(command, station);
     else if (station) setStation(station);
   });
+  const runDelegationButton = (button) => {
+    const command = button?.dataset?.delegationCommand || '';
+    const station = button?.dataset?.delegationStation || '';
+    if (command) runSubOfficerAction(command, station);
+  };
+  bind(els.delegationAuto, 'click', () => runDelegationButton(els.delegationAuto));
+  bind(els.delegationManual, 'click', () => runDelegationButton(els.delegationManual));
+  bind(els.delegationInfo, 'click', () => runDelegationButton(els.delegationInfo));
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);
@@ -3668,6 +3833,7 @@ export function mountGameplay({
   const initialChain = updateCaptainCommandChain(engine.snapshot());
   const initialCombat = updateCaptainCombatCycle(engine.snapshot(), initialChain);
   updateCaptainCommandRoom(engine.snapshot(), initialChain, initialCombat);
+  updateCaptainDelegationAdvisor(engine.snapshot());
   app.querySelectorAll('.speed-chip').forEach((button) => bind(button, 'click', () => engine.setSpeed(button.dataset.speed)));
   bind(app.querySelector('#depth-up'), 'click', () => engine.adjustDepth(-15));
   bind(app.querySelector('#depth-down'), 'click', () => engine.adjustDepth(15));

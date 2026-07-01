@@ -9,10 +9,10 @@ const campaigns = JSON.parse(fs.readFileSync(new URL('../data/campaigns.json', i
 const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 test('phase 22 build metadata is synchronized', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.66');
-  assert.equal(BUILD_INFO.phase, '51');
-  assert.match(BUILD_INFO.buildId, /F51-CAPTAIN-COMMAND-ROOM/);
-  assert.equal(pkg.version, '2.0.0-alpha.66');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.67');
+  assert.equal(BUILD_INFO.phase, '52');
+  assert.match(BUILD_INFO.buildId, /F52-CAPTAIN-DELEGATION-ADVISOR/);
+  assert.equal(pkg.version, '2.0.0-alpha.67');
 });
 
 test('veteran officer decks cover all playable nations', () => {

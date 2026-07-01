@@ -1,0 +1,127 @@
+.phase52-delegation-ready {
+  --phase52-panel: rgba(4, 10, 17, .94);
+  --phase52-line: rgba(137, 209, 255, .2);
+  --phase52-action: rgba(72, 174, 255, .16);
+}
+.phase52-delegation-advisor {
+  display: grid;
+  gap: 10px;
+  padding: 11px;
+  border-radius: 16px;
+  border: 1px solid var(--phase52-line);
+  background:
+    linear-gradient(135deg, rgba(3,8,14,.96), rgba(10,22,32,.9)),
+    radial-gradient(circle at 0% 0%, rgba(125, 204, 255, .14), transparent 36%),
+    radial-gradient(circle at 100% 100%, rgba(242, 209, 132, .1), transparent 34%);
+  box-shadow: inset 0 0 24px rgba(0,0,0,.3);
+}
+.phase52-delegation-advisor[data-tone="attack"] { --phase52-line: rgba(242, 209, 132, .38); --phase52-action: rgba(242, 209, 132, .14); }
+.phase52-delegation-advisor[data-tone="danger"],
+.phase52-delegation-advisor[data-tone="critical"] { --phase52-line: rgba(255, 134, 105, .42); --phase52-action: rgba(255, 134, 105, .16); }
+.phase52-delegation-advisor[data-tone="manual"] { --phase52-line: rgba(255,255,255,.22); }
+.phase52-officer-line,
+.phase52-radio-report {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 26px;
+  gap: 9px;
+  align-items: center;
+  min-width: 0;
+}
+.phase52-radio-report { grid-template-columns: 42px minmax(0, 1fr); }
+.phase52-officer-line > img:first-child,
+.phase52-radio-report > img {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.24);
+}
+.phase52-station-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  opacity: .72;
+}
+.phase52-officer-line span,
+.phase52-radio-report span {
+  display: block;
+  color: rgba(232,236,218,.62);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.phase52-officer-line strong,
+.phase52-radio-report strong {
+  display: block;
+  color: #a5dcff;
+  font-size: .84rem;
+  line-height: 1.08;
+}
+.phase52-delegation-advisor[data-tone="attack"] .phase52-officer-line strong,
+.phase52-delegation-advisor[data-tone="attack"] .phase52-radio-report strong { color: #f2d184; }
+.phase52-delegation-advisor[data-tone="danger"] .phase52-officer-line strong,
+.phase52-delegation-advisor[data-tone="critical"] .phase52-officer-line strong { color: #ffb09f; }
+.phase52-officer-line p,
+.phase52-radio-report p {
+  margin: 3px 0 0;
+  color: rgba(255,255,255,.84);
+  font-size: .78rem;
+  line-height: 1.28;
+}
+.phase52-radio-report {
+  padding: 9px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.phase52-contact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+.phase52-contact-chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.78);
+  font-size: .64rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.phase52-delegation-actions {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr .84fr;
+  gap: 8px;
+}
+.phase52-delegation-actions .button {
+  min-height: 42px;
+  white-space: normal;
+  line-height: 1.08;
+}
+.phase52-delegation-actions .button.primary {
+  background: linear-gradient(180deg, var(--phase52-action), rgba(72,174,255,.08));
+}
+@media (max-width: 760px) {
+  body:has(.phase52-delegation-ready) .app-shell { min-height: 100dvh; }
+  .phase52-delegation-advisor {
+    margin-inline: -2px;
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .phase52-delegation-actions { grid-template-columns: 1fr; }
+  .phase52-delegation-actions .button { min-height: 46px; }
+  .phase52-officer-line,
+  .phase52-radio-report { align-items: start; }
+}
+@media (max-width: 420px) {
+  .phase52-officer-line strong,
+  .phase52-radio-report strong { font-size: .8rem; }
+  .phase52-officer-line p,
+  .phase52-radio-report p { font-size: .74rem; }
+}

@@ -9,8 +9,8 @@ const readJson = (relative) => JSON.parse(read(relative));
 
 test('phase 17 sonar room metadata and assets are active', () => {
   const build = readJson('BUILD_INFO.json');
-  assert.equal(build.semver, '2.0.0-alpha.66');
-  assert.equal(build.phase, '51');
+  assert.equal(build.semver, '2.0.0-alpha.67');
+  assert.equal(build.phase, '52');
   assert.equal(build.qaStatus, 'PASS');
   assert.ok(fs.existsSync(path.join(ROOT, 'css/phase17-sonar-room.css')));
 });

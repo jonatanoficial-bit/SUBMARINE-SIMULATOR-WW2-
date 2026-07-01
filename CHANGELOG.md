@@ -1,3 +1,11 @@
+
+## v2.0.0-alpha.67 — Fase 52: Auxiliar de Delegação Automática/Manual
+
+- Adiciona painel de delegação com opções automáticas e manuais para rota, contato, ataque, evasão, ameaça aérea e avarias.
+- Adiciona relatório rádio/sonar com quantidade e tipos de contatos.
+- Preserva assets, imagens, músicas, áudios e save schema 40.
+- Mantém foco mobile fullscreen.
+
 # v2.0.0-alpha.65 — Fase 50 — Ciclo Realista de Combate do Capitão
 
 - Adicionado painel de ciclo completo: contato, classificação, solução de tiro, ordem do capitão, execução e consequência.

@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.66",
-  "semver": "2.0.0-alpha.66",
-  "buildId": "SCWW2-20260626-1814-BRT-F51-CAPTAIN-COMMAND-ROOM",
-  "date": "2026-06-26",
-  "time": "18:14",
+  "version": "v2.0.0-alpha.67",
+  "semver": "2.0.0-alpha.67",
+  "buildId": "SCWW2-20260701-1908-BRT-F52-CAPTAIN-DELEGATION-ADVISOR",
+  "date": "2026-07-01",
+  "time": "19:08",
   "timezone": "America/Sao_Paulo",
-  "phase": "51",
-  "phaseName": "Silent Depth Definitive Captain Command Room",
+  "phase": "52",
+  "phaseName": "Silent Depth Captain Delegation Advisor Auto Manual",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 51 adds a mobile-first definitive command room: captain receives crew situation, sees station avatars/assets, chooses orders, and can still switch to manual control. Existing assets, music and audio are preserved."
+  "notes": "Phase 52 adds a delegation advisor: in every major scenario the officer offers automatic crew execution or manual player control, plus radio/sonar contact reports. Existing assets, images, music and audio are preserved."
 }
