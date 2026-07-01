@@ -130,5 +130,428 @@
     "cost": 740,
     "skill": 78,
     "bonusKey": "crew.bonus.navigation"
+  },
+  {
+    "id": "de_watch_fritz",
+    "nation": "de",
+    "name": "Fritz Adler",
+    "avatar": "assets/avatars/de/officer_01.png",
+    "roleKey": "crew.role.lookout",
+    "bioKey": "crew.bio.thomas",
+    "cost": 520,
+    "skill": 67,
+    "bonusKey": "crew.bonus.lookout",
+    "tier": "rookie",
+    "requires": {}
+  },
+  {
+    "id": "de_sonar_klaus",
+    "nation": "de",
+    "name": "Klaus Ritter",
+    "avatar": "assets/avatars/de/sonar_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.emil",
+    "cost": 1450,
+    "skill": 86,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "veteran",
+    "requires": {
+      "victories": 3,
+      "moraleMin": 64,
+      "reputationMin": 80,
+      "level": 3
+    }
+  },
+  {
+    "id": "de_mech_hans",
+    "nation": "de",
+    "name": "Hans Keller",
+    "avatar": "assets/avatars/de/mechanic_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.franz",
+    "cost": 1600,
+    "skill": 87,
+    "bonusKey": "crew.bonus.repair",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 110,
+      "level": 4
+    }
+  },
+  {
+    "id": "de_nav_erich",
+    "nation": "de",
+    "name": "Erich Vogt",
+    "avatar": "assets/avatars/de/officer_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.karl",
+    "cost": 1550,
+    "skill": 85,
+    "bonusKey": "crew.bonus.navigation",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 120,
+      "level": 4
+    }
+  },
+  {
+    "id": "de_exec_wilhelm",
+    "nation": "de",
+    "name": "Wilhelm Hartmann",
+    "avatar": "assets/avatars/de/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.otto",
+    "cost": 2600,
+    "skill": 91,
+    "bonusKey": "crew.bonus.command",
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 76,
+      "reputationMin": 320,
+      "level": 6
+    }
+  },
+  {
+    "id": "de_sonar_manfred",
+    "nation": "de",
+    "name": "Manfred Stein",
+    "avatar": "assets/avatars/de/sonar_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.emil",
+    "cost": 3100,
+    "skill": 94,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "elite",
+    "requires": {
+      "victories": 10,
+      "moraleMin": 78,
+      "reputationMin": 420,
+      "level": 7
+    }
+  },
+  {
+    "id": "de_mech_gunter",
+    "nation": "de",
+    "name": "Gunter Weiss",
+    "avatar": "assets/avatars/de/mechanic_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.franz",
+    "cost": 4200,
+    "skill": 96,
+    "bonusKey": "crew.bonus.repair",
+    "tier": "legendary",
+    "requires": {
+      "victories": 16,
+      "moraleMin": 84,
+      "reputationMin": 720,
+      "bestScoreMin": 900,
+      "level": 10
+    }
+  },
+  {
+    "id": "de_exec_reinhardt",
+    "nation": "de",
+    "name": "Reinhardt Stahl",
+    "avatar": "assets/avatars/de/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.otto",
+    "cost": 5200,
+    "skill": 98,
+    "bonusKey": "crew.bonus.command",
+    "tier": "legendary",
+    "requires": {
+      "victories": 20,
+      "moraleMin": 88,
+      "reputationMin": 980,
+      "bestScoreMin": 980,
+      "level": 12
+    }
+  },
+  {
+    "id": "uk_sonar_alfred",
+    "nation": "uk",
+    "name": "Alfred Moore",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 540,
+    "skill": 68,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "rookie",
+    "requires": {}
+  },
+  {
+    "id": "uk_watch_george",
+    "nation": "uk",
+    "name": "George Miller",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.lookout",
+    "bioKey": "crew.bio.thomas",
+    "cost": 1360,
+    "skill": 84,
+    "bonusKey": "crew.bonus.lookout",
+    "tier": "veteran",
+    "requires": {
+      "victories": 3,
+      "moraleMin": 64,
+      "reputationMin": 80,
+      "level": 3
+    }
+  },
+  {
+    "id": "uk_sonar_william",
+    "nation": "uk",
+    "name": "William Porter",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 1500,
+    "skill": 86,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 100,
+      "level": 4
+    }
+  },
+  {
+    "id": "uk_mech_oscar",
+    "nation": "uk",
+    "name": "Oscar Finch",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.hugh",
+    "cost": 1620,
+    "skill": 87,
+    "bonusKey": "crew.bonus.repair",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 120,
+      "level": 4
+    }
+  },
+  {
+    "id": "uk_exec_edmund",
+    "nation": "uk",
+    "name": "Edmund Clarke",
+    "avatar": "assets/avatars/uk/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.arthur",
+    "cost": 2550,
+    "skill": 91,
+    "bonusKey": "crew.bonus.command",
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 76,
+      "reputationMin": 310,
+      "level": 6
+    }
+  },
+  {
+    "id": "uk_nav_percival",
+    "nation": "uk",
+    "name": "Percival Grant",
+    "avatar": "assets/avatars/uk/captain_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.edward",
+    "cost": 2950,
+    "skill": 93,
+    "bonusKey": "crew.bonus.navigation",
+    "tier": "elite",
+    "requires": {
+      "victories": 10,
+      "moraleMin": 78,
+      "reputationMin": 410,
+      "level": 7
+    }
+  },
+  {
+    "id": "uk_sonar_nigel",
+    "nation": "uk",
+    "name": "Nigel Wood",
+    "avatar": "assets/avatars/uk/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 4100,
+    "skill": 96,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "legendary",
+    "requires": {
+      "victories": 16,
+      "moraleMin": 84,
+      "reputationMin": 700,
+      "bestScoreMin": 900,
+      "level": 10
+    }
+  },
+  {
+    "id": "uk_exec_montgomery",
+    "nation": "uk",
+    "name": "Montgomery Hale",
+    "avatar": "assets/avatars/uk/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.arthur",
+    "cost": 5250,
+    "skill": 98,
+    "bonusKey": "crew.bonus.command",
+    "tier": "legendary",
+    "requires": {
+      "victories": 20,
+      "moraleMin": 88,
+      "reputationMin": 980,
+      "bestScoreMin": 980,
+      "level": 12
+    }
+  },
+  {
+    "id": "us_watch_paul",
+    "nation": "us",
+    "name": "Paul Harris",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.lookout",
+    "bioKey": "crew.bio.thomas",
+    "cost": 560,
+    "skill": 69,
+    "bonusKey": "crew.bonus.lookout",
+    "tier": "rookie",
+    "requires": {}
+  },
+  {
+    "id": "us_sonar_robert",
+    "nation": "us",
+    "name": "Robert Hayes",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 1450,
+    "skill": 86,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "veteran",
+    "requires": {
+      "victories": 3,
+      "moraleMin": 64,
+      "reputationMin": 80,
+      "level": 3
+    }
+  },
+  {
+    "id": "us_mech_charles",
+    "nation": "us",
+    "name": "Charles Brooks",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.luke",
+    "cost": 1620,
+    "skill": 88,
+    "bonusKey": "crew.bonus.repair",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 120,
+      "level": 4
+    }
+  },
+  {
+    "id": "us_nav_frank",
+    "nation": "us",
+    "name": "Frank Turner",
+    "avatar": "assets/avatars/us/captain_01.png",
+    "roleKey": "crew.role.navigator",
+    "bioKey": "crew.bio.henry",
+    "cost": 1580,
+    "skill": 85,
+    "bonusKey": "crew.bonus.navigation",
+    "tier": "veteran",
+    "requires": {
+      "victories": 4,
+      "moraleMin": 66,
+      "reputationMin": 120,
+      "level": 4
+    }
+  },
+  {
+    "id": "us_exec_george",
+    "nation": "us",
+    "name": "George Mason",
+    "avatar": "assets/avatars/us/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.richard",
+    "cost": 2580,
+    "skill": 91,
+    "bonusKey": "crew.bonus.command",
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 76,
+      "reputationMin": 320,
+      "level": 6
+    }
+  },
+  {
+    "id": "us_sonar_walter",
+    "nation": "us",
+    "name": "Walter Knox",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.sonar",
+    "bioKey": "crew.bio.james",
+    "cost": 3100,
+    "skill": 94,
+    "bonusKey": "crew.bonus.sonar",
+    "tier": "elite",
+    "requires": {
+      "victories": 10,
+      "moraleMin": 78,
+      "reputationMin": 420,
+      "level": 7
+    }
+  },
+  {
+    "id": "us_mech_clarence",
+    "nation": "us",
+    "name": "Clarence Reed",
+    "avatar": "assets/avatars/us/sailor_01.png",
+    "roleKey": "crew.role.mechanic",
+    "bioKey": "crew.bio.luke",
+    "cost": 4200,
+    "skill": 96,
+    "bonusKey": "crew.bonus.repair",
+    "tier": "legendary",
+    "requires": {
+      "victories": 16,
+      "moraleMin": 84,
+      "reputationMin": 720,
+      "bestScoreMin": 900,
+      "level": 10
+    }
+  },
+  {
+    "id": "us_exec_nimitz",
+    "nation": "us",
+    "name": "Raymond Burke",
+    "avatar": "assets/avatars/us/captain_01.png",
+    "roleKey": "crew.role.executive",
+    "bioKey": "crew.bio.richard",
+    "cost": 5300,
+    "skill": 98,
+    "bonusKey": "crew.bonus.command",
+    "tier": "legendary",
+    "requires": {
+      "victories": 20,
+      "moraleMin": 88,
+      "reputationMin": 980,
+      "bestScoreMin": 980,
+      "level": 12
+    }
   }
 ]

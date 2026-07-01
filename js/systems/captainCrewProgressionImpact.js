@@ -1,7 +1,7 @@
 export const PHASE53_CREW_PROGRESSION_IMPACT = Object.freeze({
   phase: 53,
   system: 'captain-crew-progression-impact',
-  version: 'v2.0.0-alpha.68',
+  version: 'v2.0.0-alpha.69',
   doctrine: 'assistant-offers-auto-or-manual-crew-choice-and-hired-crew-affects-real-gameplay',
   mobileFullscreen: true,
   preservesExistingAssetsAndAudio: true,

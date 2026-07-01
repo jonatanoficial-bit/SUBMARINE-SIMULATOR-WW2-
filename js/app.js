@@ -43,6 +43,8 @@ import { canAssignVeteranOfficer, findVeteranOfficerDeckForNation, getVeteranOff
 import { canRunCrewDrill, findCrewDrillDeckForNation, getCrewDrillCompletedIds, summarizeCrewDrills } from './systems/crewDrills.js';
 import { buildSandboxMission } from './systems/sandboxPatrolPlanner.js';
 import { applyUpgradeStats, buildWorkshopImpactReport, calculateUpgradeBonus } from './systems/baseWorkshopIntegration.js';
+import { buildCrewProgressionImpact, applyCrewImpactToMissionReport } from './systems/captainCrewProgressionImpact.js';
+import { buildCareerRetentionDeck, applyRetentionAccuracyModifiers, calculateMissionMoraleOutcome, evaluateCareerGate } from './systems/captainCareerRetention.js';
 
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
@@ -294,12 +296,37 @@ function getCrewDrillEffect(nationId = getCurrentNationId()) {
 
 function getCrewProgressionImpact(nationId = getCurrentNationId()) {
   const allCrew = (state.data?.crew || []).filter((crew) => crew.nation === nationId);
-  return buildCrewProgressionImpact({
+  const baseImpact = buildCrewProgressionImpact({
     allCrew,
     hiredIds: state.save?.crew?.hiredIds || [],
     save: state.save || {},
     crewDrillSummary: getCrewDrillSummaryForNation(nationId),
     veteranOfficerSummary: getVeteranOfficerSummaryForNation(nationId),
+  });
+  const retention = buildCareerRetentionDeck({
+    allCrew: state.data?.crew || [],
+    submarines: submarinesByNation(nationId),
+    save: state.save || {},
+    nationId,
+    crewImpact: baseImpact,
+  });
+  return applyRetentionAccuracyModifiers(baseImpact, retention);
+}
+
+function getCareerRetentionDeck(nationId = getCurrentNationId()) {
+  const baseImpact = buildCrewProgressionImpact({
+    allCrew: (state.data?.crew || []).filter((crew) => crew.nation === nationId),
+    hiredIds: state.save?.crew?.hiredIds || [],
+    save: state.save || {},
+    crewDrillSummary: getCrewDrillSummaryForNation(nationId),
+    veteranOfficerSummary: getVeteranOfficerSummaryForNation(nationId),
+  });
+  return buildCareerRetentionDeck({
+    allCrew: state.data?.crew || [],
+    submarines: submarinesByNation(nationId),
+    save: state.save || {},
+    nationId,
+    crewImpact: baseImpact,
   });
 }
 
@@ -1011,6 +1038,8 @@ function handleCrewHire(id) {
   if (!state.save) return;
   const crew = state.data.crew.find((item) => item.id === id);
   if (!crew || state.save.crew.hiredIds.includes(id)) return;
+  const gate = evaluateCareerGate(crew, state.save, 'crew');
+  if (!gate.ok) { showToast(t(gate.reasonKey, { current: gate.reason?.current || 0, required: gate.reason?.required || 0 })); return; }
   if (!spendCredits(crew.cost)) { showToast(t('toast.notEnoughCredits')); return; }
   state.save.crew.hiredIds.push(id);
   commitSave('toast.crewUpdated');
@@ -1021,6 +1050,8 @@ function handleUnlockSubmarine(id) {
   const sub = state.data.submarines.find((item) => item.id === id);
   if (!sub || state.save.submarine.unlockedIds.includes(id)) return;
   const unlockCost = sub.unlockCost || 0;
+  const gate = evaluateCareerGate(sub, state.save, 'submarine');
+  if (!gate.ok) { showToast(t(gate.reasonKey, { current: gate.reason?.current || 0, required: gate.reason?.required || 0 })); return; }
   if (state.save.progression.level < sub.levelRequired) { showToast(t('toast.levelRequired', { level: sub.levelRequired })); return; }
   if (!spendCredits(unlockCost)) { showToast(t('toast.notEnoughCredits')); return; }
   state.save.submarine.unlockedIds.push(id);
@@ -1114,6 +1145,7 @@ function handleCompleteMission(id, report = null) {
   const missionReport = applyCrewImpactToMissionReport(report || {}, crewImpact);
   const completedBefore = [...(state.save.progression.completedMissions || [])];
   const alreadyCompleted = state.save.progression.completedMissions.includes(id);
+  const moraleOutcome = calculateMissionMoraleOutcome({ mission, report: missionReport, alreadyCompleted });
   const bonusCredits = missionReport?.bonusCredits || 0;
   const bonusXp = missionReport?.bonusXp || 0;
   const totalCredits = mission.reward + bonusCredits;
@@ -1130,7 +1162,7 @@ function handleCompleteMission(id, report = null) {
   const objectiveRewards = applyCampaignObjectiveRewards(mission.nationId, completedBefore, completedAfter);
   state.save.progression.bestScore = Math.max(state.save.progression.bestScore || 0, missionReport?.score || 0);
   state.save.progression.missionReports = [
-    { missionId: id, score: missionReport?.score || 0, baseScore: missionReport?.baseScore || report?.score || 0, bonusCredits, bonusXp, crewScoreMultiplier: missionReport?.crewScoreMultiplier || 1, crewImpactApplied: Boolean(missionReport?.crewImpactApplied), objectiveRewardIds: objectiveRewards.map((item) => item.id), hull: missionReport?.hull ?? report?.hull ?? null, stealth: missionReport?.stealth ?? report?.stealth ?? null, shots: missionReport?.shots ?? report?.shots ?? null, completedAt: new Date().toISOString() },
+    { missionId: id, score: missionReport?.score || 0, baseScore: missionReport?.baseScore || report?.score || 0, bonusCredits, bonusXp, crewScoreMultiplier: missionReport?.crewScoreMultiplier || 1, crewImpactApplied: Boolean(missionReport?.crewImpactApplied), moraleDelta: moraleOutcome.moraleDelta, fatigueDelta: moraleOutcome.fatigueDelta, moraleOutcomeKey: moraleOutcome.labelKey, objectiveRewardIds: objectiveRewards.map((item) => item.id), hull: missionReport?.hull ?? report?.hull ?? null, stealth: missionReport?.stealth ?? report?.stealth ?? null, shots: missionReport?.shots ?? report?.shots ?? null, completedAt: new Date().toISOString() },
     ...(state.save.progression.missionReports || [])
   ].slice(0, 12);
   const score = missionReport?.score || 0;
@@ -1142,20 +1174,21 @@ function handleCompleteMission(id, report = null) {
     state.save.career.patrols += 1;
     state.save.career.victories += 1;
     state.save.career.tonnage += estimatedTonnage;
-    state.save.career.reputation += Math.max(8, Math.round((score / 35) + difficulty * 7 + (mission.campaignOrder || 1)));
+    state.save.career.reputation += Math.max(8, Math.round((score / 35) + difficulty * 7 + (mission.campaignOrder || 1))) + Math.max(0, moraleOutcome.reputationBonus);
     state.save.career.prestige += Math.max(4, Math.round((totalXp / 30) + difficulty * 2));
     state.save.career.convoyDisruption = Math.min(100, (state.save.career.convoyDisruption || 0) + difficulty + 1);
     state.save.career.campaignPressure = Math.max(0, (state.save.career.campaignPressure || 0) - Math.ceil(difficulty / 2));
     state.save.career.serviceRecord = [{
       missionId: id, missionTitle: t(mission.titleKey), score, tonnage: estimatedTonnage,
-      reputationGained: Math.max(8, Math.round((score / 35) + difficulty * 7 + (mission.campaignOrder || 1))),
+      reputationGained: Math.max(8, Math.round((score / 35) + difficulty * 7 + (mission.campaignOrder || 1))) + Math.max(0, moraleOutcome.reputationBonus),
+      moraleDelta: moraleOutcome.moraleDelta, moraleOutcomeKey: moraleOutcome.labelKey,
       completedAt: new Date().toISOString(), rankIndex: state.save.career.rankIndex || 0
     }, ...(state.save.career.serviceRecord || [])].slice(0, 24);
   }
   if (state.save.logistics) {
     state.save.logistics.activePlan = null;
-    state.save.logistics.morale = Math.max(0, Math.min(100, (state.save.logistics.morale || 0) + (score >= 650 ? 4 : -2)));
-    state.save.logistics.fatigue = Math.max(0, Math.min(100, (state.save.logistics.fatigue || 0) - (score >= 700 ? 4 : 0)));
+    state.save.logistics.morale = Math.max(0, Math.min(100, (state.save.logistics.morale || 0) + moraleOutcome.moraleDelta));
+    state.save.logistics.fatigue = Math.max(0, Math.min(100, (state.save.logistics.fatigue || 0) + moraleOutcome.fatigueDelta));
     state.save.logistics.spareParts = Math.max(0, (state.save.logistics.spareParts || 0) - Math.max(1, Math.round((100 - (report?.hull ?? 86)) / 20)));
     state.save.logistics.readiness = getReadiness().overall;
   }
@@ -1525,6 +1558,7 @@ function createSceneContext() {
     veteranOfficers: getVeteranOfficerSummaryForNation(nationId),
     crewDrills: getCrewDrillSummaryForNation(nationId),
     crewProgressionImpact: getCrewProgressionImpact(nationId),
+    careerRetention: getCareerRetentionDeck(nationId),
     highCommandOrders: getHighCommandSummaryForNation(nationId),
     submarines: submarinesByNation(nationId),
     nationCrew: crewByNation(nationId),
@@ -1574,8 +1608,8 @@ sceneManager
     }),
     exit: cleanupGameplay,
   })
-  .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null, getWorkshopImpactReport()) })
-  .register('crew', { render: ({ t: translate, nationCrew, crewDrills, crewProgressionImpact }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills, crewProgressionImpact) })
+  .register('arsenal', { render: ({ t: translate, nationId, submarines, careerRetention }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null, getWorkshopImpactReport(), careerRetention) })
+  .register('crew', { render: ({ t: translate, nationCrew, crewDrills, crewProgressionImpact, careerRetention }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills, crewProgressionImpact, careerRetention) })
   .register('settings', { render: ({ t: translate }) => renderSettings(translate, state.settings) })
   .register('profiles', { render: ({ t: translate }) => renderProfiles(translate, state.profiles, state.language, state.operationAutosave) });
 

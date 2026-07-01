@@ -1,6 +1,27 @@
 import { renderBottomNav, renderStatBar } from '../components/ui.js';
 
-export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades, submarineState = null, workshopImpact = null) {
+function submarineGateText(t, item = null) {
+  if (!item?.gate?.reason) return t('careerRetention.unlocked');
+  return t(item.lockKey || item.gate.reasonKey, { current: item.gate.reason.current, required: item.gate.reason.required });
+}
+
+function arsenalRetentionMarkup(t, retention = null) {
+  if (!retention) return '';
+  const freeModes = retention.freeModes || [];
+  return `
+    <div class="panel phase54-career-retention-panel arsenal-retention" data-morale="${retention.morale?.tone || 'stable'}">
+      <div class="panel-header">${t('careerRetention.arsenalTitle')}</div>
+      <div class="panel-body stack">
+        <div class="phase54-retention-top">
+          <div class="phase54-morale-dial"><strong>${retention.stats?.morale || 0}%</strong><span>${t(retention.moraleKey || 'careerRetention.morale.stable')}</span></div>
+          <div><div class="kicker">${t('careerRetention.arsenalKicker')}</div><h3>${t('careerRetention.arsenalHeading')}</h3><p class="muted compact-text">${t('careerRetention.arsenalSubtitle')}</p></div>
+        </div>
+        <div class="phase54-free-grid">${freeModes.map((mode) => `<div class="phase54-free-card ${mode.unlocked ? 'complete' : ''}"><span>${t(mode.key)}</span><strong>${mode.unlocked ? t('common.available') : t('common.locked')}</strong><small>${t('careerRetention.requiresVictories', { count: mode.requires })}</small></div>`).join('')}</div>
+      </div>
+    </div>`;
+}
+
+export function renderArsenal(t, submarines, currentId, level, credits, ownedUpgrades, upgrades, submarineState = null, workshopImpact = null, careerRetention = null) {
   const hull = submarineState?.hull ?? 100;
   const systems = submarineState?.systems || { engines: 100, sonar: 100, periscope: 100, weapons: 100 };
   const damagedSystems = Object.values(systems).some((value) => value < 100);
@@ -15,13 +36,17 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
         <span class="tag success">${t('common.credits')}: ${credits}</span>
       </div>
 
+      ${arsenalRetentionMarkup(t, careerRetention)}
+
       <div class="stack arsenal-sub-list">
         ${submarines.map((submarine) => {
+          const market = careerRetention?.submarineMarketById?.[submarine.id] || null;
           const isCurrent = submarine.id === currentId;
-          const isOwned = submarine.unlocked || submarine.owned;
-          const canUnlock = !isOwned && level >= submarine.levelRequired;
+          const isOwned = submarine.unlocked || submarine.owned || market?.owned;
+          const locked = Boolean(market && !market.unlocked && !isOwned);
+          const canUnlock = market ? market.canBuy : (!isOwned && level >= submarine.levelRequired);
           return `
-            <div class="sub-card ${isCurrent ? 'active' : ''}">
+            <div class="sub-card phase54-sub-shop-card ${isCurrent ? 'active' : ''} ${locked ? 'locked' : ''}" data-tier="${market?.tier || submarine.tier || 'trained'}">
               <div class="sub-visual"><img src="${submarine.image}" alt="${submarine.name}"></div>
               <div class="row space-between align-start" style="margin-top: 10px; gap:10px;">
                 <div>
@@ -29,6 +54,10 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
                   <p>${isOwned ? t('arsenal.note') : t('arsenal.unlockFor', { credits: submarine.unlockCost || 0, level: submarine.levelRequired })}</p>
                 </div>
                 <span class="tag ${isCurrent ? 'success' : (isOwned ? 'gold' : 'warn')}">${isCurrent ? t('arsenal.current') : (isOwned ? t('common.available') : t('common.locked'))}</span>
+              </div>
+              <div class="mission-meta">
+                <span class="tag gold">${t(market?.tierKey || 'careerRetention.tier.trained')}</span>
+                <span class="tag">${t('careerRetention.unlock')}: ${submarineGateText(t, market)}</span>
               </div>
               <div class="stack" style="margin-top: 12px; gap: 10px;">
                 ${Object.entries(submarine.stats).map(([key, value]) => `
@@ -40,7 +69,7 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
               </div>
               <div class="row wrap" style="margin-top:12px; gap:10px;">
                 ${isOwned && !isCurrent ? `<button class="button ghost" data-action="equip-submarine" data-submarine="${submarine.id}">${t('arsenal.equip')}</button>` : ''}
-                ${canUnlock ? `<button class="button" data-action="unlock-submarine" data-submarine="${submarine.id}">${t('arsenal.unlock')}</button>` : ''}
+                ${canUnlock ? `<button class="button" data-action="unlock-submarine" data-submarine="${submarine.id}">${t('arsenal.unlock')}</button>` : (!isOwned ? `<button class="button secondary" disabled>${locked ? t('careerRetention.locked') : t('common.locked')}</button>` : '')}
               </div>
             </div>
           `;

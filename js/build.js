@@ -1,17 +1,17 @@
 export const BUILD_INFO = {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.68",
-  "semver": "2.0.0-alpha.68",
-  "buildId": "SCWW2-20260701-1944-BRT-F53-CREW-PROGRESSION-IMPACT",
+  "version": "v2.0.0-alpha.69",
+  "semver": "2.0.0-alpha.69",
+  "buildId": "SCWW2-20260701-2008-BRT-F54-CAREER-MORALE-SHOP-RETENTION",
   "date": "2026-07-01",
-  "time": "19:44",
+  "time": "20:08",
   "timezone": "America/Sao_Paulo",
-  "phase": "53",
-  "phaseName": "Captain Assistant Crew Progression Impact",
+  "phase": "54",
+  "phaseName": "Career Morale Shop Retention",
   "channel": "alpha",
   "release": false,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 53 perfects the assistant/delegation layer and makes hired crew, drills and store investment affect real gameplay: sonar, TDC, repairs, stealth, automatic orders and mission scoring. Existing assets, images, music and audio are preserved."
+  "notes": "Phase 54 adds dynamic crew morale from mission results, tiered crew and submarine shop locks by victories, morale, reputation and score, plus long-term free-mode goals. Existing assets, images, music and audio are preserved."
 };

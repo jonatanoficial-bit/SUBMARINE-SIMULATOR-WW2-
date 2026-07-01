@@ -1,0 +1,320 @@
+VALE AIR MANAGER — DOCUMENTO MESTRE DE IMAGENS E PROMPTS
+Versão do documento: v2.3.0
+Objetivo: servir como guia permanente para criação futura de todos os assets visuais do jogo com IA.
+Uso recomendado: manter este TXT dentro do ZIP principal do jogo em /docs/ para nunca perder o planejamento visual.
+
+=====================================================================
+1) REGRAS GERAIS PARA AS IMAGENS
+=====================================================================
+- Estilo base temporário: premium, cinematográfico, ultrarrealista, iluminação dramática, visual AAA.
+- Uso principal: telas do jogo, cards, menu, onboarding, telas de staff e catálogo de aeronaves.
+- Padrão de enquadramento de personagens: meio corpo e corpo inteiro quando necessário.
+- Fundo preferencial para personagens: neutro escuro ou ambiente aeronáutico discreto.
+- Saída recomendada:
+  - Personagens / logos: PNG com fundo transparente.
+  - Fundos de tela: JPG ou PNG horizontal 16:9.
+  - Cards de aeronave: PNG/JPG 4:3 ou 16:9.
+- Importante: evitar marcas protegidas no livery; usar visuais originais do jogo quando não houver licença.
+
+=====================================================================
+2) LOGO DO JOGO
+=====================================================================
+ASSET ID: LOGO-001
+Nome: Logo principal do jogo
+Prompt curto: "Logo premium para o jogo VALE AIR MANAGER, estilo companhia aérea global, tipografia moderna metálica azul e prata, ícone de asa estilizada com globo discreto, visual elegante, fundo transparente."
+
+ASSET ID: LOGO-002
+Nome: Logo alternativo dark
+Prompt curto: "Logo alternativo para VALE AIR MANAGER, estilo luxuoso dark, asa minimalista dourada e azul petróleo, tipografia forte, interface de simulador aéreo premium, fundo transparente."
+
+ASSET ID: LOGO-003
+Nome: Ícone de app
+Prompt curto: "Ícone de aplicativo para VALE AIR MANAGER, asa estilizada sobre globo e pista, visual clean, contraste alto, azul, prata e branco, design moderno."
+
+=====================================================================
+3) AVATARES SELECIONÁVEIS DO USUÁRIO (CEO)
+=====================================================================
+Criar pelo menos 1 masculino e 1 feminino de cada grupo étnico principal.
+Todos em estilo executivo de companhia aérea, aparência confiante, roupa premium.
+
+AVATAR-CEO-01
+Nome: Homem negro
+Prompt: "Retrato executivo ultrarrealista de CEO homem negro, 35 a 45 anos, traje social moderno azul marinho, postura confiante, ambiente sutil de aviação ao fundo, iluminação cinematográfica."
+
+AVATAR-CEO-02
+Nome: Mulher negra
+Prompt: "Retrato executivo ultrarrealista de CEO mulher negra, 35 a 45 anos, blazer elegante azul escuro, postura confiante, ambiente sutil de aviação ao fundo, iluminação cinematográfica."
+
+AVATAR-CEO-03
+Nome: Homem branco
+Prompt: "Retrato executivo ultrarrealista de CEO homem branco, 35 a 45 anos, terno elegante, postura confiante, fundo discreto de aeroporto premium, iluminação cinematográfica."
+
+AVATAR-CEO-04
+Nome: Mulher branca
+Prompt: "Retrato executivo ultrarrealista de CEO mulher branca, 35 a 45 anos, traje executivo elegante, fundo discreto de aeroporto premium, iluminação cinematográfica."
+
+AVATAR-CEO-05
+Nome: Homem asiático
+Prompt: "Retrato executivo ultrarrealista de CEO homem asiático, 35 a 45 anos, terno premium, expressão inteligente e calma, fundo de terminal aéreo desfocado, iluminação cinematográfica."
+
+AVATAR-CEO-06
+Nome: Mulher asiática
+Prompt: "Retrato executivo ultrarrealista de CEO mulher asiática, 35 a 45 anos, blazer premium, expressão confiante, fundo de terminal aéreo desfocado, iluminação cinematográfica."
+
+AVATAR-CEO-07
+Nome: Homem latino
+Prompt: "Retrato executivo ultrarrealista de CEO homem latino, 35 a 45 anos, terno moderno, expressão carismática, fundo de hangar corporativo sutil, iluminação cinematográfica."
+
+AVATAR-CEO-08
+Nome: Mulher latina
+Prompt: "Retrato executivo ultrarrealista de CEO mulher latina, 35 a 45 anos, traje executivo moderno, expressão forte, fundo de hangar corporativo sutil, iluminação cinematográfica."
+
+AVATAR-CEO-09
+Nome: Homem indígena
+Prompt: "Retrato executivo ultrarrealista de CEO homem indígena, 35 a 45 anos, traje executivo contemporâneo, visual respeitoso, fundo discreto ligado à aviação, iluminação cinematográfica."
+
+AVATAR-CEO-10
+Nome: Mulher indígena
+Prompt: "Retrato executivo ultrarrealista de CEO mulher indígena, 35 a 45 anos, blazer moderno, visual respeitoso, fundo discreto ligado à aviação, iluminação cinematográfica."
+
+=====================================================================
+4) STAFF — PILOTOS, COMISSÁRIOS, MECÂNICOS E DIRETORES
+=====================================================================
+PILOTO-01 Homem negro
+"Piloto comercial ultrarrealista, homem negro, uniforme moderno de comandante, cockpit ao fundo, expressão profissional, iluminação cinematográfica."
+
+PILOTO-02 Mulher negra
+"Piloto comercial ultrarrealista, mulher negra, uniforme moderno de comandante, cockpit ao fundo, expressão profissional, iluminação cinematográfica."
+
+PILOTO-03 Homem branco
+"Piloto comercial ultrarrealista, homem branco, uniforme de comandante, cockpit elegante ao fundo, visual premium."
+
+PILOTO-04 Mulher branca
+"Piloto comercial ultrarrealista, mulher branca, uniforme de comandante, cockpit elegante ao fundo, visual premium."
+
+PILOTO-05 Homem asiático
+"Piloto comercial ultrarrealista, homem asiático, uniforme de comandante, cockpit ao fundo, iluminação cinematográfica."
+
+PILOTO-06 Mulher asiática
+"Piloto comercial ultrarrealista, mulher asiática, uniforme de comandante, cockpit ao fundo, iluminação cinematográfica."
+
+COMISSARIO-01 Homem latino
+"Comissário de bordo ultrarrealista, homem latino, uniforme elegante de cabine, interior de aeronave premium ao fundo, aparência acolhedora."
+
+COMISSARIO-02 Mulher latina
+"Comissária de bordo ultrarrealista, mulher latina, uniforme elegante de cabine, interior de aeronave premium ao fundo, aparência acolhedora."
+
+COMISSARIO-03 Homem negro
+"Comissário de bordo ultrarrealista, homem negro, uniforme premium, interior de cabine moderna ao fundo, iluminação cinematográfica."
+
+COMISSARIO-04 Mulher negra
+"Comissária de bordo ultrarrealista, mulher negra, uniforme premium, interior de cabine moderna ao fundo, iluminação cinematográfica."
+
+MECANICO-01 Homem branco
+"Mecânico aeronáutico ultrarrealista, homem branco, macacão de manutenção, hangar ao fundo, ferramentas aeronáuticas, visual técnico premium."
+
+MECANICO-02 Mulher branca
+"Mecânica aeronáutica ultrarrealista, mulher branca, macacão de manutenção, hangar ao fundo, ferramentas aeronáuticas, visual técnico premium."
+
+MECANICO-03 Homem negro
+"Mecânico aeronáutico ultrarrealista, homem negro, macacão técnico, motor de aeronave ao fundo, ambiente de hangar, iluminação cinematográfica."
+
+MECANICO-04 Mulher negra
+"Mecânica aeronáutica ultrarrealista, mulher negra, macacão técnico, motor de aeronave ao fundo, ambiente de hangar, iluminação cinematográfica."
+
+DIRETOR-OPS-01
+"Diretor de operações ultrarrealista, executivo de aviação em OCC moderno, telas e mapa de rotas ao fundo, visual premium."
+
+DIRETOR-FIN-01
+"Diretora financeira ultrarrealista, executiva em sala de controle financeiro de companhia aérea, dashboards ao fundo, visual premium."
+
+DIRETOR-MKT-01
+"Diretor de marketing ultrarrealista, executivo criativo de companhia aérea, branding e campanhas ao fundo, iluminação cinematográfica."
+
+DIRETOR-RH-01
+"Diretora de recursos humanos ultrarrealista, executiva de companhia aérea, ambiente corporativo elegante, visual profissional."
+
+=====================================================================
+5) FUNDOS PARA TELAS DO JOGO
+=====================================================================
+FUNDO-01 Menu principal
+"Plano de fundo cinematográfico para simulador de companhia aérea, aeroporto internacional noturno, jatos estacionados, luzes de pista, céu dramático, visual premium."
+
+FUNDO-02 Tela de criação da companhia
+"Plano de fundo elegante para criação de companhia aérea, terminal moderno com vista panorâmica de pistas e aeronaves, azul e prata, ambiente premium."
+
+FUNDO-03 Tela de frota
+"Plano de fundo para tela de frota, hangar aeronáutico moderno com diferentes aeronaves em manutenção e preparação, visual cinematográfico."
+
+FUNDO-04 Tela financeira
+"Plano de fundo premium para tela financeira de companhia aérea, cidade global noturna, gráficos holográficos e aviação corporativa."
+
+FUNDO-05 Tela de rotas
+"Plano de fundo para tela de rotas, mapa global estilizado com linhas aéreas e cidades iluminadas, visual high-tech premium."
+
+FUNDO-06 Tela de passageiros
+"Plano de fundo premium para experiência do passageiro, cabine executiva elegante e terminal VIP moderno, iluminação suave."
+
+FUNDO-07 Tela OCC
+"Plano de fundo para centro de operações OCC, sala de controle com videowall de rotas, clima e operações, ambiente cinematográfico."
+
+FUNDO-08 Tela charter/VIP
+"Plano de fundo premium para aviação executiva, jato privado em terminal executivo ao pôr do sol, visual ultrarrealista."
+
+FUNDO-09 Tela de manutenção
+"Plano de fundo de manutenção aeronáutica, hangar com aeronave aberta, equipe técnica, ferramentas e luz dramática."
+
+FUNDO-10 Tela de lançamento
+"Plano de fundo heroico para lançamento do jogo, frota global em voo sobre o planeta Terra ao amanhecer, atmosfera épica."
+
+=====================================================================
+6) ÍCONES / CARDS COMPLEMENTARES
+=====================================================================
+- Card de avião genérico: "Card premium de aeronave comercial, fundo escuro sofisticado, foto do avião em destaque, espaço para fabricante, modelo, alcance, consumo e valor."
+- Card de hub: "Card premium de hub aeroportuário, terminal moderno, ícone de conexão global, visual clean e corporativo."
+- Card de contrato logístico: "Card premium para contrato de carga aérea, caixas e pallets ao lado de aeronave, visual profissional."
+- Card de missão VIP: "Card premium de voo VIP, jato executivo em terminal privado, visual luxuoso."
+
+=====================================================================
+7) AERONAVES — MODELO DE DADOS PARA CADA IMAGEM
+=====================================================================
+Para cada aeronave criar:
+- Nome completo da aeronave
+- Fabricante
+- Categoria
+- Consumo aproximado de combustível por hora (ou valor equivalente operacional)
+- Valor de mercado indicativo (novo ou usado, conforme disponibilidade)
+- Prompt da imagem
+
+Observação importante:
+Como existem muitas aeronaves no mundo e o mercado muda bastante, usar este documento como BASE MESTRA.
+Os valores abaixo são INDICATIVOS para gameplay e para orientar o catálogo visual. Em fases futuras, pode haver um CSV técnico separado para expansão total.
+
+=====================================================================
+8) CATÁLOGO INICIAL DE AERONAVES — REFERÊNCIA VISUAL E TÉCNICA
+=====================================================================
+Formato:
+[ID] | Nome | Fabricante | Categoria | Consumo aprox. | Valor indicativo | Prompt curto
+
+[AIR-001] | Airbus A220-100 | Airbus | Narrow-body regional | ~2.1 t/h | ~US$ 81 mi | "Aeronave comercial Airbus A220-100 em solo, pintura genérica premium, foto ultrarrealista lateral 3/4, pista de aeroporto ao fundo."
+[AIR-002] | Airbus A220-300 | Airbus | Narrow-body regional | ~2.3 t/h | ~US$ 91 mi | "Airbus A220-300 ultrarrealista, pintura genérica premium, pista moderna ao fundo, foto 3/4."
+[AIR-003] | Airbus A318 | Airbus | Narrow-body | ~2.4 t/h | ~US$ 35 mi usado | "Airbus A318 ultrarrealista, aeronave comercial em taxiway, pintura genérica."
+[AIR-004] | Airbus A319 | Airbus | Narrow-body | ~2.5 t/h | ~US$ 45 mi usado | "Airbus A319 ultrarrealista, lateral 3/4, aeroporto internacional."
+[AIR-005] | Airbus A320ceo | Airbus | Narrow-body | ~2.6 t/h | ~US$ 50 mi usado | "Airbus A320 comercial ultrarrealista, foto de catálogo, pintura genérica premium."
+[AIR-006] | Airbus A320neo | Airbus | Narrow-body | ~2.3 t/h | ~US$ 110 mi | "Airbus A320neo ultrarrealista, aeronave moderna em pista, iluminação natural."
+[AIR-007] | Airbus A321ceo | Airbus | Narrow-body | ~2.9 t/h | ~US$ 60 mi usado | "Airbus A321 ultrarrealista, foto de catálogo premium, aeroporto ao fundo."
+[AIR-008] | Airbus A321neo | Airbus | Narrow-body | ~2.6 t/h | ~US$ 130 mi | "Airbus A321neo ultrarrealista, fuselagem longa, pintura genérica."
+[AIR-009] | Airbus A330-200 | Airbus | Wide-body | ~5.4 t/h | ~US$ 70 mi usado | "Airbus A330-200 ultrarrealista, wide-body em solo, visual premium."
+[AIR-010] | Airbus A330-300 | Airbus | Wide-body | ~5.8 t/h | ~US$ 85 mi usado | "Airbus A330-300 ultrarrealista, foto 3/4 em aeroporto internacional."
+[AIR-011] | Airbus A330-900neo | Airbus | Wide-body | ~5.2 t/h | ~US$ 296 mi | "Airbus A330neo ultrarrealista, wide-body moderno, pista ao fundo."
+[AIR-012] | Airbus A340-300 | Airbus | Wide-body | ~7.0 t/h | ~US$ 35 mi usado | "Airbus A340-300 ultrarrealista, quatro motores, aeroporto grande ao fundo."
+[AIR-013] | Airbus A350-900 | Airbus | Wide-body | ~5.8 t/h | ~US$ 317 mi | "Airbus A350-900 ultrarrealista, aeronave moderna de longo alcance, pintura genérica."
+[AIR-014] | Airbus A350-1000 | Airbus | Wide-body | ~6.3 t/h | ~US$ 366 mi | "Airbus A350-1000 ultrarrealista, longo alcance, foto de catálogo premium."
+[AIR-015] | Airbus A380-800 | Airbus | Very large wide-body | ~11.5 t/h | ~US$ 180 mi usado | "Airbus A380 ultrarrealista, double decker gigante, aeroporto internacional."
+
+[AIR-016] | Boeing 717-200 | Boeing | Narrow-body regional | ~2.4 t/h | ~US$ 20 mi usado | "Boeing 717-200 ultrarrealista, avião comercial em taxiway, pintura genérica."
+[AIR-017] | Boeing 727-200 | Boeing | Narrow-body clássico | ~5.0 t/h | ~US$ 8 mi usado | "Boeing 727 clássico ultrarrealista, três motores, foto de catálogo."
+[AIR-018] | Boeing 737-300 | Boeing | Narrow-body clássico | ~2.5 t/h | ~US$ 10 mi usado | "Boeing 737-300 ultrarrealista, comercial clássico, aeroporto ao fundo."
+[AIR-019] | Boeing 737-500 | Boeing | Narrow-body clássico | ~2.4 t/h | ~US$ 12 mi usado | "Boeing 737-500 ultrarrealista, pintura genérica, luz natural."
+[AIR-020] | Boeing 737-700 | Boeing | Narrow-body | ~2.4 t/h | ~US$ 28 mi usado | "Boeing 737-700 ultrarrealista, aeronave comercial moderna."
+[AIR-021] | Boeing 737-800 | Boeing | Narrow-body | ~2.6 t/h | ~US$ 52 mi usado | "Boeing 737-800 ultrarrealista, vista lateral 3/4, aeroporto internacional."
+[AIR-022] | Boeing 737-900ER | Boeing | Narrow-body | ~2.8 t/h | ~US$ 60 mi usado | "Boeing 737-900ER ultrarrealista, fuselagem longa, visual premium."
+[AIR-023] | Boeing 737 MAX 8 | Boeing | Narrow-body | ~2.3 t/h | ~US$ 121 mi | "Boeing 737 MAX 8 ultrarrealista, aeronave moderna em solo, pintura genérica."
+[AIR-024] | Boeing 747-400 | Boeing | Wide-body jumbo | ~10.5 t/h | ~US$ 25 mi usado | "Boeing 747-400 ultrarrealista, jumbo jet, aeroporto internacional."
+[AIR-025] | Boeing 747-8I | Boeing | Wide-body jumbo | ~10.8 t/h | ~US$ 418 mi | "Boeing 747-8 Intercontinental ultrarrealista, jumbo moderno, foto 3/4."
+[AIR-026] | Boeing 757-200 | Boeing | Narrow-body long range | ~3.2 t/h | ~US$ 28 mi usado | "Boeing 757-200 ultrarrealista, comercial em pista, pintura genérica."
+[AIR-027] | Boeing 767-300ER | Boeing | Wide-body | ~5.6 t/h | ~US$ 45 mi usado | "Boeing 767-300ER ultrarrealista, aeronave de longo alcance, visual premium."
+[AIR-028] | Boeing 777-200ER | Boeing | Wide-body | ~6.8 t/h | ~US$ 80 mi usado | "Boeing 777-200ER ultrarrealista, twin wide-body, aeroporto ao fundo."
+[AIR-029] | Boeing 777-300ER | Boeing | Wide-body | ~7.2 t/h | ~US$ 110 mi usado | "Boeing 777-300ER ultrarrealista, fuselagem longa, foto de catálogo premium."
+[AIR-030] | Boeing 777-9 | Boeing | Wide-body | ~7.0 t/h | ~US$ 442 mi | "Boeing 777X ultrarrealista, wide-body moderno, pintura genérica premium."
+[AIR-031] | Boeing 787-8 | Boeing | Wide-body | ~5.0 t/h | ~US$ 248 mi | "Boeing 787-8 Dreamliner ultrarrealista, elegante, aeroporto ao fundo."
+[AIR-032] | Boeing 787-9 | Boeing | Wide-body | ~5.4 t/h | ~US$ 292 mi | "Boeing 787-9 Dreamliner ultrarrealista, foto 3/4 premium."
+[AIR-033] | Boeing 787-10 | Boeing | Wide-body | ~5.8 t/h | ~US$ 338 mi | "Boeing 787-10 ultrarrealista, fuselagem longa, pintura genérica."
+
+[AIR-034] | Embraer E170 | Embraer | Regional jet | ~1.3 t/h | ~US$ 17 mi usado | "Embraer E170 ultrarrealista, jato regional em aeroporto médio."
+[AIR-035] | Embraer E175 | Embraer | Regional jet | ~1.4 t/h | ~US$ 25 mi usado | "Embraer E175 ultrarrealista, pintura genérica premium."
+[AIR-036] | Embraer E190 | Embraer | Regional jet | ~1.8 t/h | ~US$ 30 mi usado | "Embraer E190 ultrarrealista, aeronave regional moderna."
+[AIR-037] | Embraer E195 | Embraer | Regional jet | ~2.0 t/h | ~US$ 35 mi usado | "Embraer E195 ultrarrealista, comercial regional alongado."
+[AIR-038] | Embraer E190-E2 | Embraer | Regional jet | ~1.6 t/h | ~US$ 60 mi | "Embraer E190-E2 ultrarrealista, jato regional moderno, foto de catálogo."
+[AIR-039] | Embraer E195-E2 | Embraer | Regional jet | ~1.8 t/h | ~US$ 70 mi | "Embraer E195-E2 ultrarrealista, fuselagem alongada, pintura genérica premium."
+[AIR-040] | Embraer ERJ-135 | Embraer | Regional jet | ~0.95 t/h | ~US$ 8 mi usado | "Embraer ERJ-135 ultrarrealista, jato regional pequeno, aeroporto regional."
+[AIR-041] | Embraer ERJ-145 | Embraer | Regional jet | ~1.05 t/h | ~US$ 9 mi usado | "Embraer ERJ-145 ultrarrealista, pintura genérica, pista regional."
+[AIR-042] | Embraer KC/390 comercial adaptado | Embraer | Cargo/Special | ~3.4 t/h | ~US$ 85 mi | "Embraer cargueiro tático adaptado comercialmente, visual ultrarrealista."
+
+[AIR-043] | ATR 42-320 | ATR | Turboprop regional | ~0.8 t/h | ~US$ 5 mi usado | "ATR 42 ultrarrealista, turboélice regional, aeroporto pequeno."
+[AIR-044] | ATR 42-600 | ATR | Turboprop regional | ~0.9 t/h | ~US$ 20 mi | "ATR 42-600 ultrarrealista, turboélice moderno, pista regional."
+[AIR-045] | ATR 72-500 | ATR | Turboprop regional | ~1.0 t/h | ~US$ 9 mi usado | "ATR 72-500 ultrarrealista, turboélice comercial, foto premium."
+[AIR-046] | ATR 72-600 | ATR | Turboprop regional | ~1.1 t/h | ~US$ 26 mi | "ATR 72-600 ultrarrealista, aeronave regional moderna, aeroporto ao fundo."
+
+[AIR-047] | Dash 8 Q300 | De Havilland | Turboprop regional | ~0.95 t/h | ~US$ 7 mi usado | "Dash 8 Q300 ultrarrealista, turboélice regional."
+[AIR-048] | Dash 8 Q400 | De Havilland | Turboprop regional | ~1.2 t/h | ~US$ 32 mi | "Dash 8 Q400 ultrarrealista, turboélice rápido, visual premium."
+
+[AIR-049] | Bombardier CRJ200 | Bombardier | Regional jet | ~1.2 t/h | ~US$ 6 mi usado | "Bombardier CRJ200 ultrarrealista, jato regional pequeno."
+[AIR-050] | Bombardier CRJ700 | Bombardier | Regional jet | ~1.5 t/h | ~US$ 16 mi usado | "Bombardier CRJ700 ultrarrealista, jato regional em solo."
+[AIR-051] | Bombardier CRJ900 | Bombardier | Regional jet | ~1.7 t/h | ~US$ 20 mi usado | "Bombardier CRJ900 ultrarrealista, jato regional moderno."
+[AIR-052] | Bombardier CRJ1000 | Bombardier | Regional jet | ~1.9 t/h | ~US$ 24 mi usado | "Bombardier CRJ1000 ultrarrealista, jato regional alongado."
+
+[AIR-053] | Cessna 172 | Cessna | Aviação geral | ~0.04 t/h (AVGAS) | ~US$ 0.45 mi | "Cessna 172 ultrarrealista, avião leve em aeródromo pequeno."
+[AIR-054] | Cessna 208 Caravan | Cessna | Utility/Regional | ~0.2 t/h | ~US$ 2.5 mi | "Cessna Caravan ultrarrealista, monomotor utilitário, aeroporto regional."
+[AIR-055] | Beechcraft 1900D | Beechcraft | Regional commuter | ~0.4 t/h | ~US$ 1.5 mi usado | "Beechcraft 1900D ultrarrealista, commuter regional, pintura genérica."
+[AIR-056] | Saab 340B | Saab | Turboprop regional | ~0.65 t/h | ~US$ 4 mi usado | "Saab 340B ultrarrealista, turboélice regional."
+[AIR-057] | Saab 2000 | Saab | Turboprop regional | ~0.95 t/h | ~US$ 8 mi usado | "Saab 2000 ultrarrealista, turboélice rápido, foto de catálogo."
+[AIR-058] | Fokker 50 | Fokker | Turboprop regional | ~0.9 t/h | ~US$ 3 mi usado | "Fokker 50 ultrarrealista, turboélice clássico."
+[AIR-059] | Fokker 70 | Fokker | Regional jet | ~1.7 t/h | ~US$ 5 mi usado | "Fokker 70 ultrarrealista, jato regional clássico."
+[AIR-060] | Fokker 100 | Fokker | Regional jet | ~1.9 t/h | ~US$ 6 mi usado | "Fokker 100 ultrarrealista, jato regional clássico, aeroporto ao fundo."
+
+[AIR-061] | COMAC ARJ21 | COMAC | Regional jet | ~1.9 t/h | ~US$ 38 mi | "COMAC ARJ21 ultrarrealista, jato regional chinês, visual premium."
+[AIR-062] | COMAC C919 | COMAC | Narrow-body | ~2.5 t/h | ~US$ 99 mi | "COMAC C919 ultrarrealista, aeronave narrow-body moderna, foto premium."
+[AIR-063] | Irkut MC-21-300 | Irkut | Narrow-body | ~2.4 t/h | ~US$ 91 mi | "Irkut MC-21 ultrarrealista, narrow-body moderno, pintura genérica."
+[AIR-064] | Sukhoi Superjet 100 | Sukhoi | Regional jet | ~1.7 t/h | ~US$ 35 mi | "Sukhoi Superjet 100 ultrarrealista, jato regional, pista ao fundo."
+[AIR-065] | Antonov An-148 | Antonov | Regional jet | ~2.0 t/h | ~US$ 22 mi usado | "Antonov An-148 ultrarrealista, jato regional, clima de aeroporto frio."
+[AIR-066] | Ilyushin Il-76TD | Ilyushin | Cargo heavy | ~9.0 t/h | ~US$ 20 mi usado | "Ilyushin Il-76 cargueiro ultrarrealista, grande cargueiro em pátio de carga."
+
+[AIR-067] | Boeing 767-300F | Boeing | Cargo | ~5.7 t/h | ~US$ 60 mi usado | "Boeing 767 cargueiro ultrarrealista, pátio logístico ao fundo."
+[AIR-068] | Boeing 777F | Boeing | Cargo | ~7.0 t/h | ~US$ 352 mi | "Boeing 777F ultrarrealista, cargueiro moderno, ambiente logístico premium."
+[AIR-069] | Airbus A330-200F | Airbus | Cargo | ~5.5 t/h | ~US$ 120 mi usado | "Airbus A330 cargueiro ultrarrealista, terminal de carga ao fundo."
+[AIR-070] | Boeing 747-8F | Boeing | Cargo heavy | ~10.8 t/h | ~US$ 419 mi | "Boeing 747-8F ultrarrealista, cargueiro jumbo em terminal logístico."
+
+[AIR-071] | Gulfstream G280 | Gulfstream | Business jet | ~0.9 t/h | ~US$ 25 mi | "Jato executivo Gulfstream G280 ultrarrealista, terminal privado, visual luxuoso."
+[AIR-072] | Gulfstream G650 | Gulfstream | Business jet | ~1.5 t/h | ~US$ 65 mi | "Gulfstream G650 ultrarrealista, jato executivo premium ao pôr do sol."
+[AIR-073] | Gulfstream G700 | Gulfstream | Business jet | ~1.7 t/h | ~US$ 78 mi | "Gulfstream G700 ultrarrealista, terminal executivo, visual ultraluxuoso."
+[AIR-074] | Bombardier Challenger 350 | Bombardier | Business jet | ~0.85 t/h | ~US$ 27 mi | "Bombardier Challenger 350 ultrarrealista, jato executivo em solo."
+[AIR-075] | Bombardier Global 7500 | Bombardier | Business jet | ~1.6 t/h | ~US$ 75 mi | "Bombardier Global 7500 ultrarrealista, jato executivo de longo alcance, terminal VIP."
+[AIR-076] | Dassault Falcon 8X | Dassault | Business jet | ~1.3 t/h | ~US$ 62 mi | "Dassault Falcon 8X ultrarrealista, jato executivo premium, aeroporto executivo."
+[AIR-077] | Embraer Phenom 300E | Embraer | Business jet | ~0.55 t/h | ~US$ 13 mi | "Embraer Phenom 300E ultrarrealista, jato executivo leve."
+[AIR-078] | Embraer Praetor 600 | Embraer | Business jet | ~0.8 t/h | ~US$ 22 mi | "Embraer Praetor 600 ultrarrealista, jato executivo premium."
+[AIR-079] | Cessna Citation Latitude | Cessna | Business jet | ~0.75 t/h | ~US$ 19 mi | "Cessna Citation Latitude ultrarrealista, jato executivo moderno."
+[AIR-080] | Boeing Business Jet (BBJ) | Boeing | VIP liner | ~2.5 t/h | ~US$ 90+ mi | "Boeing BBJ ultrarrealista, avião executivo grande, terminal VIP, visual luxuoso."
+
+=====================================================================
+9) ESTRATÉGIA PARA EXPANSÃO TOTAL DO CATÁLOGO
+=====================================================================
+Como chegar em "todos os aviões possíveis do mundo" sem se perder:
+1. Separar por fabricante.
+2. Separar por família.
+3. Criar planilha/CSV adicional com colunas:
+   fabricante | modelo | variante | categoria | alcance | capacidade | consumo | valor | prompt
+4. Prioridade de expansão:
+   Onda 1: comerciais principais (Airbus, Boeing, Embraer, ATR, Bombardier)
+   Onda 2: cargueiros e executivos
+   Onda 3: regionais clássicos e modelos históricos relevantes
+   Onda 4: aeronaves raras / especiais / utilitárias / locais
+
+=====================================================================
+10) ESTRUTURA SUGERIDA DENTRO DO ZIP DO JOGO
+=====================================================================
+/docs/ASSET_MASTER_PROMPTS_v2.3.0.txt
+/docs/AIRCRAFT_EXPANSION_TEMPLATE.csv
+/assets/avatars/
+/assets/backgrounds/
+/assets/logos/
+/assets/planes/
+/assets/ui/
+
+=====================================================================
+11) OBSERVAÇÕES FINAIS
+=====================================================================
+- Este TXT é o documento mestre para não esquecer nenhuma frente visual.
+- Ele não precisa travar o desenvolvimento do jogo.
+- Primeiro concluir o jogo funcional; depois substituir assets genéricos por assets premium cinematográficos em lotes.
+- Para os aviões, quando houver dúvida de preço/consumo, usar valores indicativos de mercado e revisar depois por lote.

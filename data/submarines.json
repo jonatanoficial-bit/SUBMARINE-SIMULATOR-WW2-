@@ -91,5 +91,218 @@
       "torpedoes": 8
     },
     "unlockCost": 3200
+  },
+  {
+    "id": "de_type_iib_coastal",
+    "nation": "de",
+    "name": "Type IIB Coastal Hunter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 2,
+    "stats": {
+      "speed": 68,
+      "range": 66,
+      "stealth": 82,
+      "depth": 56,
+      "torpedoes": 5
+    },
+    "unlockCost": 1700,
+    "tier": "trained",
+    "requires": {
+      "victories": 1,
+      "moraleMin": 58,
+      "reputationMin": 20,
+      "level": 2
+    }
+  },
+  {
+    "id": "de_type_ixc_longrange",
+    "nation": "de",
+    "name": "Type IXC Long-Range Raider",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 7,
+    "stats": {
+      "speed": 74,
+      "range": 90,
+      "stealth": 70,
+      "depth": 76,
+      "torpedoes": 10
+    },
+    "unlockCost": 6800,
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 74,
+      "reputationMin": 380,
+      "level": 7
+    }
+  },
+  {
+    "id": "de_type_xxi_elektro",
+    "nation": "de",
+    "name": "Type XXI Elektroboot Prototype",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 12,
+    "stats": {
+      "speed": 88,
+      "range": 88,
+      "stealth": 91,
+      "depth": 88,
+      "torpedoes": 12
+    },
+    "unlockCost": 14500,
+    "tier": "legendary",
+    "requires": {
+      "victories": 18,
+      "moraleMin": 86,
+      "reputationMin": 950,
+      "prestigeMin": 180,
+      "bestScoreMin": 960,
+      "level": 12
+    }
+  },
+  {
+    "id": "uk_s_class_coastal",
+    "nation": "uk",
+    "name": "S-Class Coastal Patrol",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 2,
+    "stats": {
+      "speed": 66,
+      "range": 67,
+      "stealth": 80,
+      "depth": 58,
+      "torpedoes": 5
+    },
+    "unlockCost": 1650,
+    "tier": "trained",
+    "requires": {
+      "victories": 1,
+      "moraleMin": 58,
+      "reputationMin": 20,
+      "level": 2
+    }
+  },
+  {
+    "id": "uk_t_class_veteran",
+    "nation": "uk",
+    "name": "T-Class Veteran Hunter",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 7,
+    "stats": {
+      "speed": 70,
+      "range": 78,
+      "stealth": 81,
+      "depth": 78,
+      "torpedoes": 10
+    },
+    "unlockCost": 6600,
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 74,
+      "reputationMin": 360,
+      "level": 7
+    }
+  },
+  {
+    "id": "uk_amphion_late",
+    "nation": "uk",
+    "name": "Amphion-Class Late War",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 12,
+    "stats": {
+      "speed": 84,
+      "range": 84,
+      "stealth": 88,
+      "depth": 86,
+      "torpedoes": 12
+    },
+    "unlockCost": 14200,
+    "tier": "legendary",
+    "requires": {
+      "victories": 18,
+      "moraleMin": 86,
+      "reputationMin": 930,
+      "prestigeMin": 170,
+      "bestScoreMin": 960,
+      "level": 12
+    }
+  },
+  {
+    "id": "us_sargo_coastal",
+    "nation": "us",
+    "name": "Sargo-Class Patrol Boat",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 2,
+    "stats": {
+      "speed": 67,
+      "range": 75,
+      "stealth": 72,
+      "depth": 60,
+      "torpedoes": 5
+    },
+    "unlockCost": 1750,
+    "tier": "trained",
+    "requires": {
+      "victories": 1,
+      "moraleMin": 58,
+      "reputationMin": 20,
+      "level": 2
+    }
+  },
+  {
+    "id": "us_gato_veteran",
+    "nation": "us",
+    "name": "Gato-Class Veteran Raider",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 7,
+    "stats": {
+      "speed": 76,
+      "range": 84,
+      "stealth": 77,
+      "depth": 79,
+      "torpedoes": 10
+    },
+    "unlockCost": 7000,
+    "tier": "elite",
+    "requires": {
+      "victories": 8,
+      "moraleMin": 74,
+      "reputationMin": 380,
+      "level": 7
+    }
+  },
+  {
+    "id": "us_tench_late",
+    "nation": "us",
+    "name": "Tench-Class Late War",
+    "image": "assets/ships/submarine_ww2_01.png",
+    "unlocked": false,
+    "levelRequired": 12,
+    "stats": {
+      "speed": 86,
+      "range": 86,
+      "stealth": 83,
+      "depth": 88,
+      "torpedoes": 12
+    },
+    "unlockCost": 14800,
+    "tier": "legendary",
+    "requires": {
+      "victories": 18,
+      "moraleMin": 86,
+      "reputationMin": 950,
+      "prestigeMin": 180,
+      "bestScoreMin": 960,
+      "level": 12
+    }
   }
 ]

@@ -1,0 +1,75 @@
+.phase54-career-retention-panel {
+  border: 1px solid rgba(242,209,132,.22);
+  background:
+    linear-gradient(135deg, rgba(8,17,25,.94), rgba(4,9,14,.94)),
+    radial-gradient(circle at 12% 0%, rgba(242,209,132,.13), transparent 34%),
+    radial-gradient(circle at 92% 8%, rgba(126,234,189,.1), transparent 36%);
+}
+.phase54-retention-top {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.phase54-morale-dial {
+  min-height: 104px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 12px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: inset 0 0 24px rgba(126,234,189,.07);
+}
+.phase54-morale-dial strong { display:block; color:#f2d184; font-size:1.45rem; line-height:1; }
+.phase54-morale-dial span { display:block; color:rgba(232,236,218,.78); font-size:.68rem; line-height:1.15; margin-top:5px; }
+.phase54-career-retention-panel[data-morale="critical"] .phase54-morale-dial strong,
+.phase54-career-retention-panel[data-morale="low"] .phase54-morale-dial strong { color:#ff9e88; }
+.phase54-career-retention-panel[data-morale="legendary"] .phase54-morale-dial strong { color:#7eeabd; }
+.phase54-retention-metrics .crew-mini-metric strong { color:#f2d184; }
+.phase54-goal-grid,
+.phase54-free-grid {
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:8px;
+}
+.phase54-goal-card,
+.phase54-free-card {
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.045);
+  border-radius:14px;
+  padding:10px;
+  display:grid;
+  gap:7px;
+}
+.phase54-goal-card span,
+.phase54-free-card span { color:rgba(232,236,218,.72); font-size:.75rem; }
+.phase54-goal-card strong,
+.phase54-free-card strong { color:#e8ecda; font-size:.9rem; }
+.phase54-goal-card.complete,
+.phase54-free-card.complete {
+  border-color: rgba(126,234,189,.24);
+  background: rgba(126,234,189,.08);
+}
+.phase54-crew-shop-card.locked,
+.phase54-sub-shop-card.locked { opacity:.82; filter:saturate(.82); }
+.phase54-crew-shop-card[data-tier="elite"],
+.phase54-sub-shop-card[data-tier="elite"] { border-color:rgba(242,209,132,.22); }
+.phase54-crew-shop-card[data-tier="legendary"],
+.phase54-sub-shop-card[data-tier="legendary"] {
+  border-color:rgba(126,234,189,.26);
+  box-shadow:0 0 0 1px rgba(126,234,189,.06), inset 0 0 24px rgba(126,234,189,.05);
+}
+.arsenal-retention { margin-bottom:12px; }
+@media (max-width: 760px) {
+  body:has(.phase54-career-retention-panel) .app-shell { min-height: 100dvh; }
+  .phase54-retention-top { grid-template-columns: 92px 1fr; gap:10px; }
+  .phase54-morale-dial { min-height:92px; border-radius:20px; }
+  .phase54-goal-grid,
+  .phase54-free-grid { grid-template-columns:1fr; }
+  .phase54-career-retention-panel { margin-inline:-2px; }
+}
+@media (max-width: 380px) {
+  .phase54-retention-top { grid-template-columns:1fr; }
+}

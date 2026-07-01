@@ -136,8 +136,52 @@ function crewImpactMarkup(t, impact = null) {
       </div>`;
 }
 
+function careerRetentionMarkup(t, retention = null) {
+  if (!retention) return '';
+  const goals = retention.lifetimeGoals || [];
+  const nextCrew = retention.nextUnlock?.crew;
+  return `
+    <div class="panel phase54-career-retention-panel" data-morale="${retention.morale?.tone || 'stable'}">
+      <div class="panel-header">${t('careerRetention.title')}</div>
+      <div class="panel-body stack">
+        <div class="phase54-retention-top">
+          <div class="phase54-morale-dial">
+            <strong>${retention.stats?.morale || 0}%</strong>
+            <span>${t(retention.moraleKey || 'careerRetention.morale.stable')}</span>
+          </div>
+          <div>
+            <div class="kicker">${t('careerRetention.kicker')}</div>
+            <h3>${t('careerRetention.heading')}</h3>
+            <p class="muted compact-text">${t('careerRetention.subtitle')}</p>
+          </div>
+        </div>
+        <div class="crew-mini-metrics phase54-retention-metrics">
+          <div class="crew-mini-metric"><span>${t('careerRetention.victories')}</span><strong>${retention.stats?.victories || 0}</strong></div>
+          <div class="crew-mini-metric"><span>${t('careerRetention.reputation')}</span><strong>${retention.stats?.reputation || 0}</strong></div>
+          <div class="crew-mini-metric"><span>${t('careerRetention.accuracy')}</span><strong>${(retention.accuracyBonus || 0) > 0 ? '+' : ''}${retention.accuracyBonus || 0}</strong></div>
+          <div class="crew-mini-metric"><span>${t('careerRetention.reward')}</span><strong>${Number(retention.rewardMultiplier || 1).toFixed(2)}×</strong></div>
+        </div>
+        <div class="phase54-goal-grid">
+          ${goals.map((goal) => `
+            <div class="phase54-goal-card ${goal.completed ? 'complete' : ''}">
+              <span>${t(goal.key)}</span>
+              <strong>${goal.progress}/${goal.target}</strong>
+              <div class="progress-bar"><span style="width:${Math.max(0, Math.min(100, Math.round((goal.progress / Math.max(1, goal.target)) * 100)))}%"></span></div>
+            </div>
+          `).join('')}
+        </div>
+        ${nextCrew ? `<p class="muted compact-text">${t('careerRetention.nextCrew', { crew: nextCrew.name, requirement: t(nextCrew.lockKey || 'careerRetention.unlocked') })}</p>` : ''}
+      </div>
+    </div>`;
+}
 
-export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null, crewImpact = null) {
+function gateText(t, item = null) {
+  if (!item?.gate?.reason) return t('careerRetention.unlocked');
+  return t(item.lockKey || item.gate.reasonKey, { current: item.gate.reason.current, required: item.gate.reason.required });
+}
+
+
+export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null, crewImpact = null, careerRetention = null) {
   const readiness = assessCrewReadiness(crewMembers, hiredIds, save || {});
   return `
     <section class="screen screen-shell crew-screen">
@@ -180,14 +224,19 @@ export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDri
 
       ${crewImpactMarkup(t, crewImpact)}
 
+      ${careerRetentionMarkup(t, careerRetention)}
+
       ${renderCrewDrills(t, save, crewDrills)}
 
       <div class="stack crew-list">
         ${crewMembers.map((crew) => {
+          const shop = careerRetention?.crewShopById?.[crew.id] || null;
           const hired = hiredIds.includes(crew.id);
           const level = crew.level ?? Math.max(1, Math.round((Number(crew.skill || 50) - 45) / 10));
+          const locked = Boolean(shop && !shop.unlocked && !hired);
+          const canBuy = shop ? shop.canBuy : !hired;
           return `
-            <div class="crew-card ${hired ? 'active' : ''}">
+            <div class="crew-card phase54-crew-shop-card ${hired ? 'active' : ''} ${locked ? 'locked' : ''}" data-tier="${shop?.tier || crew.tier || 'trained'}">
               <div class="crew-avatar"><img src="${crew.avatar}" alt="${crew.name}"></div>
               <div class="stack" style="gap: 8px;">
                 <div class="row space-between align-start">
@@ -195,14 +244,19 @@ export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDri
                     <h3>${crew.name}</h3>
                     <p>${t(crew.roleKey)} • ${t(crew.bonusKey)} • ${t(crew.bioKey)}</p>
                   </div>
-                  <span class="tag ${hired ? 'success' : 'gold'}">${hired ? t('crew.hired') : crew.cost}</span>
+                  <span class="tag ${hired ? 'success' : locked ? 'warn' : 'gold'}">${hired ? t('crew.hired') : locked ? t('common.locked') : crew.cost}</span>
                 </div>
                 <div class="row wrap space-between">
                   <span>${t('crew.skill')}: ${crew.skill}%</span>
                   <span>${t('common.level')}: ${level}</span>
+                  <span class="tag gold">${t(shop?.tierKey || 'careerRetention.tier.trained')}</span>
                 </div>
                 <div class="progress-bar"><span style="width:${crew.skill}%"></span></div>
-                ${hired ? '' : `<button class="button ghost" data-action="toggle-crew" data-crew="${crew.id}">${t('crew.hire')}</button>`}
+                <div class="mission-meta">
+                  <span class="tag">${t('careerRetention.station')}: ${t(`crewImpact.station.${shop?.station || 'command'}`)}</span>
+                  <span class="tag">${t('careerRetention.unlock')}: ${gateText(t, shop)}</span>
+                </div>
+                ${hired ? '' : `<button class="button ${canBuy ? 'ghost' : 'secondary'}" data-action="toggle-crew" data-crew="${crew.id}" ${canBuy ? '' : 'disabled'}>${locked ? t('careerRetention.locked') : t('crew.hire')}</button>`}
               </div>
             </div>
           `;

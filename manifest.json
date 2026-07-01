@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.68",
-  "short_name": "SCWW2 2.0.0-alpha.68",
+  "name": "Submarine Commander WW2 v2.0.0-alpha.69",
+  "short_name": "SCWW2 2.0.0-alpha.69",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -24,12 +24,12 @@
   ],
   "orientation": "any",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 53 Auxiliar Perfeito e Tripulação/Loja com Efeito Real.",
+  "description": "Submarine Commander WW2 — Fase 54 Moral, loja por níveis e carreira de longa duração.",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.68",
+  "version": "2.0.0-alpha.69",
   "id": "./"
 }
