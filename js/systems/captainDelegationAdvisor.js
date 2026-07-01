@@ -1,7 +1,7 @@
 export const PHASE52_CAPTAIN_DELEGATION_ADVISOR = Object.freeze({
   phase: 52,
   system: 'captain-delegation-advisor',
-  version: 'v2.0.0-alpha.67',
+  version: 'v2.0.0-alpha.68',
   doctrine: 'captain-delegates-crew-executes-player-can-always-operate-manually',
   mobileFullscreen: true,
   preservesExistingAssetsAndAudio: true,
@@ -229,9 +229,20 @@ function stationAsset(station = 'command', nation = 'de') {
   return 'assets/avatars/de/officer_01.png';
 }
 
-export function buildCaptainDelegationAdvisorView({ snapshot = {}, commandMode = 'captain', nation = 'de' } = {}) {
+export function buildCaptainDelegationAdvisorView({ snapshot = {}, commandMode = 'captain', nation = 'de', crewImpact = snapshot.crewImpact || null } = {}) {
   const radio = buildDelegationRadioReport(snapshot);
   const current = scenario({ snapshot, commandMode, radio });
+  const crewModifiers = crewImpact?.modifiers || snapshot.crewImpact?.modifiers || {};
+  const automaticConfidence = Math.max(0, Math.min(100, 58 + Number(crewModifiers.autoOrderDelayReduction || 0) + Math.round(Number(crewImpact?.averageRating || snapshot.crewImpact?.averageRating || 0) * 0.28)));
+  const crewEffectSummary = {
+    tierKey: crewImpact?.tierKey || snapshot.crewImpact?.tierKey || 'crewImpact.tier.green',
+    sonarBonus: Number(crewModifiers.sonarConfidenceBonus || 0),
+    tdcBonus: Number(crewModifiers.tdcSolutionBonus || 0),
+    repairBonus: Number(crewModifiers.repairEfficiencyBonus || 0),
+    stealthBonus: Number(crewModifiers.stealthNoiseReduction || 0),
+    autoSpeed: Number(crewModifiers.autoOrderDelayReduction || 0),
+    automaticConfidence,
+  };
   return {
     phase: PHASE52_CAPTAIN_DELEGATION_ADVISOR.phase,
     system: PHASE52_CAPTAIN_DELEGATION_ADVISOR.system,
@@ -254,6 +265,7 @@ export function buildCaptainDelegationAdvisorView({ snapshot = {}, commandMode =
     infoStation: current.infoStation,
     infoLabelKey: current.infoLabelKey,
     radio,
+    crewImpact: crewEffectSummary,
     mode: commandMode === 'manual' ? 'manual' : 'captain',
     mobileFullscreen: PHASE52_CAPTAIN_DELEGATION_ADVISOR.mobileFullscreen,
     preserveAssets: PHASE52_CAPTAIN_DELEGATION_ADVISOR.preservesExistingAssetsAndAudio,

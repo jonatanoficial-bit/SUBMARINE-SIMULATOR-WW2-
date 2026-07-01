@@ -10,8 +10,8 @@ const build = readJson('BUILD_INFO.json');
 const translations = ['pt-BR','en','es'].map((lang)=>readJson(`data/translations/${lang}.json`));
 
 test('phase 19 metadata is active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.67');
-  assert.equal(build.phase, '52');
+  assert.equal(build.semver, '2.0.0-alpha.68');
+  assert.equal(build.phase, '53');
   assert.equal(build.saveSchemaVersion, 40);
 });
 

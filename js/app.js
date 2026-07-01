@@ -292,6 +292,17 @@ function getCrewDrillEffect(nationId = getCurrentNationId()) {
   return getCrewDrillSummaryForNation(nationId)?.combinedEffect || { riskDelta: 0, intelBonus: 0, decryptionBonus: 0, pressureRelief: 0, readinessBonus: 0, tonnageMultiplier: 1, moraleBonus: 0, fatigueDelta: 0, sonarBonus: 0, engineeringBonus: 0, torpedoBonus: 0, stealthBonus: 0 };
 }
 
+function getCrewProgressionImpact(nationId = getCurrentNationId()) {
+  const allCrew = (state.data?.crew || []).filter((crew) => crew.nation === nationId);
+  return buildCrewProgressionImpact({
+    allCrew,
+    hiredIds: state.save?.crew?.hiredIds || [],
+    save: state.save || {},
+    crewDrillSummary: getCrewDrillSummaryForNation(nationId),
+    veteranOfficerSummary: getVeteranOfficerSummaryForNation(nationId),
+  });
+}
+
 function missionsForNation(nationId = getCurrentNationId()) {
   const campaign = getCampaignForNation(nationId);
   const source = state.data.missions.filter((mission) => mission.nationId === nationId);
@@ -1099,10 +1110,12 @@ function handleCompleteMission(id, report = null) {
   setResumeOperation(false);
   const mission = state.data.missions.find((item) => item.id === id);
   if (!mission) return;
+  const crewImpact = getCrewProgressionImpact(mission.nationId);
+  const missionReport = applyCrewImpactToMissionReport(report || {}, crewImpact);
   const completedBefore = [...(state.save.progression.completedMissions || [])];
   const alreadyCompleted = state.save.progression.completedMissions.includes(id);
-  const bonusCredits = report?.bonusCredits || 0;
-  const bonusXp = report?.bonusXp || 0;
+  const bonusCredits = missionReport?.bonusCredits || 0;
+  const bonusXp = missionReport?.bonusXp || 0;
   const totalCredits = mission.reward + bonusCredits;
   const totalXp = mission.xp + bonusXp;
   if (!alreadyCompleted) {
@@ -1115,12 +1128,12 @@ function handleCompleteMission(id, report = null) {
   addRewards(totalCredits, totalXp);
   const completedAfter = [...(state.save.progression.completedMissions || [])];
   const objectiveRewards = applyCampaignObjectiveRewards(mission.nationId, completedBefore, completedAfter);
-  state.save.progression.bestScore = Math.max(state.save.progression.bestScore || 0, report?.score || 0);
+  state.save.progression.bestScore = Math.max(state.save.progression.bestScore || 0, missionReport?.score || 0);
   state.save.progression.missionReports = [
-    { missionId: id, score: report?.score || 0, bonusCredits, bonusXp, objectiveRewardIds: objectiveRewards.map((item) => item.id), hull: report?.hull ?? null, stealth: report?.stealth ?? null, shots: report?.shots ?? null, completedAt: new Date().toISOString() },
+    { missionId: id, score: missionReport?.score || 0, baseScore: missionReport?.baseScore || report?.score || 0, bonusCredits, bonusXp, crewScoreMultiplier: missionReport?.crewScoreMultiplier || 1, crewImpactApplied: Boolean(missionReport?.crewImpactApplied), objectiveRewardIds: objectiveRewards.map((item) => item.id), hull: missionReport?.hull ?? report?.hull ?? null, stealth: missionReport?.stealth ?? report?.stealth ?? null, shots: missionReport?.shots ?? report?.shots ?? null, completedAt: new Date().toISOString() },
     ...(state.save.progression.missionReports || [])
   ].slice(0, 12);
-  const score = report?.score || 0;
+  const score = missionReport?.score || 0;
   const difficulty = difficultyValue(mission);
   const doctrine = getDoctrineForNation(mission.nationId);
   const doctrineMods = normalizeDoctrineModifiers(doctrine);
@@ -1511,6 +1524,7 @@ function createSceneContext() {
     commandAdvancement: getCommandAdvancementSummaryForNation(nationId),
     veteranOfficers: getVeteranOfficerSummaryForNation(nationId),
     crewDrills: getCrewDrillSummaryForNation(nationId),
+    crewProgressionImpact: getCrewProgressionImpact(nationId),
     highCommandOrders: getHighCommandSummaryForNation(nationId),
     submarines: submarinesByNation(nationId),
     nationCrew: crewByNation(nationId),
@@ -1548,6 +1562,7 @@ sceneManager
       difficulty: state.settings.difficulty,
       tutorialEnabled: state.settings.tutorials,
       contextualHelp: state.settings.contextualHelp,
+      crewImpact: getCrewProgressionImpact(mission?.nationId || getCurrentNationId()),
       onHullUpdate: handleHullUpdate,
       onMissionComplete: handleCompleteMission,
       onOperationAutosave: (snapshot) => {
@@ -1560,7 +1575,7 @@ sceneManager
     exit: cleanupGameplay,
   })
   .register('arsenal', { render: ({ t: translate, nationId, submarines }) => renderArsenal(translate, submarines, state.save?.submarine.currentId, state.save?.progression.level || 1, state.save?.progression.credits || 0, state.save?.submarine.upgrades || [], state.data.upgrades, state.save?.submarine || null, getWorkshopImpactReport()) })
-  .register('crew', { render: ({ t: translate, nationCrew, crewDrills }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills) })
+  .register('crew', { render: ({ t: translate, nationCrew, crewDrills, crewProgressionImpact }) => renderCrew(translate, nationCrew, state.save?.crew?.hiredIds || [], state.save?.progression?.credits || 0, state.save || {}, crewDrills, crewProgressionImpact) })
   .register('settings', { render: ({ t: translate }) => renderSettings(translate, state.settings) })
   .register('profiles', { render: ({ t: translate }) => renderProfiles(translate, state.profiles, state.language, state.operationAutosave) });
 

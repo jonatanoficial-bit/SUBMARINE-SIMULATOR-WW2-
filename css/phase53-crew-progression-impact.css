@@ -1,0 +1,67 @@
+.phase53-crew-impact-ready {
+  --phase53-line: rgba(124, 214, 255, .22);
+  --phase53-good: rgba(126, 234, 189, .16);
+  --phase53-gold: rgba(242, 209, 132, .16);
+}
+.phase53-crew-impact {
+  display: grid;
+  gap: 8px;
+  padding: 9px;
+  border-radius: 14px;
+  border: 1px solid var(--phase53-line);
+  background:
+    linear-gradient(135deg, rgba(9, 19, 28, .84), rgba(3, 9, 14, .92)),
+    radial-gradient(circle at 100% 0%, rgba(126, 234, 189, .12), transparent 34%);
+}
+.phase53-crew-impact-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.phase53-crew-impact-head span,
+.phase53-crew-impact-grid span {
+  color: rgba(232,236,218,.64);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.phase53-crew-impact-head strong { color: #7eeabd; font-size: .8rem; }
+.phase53-crew-impact[data-tier="veteran"] .phase53-crew-impact-head strong,
+.phase53-crew-impact[data-tier="elite"] .phase53-crew-impact-head strong { color: #f2d184; }
+.phase53-crew-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.phase53-crew-impact-grid span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 26px;
+  padding: 5px 7px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.07);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.phase53-crew-impact-grid b { color: #e8ecda; font-size: .74rem; }
+.phase53-crew-impact p { margin: 0; color: rgba(255,255,255,.72); font-size: .72rem; line-height: 1.25; }
+.phase53-crew-store-impact-panel {
+  border: 1px solid rgba(124,214,255,.18);
+  background:
+    linear-gradient(135deg, rgba(7,16,25,.94), rgba(4,9,14,.92)),
+    radial-gradient(circle at 10% 0%, rgba(72,174,255,.12), transparent 38%),
+    radial-gradient(circle at 90% 0%, rgba(242,209,132,.1), transparent 36%);
+}
+.phase53-crew-store-impact-grid .crew-mini-metric strong { color: #7eeabd; }
+@media (max-width: 760px) {
+  body:has(.phase53-crew-impact-ready) .app-shell { min-height: 100dvh; }
+  .phase53-crew-impact { padding: 8px; }
+  .phase53-crew-impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phase53-crew-store-impact-panel { margin-inline: -2px; }
+}
+@media (max-width: 380px) {
+  .phase53-crew-impact-grid { grid-template-columns: 1fr; }
+}

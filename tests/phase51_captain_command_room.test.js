@@ -39,13 +39,13 @@ test('phase 51 metadata preserves audio/assets and save schema while updating bu
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.version, 'v2.0.0-alpha.66');
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.saveSchemaStable, true);
-  assert.equal(build.version, 'v2.0.0-alpha.67');
-  assert.equal(build.semver, '2.0.0-alpha.67');
-  assert.equal(build.phase, '52');
+  assert.equal(build.version, 'v2.0.0-alpha.68');
+  assert.equal(build.semver, '2.0.0-alpha.68');
+  assert.equal(build.phase, '53');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.67');
-  assert.equal(manifest.version, '2.0.0-alpha.67');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase52_captain_delegation_advisor.py');
+  assert.equal(pkg.version, '2.0.0-alpha.68');
+  assert.equal(manifest.version, '2.0.0-alpha.68');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase53_crew_progression_impact.py');
 });
 
 test('command room recommends attack preparation after classified target', () => {

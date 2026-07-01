@@ -30,12 +30,12 @@ function sampleFront(overrides = {}) {
 test('phase 40 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.67');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.67');
-  assert.equal(BUILD_INFO.phase, '52');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.68');
+  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.68');
+  assert.equal(BUILD_INFO.phase, '53');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.67');
-  assert.equal(manifest.version, '2.0.0-alpha.67');
+  assert.equal(pkg.version, '2.0.0-alpha.68');
+  assert.equal(manifest.version, '2.0.0-alpha.68');
   assert.equal(PHASE40_LIVING_CAMPAIGN.system, 'living-campaign-war-front');
   assert.ok(PHASE40_LIVING_CAMPAIGN.layers.includes('enemy-adaptation'));
 });

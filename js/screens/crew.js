@@ -101,7 +101,43 @@ function renderCrewDrills(t, save = {}, summary = null) {
     </div>`;
 }
 
-export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null) {
+function crewImpactMarkup(t, impact = null) {
+  if (!impact) return '';
+  const modifiers = impact.modifiers || {};
+  const recommendation = impact.recommendation || {};
+  const station = recommendation.station ? t(`crewImpact.station.${recommendation.station}`) : t('crewImpact.station.command');
+  return `
+      <div class="panel phase53-crew-store-impact-panel">
+        <div class="panel-header">${t('crewImpact.title')}</div>
+        <div class="panel-body stack">
+          <div class="row space-between align-start">
+            <div>
+              <div class="kicker">${t('crewImpact.kicker')}</div>
+              <h3>${t(impact.tierKey || 'crewImpact.tier.green')}</h3>
+              <p class="muted compact-text">${t('crewImpact.subtitle')}</p>
+            </div>
+            <span class="tag success">${t('crewImpact.crewCount')}: ${impact.hiredCount || 0}</span>
+          </div>
+          <div class="crew-mini-metrics phase53-crew-store-impact-grid">
+            <div class="crew-mini-metric"><span>${t('crewImpact.sonar')}</span><strong>+${Math.round(Number(modifiers.sonarConfidenceBonus || 0))}</strong></div>
+            <div class="crew-mini-metric"><span>${t('crewImpact.tdc')}</span><strong>+${Math.round(Number(modifiers.tdcSolutionBonus || 0))}</strong></div>
+            <div class="crew-mini-metric"><span>${t('crewImpact.repair')}</span><strong>+${Math.round(Number(modifiers.repairEfficiencyBonus || 0))}</strong></div>
+            <div class="crew-mini-metric"><span>${t('crewImpact.stealth')}</span><strong>-${Math.round(Number(modifiers.stealthNoiseReduction || 0))}</strong></div>
+            <div class="crew-mini-metric"><span>${t('crewImpact.auto')}</span><strong>-${Math.round(Number(modifiers.autoOrderDelayReduction || 0))}%</strong></div>
+            <div class="crew-mini-metric"><span>${t('crewImpact.score')}</span><strong>${Number(modifiers.scoreMultiplier || 1).toFixed(2)}×</strong></div>
+          </div>
+          <div class="mission-meta">
+            <span class="tag">${t('crewImpact.investment')}: ${impact.crewInvestment || 0}</span>
+            <span class="tag">${t('crewImpact.completedDrills')}: ${impact.completedDrillCount || 0}</span>
+            <span class="tag">${t('crewImpact.veterans')}: ${impact.veteranOfficerCount || 0}</span>
+          </div>
+          <p class="muted compact-text">${t(recommendation.key || 'crewImpact.recommendation.train', { station, cost: recommendation.cost || 0, crew: recommendation.crewName || station })}</p>
+        </div>
+      </div>`;
+}
+
+
+export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null, crewImpact = null) {
   const readiness = assessCrewReadiness(crewMembers, hiredIds, save || {});
   return `
     <section class="screen screen-shell crew-screen">
@@ -141,6 +177,8 @@ export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDri
           </div>
         </div>
       </div>
+
+      ${crewImpactMarkup(t, crewImpact)}
 
       ${renderCrewDrills(t, save, crewDrills)}
 

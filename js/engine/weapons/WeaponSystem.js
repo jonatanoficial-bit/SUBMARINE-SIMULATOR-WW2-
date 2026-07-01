@@ -265,7 +265,8 @@ export class WeaponSystem {
     const rangeBonus = contact.rangeKnown ? 10 : 0;
     const stalePenalty = contact.stale ? 18 : Math.min(12, tdc.lastContactAgeMs / 1200);
     const uncertaintyPenalty = clamp((contact.bearingUncertainty || 0) * 0.45 + (contact.rangeUncertainty || 0) * 18, 0, 24);
-    let quality = tdc.contactConfidence * 0.48 + sourceBonus + rangeBonus + weaponsHealth * 12 + speedAccuracy * 8 + aobAccuracy * 7 + courseAccuracy * 5 - stalePenalty - uncertaintyPenalty + Number(this.difficultyProfile.weaponQualityBonus || 0);
+    const crewTdcBonus = clamp(Number(context.crewImpact?.modifiers?.tdcSolutionBonus || 0), 0, 20);
+    let quality = tdc.contactConfidence * 0.48 + sourceBonus + rangeBonus + weaponsHealth * 12 + speedAccuracy * 8 + aobAccuracy * 7 + courseAccuracy * 5 - stalePenalty - uncertaintyPenalty + Number(this.difficultyProfile.weaponQualityBonus || 0) + crewTdcBonus;
     const range = Number(tdc.rangeMeters) || trueWeaponRangeMeters(entity);
     const torpedo = TORPEDO_TYPES[tdc.torpedoType] || TORPEDO_TYPES.steam;
     if (range > torpedo.maxRangeMeters) quality -= 35;
@@ -324,7 +325,8 @@ export class WeaponSystem {
     const speedMetersPerSecond = torpedo.speedKnots * 0.514444 * 4; // tactical world scale
     const travelMs = clamp((range / speedMetersPerSecond) * 1000, 2800, 120000);
     const damagePenalty = (100 - clamp(context.systems?.weapons ?? 100, 0, 100)) / 240;
-    const failureRate = clamp((this.profile.baseFailureRate - torpedo.reliabilityBonus + damagePenalty) * (Number(this.difficultyProfile.torpedoFailureMultiplier) || 1), 0.015, 0.52);
+    const crewReliability = clamp(Number(context.crewImpact?.modifiers?.tdcSolutionBonus || 0) / 350, 0, 0.055);
+    const failureRate = clamp((this.profile.baseFailureRate - torpedo.reliabilityBonus - crewReliability + damagePenalty) * (Number(this.difficultyProfile.torpedoFailureMultiplier) || 1), 0.015, 0.52);
     const failureRoll = deterministicRoll(`${this.mission.id}:${this.profile.year}:${id}:${tube.id}:failure`);
     let failureMode = null;
     if (failureRoll < failureRate) {

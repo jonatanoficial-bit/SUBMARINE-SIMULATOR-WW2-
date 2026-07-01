@@ -23,10 +23,43 @@ import { buildMissionReport, clamp, computeTargetLock, worldToViewPosition } fro
 const ESCORT_STATE_ORDER = Object.freeze({ patrol: 0, alert: 1, hunt: 2 });
 const SYSTEM_KEYS = Object.freeze(['engines', 'sonar', 'periscope', 'weapons']);
 
+function normalizeCrewImpact(input = {}) {
+  const modifiers = input?.modifiers || {};
+  const number = (value, fallback = 0) => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : fallback;
+  };
+  const clampLocal = (value, min = 0, max = 100) => Math.max(min, Math.min(max, number(value)));
+  return {
+    phase: Number(input?.phase || 53),
+    system: input?.system || 'captain-crew-progression-impact',
+    averageRating: Math.round(clampLocal(input?.averageRating, 0, 100)),
+    tierKey: input?.tierKey || 'crewImpact.tier.green',
+    ratings: {
+      command: Math.round(clampLocal(input?.ratings?.command, 0, 100)),
+      sonar: Math.round(clampLocal(input?.ratings?.sonar, 0, 100)),
+      engineering: Math.round(clampLocal(input?.ratings?.engineering, 0, 100)),
+      navigation: Math.round(clampLocal(input?.ratings?.navigation, 0, 100)),
+      weapons: Math.round(clampLocal(input?.ratings?.weapons, 0, 100)),
+      stealth: Math.round(clampLocal(input?.ratings?.stealth, 0, 100)),
+    },
+    modifiers: {
+      sonarConfidenceBonus: clampLocal(modifiers.sonarConfidenceBonus, 0, 22),
+      tdcSolutionBonus: clampLocal(modifiers.tdcSolutionBonus, 0, 20),
+      repairEfficiencyBonus: clampLocal(modifiers.repairEfficiencyBonus, 0, 28),
+      stealthNoiseReduction: clampLocal(modifiers.stealthNoiseReduction, 0, 24),
+      navigationSpeedBonus: clampLocal(modifiers.navigationSpeedBonus, 0, 18),
+      autoOrderDelayReduction: clampLocal(modifiers.autoOrderDelayReduction, 0, 30),
+      scoreMultiplier: Math.max(1, Math.min(1.25, number(modifiers.scoreMultiplier, 1))),
+    },
+  };
+}
+
 export class SimulationEngine {
-  constructor({ mission = {}, submarine = null, initialHull = 100, initialSystems = {}, fixedStepMs = FIXED_STEP_MS, initialSnapshot = null, difficulty = 'officer' } = {}) {
+  constructor({ mission = {}, submarine = null, initialHull = 100, initialSystems = {}, fixedStepMs = FIXED_STEP_MS, initialSnapshot = null, difficulty = 'officer', crewImpact = null } = {}) {
     this.mission = mission || {};
     this.difficulty = getDifficultyProfile(initialSnapshot?.difficulty?.id || difficulty);
+    this.crewImpact = normalizeCrewImpact(initialSnapshot?.crewImpact || crewImpact || {});
     this.events = new EventBus();
     this.player = new SubmarineEntity({
       id: submarine?.id || 'player-submarine',
@@ -192,6 +225,11 @@ export class SimulationEngine {
     return this.events.on(eventName, handler);
   }
 
+  setCrewImpact(crewImpact = {}) {
+    this.crewImpact = normalizeCrewImpact(crewImpact);
+    return this.crewImpact;
+  }
+
   emitState() {
     if (this.navigation) this.navigation.setSafetyLimit(this.navigationSafetyLimit());
     const snapshot = this.snapshot();
@@ -274,6 +312,7 @@ export class SimulationEngine {
         target: { ...this.target.position, destroyed: this.target.destroyed },
         escort: { ...this.escort.position, destroyed: this.escort.destroyed },
       },
+      crewImpact: this.crewImpact,
     };
   }
 
@@ -290,6 +329,7 @@ export class SimulationEngine {
         target: { ...this.target.position, destroyed: this.target.destroyed },
         escort: { ...this.escort.position, destroyed: this.escort.destroyed },
       },
+      crewImpact: this.crewImpact,
       timeCompression: this.navigation.timeCompression,
     };
   }
@@ -460,9 +500,10 @@ export class SimulationEngine {
 
   activateSilentRunning() {
     if (this.session.missionFailed || this.session.repairTicks > 0 || this.session.silentTicks > 0) return { ok: false, reason: 'unavailable' };
-    this.session.silentTicks = SILENT_TICKS;
+    const stealthBonus = Number(this.crewImpact?.modifiers?.stealthNoiseReduction || 0);
+    this.session.silentTicks = SILENT_TICKS + Math.round(stealthBonus * 1.5);
     this.player.setSpeed('slow');
-    this.session.detectionScore = clamp(this.session.detectionScore - 18, 0, 100);
+    this.session.detectionScore = clamp(this.session.detectionScore - 18 - stealthBonus * 0.7, 0, 100);
     this.setHint('gameplay.hintSilentRunning');
     this.emitState();
     return { ok: true };
@@ -473,8 +514,9 @@ export class SimulationEngine {
     this.physics.emergencyDive();
     this.player.setSpeed('slow');
     this.session.periscopeOpen = false;
-    this.session.emergencyDiveCooldown = EMERGENCY_DIVE_COOLDOWN;
-    this.session.detectionScore = clamp(this.session.detectionScore - 12, 0, 100);
+    const evasionBonus = Number(this.crewImpact?.modifiers?.navigationSpeedBonus || 0) + Number(this.crewImpact?.modifiers?.stealthNoiseReduction || 0) * 0.35;
+    this.session.emergencyDiveCooldown = Math.max(18, EMERGENCY_DIVE_COOLDOWN - Math.round(evasionBonus * 0.7));
+    this.session.detectionScore = clamp(this.session.detectionScore - 12 - evasionBonus * 0.45, 0, 100);
     this.setHint('gameplay.hintEmergencyDive');
     this.emitState();
     return { ok: true };
@@ -495,7 +537,9 @@ export class SimulationEngine {
     const unavailable = this.session.missionFailed || this.session.repairUses <= 0 || this.session.repairTicks > 0 || this.player.hull <= 0 || this.player.hull >= 92;
     if (unavailable) return { ok: false, reason: 'unavailable' };
     this.session.repairUses -= 1;
-    this.session.repairTicks = REPAIR_TICKS;
+    const repairBonus = Number(this.crewImpact?.modifiers?.repairEfficiencyBonus || 0);
+    this.session.repairTicks = Math.max(14, REPAIR_TICKS - Math.round(repairBonus * 0.55));
+    this.session.repairAmount = Math.round(EMERGENCY_REPAIR_AMOUNT + repairBonus * 0.42);
     this.player.setSpeed('stop');
     this.session.periscopeOpen = false;
     this.events.emit('repair:started', this.snapshot());
@@ -725,7 +769,7 @@ export class SimulationEngine {
     if (this.session.repairTicks > 0) {
       this.session.repairTicks -= 1;
       if (this.session.repairTicks === 0) {
-        this.damageControl.emergencyStabilize(EMERGENCY_REPAIR_AMOUNT);
+        this.damageControl.emergencyStabilize(this.session.repairAmount || EMERGENCY_REPAIR_AMOUNT);
         this.player.hull = this.damageControl.snapshot().hullIntegrity;
         this.player.systems = { ...this.damageControl.snapshot().systems };
         this.events.emit('repair:completed', this.snapshot());
@@ -796,7 +840,8 @@ export class SimulationEngine {
     const simulatedSeconds = Math.max(0.001, (stepMs / 1000) * clamp(this.navigation.timeCompression, 1, 16));
     const sensitivity = clamp(this.mission.escortSensitivity ?? 1, 0.65, 1.8);
     const acousticMasking = clamp(1.18 - environmentSnapshot.ambientNoise / 150, 0.42, 1.1);
-    const acousticRate = noise * 0.018 * rangeFactor * sensitivity * deepCover * acousticMasking / sonarFactor;
+    const stealthCrewFactor = clamp(1 - Number(this.crewImpact?.modifiers?.stealthNoiseReduction || 0) / 160, 0.82, 1);
+    const acousticRate = noise * 0.018 * rangeFactor * sensitivity * deepCover * acousticMasking / sonarFactor * stealthCrewFactor;
     const visualWeather = clamp(environmentSnapshot.visualFactor, 0.16, 1.12);
     const visualRate = this.session.periscopeOpen ? (0.55 + depthRisk * 0.085 + periscopePenalty) * sensitivity * visualWeather : 0;
     const radarRate = sensorSnapshot.radarMastRaised ? 1.15 * sensitivity * clamp(1 - environmentSnapshot.radarClutter / 170, 0.45, 1) : 0;
@@ -901,6 +946,7 @@ export class SimulationEngine {
       navalAI: this.navalAI.snapshot(),
       damageControl: this.damageControl.snapshot(),
       encounter: this.encounter.snapshot(),
+      crewImpact: this.crewImpact,
       difficulty: difficultySummary(this.difficulty),
       snapshotVersion: 10,
       entityCount: 1 + this.navalAI.ships.length + (this.navalAI.state.aircraft.active ? 1 : 0),
@@ -910,7 +956,7 @@ export class SimulationEngine {
   diagnostics() {
     return {
       engine: 'SimulationEngine',
-      version: 10,
+      version: 11,
       missionId: this.session.missionId,
       entityCount: 1 + this.navalAI.ships.length + (this.navalAI.state.aircraft.active ? 1 : 0),
       aiVersion: 2,

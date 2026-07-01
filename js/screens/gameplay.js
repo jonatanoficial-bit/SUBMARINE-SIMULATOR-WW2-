@@ -20,6 +20,7 @@ import { buildCaptainCommandChainView } from '../systems/captainCommandChain.js'
 import { buildCaptainCombatCycleView } from '../systems/captainCombatCycle.js';
 import { buildCaptainCommandRoomView } from '../systems/captainCommandRoom.js';
 import { buildCaptainDelegationAdvisorView } from '../systems/captainDelegationAdvisor.js';
+import { buildCrewProgressionImpact } from '../systems/captainCrewProgressionImpact.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
 import { buildDepthStealthView, shouldDepthStealthEscalate } from '../systems/depthStealthRealism.js';
@@ -150,7 +151,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase52-delegation-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase52-delegation-ready phase53-crew-impact-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -1218,7 +1219,7 @@ export function renderGameplay(t, mission, settings = {}) {
 export function mountGameplay({
   app, mission, submarine = null, initialHull = 100, initialSystems = {}, initialSnapshot = null,
   onHullUpdate = () => {}, onMissionComplete, onOperationAutosave = () => {},
-  onOperationCleared = () => {}, difficulty = 'officer', tutorialEnabled = true, contextualHelp = true, t
+  onOperationCleared = () => {}, difficulty = 'officer', tutorialEnabled = true, contextualHelp = true, crewImpact = null, t
 }) {
   cleanupGameplay();
 
@@ -1698,6 +1699,15 @@ export function mountGameplay({
     delegationAuto: app.querySelector('#delegation-auto'),
     delegationManual: app.querySelector('#delegation-manual'),
     delegationInfo: app.querySelector('#delegation-info'),
+    crewImpactPanel: app.querySelector('#phase53-crew-impact'),
+    crewImpactTier: app.querySelector('#crew-impact-tier'),
+    crewImpactSonar: app.querySelector('#crew-impact-sonar'),
+    crewImpactTdc: app.querySelector('#crew-impact-tdc'),
+    crewImpactRepair: app.querySelector('#crew-impact-repair'),
+    crewImpactStealth: app.querySelector('#crew-impact-stealth'),
+    crewImpactAuto: app.querySelector('#crew-impact-auto'),
+    crewImpactScore: app.querySelector('#crew-impact-score'),
+    crewImpactNote: app.querySelector('#crew-impact-note'),
     stationHelpTrigger: app.querySelector('#station-help-trigger'),
     stationHelpDrawer: app.querySelector('#station-help-drawer'),
     stationHelpClose: app.querySelector('#station-help-close'),
@@ -1706,7 +1716,9 @@ export function mountGameplay({
     stationHelpActions: app.querySelector('#station-help-actions'),
   };
 
-  const engine = new SimulationEngine({ mission: mission || {}, submarine, initialHull, initialSystems, initialSnapshot, difficulty });
+  const engine = new SimulationEngine({ mission: mission || {}, submarine, initialHull, initialSystems, initialSnapshot, difficulty, crewImpact });
+  let crewImpactCurrent = crewImpact || engine.snapshot().crewImpact || buildCrewProgressionImpact({ save: {} });
+  engine.setCrewImpact(crewImpactCurrent);
   const training = new OperationalTraining({ enabled: tutorialEnabled });
   app.__simulationEngine = engine;
   let operationResolved = false;
@@ -3267,7 +3279,8 @@ export function mountGameplay({
 
   function updateCaptainDelegationAdvisor(snapshot = engine.snapshot()) {
     const nation = mission?.nationId || submarine?.nation || 'de';
-    const view = buildCaptainDelegationAdvisorView({ snapshot, commandMode: captainCommandMode, nation });
+    crewImpactCurrent = snapshot.crewImpact || crewImpactCurrent || buildCrewProgressionImpact({ save: {} });
+    const view = buildCaptainDelegationAdvisorView({ snapshot, commandMode: captainCommandMode, nation, crewImpact: crewImpactCurrent });
     captainDelegationAdvisorCurrent = view;
     if (els.delegationAdvisor) {
       els.delegationAdvisor.dataset.scenario = view.scenario || 'patrol';
@@ -3302,6 +3315,20 @@ export function mountGameplay({
       els.delegationInfo.dataset.delegationStation = view.infoStation || 'sensors';
       els.delegationInfo.textContent = t(view.infoLabelKey || 'delegation.action.radioInfo');
     }
+    const impact = view.crewImpact || {};
+    const modifiers = crewImpactCurrent?.modifiers || snapshot.crewImpact?.modifiers || {};
+    if (els.crewImpactPanel) {
+      const tierName = String(impact.tierKey || crewImpactCurrent?.tierKey || 'crewImpact.tier.green').split('.').pop() || 'green';
+      els.crewImpactPanel.dataset.tier = tierName;
+    }
+    if (els.crewImpactTier) els.crewImpactTier.textContent = t(impact.tierKey || crewImpactCurrent?.tierKey || 'crewImpact.tier.green');
+    if (els.crewImpactSonar) els.crewImpactSonar.textContent = `+${Math.round(Number(impact.sonarBonus || modifiers.sonarConfidenceBonus || 0))}`;
+    if (els.crewImpactTdc) els.crewImpactTdc.textContent = `+${Math.round(Number(impact.tdcBonus || modifiers.tdcSolutionBonus || 0))}`;
+    if (els.crewImpactRepair) els.crewImpactRepair.textContent = `+${Math.round(Number(impact.repairBonus || modifiers.repairEfficiencyBonus || 0))}`;
+    if (els.crewImpactStealth) els.crewImpactStealth.textContent = `-${Math.round(Number(impact.stealthBonus || modifiers.stealthNoiseReduction || 0))}`;
+    if (els.crewImpactAuto) els.crewImpactAuto.textContent = `-${Math.round(Number(impact.autoSpeed || modifiers.autoOrderDelayReduction || 0))}%`;
+    if (els.crewImpactScore) els.crewImpactScore.textContent = `${Number(modifiers.scoreMultiplier || 1).toFixed(2)}×`;
+    if (els.crewImpactNote) els.crewImpactNote.textContent = t('crewImpact.noteDetailed', { confidence: Math.round(Number(impact.automaticConfidence || 0)), count: crewImpactCurrent?.hiredCount || 0 });
     return view;
   }
 

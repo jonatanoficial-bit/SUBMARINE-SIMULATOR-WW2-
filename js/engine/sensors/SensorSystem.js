@@ -231,7 +231,10 @@ export class SensorSystem {
 
   observation(role, source, values, context) {
     const contact = this.state.contacts[role];
-    const multiplier = clamp(Number(this.difficultyProfile.sensorConfidenceMultiplier) || 1, 0.75, 1.25);
+    const baseMultiplier = clamp(Number(this.difficultyProfile.sensorConfidenceMultiplier) || 1, 0.75, 1.25);
+    const crewSonarBonus = clamp(Number(context.crewImpact?.modifiers?.sonarConfidenceBonus || 0), 0, 22);
+    const crewMultiplier = 1 + crewSonarBonus / 100;
+    const multiplier = clamp(baseMultiplier * crewMultiplier, 0.75, 1.45);
     const assisted = {
       ...values,
       confidence: clamp(Number(values.confidence || 0) * multiplier, 0, 100),

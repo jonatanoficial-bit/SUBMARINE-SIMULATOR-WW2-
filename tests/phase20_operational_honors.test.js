@@ -14,10 +14,10 @@ function readJson(path) {
 }
 
 test('phase 20 metadata identifies operational honors build', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.67');
-  assert.equal(BUILD_INFO.phase, '52');
+  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.68');
+  assert.equal(BUILD_INFO.phase, '53');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.match(BUILD_INFO.buildId, /F52-CAPTAIN-DELEGATION-ADVISOR/);
+  assert.match(BUILD_INFO.buildId, /F53-CREW-PROGRESSION-IMPACT/);
 });
 
 test('operational honor decks cover every nation and use valid dependencies', () => {

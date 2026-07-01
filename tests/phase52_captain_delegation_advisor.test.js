@@ -35,16 +35,16 @@ test('phase 52 metadata updates build without changing save schema or assets/aud
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.phase, 52);
-  assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.version, 'v2.0.0-alpha.67');
+  assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.version, 'v2.0.0-alpha.68');
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.mobileFullscreen, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.saveSchemaStable, true);
-  assert.equal(build.version, 'v2.0.0-alpha.67');
-  assert.equal(build.phase, '52');
+  assert.equal(build.version, 'v2.0.0-alpha.68');
+  assert.equal(Number(build.phase), 53);
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.67');
-  assert.equal(manifest.version, '2.0.0-alpha.67');
-  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase52_captain_delegation_advisor.py');
+  assert.equal(pkg.version, '2.0.0-alpha.68');
+  assert.equal(manifest.version, '2.0.0-alpha.68');
+  assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase53_crew_progression_impact.py');
 });
 
 test('advisor opens game with automatic route or manual navigation option', () => {

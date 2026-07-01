@@ -1,4 +1,16 @@
 
+## v2.0.0-alpha.68 — Fase 53 — Auxiliar Perfeito + Tripulação/Loja com Efeito Real
+
+- Aperfeiçoado o auxiliar de delegação: decisões automáticas/manuais agora exibem confiança da tripulação e efeito real da equipe.
+- A tripulação contratada, treinos concluídos e oficiais designados agora alteram gameplay real: sonar, TDC, reparos, furtividade, velocidade de automação e pontuação.
+- Loja/tela de tripulação mostra painel de impacto real com bônus, investimento, treinos, oficiais e recomendação de próxima melhoria.
+- Relatório de missão aplica multiplicador de pontuação/recompensa por tripulação sem mudar o schema do save.
+- Preservados todos os assets, imagens, músicas e áudios existentes.
+- Foco mobile fullscreen mantido e validado por smoke 320x568.
+- Save schema mantido em 40.
+- QA: npm test 389/389, audit PASS, smoke 50/50.
+
+
 ## v2.0.0-alpha.67 — Fase 52: Auxiliar de Delegação Automática/Manual
 
 - Adiciona painel de delegação com opções automáticas e manuais para rota, contato, ataque, evasão, ameaça aérea e avarias.
