@@ -1,0 +1,117 @@
+/* Production UX layer: progressive disclosure, touch safety and compact mobile play. */
+
+.product-version {
+  color: var(--text-soft);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.progressive-section {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+  background: rgba(5, 12, 20, 0.58);
+  overflow: hidden;
+}
+
+.progressive-section > summary {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  color: var(--gold-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.progressive-section > summary::-webkit-details-marker { display: none; }
+.progressive-section > summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 1.15rem;
+}
+.progressive-section[open] > summary::after { content: '−'; }
+.progressive-section[open] > summary { border-bottom: 1px solid rgba(255, 255, 255, 0.09); }
+.progressive-section-body { padding: 12px; }
+.progressive-section-body > .panel { margin: 0; }
+
+body[data-screen="gameplay"] .simulation-core-strip { display: none !important; }
+body[data-screen="gameplay"] .app-shell { width: min(calc(100% - 10px), var(--shell-game-max)) !important; }
+
+.gameplay-pause-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: max(18px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+  background: rgba(2, 7, 12, 0.88);
+  backdrop-filter: blur(12px);
+}
+.gameplay-pause-card { width: min(100%, 420px); }
+
+@media (max-width: 700px) {
+  .phase36-premium-director,
+  .phase37-audio-director,
+  .gameplay-orientation-note { display: none !important; }
+
+  .gameplay-header-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .gameplay-header-actions .top-badge { min-height: 40px; }
+  .gameplay-header-actions .button { min-height: 44px; }
+  .gameplay-header-actions .difficulty-badge,
+  .gameplay-header-actions .top-badge:last-child { display: none; }
+
+  .station-help-trigger,
+  .phase49-chain-action,
+  .phase50-cycle-action,
+  .encounter-doctrine,
+  .phase46-mode-buttons .button,
+  .phase47-flow-panel .button,
+  .phase48-order-board .button,
+  .phase51-room-actions .button,
+  .phase52-delegation-actions .button {
+    min-width: 44px;
+    min-height: 44px !important;
+  }
+
+  .crew-card {
+    grid-template-columns: 70px minmax(0, 1fr);
+    padding: 11px;
+  }
+  .crew-card .crew-avatar { min-height: 92px; }
+  .crew-card .mission-meta { gap: 5px; }
+  .crew-card .tag { padding: 5px 8px; }
+}
+
+@media (min-width: 900px) {
+  .crew-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+  .progressive-section-body { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

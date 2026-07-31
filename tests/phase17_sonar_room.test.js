@@ -3,13 +3,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const read = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const readJson = (relative) => JSON.parse(read(relative));
 
 test('phase 17 sonar room metadata and assets are active', () => {
   const build = readJson('BUILD_INFO.json');
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
   assert.equal(build.qaStatus, 'PASS');
   assert.ok(fs.existsSync(path.join(ROOT, 'css/phase17-sonar-room.css')));

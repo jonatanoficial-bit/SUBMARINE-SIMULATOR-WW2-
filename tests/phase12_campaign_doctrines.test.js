@@ -5,17 +5,17 @@ import path from 'node:path';
 
 import { applyDoctrineToPatrolCost, findDoctrineForNation, normalizeDoctrineModifiers, resolveDoctrineStage, summarizeDoctrineImpact } from '../js/systems/campaignDoctrine.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 
 test('phase 12 metadata and package identify national doctrine build', () => {
   const build = readJson('BUILD_INFO.json');
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
 });
 
 test('campaign doctrines cover Germany United Kingdom and United States', () => {

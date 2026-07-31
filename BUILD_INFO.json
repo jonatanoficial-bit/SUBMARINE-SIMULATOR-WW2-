@@ -1,17 +1,17 @@
 {
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "v2.0.0-alpha.69",
-  "semver": "2.0.0-alpha.69",
-  "buildId": "SCWW2-20260701-2008-BRT-F54-CAREER-MORALE-SHOP-RETENTION",
-  "date": "2026-07-01",
-  "time": "20:08",
+  "version": "2.0.0",
+  "semver": "2.0.0",
+  "buildId": "SCWW2-2.0.0-20260731-1511-BRT",
+  "date": "2026-07-31",
+  "time": "15:11",
   "timezone": "America/Sao_Paulo",
   "phase": "54",
   "phaseName": "Career Morale Shop Retention",
-  "channel": "alpha",
-  "release": false,
+  "channel": "stable",
+  "release": true,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Phase 54 adds dynamic crew morale from mission results, tiered crew and submarine shop locks by victories, morale, reputation and score, plus long-term free-mode goals. Existing assets, images, music and audio are preserved."
+  "notes": "Stable mobile-first release with progressive navigation, pause and background safety, commercial interface cleanup, resilient saves and preserved campaign, crew, submarine, audio and simulation systems."
 }

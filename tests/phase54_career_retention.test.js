@@ -35,14 +35,14 @@ test('phase 54 metadata keeps save schema and asset/audio preservation guarantee
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
   assert.equal(PHASE54_CAREER_RETENTION.phase, 54);
-  assert.equal(PHASE54_CAREER_RETENTION.version, 'v2.0.0-alpha.69');
+  assert.equal(PHASE54_CAREER_RETENTION.version, '2.0.0');
   assert.equal(PHASE54_CAREER_RETENTION.saveSchemaStable, true);
   assert.equal(PHASE54_CAREER_RETENTION.preservesExistingAssetsAndAudio, true);
-  assert.equal(build.version, 'v2.0.0-alpha.69');
+  assert.equal(build.version, '2.0.0');
   assert.equal(build.phase, '54');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

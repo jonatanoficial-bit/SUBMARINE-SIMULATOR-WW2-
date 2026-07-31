@@ -3,18 +3,14 @@ import { escapeHtml, normalizeAssetPath } from '../utils/sanitize.js';
 
 export function renderBuildBadge(t) {
   return `
-    <div class="top-badge" title="${escapeHtml(BUILD_INFO.buildId)}">
+    <div class="top-badge product-version">
       <span>${t('build.label')} ${escapeHtml(BUILD_INFO.version)}</span>
-      <span>•</span>
-      <span>${escapeHtml(BUILD_INFO.date)}</span>
-      <span>•</span>
-      <span>${escapeHtml(BUILD_INFO.time)} BRT</span>
     </div>
   `;
 }
 
 export function renderBuildFooter(t) {
-  return `${t('build.label')} ${BUILD_INFO.version} • ${BUILD_INFO.date} ${BUILD_INFO.time} BRT • F${BUILD_INFO.phase} • QA ${BUILD_INFO.qaStatus}`;
+  return `${escapeHtml(BUILD_INFO.product)} • ${t('build.label')} ${escapeHtml(BUILD_INFO.version)}`;
 }
 
 export function renderBottomNav(active, t) {

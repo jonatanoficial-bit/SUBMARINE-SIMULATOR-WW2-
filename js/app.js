@@ -49,11 +49,19 @@ import { buildCareerRetentionDeck, applyRetentionAccuracyModifiers, calculateMis
 const app = document.getElementById('app');
 const buildFooter = document.getElementById('build-footer');
 const toastEl = document.getElementById('toast');
-document.body.classList.add('alpha-build');
+document.body.classList.add('production-build');
 let toastTimer = null;
 let lastRenderedScreen = null;
 let pendingImportSlotId = null;
 const sceneManager = new SceneManager();
+
+function shouldAutoFullscreenMobile() {
+  return window.matchMedia?.('(pointer: coarse)').matches || window.innerWidth < 768;
+}
+
+async function enterMobileGameplayMode() {
+  if (shouldAutoFullscreenMobile()) await requestImmersiveMode({ preferLandscape: true });
+}
 
 const SCREEN_BACKGROUNDS = {
   splash: 'naval_battle',
@@ -1282,8 +1290,8 @@ async function resumeOperation() {
   if (!state.save || !operation?.missionId) { showToast(t('toast.noOperation')); return; }
   const mission = state.data.missions.find((item) => item.id === operation.missionId);
   if (!mission) { clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); showToast(t('toast.noOperation')); return; }
+  await enterMobileGameplayMode();
   setMission(operation.missionId); setResumeOperation(true);
-  await requestImmersiveMode({ preferLandscape: true });
   setScreen('gameplay'); render();
 }
 
@@ -1362,7 +1370,7 @@ function initEvents() {
         if (getSelectedMission()?.nationId !== getCurrentNationId()) { showToast(t('toast.campaignCreateCommander')); break; }
         if (!ensurePatrolReadyForLaunch()) break;
         clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); setResumeOperation(false);
-        await requestImmersiveMode({ preferLandscape: true });
+        await enterMobileGameplayMode();
         setScreen('gameplay'); render(); break;
       }
       case 'complete-mission': handleCompleteMission(target.dataset.mission); break;
@@ -1680,7 +1688,7 @@ async function boot() {
     else if (saveDiagnostics.migrated) setTimeout(() => showToast(t('toast.legacyMigrated')), 1400);
     syncMissionAvailability();
     if (!state.selectedMissionId) ensureSelectedMissionForNation();
-    buildFooter.textContent = `${BUILD_INFO.version} • ${BUILD_INFO.date} • ${BUILD_INFO.time}`;
+    buildFooter.textContent = renderBuildFooter(t);
     render();
     setTimeout(() => { if (state.currentScreen === 'splash') { setScreen('mainMenu'); render(); } }, 1200);
   } catch (error) {

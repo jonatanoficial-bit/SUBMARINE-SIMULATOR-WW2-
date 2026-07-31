@@ -1,7 +1,7 @@
 export const PHASE54_CAREER_RETENTION = Object.freeze({
   phase: 54,
   system: 'captain-career-retention',
-  version: 'v2.0.0-alpha.69',
+  version: '2.0.0',
   doctrine: 'correct-captain-decisions-change-crew-morale-and-long-term-store-progression-keeps-career-alive',
   mobileFullscreen: true,
   preservesExistingAssetsAndAudio: true,

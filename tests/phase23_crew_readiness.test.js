@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const build = JSON.parse(fs.readFileSync(path.join(ROOT, 'BUILD_INFO.json'), 'utf8'));
 const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
 const crew = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crew.json'), 'utf8'));
@@ -12,9 +12,9 @@ const translations = ['pt-BR', 'en', 'es'].map((lang) => JSON.parse(fs.readFileS
 const { assessCrewReadiness, createCrewStationCoverage, CREW_STATIONS } = await import('../js/systems/crewReadiness.js');
 
 test('phase 23 metadata identifies living crew readiness build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
-  assert.equal(pkg.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

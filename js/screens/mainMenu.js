@@ -1,4 +1,3 @@
-import { BUILD_INFO } from '../build.js';
 import { renderBuildBadge } from '../components/ui.js';
 
 export function renderMainMenu(t, hasSave, settingsLanguage, activeProfile = null, hasOperationAutosave = false) {
@@ -12,7 +11,6 @@ export function renderMainMenu(t, hasSave, settingsLanguage, activeProfile = nul
         <div class="stack" style="gap:8px; text-align:center; align-items:center;">
           <div class="screen-subtitle">${t('menu.choosePath')}</div>
           ${renderBuildBadge(t)}
-          <span class="tag gold">F${BUILD_INFO.phase} • ${BUILD_INFO.channel.toUpperCase()} • QA ${BUILD_INFO.qaStatus}</span>
         </div>
       </div>
 

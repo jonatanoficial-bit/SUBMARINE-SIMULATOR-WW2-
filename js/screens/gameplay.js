@@ -166,9 +166,20 @@ export function renderGameplay(t, mission, settings = {}) {
           <div class="screen-subtitle">${mission ? t(mission.titleKey) : t('gameplay.subtitle')}</div>
         </div>
         <div class="header-actions gameplay-header-actions">
+          <button class="button ghost gameplay-pause-button" id="gameplay-pause-button" type="button" aria-pressed="false">${t('gameplay.pause')}</button>
           <button class="button ghost immersive-button" data-action="request-fullscreen">${t('viewport.immersive')}</button>
           <div class="top-badge difficulty-badge" data-difficulty="${settings.difficulty || 'officer'}"><span>${t(`training.difficulty.${settings.difficulty || 'officer'}`)}</span></div>
           <div class="top-badge"><span>${t('gameplay.phase')}</span></div>
+        </div>
+      </div>
+
+      <div class="gameplay-pause-overlay hidden" id="gameplay-pause-overlay" role="dialog" aria-modal="true" aria-labelledby="gameplay-pause-title">
+        <div class="panel gameplay-pause-card">
+          <div class="panel-header" id="gameplay-pause-title">${t('gameplay.paused')}</div>
+          <div class="panel-body stack">
+            <p class="muted">${t('gameplay.pauseHint')}</p>
+            <button class="button block" id="gameplay-resume-button" type="button">${t('gameplay.resume')}</button>
+          </div>
         </div>
       </div>
 
@@ -752,6 +763,9 @@ export function renderGameplay(t, mission, settings = {}) {
                 </div>
               </section>
             </section>
+            <details class="progressive-section gameplay-command-details">
+              <summary>${t('captainExecution.panel.kicker')}</summary>
+              <div class="progressive-section-body stack">
             <section class="phase46-command-mode-card" id="phase46-command-mode-card" data-mode="captain">
               <div>
                 <span>${t('captainOrder.mode.kicker')}</span>
@@ -821,6 +835,8 @@ export function renderGameplay(t, mission, settings = {}) {
               </div>
               <button class="button secondary phase50-cycle-action" id="combat-cycle-action" type="button" data-cycle-action="" data-cycle-station="">${t('combatCycle.action.await')}</button>
             </section>
+              </div>
+            </details>
             <section class="encounter-console" aria-live="polite">
               <header>
                 <div><span>${t('encounter.station')}</span><strong id="encounter-phase">${t('encounter.phase.patrol')}</strong></div>
@@ -1224,6 +1240,9 @@ export function mountGameplay({
   cleanupGameplay();
 
   const els = {
+    pauseButton: app.querySelector('#gameplay-pause-button'),
+    pauseOverlay: app.querySelector('#gameplay-pause-overlay'),
+    resumeButton: app.querySelector('#gameplay-resume-button'),
     depthNeedle: app.querySelector('#depth-needle'),
     depthDigital: app.querySelector('#depth-digital'),
     depthOrderDigital: app.querySelector('#depth-order-digital'),
@@ -1722,6 +1741,7 @@ export function mountGameplay({
   const training = new OperationalTraining({ enabled: tutorialEnabled });
   app.__simulationEngine = engine;
   let operationResolved = false;
+  let gameplayPaused = false;
   let lastAutosaveElapsed = Number(initialSnapshot?.elapsedMs || 0);
   let subOfficerCurrent = null;
   let subOfficerTypingTimer = null;
@@ -1776,6 +1796,37 @@ export function mountGameplay({
     addCleanup(() => clearTimeout(id));
     return id;
   };
+
+  const setGameplayPaused = (paused) => {
+    const next = Boolean(paused);
+    if (next === gameplayPaused) return;
+    gameplayPaused = next;
+    if (gameplayPaused) {
+      engine.pause();
+      persistOperation(engine.snapshot(), true);
+    } else {
+      engine.resume();
+    }
+    els.pauseOverlay?.classList.toggle('hidden', !gameplayPaused);
+    els.pauseButton?.setAttribute('aria-pressed', gameplayPaused ? 'true' : 'false');
+    if (els.pauseButton) els.pauseButton.textContent = t(gameplayPaused ? 'gameplay.resume' : 'gameplay.pause');
+  };
+  bind(els.pauseButton, 'click', () => setGameplayPaused(!gameplayPaused));
+  bind(els.resumeButton, 'click', () => setGameplayPaused(false));
+  bind(document, 'visibilitychange', () => {
+    if (document.hidden && !operationResolved) setGameplayPaused(true);
+  });
+  bind(window, 'pagehide', () => {
+    if (!operationResolved) {
+      engine.pause();
+      persistOperation(engine.snapshot(), true);
+    }
+  });
+  bind(document, 'keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    event.preventDefault();
+    setGameplayPaused(!gameplayPaused);
+  });
 
   let activeStation = 'command';
   let periscopeZoom = 1;

@@ -74,7 +74,7 @@ function renderDoctrineDeck(t, doctrine = null, doctrineStage = {}, doctrineImpa
           <strong>${t(doctrine.titleKey)}</strong>
           <p class="muted compact-text">${t(doctrine.summaryKey)}</p>
         </div>
-        <span class="tag gold">${t('phase12.tag')}</span>
+        <span class="tag gold">${t('campaign.doctrine')}</span>
       </div>
       <div class="doctrine-stage-card">
         <span>${t('campaign.doctrineDeck.stageLabel')} ${doctrineStage.index >= 0 ? doctrineStage.index + 1 : 1}</span>
@@ -201,7 +201,7 @@ function renderCampaignEventsDeck(t, deck = null) {
           <strong>${t(deck.titleKey)}</strong>
           <p class="muted compact-text">${t(deck.summaryKey)}</p>
         </div>
-        <span class="tag ${deck.volatility >= 60 ? 'warn' : 'gold'}">${t('campaignEvents.volatility')}: ${deck.volatility}%</span>
+        <span class="tag ${deck.volatility >= 60 ? 'warn' : 'gold'}">${t('campaignEvents.volatility')}: ${Math.round(Number(deck.volatility || 0) * 10) / 10}%</span>
       </div>
       <div class="campaign-event-effect-grid compact">
         <div><span>${t('strategy.intel')}</span><strong>${formatSigned(effect.intelBonus)}</strong></div>
@@ -580,17 +580,37 @@ export function renderCampaign(t, missions, selectedMission, campaign, nation, p
               <div><span>${t('campaign.tone')}</span><strong>${campaign?.toneKey ? t(campaign.toneKey) : '--'}</strong></div>
             </div>
             <div class="empty-state compact"><strong>${t('campaign.goal')}</strong><br>${campaign ? t(campaign.strategicGoalKey) : ''}</div>
-            ${renderLivingCampaignFront(t, livingCampaignFront)}
-            ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
-            ${renderObjectiveDeck(t, campaignObjectives)}
-            ${renderConsequenceDeck(t, campaignConsequences)}
-            ${renderCampaignEventsDeck(t, campaignEvents)}
-            ${renderSpecialOperationsDeck(t, specialOperations)}
-            ${renderOperationChainsDeck(t, operationChains)}
-            ${renderOperationOutcomesDeck(t, operationOutcomes)}
-            ${renderOperationalHonorsDeck(t, operationalHonors)}
-            ${renderCommandAdvancementDeck(t, commandAdvancement)}
-            ${renderVeteranOfficersDeck(t, veteranOfficers)}
+            <details class="progressive-section">
+              <summary>${t('campaign.front')} • ${t('campaign.doctrine')}</summary>
+              <div class="progressive-section-body stack">
+                ${renderLivingCampaignFront(t, livingCampaignFront)}
+                ${renderDoctrineDeck(t, doctrine, doctrineStage, doctrineImpact)}
+              </div>
+            </details>
+            <details class="progressive-section">
+              <summary>${t('campaignObjectives.title')} • ${t('campaignConsequences.title')} • ${t('campaignEvents.title')}</summary>
+              <div class="progressive-section-body stack">
+                ${renderObjectiveDeck(t, campaignObjectives)}
+                ${renderConsequenceDeck(t, campaignConsequences)}
+                ${renderCampaignEventsDeck(t, campaignEvents)}
+              </div>
+            </details>
+            <details class="progressive-section">
+              <summary>${t('specialOps.title')} • ${t('operationChains.title')} • ${t('operationOutcomes.title')}</summary>
+              <div class="progressive-section-body stack">
+                ${renderSpecialOperationsDeck(t, specialOperations)}
+                ${renderOperationChainsDeck(t, operationChains)}
+                ${renderOperationOutcomesDeck(t, operationOutcomes)}
+              </div>
+            </details>
+            <details class="progressive-section">
+              <summary>${t('operationalHonors.title')} • ${t('commandAdvancement.title')} • ${t('veteranOfficers.title')}</summary>
+              <div class="progressive-section-body stack">
+                ${renderOperationalHonorsDeck(t, operationalHonors)}
+                ${renderCommandAdvancementDeck(t, commandAdvancement)}
+                ${renderVeteranOfficersDeck(t, veteranOfficers)}
+              </div>
+            </details>
             ${renderTimeline(t, campaign)}
             ${renderChapters(t, campaign, completedSet)}
           </div>

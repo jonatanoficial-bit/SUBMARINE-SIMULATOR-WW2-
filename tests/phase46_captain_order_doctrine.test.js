@@ -6,18 +6,18 @@ import { BUILD_INFO } from '../js/build.js';
 import { PHASE46_CAPTAIN_ORDER_DOCTRINE, buildCaptainOrderDoctrineView } from '../js/systems/captainOrderDoctrine.js';
 import { buildSubOfficerDialogue } from '../js/systems/subOfficerCopilot.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readText = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const readJson = (relative) => JSON.parse(readText(relative));
 
 test('phase 46 captain order metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
   assert.equal(PHASE46_CAPTAIN_ORDER_DOCTRINE.system, 'captain-order-doctrine');
 });

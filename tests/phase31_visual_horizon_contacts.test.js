@@ -5,19 +5,19 @@ import path from 'node:path';
 import { BUILD_INFO } from '../js/build.js';
 import { PHASE31_VISUAL_HORIZON_CONTACTS, buildHorizonContactView } from '../js/systems/visualHorizonContacts.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readText = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const readJson = (relative) => JSON.parse(readText(relative));
 
 test('phase 31 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
+  assert.equal(BUILD_INFO.semver, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(PHASE31_VISUAL_HORIZON_CONTACTS.system, 'visual-horizon-contacts');
   assert.ok(PHASE31_VISUAL_HORIZON_CONTACTS.layers.includes('smoke-plumes'));
 });

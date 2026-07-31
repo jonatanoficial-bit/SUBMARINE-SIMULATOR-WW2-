@@ -38,15 +38,15 @@ test('phase 53 metadata upgrades build without changing save schema or removing 
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.phase, 53);
-  assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.version, 'v2.0.0-alpha.69');
+  assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.version, '2.0.0');
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.saveSchemaStable, true);
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.mobileFullscreen, true);
-  assert.equal(build.version, 'v2.0.0-alpha.69');
+  assert.equal(build.version, '2.0.0');
   assert.equal(build.phase, '54');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

@@ -5,15 +5,15 @@ import path from 'node:path';
 
 import { classifyOceanWeather } from '../js/oceanWeather.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 const build = readJson('BUILD_INFO.json');
 const pkg = readJson('package.json');
 
 test('phase 24 metadata identifies ocean weather patrol build', () => {
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
-  assert.equal(pkg.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
 });
 
 test('ocean weather classifier is bounded and deterministic', () => {

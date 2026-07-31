@@ -5,7 +5,7 @@ import path from 'node:path';
 import { BUILD_INFO } from '../js/build.js';
 import { PHASE44_STORY_CAMPAIGN_DIRECTOR, buildStoryCampaignFlow, renderStoryCampaignPanel } from '../js/systems/storyCampaignDirector.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readText = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const readJson = (relative) => JSON.parse(readText(relative));
 
@@ -23,12 +23,12 @@ const missions = Array.from({ length: 8 }, (_, index) => ({
 test('phase 44 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
+  assert.equal(BUILD_INFO.semver, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(PHASE44_STORY_CAMPAIGN_DIRECTOR.system, 'story-campaign-director');
   assert.ok(PHASE44_STORY_CAMPAIGN_DIRECTOR.layers.includes('mission-rail'));
 });

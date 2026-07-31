@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const read = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const build = JSON.parse(read('BUILD_INFO.json'));
 const packageJson = JSON.parse(read('package.json'));
@@ -12,9 +12,9 @@ const index = read('index.html');
 const sw = read('service-worker.js');
 
 test('phase 20 metadata and mobile scroll stylesheet are active', () => {
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
-  assert.equal(packageJson.version, '2.0.0-alpha.69');
+  assert.equal(packageJson.version, '2.0.0');
   assert.match(index, /phase20-mobile-scroll\.css/);
   assert.match(sw, /phase20-mobile-scroll\.css/);
 });

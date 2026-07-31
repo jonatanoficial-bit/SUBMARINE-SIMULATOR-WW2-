@@ -1,6 +1,6 @@
 {
-  "name": "Submarine Commander WW2 v2.0.0-alpha.69",
-  "short_name": "SCWW2 2.0.0-alpha.69",
+  "name": "Submarine Commander WW2 2.0.0",
+  "short_name": "Sub Commander",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#0b1420",
@@ -20,16 +20,17 @@
   ],
   "display_override": [
     "fullscreen",
-    "standalone"
+    "standalone",
+    "minimal-ui"
   ],
-  "orientation": "any",
+  "orientation": "landscape",
   "scope": "./",
-  "description": "Submarine Commander WW2 — Fase 54 Moral, loja por níveis e carreira de longa duração.",
+  "description": "Submarine Commander WW2 — 2.0.0 by Vale Games",
   "categories": [
     "games",
     "simulation",
     "strategy"
   ],
-  "version": "2.0.0-alpha.69",
+  "version": "2.0.0",
   "id": "./"
 }

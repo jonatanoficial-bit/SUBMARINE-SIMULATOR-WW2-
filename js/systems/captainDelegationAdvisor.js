@@ -1,7 +1,7 @@
 export const PHASE52_CAPTAIN_DELEGATION_ADVISOR = Object.freeze({
   phase: 52,
   system: 'captain-delegation-advisor',
-  version: 'v2.0.0-alpha.69',
+  version: '2.0.0',
   doctrine: 'captain-delegates-crew-executes-player-can-always-operate-manually',
   mobileFullscreen: true,
   preservesExistingAssetsAndAudio: true,

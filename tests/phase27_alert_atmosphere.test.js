@@ -5,18 +5,18 @@ import path from 'node:path';
 import { BUILD_INFO } from '../js/build.js';
 import { buildAlertAtmosphereView, calculateAlertThreatScore, classifyAlertAtmosphere, PHASE27_ALERT_ATMOSPHERE, shouldAlertEscalate } from '../js/systems/alertAtmosphere.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 
 test('phase 27 alert metadata is active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
+  assert.equal(BUILD_INFO.semver, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(PHASE27_ALERT_ATMOSPHERE.system, 'alert-atmosphere');
   assert.deepEqual(PHASE27_ALERT_ATMOSPHERE.levels, ['calm', 'suspicion', 'combat', 'evasion', 'emergency']);
 });

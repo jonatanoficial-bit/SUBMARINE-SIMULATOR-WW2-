@@ -36,7 +36,10 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
         <span class="tag success">${t('common.credits')}: ${credits}</span>
       </div>
 
-      ${arsenalRetentionMarkup(t, careerRetention)}
+      <details class="progressive-section">
+        <summary>${t('careerRetention.arsenalTitle')}</summary>
+        <div class="progressive-section-body stack">${arsenalRetentionMarkup(t, careerRetention)}</div>
+      </details>
 
       <div class="stack arsenal-sub-list">
         ${submarines.map((submarine) => {
@@ -76,7 +79,9 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
         }).join('')}
       </div>
 
-      ${workshopImpact ? `
+      ${workshopImpact ? `<details class="progressive-section">
+      <summary>${t('workshop.title')}</summary>
+      <div class="progressive-section-body">
       <div class="panel phase42-workshop-impact">
         <div class="panel-header">${t('workshop.title')}</div>
         <div class="panel-body stack">
@@ -104,7 +109,9 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
             <button class="button secondary" data-action="rest-crew">${t('workshop.restCrew')}</button>
           </div>
         </div>
-      </div>` : ''}
+      </div>
+      </div>
+      </details>` : ''}
 
       <div class="panel repair-panel">
         <div class="panel-header">${t('repair.title')}</div>
@@ -121,9 +128,12 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
         </div>
       </div>
 
-      <div class="panel upgrades-panel">
-        <div class="panel-header">${t('arsenal.upgrades')}</div>
-        <div class="panel-body stack">
+      <details class="progressive-section">
+        <summary>${t('arsenal.upgrades')}</summary>
+        <div class="progressive-section-body">
+          <div class="panel upgrades-panel">
+            <div class="panel-header">${t('arsenal.upgrades')}</div>
+            <div class="panel-body stack">
           ${upgrades.map((upgrade) => {
             const owned = ownedUpgrades.includes(upgrade.id);
             return `
@@ -146,8 +156,10 @@ export function renderArsenal(t, submarines, currentId, level, credits, ownedUpg
               </div>
             `;
           }).join('')}
+            </div>
+          </div>
         </div>
-      </div>
+      </details>
 
       ${renderBottomNav('arsenal', t)}
     </section>

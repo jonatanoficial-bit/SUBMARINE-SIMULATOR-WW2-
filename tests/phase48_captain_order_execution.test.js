@@ -6,7 +6,7 @@ import { BUILD_INFO } from '../js/build.js';
 import { beginCaptainCrewOrder } from '../js/systems/captainCrewRealism.js';
 import { PHASE48_CAPTAIN_ORDER_EXECUTION, buildCaptainExecutionBoard, createCaptainExecutionFromCommand, createCaptainExecutionState, normalizeCaptainExecutionState } from '../js/systems/captainOrderExecution.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readText = (relative) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 const readJson = (relative) => JSON.parse(readText(relative));
 
@@ -30,11 +30,11 @@ function snapshot(overrides = {}) {
 test('phase 48 metadata keeps saves stable and advances build wiring', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
   assert.equal(PHASE48_CAPTAIN_ORDER_EXECUTION.system, 'captain-order-execution-board');
 });

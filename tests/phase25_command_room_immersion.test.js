@@ -5,19 +5,19 @@ import path from 'node:path';
 import { BUILD_INFO } from '../js/build.js';
 import { buildCommandRoomStations, classifyCommandRoomViewport, commandRoomCssVars, computeCommandRoomAmbience, PHASE25_COMMAND_ROOM } from '../js/systems/commandRoomImmersion.js';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 const pkg = readJson('package.json');
 const manifest = readJson('manifest.json');
 const dictionaries = ['pt-BR','en','es'].map((lang) => readJson(`data/translations/${lang}.json`));
 
 test('phase 25 immersive command room metadata is active', () => {
-  assert.equal(BUILD_INFO.version, 'v2.0.0-alpha.69');
-  assert.equal(BUILD_INFO.semver, '2.0.0-alpha.69');
+  assert.equal(BUILD_INFO.version, '2.0.0');
+  assert.equal(BUILD_INFO.semver, '2.0.0');
   assert.equal(BUILD_INFO.phase, '54');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0-alpha.69');
-  assert.equal(manifest.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.0');
   assert.equal(PHASE25_COMMAND_ROOM.visualProfile, 'immersive-submarine-command-room');
 });
 

@@ -50,7 +50,7 @@ def main() -> None:
     )
     index = re.sub(
         r'<meta name="description" content="[^"]*">',
-        f'<meta name="description" content="{info["product"]} — {info["version"]}, fase {info["phase"]} da reconstrução AAA da {info["studio"]}.">',
+        f'<meta name="description" content="{info["product"]} — simulador tático naval mobile-first da {info["studio"]}.">',
         index,
         count=1,
     )
@@ -70,7 +70,7 @@ def main() -> None:
     sw = sw_path.read_text(encoding="utf-8")
     sw = re.sub(
         r"const CACHE_VERSION = '[^']+';",
-        f"const CACHE_VERSION = '{info['semver']}';",
+        f"const CACHE_VERSION = '{info['semver']}-{info['date'].replace('-', '')}-{info['time'].replace(':', '')}';",
         sw,
         count=1,
     )

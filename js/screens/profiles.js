@@ -17,7 +17,7 @@ export function renderProfiles(t, profiles, language, operationAutosave = null) 
     const metadata = profile.metadata;
     const active = profile.active ? 'active' : '';
     const operation = profile.active && operationAutosave
-      ? `<div class="profile-operation"><strong>${t('profiles.operationAutosave')}</strong><span>${t('profiles.operationMission', { mission: escapeHtml(operationAutosave.missionId || '—') })}</span><small>${formatDate(operationAutosave.savedAt, language)}</small></div>`
+      ? `<div class="profile-operation"><strong>${t('profiles.operationAutosave')}</strong><small>${formatDate(operationAutosave.savedAt, language)}</small></div>`
       : '';
     return `
       <article class="panel profile-card ${active}" data-profile-card="${profile.id}">
@@ -32,7 +32,6 @@ export function renderProfiles(t, profiles, language, operationAutosave = null) 
               <span><b>${t('profiles.nation')}</b>${nationLabel(t, metadata.nationId)}</span>
               <span><b>${t('common.level')}</b>${metadata.level}</span>
               <span><b>${t('profiles.updated')}</b>${formatDate(metadata.updatedAt, language)}</span>
-              <span><b>${t('profiles.revision')}</b>${metadata.revision}</span>
             </div>
             ${operation}
             <div class="profile-actions">
@@ -67,15 +66,6 @@ export function renderProfiles(t, profiles, language, operationAutosave = null) 
         </div>
       </div>
       <div class="profiles-grid">${cards}</div>
-      <div class="panel profile-safety-panel">
-        <div class="panel-header">${t('profiles.safetyTitle')}</div>
-        <div class="panel-body profile-safety-grid">
-          <span>${t('profiles.safetyTransactions')}</span>
-          <span>${t('profiles.safetyBackups')}</span>
-          <span>${t('profiles.safetyChecksum')}</span>
-          <span>${t('profiles.safetyMigration')}</span>
-        </div>
-      </div>
       <input id="profile-import-input" type="file" accept="application/json,.json,.scww2save" hidden>
     </section>
   `;

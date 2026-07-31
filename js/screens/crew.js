@@ -183,6 +183,12 @@ function gateText(t, item = null) {
 
 export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDrills = null, crewImpact = null, careerRetention = null) {
   const readiness = assessCrewReadiness(crewMembers, hiredIds, save || {});
+  const crewOrderScore = (crew) => {
+    if (hiredIds.includes(crew.id)) return 0;
+    const shop = careerRetention?.crewShopById?.[crew.id] || null;
+    return !shop || shop.unlocked ? 1 : 2;
+  };
+  const orderedCrew = crewMembers.slice().sort((left, right) => crewOrderScore(left) - crewOrderScore(right));
   return `
     <section class="screen screen-shell crew-screen">
       <div class="screen-header">
@@ -222,14 +228,17 @@ export function renderCrew(t, crewMembers, hiredIds, credits, save = {}, crewDri
         </div>
       </div>
 
-      ${crewImpactMarkup(t, crewImpact)}
-
-      ${careerRetentionMarkup(t, careerRetention)}
-
-      ${renderCrewDrills(t, save, crewDrills)}
+      <details class="progressive-section crew-development-section">
+        <summary>${t('crewImpact.title')} • ${t('careerRetention.title')} • ${t('crewDrills.title')}</summary>
+        <div class="progressive-section-body stack">
+          ${crewImpactMarkup(t, crewImpact)}
+          ${careerRetentionMarkup(t, careerRetention)}
+          ${renderCrewDrills(t, save, crewDrills)}
+        </div>
+      </details>
 
       <div class="stack crew-list">
-        ${crewMembers.map((crew) => {
+        ${orderedCrew.map((crew) => {
           const shop = careerRetention?.crewShopById?.[crew.id] || null;
           const hired = hiredIds.includes(crew.id);
           const level = crew.level ?? Math.max(1, Math.round((Number(crew.skill || 50) - 45) / 10));

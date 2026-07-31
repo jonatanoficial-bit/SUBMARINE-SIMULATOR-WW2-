@@ -3,16 +3,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const ROOT = path.normalize(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const build = JSON.parse(fs.readFileSync(path.join(ROOT, 'BUILD_INFO.json'), 'utf8'));
 const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
 const serviceWorker = fs.readFileSync(path.join(ROOT, 'service-worker.js'), 'utf8');
 const audioSource = fs.readFileSync(path.join(ROOT, 'js/audio.js'), 'utf8');
 
 test('phase 22 metadata identifies official soundtrack integration', () => {
-  assert.equal(build.semver, '2.0.0-alpha.69');
+  assert.equal(build.semver, '2.0.0');
   assert.equal(build.phase, '54');
-  assert.equal(pkg.version, '2.0.0-alpha.69');
+  assert.equal(pkg.version, '2.0.0');
 });
 
 test('official soundtrack playlist includes six sequential mp3 assets', async () => {
