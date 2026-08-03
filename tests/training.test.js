@@ -40,13 +40,36 @@ test('cadet and hardcore alter resource consumption deterministically', () => {
 });
 
 test('operational training advances only from real snapshot state', () => {
-  const training = new OperationalTraining({ enabled:true });
-  let state = training.update({ elapsedMs:700, speed:'stop', depth:12, sensors:{contacts:{target:{detected:false}}}, weapons:{tdc:{solutionQuality:0}}, metrics:{shots:0}, encounter:{} });
-  assert.ok(state.completed.includes('orientation'));
-  assert.equal(state.currentStep, 'propulsion');
-  state = training.update({ elapsedMs:1000, speed:'slow', depth:22, periscopeOpen:true, sensors:{contacts:{target:{detected:true}}}, weapons:{tdc:{solutionQuality:60}}, metrics:{shots:1}, encounter:{phase:'evade', doctrine:'evade'}, canComplete:true });
-  for (const id of ['propulsion','depth','contact','periscope','solution','attack','evade','safe']) assert.ok(state.completed.includes(id));
+  const training = new OperationalTraining({ enabled:true, guided:true });
+  training.visitStation('sensors');
+  let state = training.update({ activeStation:'sensors', speed:'stop', depth:12, sensors:{contacts:{target:{detected:false}}}, weapons:{tdc:{solutionQuality:0}}, metrics:{shots:0} });
+  assert.deepEqual(state.completed, ['contact']);
+  assert.equal(state.currentStep, 'sonar');
+
+  state = training.update({ activeStation:'sensors', speed:'stop', depth:12, sensors:{contacts:{target:{detected:true,confidence:34,source:'hydrophone',rangeMeters:2100}}}, weapons:{tdc:{solutionQuality:0}}, metrics:{shots:0} });
+  assert.equal(state.currentStep, 'approach');
+  state = training.update({ activeStation:'sensors', speed:'slow', depth:20, sensors:{contacts:{target:{detected:true,confidence:42,source:'hydrophone',rangeMeters:1800}}}, weapons:{tdc:{solutionQuality:0}}, metrics:{shots:0} });
+  assert.equal(state.currentStep, 'approach');
+  state = training.update({ activeStation:'instruments', speed:'slow', depth:20, sensors:{contacts:{target:{detected:true,confidence:42,source:'hydrophone',rangeMeters:1800}}}, weapons:{tdc:{solutionQuality:0}}, metrics:{shots:0} });
+  assert.equal(state.currentStep, 'solution');
+  state = training.update({ activeStation:'weapons', speed:'slow', depth:20, sensors:{contacts:{target:{detected:true,confidence:56,source:'hydrophone',rangeMeters:1600}}}, weapons:{tdc:{solutionQuality:48}}, metrics:{shots:0} });
+  assert.equal(state.currentStep, 'attack');
+  state = training.update({ activeStation:'weapons', speed:'slow', depth:20, weapons:{tdc:{solutionQuality:48}}, metrics:{shots:1} });
+  assert.equal(state.currentStep, 'evade');
+  state = training.update({ activeStation:'instruments', speed:'slow', depth:60, weapons:{tdc:{solutionQuality:48}}, metrics:{shots:1} });
+  assert.deepEqual(state.completed, ['contact','sonar','approach','solution','attack','evade']);
   assert.equal(state.progress,100);
+  assert.equal(state.finished,true);
+  assert.equal(state.instructionKey,'training.guideComplete');
+});
+
+test('guided training cannot be dismissed and does not skip out-of-order steps', () => {
+  const training = new OperationalTraining({ enabled:true, guided:true });
+  training.dismiss();
+  let state = training.update({ speed:'slow', depth:80, sensors:{contacts:{target:{detected:true,confidence:90,source:'activeSonar',rangeMeters:900}}}, weapons:{tdc:{solutionQuality:90}}, metrics:{shots:2} });
+  assert.equal(state.dismissed, false);
+  assert.equal(state.currentStep, 'contact');
+  assert.equal(state.progress, 0);
 });
 
 test('training danger recommendation prioritizes damage and enemy hunt', () => {

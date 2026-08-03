@@ -11,7 +11,7 @@ test('commercial release metadata is synchronized', () => {
   const build = readJson('BUILD_INFO.json');
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(build.version, '2.0.0');
+  assert.equal(build.version, '2.1.0');
   assert.equal(build.channel, 'stable');
   assert.equal(build.release, true);
   assert.equal(pkg.version, build.version);

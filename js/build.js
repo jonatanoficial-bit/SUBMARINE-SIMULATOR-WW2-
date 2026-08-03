@@ -2,17 +2,17 @@
 export const BUILD_INFO = Object.freeze({
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "2.0.0",
-  "semver": "2.0.0",
-  "buildId": "SCWW2-2.0.0-20260731-1511-BRT",
-  "date": "2026-07-31",
-  "time": "15:11",
+  "version": "2.1.0",
+  "semver": "2.1.0",
+  "buildId": "SCWW2-2.1.0-20260803-1714-BRT",
+  "date": "2026-08-03",
+  "time": "17:14",
   "timezone": "America/Sao_Paulo",
-  "phase": "54",
-  "phaseName": "Career Morale Shop Retention",
+  "phase": "55",
+  "phaseName": "Guided Combat Training and Station Focus",
   "channel": "stable",
   "release": true,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Stable mobile-first release with progressive navigation, pause and background safety, commercial interface cleanup, resilient saves and preserved campaign, crew, submarine, audio and simulation systems."
+  "notes": "Stable mobile-first release with a six-step guided combat tutorial, compact landscape instructor, single active combat station, actionable fixed alerts and every existing character, avatar, vessel, campaign and simulation system preserved."
 });

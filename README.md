@@ -1,6 +1,8 @@
 # Submarine Commander WW2
 
-Simulador tático de submarinos da Segunda Guerra Mundial, jogável no navegador e preparado como PWA. A versão 2.0.0 reúne campanhas independentes para Alemanha, Reino Unido e Estados Unidos, progressão persistente, tripulação, oficina, logística, comando estratégico e combate naval determinístico.
+Simulador tático de submarinos da Segunda Guerra Mundial, jogável no navegador e preparado como PWA. A versão 2.1.0 reúne campanhas independentes para Alemanha, Reino Unido e Estados Unidos, progressão persistente, tripulação, oficina, logística, comando estratégico, combate naval determinístico e treinamento de combate dirigido.
+
+O capitão pode operar cada estação manualmente ou delegar navegação, acompanhamento, ataque, evasão e reparos aos chefes de setor. As decisões exibem a consequência provável e a eficiência automática depende da experiência da tripulação.
 
 ## Executar
 
@@ -18,7 +20,7 @@ No celular, a entrada na patrulha solicita tela cheia e orientação horizontal.
 
 ```bash
 npm test
-python tools/audit_phase54_career_retention.py
+python tests/smoke_test.py
 ```
 
 A suíte automatizada cobre simulação, campanhas, save/migração, PWA, traduções, progressão, combate, interface e os contratos da versão comercial.

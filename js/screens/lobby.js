@@ -62,6 +62,11 @@ export function renderLobby(t, save, nation, submarine, crewMembers) {
       <div class="panel quick-actions-panel phase41-flow-hub">
         <div class="panel-header">${t('flow.mainActions')}</div>
         <div class="panel-body stack">
+          <button class="action-card training-flow" data-action="launch-training">
+            <img class="action-icon" src="assets/ui/instruments/sonar_icon.png" alt="">
+            <div><div class="action-title">${t('tutorialMission.lobbyTitle')}</div><div class="action-subtitle">${t('tutorialMission.lobbyDesc')}</div></div>
+            <span class="tag success">${t('tutorialMission.badge')}</span>
+          </button>
           <button class="action-card primary-flow" data-nav="campaign">
             <img class="action-icon" src="assets/ui/icons/icon_navigation.png" alt="">
             <div><div class="action-title">${t('flow.mission')}</div><div class="action-subtitle">${t('flow.missionDesc')}</div></div>

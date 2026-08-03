@@ -909,7 +909,7 @@ function ensurePatrolReadyForLaunch() {
 }
 function getSelectedMission(nationId = getCurrentNationId()) {
   const selected = state.data?.missions?.find((item) => item.id === state.selectedMissionId && item.nationId === nationId);
-  if (selected?.sandbox || selected?.missionMode === 'sandbox') return selected;
+  if (selected?.sandbox || ['sandbox', 'tutorial'].includes(selected?.missionMode)) return selected;
   const missions = missionsForNation(nationId);
   return missions.find((item) => item.id === state.selectedMissionId) || missions.find((item) => item.status === 'available') || missions[0] || state.data.missions[0];
 }
@@ -1358,6 +1358,14 @@ function initEvents() {
         ensureSelectedMissionForNation(getCurrentNationId());
         setScreen('briefing'); render(); break;
       }
+      case 'launch-training': {
+        const mission = buildSandboxMission({ scenarioId: 'training-shakedown', nationId: getCurrentNationId(), campaigns: state.data?.campaigns || [] });
+        state.data.missions = [mission, ...(state.data.missions || []).filter((item) => item.id !== mission.id)];
+        setMission(mission.id);
+        clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); setResumeOperation(false);
+        showToast(t('tutorialMission.ready'));
+        setScreen('briefing'); render(); break;
+      }
       case 'launch-sandbox': {
         const mission = buildSandboxMission({ scenarioId: target.dataset.sandbox, nationId: getCurrentNationId(), campaigns: state.data?.campaigns || [] });
         state.data.missions = [mission, ...(state.data.missions || []).filter((item) => item.id !== mission.id)];
@@ -1368,7 +1376,7 @@ function initEvents() {
       }
       case 'start-mission': {
         if (getSelectedMission()?.nationId !== getCurrentNationId()) { showToast(t('toast.campaignCreateCommander')); break; }
-        if (!ensurePatrolReadyForLaunch()) break;
+        if (!getSelectedMission()?.tutorialMission && !ensurePatrolReadyForLaunch()) break;
         clearOperationAutosave(state.activeProfileId); setOperationAutosave(null); setResumeOperation(false);
         await enterMobileGameplayMode();
         setScreen('gameplay'); render(); break;
@@ -1602,7 +1610,7 @@ sceneManager
       initialSystems: state.save?.submarine?.systems || {},
       initialSnapshot: state.resumeOperation && state.operationAutosave?.missionId === mission?.id ? state.operationAutosave.snapshot : null,
       difficulty: state.settings.difficulty,
-      tutorialEnabled: state.settings.tutorials,
+      tutorialEnabled: mission?.tutorialMission ? true : state.settings.tutorials,
       contextualHelp: state.settings.contextualHelp,
       crewImpact: getCrewProgressionImpact(mission?.nationId || getCurrentNationId()),
       onHullUpdate: handleHullUpdate,

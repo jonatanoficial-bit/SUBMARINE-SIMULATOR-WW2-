@@ -12,12 +12,12 @@ const readJson = (relative) => JSON.parse(readText(relative));
 test('phase 43 metadata and build are active', () => {
   const pkg = readJson('package.json');
   const manifest = readJson('manifest.json');
-  assert.equal(BUILD_INFO.version, '2.0.0');
-  assert.equal(BUILD_INFO.semver, '2.0.0');
-  assert.equal(BUILD_INFO.phase, '54');
+  assert.equal(BUILD_INFO.version, '2.1.0');
+  assert.equal(BUILD_INFO.semver, '2.1.0');
+  assert.equal(BUILD_INFO.phase, '55');
   assert.equal(BUILD_INFO.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0');
-  assert.equal(manifest.version, '2.0.0');
+  assert.equal(pkg.version, '2.1.0');
+  assert.equal(manifest.version, '2.1.0');
   assert.equal(PHASE43_SANDBOX_PATROL.system, 'sandbox-patrol-planner');
   assert.ok(PHASE43_SANDBOX_PATROL.modes.includes('sandbox-patrol'));
 });
@@ -32,6 +32,19 @@ test('sandbox scenarios generate full campaign-safe missions', () => {
   assert.ok(mission.navigation.route.length >= 3);
   assert.ok(mission.navigation.patrolSector.id.includes('sandbox'));
   assert.ok(mission.environment.visibilityMeters > 0);
+});
+
+test('training shakedown generates a dedicated guided mission', () => {
+  const mission = buildSandboxMission({ scenarioId: 'training-shakedown', nationId: 'uk', campaigns: [{ id: 'campaign.uk.mediterranean', nationId: 'uk', baseKey: 'campaign.uk.base' }] });
+  assert.equal(mission.id, 'tutorial-uk');
+  assert.equal(mission.tutorialMission, true);
+  assert.equal(mission.missionMode, 'tutorial');
+  assert.deepEqual(mission.objectiveKeys, [
+    'tutorialMission.objective.contact',
+    'tutorialMission.objective.sonar',
+    'tutorialMission.objective.attack',
+    'tutorialMission.objective.evade',
+  ]);
 });
 
 test('sandbox panel exposes campaign quick mission and free patrol choices', () => {

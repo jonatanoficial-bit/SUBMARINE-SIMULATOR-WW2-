@@ -151,7 +151,7 @@ function phase29ChartGridMarkup() {
 
 export function renderGameplay(t, mission, settings = {}) {
   return `
-    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase52-delegation-ready phase53-crew-impact-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready">
+    <section class="screen gameplay-screen phase15-command-room-screen phase25-command-room-shell phase26-subofficer-ready phase27-alert-atmosphere-ready phase28-air-attack-ready phase29-tactical-chart-ready phase30-waypoint-navigation-ready phase31-visual-horizon-ready phase32-torpedo-attack-ready phase46-captain-order-ready phase47-captain-crew-ready phase48-order-execution-ready phase49-command-chain-ready phase50-combat-cycle-ready phase51-command-room-ready phase52-delegation-ready phase53-crew-impact-ready phase33-naval-ai-ready phase34-damage-visual-ready phase35-depth-stealth-ready phase36-cinematic-interface-ready phase37-immersive-audio-ready phase39-crew-roles-ready phase41-mission-flow-ready phase41-subofficer-guide-ready" data-tutorial-mission="${mission?.tutorialMission ? 'true' : 'false'}">
       <div class="phase36-cinematic-layer" id="phase36-cinematic-layer" data-mood="calm" data-transition="slow-drift" aria-hidden="true">
         <i class="phase36-letterbox top"></i>
         <i class="phase36-letterbox bottom"></i>
@@ -182,6 +182,26 @@ export function renderGameplay(t, mission, settings = {}) {
           </div>
         </div>
       </div>
+
+      <section class="operational-guide guided-mission-guide ${settings.tutorials === false && !mission?.tutorialMission ? 'hidden' : ''}" id="operational-guide" aria-live="polite">
+        <div class="operational-guide-header">
+          <div><strong>${mission?.tutorialMission ? t('tutorialMission.guideTitle') : t('training.guideTitle')}</strong><span id="training-progress-label">0%</span></div>
+          <div class="row wrap">
+            <button class="chip" id="training-go-station">${t('training.goToStation')}</button>
+            ${mission?.tutorialMission ? '' : `<button class="chip" id="training-dismiss">${t('training.hide')}</button>`}
+          </div>
+        </div>
+        <div class="training-progress"><i id="training-progress-bar"></i></div>
+        <div class="training-current">
+          <span>${t('training.currentStep')}</span>
+          <strong id="training-current-step">${t('training.step.contact')}</strong>
+          <b id="training-station-label">${t('training.station.sensors')}</b>
+        </div>
+        <p class="training-instruction" id="training-instruction">${t('training.instruction.contact')}</p>
+        <ol class="training-checklist" id="training-checklist">
+          ${['contact','sonar','approach','solution','attack','evade'].map((id) => `<li data-training-step="${id}"><i></i><span>${t(`training.step.${id}`)}</span></li>`).join('')}
+        </ol>
+      </section>
 
       <div class="phase36-premium-director" id="phase36-premium-director" data-mood="calm" aria-live="polite">
         <div>
@@ -219,12 +239,9 @@ export function renderGameplay(t, mission, settings = {}) {
         <button class="button block primary-command top-quick-periscope" id="open-periscope">${t('gameplay.openPeriscope')}</button>
         <div class="command-room-ribbon">
           <div class="command-room-ribbon-title">${t('bridge.commandRoom')}</div>
-          <div class="command-room-ribbon-grid">
-            <div><img src="assets/ui/instruments/helm_icon.png" alt=""><span>${t('stabilization.stationCommand')}</span></div>
-            <div><img src="assets/ui/instruments/sonar_icon.png" alt=""><span>${t('stabilization.stationSensors')}</span></div>
-            <div><img src="assets/ui/instruments/periscope_icon.png" alt=""><span>${t('bridge.station.periscope')}</span></div>
-            <div><img src="assets/ui/instruments/torpedo_icon.png" alt=""><span>${t('stabilization.stationWeapons')}</span></div>
-            <div><img src="assets/ui/instruments/speed_telegraph_icon.png" alt=""><span>${t('bridge.station.engines')}</span></div>
+          <div class="active-station-summary" aria-live="polite">
+            <img id="active-station-icon" src="assets/ui/instruments/helm_icon.png" alt="">
+            <div><span>${t('training.activeStation')}</span><strong id="active-station-title">${t('stabilization.stationCommand')}</strong></div>
           </div>
         </div>
         <div class="gameplay-kpis">
@@ -291,21 +308,6 @@ export function renderGameplay(t, mission, settings = {}) {
               <div class="phase39-crew-readout"><span>${t('crewRoles.dominant')}</span><strong id="phase39-dominant-role">${t('crewRoles.role.commander')}</strong><i><em id="phase39-stress-bar" style="width:0%"></em></i></div>
             </div>
             <div class="phase39-crew-grid" id="phase39-crew-grid"></div>
-          </section>
-          <div class="tutorial-strip">${t('gameplay.tutorialTip')}</div>
-          <section class="operational-guide ${settings.tutorials === false ? 'hidden' : ''}" id="operational-guide" aria-live="polite">
-            <div class="operational-guide-header">
-              <div><strong>${t('training.guideTitle')}</strong><span id="training-progress-label">0%</span></div>
-              <div class="row wrap">
-                <button class="chip" id="training-go-station">${t('training.goToStation')}</button>
-                <button class="chip" id="training-dismiss">${t('training.hide')}</button>
-              </div>
-            </div>
-            <div class="training-progress"><i id="training-progress-bar"></i></div>
-            <div class="training-current"><span>${t('training.currentStep')}</span><strong id="training-current-step">${t('training.step.orientation')}</strong></div>
-            <ol class="training-checklist" id="training-checklist">
-              ${['orientation','propulsion','depth','contact','periscope','solution','attack','evade','safe'].map((id) => `<li data-training-step="${id}"><i></i><span>${t(`training.step.${id}`)}</span></li>`).join('')}
-            </ol>
           </section>
         </div>
       </div>
@@ -744,6 +746,7 @@ export function renderGameplay(t, mission, settings = {}) {
                     <span id="delegation-officer-role">${t('delegation.officer.subofficer')}</span>
                     <strong id="delegation-title">${t('delegation.title.route')}</strong>
                     <p id="delegation-question">${t('delegation.question.route')}</p>
+                    <p class="phase52-delegation-consequence"><b>${t('delegation.consequence.label')}</b><span id="delegation-consequence">${t('delegation.consequence.route')}</span></p>
                   </div>
                   <img class="phase52-station-icon" id="delegation-station-icon" src="assets/ui/instruments/helm_icon.png" alt="">
                 </div>
@@ -1636,9 +1639,13 @@ export function mountGameplay({
     trainingProgressLabel: app.querySelector('#training-progress-label'),
     trainingProgressBar: app.querySelector('#training-progress-bar'),
     trainingCurrentStep: app.querySelector('#training-current-step'),
+    trainingInstruction: app.querySelector('#training-instruction'),
+    trainingStationLabel: app.querySelector('#training-station-label'),
     trainingChecklist: app.querySelector('#training-checklist'),
     trainingGoStation: app.querySelector('#training-go-station'),
     trainingDismiss: app.querySelector('#training-dismiss'),
+    activeStationIcon: app.querySelector('#active-station-icon'),
+    activeStationTitle: app.querySelector('#active-station-title'),
     alertAtmosphere: app.querySelector('#phase27-alert-atmosphere'),
     alertLabel: app.querySelector('#phase27-alert-label'),
     alertScore: app.querySelector('#phase27-alert-score'),
@@ -1712,6 +1719,7 @@ export function mountGameplay({
     delegationStationIcon: app.querySelector('#delegation-station-icon'),
     delegationTitle: app.querySelector('#delegation-title'),
     delegationQuestion: app.querySelector('#delegation-question'),
+    delegationConsequence: app.querySelector('#delegation-consequence'),
     delegationRadioTitle: app.querySelector('#delegation-radio-title'),
     delegationRadioText: app.querySelector('#delegation-radio-text'),
     delegationContactChips: app.querySelector('#delegation-contact-chips'),
@@ -1738,7 +1746,7 @@ export function mountGameplay({
   const engine = new SimulationEngine({ mission: mission || {}, submarine, initialHull, initialSystems, initialSnapshot, difficulty, crewImpact });
   let crewImpactCurrent = crewImpact || engine.snapshot().crewImpact || buildCrewProgressionImpact({ save: {} });
   engine.setCrewImpact(crewImpactCurrent);
-  const training = new OperationalTraining({ enabled: tutorialEnabled });
+  const training = new OperationalTraining({ enabled: tutorialEnabled, guided: Boolean(mission?.tutorialMission) });
   app.__simulationEngine = engine;
   let operationResolved = false;
   let gameplayPaused = false;
@@ -1831,11 +1839,32 @@ export function mountGameplay({
   let activeStation = 'command';
   let periscopeZoom = 1;
   const gameplayScroller = app.closest('.app-shell') || app;
+  const stationPresentation = {
+    command: ['stabilization.stationCommand', 'assets/ui/instruments/helm_icon.png'],
+    instruments: ['stabilization.stationInstruments', 'assets/ui/instruments/speed_telegraph_icon.png'],
+    sensors: ['stabilization.stationSensors', 'assets/ui/instruments/sonar_icon.png'],
+    weapons: ['stabilization.stationWeapons', 'assets/ui/instruments/torpedo_icon.png'],
+    navigation: ['stabilization.stationNavigationShort', 'assets/ui/icons/icon_navigation.png'],
+    ai: ['stabilization.stationThreat', 'assets/ui/icons/icon_crew.png'],
+    damage: ['stabilization.stationDamage', 'assets/ui/instruments/depth_gauge_icon.png'],
+  };
   function setStation(station, { focus = true } = {}) {
     const allowed = new Set(['command','instruments','sensors','weapons','navigation','ai','damage']);
     if (!allowed.has(station)) station = 'command';
     activeStation = station;
-    app.querySelectorAll('[data-station-panel]').forEach((panel) => panel.classList.toggle('active', panel.dataset.stationPanel === station));
+    training.visitStation(station);
+    const [stationKey, stationIcon] = stationPresentation[station] || stationPresentation.command;
+    app.querySelector('.gameplay-screen')?.setAttribute('data-active-station', station);
+    if (els.activeStationTitle) els.activeStationTitle.textContent = t(stationKey);
+    if (els.activeStationIcon) els.activeStationIcon.src = stationIcon;
+    app.querySelectorAll('[data-station-panel]').forEach((panel) => {
+      const selected = panel.dataset.stationPanel === station;
+      panel.classList.toggle('active', selected);
+      panel.hidden = !selected;
+      panel.setAttribute('aria-hidden', selected ? 'false' : 'true');
+      if (selected) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
+    });
     app.querySelectorAll('.station-tab').forEach((button) => {
       const selected = button.dataset.station === station;
       button.classList.toggle('active', selected);
@@ -1848,19 +1877,25 @@ export function mountGameplay({
     weapons: 'training.help.weapons', navigation: 'training.help.navigation', ai: 'training.help.ai', damage: 'training.help.damage',
   };
   function updateTraining(snapshot) {
-    const guide = training.update(snapshot);
+    const guide = training.update({ ...snapshot, activeStation });
     if (!els.trainingGuide) return guide;
     els.trainingGuide.classList.toggle('hidden', !guide.enabled || guide.dismissed);
+    els.trainingGuide.classList.toggle('complete', guide.finished);
     if (els.trainingProgressLabel) els.trainingProgressLabel.textContent = `${guide.progress}%`;
     if (els.trainingProgressBar) els.trainingProgressBar.style.width = `${guide.progress}%`;
-    if (els.trainingCurrentStep) els.trainingCurrentStep.textContent = t(`training.step.${guide.currentStep}`);
+    if (els.trainingCurrentStep) els.trainingCurrentStep.textContent = t(guide.finished ? 'training.guideCompleteTitle' : `training.step.${guide.currentStep}`);
+    if (els.trainingInstruction) els.trainingInstruction.textContent = t(guide.instructionKey);
+    if (els.trainingStationLabel) els.trainingStationLabel.textContent = t(`training.station.${guide.recommendedStation}`);
     els.trainingChecklist?.querySelectorAll('[data-training-step]').forEach((item) => {
       item.classList.toggle('complete', guide.completed.includes(item.dataset.trainingStep));
       item.classList.toggle('current', item.dataset.trainingStep === guide.currentStep);
     });
-    const dangerStation = guide.dangerStation;
-    app.querySelectorAll('.station-tab').forEach((button) => button.classList.toggle('recommended', button.dataset.station === dangerStation && button.dataset.station !== activeStation));
-    if (els.trainingGoStation) els.trainingGoStation.dataset.targetStation = dangerStation || guide.recommendedStation;
+    const targetStation = guide.dangerStation || guide.recommendedStation;
+    app.querySelectorAll('.station-tab').forEach((button) => button.classList.toggle('recommended', !guide.finished && button.dataset.station === targetStation && button.dataset.station !== activeStation));
+    if (els.trainingGoStation) {
+      els.trainingGoStation.dataset.targetStation = targetStation;
+      els.trainingGoStation.disabled = guide.finished;
+    }
     return guide;
   }
   function openStationHelp() {
@@ -3343,6 +3378,7 @@ export function mountGameplay({
     if (els.delegationOfficerRole) els.delegationOfficerRole.textContent = t(view.officerKey || 'delegation.officer.subofficer');
     if (els.delegationTitle) els.delegationTitle.textContent = t(view.titleKey || 'delegation.title.patrol');
     if (els.delegationQuestion) els.delegationQuestion.textContent = t(view.questionKey || 'delegation.question.patrol');
+    if (els.delegationConsequence) els.delegationConsequence.textContent = t(view.consequenceKey || 'delegation.consequence.patrol');
     if (els.delegationRadioTitle) els.delegationRadioTitle.textContent = t(view.radio?.titleKey || 'delegation.radio.title.clear');
     if (els.delegationRadioText) els.delegationRadioText.textContent = t(view.radio?.textKey || 'delegation.radio.text.clear', { count: view.radio?.total || 0, hostile: view.radio?.hostileTotal || 0, confidence: view.radio?.confidence || 0 });
     if (els.delegationContactChips) {

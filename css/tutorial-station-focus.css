@@ -1,0 +1,226 @@
+/* v2.1 — guided tutorial and focused combat-station presentation */
+.training-flow {
+  border-color: rgba(92, 214, 180, .48);
+  background: linear-gradient(135deg, rgba(20, 91, 78, .9), rgba(7, 35, 45, .94));
+}
+
+.training-flow .tag {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.active-station-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(103, 215, 192, .3);
+  border-radius: 10px;
+  background: rgba(6, 28, 34, .72);
+}
+
+.active-station-summary img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.active-station-summary div {
+  display: grid;
+  min-width: 0;
+}
+
+.active-station-summary span {
+  color: var(--text-muted);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.active-station-summary strong {
+  overflow: hidden;
+  color: #d9fff2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-screen="gameplay"] .gameplay-status-panel {
+  position: relative;
+  top: auto;
+}
+
+body[data-screen="gameplay"] .phase36-premium-director,
+body[data-screen="gameplay"] .phase37-audio-director {
+  display: none;
+}
+
+body[data-screen="gameplay"] .gameplay-kpis .navigation-kpi,
+body[data-screen="gameplay"] .gameplay-kpis .physics-kpi,
+body[data-screen="gameplay"] .gameplay-kpis .sensor-kpi,
+body[data-screen="gameplay"] .gameplay-kpis .ai-kpi,
+body[data-screen="gameplay"] .gameplay-kpis .environment-kpi {
+  display: none;
+}
+
+.guided-mission-guide {
+  position: sticky;
+  top: 60px;
+  z-index: 31;
+  margin: 0;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .38);
+  backdrop-filter: blur(14px);
+}
+
+.gameplay-screen[data-tutorial-mission="true"] #operational-guide.guided-mission-guide:not(.hidden) {
+  display: grid !important;
+}
+
+.guided-mission-guide .training-checklist {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.guided-mission-guide .training-current {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.guided-mission-guide .training-current b {
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 196, 82, .42);
+  border-radius: 999px;
+  color: #ffe1a0;
+  font-size: .72rem;
+  white-space: nowrap;
+}
+
+.training-instruction {
+  margin: 0;
+  padding: 9px 11px;
+  border-left: 3px solid #67d9c0;
+  border-radius: 6px;
+  background: rgba(41, 132, 118, .13);
+  color: #e1fff8;
+  line-height: 1.4;
+}
+
+.guided-mission-guide.complete {
+  border-color: rgba(75, 221, 145, .65);
+  background: linear-gradient(145deg, rgba(5, 45, 38, .94), rgba(9, 69, 54, .9));
+}
+
+.guided-mission-guide.complete .training-instruction {
+  border-left-color: #55e39a;
+}
+
+/* The detailed atmosphere is reserved for actionable alerts. Calm state remains
+   available in the compact HUD without covering the active station. */
+.phase27-alert-atmosphere[data-alert-level="calm"] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.phase27-alert-atmosphere:not([data-alert-level="calm"]) {
+  visibility: visible;
+  opacity: 1;
+}
+
+.phase28-air-attack-panel[data-air-active="false"] {
+  display: none;
+}
+
+.phase52-delegation-consequence {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 9px;
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid rgba(255, 195, 74, .72);
+  border-radius: 6px;
+  background: rgba(255, 195, 74, .08);
+  color: var(--text-muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.phase52-delegation-consequence b {
+  color: #ffe1a0;
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .guided-mission-guide {
+    top: 58px;
+    gap: 5px;
+    padding: 8px 10px;
+  }
+
+  .guided-mission-guide .training-checklist {
+    display: none;
+  }
+
+  .guided-mission-guide .training-instruction {
+    padding: 6px 9px;
+    font-size: .82rem;
+    line-height: 1.25;
+  }
+
+  .guided-mission-guide .operational-guide-header,
+  .guided-mission-guide .training-current {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .guided-mission-guide .operational-guide-header .row {
+    flex-wrap: nowrap;
+  }
+
+  .guided-mission-guide .chip {
+    min-height: 34px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .training-flow {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .training-flow .tag {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 0;
+  }
+
+  .guided-mission-guide .training-current {
+    grid-template-columns: 1fr auto;
+  }
+
+  .guided-mission-guide .training-current > span {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 900px) {
+  .guided-mission-guide .training-current {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .guided-mission-guide .training-current > span {
+    display: none;
+  }
+
+  .guided-mission-guide .training-current strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .station-tab.recommended,
+  .phase27-alert-atmosphere {
+    animation: none !important;
+  }
+}

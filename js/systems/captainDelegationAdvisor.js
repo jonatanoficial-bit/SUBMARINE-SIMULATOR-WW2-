@@ -255,6 +255,7 @@ export function buildCaptainDelegationAdvisorView({ snapshot = {}, commandMode =
     icon: current.station === 'weapons' ? 'assets/ui/instruments/torpedo_icon.png' : current.station === 'navigation' ? 'assets/ui/instruments/helm_icon.png' : current.station === 'damage' ? 'assets/ui/instruments/speed_telegraph_icon.png' : 'assets/ui/instruments/sonar_icon.png',
     titleKey: current.titleKey,
     questionKey: current.questionKey,
+    consequenceKey: `delegation.consequence.${current.id}`,
     autoCommand: current.autoCommand,
     autoStation: current.autoStation,
     autoLabelKey: current.autoLabelKey,

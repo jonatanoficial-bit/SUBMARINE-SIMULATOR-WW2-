@@ -91,10 +91,12 @@ function campaignForNation(campaigns = [], nationId = 'de') {
 export function buildSandboxMission({ scenarioId = 'north-atlantic-convoy', nationId = 'de', campaigns = [] } = {}) {
   const scenario = sandboxScenarioById(scenarioId);
   const campaign = campaignForNation(campaigns, nationId);
+  const tutorialMission = scenario.id === 'training-shakedown';
   return {
-    id: `sandbox-${nationId}-${scenario.id}`,
+    id: tutorialMission ? `tutorial-${nationId}` : `sandbox-${nationId}-${scenario.id}`,
     sandbox: true,
-    missionMode: 'sandbox',
+    tutorialMission,
+    missionMode: tutorialMission ? 'tutorial' : 'sandbox',
     nationId,
     campaignId: campaign.id,
     campaignOrder: 0,
@@ -123,7 +125,9 @@ export function buildSandboxMission({ scenarioId = 'north-atlantic-convoy', nati
     targetBob: 5,
     targetSpeedKnots: scenario.targetSpeedKnots,
     escortSpeedKnots: scenario.escortSpeedKnots,
-    objectiveKeys: ['sandbox.objective.patrol', 'sandbox.objective.identify', 'sandbox.objective.attackOptional', 'sandbox.objective.returnOptional'],
+    objectiveKeys: tutorialMission
+      ? ['tutorialMission.objective.contact', 'tutorialMission.objective.sonar', 'tutorialMission.objective.attack', 'tutorialMission.objective.evade']
+      : ['sandbox.objective.patrol', 'sandbox.objective.identify', 'sandbox.objective.attackOptional', 'sandbox.objective.returnOptional'],
     historicalNoteKey: 'sandbox.historicalNote',
     bonusReward: Math.round(scenario.reward * 0.22),
     bonusXp: Math.round(scenario.xp * 0.25),

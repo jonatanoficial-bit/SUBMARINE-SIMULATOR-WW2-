@@ -39,11 +39,11 @@ test('phase 52 metadata updates build without changing save schema or assets/aud
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.mobileFullscreen, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.saveSchemaStable, true);
-  assert.equal(build.version, '2.0.0');
-  assert.equal(Number(build.phase), 54);
+  assert.equal(build.version, '2.1.0');
+  assert.equal(Number(build.phase), 55);
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.0.0');
-  assert.equal(manifest.version, '2.0.0');
+  assert.equal(pkg.version, '2.1.0');
+  assert.equal(manifest.version, '2.1.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 
@@ -56,6 +56,7 @@ test('advisor opens game with automatic route or manual navigation option', () =
   assert.equal(view.manualCommand, 'manual-route');
   assert.equal(view.manualStation, 'navigation');
   assert.equal(view.infoCommand, 'radio-report');
+  assert.equal(view.consequenceKey, 'delegation.consequence.route');
   assert.equal(view.officerAsset, 'assets/avatars/de/officer_01.png');
   assert.equal(view.icon, 'assets/ui/instruments/helm_icon.png');
 });
@@ -92,6 +93,7 @@ test('advisor prioritizes danger, damage and manual override correctly', () => {
   assert.equal(damageView.scenario, 'damage');
   assert.equal(damageView.autoCommand, 'authorize-repair');
   assert.equal(damageView.manualCommand, 'manual-damage');
+  assert.equal(damageView.consequenceKey, 'delegation.consequence.damage');
 
   const manualView = buildCaptainDelegationAdvisorView({ snapshot: snapshot(), commandMode: 'manual' });
   assert.equal(manualView.mode, 'manual');
@@ -132,5 +134,6 @@ test('phase 52 files are wired in gameplay, css, service worker, smoke and trans
   assert.match(smoke, /captainDelegationAdvisor\.js/);
   assert.match(smoke, /phase52-captain-delegation-advisor\.css/);
   assert.match(pt, /delegation\.question\.route/);
+  assert.match(pt, /delegation\.consequence\.attack-ready/);
   assert.match(css, /100dvh/);
 });

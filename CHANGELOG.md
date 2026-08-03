@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.1.0 — 2026-08-03
+
+### Treinamento e sala de combate
+
+- Nova missão tutorial dirigida em seis etapas: contato, sonar, aproximação, TDC, disparo e evasão.
+- Painel do instrutor reposicionado no início da missão, com progresso sequencial e indicação da estação necessária.
+- Corrigida regra legada que ocultava o tutorial em celulares na horizontal.
+- Layout horizontal compacto sem lista extensa; no desktop, as seis etapas ficam em uma única linha.
+- Somente a estação ativa permanece renderizada e acessível; painéis inativos ficam ocultos, inertes e fora da árvore de acessibilidade.
+- Alertas acionáveis continuam fixos, enquanto painéis informativos calmos deixam de cobrir a estação.
+
+### Liberdade de comando e delegação
+
+- Decisões críticas apresentam opção de delegar à tripulação ou assumir manualmente.
+- Navegação, contato, aproximação silenciosa, preparação/disparo, evasão e reparo de emergência possuem caminhos delegados.
+- Cada decisão mostra sua consequência provável antes da ordem.
+- Resultado automático continua ligado à experiência, moral e eficiência real da tripulação.
+
+### Integridade
+
+- Nenhum personagem, avatar, embarcação, campanha, áudio ou sistema de simulação foi removido.
+- Save schema 40 mantido para compatibilidade.
+- Interface e textos validados em português, inglês e espanhol.
+
 ## 2.0.0 — 2026-07-31
 
 ### Produto e interface
