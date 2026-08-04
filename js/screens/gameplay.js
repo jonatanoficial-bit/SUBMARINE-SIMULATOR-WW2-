@@ -1,4 +1,4 @@
-import { playSfx, updateOperationalAmbience } from '../audio.js';
+import { playSfx, speakOfficerLine, updateOperationalAmbience } from '../audio.js';
 import { SimulationEngine } from '../engine/simulation/SimulationEngine.js';
 import { PERISCOPE_MAX_DEPTH, SPEED_ANGLES, SPEEDS, VIEW_STEP_X, VIEW_STEP_Y } from '../engine/simulation/constants.js';
 import { clamp, depthToAngle, worldToViewPosition } from '../engine/simulation/simulationMath.js';
@@ -20,6 +20,7 @@ import { buildCaptainCommandChainView } from '../systems/captainCommandChain.js'
 import { buildCaptainCombatCycleView } from '../systems/captainCombatCycle.js';
 import { buildCaptainCommandRoomView } from '../systems/captainCommandRoom.js';
 import { buildCaptainDelegationAdvisorView } from '../systems/captainDelegationAdvisor.js';
+import { buildTorpedoOutcomeFeedback, buildTorpedoRunFeedback } from '../systems/combatFeedback.js';
 import { buildCrewProgressionImpact } from '../systems/captainCrewProgressionImpact.js';
 import { buildNavalAITacticalView } from '../systems/navalAITacticalCoordinator.js';
 import { buildSubmarineDamageVisualView, shouldDamageVisualEscalate } from '../systems/submarineDamageVisuals.js';
@@ -182,6 +183,33 @@ export function renderGameplay(t, mission, settings = {}) {
           </div>
         </div>
       </div>
+
+      <div class="torpedo-run-status hidden" id="torpedo-run-status" role="status" aria-live="polite">
+        <img src="assets/effects/torpedo_moving_01.png" alt="">
+        <div><span>${t('combatFeedback.run.kicker')}</span><strong id="torpedo-run-label">${t('combatFeedback.run.active')}</strong><i><em id="torpedo-run-progress"></em></i></div>
+        <b id="torpedo-run-time">-- s</b>
+      </div>
+
+      <aside class="combat-impact-feedback hidden" id="combat-impact-feedback" data-outcome="hit" role="dialog" aria-modal="false" aria-labelledby="combat-impact-title">
+        <div class="combat-impact-card">
+          <div class="combat-impact-scene" aria-hidden="true">
+            <img class="combat-impact-ship" id="combat-impact-ship" src="assets/ships/merchant_ship_01.png" alt="">
+            <img class="combat-impact-explosion" src="assets/effects/ocean_explosion_01.png" alt="">
+            <i class="combat-impact-water"></i>
+          </div>
+          <div class="combat-impact-report">
+            <span>${t('combatFeedback.officer')}</span>
+            <strong id="combat-impact-title">${t('combatFeedback.title.hitTarget')}</strong>
+            <p id="combat-impact-summary">${t('combatFeedback.summary.hitTarget')}</p>
+            <div class="combat-impact-consequence"><b>${t('combatFeedback.consequenceLabel')}</b><span id="combat-impact-consequence">${t('combatFeedback.consequence.hitTarget')}</span></div>
+            <div class="combat-impact-actions">
+              <button class="button primary" id="combat-impact-primary" type="button">${t('combatFeedback.action.evade')}</button>
+              <button class="button secondary" id="combat-impact-map" type="button">${t('combatFeedback.action.map')}</button>
+              <button class="button ghost" id="combat-impact-dismiss" type="button">${t('combatFeedback.action.continue')}</button>
+            </div>
+          </div>
+        </div>
+      </aside>
 
       <section class="operational-guide guided-mission-guide ${settings.tutorials === false && !mission?.tutorialMission ? 'hidden' : ''}" id="operational-guide" aria-live="polite">
         <div class="operational-guide-header">
@@ -1018,6 +1046,7 @@ export function renderGameplay(t, mission, settings = {}) {
               <g class="phase29-chart-graticule">${phase29ChartGridMarkup()}</g>
               <g id="nav-chart-lanes" class="phase29-chart-lanes"></g>
               <g id="nav-chart-danger-zones" class="phase29-chart-danger"></g>
+              <g id="nav-contact-markers" class="phase56-chart-contacts"></g>
               <g id="nav-chart-labels" class="phase29-chart-labels"></g>
               <g class="navigation-grid-lines">${navigationGridMarkup()}</g>
               <rect id="nav-sector" class="navigation-sector" x="0" y="0" width="0" height="0"></rect>
@@ -1238,7 +1267,8 @@ export function renderGameplay(t, mission, settings = {}) {
 export function mountGameplay({
   app, mission, submarine = null, initialHull = 100, initialSystems = {}, initialSnapshot = null,
   onHullUpdate = () => {}, onMissionComplete, onOperationAutosave = () => {},
-  onOperationCleared = () => {}, difficulty = 'officer', tutorialEnabled = true, contextualHelp = true, crewImpact = null, t
+  onOperationCleared = () => {}, difficulty = 'officer', tutorialEnabled = true, contextualHelp = true, crewImpact = null,
+  voicesEnabled = true, language = 'pt-BR', t
 }) {
   cleanupGameplay();
 
@@ -1246,6 +1276,18 @@ export function mountGameplay({
     pauseButton: app.querySelector('#gameplay-pause-button'),
     pauseOverlay: app.querySelector('#gameplay-pause-overlay'),
     resumeButton: app.querySelector('#gameplay-resume-button'),
+    torpedoRunStatus: app.querySelector('#torpedo-run-status'),
+    torpedoRunLabel: app.querySelector('#torpedo-run-label'),
+    torpedoRunProgress: app.querySelector('#torpedo-run-progress'),
+    torpedoRunTime: app.querySelector('#torpedo-run-time'),
+    combatImpact: app.querySelector('#combat-impact-feedback'),
+    combatImpactShip: app.querySelector('#combat-impact-ship'),
+    combatImpactTitle: app.querySelector('#combat-impact-title'),
+    combatImpactSummary: app.querySelector('#combat-impact-summary'),
+    combatImpactConsequence: app.querySelector('#combat-impact-consequence'),
+    combatImpactPrimary: app.querySelector('#combat-impact-primary'),
+    combatImpactMap: app.querySelector('#combat-impact-map'),
+    combatImpactDismiss: app.querySelector('#combat-impact-dismiss'),
     depthNeedle: app.querySelector('#depth-needle'),
     depthDigital: app.querySelector('#depth-digital'),
     depthOrderDigital: app.querySelector('#depth-order-digital'),
@@ -1612,6 +1654,7 @@ export function mountGameplay({
     navRouteLegList: app.querySelector('#nav-route-leg-list'),
     navChartLanes: app.querySelector('#nav-chart-lanes'),
     navChartDangerZones: app.querySelector('#nav-chart-danger-zones'),
+    navContactMarkers: app.querySelector('#nav-contact-markers'),
     navChartLabels: app.querySelector('#nav-chart-labels'),
     navSector: app.querySelector('#nav-sector'),
     navRouteLine: app.querySelector('#nav-route-line'),
@@ -1768,6 +1811,8 @@ export function mountGameplay({
   let captainCombatCycleCurrent = null;
   let captainCommandRoomCurrent = null;
   let captainDelegationAdvisorCurrent = null;
+  let combatImpactCurrent = null;
+  let combatImpactHideTimer = null;
 
   const persistOperation = (snapshot = engine.snapshot(), force = false) => {
     if (operationResolved || snapshot.missionFailed || snapshot.canComplete) return false;
@@ -1804,6 +1849,49 @@ export function mountGameplay({
     addCleanup(() => clearTimeout(id));
     return id;
   };
+
+  function hideCombatImpact() {
+    els.combatImpact?.classList.add('hidden');
+    document.body.classList.remove('torpedo-impact-hit', 'torpedo-impact-miss');
+    if (combatImpactHideTimer) clearTimeout(combatImpactHideTimer);
+    combatImpactHideTimer = null;
+  }
+
+  function showCombatImpact(event = {}) {
+    const view = buildTorpedoOutcomeFeedback(event);
+    if (combatImpactCurrent?.hit && !view.hit && els.combatImpact && !els.combatImpact.classList.contains('hidden')) return;
+    combatImpactCurrent = view;
+    if (els.combatImpact) {
+      els.combatImpact.dataset.outcome = view.hit ? 'hit' : view.outcome;
+      els.combatImpact.classList.remove('hidden');
+    }
+    if (els.combatImpactShip) els.combatImpactShip.src = view.shipAsset;
+    if (els.combatImpactTitle) els.combatImpactTitle.textContent = t(view.titleKey);
+    if (els.combatImpactSummary) els.combatImpactSummary.textContent = t(view.summaryKey);
+    if (els.combatImpactConsequence) els.combatImpactConsequence.textContent = t(view.consequenceKey);
+    if (els.combatImpactPrimary) els.combatImpactPrimary.textContent = t(view.primaryKey);
+    document.body.classList.remove('torpedo-impact-hit', 'torpedo-impact-miss');
+    document.body.classList.add(view.hit ? 'torpedo-impact-hit' : 'torpedo-impact-miss');
+    playSfx(view.hit ? 'shipImpact' : view.outcome === 'miss' ? 'torpedoSplash' : 'miss');
+    if (view.hit) schedule(() => playSfx('shipSinking'), 650);
+    schedule(() => playSfx('crewConfirm'), view.hit ? 900 : 420);
+    if (voicesEnabled) schedule(() => speakOfficerLine(t(view.voiceKey), { lang: language, rate: .92, pitch: .8 }), view.hit ? 1150 : 620);
+    if (combatImpactHideTimer) clearTimeout(combatImpactHideTimer);
+    combatImpactHideTimer = setTimeout(hideCombatImpact, view.hit ? 9000 : 7000);
+  }
+
+  function updateTorpedoRunStatus(snapshot) {
+    const view = buildTorpedoRunFeedback(snapshot);
+    els.torpedoRunStatus?.classList.toggle('hidden', !view.active);
+    if (!view.active) return;
+    if (els.torpedoRunLabel) els.torpedoRunLabel.textContent = t('combatFeedback.run.activeCount', { count: view.shotCount });
+    if (els.torpedoRunTime) els.torpedoRunTime.textContent = `${view.remainingSeconds} s`;
+    if (els.torpedoRunProgress) els.torpedoRunProgress.style.width = `${view.progress}%`;
+  }
+  addCleanup(() => {
+    if (combatImpactHideTimer) clearTimeout(combatImpactHideTimer);
+    if (typeof window !== 'undefined') window.speechSynthesis?.cancel?.();
+  });
 
   const setGameplayPaused = (paused) => {
     const next = Boolean(paused);
@@ -2532,6 +2620,27 @@ export function mountGameplay({
     const player = mapPoint(chart.position, bounds);
     dangerNodes.push(svgElement('circle', { class: 'phase29-chart-player-ring', cx: player.x.toFixed(1), cy: player.y.toFixed(1), r: 34 }));
     replaceSvgChildren(els.navChartDangerZones, dangerNodes);
+
+    const contactNodes = [];
+    chart.contactMarkers.forEach((contact) => {
+      const x = clamp(player.x + Number(contact.x || 0) * .48, 34, 966);
+      const y = clamp(player.y + Number(contact.y || 0) * .48, 34, 526);
+      const group = svgElement('g', {
+        class: `phase56-chart-contact ${contact.role}${contact.destroyed ? ' eliminated' : ''}`,
+        transform: `translate(${x.toFixed(1)} ${y.toFixed(1)})`,
+        'data-contact-id': contact.id,
+      });
+      group.appendChild(svgElement(contact.role === 'escort' ? 'rect' : 'circle', contact.role === 'escort'
+        ? { x: -9, y: -9, width: 18, height: 18, rx: 2 }
+        : { cx: 0, cy: 0, r: 10 }));
+      if (contact.destroyed) {
+        group.appendChild(svgElement('line', { x1: -13, y1: -13, x2: 13, y2: 13 }));
+        group.appendChild(svgElement('line', { x1: 13, y1: -13, x2: -13, y2: 13 }));
+      }
+      group.appendChild(svgElement('text', { x: 15, y: 5 }, t(contact.labelKey)));
+      contactNodes.push(group);
+    });
+    replaceSvgChildren(els.navContactMarkers, contactNodes);
 
     const labelNodes = chart.quadrants.map((quadrant) => {
       const point = mapPoint(quadrant.point, bounds);
@@ -3754,6 +3863,7 @@ export function mountGameplay({
     updateEnvironment(snapshot);
     updateSensors(snapshot);
     updateWeapons(snapshot);
+    updateTorpedoRunStatus(snapshot);
     updateDamageControl(snapshot);
     updateNavalAI(snapshot);
     updateEncounter(snapshot);
@@ -3841,26 +3951,29 @@ export function mountGameplay({
     onHullUpdate(snapshot.hull, snapshot.systems);
   }));
   addCleanup(engine.on('mission:failed', showMissionFailure));
-  addCleanup(engine.on('torpedo:fired', () => {
+  addCleanup(engine.on('torpedo:fired', ({ salvoSize = 1 } = {}) => {
     playSfx('torpedo');
     [els.impactExplosion, els.impactSplash].forEach((element) => element?.classList.add('hidden'));
     els.torpedoShot?.classList.remove('hidden');
+    els.torpedoRunStatus?.classList.remove('hidden');
+    if (els.torpedoRunLabel) els.torpedoRunLabel.textContent = t('combatFeedback.run.fired', { count: salvoSize });
+    if (voicesEnabled) speakOfficerLine(t('combatFeedback.voice.fired'), { lang: language, rate: .94, pitch: .82 });
   }));
-  addCleanup(engine.on('torpedo:resolved', ({ hit, outcome, snapshot }) => {
+  addCleanup(engine.on('torpedo:resolved', (event) => {
+    const { hit, snapshot } = event;
     els.torpedoShot?.classList.toggle('hidden', !snapshot?.torpedoActive);
     if (hit) {
       els.impactExplosion?.classList.remove('hidden');
-      playSfx('hit');
       document.body.classList.add('combat-success');
       schedule(() => document.body.classList.remove('combat-success'), 520);
     } else {
       els.impactSplash?.classList.remove('hidden');
-      playSfx('miss');
     }
+    showCombatImpact(event);
     schedule(() => {
       els.impactExplosion?.classList.add('hidden');
       els.impactSplash?.classList.add('hidden');
-    }, 1400);
+    }, 3200);
   }));
 
 
@@ -3932,6 +4045,14 @@ export function mountGameplay({
   bind(els.delegationAuto, 'click', () => runDelegationButton(els.delegationAuto));
   bind(els.delegationManual, 'click', () => runDelegationButton(els.delegationManual));
   bind(els.delegationInfo, 'click', () => runDelegationButton(els.delegationInfo));
+  bind(els.combatImpactPrimary, 'click', () => {
+    const hit = Boolean(combatImpactCurrent?.hit);
+    hideCombatImpact();
+    if (hit) runSubOfficerAction('evade-now', 'instruments');
+    else setStation('weapons');
+  });
+  bind(els.combatImpactMap, 'click', () => { hideCombatImpact(); setStation('navigation'); });
+  bind(els.combatImpactDismiss, 'click', hideCombatImpact);
   app.querySelectorAll('.station-tab').forEach((button) => bind(button, 'click', () => setStation(button.dataset.station)));
   bind(els.stationHelpTrigger, 'click', openStationHelp);
   bind(els.stationHelpClose, 'click', closeStationHelp);

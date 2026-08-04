@@ -1385,6 +1385,7 @@ function initEvents() {
       case 'toggle-crew': handleCrewHire(target.dataset.crew); break;
       case 'set-language': setLanguage(target.dataset.lang); syncPersistentSettings(); applyDocumentLanguage(); render(); break;
       case 'toggle-vibration': setSettings({ vibration: !state.settings.vibration }); commitSave('toast.settingsSaved'); render(); break;
+      case 'toggle-voices': setSettings({ voices: state.settings.voices === false }); commitSave('toast.settingsSaved'); render(); break;
       case 'toggle-tutorials': setSettings({ tutorials: !state.settings.tutorials }); commitSave('toast.settingsSaved'); render(); break;
       case 'toggle-contextual-help': setSettings({ contextualHelp: !state.settings.contextualHelp }); commitSave('toast.settingsSaved'); render(); break;
       case 'reset-progress': handleReset(); break;
@@ -1612,6 +1613,8 @@ sceneManager
       difficulty: state.settings.difficulty,
       tutorialEnabled: mission?.tutorialMission ? true : state.settings.tutorials,
       contextualHelp: state.settings.contextualHelp,
+      voicesEnabled: state.settings.voices !== false,
+      language: state.settings.language,
       crewImpact: getCrewProgressionImpact(mission?.nationId || getCurrentNationId()),
       onHullUpdate: handleHullUpdate,
       onMissionComplete: handleCompleteMission,

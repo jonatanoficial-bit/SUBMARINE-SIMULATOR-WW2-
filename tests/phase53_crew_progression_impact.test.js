@@ -42,11 +42,11 @@ test('phase 53 metadata upgrades build without changing save schema or removing 
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.saveSchemaStable, true);
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE53_CREW_PROGRESSION_IMPACT.mobileFullscreen, true);
-  assert.equal(build.version, '2.1.0');
-  assert.equal(build.phase, '55');
+  assert.equal(build.version, '2.2.0');
+  assert.equal(build.phase, '56');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.1.0');
-  assert.equal(manifest.version, '2.1.0');
+  assert.equal(pkg.version, '2.2.0');
+  assert.equal(manifest.version, '2.2.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

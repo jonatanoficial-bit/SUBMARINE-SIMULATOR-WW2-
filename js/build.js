@@ -2,17 +2,17 @@
 export const BUILD_INFO = Object.freeze({
   "product": "Submarine Commander WW2",
   "studio": "Vale Games",
-  "version": "2.1.0",
-  "semver": "2.1.0",
-  "buildId": "SCWW2-2.1.0-20260803-1714-BRT",
+  "version": "2.2.0",
+  "semver": "2.2.0",
+  "buildId": "SCWW2-2.2.0-20260803-1919-BRT",
   "date": "2026-08-03",
-  "time": "17:14",
+  "time": "19:19",
   "timezone": "America/Sao_Paulo",
-  "phase": "55",
-  "phaseName": "Guided Combat Training and Station Focus",
+  "phase": "56",
+  "phaseName": "Immersive Torpedo Combat Feedback",
   "channel": "stable",
   "release": true,
   "qaStatus": "PASS",
   "saveSchemaVersion": 40,
-  "notes": "Stable mobile-first release with a six-step guided combat tutorial, compact landscape instructor, single active combat station, actionable fixed alerts and every existing character, avatar, vessel, campaign and simulation system preserved."
+  "notes": "Stable mobile-first release with cinematic torpedo feedback, officer voice reports, richer synthesized naval effects, eliminated contact markers on the tactical chart, the guided combat tutorial and every existing character, avatar, vessel, campaign and simulation system preserved."
 });

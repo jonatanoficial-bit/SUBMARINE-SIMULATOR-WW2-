@@ -17,6 +17,7 @@ export const state = {
     language: 'pt-BR',
     music: 70,
     sound: 80,
+    voices: true,
     graphics: 'high',
     vibration: true,
     difficulty: 'officer',

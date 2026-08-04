@@ -39,11 +39,11 @@ test('phase 52 metadata updates build without changing save schema or assets/aud
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.mobileFullscreen, true);
   assert.equal(PHASE52_CAPTAIN_DELEGATION_ADVISOR.saveSchemaStable, true);
-  assert.equal(build.version, '2.1.0');
-  assert.equal(Number(build.phase), 55);
+  assert.equal(build.version, '2.2.0');
+  assert.equal(Number(build.phase), 56);
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.1.0');
-  assert.equal(manifest.version, '2.1.0');
+  assert.equal(pkg.version, '2.2.0');
+  assert.equal(manifest.version, '2.2.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

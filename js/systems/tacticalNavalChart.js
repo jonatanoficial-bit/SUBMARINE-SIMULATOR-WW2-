@@ -139,6 +139,19 @@ function summarizeRoute(route = [], activeWaypointIndex = 0) {
   }));
 }
 
+function buildContactMarkers(snapshot = {}) {
+  const ships = Array.isArray(snapshot.navalAI?.ships) ? snapshot.navalAI.ships : [];
+  return ships.map((ship) => ({
+    id: ship.id || 'contact',
+    role: ['target', 'convoy'].includes(ship.role) ? 'merchant' : 'escort',
+    shipType: ship.shipType || ship.role || 'unknown',
+    x: safeNumber(ship.x, 0),
+    y: safeNumber(ship.y, 0),
+    destroyed: Boolean(ship.destroyed || ship.active === false),
+    labelKey: ship.destroyed || ship.active === false ? 'combatFeedback.map.eliminated' : 'combatFeedback.map.contact',
+  }));
+}
+
 export function buildTacticalNavalChartView({ snapshot = {}, mission = {} } = {}) {
   const navigation = snapshot.navigation || mission.navigation || {};
   const bounds = normalizeBounds(navigation.mapBounds || mission.navigation?.mapBounds);
@@ -167,6 +180,7 @@ export function buildTacticalNavalChartView({ snapshot = {}, mission = {} } = {}
     convoyLanes,
     dangerZones,
     quadrants: buildQuadrants(bounds),
+    contactMarkers: buildContactMarkers(snapshot),
     grid: buildHydrographicGrid(bounds),
     patrolEntered: Boolean(navigation.patrolEntered),
     routeComplete: Boolean(navigation.routeComplete),

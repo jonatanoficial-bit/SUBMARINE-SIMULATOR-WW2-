@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.2.0 — 2026-08-03
+
+### Combate mais imersivo
+
+- Faixa fixa acompanha torpedos em corrida com quantidade, tempo restante e progresso.
+- Painel cinematográfico diferencia impacto, erro, falha de espoleta, profundidade incorreta e detonação prematura.
+- O oficial de armas relata o resultado e a consequência tática em texto e, quando habilitado, pela voz offline do aparelho.
+- Novos efeitos sintetizados reforçam lançamento, impacto no casco, afundamento, splash e confirmação da tripulação.
+- A carta naval mostra contatos ativos e marca navios destruídos como `ELIMINADO`.
+- Um acerto oferece evasão imediata, abertura da carta naval ou continuidade manual; um erro permite corrigir a solução.
+
+### Compatibilidade e preservação
+
+- Todos os personagens, avatares, embarcações, campanhas, sistemas de delegação e saves foram preservados.
+- Save schema 40 mantido, sem migração destrutiva.
+- Interface responsiva mantém a prioridade para celular horizontal e futura conversão em APK.
+
 ## 2.1.0 — 2026-08-03
 
 ### Treinamento e sala de combate

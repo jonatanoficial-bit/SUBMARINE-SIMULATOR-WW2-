@@ -39,12 +39,12 @@ test('phase 51 metadata preserves audio/assets and save schema while updating bu
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.version, 'v2.0.0-alpha.66');
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.preservesExistingAssetsAndAudio, true);
   assert.equal(PHASE51_CAPTAIN_COMMAND_ROOM.saveSchemaStable, true);
-  assert.equal(build.version, '2.1.0');
-  assert.equal(build.semver, '2.1.0');
-  assert.equal(build.phase, '55');
+  assert.equal(build.version, '2.2.0');
+  assert.equal(build.semver, '2.2.0');
+  assert.equal(build.phase, '56');
   assert.equal(build.saveSchemaVersion, 40);
-  assert.equal(pkg.version, '2.1.0');
-  assert.equal(manifest.version, '2.1.0');
+  assert.equal(pkg.version, '2.2.0');
+  assert.equal(manifest.version, '2.2.0');
   assert.equal(pkg.scripts.audit, 'python3 tools/audit_phase54_career_retention.py');
 });
 

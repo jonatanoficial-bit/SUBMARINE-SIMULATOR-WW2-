@@ -63,6 +63,11 @@ export function renderSettings(t, settings) {
             <span>${t('settings.sound')}: ${settings.sound}</span>
             <input type="range" min="0" max="100" value="${settings.sound}" data-setting-range="sound">
           </label>
+          <div class="row wrap space-between">
+            <span>${t('settings.voices')}</span>
+            <button class="chip ${settings.voices !== false ? 'active' : ''}" data-action="toggle-voices">${settings.voices !== false ? t('common.on') : t('common.off')}</button>
+          </div>
+          <div class="empty-state compact">${t('settings.voicesHint')}</div>
           <label class="slider-row">
             <span>${t('settings.graphics')}</span>
             <select class="select" data-setting-select="graphics">
